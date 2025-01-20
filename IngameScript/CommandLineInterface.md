@@ -1,5 +1,7 @@
 # Command Line Interface (CLI)
 
+[< Installation](Installation.md)
+
 Mother's command line interface allows you to interact with your grid.  We can pass in *arguments* to the script to perform different actions.  The CLI is available in the programmable block terminal, and you can run it by hitting the `Run` button.
 
 **Command Syntax**

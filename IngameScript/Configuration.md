@@ -1,5 +1,7 @@
 # Configuration
 
+[< Command Line Interface](CommandLineInterface.md)
+
 Players can easily configure Mother using the Programmable Block's **CustomData**. Where a Module has configuration settings, they will be documented in the module's section of this documentation.
 
 > Don't forget to `Recompile` Mother when you update the CustomData in the Programmable Block.

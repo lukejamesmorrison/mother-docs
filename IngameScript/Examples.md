@@ -1,5 +1,7 @@
 # Examples
 
+[< Modules](Modules/Modules.md)
+
 Let's look at some examples and how Mother simplifies them. See the [Command Cheatsheet](CommandCheatsheet.md) for a complete list of available commands.
 
 1. [Drill Deployment](#drill-deployment)

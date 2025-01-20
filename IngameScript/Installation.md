@@ -1,6 +1,6 @@
 # Installation
 
-[< Back](IngameScript.md)
+[< Ingame Script](IngameScript.md)
 
 Mother is available as a script for Programmable Blocks in Space Engineers. Simply [subscribe in the Steam Workshop](../) and it will be available to you in-game.
 
