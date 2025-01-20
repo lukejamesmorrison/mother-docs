@@ -1,0 +1,34 @@
+# Communication Module
+
+## Intergrid Communication
+
+Grids running Mother can communication by sending messages and querying each other.  This is useful for coordinating actions between multiple ships like docking, or formation flight but allows remote command execution.
+
+To send a command to another grid remotely, you must begin the command with the grid's `Name`, which is stored in the [Almanac](../Core/Almanac.md).  Your grid's name is found in the `Info` tab of the terminal screen. 
+
+> **At this time, grid names cannot contain spaces.**
+
+![Terminal Info tab](../../Assets/terminal-info-1.png)
+
+## Sending a Remote Command/Routine
+
+The simplest form of intergrid communication is to send a remote command or routine.  By default, Mother may send a command to any other grid running Mother contained in the [Almanac](../Core/Almanac.md), and available on the antenna network. The receiving grid will execute the command as if it were entered in the local Programmable Block terminal. See [Security](../Core/Security.md) for more information on protecting intergrid communication from unauthorized access.
+
+
+Imagine we have a ship on the other side of the planet, and want it come directly to our position.  We could pilot it remotely, but this is time consuming.  Instead, we can send a command to the ship no matter where it is, and no matter where we are.
+
+We can use the `nav/set-flight-plan` command to send a GPS waypoint to the ship so it knows where to go.
+
+```bash
+# remotely set a flight plan on SurveyDrone grid
+@SurveyDrone nav/set-flight-plan "GPS:CurrentPosition#1:211.78:-52.93:59.19:#FF75C9F1:"
+```
+
+Similiarily, if we couple the autopilot start command into a routine, then the SurveyDrone will start flying to the GPS waypoint as soon as it receives the command.:
+
+```bash
+# remotely set a flight plan, and start autopilot on SurveyDrone grid
+@SurveyDrone nav/set-flight-plan "GPS:CurrentPosition#1:211.78:-52.93:59.19:#FF75C9F1:"; fcs/start;
+```
+
+Visit the [Navigation Module](NavigationModule.md) for more information on flight planning.
