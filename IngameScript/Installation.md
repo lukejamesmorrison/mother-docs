@@ -2,7 +2,7 @@
 
 [< Ingame Script](IngameScript.md)
 
-Mother is available as a script for Programmable Blocks in Space Engineers. Simply [subscribe in the Steam Workshop](../) and it will be available to you in-game.
+Mother is available as a script for Programmable Blocks in Space Engineers. Simply [subscribe in the Steam Workshop](https://steamcommunity.com/sharedfiles/filedetails/?id=3411507973) and it will be available to you in-game.
 
 **To run Mother, your grid must have:**
 
