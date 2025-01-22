@@ -9,6 +9,8 @@ Mother's command line interface allows you to interact with your grid.  We can p
 <Command> <Argument,> [Option,]
 ```
 
+[![Running a Command](https://img.youtube.com/vi/Ax5bhoeutcA/0.jpg)](https://www.youtube.com/watch?v=Ax5bhoeutcA)
+
 
 ## Anatomy of a Command
 Commands are similar to a traditional command line interface, and consist of 3 components:

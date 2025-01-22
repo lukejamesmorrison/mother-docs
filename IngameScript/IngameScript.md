@@ -24,6 +24,12 @@ This script is designed to be efficient, only running when triggered by a comman
 5. [Examples](Examples.md)
 6. [Command Cheatsheet](CommandCheatsheet.md)
 
+## Videos
+
+### Introduction
+[![Introduction](https://img.youtube.com/vi/6SdQpArCuJM/0.jpg)](https://www.youtube.com/watch?v=6SdQpArCuJM)
+
+
 ## Overview
 
 ```mermaid

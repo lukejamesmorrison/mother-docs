@@ -82,6 +82,9 @@ An example of a roundtrip flight plan:
 nav/set-flight-plan "GPS:Midpoint:190.12:-54.45:45.89:#FF75C9F1: GPS:TopSecretBase:211.78:-52.93:59.19:#FF75C9F1: R"
 ```
 
+### Loading a Flight Plan
+[![Loading a Flight Plan](https://img.youtube.com/vi/jFMLTiwC3Sg/0.jpg)](https://www.youtube.com/watch?v=jFMLTiwC3Sg)
+
 ## Commands
 
 ### set-flight-plan

@@ -32,3 +32,7 @@ Similiarily, if we couple the autopilot start command into a routine, then the S
 ```
 
 Visit the [Navigation Module](NavigationModule.md) for more information on flight planning.
+
+
+### Sending a Remote Command Video
+[![Sending a Remote Command](https://img.youtube.com/vi/ubFKpvxrtz0/0.jpg)](https://www.youtube.com/watch?v=ubFKpvxrtz0)
