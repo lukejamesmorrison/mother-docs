@@ -1,5 +1,8 @@
 # Ingame Script
+
 ![Beta](https://img.shields.io/badge/Beta-blue)
+
+> MOTHER IS IN BETA DEVELOPMENT. I'M ON A QUEST TO REDUCE THE CHARACTER COUNT, AND INCREASE THE FUNCTIONALITY.  PLEASE REPORT ANY ISSUES YOU ENCOUNTER, AND EXPECT SOME OF THE COMMANDS AND UNDERLYING FRAMEWORK TO CHANGE.
 
 Mother is available as an ingame script for Programmable Blocks in Space Engineers. It gives you access to many features, including:
 

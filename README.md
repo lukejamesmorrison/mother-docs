@@ -10,6 +10,8 @@
  ██║ ╚═╝ ██║╚██████╔╝   ██║   ██║  ██║███████╗██║  ██║  ╚██████╔╝███████║
  ╚═╝     ╚═╝ ╚═════╝    ╚═╝   ╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝   ╚═════╝ ╚══════╝
  ```
+> MOTHER IS IN BETA DEVELOPMENT. I'M ON A QUEST TO REDUCE THE CHARACTER COUNT, AND INCREASE THE FUNCTIONALITY.  PLEASE REPORT ANY ISSUES YOU ENCOUNTER, AND EXPECT SOME OF THE COMMANDS AND UNDERLYING FRAMEWORK TO CHANGE.
+
 [!["Buy Me A Coffee"](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://buymeacoffee.com/Agentluke)
 
 Mother is a general purpose operating system for Space Engineers grids, available as an in-game script. It exposes an intuitive command line interface (CLI), flexible flight control & planning, and an intergrid communication system to massively expand what you can do with your grid(s). I built Mother to make my ships operate more like intelligent spacecraft, rather than just a collection of blocks moving through space. With Mother's CLI, most common automations can easily be assigned to a button without needing a Timer or Event Block, though it can also be used in conjunction with them.
