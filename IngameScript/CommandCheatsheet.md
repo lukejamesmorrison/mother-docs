@@ -1,6 +1,6 @@
 # Command Cheatsheet
 
-Commands belong to [Modules](/Modules/Modules.md). You can create custom commands when [creating a custom project](). Any command registered in a module will be made available by Mother to the Programmable Block terminal.
+Commands belong to [Modules](Modules/Modules.md). Any command registered in a module will be made available by Mother to the Programmable Block terminal.
 
 The following is a list of commands available in the default modules.
 
@@ -112,7 +112,7 @@ connector/toggle <Connector|Group>
 
 ## Rotors
 ### rotate
-Rotate a rotor or group of rotors to a specific angle between 0 and 360 degrees.
+Rotate a rotor or group of rotors to a specific angle between -360 and 360 degrees. 
 ```
 rotor/rotate <Rotor|Group> <Angle> [--options]
 ```

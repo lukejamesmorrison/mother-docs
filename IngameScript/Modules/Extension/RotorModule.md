@@ -5,7 +5,7 @@ The rotor module allows the user to control rotors on the grid.  Rotors are part
 ## Commands
 
 ### rotate
-Rotate a rotor or group of rotors to a specific angle between 0 and 360 degrees.
+Rotate a rotor or group of rotors to a specific angle between -360 and 360 degrees. 
 ```
 rotor/rotate <Rotor|Group> <Angle> [--options]
 ```

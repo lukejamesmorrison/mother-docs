@@ -6,11 +6,17 @@ Mother maintains a list of all grids in the world running Mother that are connec
 
 To immediately refresh the Almanac, you can run the `ping` command.
 
+![Almanac Map](../../Assets/almanac-map-2.png)
+
 ## Why Do We Have It?
 
 In order for grids to interoperate seamlessly, it is important for them to store key information about each other.  This includes properties like their id, position and speed.  Other modules can make use of this for secure communication, and sending remote commands.
 
-![Almanac Map](../../Assets/almanac-map-1.png)
+## Viewing the Map
+
+Mother can render a map showing all grids and waypoints in the Almanac. Simply add `[MMAP]` to the end of your LCD name and `Recompile` Mother. The projection will automatically update.
+
+![Almanac LCD](../../Assets/almanac-lcd-1.png)
 
 <!-- ## Friendly or Foe?
 
