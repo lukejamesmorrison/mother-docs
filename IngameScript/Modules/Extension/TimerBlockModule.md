@@ -13,6 +13,11 @@ Start execution for a timer block or group of timer blocks.
 timer/start <TimerBlock|Group> [--options]
 ```
 
+Options
+| Option  | Values     | Unit | Description                                                         |
+| ------- | ---------- | ---- | ------------------------------------------------------------------- |
+| `delay` | 1 - 3600 | seconds  | Set the delay of the timer block before starting execution. |
+
 ### trigger
 Trigger the immediate execution of a timer block or group of timer blocks.
 ```

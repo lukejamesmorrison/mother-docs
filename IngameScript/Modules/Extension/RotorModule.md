@@ -9,6 +9,7 @@ Rotate a rotor or group of rotors to a specific angle between -360 and 360 degre
 ```
 rotor/rotate <Rotor|Group> <Angle> [--options]
 ```
+
 Options
 | Option  | Values     | Unit | Description                                                         |
 | ------- | ---------- | ---- | ------------------------------------------------------------------- |
