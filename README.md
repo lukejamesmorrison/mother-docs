@@ -25,7 +25,7 @@ I hope you enjoy using Mother as much as I enjoyed building it.
 | Tool                                      | Details                   |
 | --------                                          | -------                   |
 | [In-game Script](IngameScript/IngameScript.md) <br>*For Players*   | ![Beta](https://img.shields.io/badge/Beta-blue)<br>Use Mother within a programmable block to access advanced flight planning, intergrid communication and an intuitive command system to supercharge your grid automation.                                               |
-| [Script Framework](Framework/README.md) <br> *For Developers*                  | ![In Development](https://img.shields.io/badge/In_Development-orange) <br>Use the Mother Framework to develop your own custom scripts leveraging many of Mother's core services like intergrid communcation, activity monitoring and almanac. |
+| [Script Framework](Framework/README.md) <br> *For Developers*                  | ![In Development](https://img.shields.io/badge/In_Development-red) <br>Use the Mother Framework to develop your own custom scripts leveraging many of Mother's core services like intergrid communcation, activity monitoring and almanac. |
 
 ## About The Author
 
