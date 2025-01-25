@@ -1,7 +1,7 @@
 # Ingame Script
 
 ![Beta](https://img.shields.io/badge/Beta-blue)
-![Version](https://img.shields.io/badge/0.1.3-yellow)
+![Version](https://img.shields.io/badge/0.1.4-yellow)
 
 > MOTHER IS IN BETA DEVELOPMENT. I'M ON A QUEST TO REDUCE THE CHARACTER COUNT, AND INCREASE THE FUNCTIONALITY.  PLEASE REPORT ANY ISSUES YOU ENCOUNTER, AND EXPECT SOME OF THE COMMANDS AND UNDERLYING FRAMEWORK TO CHANGE.
 
