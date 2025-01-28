@@ -28,6 +28,7 @@ Extension modules provide additional functionality to a Space Engineer for contr
 
 |Name                                       | Description|
 |-                                          |-|
+| [Block Module](Extension/BlockModule.md)                 | Manages functional blocks on the grid.|
 | [Communication](Extension/CommunicationModule.md)         | Enables communication between grids running Mother.|
 | [Navigation](Extension/NavigationModule.md)               | Provides navigation capabilities for the grid including dynamic flight planning.|
 | [Flight Control](Extension/FlightControlModule.md)     | Manaages autopilot and flight characteristics.|

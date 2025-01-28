@@ -1,5 +1,7 @@
 # Ingame Script
 
+[< Home](../README.md)
+
 ![Beta](https://img.shields.io/badge/Beta-blue)
 ![Version](https://img.shields.io/badge/0.1.4-yellow)
 

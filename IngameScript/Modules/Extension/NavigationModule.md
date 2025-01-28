@@ -22,6 +22,37 @@ Let's start with reviewing the GPS Waypoint system. A **GPS Waypoint** has 6 par
 
 We use this format since at any time, a player may copy a GPS waypoint to their clipboard via the GPS Panel in the terminal. This simplifies the process of setting a flight plan considerably - copy, paste, fly.
 
+## The Flight Plan
+
+A flight plan is broken into terms, separated by spaces. Each term is a GPS **waypoint**, a **routine**, or a **modifier**.  The flight plan can be passed as a single string to the [`nav/set-flight-plan`](#set-flight-plan) command.
+
+```bash
+nav/set-flight-plan "GPS:TopSecretBase:211.78:-52.93:59.19:#FF75C9F1: { DoSomethingSecret }"
+```
+
+Every waypoint may be followed by a routine, while will run when that waypoint is reached. You may also start the flight plan with a routine, which will run immediately - perfect for pre-flight.
+
+```bash
+nav/set-flight-plan "{ RetractLandingGear } GPS:TopSecretBase:211.78:-52.93:59.19:#FF75C9F1: { DoSomethingSecret }"
+```
+
+This looks best as a custom command in **CustomData**:
+
+```ini
+[Commands]
+
+FlyToTopSecretBase=
+| nav/set-flight-plan 
+| "{ RetractLandingGear } 
+| GPS:TopSecretBase:211.78:-52.93:59.19:#FF75C9F1:
+| { DoSomethingSecret }";
+```
+
+> take note of the double quotes `"`. These must enclose the entire flight plan string to be interpretted correctly.
+
+### Setting a GPS Waypoint
+You can copy any GPS waypoint you have created to your clipboad by selecting it in the GPS panel and clicking the `Copy to clipboard` button. This makes GPS waypoints easy to transfer into flight plans.
+
 ![Copy GPS to Clipboard](../../Assets/terminal-gps-1.png)
 
 ### Setting a Flight Plan
@@ -65,6 +96,15 @@ nav/set-flight-plan "Midpoint TopSecretBase"
 > Use the `nav/set-flight-plan` and `fcs/start` commands together to set the flight plan and begin autopilot immediately.
 
 ---
+### Running Routines at a Waypoint
+
+Mother supports running routines when your grid reaches a specific waypoint.  This is done by adding a routine to the flight plan string.
+
+
+```ini
+nav/set-flight-plan "GPS:Midpoint:190.12:-54.45:45.89:#FF75C9F1: { RotateAndBurn }" 
+```
+
 ### Modifiers
 
 A flight plan may be modified with the following options, as the last term in the flight plan string:

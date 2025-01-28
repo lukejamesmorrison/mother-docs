@@ -2,14 +2,17 @@
 # MotherOS
 <div-->
 
- ```
+ <!-- ```
  ███╗   ███╗ ██████╗ ████████╗██╗  ██╗███████╗██████╗    ██████╗ ███████╗
  ████╗ ████║██╔═══██╗╚══██╔══╝██║  ██║██╔════╝██╔══██╗  ██╔═══██╗██╔════╝
  ██╔████╔██║██║   ██║   ██║   ███████║█████╗  ██████╔╝  ██║   ██║███████╗
  ██║╚██╔╝██║██║   ██║   ██║   ██╔══██║██╔══╝  ██╔══██╗  ██║   ██║╚════██║
  ██║ ╚═╝ ██║╚██████╔╝   ██║   ██║  ██║███████╗██║  ██║  ╚██████╔╝███████║
  ╚═╝     ╚═╝ ╚═════╝    ╚═╝   ╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝   ╚═════╝ ╚══════╝
- ```
+ ``` -->
+
+![Mother](Assets/brand/title.png)
+
 > MOTHER IS IN BETA DEVELOPMENT. I'M ON A QUEST TO REDUCE THE CHARACTER COUNT, AND INCREASE THE FUNCTIONALITY.  PLEASE REPORT ANY ISSUES YOU ENCOUNTER, AND EXPECT SOME OF THE COMMANDS AND UNDERLYING FRAMEWORK TO CHANGE.
 
 [!["Buy Me A Coffee"](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://buymeacoffee.com/Agentluke)

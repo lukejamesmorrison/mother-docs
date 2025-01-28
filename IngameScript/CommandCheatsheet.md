@@ -268,6 +268,7 @@ You have access to several blinks which may be used instead of the value in seco
 
 | Name         | Blink Interval (s)  | Blink Length (%)    | Blink Offset (%)  | Example                                                                 |
 |--------------|:---------------:|:---------------:|:--------------------:|------------------------------------------------------------------------|
+| `off `        | 0             | 0            | 0                 | ![off-red](Assets/Blinks/off_blink_red.gif) ![off-green](Assets/Blinks/off_blink_green.gif) ![off-blue](Assets/Blinks/off_blink_blue.gif) |
 | `slow `        | 3             | 30            | 0                 | ![slow-red](Assets/Blinks/slow_blink_red.gif) ![slow-green](Assets/Blinks/slow_blink_green.gif) ![slow-blue](Assets/Blinks/slow_blink_blue.gif) |
 | `med`          | 1             | 50            | 0                 | ![med-red](Assets/Blinks/med_blink_red.gif) ![med-green](Assets/Blinks/med_blink_green.gif) ![med-blue](Assets/Blinks/med_blink_blue.gif)     |
 | `fast`         | 0.25          | 50            | 0                 | ![fast-red](Assets/Blinks/fast_blink_red.gif) ![fast-green](Assets/Blinks/fast_blink_green.gif) ![fast-blue](Assets/Blinks/fast_blink_blue.gif) |

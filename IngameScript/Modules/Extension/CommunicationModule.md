@@ -31,6 +31,17 @@ Similiarily, if we couple the autopilot start command into a routine, then the S
 @SurveyDrone nav/set-flight-plan "GPS:CurrentPosition#1:211.78:-52.93:59.19:#FF75C9F1:"; fcs/start;
 ```
 
+### Leveraging Local Commands
+It is best to store important commands locally on a grid.  Nonetheless, there will be time when you want to target a local command remotely.  To do this, simply prefix the command with an underscore `_`.
+
+```bash
+# remotely trigger a local command on SurveyDrone grid
+@SurveyDrone _PowerOff
+```
+
+This command will call the `PowerOff` command stored in the SurveyDrone's **CustomData**.
+
+
 Visit the [Navigation Module](NavigationModule.md) for more information on flight planning.
 
 
