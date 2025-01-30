@@ -69,7 +69,7 @@ Now, we can run the programmable block with the argument `hinges90` to actuate t
 > Don't forget to `Recompile` Mother when you update the **CustomData** in the Programmable Block.
 
 
-## Multi-destination Flight Automation
+## Automatically Flying to a Resource Node
 
 As resource demands rise, you will innevitibly mark locations with GPS points for future reference.  To fly to these points automatically, we must either create one AI Flight block per waypoint/route, or go into the AI block's menu, and manually update the preferred waypoint before enabing autopilot.  This is a cumbersome process, especially if you have many waypoints to visit. Mother allows you to create commands for each of these waypoints, and then simply trigger them with a button press, requiring only the Programmable Block running Mother, and a Remote Control block.
 
@@ -83,7 +83,7 @@ Our GPS waypoints:
 
 Let's create a routine to fly to each waypoints In the progammable block's **CustomData**. We can take advantage of the `fcs/start` command to enable autopilot:
 
-```bash
+```
 [Commands]
 fe1=
 | nav/set-flight-plan "GPS:Iron#1:1023697:182968.67:1599556.3:#FF75C9F1:";
@@ -102,6 +102,64 @@ Now, we can run Mother with the argument `fe1` to automatically begin flying to 
 
 > Don't forget to `Recompile` Mother when you update the **CustomData** in the Programmable Block.
 
+
+## Dispatch Ship to a Landing Site via a Flight Plan
+
+Mother allows players to queue commands for execution from within the flight plan string.  This allows players to change aircraft configuration and behavior at each waypoint.  Let's look at an example where we dispatch a ship to a landing site, and change the ship's configuration at each waypoint using the familiar `routine` sytnax.
+
+Our routine:
+```
+FlyToLandingSite=
+| nav/set-flight-plan 
+| "{ door/close MainDoor; light/blink SignalLights med; }
+|
+| GPS:MothershipExit:226963.8:226982.08:227068.34:#FF75C9F1: 
+| { ExtendWings; light/blink SignalLights off; block/off BoosterThrusters; }
+|
+| GPS:HyperionOutpost:227001.34:227004.02:227021.9:#FF75C9F1: 
+|
+| GPS:LandingSite:227081.47:226948.41:227068.73:#FF75C9F1:
+| { fcs/start --speed=10; RectractWings; light/blink SignalLights med; }"
+| fcs/start --speed=5;
+```
+
+We can see 4 distinct steps in the flight plan.
+
+```
+| "{ door/close MainDoor; light/blink SignalLights med; }
+|
+| GPS:MothershipExit:226963.8:226982.08:227068.34:#FF75C9F1: 
+| { ExtendWings; light/blink SignalLights off; block/off BoosterThrusters; }
+|
+| GPS:HyperionOutpost:227001.34:227004.02:227021.9:#FF75C9F1: 
+|
+| GPS:LandingSite:227081.47:226948.41:227068.73:#FF75C9F1:
+| { fcs/start --speed=10; RectractWings; light/blink SignalLights med; }"
+```
+
+
+### Preflight
+
+The preflight is run as soon as the `nav/set-flight-plan` command is executed. We can see that we are closing our `MainDoor` door block, and blinking our `SignalLights` - safety first.
+```
+| { door/close MainDoor; light/blink SignalLights med; }
+```
+
+### Waypoints
+
+At the `MothershipExit` GPS waypoint we want to extend our wings with our custom method `ExtendWings`, and also turn off our `BoosterThrusters` group.
+
+```
+| GPS:MothershipExit:226963.8:226982.08:227068.34:#FF75C9F1: 
+| { ExtendWings; light/blink SignalLights off; block/off BoosterThrusters; }
+```
+
+As we approach the `LandingSite`, we probably want to slow down, and retract our wings. We can do this by setting the speed to 10 m/s, and calling our `RetractWings` method.
+
+```
+| GPS:LandingSite:227081.47:226948.41:227068.73:#FF75C9F1:
+| { fcs/start --speed=10; RectractWings; light/blink SignalLights med; }
+```
 
 <!-- ## Positioning a Satellite Network
 TBD

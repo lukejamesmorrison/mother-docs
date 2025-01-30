@@ -5,16 +5,18 @@ Commands belong to [Modules](Modules/Modules.md). Any command registered in a mo
 The following is a list of commands available in the default modules.
 
 1. [Core](#core)
-2. [Doors](#doors)
-3. [Connectors](#connectors)
-1. [Rotors](#rotors)
-2. [Hinges](#hinges)
-3. [Pistons](#pistons)
-4. [Flight Control System](#flight-control-system)
-5. [Navigation](#navigation)
-6. [Lights](#lights)
-7. [Timer Blocks](#timer-blocks)
-8. [Local Storage](#local-storage)
+2. [Blocks](#blocks)
+3. [Batteries](#batteries)
+4. [Doors](#doors)
+5. [Connectors](#connectors)
+6. [Rotors](#rotors)
+7. [Hinges](#hinges)
+8. [Pistons](#pistons)
+9. [Flight Control System](#flight-control-system)
+10. [Navigation](#navigation)
+11. [Lights](#lights)
+12. [Timer Blocks](#timer-blocks)
+13. [Local Storage](#local-storage)
 
 ## Core
 ### help
@@ -30,12 +32,16 @@ clear
 ```
 
 ### ping
+[Almanac](Modules/Core/Almanac.md)
+
 Ping all grids on the network and update the Almanac.
 ```
 ping
 ```
 
 ### purge
+[Almanac](Modules/Core/Almanac.md), [LocalStorage](Modules/Core/LocalStorage.md)
+
 Purge modules of data.  This can be used to reset module data like the Almanac and LocalStorage.
 
 ```bash
@@ -69,8 +75,52 @@ To purge specific modules, you can use the following command:
 purge almanac,storage --force
 ```
 
+## Blocks
+[Block Module](Modules/Extension/BlockModule.md)
+
+All commands targetting blocks have access to the following commands:
+
+### on
+Turn the block on.
+```
+block/on <Block|Group> [--options]
+```
+
+### off
+Turn the block off.
+```
+block/off <Block|Group> [--options]
+```
+
+## Batteries
+[Battery Module](Modules/Extension/BatteryModule.md)
+
+### charge
+Set the battery to `Recharge` mode.
+```
+battery/charge <Battery|Group> [--options]
+```
+
+### discharge
+Set the battery to `Discharge` mode.
+```
+battery/discharge <Battery|Group> [--options]
+```
+
+### auto
+Set the battery to `Auto` mode.
+```
+battery/auto <Battery|Group> [--options]
+```
+
+### toggle
+Toggle the battery between `Auto`, `Recharge` and `Discharge` mode.
+```
+battery/toggle <Battery|Group> [--options]
+```
 
 ## Doors
+[Door Module](Modules/Extension/DoorModule.md)
 
 ### lock
 Lock a door or group of doors.
@@ -91,6 +141,7 @@ door/toggle <Door|Group>
 ```
 
 ## Connectors
+[Connector Module](Modules/Extension/ConnectorModule.md)
 
 ### lock
 Lock a connector or group of connectors.
@@ -111,6 +162,8 @@ connector/toggle <Connector|Group>
 ```
 
 ## Rotors
+[Rotor Module](Modules/Extension/RotorModule.md)
+
 ### rotate
 Rotate a rotor or group of rotors to a specific angle between -360 and 360 degrees. 
 ```
@@ -139,14 +192,16 @@ Unlock a rotor or group of rotors.
 rotor/unlock <Rotor|Group>
 ```
 
-### reset
+<!-- ### reset
 Reset a rotor or group of rotors to their original position (0 degrees).
 ```
 rotor/reset <Rotor|Group>
-```
+``` -->
 
 
 ## Hinges
+[Hinge Module](Modules/Extension/HingeModule.md)
+
 ### rotate
 Rotate a hinge or group of hinges to a specific angle between -90 degrees and 90 degrees.
 ```
@@ -176,13 +231,14 @@ Unlock a hinge or group of hinges.
 hinge/unlock <Hinge|Group>
 ```
 
-### reset
+<!-- ### reset
 Reset a hinge or group of hinges to their original position (0 degrees).
 ```
 hinge/reset <Hinge|Group>
-```
+``` -->
 
 ## Pistons
+[Piston Module](Modules/Extension/PistonModule.md)
 
 ### distance
 Extend or retract a piston to a specific distance between 0 and 8 meters.
@@ -197,6 +253,7 @@ piston/reset <Piston>
 ```
 
 ## Flight Control System
+[Flight Control Module](Modules/Extension/FlightControlModule.md)
 ### start
 Engage the autopilot system, enabling the grid to fly autonomously if a [flight plan](../Extension/NavigationModule.md) is loaded.
 ```
@@ -216,7 +273,7 @@ fcs/stop
 
 ## Navigation
 
-See [Flight Planning](../Extension/NavigationModule.md).
+[Navigation Module](Modules/Extension/NavigationModule.md)
 
 ### set-flight-plan
 Set the active flight plan in the navigation system. Combine with [`fcs/start`](#flight-control-system) to begin flying.
@@ -225,6 +282,8 @@ nav/set-flight-plan <FlightPlanString> [--options]
 ```
 
 ## Lights
+[Light Module](Modules/Extension/LightModule.md)
+
 
 ### color
 

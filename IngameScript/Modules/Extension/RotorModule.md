@@ -31,11 +31,11 @@ Unlock a rotor or group of rotors.
 rotor/unlock <Rotor|Group>
 ```
 
-### reset
+<!-- ### reset
 Reset a rotor or group of rotors to their original position (0 degrees).
 ```
 rotor/reset <Rotor|Group>
-```
+``` -->
 
 ### speed
 Set the speed of a rotor or group of rotors in RPM.

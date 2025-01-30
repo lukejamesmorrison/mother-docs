@@ -3,7 +3,7 @@
 [< Home](../README.md)
 
 ![Beta](https://img.shields.io/badge/Beta-blue)
-![Version](https://img.shields.io/badge/0.2.0-yellow)
+![Version](https://img.shields.io/badge/0.2.1-yellow)
 
 > MOTHER IS IN BETA DEVELOPMENT. I'M ON A QUEST TO REDUCE THE CHARACTER COUNT, AND INCREASE THE FUNCTIONALITY.  PLEASE REPORT ANY ISSUES YOU ENCOUNTER, AND EXPECT SOME OF THE COMMANDS AND UNDERLYING FRAMEWORK TO CHANGE.
 
@@ -35,21 +35,8 @@ This script is designed to be efficient, only running when triggered by a comman
 
 ## Overview
 
-```mermaid
-graph LR
-    CommandLine["Terminal"] -->|triggers| Command["Command"]
+![Mechanical Systems](Assets/mechanical-systems-overview.png)
 
-    Button["Button"] -->|triggers| Command["Command"]
-    ToolbarAction["Toolbar Action"] -->|triggers| Command["Command"]
-    TimerBlock1["Timer Block"] -->|triggers| Command["Command"]
-    EventBlock["Event Controller"] -->|triggers| Command["Command"]
-    RemoteCommand["Remote Command"] -->|triggers| Command["Command"]
-
-    Command -->|executes| Module["Module"]
-    Module -->|moves| Piston["Piston"]
-    Module -->|starts| TimerBlock["Timer Block"]
-    Module -->|sends| RemoteCommand2["Remote Command"]
-```
 
 ## Upcoming Features
 1. Autodocking

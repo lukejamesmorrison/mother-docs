@@ -1,4 +1,4 @@
-t# Flight Control Module
+# Flight Control Module
 
 This module manages autopilot and various flight characteristics of your grid. For this module to function, the grid must have a Remote Control block.
 
