@@ -10,7 +10,8 @@ Extend or retract a piston to a specific distance between 0 and `Max` meters.
 piston/distance <Piston|Group> <Distance> [--options]
 ```
 
-> [!NOTE] Small grid pistons have a maximum distance of 2 meters, while large grid pistons have a maximum distance of 10 meters.
+> [!NOTE]
+> Small grid pistons have a maximum distance of 2 meters, while large grid pistons have a maximum distance of 10 meters.
 
 ### reset
 Reset a piston to its original position (0 meters).
