@@ -13,7 +13,7 @@ The Block catalogue is responsible for cataloguing all functional blocks availab
 - Lights
 - Remote Control Blocks
 - Timer Blocks
-- Gas Tanks
+- Gas Tanks (Hydrogen & Oxygen)
 - Batteries
 - Landing Gear & Magnetic Plates
 
