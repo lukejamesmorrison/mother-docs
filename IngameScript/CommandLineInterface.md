@@ -51,7 +51,8 @@ blink-landing-light=
 | light/blink LandingLight 0.5 --length=0.5;
 ```
 
-> [!TIP] The pipe character `|` is used to indicate a new line in the `Commands` section.  This is not required in the Programmable Block terminal but allows us to organize our commands and routines across multiple lines for readibility within CustomData.
+> [!TIP]
+> The pipe character `|` is used to indicate a new line in the `Commands` section.  This is not required in the Programmable Block terminal but allows us to organize our commands and routines across multiple lines for readibility within CustomData.
 
 Now we can run `blink-landing-light` in the terminal to execute the routine, or get clever and set it as a *Action* in an Event Controller or Sensor.
 
