@@ -29,7 +29,7 @@ piston/distance DrillPiston 10 --speed=0.2;
 Putting these together, you can create a routine by adding the following to the `[Commands]` section of the grid's **CustomData**.
 
 
-```bash
+```
 [Commands]
 # We can take advantage of the multi-line syntax
 deploy-drill=
@@ -40,7 +40,7 @@ deploy-drill=
 
 Now we can run the Programmable Block with the argument `deploy-drill` and your system should begin to operate. This can easily be assigned to a button now.
 
-> Don't forget to `Recompile` Mother when you update the **CustomData** in the Programmable Block.
+> [!IMPORTANT] Don't forget to `Recompile` Mother when you update the CustomData in the Programmable Block.
 
 ## Welder Arm Actuation
 
@@ -66,7 +66,7 @@ hinges-90=hinge/rotate "WelderHinges" -90 --speed=3
 
 Now, we can run the programmable block with the argument `hinges90` to actuate the welder arm to 90 degrees, `hinges45` to actuate to 45 degrees, etc.  This can easily be assigned to a button or toolbar action using the `Run` action.  Also note that we can customize the speed of rotation via a command option. See the [Hinge Module](Modules/Extension/HingeModule.md) for more information.
 
-> Don't forget to `Recompile` Mother when you update the **CustomData** in the Programmable Block.
+> [!IMPORTANT] Don't forget to `Recompile` Mother when you update the CustomData in the Programmable Block.
 
 
 ## Automatically Flying to a Resource Node
@@ -100,7 +100,7 @@ si1=
 
 Now, we can run Mother with the argument `fe1` to automatically begin flying to our iron vein, `ice1` to begin flying towards ice, or `si1` to fly to silicon.  This is a much more intuitive way to control your ship than the base game's AI block. You can even create waypoints above your home base's docks to enable autopiloted return trips. Now we can easily tweak where the grid flies, how fast, etc. from a central location. 
 
-> Don't forget to `Recompile` Mother when you update the **CustomData** in the Programmable Block.
+> [!IMPORTANT] Don't forget to `Recompile` Mother when you update the CustomData in the Programmable Block.
 
 
 ## Dispatch Ship to a Landing Site via a Flight Plan
@@ -160,6 +160,8 @@ As we approach the `LandingSite`, we probably want to slow down, and retract our
 | GPS:LandingSite:227081.47:226948.41:227068.73:#FF75C9F1:
 | { fcs/start --speed=10; RectractWings; light/blink SignalLights med; }
 ```
+
+
 
 <!-- ## Positioning a Satellite Network
 TBD

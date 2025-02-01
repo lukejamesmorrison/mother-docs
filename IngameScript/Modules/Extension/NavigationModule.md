@@ -98,7 +98,7 @@ Next time we want to run the flight plan we can shorten it:
 ```bash
 nav/set-flight-plan "Midpoint TopSecretBase"
 ```
-> Use the `nav/set-flight-plan` and `fcs/start` commands together to set the flight plan and begin autopilot immediately.
+> [!TIP] Use the `nav/set-flight-plan` and `fcs/start` commands together to set the flight plan and begin autopilot immediately.
 
 ---
 

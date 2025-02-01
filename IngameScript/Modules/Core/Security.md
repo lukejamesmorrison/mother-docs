@@ -13,7 +13,9 @@ encrypt_messages=true
 passcodes=Sup3rSecr3tP@ssw0rd
 ```
 
-By default, all grids in Space Engineers can access Intergrid Communication (IGC), so ensuring that your faction's passcode is secure is important.  If you are in a public server, this is the only way to ensure other factions cannot intercept messages and execute remote commands on your grid. Should your grid receive a unencrypted message, or with an incorrect passcode, Mother will log the message, but will not respond.
+> [!CAUTION] By default, all grids in Space Engineers can access Intergrid Communication (IGC), so ensuring that your faction's passcode is secure is important.  If you are in a public server, this is the only way to ensure other factions cannot intercept messages and execute remote commands on your grid. 
+
+Should your grid receive a unencrypted message, or with an incorrect passcode, Mother will log the message, but will not respond.
 
 ## Configuration
 

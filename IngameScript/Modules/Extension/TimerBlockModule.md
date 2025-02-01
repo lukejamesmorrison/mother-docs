@@ -1,7 +1,5 @@
 # Timer Block Module
 
-> This module is currently in development
-
 The Timer Block module allows the user to interact with Timer Blocks on the grid.  This module is useful as it allows Mother to interoperate with existing Timer Block automations.
 
 ## Commands

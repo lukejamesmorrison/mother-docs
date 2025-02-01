@@ -4,9 +4,9 @@
 
 Players can easily configure Mother using the Programmable Block's **CustomData**. Where a Module has configuration settings, they will be documented in the module's section of this documentation.
 
-> Don't forget to `Recompile` Mother when you update the CustomData in the Programmable Block.
+> [!IMPORTANT] Don't forget to `Recompile` Mother when you update the CustomData in the Programmable Block.
 
-```ini
+```
 [general]
 debug=false 
 
@@ -27,7 +27,7 @@ goto-ts-base=
 | fcs/start --speed=100;
 ```
 
-> The pipe character `|` is used to indicate a new line in the `Commands` section.  This is not required in the Programmable Block terminal but allows us to organize our commands and routines across multiple lines for readibility.
+> [!NOTE] The pipe character `|` is used to indicate a new line in the `Commands` section.  This is not required in the Programmable Block terminal but allows us to organize our commands and routines across multiple lines for readibility.
 
 <!-- ## General Configuration
 

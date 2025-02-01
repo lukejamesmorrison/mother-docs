@@ -3,9 +3,10 @@
 [< Home](../README.md)
 
 ![Beta](https://img.shields.io/badge/Beta-blue)
-![Version](https://img.shields.io/badge/0.2.1-yellow)
+![Version](https://img.shields.io/badge/0.2.2-yellow)
 
-> MOTHER IS IN BETA DEVELOPMENT. I'M ON A QUEST TO REDUCE THE CHARACTER COUNT, AND INCREASE THE FUNCTIONALITY.  PLEASE REPORT ANY ISSUES YOU ENCOUNTER, AND EXPECT SOME OF THE COMMANDS AND UNDERLYING FRAMEWORK TO CHANGE.
+
+> [!WARNING] Mother is in beta development. I'm on a quest to reduce the character count, and increase the functionality. Please report any issues you encounter, and expect some of the commands and underlying framework to change.
 
 Mother is available as an ingame script for Programmable Blocks in Space Engineers. It gives you access to many features, including:
 
@@ -16,7 +17,7 @@ Mother is available as an ingame script for Programmable Blocks in Space Enginee
 
 This script is designed to be efficient, only running when triggered by a command. It is not intended to replace all existing block actions, but rather attempts to improve the most common automations and block types. Over time, I expect the command library to grow considerably.
 
->Mother interoperates seamlessly with Timer Blocks and Event Controllers allowing it to be used to augment existing automations.
+> [!NOTE] Mother interoperates seamlessly with Timer Blocks and Event Controllers allowing it to be used to augment existing automations.
 
 ---
 
@@ -39,6 +40,8 @@ This script is designed to be efficient, only running when triggered by a comman
 
 
 ## Upcoming Features
-1. Autodocking
-2. Run commands when a waypoint is reached within a flight plan
-3. Master-Node architecture to allow for multiple programmable blocks to work together on the same grid.
+
+1. Master-Node architecture to allow for multiple programmable blocks to work together on the same grid.
+2. `wait` command to allow delays
+3. Use of block customData to improve automations.  Ie. Rotor1.CustomData can contain configuration specific to Rotor1. This could also allow for the injection of an event triggering system at the block level.
+4. Autodocking

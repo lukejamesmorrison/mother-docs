@@ -6,7 +6,7 @@ Grids running Mother can communication by sending messages and querying each oth
 
 To send a command to another grid remotely, you must begin the command with the grid's `Name`, which is stored in the [Almanac](../Core/Almanac.md).  Your grid's name is found in the `Info` tab of the terminal screen. 
 
-> **At this time, grid names cannot contain spaces.**
+> [!CAUTION] At this time, grid names cannot contain spaces " ".
 
 ![Terminal Info tab](../../Assets/terminal-info-1.png)
 
