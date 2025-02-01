@@ -51,7 +51,8 @@ FlyToTopSecretBase=
 | ";
 ```
 
-> take note of the double quotes `"`. These must enclose the entire flight plan string to be interpretted correctly. Flight plan terms must be separeted by a space ` `. You can use additional spaces to indent the flight plan for readability without issue.
+> [!IMPORTANT]
+> Take note of the double quotes `"`. These must enclose the entire flight plan string to be interpretted correctly. Flight plan terms must be separeted by a space ` `. You can use additional spaces to indent the flight plan for readability without issue.
 
 ### Setting a GPS Waypoint
 You can copy any GPS waypoint you have created to your clipboad by selecting it in the GPS panel and clicking the `Copy to clipboard` button. This makes GPS waypoints easy to transfer into flight plans.
