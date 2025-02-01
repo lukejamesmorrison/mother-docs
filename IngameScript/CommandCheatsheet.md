@@ -16,7 +16,8 @@ The following is a list of commands available in the default modules.
 10. [Navigation](#navigation)
 11. [Lights](#lights)
 12. [Timer Blocks](#timer-blocks)
-13. [Local Storage](#local-storage)
+13. [Gas Tanks](#gas-tanks)
+14. [Local Storage](#local-storage)
 
 ## Core
 ### help
@@ -376,6 +377,28 @@ Stop execution of a timer block or group of timer blocks.
 
 ```
 timer/stop <TimerBlock|Group> [--options]
+```
+
+
+## Gas Tanks
+[Tank Module](Modules/Extension/TankModule.md)
+
+### stockpile
+Set the Tank `Stockpile` to `on`.
+```
+tank/stockpile <Tank|Group> [--options]
+```
+
+### share
+Set the Tank `Stockpile` to `off`. The tank is now sharing its contents with your grid.
+```
+tank/share <Tank|Group> [--options]
+```
+
+### toggle
+Toggle the Tank `Stockpile` between `on` and `off`.
+```
+tank/toggle <Tank|Group> [--options]
 ```
 
 

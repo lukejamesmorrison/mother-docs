@@ -28,7 +28,7 @@ Extension modules provide additional functionality to a Space Engineer for contr
 
 |Name                                       | Description|
 |-                                          |-|
-| [Block Module](Extension/BlockModule.md)                 | Manages functional blocks on the grid.|
+| [Block Module](Extension/BlockModule.md)                 | Manages functional blocks on the grid. Most blocks cen be used with the `block/on` and `block/off` commands.|
 | [Communication](Extension/CommunicationModule.md)         | Enables communication between grids running Mother.|
 | [Navigation](Extension/NavigationModule.md)               | Provides navigation capabilities for the grid including dynamic flight planning.|
 | [Flight Control](Extension/FlightControlModule.md)     | Manaages autopilot and flight characteristics.|
@@ -41,5 +41,7 @@ Extension modules provide additional functionality to a Space Engineer for contr
 | [Thrusters](Extension/ThrusterModule.md)               | Manages thrusters on the grid.|
 | [Gyroscope](Extension/GyroscopeModule.md)                    | Manages gyroscopes on the grid.|
 | [Timer Block](Extension/TimerBlockModule.md)                      | Manages timer blocks on the grid.|
+| [Battery](Extension/BatteryModule.md)                      | Manages batteries on the grid.|
+| [Gas Tank](Extension/TankModule.md)                      | Manages oxygen and hydrogen tanks on the grid.|
 ---
 [Examples >](../Examples.md)
