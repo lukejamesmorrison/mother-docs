@@ -13,6 +13,9 @@ During the boot process, Mother builds a catalogue of all functional blocks on t
 - Lights
 - Remote Control Blocks
 - Timer Blocks
+- Gas Tanks
+- Batteries
+- Landing Gear & Magnetic Plates
 
 ## Which Do We Have It?
 
