@@ -31,8 +31,8 @@ Unlock a hinge or group of hinges.
 hinge/unlock <Hinge|Group>
 ```
 
-<!-- ### reset
+### reset
 Reset a hinge or group of hinges to their original position (0 degrees).
 ```
 hinge/reset <Hinge|Group>
-``` -->
+```
