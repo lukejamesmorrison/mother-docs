@@ -12,13 +12,14 @@
 Mother is available as an ingame script for Programmable Blocks in Space Engineers. It gives you access to many features, including:
 
 - **Secure Intergrid Communication** - Grids share positions and can easily send commands remotely to each other.
-- **Expanded Automation** - Mother aims to simplify interacting with the mechanical systems on your grid, and monitoring them for changes.
-- **Flight Planning and Visualization** - Leverage the existing GPS system and Remote Control block to program and fly flight plans dynamically.
-- **Easily Copy Commands** - Transfer commands from one grid to another by copying `CustomData`
+- **Expanded Automation** - Mother aims to simplify interacting with the mechanical system on your grid, and monitoring them for changes.
+- **Flight Planning and Visualization** Leveraging the existing GPS system and Remote Control block to program and flight flight plans dynamically.
+- Easily port your automations from one grid to another by copying `CustomData`
 
 This script is designed to be efficient, only running when triggered by a command. It is not intended to replace all existing block actions, but rather attempts to improve the most common automations and block types. Over time, I expect the command library to grow considerably.
 
-> [!NOTE] Mother interoperates seamlessly with Timer Blocks and Event Controllers allowing it to be used to augment existing automations.
+> [!NOTE]
+> Mother interoperates seamlessly with Timer Blocks and Event Controllers allowing it to be used to augment existing automations.
 
 ---
 
