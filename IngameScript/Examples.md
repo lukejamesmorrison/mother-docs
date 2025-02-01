@@ -40,7 +40,8 @@ deploy-drill=
 
 Now we can run the Programmable Block with the argument `deploy-drill` and your system should begin to operate. This can easily be assigned to a button now.
 
-> [!IMPORTANT] Don't forget to `Recompile` Mother when you update the CustomData in the Programmable Block.
+> [!IMPORTANT] 
+> Don't forget to `Recompile` Mother when you update the CustomData in the Programmable Block.
 
 ## Welder Arm Actuation
 
@@ -66,7 +67,8 @@ hinges-90=hinge/rotate "WelderHinges" -90 --speed=3
 
 Now, we can run the programmable block with the argument `hinges90` to actuate the welder arm to 90 degrees, `hinges45` to actuate to 45 degrees, etc.  This can easily be assigned to a button or toolbar action using the `Run` action.  Also note that we can customize the speed of rotation via a command option. See the [Hinge Module](Modules/Extension/HingeModule.md) for more information.
 
-> [!IMPORTANT] Don't forget to `Recompile` Mother when you update the CustomData in the Programmable Block.
+> [!IMPORTANT] 
+> Don't forget to `Recompile` Mother when you update the CustomData in the Programmable Block.
 
 
 ## Automatically Flying to a Resource Node
@@ -100,7 +102,8 @@ si1=
 
 Now, we can run Mother with the argument `fe1` to automatically begin flying to our iron vein, `ice1` to begin flying towards ice, or `si1` to fly to silicon.  This is a much more intuitive way to control your ship than the base game's AI block. You can even create waypoints above your home base's docks to enable autopiloted return trips. Now we can easily tweak where the grid flies, how fast, etc. from a central location. 
 
-> [!IMPORTANT] Don't forget to `Recompile` Mother when you update the CustomData in the Programmable Block.
+> [!IMPORTANT] 
+> Don't forget to `Recompile` Mother when you update the CustomData in the Programmable Block.
 
 
 ## Dispatch Ship to a Landing Site via a Flight Plan
