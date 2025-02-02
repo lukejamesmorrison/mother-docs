@@ -46,7 +46,7 @@ ping
 Delay a command or routine for execution. This can be used remotely as well.
 
 ```
-light/color IndicatorLight red; wait 5; _light/color IndicatorLight green_
+light/color IndicatorLight red; wait 5; light/color IndicatorLight green;
 ```
 
 in this example, our light turns red, that after 5 seconds turns green.
