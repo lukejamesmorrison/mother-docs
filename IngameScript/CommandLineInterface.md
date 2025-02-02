@@ -9,10 +9,23 @@ Mother's command line interface allows you to interact with your grid.  We can p
 > [!TIP]
 > See the [Command Cheatsheet](CommandCheatsheet.md) to get started!
 
+- [Anatomy of a Command](#anatomy-of-a-command)
+- [Running Multiple Commands](#running-multiple-commands)
+- [Delaying a Command for Execution](#delaying-command-execution)
+- [The Terminal Window](#the-terminal-window)
+- [Running Commands Automatically](#running-commands-automatically)
+
+
 **Command Syntax**
 ```bash
 <Command> <Argument,> [Option,]
 ```
+
+Multple commands together for a *routine*:
+```
+light/color LandingLight red; 
+```
+<br>
 
 [![Running a Command](https://img.youtube.com/vi/Ax5bhoeutcA/0.jpg)](https://www.youtube.com/watch?v=Ax5bhoeutcA)
 
@@ -92,7 +105,7 @@ The terminal window act as the primary interface for Mother.  You can run comman
 ![The terminal window](Assets/terminal-1.png)
 
 
-## Running Commands
+## Running Commands Automatically
 
 You can run commands via several methods:
 

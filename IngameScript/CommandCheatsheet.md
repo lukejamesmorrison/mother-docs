@@ -49,7 +49,7 @@ Delay a command or routine for execution. This can be used remotely as well.
 light/color IndicatorLight red; wait 5; light/color IndicatorLight green;
 ```
 
-in this example, our light turns red, that after 5 seconds turns green.
+In the above example, our light turns red, then after 5 seconds, they turn green.
 
 ### purge
 [Almanac](Modules/Core/Almanac.md), [LocalStorage](Modules/Core/LocalStorage.md)
