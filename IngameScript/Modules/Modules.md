@@ -2,7 +2,7 @@
 
 [< Configuration](../Configuration.md)
 
-Mother comes with many functional modules. These modules can be categorized as *Core* Modules and *Extension* Modules.
+Mother comes with many functional modules. These modules can be categorized as [Core](#core-modules) Modules and [Extension](#extension-modules) Modules.
 
 ## Core Modules
 

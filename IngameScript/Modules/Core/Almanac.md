@@ -7,7 +7,9 @@ Mother maintains a list of all grids in the world running Mother that are connec
 
 To immediately refresh the Almanac, you can run the `ping` command.
 
-![Almanac Map](../../Assets/almanac-map-2.png)
+<!-- ![Almanac Map](../../Assets/almanac-map-2.png) -->
+![Flight Plan Map](../../Assets/flight-plan-1.png)
+
 
 ## Why Do We Have It?
 

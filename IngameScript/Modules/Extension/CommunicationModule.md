@@ -32,6 +32,9 @@ Similiarily, if we couple the autopilot start command into a routine, then the S
 @SurveyDrone nav/set-flight-plan "GPS:CurrentPosition#1:211.78:-52.93:59.19:#FF75C9F1:"; fcs/start;
 ```
 
+> [!NOTE]
+> Mother will automatically reduce all remote commands to core commands listed in the [Command Cheatsheet](../../CommandCheatsheet.md). This means that all grids can run remote routines as long as they contain the same core command library. [Keep Mother up to date](https://steamcommunity.com/sharedfiles/filedetails/?id=3411507973) to ensure you have the most recent library of core commands across your grids.
+
 ### Leveraging Local Commands
 It is best to store important commands locally on a grid.  Nonetheless, there will be time when you want to target a local command remotely.  To do this, simply prefix the command with an underscore `_`.
 

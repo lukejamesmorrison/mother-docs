@@ -4,6 +4,9 @@
 
 Mother's command line interface allows you to interact with your grid.  We can pass in *arguments* to the script to perform different actions.  The CLI is available in the programmable block terminal, and you can run it by hitting the `Run` button.
 
+> [!TIP]
+> See the [Command Cheatsheet](CommandCheatsheet.md) to get started!
+
 **Command Syntax**
 ```bash
 <Command> <Argument,> [Option,]
@@ -65,6 +68,9 @@ The terminal window act as the primary interface for Mother.  You can run comman
 |#			| A number showing how many grids Mother is currently storing in the Almanac. Mother stores the position and status of other grids automatically as long as they are running Mother locally as well. |
 |M			| Shows a mechanical system is currently in motion and tracked by the Activity Monitor.  Blocks like rotors, hinges and pistons will be monitored, and locked when finished to protect Space Engineers from the Almighty Clang.|
 |C			| Indicates a communication is current in progress.  Girds running Mother will frequently communicate to share information automatically. |
+|Q			| Indicates that a command is queued for future execution. |
+|A			| Indicates that autopilot is currently enabled. |
+
 
 ![The terminal window](Assets/terminal-1.png)
 
