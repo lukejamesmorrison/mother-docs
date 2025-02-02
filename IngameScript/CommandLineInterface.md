@@ -4,6 +4,8 @@
 
 Mother's command line interface allows you to interact with your grid.  We can pass in *arguments* to the script to perform different actions.  The CLI is available in the programmable block terminal, and you can run it by hitting the `Run` button.
 
+
+
 > [!TIP]
 > See the [Command Cheatsheet](CommandCheatsheet.md) to get started!
 
@@ -58,6 +60,21 @@ blink-landing-light=
 > The pipe character `|` is used to indicate a new line in the `Commands` section.  This is not required in the Programmable Block terminal but allows us to organize our commands and routines across multiple lines for readibility within CustomData.
 
 Now we can run `blink-landing-light` in the terminal to execute the routine, or get clever and set it as a *Action* in an Event Controller or Sensor.
+
+## Delaying Command Execution
+Mother comes with a `wait` command that allow you to delays a command for execution in seconds.
+
+```
+door/open AirlockDoor;
+wait 10;
+door/close AirlockDoor;
+```
+
+This works remotely as well:
+
+```
+@StealthMissile fcs/start; wait 10; _Arm;
+```
 
 ## The Terminal Window
 

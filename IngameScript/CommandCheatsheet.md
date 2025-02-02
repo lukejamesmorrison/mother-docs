@@ -40,6 +40,17 @@ Ping all grids on the network and update the Almanac.
 ping
 ```
 
+### wait
+[Command Line Interface](CommandLineInterface.md)
+
+Delay a command or routine for execution. This can be used remotely as well.
+
+```
+light/color IndicatorLight red; wait 5; _light/color IndicatorLight green_
+```
+
+in this example, our light turns red, that after 5 seconds turns green.
+
 ### purge
 [Almanac](Modules/Core/Almanac.md), [LocalStorage](Modules/Core/LocalStorage.md)
 
