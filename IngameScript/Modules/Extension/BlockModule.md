@@ -1,6 +1,6 @@
 # Block Module
 
-The Block module allows the user to interact with functional blocks on the grid.
+The Block module allows the user to interact with **functional blocks** on the grid. All blocks accessible via [Block Catalogue](../Core/BlockCatalogue.md) are considered functional blocks.
 
 ## Commands
 

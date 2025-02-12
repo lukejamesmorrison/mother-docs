@@ -16,6 +16,11 @@ The Block catalogue is responsible for cataloguing all functional blocks availab
 - Gas Tanks (Hydrogen & Oxygen)
 - Batteries
 - Landing Gear & Magnetic Plates
+- Drills
+- Welders
+- Grinders
+- Sound Blocks
+- Air Vents
 
 > [!IMPORTANT]
 > The Block Catalogue will register functional blocks on the main grid, as well as subgrids connected via a piston, hinge, or rotor.  It does not register blocks on subgrids connected via connectors to prevent side effects when docked.

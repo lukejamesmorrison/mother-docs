@@ -13,7 +13,7 @@ Mother is available as an ingame script for Programmable Blocks in Space Enginee
 <br><br>
 
 - **Secure Intergrid Communication** - Grids [share positions](Modules/Core/Almanac.md) and easy easily send commands remotely to each other.
-- **Expanded Automation** - Mother simplifies interacting with the mechanical systems on your grid, and monitors them for changes.
+- **Expanded Automation** - Mother simplifies interacting with the mechanical systems on your grid, and monitors them for changes. See the [Command Cheatsheet](CommandCheatsheet.md).
 - **Flight Planning and Visualization** - Leverage the existing GPS system and Remote Control block to program and [fly flight plans dynamically](Modules/Extension/NavigationModule.md).
 - **Copy Automations with Ease** - Easily port your automations from one grid to another by copying `CustomData` text.
 
@@ -47,6 +47,6 @@ This script is designed to be efficient, only running when triggered by a comman
 ## Upcoming Features
 
 1. Master-Node architecture to allow for multiple programmable blocks to work together on the same grid.
-2. `wait` command to allow delays
-3. Use of block customData to improve customization.  Ie. Rotor1.CustomData can contain configuration specific to Rotor1. This could also allow for the injection of an event triggering system at the block level.
+2. Use of block customData to improve customization.  Ie. Rotor1.CustomData can contain configuration specific to Rotor1. This could also allow for the injection of an event triggering system at the block level.
+3. Use block customData to trigger common event hooks - OnLock, OnClose, OnStockpile, etc.
 4. Autodocking

@@ -55,8 +55,8 @@ hinge/rotate Hinge 45 --speed=2
 
 Sometimes it is useful to group commands in series to operate a system of blocks.  A `Routine` is simply a group of commands separated by a semi-colon `;`.  The following example changes the color of our `LandingLight`, and also initates a blinking effect.
 
-```bash
-# light will blink for 0.25s, every 0.5s (50% duty cycle)
+```ini
+; light will blink for 0.25s, every 0.5s (50% duty cycle)
 light/color LandingLight red; light/blink LandingLight 0.5 --length=0.5
 ```
 
@@ -98,8 +98,9 @@ The terminal window act as the primary interface for Mother.  You can run comman
 |#			| A number showing how many grids Mother is currently storing in the Almanac. Mother stores the position and status of other grids automatically as long as they are running Mother locally as well. |
 |M			| Shows a mechanical system is currently in motion and tracked by the Activity Monitor.  Blocks like rotors, hinges and pistons will be monitored, and locked when finished to protect Space Engineers from the Almighty Clang.|
 |C			| Indicates a communication is current in progress.  Girds running Mother will frequently communicate to share information automatically. |
-|Q			| Indicates that a command is queued for future execution. |
+|Q			| Indicates that a command is queued for future execution at a waypoint. |
 |A			| Indicates that autopilot is currently enabled. |
+|W          | Indicates that a command is currently waiting to be exeucuted at a later time via the `wait` command. |
 
 
 ![The terminal window](Assets/terminal-1.png)

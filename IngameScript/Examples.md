@@ -7,6 +7,7 @@ Let's look at some examples and how Mother simplifies them. See the [Command Che
 1. [Drill Deployment](#drill-deployment)
 2. [Welder Arm Actuation](#welder-arm-actuation)
 3. [Multi-destination Flight Automation](#multi-destination-flight-automation)
+4. [Dispatch Ship to a Landing Site via a Flight Plan](#dispatch-ship-to-a-landing-site-via-a-flight-plan)
 
 ## Drill Deployment
 
@@ -113,7 +114,7 @@ Mother allows players to queue commands for execution from within the flight pla
 Our routine:
 ```
 FlyToLandingSite=
-| nav/set-flight-plan 
+| nav/set-flight-plan
 | "{ door/close MainDoor; light/blink SignalLights med; }
 |
 | GPS:MothershipExit:226963.8:226982.08:227068.34:#FF75C9F1: 
@@ -123,6 +124,7 @@ FlyToLandingSite=
 |
 | GPS:LandingSite:227081.47:226948.41:227068.73:#FF75C9F1:
 | { fcs/start --speed=10; RectractWings; light/blink SignalLights med; }"
+|
 | fcs/start --speed=5;
 ```
 
