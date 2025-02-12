@@ -19,6 +19,8 @@ In order for grids to interoperate seamlessly, it is important for them to store
 
 Mother can render a map showing all grids and waypoints in the Almanac. Simply add `[MMAP]` to the end of your LCD name and `Recompile` Mother. The projection will automatically update.
 
+You can target individual cockpit screens by targeting a screen index - `[MMAP:1]`.
+
 ![Almanac LCD](../../Assets/almanac-lcd-1.png)
 
 <!-- ## Friendly or Foe?
