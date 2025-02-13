@@ -3,7 +3,7 @@
 [< Home](../README.md)
 
 ![Beta](https://img.shields.io/badge/Beta-blue)
-![Version](https://img.shields.io/badge/0.2.3-yellow)
+![Version](https://img.shields.io/badge/0.2.4-yellow)
 
 
 > [!WARNING] 

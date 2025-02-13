@@ -4,20 +4,20 @@ The door module allows the user to control doors on the grid.
 
 ## Commands
 
-### lock
-Lock a door or group of doors.
+### open
+Open a door or group of doors.
 ```
-door/lock <Door|Group>
+door/open <Door|Group>
 ```
 
-### unlock
-Unlock a door or group of doors.
+### close
+Close a door or group of doors.
 ```
-door/unlock <Door|Group>
+door/close <Door|Group>
 ```
 
 ### toggle
-Toggle the lock state of a door or group of doors.
+Toggle the open state of a door or group of doors.
 ```bash
 door/toggle <Door|Group>
 ```
