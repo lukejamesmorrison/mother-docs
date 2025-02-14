@@ -17,3 +17,21 @@ Turn the block off.
 ```
 block/off <Block|Group> [--options]
 ```
+
+## Hooks
+
+The following hooks can be define in the block's CustomData, and will be triggered when the corresponding command is called:
+
+|Key        | Trigger                           |
+|-          |-                                  |
+| `onOn`    | Activated by `block/on` command   |
+| `onOff`   | Activated by `block/on` command   |
+
+### Example
+
+**DrillPiston CustomData**
+```ini
+[hooks]
+onOn=light/color DrillPistonIndicatorLight green;
+onOff=light/color DrillPistonIndicatorLight red;
+```
