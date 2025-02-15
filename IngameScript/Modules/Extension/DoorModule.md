@@ -38,6 +38,6 @@ Imagine our door is part of an airlock
 
 ```
 [hooks]
-onOpen=light/blink AirlockLight fast; vent/depressurize AirlockVent; wait 10; door/close OuterDoor;
-onClose=vent/pressurize AirlockVent; wait 2; light/blink AirlockLight off;
+onOpen=light/blink "Airlock Light" fast; vent/depressurize AirlockVent; wait 10; door/close OuterDoor;
+onClose=vent/pressurize AirlockVent; wait 2; light/blink "Airlock Light" off;
 ```
