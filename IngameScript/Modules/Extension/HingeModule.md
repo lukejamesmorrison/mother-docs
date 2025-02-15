@@ -1,4 +1,5 @@
 # Hinge Module
+[< Modules](../Modules.md)
 
 The hinge module allows the user to control hinges on the grid.  Hinges are particularly vulnerable to phantom forces and the Almighty Clang, so we leverage the Activity Monitor to ensure hinges are stopped and locked when not in use. Players can simply define an angle and speed of rotation without worrying about direction, upper/lower limits, or their grid ripping itself apart.
 

@@ -1,4 +1,5 @@
 # Connector Module
+[< Modules](../Modules.md)
 
 The connector module allows the user to control connectors on the grid.
 

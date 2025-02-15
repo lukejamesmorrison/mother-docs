@@ -1,4 +1,6 @@
 # Gyroscope Module
+[< Modules](../Modules.md)
+
 > [!WARNING] 
 > This module is currently in development
 

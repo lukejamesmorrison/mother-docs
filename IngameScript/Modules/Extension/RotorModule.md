@@ -1,4 +1,5 @@
 # Rotor Module
+[< Modules](../Modules.md)
 
 The rotor module allows the user to control rotors on the grid.  Rotors are particularly vulnerable to phantom forces and the Almighty Clang, so we leverage the Activity Monitor to ensure rotors are stopped and locked when not in use. Players can simply define an angle and speed of rotation without worrying about direction, upper/lower limits, or the grid ripping itself apart.
 

@@ -1,4 +1,5 @@
 # Light Module
+[< Modules](../Modules.md)
 
 The light module allows the user to control lights on the grid.  Players can now dynamically control light color and blinking. Use this to take your landing pads and warning lights to the next level.
 

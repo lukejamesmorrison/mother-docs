@@ -1,4 +1,5 @@
 # Battery Module
+[< Modules](../Modules.md)
 
 The battery module allows the user to control batteries on the grid.  Batteries have multiple states that can he set individually, or toggled through.
 
