@@ -255,9 +255,18 @@ hinge/reset <Hinge|Group>
 [Piston Module](Modules/Extension/PistonModule.md)
 
 ### distance
-Extend or retract a piston to a specific distance between 0 and 8 meters.
+Extend or retract a piston to a specific distance.
 ```
 piston/distance <Piston> <Distance> [--options]
+```
+
+> [!NOTE]
+> Small grid pistons have a maximum distance of 2 meters, while large grid pistons have a maximum distance of 10 meters.
+
+### stop
+Stop a piston while in motion. Note that pistons do not lock like a Rotor or Hinge.
+```
+piston/stop <Piston|Group>
 ```
 
 ### reset
@@ -421,7 +430,7 @@ tank/toggle <Tank|Group> [--options]
 
 Play the sound block with an optional sound.
 ```ini
-; play to block
+; play the block
 sound/play <SoundBlock|Group>
 
 ; play the block with a specific sound

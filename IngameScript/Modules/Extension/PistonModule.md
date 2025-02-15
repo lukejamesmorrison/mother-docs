@@ -13,6 +13,12 @@ piston/distance <Piston|Group> <Distance> [--options]
 > [!NOTE]
 > Small grid pistons have a maximum distance of 2 meters, while large grid pistons have a maximum distance of 10 meters.
 
+### stop
+Stop a piston while in motion. Note that pistons do not lock like a Rotor or Hinge.
+```
+piston/stop <Piston|Group>
+```
+
 ### reset
 Reset a piston to its original position (0 meters).
 ```
