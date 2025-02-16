@@ -39,6 +39,22 @@ Imagine our door is part of an airlock
 
 ```
 [hooks]
-onOpen=light/blink "Airlock Light" fast; vent/depressurize AirlockVent; wait 10; door/close OuterDoor;
+onOpen=light/blink "Airlock Light" fast; vent/depressurize AirlockVent; wait 10; door/close this;
 onClose=vent/pressurize AirlockVent; wait 2; light/blink "Airlock Light" off;
+```
+
+**Mother CustomData**
+
+```
+[hooks]
+OuterDoor.onOpen=
+| light/blink "Airlock Light" fast; 
+| vent/depressurize AirlockVent; 
+| wait 10; 
+| door/close OuterDoor;
+
+"Inner Door".onClose=
+| vent/pressurize AirlockVent; 
+| wait 2; 
+| light/blink "Airlock Light" off;
 ```
