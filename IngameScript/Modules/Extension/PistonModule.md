@@ -75,6 +75,7 @@ ShowOnHUD_On
 
 <!--- markdown table with columns for subsequent parameters and options --->
 
+<!---
 Labels are uneccesary but may be added as the last parameter.
 
 
@@ -116,3 +117,4 @@ Labels are uneccesary but may be added as the last parameter.
 | ShowOnHUD							|			|			|         |         |         |
 | ShowOnHUD_Off						|			|			|         |         |         |
 | ShowOnHUD_On						|			|			|         |         |         |
+--->
