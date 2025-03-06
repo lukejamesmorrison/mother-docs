@@ -25,3 +25,94 @@ Reset a piston to its original position (0 meters).
 ```
 piston/reset <Piston|Group>
 ```
+
+
+<!--- 
+
+PISTON ACTIONS
+
+
+Add Top Part
+DecreaseChangeIntervalSlider
+DecreaseFontSize
+DecreaseLowerLimit
+DecreaseMaxImpulseAxis
+DecreaseMaxImpulseNonAxis
+DecreaseSafetyDetach
+DecreaseTextPaddingSlider
+DecreaseUpperLimit
+DecreaseVelocity
+DecreaseWeld speed
+Extend
+Force weld
+IncreaseChangeIntervalSlider
+IncreaseFontSize
+IncreaseLowerLimit
+IncreaseMaxImpulseAxis
+IncreaseMaxImpulseNonAxis
+IncreaseSafetyDetach
+IncreaseTextPaddingSlider
+IncreaseUpperLimit
+IncreaseVelocity
+IncreaseWeld speed
+OnOff
+OnOff_Off
+OnOff_On
+PreserveAspectRatio
+ResetVelocity
+Retract
+Reverse
+SetAndMove
+SetVelocity
+ShareInertiaTensor
+ShowOnHUD
+ShowOnHUD_Off
+ShowOnHUD_On
+
+
+
+--->
+
+<!--- markdown table with columns for subsequent parameters and options --->
+
+Labels are uneccesary but may be added as the last parameter.
+
+
+| Action							| Param 1	| Param 2	| Param 3 | Param 4 | Param 5 |
+|-----------						|---------	|---------	|---------|---------|---------|
+| "Add Top Part"					|			|			|         |         |         |
+| DecreaseChangeIntervalSlider		|			|			|         |         |         |
+| DecreaseFontSize					|			|			|         |         |         |
+| DecreaseLowerLimit				|			|			|         |         |         |
+| DecreaseMaxImpulseAxis			|			|			|         |         |         |
+| DecreaseMaxImpulseNonAxis			|			|			|         |         |         |
+| DecreaseSafetyDetach				|			|			|         |         |         |
+| DecreaseTextPaddingSlider			|			|			|         |         |         |
+| DecreaseUpperLimit				|			|			|         |         |         |
+| DecreaseVelocity					|			|			|         |         |         |
+| DecreaseWeld speed				|			|			|         |         |         |
+| Extend							|			|			|         |         |         |
+| Force weld						|			|			|         |         |         |
+| IncreaseChangeIntervalSlider		|			|			|         |         |         |
+| IncreaseFontSize					|			|			|         |         |         |
+| IncreaseLowerLimit				|			|			|         |         |         |
+| IncreaseMaxImpulseAxis			|			|			|         |         |         |
+| IncreaseMaxImpulseNonAxis			|			|			|         |         |         |
+| IncreaseSafetyDetach				|			|			|         |         |         |
+| IncreaseTextPaddingSlider			|			|			|         |         |         |
+| IncreaseUpperLimit				|			|			|         |         |         |
+| IncreaseVelocity					|			|			|         |         |         |
+| IncreaseWeld speed				|			|			|         |         |         |
+| OnOff								|			|			|         |         |         |
+| OnOff_Off							|			|			|         |         |         |
+| OnOff_On							|			|			|         |         |         |
+| PreserveAspectRatio				|			|			|         |         |         |
+| ResetVelocity						|			|			|         |         |         |
+| Retract							|			|			|         |         |         |
+| Reverse							|			|			|         |         |         |
+| SetAndMove						| distance (1.2)		| velocity (2.5)		|  Label    |         |         |
+| SetVelocity						| velocity (+/-2.5)			|			|         |         |         |
+| ShareInertiaTensor				|			|			|         |         |         |
+| ShowOnHUD							|			|			|         |         |         |
+| ShowOnHUD_Off						|			|			|         |         |         |
+| ShowOnHUD_On						|			|			|         |         |         |

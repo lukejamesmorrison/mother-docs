@@ -24,6 +24,37 @@ You can target individual cockpit screens by targeting a screen index - `[MMAP:1
 
 ![Almanac LCD](../../Assets/almanac-lcd-1.png)
 
+## Configuration
+
+|Key| Value| Description|
+|-|-|-|
+|`mapScale`| decimal| Set the map scale in meters. Defaults to 100m. |
+|`center`| string | The point that the map should center on.  You can use the full GPS string, the X,Y,Z portions of a GPS string, or use the name of a grid/waypoint if present in the Almanac.|
+| `mode` | `2D`, `3D`| Whether the map should render in 2D or 3D.<br><br>**NOTE**: 3D map rendering is experimental and will change in future updates. | 
+
+
+### Example
+
+**LCD CustomData**
+```ini
+[general]
+mapScale=150
+
+; full GPS String
+center=GPS:Mothership:227039.09:226939.44:227134.75:#FF75C9F1:
+
+; partial GPS String
+center=227039.09:226939.44:227134.75
+
+; grid name
+center=Mothership
+
+; render mode
+mode=2D
+```
+
+
+
 <!-- ## Friendly or Foe?
 
 Mother can identify a grid as Friendly, Neutral, or Foe.  This setting is determined based upon how Mother communicates with the grid.  If your grid is using encrypted communication, then only grids with the same encryption key will be considered Friendly.  If your grid is using unencrypted communication, then all grids will be considered Neutral unless they belong to your faction. -->

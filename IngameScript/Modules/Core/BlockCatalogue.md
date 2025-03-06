@@ -22,6 +22,8 @@ The Block catalogue is responsible for cataloguing all functional blocks availab
 - Grinders
 - Sound Blocks
 - Air Vents
+- Programmable Blocks
+- Medical Rooms
 
 > [!IMPORTANT]
 > The Block Catalogue will register functional blocks on the main grid, as well as subgrids connected via a piston, hinge, or rotor.  It does not register blocks on subgrids connected via connectors to prevent side effects when docked.

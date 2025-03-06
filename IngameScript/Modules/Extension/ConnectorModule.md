@@ -25,12 +25,16 @@ connector/toggle <Connector|Group>
 
 ## Hooks
 
-The following hooks can be define in the block's CustomData, and will be triggered when the corresponding command is called:
+The following hooks can be define in the block's CustomData, and will be triggered when the corresponding command is called:****
 
-|Key            | Trigger                               |
-|-              |-                                      |
-| `onLock`      | Activated by `connector/lock` command      |
-| `onUnlock`     | Activated by connector/unlock` command     |
+|Key                | Trigger                                       |
+|-                  |-                                              |
+| `onLock`          | Activated by `connector/lock` command         |
+| `onUnlock`        | Activated by connector/unlock` command        |
+| `onReady`         | Actived when a connector is ready to lock     |
+
+> [!NOTE]
+> Connector hooks are also fired when the connector is used for parking via a toolbar action or the parking button `P`.
 
 ### Example
 Imagine our connector has a status light we want to view elsewhere:

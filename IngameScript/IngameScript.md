@@ -3,7 +3,7 @@
 [< Home](../README.md)
 
 ![Beta](https://img.shields.io/badge/Beta-blue)
-![Version](https://img.shields.io/badge/0.2.5-yellow)
+![Version](https://img.shields.io/badge/0.2.6-yellow)
 
 
 > [!WARNING] 
@@ -46,7 +46,6 @@ This script is designed to be efficient, only running when triggered by a comman
 
 ## Upcoming Features
 
-1. Master-Node architecture to allow for multiple programmable blocks to work together on the same grid.
-2. Use of block customData to improve customization.  Ie. Rotor1.CustomData can contain configuration specific to Rotor1. This could also allow for the injection of an event triggering system at the block level.
-3. Use block customData to trigger common event hooks - OnLock, OnClose, OnStockpile, etc.
-4. Autodocking
+1. Use of block customData to improve customization.  Ie. LCDPanel1.CustomData can contain configuration specific to it - ie. scale, centerpoint,etc.
+2. Master-Node architecture to allow for multiple programmable blocks running Mother Core to work together on the same grid.
+3. Autodocking
