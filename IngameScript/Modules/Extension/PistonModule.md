@@ -26,6 +26,34 @@ Reset a piston to its original position (0 meters).
 piston/reset <Piston|Group>
 ```
 
+### speed
+Set the speed of a piston or group of pistons in m/s.
+```
+piston/speed <piston|Group> <Speed> <Options>
+```
+
+Options
+| Option  | Values     | Unit | Description                                                         |
+| ------- | ---------- | ---- | ------------------------------------------------------------------- |
+| `add` |  |   | Indicates that the provided speed should be *added* to the current speed. Allows increment speed changes while in motion. |
+| `sub` |  |   | Indicates that the provided speed should be *subtracted* from the current speed. Allows decremental speed changes while in motion. |
+
+#### Examples
+Set speed to 0.5 m/s:
+```
+piston/speed TurretPistons 0.5
+```
+
+Increase speed by 0.2 m/s:
+```
+piston/speed TurretPistons 0.2 --add
+```
+
+Decrease speed by 0.1 m/s:
+```
+piston/speed TurretPistons 0.1 --sub
+```
+
 
 <!--- 
 

@@ -45,6 +45,8 @@ Extension modules provide additional functionality to a Space Engineer for contr
 | [Gas Tanks](Extension/TankModule.md)					| Manages oxygen and hydrogen tanks on the grid.|
 | [Sound Blocks](Extension/SoundModule.md)				| Manages sound blocks on the grid. |
 | [Air Vents](Extension/AirVentModule.md)			| Manages air vents on the grid. |
+| [Landing Gear](Extension/LandingGearModule.md) | Manages landing gear and magnetic plates on the grid.|
+| [Sensors](Extension/SensorModule.md) | Manages sensors on the grid.|
 
 <br>
 

@@ -19,7 +19,8 @@ The following is a list of commands available in the default modules.
 13. [Gas Tanks](#gas-tanks)
 14. [Sound Blocks](#sound-blocks)
 15. [Air Vents](#air-vents)
-16. [Local Storage](#local-storage)
+16. [Landing Gear](#landing-gear)
+17. [Local Storage](#local-storage)
 
 ## Core
 ### help
@@ -212,6 +213,18 @@ Reset a rotor or group of rotors to their original position (0 degrees).
 rotor/reset <Rotor|Group>
 ```
 
+### speed
+Set the speed of a rotor or group of rotors in RPM.
+```
+rotor/speed <Rotor|Group> <Speed> <Options>
+```
+
+Options
+| Option  | Values     | Unit | Description                                                         |
+| ------- | ---------- | ---- | ------------------------------------------------------------------- |
+| `add` |  |   | Indicates that the provided speed should be *added* to the current speed. Allows increment speed changes while in motion. |
+| `sub` |  |   | Indicates that the provided speed should be *subtracted* from the current speed. Allows decremental speed changes while in motion. |
+
 
 ## Hinges
 [Hinge Module](Modules/Extension/HingeModule.md)
@@ -251,6 +264,18 @@ Reset a hinge or group of hinges to their original position (0 degrees).
 hinge/reset <Hinge|Group>
 ```
 
+### speed
+Set the speed of a hinge or group of hinges in RPM.
+```
+hinge/speed <hinge|Group> <Speed> <Options>
+```
+
+Options
+| Option  | Values     | Unit | Description                                                         |
+| ------- | ---------- | ---- | ------------------------------------------------------------------- |
+| `add` |  |   | Indicates that the provided speed should be *added* to the current speed. Allows increment speed changes while in motion. |
+| `sub` |  |   | Indicates that the provided speed should be *subtracted* from the current speed. Allows decremental speed changes while in motion. |
+
 ## Pistons
 [Piston Module](Modules/Extension/PistonModule.md)
 
@@ -274,6 +299,18 @@ Reset a piston to its original position (0 meters).
 ```
 piston/reset <Piston>
 ```
+
+### speed
+Set the speed of a piston or group of pistons in m/s.
+```
+piston/speed <piston|Group> <Speed> <Options>
+```
+
+Options
+| Option  | Values     | Unit | Description                                                         |
+| ------- | ---------- | ---- | ------------------------------------------------------------------- |
+| `add` |  |   | Indicates that the provided speed should be *added* to the current speed. Allows increment speed changes while in motion. |
+| `sub` |  |   | Indicates that the provided speed should be *subtracted* from the current speed. Allows decremental speed changes while in motion. |
 
 ## Flight Control System
 [Flight Control Module](Modules/Extension/FlightControlModule.md)
@@ -528,6 +565,36 @@ vent/pressurize <AirVent|Group>
 Set the air vent to pressurize mode.
 ```ini
 vent/depressurize <AirVent|Group>
+```
+
+## Landing Gear
+[Landing Gear Module](Modules/Extension/LandingGearModule.md)
+
+### lock
+Lock a Landing Gear or group of Landing Gear.
+```
+gear/lock <LandingGear|Group>
+```
+
+### unlock
+Unlock a Landing Gear or group of Landing Gear.
+```
+gear/unlock <LandingGear|Group
+```
+
+### toggle
+Toggle the lock state of a Landing Gear or group of Landing Gear between `Locked` nad `Unlocked`.
+```
+gear/toggle <LandingGear|Group>
+```
+
+> [!NOTE]
+> For more info about Landing Gear states, see [LandingGearMode](https://github.com/malware-dev/MDK-SE/wiki/SpaceEngineers.Game.ModAPI.Ingame.LandingGearMode) in MDK-SE.
+
+### auto
+Set the AutoLock state of a Landing Gear or group of Landing Gear.
+```
+gear/auto <LandingGear|Group> <true|false>
 ```
 
 ## Local Storage

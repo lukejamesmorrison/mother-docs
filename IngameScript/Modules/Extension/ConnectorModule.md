@@ -29,12 +29,9 @@ The following hooks can be define in the block's CustomData, and will be trigger
 
 |Key                | Trigger                                       |
 |-                  |-                                              |
-| `onLock`          | Activated by `connector/lock` command         |
-| `onUnlock`        | Activated by connector/unlock` command        |
-| `onReady`         | Actived when a connector is ready to lock     |
-
-> [!NOTE]
-> Connector hooks are also fired when the connector is used for parking via a toolbar action or the parking button `P`.
+| `onLock`          | Run when a connector locks.         |
+| `onUnlock`        | Run when a connector unlocks.        |
+| `onReady`         | Run when a connector is ready to lock.     |
 
 ### Example
 Imagine our connector has a status light we want to view elsewhere:

@@ -41,5 +41,28 @@ rotor/reset <Rotor|Group>
 ### speed
 Set the speed of a rotor or group of rotors in RPM.
 ```
-rotor/speed <Rotor|Group> <Speed>
+rotor/speed <Rotor|Group> <Speed> <Options>
 ```
+
+Options
+| Option  | Values     | Unit | Description                                                         |
+| ------- | ---------- | ---- | ------------------------------------------------------------------- |
+| `add` |  |   | Indicates that the provided speed should be *added* to the current speed. Allows increment speed changes while in motion. |
+| `sub` |  |   | Indicates that the provided speed should be *subtracted* from the current speed. Allows decremental speed changes while in motion. |
+
+#### Examples
+Set speed to 2 RPM:
+```
+rotor/speed AntennaRotor 2
+```
+
+Increase speed by 2.5 RPM:
+```
+rotor/speed AntennaRotor 2.5 --add
+```
+
+Decrease speed by 1 RPM:
+```
+rotor/speed AntennaRotor 1 --sub
+```
+

@@ -26,7 +26,7 @@ The following hooks can be define in the block's CustomData, and will be trigger
 |Key        | Trigger                           |
 |-          |-                                  |
 | `onOn`    | Activated by `block/on` command   |
-| `onOff`   | Activated by `block/on` command   |
+| `onOff`   | Activated by `block/off` command   |
 
 ### Example
 
