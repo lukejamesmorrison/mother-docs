@@ -1,7 +1,7 @@
 # Block Module
 [< Modules](../Modules.md)
 
-The Block module allows the user to interact with **functional blocks** on the grid. All blocks accessible via [Block Catalogue](../Core/BlockCatalogue.md) are considered functional blocks.
+The Block module allows the user to interact with **terminal blocks** on the grid. All blocks accessible via [Block Catalogue](../Core/BlockCatalogue.md) are considered terminal blocks.
 
 ## Commands
 
