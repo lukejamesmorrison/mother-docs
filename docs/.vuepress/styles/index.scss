@@ -1,0 +1,109 @@
+// .vuepress/styles/index.scss
+// @import './palette.scss'; // Import color variables
+
+// === Light Theme ===
+:root {
+  // accent colors
+  --vp-c-accent: #ff0000; /* Red */
+  --vp-c-accent-bg: #cc0000; /* Darker red */
+  --vp-c-accent-hover: #e60000; /* Brighter red */
+  --vp-c-accent-text: var(--vp-c-white);
+  --vp-c-accent-soft: rgb(255 0 0 / 14%);
+
+  // background colors
+  --vp-c-bg: #fff;
+  --vp-c-bg-alt: #f6f6f7;
+  --vp-c-bg-elv: #fff;
+
+  // text colors
+  --vp-c-text: rgb(60 60 67);
+  --vp-c-text-mute: rgb(60 60 67 / 78%);
+  --vp-c-text-subtle: rgb(60 60 67 / 56%);
+
+  // border colors
+  --vp-c-gutter: #e2e2e3;
+  --vp-c-border: #c2c2c4;
+  --vp-c-border-hard: #b8b8ba;
+
+  // shadow colors
+  --vp-c-shadow: rgb(0 0 0 / 15%);
+
+  // control colors
+  --vp-c-control: rgb(142 150 170 / 10%);
+  --vp-c-control-hover: rgb(142 150 170 / 16%);
+  --vp-c-control-disabled: #eaeaea;
+
+  // layout colors
+  --vp-navbar-c-bg: var(--vp-c-bg);
+  --vp-sidebar-c-bg: var(--vp-c-bg);
+
+  // code group colors
+  --vp-c-code-tab-title: var(--code-c-text, rgb(255 255 255 / 90%));
+  --vp-c-code-tab-bg: var(--code-bg-color, var(--code-c-bg));
+  --vp-c-code-tab-active: var(--vp-c-accent);
+
+  // badge colors
+  --badge-c-tip-text: var(--vp-c-green-text);
+  --badge-c-tip-bg: var(--vp-c-green-soft);
+  --badge-c-warning-text: var(--vp-c-yellow-text);
+  --badge-c-warning-bg: var(--vp-c-yellow-soft);
+  --badge-c-danger-text: var(--vp-c-red-text);
+  --badge-c-danger-bg: var(--vp-c-red-soft);
+  --badge-c-important-text: var(--vp-c-purple-text);
+  --badge-c-important-bg: var(--vp-c-purple-soft);
+  --badge-c-info-text: var(--vp-c-indigo-text);
+  --badge-c-info-bg: var(--vp-c-indigo-soft);
+  --badge-c-note-text: var(--vp-c-grey-text);
+  --badge-c-note-bg: var(--vp-c-grey-soft);
+}
+
+.code-block-title span.title {
+  color: var(--vp-c-code-tab-title) !important;
+}
+
+// Secondary button styling (applies to both themes)
+.auto-link.secondary {
+    color: var(--vp-c-text); /* Default text color */
+    border: 2px solid var(--vp-c-accent);
+    background: transparent;
+    transition: background 0.3s ease, color 0.3s ease;
+  
+    &:hover {
+        color: var(--vp-c-white); /* Default text color */
+        background: var(--vp-c-accent-bg); /* Match primary color */
+        // color: black !important; /* Ensure text turns black */
+    }
+  }
+
+// === Dark Theme ===
+[data-theme='dark'] {
+  // brand colors
+  --vp-c-accent: #ff4d4d; /* Slightly lighter red */
+  --vp-c-accent-bg: #b30000; /* Deep red */
+  --vp-c-accent-hover: #ff6666; /* Brighter red */
+  --vp-c-accent-text: white;
+  --vp-c-accent-soft: rgb(255 77 77 / 16%);
+
+  // background colors
+  --vp-c-bg: #1b1b1f; /* Dark mode background */
+  --vp-c-bg-alt: #161618; /* Darker alternative */
+  --vp-c-bg-elv: #202127; /* Elevated elements */
+
+  // text colors
+  --vp-c-text: rgb(235 235 245 / 86%);
+  --vp-c-text-mute: rgb(235 235 245 / 60%);
+  --vp-c-text-subtle: rgb(235 235 245 / 38%);
+
+  // border colors
+  --vp-c-gutter: #000;
+  --vp-c-border: #3c3f44;
+  --vp-c-border-hard: #45484e;
+
+  // shadow color
+  --vp-c-shadow: rgb(0 0 0 / 30%);
+
+  // control colors
+  --vp-c-control: rgb(101 117 133 / 12%);
+  --vp-c-control-hover: rgb(101 117 133 / 18%);
+  --vp-c-control-disabled: #363636;
+}
