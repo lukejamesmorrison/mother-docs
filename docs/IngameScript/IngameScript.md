@@ -34,7 +34,7 @@ Mother is in beta development. I'm on a quest to reduce the character count, and
 Mother OS is available as an ingame script for Programmable Blocks in Space Engineers. It interoperates seamlessly with Timer Blocks and Event Controllers to augment existing automations.
 
 <!-- [Install Mother OS](Installation.md) and take your automations to the next level! -->
-<a class="route-link auto-link vp-hero-action-button primary" href="/IngameScript/Installation.html" aria-label="Mother OS" style="text-decoration: none">Install Mother OS</a>
+<!-- <a class="route-link auto-link vp-hero-action-button primary" href="/IngameScript/Installation.html" aria-label="Mother OS" style="text-decoration: none">Install Mother OS</a> -->
 
 
 ## Features
