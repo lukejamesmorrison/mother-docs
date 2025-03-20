@@ -28,21 +28,21 @@ We use this format since at any time, a player may copy a GPS waypoint to their 
 
 ## The Flight Plan
 
-A flight plan is broken into terms, separated by a space ` `. Each term is a GPS **waypoint**, a **routine**, or a **modifier**.  The flight plan can be passed as a single string to the [`nav/set-flight-plan`](#set-flight-plan) command.
+A flight plan is broken into terms, separated by a space ` `. Each term is a **GPS waypoint**, a **routine**, or a **modifier**.  The flight plan can be passed as a single string to the [`nav/set-flight-plan`](#set-flight-plan) command.
 
-```bash
-nav/set-flight-plan "GPS:TopSecretBase:211.78:-52.93:59.19:#FF75C9F1: { DoSomethingSecret; light/blink SignalLights med; }"
+```bash title="Terminal"
+nav/set-flight-plan "GPS:TopSecretBase:211.78:-52.93:59.19:#FF75C9F1: { DoSomethingSecret; light/blink SignalLights med; }";
 ```
 
-Every waypoint may be followed by a routine, while will run when that waypoint is reached. You may also start the flight plan with a routine, which will run immediately - perfect for pre-flight.
+Every waypoint may be followed by a routine, which will run when that waypoint is reached. You may also start the flight plan with a routine which will run immediately. Perfect for pre-flight.
 
-```bash
-nav/set-flight-plan "{ RetractLandingGear } GPS:TopSecretBase:211.78:-52.93:59.19:#FF75C9F1: { DoSomethingSecret; light/blink SignalLights med; }"
+```bash title="Terminal"
+nav/set-flight-plan "{ RetractLandingGear } GPS:TopSecretBase:211.78:-52.93:59.19:#FF75C9F1: { DoSomethingSecret; light/blink SignalLights med; }";
 ```
 
-This looks best as a custom command in **CustomData**:
+This looks best as a custom command in **Custom Data**:
 
-```ini
+```ini title="Mother > Custom Data"
 [Commands]
 
 FlyToTopSecretBase=
@@ -74,19 +74,19 @@ GPS:TopSecretBase:211.78:-52.93:59.19:#FF75C9F1:
 
 To chart a course to this waypoint, we can set it as Mother's current flight plan:
 
-```bash
-nav/set-flight-plan "GPS:TopSecretBase:211.78:-52.93:59.19:#FF75C9F1:"
+```bash title="Terminal"
+nav/set-flight-plan "GPS:TopSecretBase:211.78:-52.93:59.19:#FF75C9F1:";
 ```
 
 If we wanted to fly to a `Midpoint`, before proceeding to the `TopSecretBase`, we can simply add the term to our flight plan, separated by a space:
 
-```bash
-nav/set-flight-plan "GPS:Midpoint:190.12:-54.45:45.89:#FF75C9F1: GPS:TopSecretBase:211.78:-52.93:59.19:#FF75C9F1:"
+```bash title="Terminal"
+nav/set-flight-plan "GPS:Midpoint:190.12:-54.45:45.89:#FF75C9F1: GPS:TopSecretBase:211.78:-52.93:59.19:#FF75C9F1:";
 ```
 
 If this is a long flight plan, it is most intuitive to store the command in the Programmable Block's **CustomData**:
 
-```ini
+```ini title="Mother > Custom Data"
 [Commands]
 
 set-route-1=
@@ -101,8 +101,8 @@ Under the hood, Mother will monitoring and update progress towards each waypoint
 
 Next time we want to run the flight plan we can shorten it:
 
-```bash
-nav/set-flight-plan "Midpoint TopSecretBase"
+```bash title="Terminal"
+nav/set-flight-plan "Midpoint TopSecretBase";
 ```
 ::: tip
 Use the `nav/set-flight-plan` and `fcs/start` commands together to set the flight plan and begin autopilot immediately.
@@ -116,8 +116,8 @@ Use the `nav/set-flight-plan` and `fcs/start` commands together to set the fligh
 
 Mother supports running routines when your grid reaches a specific waypoint.  This is done by adding a routine to the flight plan string.
 
-```bash
-nav/set-flight-plan "GPS:Midpoint:190.12:-54.45:45.89:#FF75C9F1: { ExtendWings; light/blink SignalLights off; block/off BoosterThrusters; }" 
+```bash title="Terminal"
+nav/set-flight-plan "GPS:Midpoint:190.12:-54.45:45.89:#FF75C9F1: { ExtendWings; light/blink SignalLights off; block/off BoosterThrusters; }"; 
 ```
 
 ### Modifiers
@@ -132,9 +132,9 @@ A flight plan may be modified with the following options, as the last term in th
 
 An example of a roundtrip flight plan:
 
-```bash
+```bash title="Terminal"
 # Fly to Midpoint, then TopSecretBase, then return to Midpoint
-nav/set-flight-plan "GPS:Midpoint:190.12:-54.45:45.89:#FF75C9F1: GPS:TopSecretBase:211.78:-52.93:59.19:#FF75C9F1: R"
+nav/set-flight-plan "GPS:Midpoint:190.12:-54.45:45.89:#FF75C9F1: GPS:TopSecretBase:211.78:-52.93:59.19:#FF75C9F1: R";
 ```
 
 ### Loading a Flight Plan
@@ -147,6 +147,12 @@ Set the active flight plan in the navigation system. Combine with [`fcs/start`](
 
 ```
 nav/set-flight-plan <FlightPlanString> [--options]
+```
+
+**Example:**
+
+```bash title="Terminal"
+nav/set-flight-plan "GPS:Midpoint:190.12:-54.45:45.89:#FF75C9F1: GPS:TopSecretBase:211.78:-52.93:59.19:#FF75C9F1:";
 ```
 
 <!-- ## Actions

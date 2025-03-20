@@ -14,6 +14,12 @@ Lock a connector or group of connectors.
 connector/lock <Connector|Group>
 ```
 
+**Example**
+
+```bash title="Terminal"
+connector/lock DockingConnector
+```
+
 ### unlock
 Unlock a connector or group of connectors.
 
@@ -21,11 +27,23 @@ Unlock a connector or group of connectors.
 connector/unlock <Connector|Group>
 ```
 
+**Example**
+
+```bash title="Terminal"
+connector/unlock DockingConnector
+```
+
 ### toggle
 Toggle the lock state of a connector or group of connectors.
 
 ```
 connector/toggle <Connector|Group>
+```
+
+**Example**
+
+```bash title="Terminal"
+connector/toggle DockingConnector
 ```
 
 ## Hooks

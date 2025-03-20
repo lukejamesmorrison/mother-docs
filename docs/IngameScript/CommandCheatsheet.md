@@ -11,35 +11,16 @@ The following is a list of commands available in the default modules.
 
 [[toc]]
 
-
-<!-- 1. [Core](#core)
-2. [Blocks](#blocks)
-3. [Batteries](#batteries)
-4. [Doors](#doors)
-5. [Connectors](#connectors)
-6. [Rotors](#rotors)
-7. [Hinges](#hinges)
-8. [Pistons](#pistons)
-9. [Flight Control System](#flight-control-system)
-10. [Navigation](#navigation)
-11. [Lights](#lights)
-12. [Timer Blocks](#timer-blocks)
-13. [Gas Tanks](#gas-tanks)
-14. [Sound Blocks](#sound-blocks)
-15. [Air Vents](#air-vents)
-16. [Landing Gear](#landing-gear)
-17. [Local Storage](#local-storage) -->
-
 ## Core
 ### help
 Print all commands in the Programmable Block terminal.
-```
+```bash
 help
 ```
 
 ### clear
 Clear the Programmable Block terminal window.
-```
+```bash
 clear
 ```
 
@@ -47,7 +28,7 @@ clear
 [Almanac](Modules/Core/Almanac.md)
 
 Ping all grids on the network and update the Almanac.
-```
+```bash
 ping
 ```
 
@@ -56,19 +37,24 @@ ping
 
 Delay a command or routine for execution. This can be used remotely as well.
 
-```
-light/color IndicatorLight red; wait 5; light/color IndicatorLight green;
+```bash
+wait <seconds>
 ```
 
-In the above example, our light turns red, then after 5 seconds, they turn green.
+**Example**
+
+```bash title="Terminal"
+# Light turns red, then after 5 seconds, thew light turns green
+light/color IndicatorLight red; wait 5; light/color IndicatorLight green;
+```
 
 ### purge
 [Almanac](Modules/Core/Almanac.md), [LocalStorage](Modules/Core/LocalStorage.md)
 
 Purge modules of data.  This can be used to reset module data like the Almanac and LocalStorage.
 
-```bash
-purge <modules,> <--options>
+```
+purge <modules,> [--options]
 ```
 
 **Available Modules:**
@@ -88,13 +74,13 @@ purge <modules,> <--options>
 
 To purge all modules, you can use the following command:
 
-```bash
+```bash title="Terminal"
 purge * --force
 ```
 
 To purge specific modules, you can use the following command:
 
-```bash
+```bash title="Terminal"
 purge almanac,storage --force
 ```
 
@@ -293,8 +279,9 @@ Extend or retract a piston to a specific distance.
 piston/distance <Piston> <Distance> [--options]
 ```
 
-> [!NOTE]
-> Small grid pistons have a maximum distance of 2 meters, while large grid pistons have a maximum distance of 10 meters.
+::: note
+Small grid pistons have a maximum distance of **2 meters**, while large grid pistons have a maximum distance of **10 meters**.
+:::
 
 ### stop
 Stop a piston while in motion. Note that pistons do not lock like a Rotor or Hinge.
@@ -322,6 +309,7 @@ Options
 
 ## Flight Control System
 [Flight Control Module](Modules/Extension/FlightControlModule.md)
+
 ### start
 Engage the autopilot system, enabling the grid to fly autonomously if a [flight plan](../Extension/NavigationModule.md) is loaded.
 ```
@@ -335,6 +323,7 @@ Options
 
 ### stop
 Disengage the autopilot system, halting the grid.
+
 ```
 fcs/stop
 ```
@@ -344,7 +333,9 @@ fcs/stop
 [Navigation Module](Modules/Extension/NavigationModule.md)
 
 ### set-flight-plan
+
 Set the active flight plan in the navigation system. Combine with [`fcs/start`](#flight-control-system) to begin flying.
+
 ```
 nav/set-flight-plan <FlightPlanString> [--options]
 ```
@@ -375,13 +366,13 @@ You have access to the following colors which may be used in place of their RGB 
 |![white](https://img.shields.io/badge/white-FFFFFF)    |255,255,255  | FFFFFF        |
 |![black](https://img.shields.io/badge/black-000000)    |0,0,0        | 000000        |
 
-#### Example
+**Example**
 
-```ini
+```bash title="Terminal"
 # by name
-light/color LandingLight red
+light/color LandingLight red;
 # by RGB
-light/color LandingLight 255,0,0
+light/color LandingLight 255,0,0;
 ```
 
 ### blink
@@ -408,14 +399,14 @@ You have access to several blinks which may be used instead of the value in seco
 | `length` | 0 - 1 | int  | Set the blink length of the light. Default is 0.5 (50%). |
 | `offset` | 0 - 1 | int  | Set the blink offset of the light. Default is 0 (0%). |
 
-#### Example
+**Example**
 
-```bash
+```bash title="Terminal"
 # using preset
-light/blink SignalLight slow
+light/blink SignalLight slow;
 
 # using values and options
-light/blink SignalLight 3 --length=0.3 --offset=0
+light/blink SignalLight 3 --length=0.3 --offset=0;
 ```
 
 ### reset
@@ -474,14 +465,13 @@ tank/toggle <Tank|Group> [--options]
 ### play
 
 Play the sound block with an optional sound.
-```ini
-; play the block
+```bash
+# play the block
 sound/play <SoundBlock|Group>
 
-; play the block with a specific sound
+# play the block with a specific sound
 sound/play <SoundBlock|Group> <sound>
 ```
-<br>
 
 See the [`set`](#set) command for a list of available sounds.
 
@@ -501,9 +491,8 @@ sound/set <SoundBlock|Group> <sound>
 ```
 
 You may use the sound as it appears in the sound block list or, for default sounds, using their ID below.
-<br>
 
-**Default Sounds:**
+**Default Sounds**
 
 | ID                                                 ||                      |                         |
 |---------------------------|---------------------------|---------------------------|---------------------------|
@@ -545,15 +534,16 @@ You may use the sound as it appears in the sound block list or, for default soun
 | MusConcert_7             | MusConcert_8             | MusConcert_9             | MusConcert_10             |
 
 
-#### Example
+**Example**
 
-```ini
-; default sound
-sound/set MainSpeaker MusDanger_04
-sound/set MainSpeaker "Danger Music 04"
+```bash title="Terminal"
+# default sound with sound id
+sound/set MainSpeaker MusDanger_04;
+# default sound with ingame name
+sound/set MainSpeaker "Danger Music 04";
 
-; other sound
-sound/play MainSpeaker "Space Funk"
+# other sound
+sound/play MainSpeaker "Space Funk";
 ```
 
 ## Air Vents
@@ -562,14 +552,14 @@ sound/play MainSpeaker "Space Funk"
 ### pressurize
 
 Set the air vent to pressurize mode.
-```ini
+```bash
 vent/pressurize <AirVent|Group>
 ```
 
 ### depressurize
 
 Set the air vent to pressurize mode.
-```ini
+```bash
 vent/depressurize <AirVent|Group>
 ```
 
@@ -578,14 +568,14 @@ vent/depressurize <AirVent|Group>
 
 ### lock
 Lock a Landing Gear or group of Landing Gear.
-```
+```bash
 gear/lock <LandingGear|Group>
 ```
 
 ### unlock
 Unlock a Landing Gear or group of Landing Gear.
-```
-gear/unlock <LandingGear|Group
+```bash
+gear/unlock <LandingGear|Group>
 ```
 
 ### toggle
@@ -594,8 +584,9 @@ Toggle the lock state of a Landing Gear or group of Landing Gear between `Locked
 gear/toggle <LandingGear|Group>
 ```
 
-> [!NOTE]
-> For more info about Landing Gear states, see [LandingGearMode](https://github.com/malware-dev/MDK-SE/wiki/SpaceEngineers.Game.ModAPI.Ingame.LandingGearMode) in MDK-SE.
+::: note
+For more info about Landing Gear states, see [LandingGearMode](https://github.com/malware-dev/MDK-SE/wiki/SpaceEngineers.Game.ModAPI.Ingame.LandingGearMode) in MDK-SE.
+:::
 
 ### auto
 Set the AutoLock state of a Landing Gear or group of Landing Gear.
@@ -616,3 +607,7 @@ Set a value in LocalStorage.
 ```bash
 set <key> <value>
 ```
+
+::: note
+The `set` command provides no practical use to players at this time.
+:::

@@ -34,6 +34,7 @@ Extension modules provide additional functionality to a Space Engineer for contr
 | [Flight Control](Extension/FlightControlModule.md)	| Manaages autopilot and flight characteristics.|
 | [Connectors](Extension/ConnectorModule.md)			| Manages connectors on the grid.|
 | [Doors](Extension/DoorModule.md)						| Manages doors on the grid.|
+| [Docking Module](Extension/DockingModule.md)         | Manages docking procedures for the grid.|
 | [Hinges](Extension/HingeModule.md)					| Manages hinges on the grid.|
 | [Rotors](Extension/RotorModule.md)					| Manages rotors on the grid.|
 | [Pistons](Extension/PistonModule.md)					| Manages pistons on the grid.|

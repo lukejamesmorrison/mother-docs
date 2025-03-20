@@ -1,23 +1,30 @@
 # Sound Module
 <!-- [< Modules](../Modules.md) -->
 
-The light module allows the user to control lights on the grid.  Players can now dynamically control light color and blinking. Use this to take your landing pads and warning lights to the next level.
+The sound module allows the user to control sound blocks on the grid. Players can play, stop, and set the sound of sound blocks. Use this to add alerts, and music to your grids to crank up the vibe! 🪩
+
+[[toc]]
 
 ## Commands
 
 ### play
 
 Play the sound block with an optional sound.
-```ini
+```ini 
 ; play to block
 sound/play <SoundBlock|Group>
 
 ; play the block with a specific sound
 sound/play <SoundBlock|Group> <sound>
 ```
-<br>
 
 See the [`set`](#set) command for a list of available sounds.
+
+**Example**
+
+```bash title="Terminal"
+sound/play MainSpeaker "Danger Music 04";
+```
 
 ### stop
 
@@ -25,6 +32,12 @@ Stop the sound block from playing.
 
 ```
 sound/stop <SoundBlock|Group>
+```
+
+**Example**
+
+```bash title="Terminal"
+sound/stop MainSpeaker;
 ```
 
 ### set
@@ -35,11 +48,16 @@ Set the sound of the sound block.
 sound/set <SoundBlock|Group> <sound>
 ```
 
+**Example**
+
+```bash title="Terminal"
+sound/set MainSpeaker MusDanger_04;
+```
+
 You may use the sound as it appears in the sound block list or, for default sounds, using their ID below.
 
-<br>
 
-**Default Sounds:**
+#### Default Sounds
 
 | ID                                                 ||                      |                         |
 |---------------------------|---------------------------|---------------------------|---------------------------|
@@ -83,11 +101,12 @@ You may use the sound as it appears in the sound block list or, for default soun
 
 **Example**
 
-```ini
-; default sound
-sound/set MainSpeaker MusDanger_04
-sound/set MainSpeaker "Danger Music 04"
+```bash title="Terminal"
+# default sound with sound id
+sound/set MainSpeaker MusDanger_04;
+# default sound with ingame name
+sound/set MainSpeaker "Danger Music 04";
 
-; other sound
-sound/play MainSpeaker "Space Funk"
+# other sound
+sound/play MainSpeaker "Space Funk";
 ```

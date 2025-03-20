@@ -4,16 +4,12 @@
 
 Mother's command line interface allows you to interact with your grid.  We can pass in *arguments* to the script to perform different actions.  The CLI is available in the programmable block terminal, and you can run it by hitting the `Run` button.
 
+[[toc]]
+
 
 ::: tip
 See the [Command Cheatsheet](CommandCheatsheet.md) to get started!
 :::
-
-<!-- - [Anatomy of a Command](#anatomy-of-a-command)
-- [Running Multiple Commands](#running-multiple-commands)
-- [Delaying a Command for Execution](#delaying-command-execution)
-- [The Terminal Window](#the-terminal-window)
-- [Running Commands Automatically](#running-commands-automatically) -->
 
 
 **Command Syntax**
@@ -47,13 +43,13 @@ Commands are similar to a traditional command line interface, and consist of 3 *
 Let's start with an simple example:
 
 ```bash title="Terminal"
-hinge/rotate Hinge 45
+hinge/rotate Hinge 45;
 ```
 
 We can see the `hinge/rotate` command targets the block named `Hinge`, and rotates it to `45` degrees. If we wanted to rotate the hinge at 2 RPM, we can add the `speed` option:
 
 ```bash title="Terminal"
-hinge/rotate Hinge 45 --speed=2
+hinge/rotate Hinge 45 --speed=2;
 ```
 
 ## Running Multiple Commands

@@ -29,13 +29,13 @@ You have access to the following colors which may be used in place of their RGB 
 |![white](https://img.shields.io/badge/white-FFFFFF)    |255,255,255  | FFFFFF        |
 |![black](https://img.shields.io/badge/black-000000)    |0,0,0        | 000000        |
 
-#### Example
+**Example**
 
-```ini
+```bash title="Terminal"
 # by name
-light/color LandingLight red
+light/color LandingLight red;
 # by RGB
-light/color LandingLight 255,0,0
+light/color LandingLight 255,0,0;
 ```
 
 ### blink
@@ -54,7 +54,6 @@ You have access to several blinks which may be used instead of the value in seco
 | `med`          | 1             | 50            | 0                 | ![med-red](../../Assets/Blinks/med_blink_red.gif) ![med-green](../../Assets/Blinks/med_blink_green.gif) ![med-blue](../../Assets/Blinks/med_blink_blue.gif)     |
 | `fast`         | 0.25          | 50            | 0                 | ![fast-red](../../Assets/Blinks/fast_blink_red.gif) ![fast-green](../../Assets/Blinks/fast_blink_green.gif) ![fast-blue](../../Assets/Blinks/fast_blink_blue.gif) |
 
-
 #### Options
 
 | Option  | Values     | Unit | Description                                                         |
@@ -62,14 +61,14 @@ You have access to several blinks which may be used instead of the value in seco
 | `length` | 0 - 1 | int  | Set the blink length of the light. Default is 0.5 (50%). |
 | `offset` | 0 - 1 | int  | Set the blink offset of the light. Default is 0 (0%). |
 
-#### Example
+**Example**
 
-```bash
+```bash title="Terminal"
 # using preset
-light/blink SignalLight slow
+light/blink SignalLight slow;
 
 # using values and options
-light/blink SignalLight 3 --length=0.3 --offset=0
+light/blink SignalLight 3 --length=0.3 --offset=0;
 ```
 
 ### reset
@@ -78,4 +77,10 @@ Reset a light or group of lights to white and cease any blinking.
 
 ```
 light/reset <Light|Group>
+```
+
+**Example**
+
+```bash title="Terminal"
+light/reset SignalLight;
 ```

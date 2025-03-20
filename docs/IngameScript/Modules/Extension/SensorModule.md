@@ -1,6 +1,6 @@
 # Sensor Module
 
-The Sensor module allows the user to control Sensor blocks on the grid.
+The Sensor module allows the user to control Sensor blocks on the grid. We can use *hooks* to trigger actions when an entity is detected or not detected by the sensor.
 
 [[toc]]
 
@@ -30,3 +30,7 @@ or
 LandingPadSensor.onDetect=light/blink "Landing Pad Light" fast;
 "Airlock Sensor".onClear=door/close AirlockInnerDoor;
 ```
+
+::: note
+Sensors can read details about the entity they are detecting. I hope to leverage this in future features related to docking and collision avoidance.
+:::

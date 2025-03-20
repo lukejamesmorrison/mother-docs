@@ -18,6 +18,11 @@ Options
 | ------- | ---------- | ---- | ------------------------------------------------------------------- |
 | `speed` | -5.0 - 5.0 | RPM  | Set the speed of the hinge. Negative values will reverse the hinge. Default is 1 RPM. |
 
+**Example**
+```bash title="Terminal"
+hinge/rotate LandingGearHinge 90;
+```
+
 ### lock
 Lock a hinge or group of hinges.
 ```
@@ -28,16 +33,31 @@ hinge/lock <Hinge|Group>
 | --- | --- | -- |-- |
 | `stop` | **false**, true | bool | Set the hinge's velocity to 0 when locking. | -->
 
+**Example**
+```bash title="Terminal"
+hinge/lock LandingGearHinge;
+```
+
 ### unlock
 Unlock a hinge or group of hinges.
 ```
 hinge/unlock <Hinge|Group>
 ```
 
+**Example**
+```bash title="Terminal"
+hinge/unlock LandingGearHinge;
+```
+
 ### reset
 Reset a hinge or group of hinges to their original position (0 degrees).
 ```
 hinge/reset <Hinge|Group>
+```
+
+**Example**
+```bash title="Terminal"
+hinge/reset LandingGearHinge;
 ```
 
 ### speed
@@ -55,18 +75,18 @@ Options
 **Example**
 
 Set speed to 2 RPM:
-```
-hinge/speed DoorHinge 2
+```bash title="Terminal"
+hinge/speed LandingGearHinge 2;
 ```
 
 Increase speed by 2.5 RPM:
-```
-hinge/speed DoorHinge 2.5 --add
+```bash title="Terminal"
+hinge/speed LandingGearHinge 2.5 --add;
 ```
 
 Decrease speed by 1 RPM:
-```
-hinge/speed DoorHinge 1 --sub
+```bash title="Terminal"
+hinge/speed LandingGearHinge 1 --sub;
 ```
 
 <!--- 

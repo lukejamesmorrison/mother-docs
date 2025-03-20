@@ -11,7 +11,12 @@ The battery module allows the user to control batteries on the grid.  Batteries 
 Set the battery to `Recharge` mode.
 
 ```
-battery/charge <Battery|Group> [--options]
+battery/charge <Battery|Group>
+```
+
+**Example**
+```bash title="Terminal"
+battery/charge "Main Battery";
 ```
 
 ### discharge
@@ -21,6 +26,11 @@ Set the battery to `Discharge` mode.
 battery/discharge <Battery|Group> [--options]
 ```
 
+**Example**
+```bash title="Terminal"
+battery/discharge "Main Battery";
+```
+
 ### auto
 Set the battery to `Auto` mode.
 
@@ -28,11 +38,21 @@ Set the battery to `Auto` mode.
 battery/auto <Battery|Group> [--options]
 ```
 
+**Example**
+```bash title="Terminal"
+battery/auto "Main Battery";
+```
+
 ### toggle
 Toggle the battery between `Auto`, `Recharge` and `Discharge` mode.
 
 ```
 battery/toggle <Battery|Group> [--options]
+```
+
+**Example**
+```bash title="Terminal"
+battery/toggle "Main Battery";
 ```
 
 

@@ -1,5 +1,4 @@
 # Piston Module
-<!-- [< Modules](../Modules.md) -->
 
 The piston module allows the user to control pistons on the grid.  Pistons are particularly vulnerable to phantom forces and the Almighty Clang, so we leverage the Activity Monitor to ensure pistons are stopped when not in use. Players can simply define a distance and speed without worrying about upper/lower limits.
 
@@ -17,16 +16,31 @@ piston/distance <Piston|Group> <Distance> [--options]
 Small grid pistons have a maximum distance of 2 meters, while large grid pistons have a maximum distance of 10 meters.
 :::
 
+**Example**
+```bash title="Terminal"
+piston/distance TurretPistons 5;
+```
+
 ### stop
 Stop a piston while in motion. Note that pistons do not lock like a Rotor or Hinge.
 ```
 piston/stop <Piston|Group>
 ```
 
+**Example**
+```bash title="Terminal"
+piston/stop TurretPistons;
+```
+
 ### reset
 Reset a piston to its original position (0 meters).
 ```
 piston/reset <Piston|Group>
+```
+
+**Example**
+```bash title="Terminal"
+piston/reset TurretPistons;
 ```
 
 ### speed
@@ -44,22 +58,21 @@ Options
 #### Examples
 Set speed to 0.5 m/s:
 
-```bash
-piston/speed TurretPistons 0.5
+```bash title="Terminal"
+piston/speed TurretPistons 0.5;
 ```
 
 Increase speed by 0.2 m/s:
 
 ```bash
-piston/speed TurretPistons 0.2 --add
+piston/speed TurretPistons 0.2 --add;
 ```
 
 Decrease speed by 0.1 m/s:
 
 ```bash
-piston/speed TurretPistons 0.1 --sub
+piston/speed TurretPistons 0.1 --sub;
 ```
-
 
 <!--- 
 
@@ -145,9 +158,9 @@ Labels are uneccesary but may be added as the last parameter.
 | ResetVelocity						|			|			|         |         |         |
 | Retract							|			|			|         |         |         |
 | Reverse							|			|			|         |         |         |
-| SetAndMove						| distance (1.2)		| velocity (2.5)		|  Label    |         |         |
-| SetVelocity						| velocity (+/-2.5)			|			|         |         |         |
-| ShareInertiaTensor				|			|			|         |         |         |
+| SetAndMove						| distance (+1.2)		| velocity (+/-2.5)	|  Label        |         |         |
+| SetVelocity						| velocity (+/-2.5)		|			        |               |         |         |
+| ShareInertiaTensor				|			            |			        |               |         |         |
 | ShowOnHUD							|			|			|         |         |         |
 | ShowOnHUD_Off						|			|			|         |         |         |
 | ShowOnHUD_On						|			|			|         |         |         |

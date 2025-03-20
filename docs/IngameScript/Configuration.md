@@ -40,10 +40,10 @@ AirlockOuterDoor.onOpen=
 
 ### Hooks
 
-Hooks can be defined within a block's CustomData or within Mother's CustomData to trigger events on blocks *when run via Mother*.  This allows players to tap into common events.
+Hooks can be defined within a block's CustomData or within Mother's CustomData They allow Mother to monitor certain changes in block state.
 
 ::: note
-Hooks are defined within Modules where applicable.  See the [Connector Module](Modules/Extension/ConnectorModule.md), and [Sensor Module](Modules/Extension/SensorModule.md) for some examples.
+Hooks are defined within Modules where available.  See the [Connector Module](Modules/Extension/ConnectorModule.md), and [Sensor Module](Modules/Extension/SensorModule.md) for some examples.
 :::
 
 For example, when a door opens, a light may blink, a vent may depressurize, and the door may close.

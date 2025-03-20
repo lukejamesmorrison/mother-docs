@@ -13,10 +13,20 @@ Lock a Landing Gear or group of Landing Gear.
 gear/lock <LandingGear|Group>
 ```
 
+**Example**
+```bash title="Terminal"
+gear/lock MainLandingGear;
+```
+
 ### unlock
 Unlock a Landing Gear or group of Landing Gear.
 ```
 gear/unlock <LandingGear|Group
+```
+
+**Example**
+```bash title="Terminal"
+gear/unlock MainLandingGear;
 ```
 
 ### toggle
@@ -24,7 +34,11 @@ Toggle the lock state of a Landing Gear or group of Landing Gear between `Locked
 ```
 gear/toggle <LandingGear|Group>
 ```
-<br>
+
+**Example**
+```bash title="Terminal"
+gear/toggle MainLandingGear;
+```
 
 ::: note
 For more info about Landing Gear states, see [LandingGearMode](https://github.com/malware-dev/MDK-SE/wiki/SpaceEngineers.Game.ModAPI.Ingame.LandingGearMode) in MDK-SE.
@@ -34,6 +48,11 @@ For more info about Landing Gear states, see [LandingGearMode](https://github.co
 Set the AutoLock state of a Landing Gear or group of Landing Gear.
 ```
 gear/auto <LandingGear|Group> <true|false>
+```
+
+**Example**
+```bash title="Terminal"
+gear/auto MainLandingGear true;
 ```
 
 
@@ -51,17 +70,13 @@ The following hooks can be define in the block's CustomData, and will be trigger
 
 Imagine our landing gear has a status light we want to view elsewhere:
 
-***MainLandingGear CustomData***
-
-```
+```ini title="MainLandingGear > Custom Data"
 [hooks]
 onLock=light/color "Gear Indicator Light" red;
 onUnlock=light/color "Gear Indicator Light" green;
 ```
-
-***Mother CustomData***
-
-```
+or
+```ini title="Mother > Custom Data"
 [hooks]
 MainLandingGear.onUnlock=light/color "Gear Indicator Light" green;
 "Boom Mag Plate".onLock=rotor/rotate BoomRotor 90;
@@ -70,23 +85,3 @@ MainLandingGear.onUnlock=light/color "Gear Indicator Light" green;
 :::note
 Landing Gear hooks are also fired when the Landing Gear is used for parking via a toolbar action or the parking button `P`.
 :::
-
-**Example**
-
-Imagine our Landing Gear has a status light we want to view elsewhere:
-
-***DockLanding Gear CustomData***
-
-```ini
-[hooks]
-onLock=light/color "Dock Light" red;
-onUnlock=light/color "Dock Light" green;
-```
-
-***Mother CustomData***
-
-```ini
-[hooks]
-DockLanding Gear.onUnlock=light/color "Dock Light" green;
-"Fuel Landing Gear".onLock=tank/stockpile FuelTanks;
-``` 

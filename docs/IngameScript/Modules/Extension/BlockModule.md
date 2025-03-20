@@ -1,7 +1,7 @@
 # Block Module
 <!-- [< Modules](../Modules.md) -->
 
-The Block module allows the user to interact with **terminal blocks** on the grid. All blocks accessible via [Block Catalogue](../Core/BlockCatalogue.md) are considered terminal blocks.
+The Block Module allows the user to interact with **terminal blocks** on the grid. All blocks accessible via [Block Catalogue](../Core/BlockCatalogue.md) are considered terminal blocks.
 
 [[toc]]
 
@@ -14,11 +14,21 @@ Turn the block on.
 block/on <Block|Group> [--options]
 ```
 
+**Example**
+```bash title="Terminal"
+block/on DrillPiston;
+```
+
 ### off
 Turn the block off.
 
 ```
 block/off <Block|Group> [--options]
+```
+
+**Example**
+```bash title="Terminal"
+block/off DrillPiston;
 ```
 
 ## Hooks
@@ -41,6 +51,6 @@ or
 
 ```ini title="Mother > Custom Data"
 [hooks]
-"Emergency Batteries"onOn=light/blink "Battery Indicators" med;
-DrillPiston.onOff=light/color DrillIndicatorLight red;
+DrillPiston.onOn=light/color DrillIndicatorLight green;
+"Emergency Batteries".onOff=light/blink "Battery Indicators" off;
 ```
