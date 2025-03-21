@@ -85,6 +85,8 @@ purge almanac,storage --force
 ```
 
 ### dock
+[Docking Module](Modules/Extension/DockingModule.md)
+
 Dock with a grid and specify optional connectors.  If you do not provide a connector, the grids will automatically select the connectors to use. This is most useful when you are building drones, and utility vehicles with only one connector. 
 
 ```
