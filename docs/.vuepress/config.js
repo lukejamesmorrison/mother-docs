@@ -209,7 +209,7 @@ export default defineUserConfig({
     sidebarDepth: 1,
     sidebar: [
       MotherOSSidebar,
-      // process.env.NODE_ENV != 'production' ? MotherCoreSidebar : {},
+      process.env.NODE_ENV == 'development' ? MotherCoreSidebar : {},
     ]
   }),
 
