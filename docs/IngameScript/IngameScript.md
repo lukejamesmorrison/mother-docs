@@ -90,14 +90,14 @@ door/open AirlockDoor; light/blink AirlockLight fast;
 
 Automatic docking between grids is now supported with the [`dock`](./Modules/Extension/DockingModule.md#dock) command. Undocking is in development before calling this feature complete.
 
-**Objective:** 
+**Objective** 
 
-Enable players to intitate and fly docking seqwuences automatically using intergrid communication and flight planning.
+Enable players to intitate and fly docking sequences automatically using intergrid communication and flight planning.
 
 #### Master-Node Architecture
-<Badge type="warning" text="&nbsp;In deveopment&nbsp;" vertical="middle" />
+<Badge type="warning" text="&nbsp;In development&nbsp;" vertical="middle" />
 
-**Objective:** 
+**Objective** 
 
 Allow multiple programmable blocks running Mother Core to cooperate on the same grid. This will enable more complex automations and distributed processing.
 
