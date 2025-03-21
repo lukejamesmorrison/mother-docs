@@ -86,9 +86,29 @@
     }
   }
 
+  // Search input styles
+  //
+  // We override the default styles of the search due to some 
+  // spacing issues with the icon and search input padding.
+  // @see https://ecosystem.vuejs.press/plugins/search/search.html#styles
   form.search-box > input[type=search] {
-    // padding-left: 2rem !important;
-    // background: var(--search-c-bg) url("/mother-docs/svg/search.svg") .6rem .5rem no-repeat !important;
+
+    background: var(--search-c-bg) url("/svg/search.svg") .6rem .5rem no-repeat !important;
+    background-size: 0.875rem !important;
+
+    // only on mobile
+    @media (max-width: 768px) {
+      background-size: 1rem !important;
+
+      &:focus {
+        padding-left: 2rem !important;
+      }
+    }
+
+    // tablet and desktop
+    @media (min-width: 768px) {
+      padding-left: 2rem !important;
+    }
   }
 
 

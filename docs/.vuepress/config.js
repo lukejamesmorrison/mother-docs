@@ -149,9 +149,28 @@ export default defineUserConfig({
     mdEnhancePlugin({
       mermaid: true,
     }),
-    // searchPlugin({
-    //   // options
-    // }),
+    searchPlugin({
+      // options
+      isSearchable: (page) => {
+        // exclude access to framework docs for now
+        return !page.path.startsWith('/Framework/');
+      },
+      hotKeys: [
+        {
+          key: 'k',
+          meta: true,
+        }, 
+        {
+          key: 'k',
+          ctrl: true,
+        }, 
+      ],
+      // locales: {
+      //   '/': {
+      //     placeholder: 'Search',
+      //   },
+      // },
+    }),
   ],
   title: 'Mother Docs',
   description: 'Documentation for Mother OS and Mother Core',
@@ -171,6 +190,7 @@ export default defineUserConfig({
       },
       {
         text: 'Discord', 
+        // icon: 'lightbulb',
         link: 'https://discord.gg/PrrmBujmXQ',
       },
       {
