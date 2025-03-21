@@ -38,4 +38,9 @@ tank/toggle <Tank|Group>
 tank/toggle HydrogenTank;
 ```
 
+<script setup>
+const isDev = __VUEPRESS_DEV__ ? "L" : "J";
+</script>
+
+{{isDev}}
 

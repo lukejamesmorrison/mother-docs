@@ -144,6 +144,9 @@ const MotherCoreSidebar = {
 };
 
 export default defineUserConfig({
+  // define: {
+  //   __VUEPRESS_DEV__ : process.env.NODE_ENV,
+  // },
   base: '/mother-docs/',
   lang: 'en-US',
   plugins: [
