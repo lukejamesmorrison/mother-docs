@@ -55,6 +55,17 @@
   --badge-c-info-bg: var(--vp-c-indigo-soft);
   --badge-c-note-text: var(--vp-c-grey-text);
   --badge-c-note-bg: var(--vp-c-grey-soft);
+
+  // search input styles
+  // @see https://ecosystem.vuejs.press/plugins/search/search.html#styles
+  --search-c-bg: var(--vp-c-bg);
+  --search-c-accent: var(--vp-c-accent);
+  --search-c-text: var(--vp-c-text);
+  --search-c-border: var(--vp-c-gutter);
+  --search-c-item-text: var(--vp-c-text-subtle);
+  --search-c-item-focus: var(--vp-c-bg-alt);
+  --search-input-width: 12rem !important;
+  --search-result-width: 20rem;
 }
 
 .code-block-title span.title {
@@ -74,6 +85,12 @@
         // color: black !important; /* Ensure text turns black */
     }
   }
+
+  form.search-box > input[type=search] {
+    // padding-left: 2rem !important;
+    // background: var(--search-c-bg) url("/mother-docs/svg/search.svg") .6rem .5rem no-repeat !important;
+  }
+
 
 // === Dark Theme ===
 [data-theme='dark'] {

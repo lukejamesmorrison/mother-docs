@@ -2,6 +2,8 @@ import { defaultTheme } from '@vuepress/theme-default'
 import { defineUserConfig } from 'vuepress/cli'
 import { viteBundler } from '@vuepress/bundler-vite'
 import { mdEnhancePlugin } from "vuepress-plugin-md-enhance";
+import { searchPlugin } from '@vuepress/plugin-search'
+
 
 
 const MotherOSSidebar = {
@@ -146,6 +148,9 @@ export default defineUserConfig({
   plugins: [
     mdEnhancePlugin({
       mermaid: true,
+    }),
+    searchPlugin({
+      // options
     }),
   ],
   title: 'Mother Docs',
