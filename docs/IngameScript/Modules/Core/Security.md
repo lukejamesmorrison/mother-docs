@@ -5,7 +5,7 @@ Mother has security features to ensure that grids running Mother cannot interfer
 
 ## Encrypting Messages
 
-By default, Mother does not encrypt messages, but you can enable this feature by setting `encrypt_messages=true` in the `CustomData` of the Programmable Block running Mother. When enabled, Mother will encrypt all outgoing messages, and attempt to decrypt incoming messages using `passcodes`.  To decrypt messages, the receiving grid must have the same `passcodes` set in its `CustomData`.
+By default, Mother does not encrypt messages, but you can enable this feature by setting `encrypt_messages=true` in the `Custom Data` of the Programmable Block running Mother. When enabled, Mother will encrypt all outgoing messages, and attempt to decrypt incoming messages using `passcodes`.  To decrypt messages, the receiving grid must have the same `passcodes` set in its `Custom Data`.
 
 ```ini title="Mother > Custom Data"
 [security]

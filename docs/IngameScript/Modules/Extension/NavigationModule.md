@@ -84,7 +84,7 @@ If we wanted to fly to a `Midpoint`, before proceeding to the `TopSecretBase`, w
 nav/set-flight-plan "GPS:Midpoint:190.12:-54.45:45.89:#FF75C9F1: GPS:TopSecretBase:211.78:-52.93:59.19:#FF75C9F1:";
 ```
 
-If this is a long flight plan, it is most intuitive to store the command in the Programmable Block's **CustomData**:
+If this is a long flight plan, it is most intuitive to store the command in the Programmable Block's **Custom Data**:
 
 ```ini title="Mother > Custom Data"
 [Commands]

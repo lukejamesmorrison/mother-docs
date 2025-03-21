@@ -36,7 +36,7 @@ You can target individual cockpit screens by targeting a screen index - `[MMAP:1
 
 ### Example
 
-<!-- **LCD CustomData** -->
+<!-- **LCD Custom Data** -->
 ```ini title="LCD > Custom Data"
 [general]
 mapScale=150

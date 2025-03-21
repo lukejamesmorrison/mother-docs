@@ -4,8 +4,7 @@ import { viteBundler } from '@vuepress/bundler-vite'
 import { mdEnhancePlugin } from "vuepress-plugin-md-enhance";
 import { searchPlugin } from '@vuepress/plugin-search'
 
-
-
+// Core Routes
 const MotherOSSidebar = {
   text: 'Mother OS (Ingame Script)',
   link: '/IngameScript/IngameScript.md', 
@@ -70,6 +69,8 @@ const MotherOSSidebar = {
 
   ]
 };
+
+// Framework Routes
 const MotherCoreSidebar = {
   text: 'Mother Core (Script Framework)',
   link: '/Framework/README.md', 
@@ -152,7 +153,7 @@ export default defineUserConfig({
     searchPlugin({
       // options
       isSearchable: (page) => {
-        // exclude access to framework docs for now
+        // exclude access to Framework docs for now
         return !page.path.startsWith('/Framework/');
       },
       hotKeys: [
@@ -160,10 +161,10 @@ export default defineUserConfig({
           key: 'k',
           meta: true,
         }, 
-        {
-          key: 'k',
-          ctrl: true,
-        }, 
+        // {
+        //   key: 'k',
+        //   ctrl: true,
+        // }, 
       ],
       // locales: {
       //   '/': {
@@ -178,7 +179,6 @@ export default defineUserConfig({
   theme: defaultTheme({
     darkMode: false, // Enables the dark mode toggle
     logo: 'images/logo-512x512.png',
-    // logo: 'https://vuejs.press/images/hero.png',
     navbar: [
       {
         text: 'Buy me a Coffee', 
@@ -190,7 +190,6 @@ export default defineUserConfig({
       },
       {
         text: 'Discord', 
-        // icon: 'lightbulb',
         link: 'https://discord.gg/PrrmBujmXQ',
       },
       {

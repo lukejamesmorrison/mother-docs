@@ -45,7 +45,7 @@ door/toggle "Missile Silo Door"
 
 ## Hooks
 
-The following hooks can be define in the block's CustomData, and will be triggered when the corresponding command is called:
+The following hooks can be define in the block's Custom Data, and will be triggered when the corresponding command is called:
 
 |Key            | Trigger                               |
 |-              |-                                      |
@@ -56,13 +56,13 @@ The following hooks can be define in the block's CustomData, and will be trigger
 
 Imagine our door is part of an airlock:
 
-```ini title="OuterDoor > CustomData"
+```ini title="OuterDoor > Custom Data"
 [hooks]
 onOpen=light/blink "Airlock Light" fast; vent/depressurize AirlockVent; wait 10; door/close this;
 onClose=vent/pressurize AirlockVent; wait 2; light/blink "Airlock Light" off;
 ```
 or
-```ini title="Mother > CustomData"
+```ini title="Mother > Custom Data"
 [hooks]
 OuterDoor.onOpen=
 | light/blink "Airlock Light" fast; 

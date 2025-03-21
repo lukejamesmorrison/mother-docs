@@ -164,7 +164,7 @@ The preflight is run as soon as the `nav/set-flight-plan` command is executed. W
 
 ### Waypoints
 
-At the `MothershipExit` GPS waypoint we want to extend our wings with our custom method `ExtendWings`, and also turn off our `BoosterThrusters` group.
+At the `MothershipExit` GPS waypoint we want to extend our wings with our custom command `ExtendWings`, and also turn off our `BoosterThrusters` group.
 
 ```bash title="Mother > Custom Data"
 GPS:MothershipExit:226963.8:226982.08:227068.34:#FF75C9F1: 
@@ -173,7 +173,7 @@ GPS:MothershipExit:226963.8:226982.08:227068.34:#FF75C9F1:
 
 There is no routine defined at the `HyperionOutpost` waypoint so we simply fly to it before proceeding to the `LandingSite`.
 
-As we approach the `LandingSite`, we will slow down, and retract our wings. We can do this by setting the speed to 10 m/s, and calling our `RetractWings` method.
+As we approach the `LandingSite`, we will slow down, and retract our wings. We can do this by setting the speed to 10 m/s, and calling our `RetractWings` command.
 
 ```bash title="Mother > Custom Data"
 GPS:LandingSite:227081.47:226948.41:227068.73:#FF75C9F1:

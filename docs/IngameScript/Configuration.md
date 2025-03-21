@@ -2,13 +2,13 @@
 
 <!-- [< Command Line Interface](CommandLineInterface.md) -->
 
-Players can easily configure Mother using the Programmable Block's **CustomData**. Where a Module has configuration settings, they will be documented in the module's section of this documentation.
+Players can easily configure Mother using the Programmable Block's **Custom Data**. Where a Module has configuration settings, they will be documented in the module's section of this documentation.
 
 ::: important
-Don't forget to `Recompile` Mother when you update the CustomData in the Programmable Block.
+Don't forget to `Recompile` Mother when you update the Custom Data in the Programmable Block.
 :::
 
-## CustomData
+## Custom Data
 ```ini title="Mother > Custom Data"
 [general]
 debug=false 
@@ -30,7 +30,7 @@ goto-ts-base=
 | fcs/start --speed=100;
 
 [hooks]
-; block hooks can be defined within Mother's customdata to trigger events on blocks.  This allows for localized automation of blocks.
+; block hooks can be defined within Mother's Custom Data to trigger events on blocks.  This allows for localized automation of blocks.
 AirlockOuterDoor.onOpen=
 | light/blink "Airlock Light" fast; 
 | vent/depressurize AirlockVent; 
@@ -40,7 +40,7 @@ AirlockOuterDoor.onOpen=
 
 ### Hooks
 
-Hooks can be defined within a block's CustomData or within Mother's CustomData They allow Mother to monitor certain changes in block state.
+Hooks can be defined within a block's Custom Data or within Mother's Custom Data They allow Mother to monitor certain changes in block state.
 
 ::: note
 Hooks are defined within Modules where available.  See the [Connector Module](Modules/Extension/ConnectorModule.md), and [Sensor Module](Modules/Extension/SensorModule.md) for some examples.

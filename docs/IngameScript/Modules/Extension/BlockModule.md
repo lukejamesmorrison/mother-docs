@@ -33,7 +33,7 @@ block/off DrillPiston;
 
 ## Hooks
 
-The following hooks can be define in the block's CustomData, and will be triggered when the corresponding command is called:
+The following hooks can be define in the block's Custom Data, and will be triggered when the corresponding command is called:
 
 |Key        | Trigger                           |
 |-          |-                                  |

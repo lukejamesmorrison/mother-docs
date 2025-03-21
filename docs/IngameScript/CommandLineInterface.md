@@ -64,7 +64,7 @@ The light will blink for 0.25s, every 0.5s (50% duty cycle).
 
 ### Custom Commands and Routines
 
-The command syntax can get verbose in the terminal, so it is recommended that you define routines in the `Commands` section of Mother's **CustomData**. We can use a multi-line syntax to make it much more readable:
+The command syntax can get verbose in the terminal, so it is recommended that you define routines in the `Commands` section of Mother's **Custom Data**. We can use a multi-line syntax to make it much more readable:
 
 ```sh title="Mother > Custom Data"
 [Commands]
@@ -77,7 +77,7 @@ ExtendArm=piston/distance LandingArm 3;
 ```
 
 ::: tip
-The pipe character `|` is used to indicate a new line within Custom Data.  This is not required in the Programmable Block terminal. This only allows us to organize our commands and routines across multiple lines within CustomData.
+The pipe character `|` is used to indicate a new line within Custom Data.  This is not required in the Programmable Block terminal. This only allows us to organize our commands and routines across multiple lines within Custom Data.
 :::
 
 Now we can run `ActivateLandingLight` in the terminal to execute the routine, or get clever and set it as an *Action* in an Event Controller, or a *hook* on a [Sensor](./Modules/Extension/SensorModule.md).

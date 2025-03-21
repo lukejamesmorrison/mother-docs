@@ -139,7 +139,7 @@ string scale = blockConfig.Get("general", "scale");
 Hooks allow an interface for developers to trigger actions when specific block actions occur via Mother.
 
 ```
-# Door.CustomData
+# Door.Custom Data
 
 [hooks]
 onOpen=wait 10; door/close this;
