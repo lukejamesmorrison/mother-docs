@@ -149,9 +149,9 @@ export default defineUserConfig({
     mdEnhancePlugin({
       mermaid: true,
     }),
-    searchPlugin({
-      // options
-    }),
+    // searchPlugin({
+    //   // options
+    // }),
   ],
   title: 'Mother Docs',
   description: 'Documentation for Mother OS and Mother Core',
