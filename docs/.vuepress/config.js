@@ -54,6 +54,7 @@ const MotherOSSidebar = {
         '/IngameScript/Modules/Extension/PistonModule.md',
         '/IngameScript/Modules/Extension/ProgrammableBlockModule.md',
         '/IngameScript/Modules/Extension/RotorModule.md',
+        '/IngameScript/Modules/Extension/ScreenModule.md',
         '/IngameScript/Modules/Extension/SensorModule.md',
         '/IngameScript/Modules/Extension/SoundModule.md',
         '/IngameScript/Modules/Extension/TankModule.md',
@@ -104,9 +105,10 @@ const MotherCoreSidebar = {
       collapsible: true, // Allows collapsing sections
       children: [
         '/Framework/Developer/CoreModules/Almanac.md',
-        '/Framework/Developer/CoreModules/LocalStorage.md',
-        '/Framework/Developer/CoreModules/IntergridMessageService.md',
         '/Framework/Developer/CoreModules/Clock.md',
+        '/Framework/Developer/CoreModules/EventBus.md',
+        '/Framework/Developer/CoreModules/IntergridMessageService.md',
+        '/Framework/Developer/CoreModules/LocalStorage.md',
         // '/IngameScript/CommandLineInterface.md',
         // '/IngameScript/Configuration.md',
         // '/IngameScript/Modules/Modules.md',

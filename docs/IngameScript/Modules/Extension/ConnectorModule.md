@@ -72,3 +72,17 @@ or
 DockConnector.onUnlock=light/color "Dock Light" green;
 "Fuel Connector".onLock=tank/stockpile FuelTanks;
 ```
+
+## Configuration
+
+|Key| Value| Description|
+|-|-|-|
+|`appDistance`| meters | The distance the approaching grid should approach from. Default is **30m**. |
+
+**Example**
+
+```ini title="DockConnector > Custom Data"
+[general]
+; Set the approach distance to 50 meters from the connector face
+appDistance=50
+```

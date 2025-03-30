@@ -31,6 +31,21 @@ block/off <Block|Group> [--options]
 block/off DrillPiston;
 ```
 
+### action
+Run a toolbar action on the block. This is more expensive than a traditional command and Malware advises against it. Use this command sparingly to access automations that Mother does not access natively.
+
+```
+block/action <Block|Group> <Action> <...ActionArgs>
+```
+
+**Example**
+We want to run the Set and Move action on a piston.  It accepts two arguments: the `distance` to move and the `speed` of the piston. These values are entered in the same order you would normally enter them via the ingame menus.
+
+```bash title="Terminal"
+# set the piston to move to 5m distance at 2.5m/s
+block/action DrillPiston SetAndMove 5.0 2.5;
+```
+
 ## Hooks
 
 The following hooks can be define in the block's Custom Data, and will be triggered when the corresponding command is called:
