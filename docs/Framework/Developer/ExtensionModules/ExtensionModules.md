@@ -6,9 +6,7 @@
 
 Extension modules expose several powerful capabilities for players to leverage. They must implement the `IExtensionModule` interface and it is recommended that they extend the `BaseExtensionModule` class.  This class provides accessors for several core process that are commonly used across extension modules.
 
-```csharp title="MissileGuidanceModule.cs"
-
-### The `Boot` Method
+### Booting the Module
 The `Boot()` method of every module is called during boot by Mother.  Extension modules are registered and may access all [Core Module](../CoreModules/CoreModules.md) instances.  It is important to consider boot order to reduce conflicts among inter-module dependencies and leverage [Events](#events) where they make sense.
 
 ```csharp title="MissileGuidanceModule.cs"
@@ -16,20 +14,20 @@ class MissileGuidanceModule : BaseExtensionModule
 {
     public void Boot()
     {
-        // Setup actions
-        ConfigureWarheads();
-
         // Register commands
         Commands.Add(new DetonateCommand())
 
         // Subscribe to events
         Subscribe(typeof(WaypointReachedEvent).Name, this);
         Subscribe(typeof(ReadyForLaunchEvent).Name, this);
+
+        // Setup actions
+        ConfigureWarheads();
     }
 }
 ```
 
-### The `Run` Method
+### Running the Module
 You may also run processes each time the program cycles using the `Run()` method, though this is only recommended for specific use cases where you need the module to run every cycle.  Otherwise it is advised to use the [Clock](../CoreModules/Clock.md)'s `Schedule()` method to control the frequency, or use an [Event](#handling-events).
 
 ```csharp title="MissileGuidanceModule.cs"
@@ -59,8 +57,8 @@ class MissileGuidanceModule : BaseExtensionModule
     public void Boot()
     {
         // Register commands
-        Commands.Add(new LaunchCommand();
-        Commands.Add(new DetonateCommand();
+        Commands.Add(new LaunchCommand());
+        Commands.Add(new DetonateCommand());
     }
 }
 ```
@@ -121,7 +119,7 @@ public class LaunchCommand : BaseModuleCommand
 
 ## Events
 
-### Listening For Events
+### Subscribing to Events
 
 Mother allows modules to emit and subscribe to events, allowing intermodule transmission.  Once subscribed to an event, a module can intercept it via the `HandleEvent()` method each time it is emitted:
 
@@ -129,10 +127,8 @@ Mother allows modules to emit and subscribe to events, allowing intermodule tran
 public class MissileGuidanceModule : BaseExtensionModule
 {
     // Subscribe to the event during instantiation
-    public MissileGuidanceModule(Mother mother)
+    public MissileGuidanceModule(Mother mother) : base(mother)
     {
-        Mother = mother;
-
         Subscribe(typeof(WaypointReachedEvent).Name, this);
     }
 

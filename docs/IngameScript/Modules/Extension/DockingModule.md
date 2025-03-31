@@ -11,7 +11,7 @@ Docking is only recommended in space at this time.  Undocking is not supported, 
 ## Commands
 
 ### dock
-Dock with a grid and specify optional connectors.  If you do not provide a connector, the grids will automatically select the connectors to use. This is most useful when you are building drones, and utility vehicles with only one connector. 
+Dock with a grid and specify optional connectors.  If you do not provide a connector, the grids will automatically select the connectors to use. This is most useful when you are building drones, and utility vehicles with only one connector. Mother will only use connectors that are `On` and in a `Unconnected` state to reduce the changes of a collision or unsafe docking procedure. 
 
 ```
 dock <Grid Name> [--options]

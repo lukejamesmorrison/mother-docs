@@ -43,11 +43,3 @@ Imagine we want to print text to a screen based on our airlock status.  We conte
 ```bash title="Terminal"
 screen/print "AirlockStatusScreens" "Airlock SAFE" --color=green
 ```
-
-::: tip
-Use the `\n` escape sequence to create a new line in your message.
-:::
-
-```bash title="Terminal"
-screen/print "AirlockStatusScreens" "Airlock SAFE\nClosing in 5 seconds" --color=0,255,0
-```

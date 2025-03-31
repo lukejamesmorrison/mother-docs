@@ -31,8 +31,11 @@ Mother supports all block is type `IMyTerminalBlock` and includes the following 
 - Programmable Blocks
 - Medical Rooms
 - Sensor Blocks
+- LCD Screens
 
+::: note
 For a complete list of supported blocks, see the [API Index](https://github.com/malware-dev/MDK-SE/wiki/Sandbox.ModAPI.Ingame.IMyTerminalBlock) created by Malware.
+:::
 
 ## Why Do We Have It?
 
