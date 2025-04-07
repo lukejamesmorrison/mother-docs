@@ -8,7 +8,7 @@ Players can easily configure Mother using the Programmable Block's **Custom Data
 Don't forget to `Recompile` Mother when you update the Custom Data in the Programmable Block.
 :::
 
-## Custom Data
+## Programmable Block (running Mother)
 ```ini title="Mother > Custom Data"
 [general]
 debug=false 
@@ -38,15 +38,33 @@ AirlockOuterDoor.onOpen=
 | door/close OuterDoor;
 ```
 
+## All Blocks
+All Terminal Blocks have a `Custom Data` field.  This is where you can define the block's configuration, tags, and hooks.
+
+```ini title="AirlockDoor > Custom Data"
+[general]
+tags=airlock,door
+
+[hooks]
+onOpen=
+| light/blink "Airlock Light" fast;
+| vent/depressurize AirlockVent;
+
+onClose=
+| vent/pressurize AirlockVent;
+| wait 2;
+| light/blink "Airlock Light" off;
+```
+
 ### Hooks
 
-Hooks can be defined within a block's Custom Data or within Mother's Custom Data They allow Mother to monitor certain changes in block state.
+Hooks can be defined within a block's Custom Data or within Mother's Custom Data. They allow Mother to take action when there is a change in state. We can use the `this` keyword in place of the block name, when we are defining hooks within the block's Custom Data.
 
 ::: note
 Hooks are defined within Modules where available.  See the [Connector Module](Modules/Extension/ConnectorModule.md), and [Sensor Module](Modules/Extension/SensorModule.md) for some examples.
 :::
 
-For example, when a door opens, a light may blink, a vent may depressurize, and the door may close.
+For when the `OuterDoor` opens, a light will blink, a vent will depressurize, and the door will close.
 
 ```ini title="OuterDoor > Custom Data"
 [hooks]
@@ -61,7 +79,9 @@ onClose=
 | wait 2; 
 | light/blink "Airlock Light" off;
 ```
-or
+or, we can define the hook in Mother's Custom Data:
+
+```ini title="OuterDoor > Custom Data"
 
 ```ini title="Mother > Custom Data"
 [hooks]
@@ -76,7 +96,6 @@ OuterDoor.onOpen=
 | wait 2; 
 | light/blink "Airlock Light" off;
 ```
-
 
 ::: note
 The pipe character `|` is used to indicate a new line in the `Commands` section.  This is not required in the Programmable Block terminal but allows us to organize our commands and routines across multiple lines for readibility.

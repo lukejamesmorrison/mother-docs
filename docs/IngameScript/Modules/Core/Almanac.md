@@ -1,5 +1,4 @@
 # Almanac
-<!-- [< Modules](../Modules.md) -->
 
 Mother maintains a list of all grids in the world running Mother that are connected via an antenna network. The Almanac is used to track grid locations, status, and other information. It is automatically generated during boot, and updates as a result of certain interactions with other grids. 
 
@@ -9,7 +8,6 @@ Grids running Mother will periodically communicate, at which time the Almanac is
 
 To immediately refresh the Almanac, you can run the `ping` command.
 
-<!-- ![Almanac Map](../../Assets/almanac-map-2.png) -->
 ![Flight Plan Map](../../Assets/flight-plan-1.png)
 
 

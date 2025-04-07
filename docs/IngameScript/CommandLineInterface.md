@@ -6,11 +6,9 @@ Mother's command line interface allows you to interact with your grid.  We can p
 
 [[toc]]
 
-
 ::: tip
 See the [Command Cheatsheet](CommandCheatsheet.md) to get started!
 :::
-
 
 **Command Syntax**
 ```bash
@@ -37,20 +35,61 @@ Commands are similar to a traditional command line interface, and consist of 3 *
 | Term Type  | Example | Description |
 | --------	|-| ------- |
 | Command	| `hinge/rotate`<br>`light/color`<br>`help` | The command determines which action is performced by Mother.  See the [Command Cheetsheet](CommandCheatsheet.md) for a complete list of commands, or run Mother with the `help` command.  |
-| Argument	| `Hinge`<br>`red`<br>`45`<br>`"Rotor 1"`| Arguments are expected by most commands and contain the details they require to operate.  This is usually values like angle, color or a GPS waypoint. Use double quotes when your arguments include spaces. In most cases, the first argument of command will target a **Block** or **Group** by its name. |
+| Argument	| `Hinge`<br>`45`<br>`"Rotor 1"`<br>`#main-airlock`| Arguments are expected by most commands and contain the details they require to operate.  This is usually values like angle, color or a GPS waypoint. Use double quotes when your arguments include spaces. In most cases, the first argument of command will target a **Block**, **Group**, or **Tag** by its name. |
 | Option	| `--speed=2`<br>`--offset=0.1`<br>`--force` |Options can be used with commands to trigger specific modifications like rotational speed or blink offset. Sometimes they may be used without a set value.  |
 
-Let's start with an simple example:
+## Running a Command
+
+Let's start with an simple example, where a rotate a Hinge block:
 
 ```bash title="Terminal"
 hinge/rotate Hinge 45;
 ```
 
-We can see the `hinge/rotate` command targets the block named `Hinge`, and rotates it to `45` degrees. If we wanted to rotate the hinge at 2 RPM, we can add the `speed` option:
+We can see the [`hinge/rotate`](../IngameScript/Modules/Extension/HingeModule.md#rotate) command targets the block named `Hinge`, and rotates it to `45` degrees. If we wanted to rotate the hinge at 2 RPM, we can add the `speed` option:
 
 ```bash title="Terminal"
 hinge/rotate Hinge 45 --speed=2;
 ```
+
+### Targeting Blocks
+
+#### By Block Name
+You can target blocks by their name, via a terminal group, or using a tag.  In our main airlock we have two lights. First we will target them specifically by name:
+
+```bash title="Terminal"
+light/color AirlockLightInner red;
+light/color AirlockLightOuter red;
+```
+
+#### By Group Name
+Using multiple block names is verbose, so let's create a group with these our blocks called `AirlockLights`. Now we can run the following command:
+
+```bash title="Terminal"
+light/color "Airlock Lights" red;
+```
+
+#### By Tag
+As you add more connected ships to your grid, you will quickly notice that groups merge, and the terminal window becomes quite busy with block groups. Mother offers a 3rd way to select blocks using **tags**.
+
+```text title="Terminal"
+light/color #airlock red;
+```
+
+You'll notice that we don't specify *lights* in the above command. This is because tags allow us to include multiple block types, and use the command to determine which block should be operated.  Similar to above, we can close both airlock doors if we also use the tag `#airlock`:
+
+```text title="Terminal"
+door/close #airlock;
+```
+
+##### Defining a Tag
+Tags are defined within a block's Custom Data:
+
+```ini title="AirlockLightInner > Custom Data"
+[general]
+tags=airlock,airlock-light
+```
+
 
 ## Running Multiple Commands
 

@@ -41,7 +41,7 @@ TopSecretBase record = new AlmanacRecord(
 Mother.Almanac.AddRecord(record);
 ```
 
-When records are added to the Almanac, they will automatically appear on map displays and be accessible for remote communication. Mother add and updates records frequently via a `Ping`.
+When records are added to the Almanac, they will automatically appear on map displays and be accessible for remote communication. Mother adds and updates records frequently via a *ping*.
 
 ### Removing a Record
 
@@ -52,7 +52,7 @@ To remove a record, you can simply access the `Records` list and remove the reco
 AlmanacRecord record = Almanac.GetRecord("Mothership");
 
 // Remove the record from the almanac
-Mother.Almanac.Records.Remove(record);
+Almanac.Records.Remove(record);
 ```
 
 <!-- ### Transponder Statuses
@@ -71,15 +71,16 @@ AlmanacRecord record = Almanac.GetRecord("Mothership");
 record.TransponderStatus = TransponderStatus.Friendly;
 ``` -->
 
-## Storage Records across Recompiles
+### Storing Records across Recompiles
 
-When a programmable block recompiles, scripts are reloaded and all state lost by default. To prevent this, the Almanac stores records in [Local Storage]() to make it accessible after recompile, error or a game reboot.
+When a programmable block recompiles, scripts are reloaded and all state is lost by default. To prevent this, the Almanac stores records in [Local Storage](./LocalStorage.md) to make it accessible after recompile, error or a game reboot.
 
-```csharp title="Almanac.cs"
+<!-- ```csharp title="Almanac.cs"
 public void Save()
 {
     // convert List to Dict and use ID as key
     Dictionary<string, object> recordDict = new Dictionary<string, object>();
+
     foreach (var record in Records) {
         recordDict.Add(record.Id, record);
     }
@@ -94,8 +95,8 @@ public void Save()
 
 We use the [Serializer](../Utilities/Serializer.md) utility class to convert our records in strings for use with the `Program.Save()` method.
 
-To retreive the Almanac from storage on the next cycle, we use the `LoadFromLocalStorage()` method which will retreive the `almanac` item from [Local Storage](./LocalStorage.md) and automatically populate the Almanac with the records.
-
+To retreive the Almanac from storage on the next cycle, we use the `LoadFromLocalStorage()` method which will retreive the `almanac` item from [Local Storage](./LocalStorage.md) and automatically populate the Almanac with the records. -->
+<!-- 
 ```csharp title="Mother.cs"
 public void Boot()
 {
@@ -103,4 +104,4 @@ public void Boot()
 
     // Other boot tasks...
 }
-```
+``` -->

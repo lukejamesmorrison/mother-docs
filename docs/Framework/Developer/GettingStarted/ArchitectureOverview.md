@@ -90,7 +90,7 @@ The `Run` method is responsible for running all Extension Modules, managing inco
 
 graph TD
     A[Run] -->|&nbsp;Determine updateSource&nbsp;| B{updateSource Type?}
-    B -->|&nbsp;Command&nbsp;| C[CommandBus]
+    B -->|&nbsp;Command &nbsp;| C[CommandBus]
     B -->|&nbsp;Message&nbsp;| D[IntergridMessageService]
     C --> G[Run Clock]
     D --> G
@@ -115,9 +115,6 @@ public void Run(string argument, UpdateType updateSource)
     Clock.Run();
 }
 ```
-
-<!-- ```mermaid
-``` -->
 
 ## Command Lifecycle
 
@@ -160,20 +157,18 @@ sequenceDiagram
 ## Mother Instance
 
 ### System Attributes
-Mother makes several properties widely available to your script to assist with common lookups.
+Mother makes most common [Program](https://github.com/malware-dev/MDK-SE/wiki/Sandbox.ModAPI.Ingame.MyGridProgram) properties available to assist with common lookups.
 
-For example, we can access the [Intergrid Communication System (IGC)](https://github.com/malware-dev/MDK-SE/wiki/Sandbox.ModAPI.Ingame.IMyIntergridCommunicationSystem) and [Grid](https://github.com/malware-dev/MDK-SE/wiki/VRage.Game.ModAPI.Ingame.IMyCubeGrid) instance via the following accessors on Mother:
-
-```csharp title="ExampleModule.cs"
+```csharp title="MissileGuidanceModule.cs"
 // via Mother (recommended)
-IntergridCommunicationSystem IGC = Mother.IGC
 IMyCubeGrid Grid = Mother.Grid
-
+IMyGridTerminalSystem GridTerminalSystem = Mother.GridTerminalSystem
+IMyProgrammableBlock ProgrammableBlock = Mother.ProgrammableBlock
 
 // via the Program instance
-IntergridCommunicationSystem IGC = Mother.Program.IGC
 IMyCubeGrid Grid = Mother.Program.Me.CubeGrid
-
+IMyGridTerminalSystem GridTerminalSystem = Mother.Program.GridTerminalSystem
+IMyProgrammableBlock ProgrammableBlock = Mother.Program.Me
 ```
 
 ### Boot
@@ -187,7 +182,6 @@ graph TB
     A --> B[Register Extension Modules] 
     B --> C[Boot Core Modules]
     C --> D[Boot Extension Modules]
-
 ```
 
 
@@ -197,42 +191,13 @@ graph TB
 graph LR
     A[Run]
     A --> B[
-        Run 
+        Run
         Core Modules
-        ] 
-    B --> C[Run 
-    Extension Modules]
-```
-
-#### Scheduling an Action for Run
-Sometimes it may be important to define custom time intervals you wish for a module or method to run over.  Mother's clock makes this easy.
-
-Mother updates the Almanac every 2 seconds using the `Schedule` method.
-
-```csharp title="ExampleModule.cs"
-public void Boot()
-{
-    Mother.Clock.Schedule(DoExampleThings(), 2);
-}
-
-void DoExampleThings()
-{
-    // Do something
-}
-```
-
-#### Queuing an action for later execution
-
-You can queue and action for execution later with the `QueueForLater` method.  This is used to defer commands for later execution when the [`wait`](../../IngameScript/CommandLineInterface.md) command is used.
-
-```csharp title="ExampleModule.cs"
-public void DoSomethingAfterDelay()
-{
-    Mother.Clock.QueueForLater(
-        () => DoSomething(),  // run the action...
-        10 // ...after 10 seconds
-    );
-}
+    ] 
+    B --> C[
+        Run 
+        Extension Modules
+    ]
 ```
 
 ### Registering Modules

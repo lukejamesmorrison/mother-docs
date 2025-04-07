@@ -21,7 +21,7 @@ This framework does not include all modules shipped with the  [Mother OS]() in g
 
 ## 3. Build
 
-You now have everything you need to get started.  To get started quickly, check out [Creating a Custom Module](#creating-a-custom-module).  
+You now have everything you need to get started.  To get started quickly, check out [Creating a Module](../ExtensionModules/ExtensionModules.md).  
 
 Otherwise, use `Ctrl + B` to build your script. The build tool should automatically save your script into the appropriate directory, for access in game.
 

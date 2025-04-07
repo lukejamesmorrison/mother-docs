@@ -26,15 +26,25 @@ Core modules act as Mother's framework, enabling extension modules.
 
 Extension modules provide additional functionality to a Space Engineer for controlling their grid. They leverage the core modules to manage activity, and cooperate with other grids running Mother.  
 
+### All Blocks
+
 |Name													| Description|
 |-														|-								|
 | [Terminal Block](Extension/BlockModule.md)              | Manages terminal blocks on the grid. Commands in this module may be used on any block supported by Mother. |
+
+### By Function
+|Name													| Description|
+|-														|-								|
 | [Communication](Extension/CommunicationModule.md)     | Enables communication between grids running Mother.|
 | [Navigation](Extension/NavigationModule.md)           | Provides navigation capabilities for the grid including dynamic flight planning.|
 | [Flight Control](Extension/FlightControlModule.md)	| Manaages autopilot and flight characteristics.|
+| [Docking Module](Extension/DockingModule.md)         | Manages docking procedures for the grid.|
+
+### By Block Type
+|Name													| Description|
+|-														|-								|
 | [Connectors](Extension/ConnectorModule.md)			| Manages connectors on the grid.|
 | [Doors](Extension/DoorModule.md)						| Manages doors on the grid.|
-| [Docking Module](Extension/DockingModule.md)         | Manages docking procedures for the grid.|
 | [Hinges](Extension/HingeModule.md)					| Manages hinges on the grid.|
 | [Rotors](Extension/RotorModule.md)					| Manages rotors on the grid.|
 | [Pistons](Extension/PistonModule.md)					| Manages pistons on the grid.|

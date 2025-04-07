@@ -32,11 +32,11 @@ public void Ping()
 }
 ```
 
-First we create the Request with the relevant payload - Body, and Header. Then we send it via open broadcast. Finally, we can set a callback to be run when a Response has been received to our message.
+First we create the Request with the relevant payload - Body, and Header. Then we send it via open broadcast. Finally, we can set a callback to be run when a Response has been received to our outgoing message.
 
 ```csharp
 
-void OnPingResponse(IntergridMessageObject response)
+void OnPingResponse(Response response)
 {
     // Update Record in Almanac
     AlmanacRecord almanacRecord = new AlmanacRecord(
@@ -54,7 +54,7 @@ void OnPingResponse(IntergridMessageObject response)
     Mother.Almanac.AddRecord(almanacRecord);
 }
 ```
-### Sending direct message
+### Sending a direct message
 If you would like to send a direct message to another grid, this can be done via unicast. This is used when sending a remote command to another grid:
 
 ```csharp
@@ -106,6 +106,8 @@ public void SendUnicastRequest(long TargetId, IntergridMessageObject message, Ac
 ```
 
 ### Using Channels
+
+
 
 ### Configuration
 Mother manages both the Programmable Block's Custom Data, as well as the Custom Data on each block allowing players to localize their configurations while continuing to make use of Mother other capbilities.

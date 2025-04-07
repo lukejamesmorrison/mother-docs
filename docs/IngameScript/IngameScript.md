@@ -29,7 +29,7 @@ import { usePageData } from 'vuepress/client'
 
 <!-- [< Home](../README.md) -->
 <Badge type="info" text="&nbsp;Beta&nbsp;" vertical="middle" />
-<Badge type="warning" text="&nbsp;v0.2.9&nbsp;" vertical="middle" />
+<Badge type="warning" text="&nbsp;v0.2.10&nbsp;" vertical="middle" />
 
 <!-- <CardGroup>
     <FeatureCard
@@ -88,7 +88,7 @@ door/open AirlockDoor; light/blink AirlockLight fast;
 #### Autodocking
 <Badge type="info" text="&nbsp;Beta&nbsp;" vertical="middle" />
 
-Automatic docking between grids is now supported with the [`dock`](./Modules/Extension/DockingModule.md#dock) command. Undocking is in development before calling this feature complete.
+Automatic docking between grids is now supported with the [`dock`](./Modules/Extension/DockingModule.md#dock) command. Docking is stable in some scenarios and I am continuing to tune it.  Mother OS uses several fail safes to ensure unstable docking procedures are aborted. Undocking is in development before calling this feature complete.
 
 **Objective** 
 
@@ -99,7 +99,7 @@ Enable players to intitate and fly docking sequences automatically using intergr
 
 **Objective** 
 
-Allow multiple programmable blocks running Mother Core to cooperate on the same grid. This will enable more complex automations and distributed processing.
+Allow multiple programmable blocks running Mother Core to cooperate on the same grid. This will enable more complex automations and distributed processing. Script developers will build on top of Mother Core to interoperate with Mother OS via this paradigm.
 
 ---
 
