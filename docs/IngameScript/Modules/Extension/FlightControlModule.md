@@ -8,7 +8,7 @@ This module manages autopilot and various flight characteristics of your grid. F
 ## Commands
 
 ### start
-Engage the autopilot system, enabling the grid to fly autonomously if a [Flight Plan](../Extension/NavigationModule.md) is loaded.
+Engage the autopilot system, enabling the grid to fly autonomously if a [Flight Plan](../Extension/FlightPlanningModule.md) is loaded.
 ```
 fcs/start [--options]
 ```

@@ -72,7 +72,7 @@ door/open AirlockDoor; light/blink AirlockLight fast;
   
 - **Expanded Automation** - Mother simplifies interacting with the mechanical systems on your grid, and monitors them for changes. See the [Command Cheatsheet](CommandCheatsheet.md).
   
-- **Flight Planning and Visualization** - Leverage the existing GPS system and Remote Control block to program and [fly flight plans dynamically](Modules/Extension/NavigationModule.md#flight-planning).
+- **Flight Planning and Visualization** - Leverage the existing GPS system and Remote Control block to program and [fly flight plans dynamically](Modules/Extension/FlightPlanningModule.md#flight-planning).
   
 - **Copy Automations with Ease** - Easily port your automations from one grid to another by copying `Custom Data` text.
 

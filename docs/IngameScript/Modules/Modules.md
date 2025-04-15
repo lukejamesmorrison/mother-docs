@@ -36,7 +36,7 @@ Extension modules provide additional functionality to a Space Engineer for contr
 |Name													| Description|
 |-														|-								|
 | [Communication](Extension/CommunicationModule.md)     | Enables communication between grids running Mother.|
-| [Navigation](Extension/NavigationModule.md)           | Provides navigation capabilities for the grid including dynamic flight planning.|
+| [Navigation](Extension/FlightPlanningModule.md)           | Provides navigation capabilities for the grid including dynamic flight planning.|
 | [Flight Control](Extension/FlightControlModule.md)	| Manaages autopilot and flight characteristics.|
 | [Docking Module](Extension/DockingModule.md)         | Manages docking procedures for the grid.|
 

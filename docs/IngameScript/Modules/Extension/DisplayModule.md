@@ -1,6 +1,6 @@
 # Display Module
 
-The Display Module allows the user to control LCD panels on the grid.
+The Display Module allows the user to control LCD panels, and cockpit screens on the grid.
 
 [[toc]]
 

@@ -1,4 +1,4 @@
-# Navigation Module
+# Flight Planning Module
 <!-- [< Modules](../Modules.md) -->
 
 [[toc]]

@@ -62,7 +62,7 @@ class MissileGuidanceModule : BaseExtensionModule
         RegisterCommand(new DetonateCommand(this));
 
         // Load relevant blocks from the grid
-        Thrusters = Mother.BlockCatalogue.GetBlocks<IMyThrust>();
+        Thrusters = Mother.GetModule<BlockCatalogue>().GetBlocks<IMyThrust>();
 
         // Listen for events
         Subscribe<ConnectorUnlockedEvent>();

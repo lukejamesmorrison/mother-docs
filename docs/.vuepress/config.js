@@ -51,7 +51,7 @@ const MotherOSSidebar = {
         '/IngameScript/Modules/Extension/HingeModule.md',
         '/IngameScript/Modules/Extension/LandingGearModule.md',
         '/IngameScript/Modules/Extension/LightModule.md',
-        '/IngameScript/Modules/Extension/NavigationModule.md',
+        '/IngameScript/Modules/Extension/FlightPlanningModule.md',
         '/IngameScript/Modules/Extension/PistonModule.md',
         '/IngameScript/Modules/Extension/ProgrammableBlockModule.md',
         '/IngameScript/Modules/Extension/RotorModule.md',
@@ -92,6 +92,10 @@ const MotherCoreSidebar = {
         {
           text: 'Architecture Overview',
           link: '/Framework/Developer/GettingStarted/ArchitectureOverview.md',
+        },
+        {
+          text: 'Managing Script Size',
+          link: '/Framework/Developer/GettingStarted/ManagingScriptSize.md',
         },
         // '/IngameScript/CommandLineInterface.md',
         // '/IngameScript/Configuration.md',

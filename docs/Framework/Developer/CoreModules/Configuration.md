@@ -6,7 +6,7 @@ Mother manages both the Programmable Block's Custom Data, as well as the Custom 
 Mother is primarily customized via the Custom Data field on the Programmable Block. For example, we can easily get a configuration value from it's `section` (general) and `key` (debug):
 
 ```csharp
-bool IsDebugMode = Mother.Configuration.Get("general.debug") == "true";
+bool IsDebugMode = Mother.GetModule<Configuration>().Get("general.debug") == "true";
 ```
 
 ## Accessing Block configuration
@@ -15,12 +15,12 @@ There are many instances where it is useful to access block-level configuration:
 ```csharp
 
 // get block from Block Catalogue
-void MapScreen = Mother.BlockCatalogue
+void MapScreen = Mother.GetModule<BlockCatalogue>()
     .GetBlocks<IMyTextPanel>(block => block.CustomName == "Map Display")
     .FirstOrDefault()
 
 // get the block's configuration
-MyIni blockConfig = Mother.BlockCatalogue.GetBlockConfiguration(MapScreen);
+MyIni blockConfig = Mother.GetModule<BlockCatalogue>().GetBlockConfiguration(MapScreen);
 
 // get scale
 string scale = blockConfig.Get("general", "scale");
@@ -39,5 +39,5 @@ You can target a hook on a block using the `RunHook` method:
 
 ```csharp title="AirlockModule.cs"
 // run hook for door (block)
-Mother.BlockCatalogue.RunHook(airlockDoor, "onOpen");
+Mother.GetModule<BlockCatalogue>().RunHook(airlockDoor, "onOpen");
 ```

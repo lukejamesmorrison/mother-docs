@@ -341,7 +341,7 @@ Options
 [Flight Control Module](Modules/Extension/FlightControlModule.md)
 
 ### start
-Engage the autopilot system, enabling the grid to fly autonomously if a [flight plan](../Extension/NavigationModule.md) is loaded.
+Engage the autopilot system, enabling the grid to fly autonomously if a [flight plan](../Extension/FlightPlanningModule.md) is loaded.
 ```
 fcs/start [--options]
 ```
@@ -358,9 +358,9 @@ Disengage the autopilot system, halting the grid.
 fcs/stop
 ```
 
-## Navigation
+## Flight Planning
 
-[Navigation Module](Modules/Extension/NavigationModule.md)
+[Flight Planning Module](Modules/Extension/FlightPlanningModule.md)
 
 ### set-flight-plan
 
