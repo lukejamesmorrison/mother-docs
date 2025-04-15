@@ -7,7 +7,7 @@ import { searchPlugin } from '@vuepress/plugin-search'
 // Core Routes
 const MotherOSSidebar = {
   text: 'Mother OS (Ingame Script)',
-  link: '/IngameScript/IngameScript.md', 
+  link: '/IngameScript/IngameScript.md',
   children: [
     {
       text: 'Getting Started',
@@ -40,7 +40,8 @@ const MotherOSSidebar = {
           text: 'Air Vent Module'
         },
         '/IngameScript/Modules/Extension/BatteryModule.md',
-        '/IngameScript/Modules/Extension/BlockModule.md',
+        '/IngameScript/Modules/Extension/TerminalBlockModule.md',
+        '/IngameScript/Modules/Extension/CockpitModule.md',
         '/IngameScript/Modules/Extension/CommunicationModule.md',
         '/IngameScript/Modules/Extension/ConnectorModule.md',
         '/IngameScript/Modules/Extension/DockingModule.md',
@@ -54,9 +55,9 @@ const MotherOSSidebar = {
         '/IngameScript/Modules/Extension/PistonModule.md',
         '/IngameScript/Modules/Extension/ProgrammableBlockModule.md',
         '/IngameScript/Modules/Extension/RotorModule.md',
-        '/IngameScript/Modules/Extension/ScreenModule.md',
+        '/IngameScript/Modules/Extension/DisplayModule.md',
         '/IngameScript/Modules/Extension/SensorModule.md',
-        '/IngameScript/Modules/Extension/SoundModule.md',
+        '/IngameScript/Modules/Extension/SoundBlockModule.md',
         '/IngameScript/Modules/Extension/TankModule.md',
         '/IngameScript/Modules/Extension/ThrusterModule.md',
         '/IngameScript/Modules/Extension/TimerBlockModule.md',
@@ -74,7 +75,7 @@ const MotherOSSidebar = {
 // Framework Routes
 const MotherCoreSidebar = {
   text: 'Mother Core (Script Framework)',
-  link: '/Framework/README.md', 
+  link: '/Framework/README.md',
   children: [
     {
       text: 'Getting Started',
@@ -104,16 +105,15 @@ const MotherCoreSidebar = {
       link: '/Framework/Developer/CoreModules/CoreModules.md',
       collapsible: true, // Allows collapsing sections
       children: [
+        '/Framework/Developer/CoreModules/ActivityMonitor.md',
         '/Framework/Developer/CoreModules/Almanac.md',
+        '/Framework/Developer/CoreModules/BlockCatalogue.md',
         '/Framework/Developer/CoreModules/Clock.md',
+        '/Framework/Developer/CoreModules/CommandBus.md',
+        '/Framework/Developer/CoreModules/Configuration.md',
         '/Framework/Developer/CoreModules/EventBus.md',
         '/Framework/Developer/CoreModules/IntergridMessageService.md',
         '/Framework/Developer/CoreModules/LocalStorage.md',
-        // '/IngameScript/CommandLineInterface.md',
-        // '/IngameScript/Configuration.md',
-        // '/IngameScript/Modules/Modules.md',
-        // '/IngameScript/Examples.md',
-        // '/IngameScript/CommandCheatsheet.md',
       ],
     },
     {
@@ -147,6 +147,31 @@ const MotherCoreSidebar = {
   ]
 };
 
+// Navbar Links
+const NavbarLinks = () => {
+  if (process.env.NODE_ENV == 'development') {
+    
+    return [
+      {
+        text: 'Mother OS (Ingame Script)',
+        link: '/IngameScript/IngameScript.md'
+      },
+      {
+        text: 'Mother Core (Script Framework)',
+        link: '/Framework/README.md'
+      }
+    ]
+  }
+  else {
+    return [
+      {
+        text: 'Mother OS (Ingame Script)',
+        link: '/IngameScript/IngameScript.md'
+      }
+    ]
+  }
+}
+
 export default defineUserConfig({
   // define: {
   //   __VUEPRESS_DEV__ : process.env.NODE_ENV,
@@ -167,7 +192,7 @@ export default defineUserConfig({
         {
           key: 'k',
           meta: true,
-        }, 
+        },
         // {
         //   key: 'k',
         //   ctrl: true,
@@ -188,27 +213,27 @@ export default defineUserConfig({
     logo: 'images/logo-512x512.png',
     navbar: [
       {
-        text: 'Buy me a Coffee', 
+        text: 'Buy me a Coffee',
         link: 'https://buymeacoffee.com/agentluke',
       },
       {
-        text: 'Steam Workshop', 
+        text: 'Steam Workshop',
         link: 'https://steamcommunity.com/workshop/filedetails/?id=3411507973',
       },
       {
-        text: 'Discord', 
+        text: 'Discord',
         link: 'https://discord.gg/PrrmBujmXQ',
       },
       {
-        text: 'Docs', 
-        children: [
-          {
-            text: 'Mother OS (Ingame Script)',
-            link: '/IngameScript/IngameScript.md'
-          }
-        ]
-      },
-      
+        text: 'Docs',
+        children: NavbarLinks()
+        // [
+        //   {
+        //     text: 'Mother OS (Ingame Script)',
+        //     link: '/IngameScript/IngameScript.md'
+        //   },
+        // ]
+      }
     ],
     sidebarDepth: 1,
     sidebar: [

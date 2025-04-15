@@ -1,7 +1,6 @@
-# Block Module
-<!-- [< Modules](../Modules.md) -->
+# Terminal Block Module
 
-The Block Module allows the user to interact with **terminal blocks** on the grid. All blocks accessible via [Block Catalogue](../Core/BlockCatalogue.md) are considered terminal blocks.
+The Terminal Block Module allows the user to interact with **terminal blocks** on the grid. All blocks accessible via [Block Catalogue](../Core/BlockCatalogue.md) are considered terminal blocks.
 
 [[toc]]
 
@@ -39,12 +38,17 @@ block/action <Block|Group> <Action> <...ActionArgs>
 ```
 
 **Example**
+
 We want to run the Set and Move action on a piston.  It accepts two arguments: the `distance` to move and the `speed` of the piston. These values are entered in the same order you would normally enter them via the ingame menus.
 
 ```bash title="Terminal"
 # set the piston to move to 5m distance at 2.5m/s
 block/action DrillPiston SetAndMove 5.0 2.5;
 ```
+
+::: tip
+You can view a complete list of block actions [here](https://github.com/malware-dev/MDK-SE/wiki/List-Of-Terminal-Properties-and-Actions).
+:::
 
 ## Hooks
 

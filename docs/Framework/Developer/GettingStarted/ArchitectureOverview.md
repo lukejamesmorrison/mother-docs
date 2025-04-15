@@ -54,20 +54,57 @@ graph LR
     Program --> PM4["..."]
 ```
 
-## Progam Lifecycle
+## Program Lifecycle
 
 Mother runs at a default speed of 6 ticks per second (Update10). This tolerance should be acceptable for most use cases. Each program cycle we *run* Mother.
 
+### Booting the Program
+We boot Mother when instatiating the Program.  We instantiate Mother and register the extension modules we wish to include.  Finally, we boot Mother to ensure all of the modules are configured and ready to run.
+
 ```csharp title="Program.cs"
-// The game will run this method every cycle
-public void Main(string argument, UpdateType updateSource)
+partial class Program : MyGridProgram
 {
-    // So we delegate to Mother
-    Mother.Run(argument, updateSource);
+    private Mother mother;
+
+    public Program()
+    {
+        // Instantiate Mother
+        mother = new Mother(this);
+
+        // Register Extension Modules
+        mother.RegisterModules(new List<IExtensionModule> { 
+            new RotorModule(mother),
+            new FlightControlModule(mother),
+            ...
+        });
+
+        // Boot Mother
+        mother.Boot();
+    }
 }
 ```
 
-The `Run` method is responsible for running all Extension Modules, managing incoming communications, and running scheduled actions. See [Clock](../CoreModules/Clock.md) for more information on scheduling and delaying actions.
+::: important
+Extension Modules must conform the the `IExtensionModule` interface.
+:::
+
+### Running the Program each cycle
+
+The `Run` method is responsible for running all Extension Modules, managing incoming communications, and running scheduled actions. See [Clock](../CoreModules/Clock.md) for more information on scheduling and delaying actions. We ensure the program calls this method
+
+```csharp title="Program.cs"
+partial class Program : MyGridProgram
+{
+    // The game will run this method every cycle
+    public void Main(string argument, UpdateType updateSource)
+    {
+        // So we delegate to Mother
+        Mother.Run(argument, updateSource);
+    }
+}
+```
+
+
 
 ```mermaid
 %%{
@@ -90,29 +127,39 @@ The `Run` method is responsible for running all Extension Modules, managing inco
 
 graph TD
     A[Run] -->|&nbsp;Determine updateSource&nbsp;| B{updateSource Type?}
-    B -->|&nbsp;Command &nbsp;| C[CommandBus]
-    B -->|&nbsp;Message&nbsp;| D[IntergridMessageService]
-    C --> G[Run Clock]
-    D --> G
+    B -->|&nbsp;Terminal, Trigger, Script&nbsp;| C[CommandBus]
+    B -->|&nbsp;IGC&nbsp;| D[IntergridMessageService]
+    B -->|&nbsp;Update10&nbsp;| E[Clock]
 ```
 
 ```csharp title="Mother.cs"
 public void Run(string argument, UpdateType updateSource)
 {
-    // Process commands/routines from player input
-    if (!string.IsNullOrWhiteSpace(argument) && (updateSource == UpdateType.Terminal || updateSource == UpdateType.Trigger || updateSource == UpdateType.Script))
+    if (
+        !string.IsNullOrWhiteSpace(argument) 
+        && (updateSource == UpdateType.Terminal || updateSource == UpdateType.Trigger || updateSource == UpdateType.Script)
+    )
     {
-        CommandBus.RunTerminalCommand(argument);
+        GetModule<CommandBus>().RunTerminalCommand(argument);
+        GetModule<Terminal>().UpdateTerminal();
+        return;
     }
 
-    // Process IGC messages
     if (updateSource == UpdateType.IGC)
     {
-        IntergridMessageService.HandleIncomingIGCMessages();
+        GetModule<IntergridMessageService>().HandleIncomingIGCMessages();
+        return;
     }
 
-    // Process scheduled tasks
-    Clock.Run();
+    // Otherwise we run all modules and assume a runtime update.
+    RunModules();
+}
+```
+
+```csharp title="Mother.cs"
+void RunModules()
+{
+    AllModules.Values.ToList().ForEach(module => module.Run());
 }
 ```
 
@@ -176,6 +223,22 @@ IMyProgrammableBlock ProgrammableBlock = Mother.Program.Me
 When Mother boots, many of the core modules do most of their work.  This aims to save a great deal of computation at runtime, reducing impact on gameplay.  During boot, the `Boot` method is called on all Core Modules, then all Extension Modules.
 
 ```mermaid
+%%{
+  init: {
+    'theme': 'base',
+    'themeVariables': {
+        'primaryColor': '#BB2528',
+        'primaryBorderColor': 'red',
+        'mainBkg': 'white',
+        'nodeBorder': 'red',
+        'lineColor': 'black',
+        'secondaryColor': 'white',
+        'secondaryBorderColor': 'black',
+        'tertiaryColor': '#F2F2F2',
+        'tertiaryBorderColor': 'black'
+    }
+  }
+}%%
 
 graph TB
     A[Register Core Modules]
@@ -188,6 +251,22 @@ graph TB
 ### Run
 
 ```mermaid
+%%{
+  init: {
+    'theme': 'base',
+    'themeVariables': {
+        'primaryColor': '#BB2528',
+        'primaryBorderColor': 'red',
+        'mainBkg': 'white',
+        'nodeBorder': 'red',
+        'lineColor': 'black',
+        'secondaryColor': 'white',
+        'secondaryBorderColor': 'black',
+        'tertiaryColor': '#F2F2F2',
+        'tertiaryBorderColor': 'black'
+    }
+  }
+}%%
 graph LR
     A[Run]
     A --> B[
@@ -200,7 +279,7 @@ graph LR
     ]
 ```
 
-### Registering Modules
+<!-- ### Registering Modules
 
 Mother makes it easy to register Extension Modules via the `RegisterModule` method:
 
@@ -210,8 +289,4 @@ MissileGuidanceModule module = new MissileGuidanceModule(this);
 
 // Register module with Mother
 Mother.RegisterModule(module);
-```
-
-::: important
-Extension Modules must conform the the `IExtensionModule` interface.
-:::
+``` -->

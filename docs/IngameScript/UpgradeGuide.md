@@ -13,7 +13,7 @@
 🕓 0 mins
 
 ### Features
-- [`screen/print`](./Modules/Extension/ScreenModule.md#print) command allows players to print custom messagesm to LCD panels.
+- [`screen/print`](./Modules/Extension/DisplayModule.md#print) command allows players to print custom messagesm to LCD panels.
 - Autodocking has been improved and contains several failsafes to protect player grids.  Planetary docking should be attempted with caution but zero-g docking is very reliable.
 
 ## 0.2.7 -> 0.2.8

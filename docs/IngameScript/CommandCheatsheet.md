@@ -490,7 +490,7 @@ tank/toggle <Tank|Group> [--options]
 ```
 
 ## Screens
-[Screen Module](Modules/Extension/ScreenModule.md)
+[Display Module](Modules/Extension/DisplayModule.md)
 ### print
 
 Print a message to an LCD panel or group of panels.
@@ -524,7 +524,7 @@ You have access to the following colors which may be used in place of their RGB 
 
 
 ## Sound Blocks
-[Sound Module](Modules/Extension/SoundModule.md)
+[Sound Block Module](Modules/Extension/SoundBlockModule.md)
 
 ### play
 

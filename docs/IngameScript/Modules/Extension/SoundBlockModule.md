@@ -1,7 +1,7 @@
-# Sound Module
+# Sound Block Module
 <!-- [< Modules](../Modules.md) -->
 
-The sound module allows the user to control sound blocks on the grid. Players can play, stop, and set the sound of sound blocks. Use this to add alerts, and music to your grids to crank up the vibe! 🪩
+The Sound Block Module allows the user to control sound blocks on the grid. Players can play, stop, and set the sound of sound blocks. Use this to add alerts, and music to your grids to crank up the vibe! 🪩
 
 [[toc]]
 

@@ -24,11 +24,21 @@ features:
 footer: MIT Licensed | © 2025 Agentluke | The Empire must grow.
 ---
 
+<script setup>
+  import MotherSystemAnimation from '../../components/MotherSystemAnimation.vue';
+</script>
+
 ## Mother OS
 
-Ingame Script for Space Engineers players.
+**Ingame Script** for Space Engineers players. 
+
+Unlock advanced automation, flight planning, and intergrid communication.
 
 [Get Started](/IngameScript/IngameScript.md) | [Command Cheatsheet](/IngameScript/CommandCheatsheet.md) | [Examples](/IngameScript/Examples.md)
+
+<div>
+  <MotherSystemAnimation />
+</div>
 
 ::: warning
 Mother is in beta development. I'm on a quest to reduce the character count, and increase the functionality. Please report any issues you encounter, and expect some of the commands and underlying framework to change.
@@ -41,6 +51,7 @@ Mother is in beta development. I'm on a quest to reduce the character count, and
     <p>You do not need any programming experience to use Mother.  In fact, most of Mother's CLI commands offer a more intutive control mechanism than the base game itself. However, if you fancy yourself a programmer, you can easily extend Mother's functionality by creating a custom project. Mother is built on top of <a href="https://github.com/malware-dev/MDK-SE" target=_blank>MDK-SE</a>, thanks to the incredible contributions **Malware** has made to the Space Engineers community.  I hope you enjoy using Mother as much as I enjoyed building it.</p>
     <p>The empire must grow.</p>
 </section> -->
+
 
 ## Mother Core
 

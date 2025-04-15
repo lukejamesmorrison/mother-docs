@@ -1,6 +1,6 @@
-# Screen Module
+# Display Module
 
-The Screen module allows the user to control LCD panels on the grid.
+The Display Module allows the user to control LCD panels on the grid.
 
 [[toc]]
 

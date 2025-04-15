@@ -46,7 +46,7 @@ graph TD
 ```
 
 ## The Extension Module
-Developers can add new functionality to their program by creating an [Extension Module](./Developer/ExtensionModules/ExtensionModules.md). THese modules are registered at boot time. They may access Core Mdules directly and respond to changes when other modules emit events.
+Developers can add new functionality to their program by creating an [Extension Module](./Developer/ExtensionModules/ExtensionModules.md). These modules are registered at boot time. They may access all other modules directly and respond to changes when other modules emit events.
 
 ```csharp title="MissileGuidanceModule.cs"
 class MissileGuidanceModule : BaseExtensionModule
@@ -54,6 +54,9 @@ class MissileGuidanceModule : BaseExtensionModule
     // Boot the module
     public void Boot()
     {
+        // Reference important modules
+        FlightPlanningModule = Mother.GetModule<FlightPlanningModule>();
+
         // Register custom terminal commands
         RegisterCommand(new LaunchCommand(this));
         RegisterCommand(new DetonateCommand(this));
@@ -62,11 +65,11 @@ class MissileGuidanceModule : BaseExtensionModule
         Thrusters = Mother.BlockCatalogue.GetBlocks<IMyThrust>();
 
         // Listen for events
-        Subscribe(typeof(ConnectorUnlockedEvent).Name);
+        Subscribe<ConnectorUnlockedEvent>();
     }
 
     // Run module every program cycle
-    public void Run()
+    public override void Run()
     {
         UpdateThrusters()
     }

@@ -22,8 +22,8 @@ class MissileGuidanceModule : BaseExtensionModule
         RegisterCommand(new DetonateCommand())
 
         // Subscribe to events
-        Subscribe(typeof(WaypointReachedEvent).Name, this);
-        Subscribe(typeof(ReadyForLaunchEvent).Name, this);
+        Subscribe<WaypointReachedEvent>();
+        Subscribe<ReadyForLaunchEvent>();
 
         // Setup actions
         ConfigureWarheads();
@@ -155,15 +155,15 @@ Mother allows modules to emit and subscribe to events, allowing modules to monit
 public class MissileGuidanceModule : BaseExtensionModule
 {
     // Subscribe to the event during instantiation
-    public MissileGuidanceModule(Mother mother) : base(mother)
+    public override void Boot()
     {
-        Subscribe(typeof(WaypointReachedEvent).Name, this);
+        Subscribe<WaypointReachedEvent>();
     }
-
+ 
     // Handle the event when it is emitted by a module
-    public override void HandleEvent(string eventName, object eventData)
+    public override void HandleEvent(IEvent e, object eventData)
     {
-        if(eventName.Equals(typeof(WaypointReachedEvent).Name))
+        if(e is WaypointReachedEvent)
         {
            Mother.Print("Waypoint Reached!");
 
@@ -184,9 +184,8 @@ Modules can emit events using the `Emit()` method.  This method takes an `IEvent
     public void Detonate(MyMissile missile)
     {
         // Emit the event.  
-        // We create the event with the missile instance, and then pass the 
-        // missile object as event data via the second argument.
-        Emit(new MissileDetonatingEvent(missile), missile);
+        // We pass in the event type with missile object as event data.
+        Emit<MissileDetonatingEvent>(missile);
     }
 ```
 
@@ -210,10 +209,14 @@ public class MissileGuidanceModule : BaseExtensionModule
     public void Boot()
     {
         // Get all thrusters on the grid
-        List<IMyThrust> thrusters = Mother.BlockCatalogue.GetBlocks<IMyThrust>();
+        List<IMyThrust> thrusters = Mother
+            .GetModule<BlockCatalogue>()
+            .GetBlocks<IMyThrust>();
 
         // or, only get blocks where name contains a key
-        List<IMyThrust> thrusters = Mother.BlockCatalogue.GetBlocks<IMyThrust>(block => block.CustomName.Contains("key"));
+        List<IMyThrust> thrusters = Mother
+            .GetModule<BlockCatalogue>()
+            .GetBlocks<IMyThrust>(block => block.CustomName.Contains("key"));
     }
 }
 ```
@@ -226,10 +229,13 @@ public class MissileGuidanceModule : BaseExtensionModule
     public void Boot()
     {
         // Get the thrusters in the group "Booster Thrusters"
-        List<IMyThrust> thrusters = Mother.BlockCatalogue.GetBlocksByName<IMyThrust>("Booster Thrusters");
+        List<IMyThrust> thrusters = Mother
+            .GetModule<BlockCatalogue>()
+            .GetBlocksByName<IMyThrust>("Booster Thrusters");
 
         // or, get a specific block by name
-        IMyThrust thruster = Mother.BlockCatalogue
+        IMyThrust thruster = Mother
+            .GetModule<BlockCatalogue>()
             .GetBlocksByName<IMyThrust>("RetroThruster")
             .firstOrDefault();
     }
@@ -279,10 +285,10 @@ public void HandleConnectorStateChange(IMyShipConnector connector, object newSta
         switch(newState)
         {
             case ConnectorStatus.Connected:
-                Emit(new ConnectorLockedEvent(connector), connector);
+                Emit<ConnectorLockedEvent>(connector);
                 break;
             case ConnectorStatus.Unconnected:
-                Emit(new ConnectorUnlockedEvent(connector), connector);
+                Emit<ConnectorUnlockedEvent>(connector)
                 break;
             default:
                 break;
