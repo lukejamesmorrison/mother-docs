@@ -31,9 +31,15 @@ Mother requires a **Remote Control block** to function.  This allows us to lever
 }%%
 
 graph LR
-    Mother["Mother"] -->|Depends on| ICoreModule["ICoreModule"]
-    Mother -->|Depends on| Program
-    Mother -->|Composed of| IExtensionModule["IExtensionModule"]
+    MotherOS["Mother OS"]-->|Depends on| Program
+    MotherOS -->|Composed of| IExtensionModule["IExtensionModule"]
+    MotherOS -->|Composed of| ICoreModule["ICoreModule"]
+
+    ICoreModule .-> IModule["IModule"]
+    IExtensionModule .-> IModule["IModule"]
+
+
+
 
     subgraph ICoreModule
         CM2["CommandBus"]
@@ -47,6 +53,7 @@ graph LR
         EM3["LightModule"]
         EM4["..."]
     end
+
 
     Program[<a href='https://github.com/malware-dev/MDK-SE/wiki/Sandbox.ModAPI.Ingame.MyGridProgram' target="_blank" style='color: black; text-decoration: none'>Program</a>]
     Program --> PM1[<a href='https://github.com/malware-dev/MDK-SE/wiki/Sandbox.ModAPI.Ingame.IMyIntergridCommunicationSystem' target="_blank" style='color: black; text-decoration: none'>IGC</a>]

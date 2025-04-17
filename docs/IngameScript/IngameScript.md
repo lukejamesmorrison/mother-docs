@@ -38,31 +38,35 @@ import { usePageData } from 'vuepress/client'
         description="Grids <a href='Modules/Core/Almanac.html'>share positions</a> and easy easily send commands remotely to each other."
     ></FeatureCard>
 </CardGroup> -->
-[[toc]]
+
+Mother OS is available as an ingame script for Programmable Blocks in Space Engineers. It interoperates seamlessly with Timer Blocks and Event Controllers to augment existing automations. Start by [installing Mother OS here](./Installation.md).
+
+```bash title="Terminal"
+# Set the color of a light
+light/color AirlockLight red;
+
+# Rotate a rotor to an angle with a speed
+rotor/angle 45 --speed=2;
+
+# Open a hangar door remotely
+@Mothership door/open MainHangarDoor; 
+```
+
+Players can use this simple command syntax to take their automation to the next level.
 
 ::: tip
 Using Mother OS does not require any programming/coding experience.
 :::
 
-::: warning
-Mother is in beta development. I'm on a quest to reduce the character count, and increase the functionality. Please report any issues you encounter, and expect some of the commands and underlying framework to change.
-:::
 
-<!-- ![Mechanical Systems](Assets/mechanical-systems-overview.png) -->
-
-Mother OS is available as an ingame script for Programmable Blocks in Space Engineers. It interoperates seamlessly with Timer Blocks and Event Controllers to augment existing automations. Players can use a simple command syntax to take their automation to the next level.
-
-```bash title="Terminal"
-# Open our airlock door
-door/open AirlockDoor; light/blink AirlockLight fast; 
-```
 
 <!-- [Install Mother OS](Installation.md) and take your automations to the next level! -->
 
 <!-- <div> -->
-<a class="route-link auto-link vp-hero-action-button primary" :href="`${$site.base}IngameScript/Installation.html`" aria-label="Install Mother OS" style="text-decoration: none;">Install Mother OS</a>
+<!-- <a class="route-link auto-link vp-hero-action-button primary" :href="`${$site.base}IngameScript/Installation.html`" aria-label="Install Mother OS" style="text-decoration: none;">Install Mother OS</a> -->
 <!-- </div> -->
 
+[[toc]]
 
 
 ## Features
@@ -76,6 +80,9 @@ door/open AirlockDoor; light/blink AirlockLight fast;
   
 - **Copy Automations with Ease** - Easily port your automations from one grid to another by copying `Custom Data` text.
 
+::: warning
+Mother is in beta development. I'm on a quest to reduce the character count, and increase the functionality. Please report any issues you encounter, and expect some of the commands and underlying framework to change.
+:::
 <br>
 
 **Tutorial Video**

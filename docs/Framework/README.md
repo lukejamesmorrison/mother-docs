@@ -1,4 +1,4 @@
-# Framework
+# Mother Core (Script Framework)
 ![In Development](https://img.shields.io/badge/In_Development-red)
 
 Mother Core is a framework for developing custom Programmable Block scripts for Space Engineers. It enables you to build interoperable modules to suit the specific needs of your ship or station. [Mother OS](../IngameScript/IngameScript.md) is built with Mother Core and a collection of extension modules.

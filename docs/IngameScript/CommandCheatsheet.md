@@ -11,6 +11,68 @@ The following is a list of commands available in the default modules.
 
 [[toc]]
 
+## Air Vents
+[Air Vent Module](Modules/Extension/AirVentModule.md)
+
+### vent/pressurize
+
+Set the air vent to pressurize mode.
+```bash
+vent/pressurize <AirVent|Group>
+```
+
+### vent/depressurize
+
+Set the air vent to pressurize mode.
+```bash
+vent/depressurize <AirVent|Group>
+```
+
+## Batteries
+[Battery Module](Modules/Extension/BatteryModule.md)
+
+### battery/charge
+Set the battery to `Recharge` mode.
+```
+battery/charge <Battery|Group> [--options]
+```
+
+### battery/discharge
+Set the battery to `Discharge` mode.
+```
+battery/discharge <Battery|Group> [--options]
+```
+
+### battery/auto
+Set the battery to `Auto` mode.
+```
+battery/auto <Battery|Group> [--options]
+```
+
+### battery/toggle
+Toggle the battery between `Auto`, `Recharge` and `Discharge` mode.
+```
+battery/toggle <Battery|Group> [--options]
+```
+
+## Blocks
+[Block Module](Modules/Extension/BlockModule.md)
+
+All terminal blocks can be updated using the following commands:
+
+### block/on
+Turn the block on.
+```
+block/on <Block|Group> [--options]
+```
+
+### block/off
+Turn the block off.
+```
+block/off <Block|Group> [--options]
+```
+
+
 ## Core
 ### help
 Print all commands in the Programmable Block terminal.
@@ -114,146 +176,177 @@ dock Mothership --remote="Connector - MS.P1";
 dock Mothership;
 ```
 
-## Blocks
-[Block Module](Modules/Extension/BlockModule.md)
 
-All terminal blocks can be updated using the following commands:
+## Cockpits
+[Cockpit Module](Modules/Extension/CockpitModule.md)
 
-### on
-Turn the block on.
-```
-block/on <Block|Group> [--options]
-```
+### dampeners/on
+Turn on thrust dampeners. By default, this command will use your Main cockpit. Otherwise, you may use an optional argument to specify a cockpit.
 
-### off
-Turn the block off.
 ```
-block/off <Block|Group> [--options]
+dampeners/on <Cockpit|Group>
 ```
 
-## Batteries
-[Battery Module](Modules/Extension/BatteryModule.md)
+**Example**
 
-### charge
-Set the battery to `Recharge` mode.
-```
-battery/charge <Battery|Group> [--options]
-```
+```bash title="Terminal"
+# turn on the dampeners of the Main cockpit
+dampeners/on
 
-### discharge
-Set the battery to `Discharge` mode.
-```
-battery/discharge <Battery|Group> [--options]
+# turn on dampeners for a specific cockpit
+dampeners/on RearCockpit
 ```
 
-### auto
-Set the battery to `Auto` mode.
+### dampeners/off
+Turn off thrust dampeners. By default, this command will use your Main cockpit. Otherwise, you may use an optional argument to specify a cockpit.
+
 ```
-battery/auto <Battery|Group> [--options]
+dampeners/off <Cockpit|Group>
 ```
 
-### toggle
-Toggle the battery between `Auto`, `Recharge` and `Discharge` mode.
-```
-battery/toggle <Battery|Group> [--options]
+**Example**
+
+```bash title="Terminal"
+# turn off the dampeners of the Main cockpit
+dampeners/off
+
+# turn off dampeners for a specific cockpit
+dampeners/off RearCockpit
 ```
 
-## Doors
-[Door Module](Modules/Extension/DoorModule.md)
+### handbrake/on
 
-### open
-Open a door or group of doors.
+Turn on the handbrake. By default, this command will use your Main cockpit. Otherwise, you may use an optional argument to specify a cockpit.
+
 ```
-door/open <Door|Group>
+handbrake/on <Cockpit|Group>
+```
+**Example**
+
+```bash title="Terminal"
+# turn on the handbrake of the Main cockpit
+handbrake/on
+# turn on handbrake for a specific cockpit
+handbrake/on RearCockpit
 ```
 
-### close
-Close a door or group of doors.
+### handbrake/off
+
+Turn off the handbrake. By default, this command will use your Main cockpit. Otherwise, you may use an optional argument to specify a cockpit.
+
 ```
-door/close <Door|Group>
+handbrake/off <Cockpit|Group>
 ```
 
-### toggle
-Toggle the open state of a door or group of doors.
-```bash
-door/toggle <Door|Group>
+**Example**
+
+```bash title="Terminal"
+# turn off the handbrake of the Main cockpit
+handbrake/off
+# turn off handbrake for a specific cockpit
+handbrake/off RearCockpit
 ```
 
 ## Connectors
 [Connector Module](Modules/Extension/ConnectorModule.md)
 
-### lock
+### connector/lock
 Lock a connector or group of connectors.
 ```
 connector/lock <Connector|Group>
 ```
 
-### unlock
+### connector/unlock
 Unlock a connector or group of connectors.
 ```
 connector/unlock <Connector|Group>
 ```
 
-### toggle
+### connector/toggle
 Toggle the lock state of a connector or group of connectors.
 ```bash
 connector/toggle <Connector|Group>
 ```
 
-## Rotors
-[Rotor Module](Modules/Extension/RotorModule.md)
+## Doors
+[Door Module](Modules/Extension/DoorModule.md)
 
-### rotate
-Rotate a rotor or group of rotors to a specific angle between -360 and 360 degrees. 
+### door/open
+Open a door or group of doors.
 ```
-rotor/rotate <Rotor|Group> <Angle> [--options]
+door/open <Door|Group>
+```
+
+### door/close
+Close a door or group of doors.
+```
+door/close <Door|Group>
+```
+
+### door/toggle
+Toggle the open state of a door or group of doors.
+```bash
+door/toggle <Door|Group>
+```
+
+## Flight Control System
+[Flight Control Module](Modules/Extension/FlightControlModule.md)
+
+### fcs/start
+Engage the autopilot system, enabling the grid to fly autonomously if a [flight plan](../Extension/FlightPlanningModule.md) is loaded.
+```
+fcs/start [--options]
 ```
 Options
 <!-- table of cli options -->
-| Option  | Values     | Unit | Description                                                         |
-| ------- | ---------- | ---- | ------------------------------------------------------------------- |
-| `speed` | -5.0 - 5.0 | RPM  | Set the speed of the rotor. Negative values will reverse the rotor. Default is 1 RPM. |
+| Option  | Values  | Unit | Description                        |
+| ------- | ------- | ---- | ---------------------------------- |
+| `speed` | 0 - max | m/s  | Set the maximum speed of the grid. |
 
-### lock
-Lock a rotor or group of rotors.
-```
-rotor/lock <Rotor|Group>
-```
-Options
-<!-- table of cli options -->
-| Option | Values |Unit| Description |
-| --- | --- | -- |-- |
-| `stop` | **false**, true | bool | Set the rotor's velocity to 0 when locking. |
+### fcs/stop
+Disengage the autopilot system, halting the grid.
 
-### unlock
-Unlock a rotor or group of rotors.
 ```
-rotor/unlock <Rotor|Group>
+fcs/stop
 ```
 
-### reset
-Reset a rotor or group of rotors to their original position (0 degrees).
+## Flight Planning
+
+[Flight Planning Module](Modules/Extension/FlightPlanningModule.md)
+
+### nav/set-flight-plan
+
+Set the active flight plan in the navigation system. Combine with [`fcs/start`](#flight-control-system) to begin flying.
+
 ```
-rotor/reset <Rotor|Group>
+nav/set-flight-plan <FlightPlanString> [--options]
 ```
 
-### speed
-Set the speed of a rotor or group of rotors in RPM.
+## Gas Tanks
+[Tank Module](Modules/Extension/TankModule.md)
+
+### tank/stockpile
+Set the Tank `Stockpile` to `on`.
 ```
-rotor/speed <Rotor|Group> <Speed> <Options>
+tank/stockpile <Tank|Group> [--options]
 ```
 
-Options
-| Option  | Values     | Unit | Description                                                         |
-| ------- | ---------- | ---- | ------------------------------------------------------------------- |
-| `add` |  |   | Indicates that the provided speed should be *added* to the current speed. Allows increment speed changes while in motion. |
-| `sub` |  |   | Indicates that the provided speed should be *subtracted* from the current speed. Allows decremental speed changes while in motion. |
+### tank/share
+Set the Tank `Stockpile` to `off`. The tank is now sharing its contents with your grid.
+```
+tank/share <Tank|Group> [--options]
+```
 
+### tank/toggle
+Toggle the Tank `Stockpile` between `on` and `off`.
+```
+tank/toggle <Tank|Group> [--options]
+```
 
 ## Hinges
 [Hinge Module](Modules/Extension/HingeModule.md)
 
-### rotate
+### hinge/rotate
 Rotate a hinge or group of hinges to a specific angle between -90 degrees and 90 degrees.
 ```
 hinge/rotate <Hinge|Group> <Angle> [--options]
@@ -265,7 +358,7 @@ Options
 | ------- | ---------- | ---- | ------------------------------------------------------------------- |
 | `speed` | -5.0 - 5.0 | RPM  | Set the speed of the hinge. Negative values will reverse the hinge. Default is 1 RPM. |
 
-### lock
+### hinge/lock
 Lock a hinge or group of hinges.
 ```
 hinge/lock <Hinge|Group>
@@ -276,19 +369,19 @@ Options
 | --- | --- | -- |-- |
 | `stop` | **false**, true | bool | Set the hinge's velocity to 0 when locking. |
 
-### unlock
+### hinge/unlock
 Unlock a hinge or group of hinges.
 ```
 hinge/unlock <Hinge|Group>
 ```
 
-### reset
+### hinge/reset
 Reset a hinge or group of hinges to their original position (0 degrees).
 ```
 hinge/reset <Hinge|Group>
 ```
 
-### speed
+### hinge/speed
 Set the speed of a hinge or group of hinges in RPM.
 ```
 hinge/speed <hinge|Group> <Speed> <Options>
@@ -300,81 +393,42 @@ Options
 | `add` |  |   | Indicates that the provided speed should be *added* to the current speed. Allows increment speed changes while in motion. |
 | `sub` |  |   | Indicates that the provided speed should be *subtracted* from the current speed. Allows decremental speed changes while in motion. |
 
-## Pistons
-[Piston Module](Modules/Extension/PistonModule.md)
+## Landing Gear
+[Landing Gear Module](Modules/Extension/LandingGearModule.md)
 
-### distance
-Extend or retract a piston to a specific distance.
+### gear/lock
+Lock a Landing Gear or group of Landing Gear.
+```bash
+gear/lock <LandingGear|Group>
 ```
-piston/distance <Piston> <Distance> [--options]
+
+### gear/unlock
+Unlock a Landing Gear or group of Landing Gear.
+```bash
+gear/unlock <LandingGear|Group>
+```
+
+### gear/toggle
+Toggle the lock state of a Landing Gear or group of Landing Gear between `Locked` nad `Unlocked`.
+```
+gear/toggle <LandingGear|Group>
 ```
 
 ::: note
-Small grid pistons have a maximum distance of **2 meters**, while large grid pistons have a maximum distance of **10 meters**.
+For more info about Landing Gear states, see [LandingGearMode](https://github.com/malware-dev/MDK-SE/wiki/SpaceEngineers.Game.ModAPI.Ingame.LandingGearMode) in MDK-SE.
 :::
 
-### stop
-Stop a piston while in motion. Note that pistons do not lock like a Rotor or Hinge.
+### gear/auto
+Set the AutoLock state of a Landing Gear or group of Landing Gear.
 ```
-piston/stop <Piston|Group>
-```
-
-### reset
-Reset a piston to its original position (0 meters).
-```
-piston/reset <Piston>
-```
-
-### speed
-Set the speed of a piston or group of pistons in m/s.
-```
-piston/speed <piston|Group> <Speed> <Options>
-```
-
-Options
-| Option  | Values     | Unit | Description                                                         |
-| ------- | ---------- | ---- | ------------------------------------------------------------------- |
-| `add` |  |   | Indicates that the provided speed should be *added* to the current speed. Allows increment speed changes while in motion. |
-| `sub` |  |   | Indicates that the provided speed should be *subtracted* from the current speed. Allows decremental speed changes while in motion. |
-
-## Flight Control System
-[Flight Control Module](Modules/Extension/FlightControlModule.md)
-
-### start
-Engage the autopilot system, enabling the grid to fly autonomously if a [flight plan](../Extension/FlightPlanningModule.md) is loaded.
-```
-fcs/start [--options]
-```
-Options
-<!-- table of cli options -->
-| Option  | Values  | Unit | Description                        |
-| ------- | ------- | ---- | ---------------------------------- |
-| `speed` | 0 - max | m/s  | Set the maximum speed of the grid. |
-
-### stop
-Disengage the autopilot system, halting the grid.
-
-```
-fcs/stop
-```
-
-## Flight Planning
-
-[Flight Planning Module](Modules/Extension/FlightPlanningModule.md)
-
-### set-flight-plan
-
-Set the active flight plan in the navigation system. Combine with [`fcs/start`](#flight-control-system) to begin flying.
-
-```
-nav/set-flight-plan <FlightPlanString> [--options]
+gear/auto <LandingGear|Group> <true|false>
 ```
 
 ## Lights
 [Light Module](Modules/Extension/LightModule.md)
 
 
-### color
+### light/color
 
 Set the color of a light or group of lights. The color of the light is RGB ie. `255,255,255`.
 
@@ -405,7 +459,7 @@ light/color LandingLight red;
 light/color LandingLight 255,0,0;
 ```
 
-### blink
+### light/blink
 Make a light blink at an interval in seconds.
 
 ```
@@ -439,7 +493,7 @@ light/blink SignalLight slow;
 light/blink SignalLight 3 --length=0.3 --offset=0;
 ```
 
-### reset
+### light/reset
 
 Reset a light or group of lights to white and cease any blinking.
 
@@ -447,51 +501,131 @@ Reset a light or group of lights to white and cease any blinking.
 light/reset <Light|Group>
 ```
 
-## Timer Blocks
-### start
-Start execution for a timer block or group of timer blocks
-```
-timer/start <Block|Group> [--options]
+## Local Storage
+
+### get
+Get a value stored in LocalStorage.
+```bash
+get <key>
 ```
 
-### trigger
-Trigger the immediate execution of a timer block or group of timer blocks.
-```
-timer/trigger <Block|Group> [--options]
-```
-
-### stop
-Stop execution of a timer block or group of timer blocks.
-
-```
-timer/stop <TimerBlock|Group> [--options]
+### set
+Set a value in LocalStorage.
+```bash
+set <key> <value>
 ```
 
+::: note
+The `set` command provides no practical use to players at this time.
+:::
 
-## Gas Tanks
-[Tank Module](Modules/Extension/TankModule.md)
+## Rotors
+[Rotor Module](Modules/Extension/RotorModule.md)
 
-### stockpile
-Set the Tank `Stockpile` to `on`.
+### rotor/rotate
+Rotate a rotor or group of rotors to a specific angle between -360 and 360 degrees. 
 ```
-tank/stockpile <Tank|Group> [--options]
+rotor/rotate <Rotor|Group> <Angle> [--options]
+```
+Options
+<!-- table of cli options -->
+| Option  | Values     | Unit | Description                                                         |
+| ------- | ---------- | ---- | ------------------------------------------------------------------- |
+| `speed` | -5.0 - 5.0 | RPM  | Set the speed of the rotor. Negative values will reverse the rotor. Default is 1 RPM. |
+
+### rotor/lock
+Lock a rotor or group of rotors.
+```
+rotor/lock <Rotor|Group>
+```
+Options
+<!-- table of cli options -->
+| Option | Values |Unit| Description |
+| --- | --- | -- |-- |
+| `stop` | **false**, true | bool | Set the rotor's velocity to 0 when locking. |
+
+### rotor/unlock
+Unlock a rotor or group of rotors.
+```
+rotor/unlock <Rotor|Group>
 ```
 
-### share
-Set the Tank `Stockpile` to `off`. The tank is now sharing its contents with your grid.
+### rotor/reset
+Reset a rotor or group of rotors to their original position (0 degrees).
 ```
-tank/share <Tank|Group> [--options]
+rotor/reset <Rotor|Group>
 ```
 
-### toggle
-Toggle the Tank `Stockpile` between `on` and `off`.
+### rotor/speed
+Set the speed of a rotor or group of rotors in RPM.
 ```
-tank/toggle <Tank|Group> [--options]
+rotor/speed <Rotor|Group> <Speed> <Options>
+```
+
+Options
+| Option  | Values     | Unit | Description                                                         |
+| ------- | ---------- | ---- | ------------------------------------------------------------------- |
+| `add` |  |   | Indicates that the provided speed should be *added* to the current speed. Allows increment speed changes while in motion. |
+| `sub` |  |   | Indicates that the provided speed should be *subtracted* from the current speed. Allows decremental speed changes while in motion. |
+
+## Pistons
+[Piston Module](Modules/Extension/PistonModule.md)
+
+### piston/distance
+Extend or retract a piston to a specific distance.
+```
+piston/distance <Piston> <Distance> [--options]
+```
+
+::: note
+Small grid pistons have a maximum distance of **2 meters**, while large grid pistons have a maximum distance of **10 meters**.
+:::
+
+### piston/stop
+Stop a piston while in motion. Note that pistons do not lock like a Rotor or Hinge.
+```
+piston/stop <Piston|Group>
+```
+
+### piston/reset
+Reset a piston to its original position (0 meters).
+```
+piston/reset <Piston>
+```
+
+### piston/speed
+Set the speed of a piston or group of pistons in m/s.
+```
+piston/speed <piston|Group> <Speed> <Options>
+```
+
+Options
+| Option  | Values     | Unit | Description                                                         |
+| ------- | ---------- | ---- | ------------------------------------------------------------------- |
+| `add` |  |   | Indicates that the provided speed should be *added* to the current speed. Allows increment speed changes while in motion. |
+| `sub` |  |   | Indicates that the provided speed should be *subtracted* from the current speed. Allows decremental speed changes while in motion. |
+
+
+## Programmable Block
+[Programmable Block Module](Modules/Extension/ProgrammableBlockModule.md)
+
+### pb/run
+Run a programmable block with an optional argument.
+
+```
+pb/run <ProgrammableBlock|Group> <argument> [--options]
+```
+
+**Example**
+
+We have [Whip's Subgrid Thruster Manager](https://steamcommunity.com/sharedfiles/filedetails/?id=757123653) installed on another Programmable block named `PB.ThrusterManager`. It is particularly helpful when using thrusters on subgrids.
+```ini title="Terminal"
+pb/run "PB.ThrusterManager" dampeners_on;
 ```
 
 ## Screens
 [Display Module](Modules/Extension/DisplayModule.md)
-### print
+### screen/print
 
 Print a message to an LCD panel or group of panels.
 
@@ -526,7 +660,7 @@ You have access to the following colors which may be used in place of their RGB 
 ## Sound Blocks
 [Sound Block Module](Modules/Extension/SoundBlockModule.md)
 
-### play
+### sound/play
 
 Play the sound block with an optional sound.
 ```bash
@@ -539,14 +673,14 @@ sound/play <SoundBlock|Group> <sound>
 
 See the [`set`](#set) command for a list of available sounds.
 
-### stop
+### sound/stop
 
 Stop the sound block from playing.
 ```ini
 sound/stop <SoundBlock|Group>
 ```
 
-### set
+### sound/set
 
 Set the sound of the sound block.
 
@@ -610,68 +744,26 @@ sound/set MainSpeaker "Danger Music 04";
 sound/play MainSpeaker "Space Funk";
 ```
 
-## Air Vents
-[Air Vent Module](Modules/Extension/AirVentModule.md)
-
-### pressurize
-
-Set the air vent to pressurize mode.
-```bash
-vent/pressurize <AirVent|Group>
+## Timer Blocks
+### timer/start
+Start execution for a timer block or group of timer blocks
+```
+timer/start <Block|Group> [--options]
 ```
 
-### depressurize
-
-Set the air vent to pressurize mode.
-```bash
-vent/depressurize <AirVent|Group>
+### timer/trigger
+Trigger the immediate execution of a timer block or group of timer blocks.
+```
+timer/trigger <Block|Group> [--options]
 ```
 
-## Landing Gear
-[Landing Gear Module](Modules/Extension/LandingGearModule.md)
+### timer/stop
+Stop execution of a timer block or group of timer blocks.
 
-### lock
-Lock a Landing Gear or group of Landing Gear.
-```bash
-gear/lock <LandingGear|Group>
+```
+timer/stop <TimerBlock|Group> [--options]
 ```
 
-### unlock
-Unlock a Landing Gear or group of Landing Gear.
-```bash
-gear/unlock <LandingGear|Group>
-```
 
-### toggle
-Toggle the lock state of a Landing Gear or group of Landing Gear between `Locked` nad `Unlocked`.
-```
-gear/toggle <LandingGear|Group>
-```
 
-::: note
-For more info about Landing Gear states, see [LandingGearMode](https://github.com/malware-dev/MDK-SE/wiki/SpaceEngineers.Game.ModAPI.Ingame.LandingGearMode) in MDK-SE.
-:::
 
-### auto
-Set the AutoLock state of a Landing Gear or group of Landing Gear.
-```
-gear/auto <LandingGear|Group> <true|false>
-```
-
-## Local Storage
-
-### get
-Get a value stored in LocalStorage.
-```bash
-get <key>
-```
-
-### set
-Set a value in LocalStorage.
-```bash
-set <key> <value>
-```
-
-::: note
-The `set` command provides no practical use to players at this time.
-:::

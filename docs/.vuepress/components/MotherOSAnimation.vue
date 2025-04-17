@@ -6,11 +6,11 @@
 import { onMounted, ref } from 'vue';
 
 const canvas = ref(null);
-const PULSE_SPEED = 0.01;
+const PULSE_SPEED = 0.015;
 let currentPulseColor = '#0000ff';
 
-let unitWidth = 100;
-let unitHeight = 100;
+let unitWidth = 200;
+let unitHeight = 200;
 
 class Node {
   constructor({ id, name, x, y, image, pulseColor }) {
@@ -64,12 +64,14 @@ class Node {
       ctx.lineTo(tx, ty);
       ctx.stroke();
 
+      // Draw Pulse
       if (active) {
         const px = sx + (tx - sx) * progress;
         const py = sy + (ty - sy) * progress;
 
+        const radius = 12;
         ctx.beginPath();
-        ctx.arc(px, py, 8, 0, Math.PI * 2);
+        ctx.arc(px, py, radius, 0, Math.PI * 2);
         ctx.fillStyle = pulseColor || '#0000ff';
         ctx.fill();
       }
@@ -85,7 +87,7 @@ class Node {
 
     ctx.drawImage(this.image, x, y, size, size);
 
-    ctx.font = "14px sans-serif";
+    ctx.font = "20px sans-serif";
     ctx.fillStyle = "#333";
     ctx.textAlign = "center";
     ctx.textBaseline = "top";
@@ -95,24 +97,35 @@ class Node {
 
 onMounted(() => {
   const ctx = canvas.value.getContext("2d");
+  const dpr = window.devicePixelRatio || 1;
 
   const resizeCanvas = () => {
     const bounds = canvas.value.getBoundingClientRect();
-    canvas.value.width = bounds.width;
-    canvas.value.height = bounds.height;
+
+    canvas.value.width = bounds.width * dpr;
+    canvas.value.height = bounds.height * dpr;
+
+    canvas.value.style.width = `${bounds.width}px`;
+    canvas.value.style.height = `${bounds.height}px`;
+
     if (allNodes.length) updateLayout(); // re-center and scale
   };
 
   const nodeData = [
-    { id: 'root1', name: 'Button', x: 1, y: 2, img: 'https://static.wikia.nocookie.net/spaceengineers/images/f/f2/Small_Button_Panel.png', targets: ['child1'], pulseColor: '#c10000' },
-    { id: 'root2', name: 'Connector', x: 1, y: 4, img: 'https://static.wikia.nocookie.net/spaceengineers/images/7/7c/Icon_Block_Connector.png', targets: ['child2'], pulseColor: '#c10000' },
-    { id: 'child1', name: 'Mother', x: 4, y: 3, img: 'images/logo-512x512.png', targets: ['grand2', 'grand5'], pulseColor: '#EFD497' },
-    { id: 'child2', name: '', x: 4, y: 3, img: 'images/logo-512x512.png', targets: ['grand1', 'grand3', 'grand4'], pulseColor: '#EFD497' },
-    { id: 'grand1', name: 'Piston', x: 5, y: 1, img: 'https://static.wikia.nocookie.net/spaceengineers/images/2/28/Icon_Block_Piston.png', targets: [], pulseColor: '#EFD497' },
-    { id: 'grand2', name: 'Light', x: 7, y: 3, img: 'https://static.wikia.nocookie.net/spaceengineers/images/2/21/Icon_Block_Interior_Light.png', targets: [], pulseColor: '#EFD497' },
-    { id: 'grand3', name: 'Rotor', x: 6, y: 2, img: 'https://static.wikia.nocookie.net/spaceengineers/images/9/9c/Icon_Block_Rotor.png', targets: [], pulseColor: '#EFD497' },
-    { id: 'grand4', name: 'Landing Gear', x: 6, y: 4, img: 'https://static.wikia.nocookie.net/spaceengineers/images/2/2d/Icon_Block_Landing_Gear.png', targets: [], pulseColor: '#EFD497' },
-    { id: 'grand5', name: 'More...', x: 5, y: 5, img: 'https://www.svgrepo.com/show/532994/plus.svg', targets: [], pulseColor: '#EFD497' },
+    { id: 'root1', name: 'Button', x: 1, y: 2, img: 'https://static.wikia.nocookie.net/spaceengineers/images/f/f2/Small_Button_Panel.png', targets: ['child1'], pulseColor: '#E3B505' },
+    { id: 'root2', name: 'Connector', x: 1, y: 4, img: 'https://static.wikia.nocookie.net/spaceengineers/images/7/7c/Icon_Block_Connector.png', targets: ['child2'], pulseColor: '#E3B505' },
+    { id: 'child1', name: 'Mother', x: 2, y: 3, img: 'images/logo-512x512.png', targets: ['grand3' ,'grand5', 'greatgrand1'], pulseColor: '#E3B505' },
+    { id: 'child2', name: '', x: 2, y: 3, img: 'images/logo-512x512.png', targets: ['grand1', 'grand4'], pulseColor: '#E3B505' },
+    { id: 'grand1', name: 'Piston', x: 3, y: 1, img: 'https://static.wikia.nocookie.net/spaceengineers/images/2/28/Icon_Block_Piston.png', targets: [], pulseColor: '#E3B505' },
+    { id: 'grand3', name: 'Rotor', x: 4, y: 2, img: 'https://static.wikia.nocookie.net/spaceengineers/images/9/9c/Icon_Block_Rotor.png', targets: [], pulseColor: '#E3B505' },
+    { id: 'grand4', name: 'Landing Gear', x: 4, y: 4, img: 'https://static.wikia.nocookie.net/spaceengineers/images/2/2d/Icon_Block_Landing_Gear.png', targets: [], pulseColor: '#E3B505' },
+    { id: 'grand5', name: 'Programmable Block', x: 3, y: 5, img: 'https://static.wikia.nocookie.net/spaceengineers/images/7/76/Icon_Block_Programmable_Block.png', targets: [], pulseColor: '#E3B505' },
+    { id: 'greatgrand1', name: 'Mother', x: 6, y: 3, img: 'images/logo-512x512.png', targets: ['greatgreatgrand1', 'greatgreatgrand2'], pulseColor: '#E3B505' },
+    { id: 'greatgreatgrand1', name: 'Sound Block', x: 7, y: 2, img: 'https://static.wikia.nocookie.net/spaceengineers/images/4/4e/Icon_Block_Sound_Block.png', targets: [], pulseColor: '#E3B505' },
+    { id: 'greatgreatgrand2', name: 'Light', x: 7, y: 4, img: 'https://static.wikia.nocookie.net/spaceengineers/images/2/21/Icon_Block_Interior_Light.png', targets: [], pulseColor: '#E3B505' },
+
+
+
   ];
 
   const nodes = {};
@@ -206,10 +219,10 @@ offsetY = -minY * unitHeight + canvasHeight * PADDING;
     });
 
     if (allPulsesComplete()) {
-      setTimeout(() => {
+      // setTimeout(() => {
         currentRootIndex = (currentRootIndex + 1) % rootIds.length;
         beginCascade();
-      }, 500);
+      // }, 400);
     }
 
     requestAnimationFrame(animate);

@@ -40,6 +40,40 @@ dampeners/off
 dampeners/off RearCockpit
 ```
 
+### handbrake/on
+
+Turn on the handbrake. By default, this command will use your Main cockpit. Otherwise, you may use an optional argument to specify a cockpit.
+
+```
+handbrake/on <Cockpit|Group>
+```
+**Example**
+
+```bash title="Terminal"
+# turn on the handbrake of the Main cockpit
+handbrake/on
+# turn on handbrake for a specific cockpit
+handbrake/on RearCockpit
+```
+
+### handbrake/off
+
+Turn off the handbrake. By default, this command will use your Main cockpit. Otherwise, you may use an optional argument to specify a cockpit.
+
+```
+handbrake/off <Cockpit|Group>
+```
+
+**Example**
+
+```bash title="Terminal"
+# turn off the handbrake of the Main cockpit
+handbrake/off
+# turn off handbrake for a specific cockpit
+handbrake/off RearCockpit
+```
+
+
 <!-- ### toggle
 Toggle the lock state of a Cockpit or group of Cockpits.
 
@@ -76,5 +110,5 @@ or
 ```ini title="Mother > Custom Data"
 [hooks]
 RearCockpit.onOccupied=battery/auto Batteries; block/on SignalLights;
-"Drill Cockpit".onEmpty=block/of MainDrills;
+"Drill Cockpit".onEmpty=block/off MainDrills;
 ```

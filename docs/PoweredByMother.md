@@ -17,6 +17,14 @@ const items = [
         link:  'https://steamcommunity.com/sharedfiles/filedetails/?id=3445385227',
         image_link: 'https://images.steamusercontent.com/ugc/23187381868450836/83F32555DE89BB930E2802DCC40AA64921B04F2C/',
         description: 'The MoonBat has many automated systems controlled by the Mother OS script.',
+    },
+    {
+        name: 'Lizzo - Terrestrial Mining Aircraft',
+        author: 'Agentluke',
+        author_link: '#',
+        link:  'https://steamcommunity.com/sharedfiles/filedetails/?id=3463861021',
+        image_link: 'https://images.steamusercontent.com/ugc/59217531467803836/1E5268EAF0CD8D59DF221516BB7549639FADEFC6/',
+        description: 'The Lizzo is a terrestrial mining aircraft designed for use on planets. It is equipped with an array of drills and modest cargo hold for routine mining runs. It uses Mother OS for flight planning and automation.',
     }
 
 ]

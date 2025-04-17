@@ -1,17 +1,19 @@
 # Extension Modules
 
+Extension modules should be the main body of your scripts. This section will cover the basics of creating an extension module, registering custom terminal commands, and handling events.
+
 [[toc]]
 
 ## Creating an Extension Module
 
-Extension modules expose several powerful capabilities for players to leverage. These classes should be the main body of your scripts. Extension must implement the `IExtensionModule` interface. It is recommended that they extend the `BaseExtensionModule` class which provides accessors for many common actions used across extension modules.
+Extension modules must implement the `IExtensionModule` interface. It is recommended that they extend the `BaseExtensionModule` class which provides accessors for many common actions.
 
 ::: note
-[Mother OS](../../../IngameScript/IngameScript.md) is composed mostly of extension modules to enable it's various capabilities. You can use modules to register commands and take action when events occur.
+[Mother OS](../../../IngameScript/IngameScript.md) is composed mostly of extension modules to enable it's various capabilities.
 :::
 
 ### Booting a Module
-The `Boot()` method of every module is called during boot by Mother.  Extension modules are registered and may access all [Core Module](../CoreModules/CoreModules.md) instances.  It is important to consider boot order to reduce conflicts among inter-module dependencies and leverage [Events](#events) where they make sense.
+The `Boot()` method of every module is called during boot by Mother.  When Extension modules boot, they may access all [Core Module](../CoreModules/CoreModules.md) instances.  It is important to consider boot order to reduce conflicts among inter-module dependencies and leverage [Events](#events) where they make sense.
 
 ```csharp title="MissileGuidanceModule.cs"
 class MissileGuidanceModule : BaseExtensionModule

@@ -4,9 +4,9 @@
       <div>
         <h2>{{ item.name }}</h2>
         <Badge type="info" :text="`&nbsp;${item.author}&nbsp;`" vertical="middle" />
-        <a :href="item.link" target="_blank" rel="noopener noreferrer" style="margin-left: 1rem">
+        <!-- <a :href="item.link" target="_blank" rel="noopener noreferrer" style="margin-left: 1rem">
             View on Steam Workshop
-        </a>
+        </a> -->
       </div>
   
       <!-- Details -->
@@ -16,14 +16,18 @@
           <img
             :src="item.image_link"
             :alt="item.name"
-            style="max-height: 200px; border-radius: 8px; object-fit: cover;"
+            style="max-height: 200px; border-radius: 8px; object-fit: cover; margin-bottom: 0.25rem;"
           />
+          <!-- <RouteLink :to="item.link">View on Steam Workshop</RouteLink> -->
+           <a :href="item.link" target="_blank" rel="noopener noreferrer">
+            View on Steam Workshop
+          </a>
+
         </div>
   
         <!-- Description and Link -->
         <div class="description-container">
           <p class="description-text">{{ item.description }}</p>
-          <!-- <RouteLink :to="item.link">View on Steam Workshop</RouteLink> -->
 
           
         </div>

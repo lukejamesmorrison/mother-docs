@@ -1,4 +1,4 @@
-# Tank Module
+# Gas Tank Module
 The Tank Module allows the user to control `Oxygen` and `Hydrogen` tanks on their grid.
 
 [[toc]]
