@@ -32,6 +32,8 @@ const items = [
 
 # Powered By Mother
 
+This section showcases some of the best ships and vehicles that utilize the Mother OS script. If you have a ship or vehicle that uses Mother OS, please share it!
+
 <div style="display: flex; flex-wrap: wrap; gap: 1rem; flex-direction: column;">
     <PoweredByMotherItem v-for="(item, index) in items" :key="index" :item="item"/>
 </div>

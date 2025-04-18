@@ -11,19 +11,24 @@
   
       <!-- Details -->
       <div class="details-container">
+
+        <div>
         <!-- Image -->
-        <div style="width: 200px;">
+        <div class="image-container">
           <img
             :src="item.image_link"
             :alt="item.name"
-            style="max-height: 200px; border-radius: 8px; object-fit: cover; margin-bottom: 0.25rem;"
+            style=""
           />
           <!-- <RouteLink :to="item.link">View on Steam Workshop</RouteLink> -->
-           <a :href="item.link" target="_blank" rel="noopener noreferrer">
+        </div>
+
+        <a :href="item.link" target="_blank" rel="noopener noreferrer">
             View on Steam Workshop
           </a>
+      </div>
 
-        </div>
+       
   
         <!-- Description and Link -->
         <div class="description-container">
@@ -42,7 +47,30 @@ defineProps({
 })
 </script>
 
-<style scoped>
+<style scoped lang="scss">
+
+
+$breakpoints: (
+  sm: 640px,
+  md: 768px,
+  lg: 1024px,
+  xl: 1280px,
+  '2xl': 1536px
+);
+
+@mixin respond($breakpoint) {
+  $size: map-get($breakpoints, $breakpoint);
+
+  @if $size {
+    @media (min-width: #{$size}) {
+      @content;
+    }
+  } @else {
+    @warn "Breakpoint '#{$breakpoint}' is not defined.";
+  }
+}
+
+
 
 .powered-by-mother-item-card {
   display: flex;
@@ -54,11 +82,41 @@ defineProps({
     border-radius: 8px;
 }
 
+// .details-container {
+//   display: flex;
+//   gap: 1rem;
+//   flex-grow: 1;
+//   min-height: 0; /* Important to prevent overflow */
+// }
+
+// @import 'media'; // or wherever your media query helpers live
+
+.image-container {
+  
+  img {
+      width: 100%;
+    max-height: 200px; 
+    border-radius: 8px; 
+    object-fit: cover; 
+    margin-bottom: 0.25rem;
+  }
+
+  @media (min-width: 768px) {
+    width: 200px;
+  }
+}
+
 .details-container {
   display: flex;
+  flex-direction: column;
   gap: 1rem;
   flex-grow: 1;
-  min-height: 0; /* Important to prevent overflow */
+  min-height: 0;
+
+  @media (min-width: 768px) {
+    gap: 2rem;
+    flex-direction: row;
+  }
 }
 
 .description-container {
@@ -67,7 +125,10 @@ defineProps({
   /* flex-grow: 1; */
   height: 100%;
   min-height: 0;
-  width: 60%;
+
+  @media (min-width: 768px) {
+    width: 60%;
+  }
 }
 
 .description-text {

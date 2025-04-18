@@ -68,6 +68,7 @@ const MotherOSSidebar = {
       link: '/IngameScript/CommandCheatsheet.md',
     },
     '/IngameScript/Examples.md',
+    '/PoweredByMother.md',
 
   ]
 };
