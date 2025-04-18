@@ -3,6 +3,14 @@ import PoweredByMotherItem from '../../components/PoweredByMotherItem.vue'
 
 const items = [
     {
+        name: 'SPF-01 (Spiff)',
+        author: 'Agentluke',
+        author_link: '#',
+        link:  'https://steamcommunity.com/sharedfiles/filedetails/?id=3466094222',
+        image_link: 'https://images.steamusercontent.com/ugc/59218081137233811/62B5BE5472A40A9DB7B54BC18680F85CE90D5DAA/',
+        description: 'The Spiff is a lightweight atmospheric speeder with a modest endurance and small form factor. It uses Mother OS entirely to manage its automation, including docking and landing gear deployment.',
+    },
+    {
         name: 'MoonBat Light Shuttle',
         author: 'Iron Fiore',
         author_link: '#',
@@ -26,6 +34,7 @@ const items = [
         image_link: 'https://images.steamusercontent.com/ugc/59217531467803836/1E5268EAF0CD8D59DF221516BB7549639FADEFC6/',
         description: 'The Lizzo is a terrestrial mining aircraft designed for use on planets. It is equipped with an array of drills and modest cargo hold for routine mining runs. It uses Mother OS for flight planning and automation.',
     },
+    
 
 ]
 </script>

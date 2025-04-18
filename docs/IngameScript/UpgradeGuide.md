@@ -1,6 +1,18 @@
 # Upgrade Guide
 
 [[toc]]
+## 0.2.10 -> 0.2.11
+🕓 0 mins
+
+- Players can now use the following new commands:
+    - `dampeners/on` - Turns on the dampeners of the ship (aircraft).
+    - `dampeners/off` - Turns off the dampeners of the ship (aircraft).
+    - `handbrake/on` - Turns on the handbrake of the ship (rover).
+    - `handbrake/off` - Turns off the handbrake of the ship (rover).
+
+- Players can now print multi-line messages to LCD panels.
+
+[![v0.2.11 Video](https://img.youtube.com/vi/CPeas5AVd9A/0.jpg)](https://www.youtube.com/watch?v=CPeas5AVd9A)
 
 ## 0.2.9 -> 0.2.10
 🕓 0 mins

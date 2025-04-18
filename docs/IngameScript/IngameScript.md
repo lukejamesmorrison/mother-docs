@@ -29,7 +29,7 @@ import { usePageData } from 'vuepress/client'
 
 <!-- [< Home](../README.md) -->
 <Badge type="info" text="&nbsp;Beta&nbsp;" vertical="middle" />
-<Badge type="warning" text="&nbsp;v0.2.10&nbsp;" vertical="middle" />
+<Badge type="warning" text="&nbsp;v0.2.11&nbsp;" vertical="middle" />
 
 <!-- <CardGroup>
     <FeatureCard
