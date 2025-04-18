@@ -68,7 +68,7 @@ const MotherOSSidebar = {
       link: '/IngameScript/CommandCheatsheet.md',
     },
     '/IngameScript/Examples.md',
-    '/PoweredByMother.md',
+    // '/PoweredByMother.md',
 
   ]
 };
@@ -241,11 +241,7 @@ export default defineUserConfig({
     sidebar: [
       MotherOSSidebar,
       process.env.NODE_ENV == 'development' ? MotherCoreSidebar : {},
-      // {
-      //   text: "Powered By Mother",
-      //   link: "PoweredByMother",
-      // }
-      // "PoweredByMother"
+      "/PoweredByMother.md",
     ]
   }),
 
