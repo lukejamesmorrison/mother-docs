@@ -2,13 +2,15 @@
 
 <!-- [< Command Line Interface](CommandLineInterface.md) -->
 
+[[toc]]
+
 Players can easily configure Mother using the Programmable Block's **Custom Data**. Where a Module has configuration settings, they will be documented in the module's section of this documentation.
 
 ::: important
 Don't forget to `Recompile` Mother when you update the Custom Data in the Programmable Block.
 :::
 
-## Programmable Block (running Mother)
+## Mother OS Configuration
 ```ini title="Mother > Custom Data"
 [general]
 debug=false 
@@ -38,7 +40,7 @@ AirlockOuterDoor.onOpen=
 | door/close OuterDoor;
 ```
 
-## All Blocks
+## Block Configuration
 All Terminal Blocks have a `Custom Data` field.  This is where you can define the block's configuration, tags, and hooks.
 
 ```ini title="AirlockDoor > Custom Data"
@@ -56,9 +58,13 @@ onClose=
 | light/blink "Airlock Light" off;
 ```
 
-### Hooks
+## Hooks
 
-Hooks can be defined within a block's Custom Data or within Mother's Custom Data. They allow Mother to take action when there is a change in state. We can use the `this` keyword in place of the block name, when we are defining hooks within the block's Custom Data.
+Hooks are triggered when specific blocks change state. they can be defined within a block's Custom Data or within Mother's Custom Data.
+
+:::tip
+You can use `this` to refer to the block itself when targeting it from within its own custom data.
+:::
 
 ::: note
 Hooks are defined within Modules where available.  See the [Connector Module](Modules/Extension/ConnectorModule.md), and [Sensor Module](Modules/Extension/SensorModule.md) for some examples.

@@ -65,8 +65,10 @@ const MotherOSSidebar = {
     },
     {
       text: 'Command Cheatsheet',
+      collapsible: true, // Allows collapsing sections
       link: '/IngameScript/CommandCheatsheet.md',
     },
+    '/IngameScript/Compatibility.md',
     '/IngameScript/Examples.md',
     // '/PoweredByMother.md',
 

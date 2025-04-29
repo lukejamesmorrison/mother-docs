@@ -14,6 +14,10 @@ Run a programmable block with an optional argument.
 pb/run <ProgrammableBlock|Group> <argument> [--options]
 ```
 
+::: important
+Some scripts may be uncompatible with Mother OS due to the way they designed to accept arguments.  See [Script Compatibility](../../Compatibility.md) for more information.
+:::
+
 **Example**
 
 We have [Whip's Subgrid Thruster Manager](https://steamcommunity.com/sharedfiles/filedetails/?id=757123653) installed on another Programmable block named `PB.ThrusterManager`. It is particularly helpful when using thrusters on subgrids.

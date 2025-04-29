@@ -49,8 +49,11 @@ The following hooks can be define in the block's Custom Data, and will be trigge
 
 |Key            | Trigger                               |
 |-              |-                                      |
-| `onOpen`      | Activated by `door/open` command      |
-| `onclose`     | Activated by `door/close` command     |
+| `onOpen`      | Activated when a door is fully open.      |
+| `onOpening`    | Activated when a door is opening.    |
+| `onclose`     | Activated when a door is fully closed.    |
+| `onClosing`   | Activated when a door is closing.    |
+
 
 **Example**
 
@@ -58,9 +61,14 @@ Imagine our door is part of an airlock:
 
 ```ini title="OuterDoor > Custom Data"
 [hooks]
-onOpen=light/blink "Airlock Light" fast; vent/depressurize AirlockVent; wait 10; door/close this;
+onOpen=wait 10; door/close this;
 onClose=vent/pressurize AirlockVent; wait 2; light/blink "Airlock Light" off;
 ```
+
+:::tip
+You can use `this` to refer to the block itself when targeting it from within its own custom data.
+:::
+
 or
 ```ini title="Mother > Custom Data"
 [hooks]

@@ -21,6 +21,7 @@ Options
 | Option  | Values      | Unit  | Description                                                           |
 | ------- | ----------  | ----  | -------------------------------------------------------------------   |
 | `color` | RGB         |       | Set the color of the text.                                            |
+| `size`  | Number    |       | Set the text size between 0.0 and 10.0.                                                   |
 
 You have access to the following colors which may be used in place of their RGB values:
 
@@ -38,8 +39,8 @@ You have access to the following colors which may be used in place of their RGB 
 
 **Example**
 
-Imagine we want to print text to a screen based on our airlock status.  We contextualize it further with color.
+Imagine we want to print text to a screen based on our airlock status.  We contextualize it further with color and print a size that is easily legible.
 
 ```bash title="Terminal"
-screen/print "AirlockStatusScreens" "Airlock SAFE" --color=green
+screen/print "AirlockStatusScreens" "Airlock SAFE" --color=green --size=4.4
 ```

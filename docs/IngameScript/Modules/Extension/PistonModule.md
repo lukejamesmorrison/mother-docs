@@ -74,6 +74,43 @@ Decrease speed by 0.1 m/s:
 piston/speed TurretPistons 0.1 --sub;
 ```
 
+## Hooks
+
+The following hooks can be define in the block's Custom Data, and will be triggered when the corresponding command is called:
+
+|Key            | Trigger                               |
+|-              |-                                      |
+| `onExtending`      | Activated when a piston is extending.    |
+| `onExtended`      | Activated when a piston is fully extended.      |
+| `onRetracting`     | Activated when a piston is retracting.    |
+| `onRetracted`   | Activated when a piston is fully retracted.    |
+
+
+**Example**
+
+Imagine our piston is connected to a fuel boom:
+
+```ini title="FuelBoomPiston > Custom Data"
+[hooks]
+onExtending=light/blink "Fuel Boom Light" fast;
+onRetracted=light/blink "Fuel Boom Light" off;
+```
+
+:::tip
+You can use `this` to refer to the block itself when targeting it from within its own custom data.
+:::
+
+or
+```ini title="Mother > Custom Data"
+[hooks]
+FuelBoomPiston.onExtending=
+| light/blink "Fuel Boom Light" fast;
+
+"Landing Gear Pistons".onRetracted=
+| wait 2; 
+| hinge/rotate "Landing Gear Hinges" 0;
+```
+
 <!--- 
 
 PISTON ACTIONS

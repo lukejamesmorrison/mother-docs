@@ -1,6 +1,38 @@
 # Upgrade Guide
 
 [[toc]]
+## 0.2.11 -> 0.2.12
+🕓 5 mins
+
+This update ensures compatibility with the new Fieldwork Update (1.206). This should fix Mother across your grids caused by changes to the programmable block API by Keen. Thanks for your patience with this one!
+
+::: important
+You will need to refresh Mother in all of your grids.
+:::
+
+- Players will also have access to the following hooks:
+
+  - **Air Vent**
+    - `onPressurizing` - Activated when an air vent is in the *Pressurizing* state.
+    - `onDepressurizing` - Activated when an air vent is in the *Depressurizing* state.
+    - `onPressurized` - Activated when an air vent is in the *Pressurized* state.
+    - `onDepressurized` - Activated when an air vent is in the *Depressurized* state.
+
+  - **Piston**
+    - `onExtended` - Activated when a piston is in the *Extended* state.
+    - `onRetracted` - Activated when a piston is in the *Retracted* state.
+    - `onExtending` - Activated when a piston is in the *Extending* state.
+    - `onRetracting` - Activated when a piston is in the *Retracting* state.
+
+  - **Door**
+    - `onClosing` - Activated when a door is in the *Closing* state.
+    - `onOpening` - Activated when a door is in the *Opening* state.
+
+Players may now use the `block/toggle` command to toggle a block's on/off state.
+
+<!-- [![v0.2.12 Video](https://img.youtube.com/vi/CPeas5AVd9A/0.jpg)](https://www.youtube.com/watch?v=CPeas5AVd9A) -->
+
+
 ## 0.2.10 -> 0.2.11
 🕓 0 mins
 
