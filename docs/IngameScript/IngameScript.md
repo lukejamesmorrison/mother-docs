@@ -45,8 +45,8 @@ Mother OS is available as an ingame script for Programmable Blocks in Space Engi
 # Set the color of a light
 light/color AirlockLight red;
 
-# Rotate a rotor to an angle with a speed
-rotor/angle 45 --speed=2;
+# Rotate a hinge group to an angle with a speed
+hinge/angle MainLandingGearHinges 45 --speed=2;
 
 # Open a hangar door remotely
 @Mothership door/open MainHangarDoor; 
