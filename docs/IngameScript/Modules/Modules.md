@@ -29,7 +29,7 @@ Extension modules provide additional functionality to a Space Engineer for contr
 
 |Name													| Description|
 |-														|-								|
-| [Terminal Block](Extension/BlockModule.md)              | Manages terminal blocks on the grid. Commands in this module may be used on any block supported by Mother. |
+| [Terminal Block](Extension/TerminalBlockModule.md)              | Manages terminal blocks on the grid. Commands in this module may be used on any block supported by Mother. |
 
 ### By Function
 |Name													| Description|
