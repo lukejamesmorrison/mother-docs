@@ -210,14 +210,15 @@ public class MissileGuidanceModule : BaseExtensionModule
 {
     public void Boot()
     {
+        // Get the Block Catalogue core module
+        BlockCatalogue BlockCatalogue = Mother.GetModule<BlockCatalogue>()
+
         // Get all thrusters on the grid
-        List<IMyThrust> thrusters = Mother
-            .GetModule<BlockCatalogue>()
+        List<IMyThrust> thrusters = BlockCatalogue
             .GetBlocks<IMyThrust>();
 
         // or, only get blocks where name contains a key
-        List<IMyThrust> thrusters = Mother
-            .GetModule<BlockCatalogue>()
+        List<IMyThrust> thrusters = BlockCatalogue
             .GetBlocks<IMyThrust>(block => block.CustomName.Contains("key"));
     }
 }
@@ -230,14 +231,15 @@ public class MissileGuidanceModule : BaseExtensionModule
 {
     public void Boot()
     {
+        // Get the Block Catalogue core module
+        BlockCatalogue BlockCatalogue = Mother.GetModule<BlockCatalogue>()
+
         // Get the thrusters in the group "Booster Thrusters"
-        List<IMyThrust> thrusters = Mother
-            .GetModule<BlockCatalogue>()
+        List<IMyThrust> thrusters = BlockCatalogue
             .GetBlocksByName<IMyThrust>("Booster Thrusters");
 
         // or, get a specific block by name
-        IMyThrust thruster = Mother
-            .GetModule<BlockCatalogue>()
+        IMyThrust thruster = BlockCatalogue
             .GetBlocksByName<IMyThrust>("RetroThruster")
             .firstOrDefault();
     }
