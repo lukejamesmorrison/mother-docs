@@ -39,7 +39,7 @@ Let's look at the entity diagram for Mother OS which is the same as your custom 
   }
 }%%
 graph RL
-    MotherOS["Mother OS"]-->|Depends on| MotherCore
+    MotherOS[<a href='/mother-docs/IngameScript/IngameScript.html' style='color: black; text-decoration: none'>Mother OS</a>]-->|Depends on| MotherCore
     MotherCore["Mother Core"] -->|Depends on| Program["Program"]
 
     MotherOS -->|Composed of| IExtensionModule["IExtensionModule"]
@@ -51,16 +51,16 @@ graph RL
     subgraph Core Modules
         direction BT
         BaseCoreModule .-> ICoreModule["ICoreModule"]
-        CM2["CommandBus"] .-> BaseCoreModule
-        CM3[<a href='./Developer/CoreModules/Almanac.html' style='color: black; text-decoration: none'>Almanac</a>] .-> BaseCoreModule
+        CM2[<a href='/mother-docs/Framework/Developer/CoreModules/CommandBus.html' style='color: black; text-decoration: none'>Command Bus</a>] .-> BaseCoreModule
+        CM3[<a href='/mother-docs/Framework/Developer/CoreModules/Almanac.html' style='color: black; text-decoration: none'>Almanac</a>] .-> BaseCoreModule
         CM4["Storage"] .-> BaseCoreModule
     end
 
     subgraph Extension Modules
         direction LR
         BaseExtensionModule .-> IExtensionModule["IExtensionModule"]
-        EM1["<a href='/mother-docs/IngameScript/Modules/Extension/PistonModule.md' style='color: black; text-decoration: none'>Piston Module</a>"] .-> BaseExtensionModule
-        EM3["<a href='/mother-docs/IngameScript/Modules/Extension/LightModule.md' style='color: black; text-decoration: none'>Light Module</a>"] .-> BaseExtensionModule
+        EM1["<a href='/mother-docs/IngameScript/Modules/Extension/PistonModule.html' style='color: black; text-decoration: none'>Piston Module</a>"] .-> BaseExtensionModule
+        EM3["<a href='/mother-docs/IngameScript/Modules/Extension/LightModule.html' style='color: black; text-decoration: none'>Light Module</a>"] .-> BaseExtensionModule
         EM4["..."] .-> BaseExtensionModule
     end
 
@@ -76,7 +76,7 @@ graph RL
 ## Program Lifecycle
 
 ### Setting up Mother   
-To use Mother, we need to create a `Mother` instance in our `Program` class. This is done in the constructor. We then register any extension modules we want to use. We simply create a Mother instance with access to the Program, and register the extension modules we wish to include.
+To use Mother, we need to create a `Mother` instance in our `Program` class. This is done in the constructor. We then register any extension modules we want to use.
 
 ```csharp title="Program.cs"
 partial class Program : MyGridProgram
@@ -99,15 +99,19 @@ partial class Program : MyGridProgram
 ```
 
 ::: important
-Extension Modules must conform the the `IExtensionModule` interface. It is recommend that you use the `BaseExtensionModule` class as a base class to leverage a library of useful helpers.
+Extension Modules must conform the the `IExtensionModule` interface. It is recommend that you use the `BaseExtensionModule` class as a base class to leverage the library of useful helpers.
 :::
 
 ### Booting the Script
 Mother boots automatically when the script compiles.  Otherwise, the `Boot()` method can be called to force the boot process. Mother will boot all Core Modules, and then all Extension Modules in the order they were registered.
 
+```csharp
+Mother.Boot();
+```
+
 ### Running the Script Each Cycle
 
-The `Run()` method is responsible for running all Modules, managing communications, and executing scheduled actions. See the [Clock](../CoreModules/Clock.md) for more information on scheduling and delaying actions. We ensure the program calls this method within the `Main()` method to delegate all further action to Mother.
+The `Run()` method is responsible for running all registered modules, managing communications, and executing scheduled actions. See the [Clock](../CoreModules/Clock.md) for more information on scheduling and delaying actions. We ensure the program calls this method within the `Main()` method to delegate all further action to Mother.
 
 :::info
 Mother runs at a default speed of **~6 ticks/second**, or **every 0.166 seconds** . This tolerance should be acceptable for most use cases. Each cycle, Mother's `Run()` method is called which will then run all registered modules.
@@ -172,12 +176,12 @@ Commands may be triggered via any one of the following methods:
 |Method | Description |
 |---|---|
 | **Terminal** | Via the programmable block terminal. |
-| **Toolbar Action** | Via the programmable block toolbar using the `Run` action. |
+| **Toolbar Action** | Via a toolbar action using the programmable block's `Run` action. |
 | **Button** | Via a button on a control panel that triggers the programmable block's `Run` action. |
 | **Timer Block** | Via a timer block that triggers the programmable block's `Run` action. |
-| **Event Controller** | Via a button on a control panel that triggers the programmable block's `Run` action. |
-| **Block Hooks** | Via a block's hooks triggered by state change. |
-| **Remote Message** | Via a message sent from
+| **Event Controller** | Via an event trigger which runs the programmable block's `Run` action. |
+| **Block Hooks** | Via a block's [hooks](../CoreModules/BlockCatalogue.md#hooks) triggered by state change. |
+| **Remote Message** | Via a message sent from another grid using the [Intergrid Message Service](../CoreModules/IntergridMessageService.md). |
 
 When a command is trigger it is passed to the [Command Bus](../CoreModules/CommandBus.md).  The Command Bus then executes the command on the appropriate module.
 

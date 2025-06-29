@@ -5,12 +5,21 @@ Mother uses a Request/Response pattern for intergrid communication. Every instan
 
 [[toc]]
 
-## Request
+## Requests
 
 ### The Request Object
 
+We can create a new request by providing a `path`, a `body` and optional `header`. By default, headers will be attached to the request related to the identity of both the sender and receiver, as well as the path of the request. The request body can contain serialized data. 
+
 ```csharp
-// show how to create a request object with custom body and headers.
+Vector3D targetPosition = new Vector3D(1000, 2000, 3000);
+
+Dictionary<string, object> requestBody = new Dictionary<string, object>
+{
+    { "target", $"{tragetPosition}" },
+};;
+
+Request request = CreateRequest("initiate-launch", requestBody);
 ```
 
 ### Sending a Request
@@ -19,13 +28,10 @@ Mother uses a Request/Response pattern for intergrid communication. Every instan
 
 Open broadcasts go to all grids on the antenna network. This is most appropriate for public channels and 1-to-many interactions.
 
-```csharp
-// show how to send an open broadcast request and manage the response
-```
-
-```csharp title="IntergridMessageService.cs"
+```csharp title="LifeSupportModule.cs"
 public void SendLifeSupportInformation()
 {
+    IntergridMessageService intergridMessageService = Mother.GetModule<IntergridMessageService>();
     // get h2 levels
     // get o2 levels
     // get power levels
@@ -38,143 +44,115 @@ public void SendLifeSupportInformation()
         { "power", powerLevel }
     };
 
-    Request request = CreateRequest(requestBody);
-    // SendOpenBroadcastRequest(request, OnLifeSupportResponse);
+    Request request = intergridMessageService.CreateRequest(requestBody);
+    
+    intergridMessageService.SendOpenBroadcastRequest(request, OnLifeSupportResponse);
 }
+
+public void OnLifeSupportResponse(Response response) { }   
 ```
 
 
 ### Direct Broadcast
 
-Direct broadcasts go to a specific grid on the antenna network. This is most appropriate for private channels and 1-to-1 interactions.
+Direct broadcasts go to a specific grid on the antenna network. This is most appropriate for private channels and 1-to-1 interactions. Mother will look for the target in the [Almanac](../Almanac.md) and send the request to the grid with the matching EntityId or name.
 
 ```csharp
-// show how to send a direct broadcast request and manage the response
+public void SendLifeSupportInformation()
+{
+    IntergridMessageService intergridMessageService = Mother.GetModule<IntergridMessageService>();
+
+    // get h2 levels
+    // get o2 levels
+    // get power levels
+
+    // create request with custom body
+    Dictionary<string, object> requestBody = new Dictionary<string, object>
+    {
+        { "h2", h2Level },
+        { "o2", o2Level },
+        { "power", powerLevel }
+    };
+
+    Request request = intergridMessageService.CreateRequest(requestBody);
+
+    // the name of the grid we are sending the request to
+    string targetId = "RefuellingPlatform"
+
+    intergridMessageService.SendUnicastRequest(targetId, request, OnLifeSupportResponse);
+}
+
+public void OnLifeSupportResponse(Response response) { }   
 ```
 
-## Response
+## Responses
 
 ### The Response Object
 
-#### Response Types
+The `Response` object should be created from the originating [Request](#the-request-object) object. It contains the response body and header, as well as the status code of the response. It accepts a `Request`, a status code, and an optional body and header.
 
-<!-- table of response codes , names, and description
+```csharp
+Vector3D targetPosition = new Vector3D(1000, 2000, 3000);
 
-| Code | Name | Description |
-| ---- | ---- | ----------- |
-| 200  | OK   | The request was successful |
-| 400  | Bad Request | The request was malformed |
-| 401  | Unauthorized | The request was not authorized | -->
+ Dictionary<string, object> responseBody = new Dictionary<string, object>()
+ {
+     { "x", $"{targetPosition.X}" },
+     { "y", $"{targetPosition.Y}" },
+     { "z", $"{targetPosition.Z}" },
+ };
+
+ return CreateResponse(request, Response.ResponseStatusCodes.OK, responseBody);
+```
+
+### Response Types
+The response object can be used to send back a variety of response types, including:
+
+<!-- table of response codes , names, and description -->
+| Code | Name                  | Description                                  |
+|------|-----------------------|----------------------------------------------|
+| 200  | OK                    | The request was successful.                  |
+| 201  | COMMAND_EXECUTED      | The command was executed successfully.       |
+| 401  | UNAUTHORIZED          | The request was unauthorized.                |
+| 404  | NOT_FOUND             | The requested resource was not found.        |
+| 500  | ERROR                 | An internal server error occurred.           |
+| 600  | DOCKING_APPROVED      | The docking request was approved.
+| 601  | DOCKING_DENIED        | The docking request was denied.              |
+| 602  | DOCKING_COMPLETE      | The docking process was completed successfully. |
+| 603  | DOCKING_CANCELLED     | The docking process was cancelled.           |
+| 604  | CONNECTOR_NOT_FOUND   | The specified connector was not found. |
+
+:::info
+Many of these codes remain unused by act as placeholders for future functionality.
+:::
 
 ### Handing A Response
 
 ## Routes
 
+If you would like your script to handle a request to a specific path, we can register this route in the module's `Boot()` method using the `Router.AddRoute()` method.
 
----
-## Intergrid Communication Service
+```csharp title="MissileGuidanceModule.cs"
+ public override void Boot()
+ {
+    IntergridMessageService intergridMessageService = Mother.GetModule<IntergridMessageService>();
 
-Sending messages between grids is a core capability of Mother, and this can be done in a variety of ways depending on your level of security.
-
-### Sending Open Broadcast
-The most common case is sending an open broadcast to other grids.  This is most appropriate for public channels.  An open broadcast will be sent to all grids on the antenna network channel.
-
-Let's look at how we `ping` other grids:
-
-```csharp
-# IntergridMessageService.cs
-
-public void Ping()
-{
-    Vector3D currentPosition = Mother.Grid.GetPosition();
-
-    Dictionary<string, object> requestBody = new Dictionary<string, object>();
-    Dictionary<string, object> requestHeader = new Dictionary<string, object>
-    {
-        { "OriginId", $"{Mother.Id}" },
-        { "OriginName", Mother.Grid.CustomName },
-        { "Path", "ping" },
-        { "x", $"{currentPosition.X}" },
-        { "y", $"{currentPosition.Y}" },
-        { "z", $"{currentPosition.Z}" },
-    };
-
-    Request request = new Request(requestBody, requestHeader);
-
-    SendOpenBroadcastRequest(request, OnPingResponse);
-}
-```
-
-First we create the Request with the relevant payload - Body, and Header. Then we send it via open broadcast. Finally, we can set a callback to be run when a Response has been received to our outgoing message.
-
-```csharp
-
-void OnPingResponse(Response response)
-{
-    // Update Record in Almanac
-    AlmanacRecord almanacRecord = new AlmanacRecord(
-        response.BString("Id"),
-        "grid",
-        new Vector3D(
-            response.BDouble("x"),
-            response.BDouble("y"),
-            response.BDouble("z")
-        )
+    // Register Routes
+    intergridMessageService.Router.AddRoute(
+        "initiate-launch", 
+        request => HandleInitiateLaunchRequest(request)
     );
-
-    almanacRecord.AddNickname(response.HString("OriginName"));
-
-    Mother.Almanac.AddRecord(almanacRecord);
-}
-```
-### Sending a direct message
-If you would like to send a direct message to another grid, this can be done via unicast. This is used when sending a remote command to another grid:
-
-```csharp
-# IntergridMessageService.cs
-public void SendRequestFromRoutine(string target, TerminalRoutine routine)
-{
-    // get target grid from Almanac
-    Grid grid = Mother.Almanac.GetGridByIdentifier(target);
-
-    if (grid != null)
-    {
-        Request request = BuildCommandRequest(routine.UnpackedRoutineString);
-
-        request.To(grid);
-
-        SendUnicastRequest(grid.Id, request, null);
-    }
-}
+ }
 ```
 
-### Sending Encrypted Messages
+## Encrypting Messages
 When playing in a PvP environment, it quickly becomes important to secure your communications so that other players cannot remotely command your grids running Mother.  To do this, we can use Mother's built in encryption. Let's take a look at how we are using this during message transmission:
 
-```csharp
-# IntergridMessageService.cs
+:::tip
+To encrypt messages, ensure your `security > encrypt_messages` setting is set to `true` and that you have set a passcode in the programmable block's Custom Data.
+:::
 
-public void SendUnicastRequest(long TargetId, IntergridMessageObject message, Action<IntergridMessageObject> onResponse)
-{
-    // Register the message callback
-    activeRequests[$"{message.Header["Id"]}"] = onResponse;
-
-    // encrypt the message if necessary
-    string outgoingMessage = Encryption ?
-        Mother.Security.Encrypt(message.Serialize()) :
-        message.Serialize();
-
-    // Send the message via unicast over the "default"
-    bool success = Mother.IGC.SendUnicastMessage(TargetId, "default", outgoingMessage);
-
-    if (!success)
-    {
-        Mother.EventBus.Emit(new RequestFailedEvent(), null);
-    }
-    else
-    {
-        Mother.EventBus.Emit(new RequestSentEvent(), null);
-    }
-}
+```ini title="Mother > Custom Data"
+[security]
+encrypt_messages=true
+passcodes=Sup3rSecr3tP@ssw0rd
 ```
-### Using Channels

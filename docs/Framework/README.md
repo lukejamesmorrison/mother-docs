@@ -5,10 +5,10 @@ Mother Core is a framework for developing custom Programmable Block scripts for 
 
 Get started with:
 
-1. [Create an Extension Module](./Developer/BuildingAModule/BuildingAModule.md)
-2. [Creating a Custom Terminal Command](./Developer/BuildingAModule/BuildingAModule.md#commands)
-3. [Sending and Receiving Messages](./Developer/CoreModules/IntergridMessageService.md) 
-4. Schedule and Delay Actions
+1. [Create a Module](./Developer/BuildingAModule/BuildingAModule.md)
+2. [Creat a Command](./Developer/BuildingAModule/BuildingAModule.md#creating-a-command)
+3. [Sending a Message](./Developer/CoreModules/IntergridMessageService.md) 
+4. [Schedule and Delay Actions](./Developer/CoreModules/Clock.md)
 
 ## Overview
 

@@ -15,7 +15,7 @@ Extension modules must implement the `IExtensionModule` interface. It is recomme
 
 ### Registering a Module
 
-Mother makes it easy to register Extension Modules via the `RegisterModule` or `RegisterModules` methods. This ensure our module is accessible when Mother boots. We register the module in the `Program` constructor of your script.
+Mother makes it easy to register Extension Modules via the `RegisterModule()` or `RegisterModules()` methods. This ensure our module is accessible when Mother boots. We register the module in the `Program` constructor of your script.
 
 Let's create the ``MissileGuidanceModule`` module.
 
@@ -107,7 +107,7 @@ class MissileGuidanceModule : BaseExtensionModule
 
 ## Terminal Commands
 
-Custom terminal commands are easily registered from within modules.Commands implement the `IModuleCommand` interface and are registered in the `Boot()` method of the module.
+Custom terminal commands are easily registered from within modules. Commands implement the `IModuleCommand` interface and are registered in the `Boot()` method of the module.
 
 ### Creating a Command
 
@@ -195,7 +195,7 @@ public class LaunchCommand : BaseModuleCommand
 ```
 
 ### Registering a Command
-To register a command, we use `RegisterCommand()` method. We define it in the `Boot()` method of the parent module.  This method accepts an instance of the module to allow access to its specialized methods.
+To register a command, we use the `RegisterCommand()` method. We define it in the `Boot()` method of the parent module.  This method can accept an instance of the module to allow access to its specialized methods from within the command.
 
 ```csharp title="MissileGuidanceModule.cs"
 public class MissileGuidanceModule : BaseExtensionModule
@@ -262,7 +262,7 @@ Let's image we have a `WarheadModule` that needs to arm the warhead when a missi
             ├── MissileLaunchedEvent.cs
 ```
 
-First we need to **subscibe** to this event when our module boots. Then we can override the `HandleEvent()` method to handle the event when it is emitted by another module.
+First we need to **subscribe** to this event when our module boots. Then we can override the `HandleEvent()` method to handle the event when it is emitted.
 
 ```csharp title="WarheadModule.cs"
 public class WarheadModule : BaseExtensionModule
@@ -291,13 +291,13 @@ public class WarheadModule : BaseExtensionModule
 
 ### Getting Blocks From the Grid
 
-The [Block Catalogue](../CoreModules/BlockCatalogue.md) makes a ledger of all blocks on the current grid during boot. his allows us to access these blocks more efficiency when updated via commands or events. 
+The [Block Catalogue](../CoreModules/BlockCatalogue.md) makes a ledger of all blocks on the current grid during boot. This allows us to access these blocks more efficiency when updated via commands or events. 
 
 ::: important
 Mother treats all blocks connected via hinges, rotors, and pistons as a single **construct**. It is fully compatible with subgrids and will not interfere with blocks on other grids via connector connections (ie. a docked ship). This means that your automations will not interfere with other ships when connected via connectors.
 :::
 
-Any `IMyTerminalBlock` on your construct can be accessed via the `GetBlocks()` method. It accepts a block type parameter, which is the type of block you want to get. The method accepts an optional action for filtering the retrived blocks. 
+Any `IMyTerminalBlock` on your construct can be accessed via the `GetBlocks()` method. It accepts a block type parameter, which is the type of block you want to get. The method accepts an optional action for filtering the retrieved blocks. 
 
 ::: tip
 See Malware's [API Index](https://github.com/malware-dev/MDK-SE/wiki/Api-Index) for more information on block types.
@@ -397,7 +397,6 @@ void LaunchMissile()
     
     // logic to start thrusters, engage autopilot, etc...
 }
-
 ```
 
 ::: note
@@ -408,7 +407,7 @@ The [hinge/rotate](../../../IngameScript/Modules/Extension/HingeModule.md#rotate
 All blocks on the grid can also be monitored for state changes.  The state value of blocks varies by the block type, so we will define the property to watch, and define an action to handle the state change when it occurs. We do this in the `Boot()` method of our module:
 
 :::warning
-Use this with capability with caution as this adds more logic per game cycle. Blocks being monitored like this will always be checked for state changes, even if they are not in motion. This is useful for blocks that change state infrequently, such as connectors, doors, and landing gear. 
+Use this capability with caution as this adds more computation per game cycle. Blocks being monitored like this will always be checked for state changes, even if they are not in motion. This is useful for blocks that change state infrequently, such as connectors, doors, and landing gear. 
 :::
 
 ```csharp title="MissileGuidanceModule.cs"
