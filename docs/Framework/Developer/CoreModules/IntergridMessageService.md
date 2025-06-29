@@ -1,9 +1,37 @@
 # Intergrid Message Service
 
+[[toc]]
 
 Mother uses a Request/Response pattern for intergrid communication. Every instance of Mother Core uses this system to share information and enable remote command execution.
 
-[[toc]]
+```mermaid
+%%{
+  init: {
+    'theme': 'base',
+    'themeVariables': {
+        'primaryColor': '#BB2528',
+        'primaryTextColor': '#fff',
+        'primaryBorderColor': '#7C0000',
+        'mainBkg': 'white',
+        'nodeBorder': 'red',
+        'lineColor': 'black',
+        'secondaryColor': '#F2F2F2',
+        'secondaryBorderColor': 'black',
+        'tertiaryColor': '#F2F2F2',
+        'tertiaryBorderColor': 'black'
+    }
+  }
+}%%
+
+graph LR
+    A[Grid A] e1@-->|&nbsp;Request&nbsp;| B[Grid B]
+    linkStyle 0 stroke:#BB2528,stroke-width:2px
+    e1@{animation: slow}
+
+    B e2@-->|&nbsp;Response&nbsp;| A
+    linkStyle 1 stroke:#2196F3,stroke-width:2px
+    e2@{animation: slow}
+```
 
 ## Requests
 
@@ -107,14 +135,28 @@ Vector3D targetPosition = new Vector3D(1000, 2000, 3000);
 ### Response Types
 The response object can be used to send back a variety of response types, including:
 
+#### 200 - General Status Codes
+
 <!-- table of response codes , names, and description -->
 | Code | Name                  | Description                                  |
 |------|-----------------------|----------------------------------------------|
 | 200  | OK                    | The request was successful.                  |
 | 201  | COMMAND_EXECUTED      | The command was executed successfully.       |
+
+#### 400 - Authorization Status Codes
+| Code | Name                  | Description                                  |
+|------|-----------------------|----------------------------------------------|
 | 401  | UNAUTHORIZED          | The request was unauthorized.                |
 | 404  | NOT_FOUND             | The requested resource was not found.        |
+
+#### 500 - Interal Error Codes
+| Code | Name                  | Description                                  |
+|------|-----------------------|----------------------------------------------|
 | 500  | ERROR                 | An internal server error occurred.           |
+
+#### 600 - Docking Status Codes
+| Code | Name                  | Description                                  |
+|------|-----------------------|----------------------------------------------|
 | 600  | DOCKING_APPROVED      | The docking request was approved.
 | 601  | DOCKING_DENIED        | The docking request was denied.              |
 | 602  | DOCKING_COMPLETE      | The docking process was completed successfully. |
