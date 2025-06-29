@@ -17,7 +17,7 @@ In order for grids to interoperate seamlessly, it is important for them to store
 
 ## Viewing the Map
 
-Mother can render a map showing all grids and waypoints in the Almanac. Simply add `[MMAP]` to the end of your LCD name and `Recompile` Mother. The projection will automatically update.
+Mother can render a map showing all grids and waypoints in the Almanac. Simply add `[MMAP]` to the end of your LCD name and reboot Mother using the `boot` command. The projection will automatically update.
 
 You can target individual cockpit screens by targeting a screen index - `[MMAP:1]`.
 
@@ -58,4 +58,4 @@ Mother can identify a grid as Friendly, Neutral, or Foe.  This setting is determ
 
 ## Storing Information
 
-By default, the Almanac uses [LocalStorage](LocalStorage.md) to ensure the positions and information of grids and waypoints are not lost when Mother encounters an error, or the script is reloaded/recompiled.  This means that the Almanac is persistent across reboots of the Programmable Block, preventing the loss of important data over time.
+By default, the Almanac uses [LocalStorage](LocalStorage.md) to ensure the positions and information of grids and waypoints are not lost when Mother encounters an error, or the script is rebooted/recompiled.  This means that the Almanac is persistent across reboots of the Programmable Block, preventing the loss of important data over time.

@@ -1,7 +1,7 @@
 # Light Module
 <!-- [< Modules](../Modules.md) -->
 
-The light module allows the user to control lights on the grid.  Players can now dynamically control light color and blinking. Use this to take your landing pads and warning lights to the next level.
+The light module allows the user to control lights and searchlights on the grid.  Players can now dynamically control light color and blinking. Use this to take your landing pads and warning lights to the next level.
 
 [[toc]]
 
@@ -69,6 +69,32 @@ light/blink SignalLight slow;
 
 # using values and options
 light/blink SignalLight 3 --length=0.3 --offset=0;
+```
+
+### intensity
+
+Set the intensiity of a light or group of lights. The intensity is a value between 0 and 1, where 0 is off and 1 is full brightness.
+
+```
+light/intensity <Light|Group> <Intensity> [--options]
+```
+
+Options
+| Option  | Values     | Unit | Description                                                         |
+| ------- | ---------- | ---- | ------------------------------------------------------------------- |
+| `add` | `true`, `false` | `bool`  | Indicates that the intensity should be *added* to the current intensity. Allows incremental changes to intensity. |
+| `sub` | `true`, `false` | `bool`  | Indicates that the intensity should be *subtracted* from the current intensity. Allows decremental changes to intensity. |
+
+**Example**
+
+Set the intensity of the signal light to 0.5 (50% brightness):
+```bash title="Terminal"
+light/intensity SignalLight 0.5;
+```
+
+Reduce the intensity of the signal light by 0.2 (20%):
+```bash title="Terminal"
+light/intensity SignalLight 0.2 --sub;
 ```
 
 ### reset

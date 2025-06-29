@@ -7,7 +7,7 @@
 Players can easily configure Mother using the Programmable Block's **Custom Data**. Where a Module has configuration settings, they will be documented in the module's section of this documentation.
 
 ::: important
-Don't forget to `Recompile` Mother when you update the Custom Data in the Programmable Block.
+Don't forget to run the`boot` command when you update the Custom Data in the Programmable Block.
 :::
 
 ## Mother OS Configuration

@@ -41,7 +41,7 @@ Mother should be loaded into the Programmable Block. You will know this if you s
 Mother should boot automatically when the script is loaded. Immediately, you will notice that Mother is now running. I recommend you rename your Programmable Block to make it easier to identify - this will help later.
 
 ::: important
-Mother should boot automatically when the script is loaded, otherwise pressing the `Recompile` button will ensure Mother completes the boot process. Running `help` in the Programmable Block terminal will show all available commands.  
+Mother should boot automatically when the script is loaded, otherwise running the `boot` command, or pressing the `Recompile` button will ensure Mother completes the boot process. Running `help` in the Programmable Block terminal will show all available commands.  
 :::
 
 ![Verify Mother is running](Assets/install-5.png)

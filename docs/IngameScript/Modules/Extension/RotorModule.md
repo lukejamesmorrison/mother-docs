@@ -14,11 +14,19 @@ rotor/rotate <Rotor|Group> <Angle> [--options]
 Options
 | Option  | Values     | Unit | Description                                                                             |
 | ------- | ---------- | ---- | -------------------------------------------------------------------                     |
-| `speed` | -5.0 - 5.0 | RPM  | Set the speed of the rotor. Negative values will reverse the rotor. Default is 1 RPM.   |
+| `speed` | [-5.0, 5.0] | RPM  | Set the speed of the rotor. Negative values will reverse the hinge. Default is 1 RPM. |
+| `add` | `true`, `false` | `bool`  | Indicates that the provided angle should be *added* to the current angle. Allows incremental changes to angle. |
+| `sub` | `true`, `false` | `bool`  | Indicates that the provided angle should be *subtracted* from the current angle. Allows decremental changes to angle. |
 
 **Example**
+Set the antenna rotor to 90 degrees with a speed of 2.5 RPM:
 ```bash title="Terminal"
 rotor/rotate AntennaRotor 90 --speed=2.5;
+```
+
+Increase the angle of the antenna rotor by 45 degrees:
+```bash title="Terminal"
+hinge/rotate LandingGearHinge 45 --add;
 ```
 
 ### lock
@@ -63,15 +71,16 @@ rotor/speed <Rotor|Group> <Speed> <Options>
 Options
 | Option  | Values     | Unit | Description                                                         |
 | ------- | ---------- | ---- | ------------------------------------------------------------------- |
-| `add` |  |   | Indicates that the provided speed should be *added* to the current speed. Allows increment speed changes while in motion. |
-| `sub` |  |   | Indicates that the provided speed should be *subtracted* from the current speed. Allows decremental speed changes while in motion. |
+| `free`  | `true`, `false` | `bool `    | Indicates whether the rotor should be free to rotate or not. Default is `false`. |
+| `add` | `true`, `false` | `bool`  | Indicates that the provided speed should be *added* to the current speed. Allows incremental changes to speed. |
+| `sub` | `true`, `false` | `bool`  | Indicates that the provided speed should be *subtracted* from the current speed. Allows decremental changes to speed. |
 
 **Example**
 
-Set speed to 2 RPM:
+Set speed to 2 RPM and allow rotor to rotate freely:
 
 ```bash title="Terminal"
-rotor/speed AntennaRotor 2;
+rotor/speed AntennaRotor 2 --free;
 ```
 
 Increase speed by 2.5 RPM:

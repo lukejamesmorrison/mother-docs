@@ -16,11 +16,19 @@ hinge/rotate <Hinge|Group> <Angle> [--options]
 Options
 | Option  | Values     | Unit | Description                                                         |
 | ------- | ---------- | ---- | ------------------------------------------------------------------- |
-| `speed` | -5.0 - 5.0 | RPM  | Set the speed of the hinge. Negative values will reverse the hinge. Default is 1 RPM. |
+| `speed` | [-5.0, 5.0] | RPM  | Set the speed of the hinge. Negative values will reverse the hinge. Default is 1 RPM. |
+| `add` | `true`, `false` | `bool`  | Indicates that the provided angle should be *added* to the current angle. Allows incremental changes to angle. |
+| `sub` | `true`, `false` | `bool`  | Indicates that the provided angle should be *subtracted* from the current angle. Allows decremental changes to angle. |
 
 **Example**
+Rotate the landing gear hinge to 90 degrees.
 ```bash title="Terminal"
 hinge/rotate LandingGearHinge 90;
+```
+
+Reduce the angle of the landing gear hinge by 10 degrees.
+```bash title="Terminal"
+hinge/rotate LandingGearHinge 10 --sub;
 ```
 
 ### lock
@@ -69,14 +77,15 @@ hinge/speed <hinge|Group> <Speed> <Options>
 Options
 | Option  | Values     | Unit | Description                                                         |
 | ------- | ---------- | ---- | ------------------------------------------------------------------- |
-| `add` |  |   | Indicates that the provided speed should be *added* to the current speed. Allows increment speed changes while in motion. |
-| `sub` |  |   | Indicates that the provided speed should be *subtracted* from the current speed. Allows decremental speed changes while in motion. |
+| `free`  | `true`, `false` | `bool `    | Indicates whether the hinge should be free to rotate or not. Default is `false`. |
+| `add` | `true`, `false` | `bool`  | Indicates that the provided speed should be *added* to the current speed. Allows incremental changes to speed. |
+| `sub` | `true`, `false` | `bool`  | Indicates that the provided speed should be *subtracted* from the current speed. Allows decremental changes to speed. |
 
 **Example**
 
-Set speed to 2 RPM:
+Set speed to 2 RPM and allow hinge to rotate freely:
 ```bash title="Terminal"
-hinge/speed LandingGearHinge 2;
+hinge/speed LandingGearHinge 2 --free;
 ```
 
 Increase speed by 2.5 RPM:

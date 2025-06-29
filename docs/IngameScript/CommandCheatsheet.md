@@ -74,6 +74,13 @@ block/off <Block|Group> [--options]
 
 
 ## Core
+
+### boot
+Run the Mother OS boot sequence. This is automatically run when the Programmable Block is started, but can be run manually to reset the system.
+```bash
+boot
+```
+
 ### help
 Print all commands in the Programmable Block terminal.
 ```bash
@@ -353,10 +360,11 @@ hinge/rotate <Hinge|Group> <Angle> [--options]
 ```
 
 Options
-<!-- table of cli options -->
 | Option  | Values     | Unit | Description                                                         |
 | ------- | ---------- | ---- | ------------------------------------------------------------------- |
-| `speed` | -5.0 - 5.0 | RPM  | Set the speed of the hinge. Negative values will reverse the hinge. Default is 1 RPM. |
+| `speed` | [-5.0, 5.0] | RPM  | Set the speed of the hinge. Negative values will reverse the hinge. Default is 1 RPM. |
+| `add` | `true`, `false` | `bool`  | Indicates that the provided angle should be *added* to the current angle. Allows incremental changes to angle. |
+| `sub` | `true`, `false` | `bool`  | Indicates that the provided angle should be *subtracted* from the current angle. Allows decremental changes to angle. |
 
 ### hinge/lock
 Lock a hinge or group of hinges.
@@ -390,8 +398,9 @@ hinge/speed <hinge|Group> <Speed> <Options>
 Options
 | Option  | Values     | Unit | Description                                                         |
 | ------- | ---------- | ---- | ------------------------------------------------------------------- |
-| `add` |  |   | Indicates that the provided speed should be *added* to the current speed. Allows increment speed changes while in motion. |
-| `sub` |  |   | Indicates that the provided speed should be *subtracted* from the current speed. Allows decremental speed changes while in motion. |
+| `free`  | `true`, `false` | `bool `    | Indicates whether the hinge should be free to rotate or not. Default is `false`. |
+| `add` | `true`, `false` | `bool`  | Indicates that the provided speed should be *added* to the current speed. Allows incremental changes to speed. |
+| `sub` | `true`, `false` | `bool`  | Indicates that the provided speed should be *subtracted* from the current speed. Allows decremental changes to speed. |
 
 ## Landing Gear
 [Landing Gear Module](Modules/Extension/LandingGearModule.md)
@@ -426,7 +435,6 @@ gear/auto <LandingGear|Group> <true|false>
 
 ## Lights
 [Light Module](Modules/Extension/LightModule.md)
-
 
 ### light/color
 
@@ -492,6 +500,19 @@ light/blink SignalLight slow;
 # using values and options
 light/blink SignalLight 3 --length=0.3 --offset=0;
 ```
+### light/intensity
+
+Set the intensiity of a light or group of lights. The intensity is a value between 0 and 1, where 0 is off and 1 is full brightness.
+
+```
+light/intensity <Light|Group> <Intensity> [--options]
+```
+
+Options
+| Option  | Values     | Unit | Description                                                         |
+| ------- | ---------- | ---- | ------------------------------------------------------------------- |
+| `add` | `true`, `false` | `bool`  | Indicates that the intensity should be *added* to the current intensity. Allows incremental changes to intensity. |
+| `sub` | `true`, `false` | `bool`  | Indicates that the intensity should be *subtracted* from the current intensity. Allows decremental changes to intensity. |
 
 ### light/reset
 
@@ -527,11 +548,14 @@ Rotate a rotor or group of rotors to a specific angle between -360 and 360 degre
 ```
 rotor/rotate <Rotor|Group> <Angle> [--options]
 ```
+
 Options
-<!-- table of cli options -->
-| Option  | Values     | Unit | Description                                                         |
-| ------- | ---------- | ---- | ------------------------------------------------------------------- |
-| `speed` | -5.0 - 5.0 | RPM  | Set the speed of the rotor. Negative values will reverse the rotor. Default is 1 RPM. |
+| Option  | Values     | Unit | Description                                                                             |
+| ------- | ---------- | ---- | -------------------------------------------------------------------                     |
+| `speed` | [-5.0, 5.0] | RPM  | Set the speed of the rotor. Negative values will reverse the hinge. Default is 1 RPM. |
+| `add` | `true`, `false` | `bool`  | Indicates that the provided angle should be *added* to the current angle. Allows incremental changes to angle. |
+| `sub` | `true`, `false` | `bool`  | Indicates that the provided angle should be *subtracted* from the current angle. Allows decremental changes to angle. |
+
 
 ### rotor/lock
 Lock a rotor or group of rotors.
@@ -565,8 +589,10 @@ rotor/speed <Rotor|Group> <Speed> <Options>
 Options
 | Option  | Values     | Unit | Description                                                         |
 | ------- | ---------- | ---- | ------------------------------------------------------------------- |
-| `add` |  |   | Indicates that the provided speed should be *added* to the current speed. Allows increment speed changes while in motion. |
-| `sub` |  |   | Indicates that the provided speed should be *subtracted* from the current speed. Allows decremental speed changes while in motion. |
+| `free`  | `true`, `false` | `bool `    | Indicates whether the rotor should be free to rotate or not. Default is `false`. |
+| `add` | `true`, `false` | `bool`  | Indicates that the provided speed should be *added* to the current speed. Allows incremental changes to speed. |
+| `sub` | `true`, `false` | `bool`  | Indicates that the provided speed should be *subtracted* from the current speed. Allows decremental changes to speed. |
+
 
 ## Pistons
 [Piston Module](Modules/Extension/PistonModule.md)
@@ -581,6 +607,12 @@ piston/distance <Piston> <Distance> [--options]
 Small grid pistons have a maximum distance of **2 meters**, while large grid pistons have a maximum distance of **10 meters**.
 :::
 
+Options
+| Option  | Values     | Unit | Description                                                         |
+| ------- | ---------- | ---- | ------------------------------------------------------------------- |
+| `add` | `true`, `false` | `bool`  | Indicates that the distance should be *added* to the current distance. Allows incremental changes to distance. |
+| `sub` | `true`, `false` | `bool`  | Indicates that the distance should be *subtracted* from the current distance. Allows decremental changes to distance. |
+
 ### piston/stop
 Stop a piston while in motion. Note that pistons do not lock like a Rotor or Hinge.
 ```
@@ -593,7 +625,7 @@ Reset a piston to its original position (0 meters).
 piston/reset <Piston>
 ```
 
-### piston/speed
+### speed
 Set the speed of a piston or group of pistons in m/s.
 ```
 piston/speed <piston|Group> <Speed> <Options>
@@ -602,8 +634,8 @@ piston/speed <piston|Group> <Speed> <Options>
 Options
 | Option  | Values     | Unit | Description                                                         |
 | ------- | ---------- | ---- | ------------------------------------------------------------------- |
-| `add` |  |   | Indicates that the provided speed should be *added* to the current speed. Allows increment speed changes while in motion. |
-| `sub` |  |   | Indicates that the provided speed should be *subtracted* from the current speed. Allows decremental speed changes while in motion. |
+| `add` | `true`, `false` | `bool`  | Indicates that the provided speed should be *added* to the current speed. Allows incremental changes to speed. |
+| `sub` | `true`, `false` | `bool`  | Indicates that the provided speed should be *subtracted* from the current speed. Allows decremental changes to speed. |
 
 
 ## Programmable Block

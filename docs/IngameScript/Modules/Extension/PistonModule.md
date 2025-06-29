@@ -16,9 +16,22 @@ piston/distance <Piston|Group> <Distance> [--options]
 Small grid pistons have a maximum distance of 2 meters, while large grid pistons have a maximum distance of 10 meters.
 :::
 
+Options
+| Option  | Values     | Unit | Description                                                         |
+| ------- | ---------- | ---- | ------------------------------------------------------------------- |
+| `add` | `true`, `false` | `bool`  | Indicates that the distance should be *added* to the current distance. Allows incremental changes to distance. |
+| `sub` | `true`, `false` | `bool`  | Indicates that the distance should be *subtracted* from the current distance. Allows decremental changes to distance. |
+
 **Example**
+
+Extend the turret pistons to 5 meters:
 ```bash title="Terminal"
 piston/distance TurretPistons 5;
+```
+
+Decrease the distance of the turret pistons by 1 meter:
+```bash title="Terminal"
+piston/distance TurretPistons 1 --sub; 
 ```
 
 ### stop
@@ -52,8 +65,8 @@ piston/speed <piston|Group> <Speed> <Options>
 Options
 | Option  | Values     | Unit | Description                                                         |
 | ------- | ---------- | ---- | ------------------------------------------------------------------- |
-| `add` |  |   | Indicates that the provided speed should be *added* to the current speed. Allows increment speed changes while in motion. |
-| `sub` |  |   | Indicates that the provided speed should be *subtracted* from the current speed. Allows decremental speed changes while in motion. |
+| `add` | `true`, `false` | `bool`  | Indicates that the provided speed should be *added* to the current speed. Allows incremental changes to speed. |
+| `sub` | `true`, `false` | `bool`  | Indicates that the provided speed should be *subtracted* from the current speed. Allows decremental changes to speed. |
 
 #### Examples
 Set speed to 0.5 m/s:

@@ -1,6 +1,19 @@
 # Upgrade Guide
 
 [[toc]]
+
+## 0.2.12 -> 0.2.13
+🕓 0 mins
+
+This update makes major changes to the boot process but does not require any changes to your existing scripts. 
+
+Players can now use the `boot` command to run the Mother OS boot sequence. This is automatically run when the Programmable Block is started, but can be run manually to reset the system. 
+
+Players can also increment and decrement inputs for various commands like `hinge/rotate` and `piston/distance` using the `add` and `sub` command options.
+
+[![v0.2.13 Video](https://img.youtube.com/vi/cAdQMMQhYrQ/0.jpg)](https://youtu.be/cAdQMMQhYrQ)
+
+
 ## 0.2.11 -> 0.2.12
 🕓 5 mins
 
