@@ -5,8 +5,8 @@ Mother Core is a framework for developing custom Programmable Block scripts for 
 
 Get started with:
 
-1. [Create an Extension Module](./Developer/ExtensionModules/ExtensionModules.md)
-2. [Creating a Custom Terminal Command](./Developer/ExtensionModules/ExtensionModules.md#commands)
+1. [Create an Extension Module](./Developer/BuildingAModule/BuildingAModule.md)
+2. [Creating a Custom Terminal Command](./Developer/BuildingAModule/BuildingAModule.md#commands)
 3. [Sending and Receiving Messages](./Developer/CoreModules/IntergridMessageService.md) 
 4. Schedule and Delay Actions
 
@@ -34,19 +34,37 @@ Scripts built with Mother Core depend on the [Program](https://github.com/malwar
 }%%
 
 graph TD
-    Mother -->|Depends on| Program["Program"]
-    Mother["Mother OS"] -->|Depends on| CoreModule["Core Modules"]
-    Mother -->|Composed of| ExtensionModule["Extension Modules"]
+    MotherCore["Mother Core"] -->|Depends on| Program["Program"]
+    MotherCore["Mother Core"] -->|Composed of| CoreModule["Core Modules"]
+    Mother["Custom Script<br>(ie. Mother OS)"] -->|Depends on| MotherCore["Mother Core"]
 
-    subgraph CoreModule["Core Module"]
-    end
+    Mother -->|Composed of| ExtensionModule["Extension Module<br>(ie. Piston Module)"]
 
-    subgraph ExtensionModule["Extension Module"]
+    subgraph CoreModule["Core Module<br>(ie. Almanac)"]
     end
 ```
 
+## Recommended File Structure
+
+We treat modules as the primary unit of functionality.  Therefore modules should in most cases manage their own commands and events.  This allows modules to be self-contained and reusable across different scripts. Mother Core and [Mother OS](../IngameScript/IngameScript.md) observe the following file structure:
+
+```plaintext title="File Structure"
+/
+├── Program.cs
+├── thumb.png
+├── Modules/
+    ├── MissileGuidanceModule/
+        ├── MissileGuidanceModule.cs
+        ├── Commands/
+            ├── LaunchCommand.cs
+            ├── DetonateCommand.cs
+        ├── Events/
+            ├── MissileLaunchedEvent.cs
+            ├── MissileDetonatingEvent.cs
+```
+
 ## The Extension Module
-Developers can add new functionality to their program by creating an [Extension Module](./Developer/ExtensionModules/ExtensionModules.md). These modules are registered at boot time. They may access all other modules directly and respond to changes when other modules emit events.
+Developers can add new functionality to their program by creating an [Extension Module](./Developer/BuildingAModule/BuildingAModule.md). These modules are registered at boot time. They may access all other modules directly and respond to changes when other modules emit events.
 
 ```csharp title="MissileGuidanceModule.cs"
 class MissileGuidanceModule : BaseExtensionModule
@@ -57,7 +75,7 @@ class MissileGuidanceModule : BaseExtensionModule
         // Reference important modules
         FlightPlanningModule = Mother.GetModule<FlightPlanningModule>();
 
-        // Register custom terminal commands
+        // Register custom terminal commands like 'detonate' and 'launch'
         RegisterCommand(new LaunchCommand(this));
         RegisterCommand(new DetonateCommand(this));
 
@@ -65,7 +83,7 @@ class MissileGuidanceModule : BaseExtensionModule
         Thrusters = Mother.GetModule<BlockCatalogue>().GetBlocks<IMyThrust>();
 
         // Listen for events
-        Subscribe<ConnectorUnlockedEvent>();
+        Subscribe<MissileLaunchedEvent>();
     }
 
     // Run module every program cycle
@@ -73,5 +91,8 @@ class MissileGuidanceModule : BaseExtensionModule
     {
         UpdateThrusters()
     }
+
+    // Do something...
+    void UpdateThrusters() { }
 }
 ```

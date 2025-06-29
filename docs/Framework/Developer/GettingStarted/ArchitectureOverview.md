@@ -6,14 +6,23 @@ Mother requires a **Remote Control block** to function.  This allows us to lever
 
 [[toc]]
 <!-- 1. Domain diagram showing commands/routines, events & general lifecyle, remote control block -->
-
+ 
 ## Entity Diagram
+
+Let's look at the entity diagram for Mother OS which is the same as your custom script.  This shows the relationship between Mother OS, Mother Core, and the Program.  The Program is the entry point for all scripts.
+
+  <!-- MotherOS["Mother OS"] e1@==> |Depends on| MotherCore
+    e1@{animation: slow} -->
+
 
 
 <!-- https://mermaid.js.org/config/theming.html#theme-variables -->
 ```mermaid
 %%{
   init: {
+    'flowchart': {
+        'defaultRenderer': 'elk'
+    },
     'theme': 'base',
     'themeVariables': {
         'primaryColor': '#BB2528',
@@ -29,44 +38,45 @@ Mother requires a **Remote Control block** to function.  This allows us to lever
     }
   }
 }%%
+graph RL
+    MotherOS["Mother OS"]-->|Depends on| MotherCore
+    MotherCore["Mother Core"] -->|Depends on| Program["Program"]
 
-graph LR
-    MotherOS["Mother OS"]-->|Depends on| Program
     MotherOS -->|Composed of| IExtensionModule["IExtensionModule"]
-    MotherOS -->|Composed of| ICoreModule["ICoreModule"]
-
+    MotherCore -->|Composed of| ICoreModule["ICoreModule"]
+    
     ICoreModule .-> IModule["IModule"]
     IExtensionModule .-> IModule["IModule"]
 
-
-
-
-    subgraph ICoreModule
-        CM2["CommandBus"]
-        CM3[<a href='./Developer/CoreModules/Almanac.html' style='color: black; text-decoration: none'>Almanac</a>]
-        CM4["..."]
-
+    subgraph Core Modules
+        direction BT
+        BaseCoreModule .-> ICoreModule["ICoreModule"]
+        CM2["CommandBus"] .-> BaseCoreModule
+        CM3[<a href='./Developer/CoreModules/Almanac.html' style='color: black; text-decoration: none'>Almanac</a>] .-> BaseCoreModule
+        CM4["Storage"] .-> BaseCoreModule
     end
 
-    subgraph IExtensionModule
-        EM1["PistonModule"]
-        EM3["LightModule"]
-        EM4["..."]
+    subgraph Extension Modules
+        direction LR
+        BaseExtensionModule .-> IExtensionModule["IExtensionModule"]
+        EM1["<a href='/mother-docs/IngameScript/Modules/Extension/PistonModule.md' style='color: black; text-decoration: none'>Piston Module</a>"] .-> BaseExtensionModule
+        EM3["<a href='/mother-docs/IngameScript/Modules/Extension/LightModule.md' style='color: black; text-decoration: none'>Light Module</a>"] .-> BaseExtensionModule
+        EM4["..."] .-> BaseExtensionModule
     end
 
-
-    Program[<a href='https://github.com/malware-dev/MDK-SE/wiki/Sandbox.ModAPI.Ingame.MyGridProgram' target="_blank" style='color: black; text-decoration: none'>Program</a>]
-    Program --> PM1[<a href='https://github.com/malware-dev/MDK-SE/wiki/Sandbox.ModAPI.Ingame.IMyIntergridCommunicationSystem' target="_blank" style='color: black; text-decoration: none'>IGC</a>]
-    Program --> PM3[<a href='https://github.com/malware-dev/MDK-SE/wiki/Sandbox.ModAPI.Ingame.IMyGridTerminalSystem' target="_blank" style='color: black; text-decoration: none'>GridTerminalSystem</a>]
-    Program --> PM4["..."]
+    subgraph Programmable Block API
+        direction TB
+       Program[<a href='https://github.com/malware-dev/MDK-SE/wiki/Sandbox.ModAPI.Ingame.MyGridProgram' target="_blank" style='color: black; text-decoration: none'>Program</a>]
+        Program --> PM1[<a href='https://github.com/malware-dev/MDK-SE/wiki/Sandbox.ModAPI.Ingame.IMyIntergridCommunicationSystem' target="_blank" style='color: black; text-decoration: none'>IGC</a>]
+        Program --> PM3[<a href='https://github.com/malware-dev/MDK-SE/wiki/Sandbox.ModAPI.Ingame.IMyGridTerminalSystem' target="_blank" style='color: black; text-decoration: none'>GridTerminalSystem</a>]
+        Program --> PM4["Storage"]
+    end 
 ```
 
 ## Program Lifecycle
 
-Mother runs at a default speed of 6 ticks per second (Update10). This tolerance should be acceptable for most use cases. Each program cycle we *run* Mother.
-
-### Booting the Program
-We boot Mother when instatiating the Program.  We instantiate Mother and register the extension modules we wish to include.  Finally, we boot Mother to ensure all of the modules are configured and ready to run.
+### Setting up Mother   
+To use Mother, we need to create a `Mother` instance in our `Program` class. This is done in the constructor. We then register any extension modules we want to use. We simply create a Mother instance with access to the Program, and register the extension modules we wish to include.
 
 ```csharp title="Program.cs"
 partial class Program : MyGridProgram
@@ -75,7 +85,7 @@ partial class Program : MyGridProgram
 
     public Program()
     {
-        // Instantiate Mother
+        // Create Mother instance
         mother = new Mother(this);
 
         // Register Extension Modules
@@ -84,20 +94,27 @@ partial class Program : MyGridProgram
             new FlightControlModule(mother),
             ...
         });
-
-        // Boot Mother
-        mother.Boot();
     }
 }
 ```
 
 ::: important
-Extension Modules must conform the the `IExtensionModule` interface.
+Extension Modules must conform the the `IExtensionModule` interface. It is recommend that you use the `BaseExtensionModule` class as a base class to leverage a library of useful helpers.
 :::
 
-### Running the Program each cycle
+### Booting the Script
+Mother boots automatically when the script compiles.  Otherwise, the `Boot()` method can be called to force the boot process. Mother will boot all Core Modules, and then all Extension Modules in the order they were registered.
 
-The `Run` method is responsible for running all Extension Modules, managing incoming communications, and running scheduled actions. See [Clock](../CoreModules/Clock.md) for more information on scheduling and delaying actions. We ensure the program calls this method
+### Running the Script Each Cycle
+
+The `Run()` method is responsible for running all Modules, managing communications, and executing scheduled actions. See the [Clock](../CoreModules/Clock.md) for more information on scheduling and delaying actions. We ensure the program calls this method within the `Main()` method to delegate all further action to Mother.
+
+:::info
+Mother runs at a default speed of **~6 ticks/second**, or **every 0.166 seconds** . This tolerance should be acceptable for most use cases. Each cycle, Mother's `Run()` method is called which will then run all registered modules.
+
+**UpdateType = UpdateType.Update10**
+:::
+
 
 ```csharp title="Program.cs"
 partial class Program : MyGridProgram
@@ -110,8 +127,6 @@ partial class Program : MyGridProgram
     }
 }
 ```
-
-
 
 ```mermaid
 %%{
@@ -133,46 +148,38 @@ partial class Program : MyGridProgram
 }%%
 
 graph TD
-    A[Run] -->|&nbsp;Determine updateSource&nbsp;| B{updateSource Type?}
-    B -->|&nbsp;Terminal, Trigger, Script&nbsp;| C[CommandBus]
-    B -->|&nbsp;IGC&nbsp;| D[IntergridMessageService]
-    B -->|&nbsp;Update10&nbsp;| E[Clock]
-```
+    A[Run] e1@-->|&nbsp;Determine updateSource&nbsp;| B{updateSource Type?}
+    linkStyle 0 stroke-width:2px
+    e1@{animation: slow}
 
-```csharp title="Mother.cs"
-public void Run(string argument, UpdateType updateSource)
-{
-    if (
-        !string.IsNullOrWhiteSpace(argument) 
-        && (updateSource == UpdateType.Terminal || updateSource == UpdateType.Trigger || updateSource == UpdateType.Script)
-    )
-    {
-        GetModule<CommandBus>().RunTerminalCommand(argument);
-        GetModule<Terminal>().UpdateTerminal();
-        return;
-    }
+    B e2@-->|&nbsp;Terminal, Trigger, Script&nbsp;| C[CommandBus]
+    linkStyle 1 stroke:#BB2528,stroke-width:2px
+    e2@{animation: slow}
 
-    if (updateSource == UpdateType.IGC)
-    {
-        GetModule<IntergridMessageService>().HandleIncomingIGCMessages();
-        return;
-    }
+    B e3@-->|&nbsp;IGC&nbsp;| D[IntergridMessageService]
+    linkStyle 2 stroke:#4CAF50,stroke-width:2px
+    e3@{animation: slow}
 
-    // Otherwise we run all modules and assume a runtime update.
-    RunModules();
-}
-```
-
-```csharp title="Mother.cs"
-void RunModules()
-{
-    AllModules.Values.ToList().ForEach(module => module.Run());
-}
+    B e4@-->|&nbsp;Update10&nbsp;| E[Clock]
+    linkStyle 3 stroke:#2196F3,stroke-width:2px
+    e4@{animation: slow}
 ```
 
 ## Command Lifecycle
 
-When a player runs a command, it is passed to the [Command Bus](../CoreModules/CommandBus.md).  The Command Bus then executes the command on the appropriate module.  The module may then emit an event, which is received by subscribed modules.
+Commands may be triggered via any one of the following methods:
+
+|Method | Description |
+|---|---|
+| **Terminal** | Via the programmable block terminal. |
+| **Toolbar Action** | Via the programmable block toolbar using the `Run` action. |
+| **Button** | Via a button on a control panel that triggers the programmable block's `Run` action. |
+| **Timer Block** | Via a timer block that triggers the programmable block's `Run` action. |
+| **Event Controller** | Via a button on a control panel that triggers the programmable block's `Run` action. |
+| **Block Hooks** | Via a block's hooks triggered by state change. |
+| **Remote Message** | Via a message sent from
+
+When a command is trigger it is passed to the [Command Bus](../CoreModules/CommandBus.md).  The Command Bus then executes the command on the appropriate module.
 
 ```mermaid
 %%{
@@ -193,7 +200,7 @@ When a player runs a command, it is passed to the [Command Bus](../CoreModules/C
 }%%
 
 sequenceDiagram
-    participant Player
+    participant Player/Script
     participant CommandBus
     participant ModuleA
     participant EventBus
@@ -201,11 +208,11 @@ sequenceDiagram
 
     ModuleB->>EventBus: Subscribe to Event
 
-    Player->>CommandBus: Enter Command
-    CommandBus->>ModuleA: Execute Command
-    ModuleA->>EventBus: Emit Event
-    EventBus-->>ModuleB: Event Received
-    ModuleB->>ModuleB: Handle Event
+    Player/Script->>CommandBus: Run command
+    CommandBus->>ModuleA: Execute command
+    ModuleA->>EventBus: Emit event
+    EventBus-->>ModuleB: Broadcast event
+    ModuleB->>ModuleB: Handle event
 ```
 
 ## Mother Instance
@@ -224,76 +231,3 @@ IMyCubeGrid Grid = Mother.Program.Me.CubeGrid
 IMyGridTerminalSystem GridTerminalSystem = Mother.Program.GridTerminalSystem
 IMyProgrammableBlock ProgrammableBlock = Mother.Program.Me
 ```
-
-### Boot
-
-When Mother boots, many of the core modules do most of their work.  This aims to save a great deal of computation at runtime, reducing impact on gameplay.  During boot, the `Boot` method is called on all Core Modules, then all Extension Modules.
-
-```mermaid
-%%{
-  init: {
-    'theme': 'base',
-    'themeVariables': {
-        'primaryColor': '#BB2528',
-        'primaryBorderColor': 'red',
-        'mainBkg': 'white',
-        'nodeBorder': 'red',
-        'lineColor': 'black',
-        'secondaryColor': 'white',
-        'secondaryBorderColor': 'black',
-        'tertiaryColor': '#F2F2F2',
-        'tertiaryBorderColor': 'black'
-    }
-  }
-}%%
-
-graph TB
-    A[Register Core Modules]
-    A --> B[Register Extension Modules] 
-    B --> C[Boot Core Modules]
-    C --> D[Boot Extension Modules]
-```
-
-
-### Run
-
-```mermaid
-%%{
-  init: {
-    'theme': 'base',
-    'themeVariables': {
-        'primaryColor': '#BB2528',
-        'primaryBorderColor': 'red',
-        'mainBkg': 'white',
-        'nodeBorder': 'red',
-        'lineColor': 'black',
-        'secondaryColor': 'white',
-        'secondaryBorderColor': 'black',
-        'tertiaryColor': '#F2F2F2',
-        'tertiaryBorderColor': 'black'
-    }
-  }
-}%%
-graph LR
-    A[Run]
-    A --> B[
-        Run
-        Core Modules
-    ] 
-    B --> C[
-        Run 
-        Extension Modules
-    ]
-```
-
-<!-- ### Registering Modules
-
-Mother makes it easy to register Extension Modules via the `RegisterModule` method:
-
-```csharp title="Program.cs"
-// Instantiate module
-MissileGuidanceModule module = new MissileGuidanceModule(this);
-
-// Register module with Mother
-Mother.RegisterModule(module);
-``` -->

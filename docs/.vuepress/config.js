@@ -105,6 +105,19 @@ const MotherCoreSidebar = {
       ],
     },
     {
+      text: 'Building A Module',
+      link: '/Framework/Developer/BuildingAModule/BuildingAModule.md',
+      collapsible: true, // Allows collapsing sections
+      // children: [
+      //   // '/Framework/Developer/ExtensionModulesModules/Almanac.md',
+      //   // '/IngameScript/CommandLineInterface.md',
+      //   // '/IngameScript/Configuration.md',
+      //   // '/IngameScript/Modules/Modules.md',
+      //   // '/IngameScript/Examples.md',
+      //   // '/IngameScript/CommandCheatsheet.md',
+      // ],
+    },
+    {
       text: 'Core Modules',
       link: '/Framework/Developer/CoreModules/CoreModules.md',
       collapsible: true, // Allows collapsing sections
@@ -120,19 +133,7 @@ const MotherCoreSidebar = {
         '/Framework/Developer/CoreModules/LocalStorage.md',
       ],
     },
-    {
-      text: 'Extension Modules',
-      link: '/Framework/Developer/ExtensionModules/ExtensionModules.md',
-      collapsible: true, // Allows collapsing sections
-      // children: [
-      //   // '/Framework/Developer/ExtensionModulesModules/Almanac.md',
-      //   // '/IngameScript/CommandLineInterface.md',
-      //   // '/IngameScript/Configuration.md',
-      //   // '/IngameScript/Modules/Modules.md',
-      //   // '/IngameScript/Examples.md',
-      //   // '/IngameScript/CommandCheatsheet.md',
-      // ],
-    },
+  
     {
       text: 'Utilities',
       // link: '/Framework/Developer/Utilities/Utilities.md',
