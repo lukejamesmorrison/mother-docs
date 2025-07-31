@@ -79,6 +79,13 @@ class Node {
   }
 
   drawNode(ctx, offsetX, offsetY, isActiveSource = false) {
+
+    // console.log(this.image);
+    // if(this.image?.includes('mother-pb.png')) {
+    //   unitWidth = 400;
+    //   unitHeight = 400;
+    // }
+
     const size = Math.min(unitWidth, unitHeight) * 0.8;
     const cx = this.x * unitWidth + offsetX;
     const cy = this.y * unitHeight + offsetY;
@@ -112,20 +119,34 @@ onMounted(() => {
   };
 
   const nodeData = [
+    // triggers
     { id: 'root1', name: 'Button', x: 1, y: 2, img: 'https://static.wikia.nocookie.net/spaceengineers/images/f/f2/Small_Button_Panel.png', targets: ['child1'], pulseColor: '#E3B505' },
     { id: 'root2', name: 'Connector', x: 1, y: 4, img: 'https://static.wikia.nocookie.net/spaceengineers/images/7/7c/Icon_Block_Connector.png', targets: ['child2'], pulseColor: '#E3B505' },
-    { id: 'child1', name: 'Mother', x: 2, y: 3, img: 'images/logo-512x512.png', targets: ['grand3' ,'grand5', 'greatgrand1'], pulseColor: '#E3B505' },
+
+    // Mother left
+    // { id: 'child1', name: 'Mother', x: 2, y: 3, img: 'images/mother-pb.png', targets: ['grand3' ,'grand5', 'greatgrand1'], pulseColor: '#E3B505' },
+    { id: 'child1', name: 'Mother', x: 2, y: 3, img: 'images/logo-512x512.png', targets: ['grand5', 'greatgrand1', 'greatgrand2'], pulseColor: '#E3B505' },
     { id: 'child2', name: '', x: 2, y: 3, img: 'images/logo-512x512.png', targets: ['grand1', 'grand4'], pulseColor: '#E3B505' },
+    { id: 'child3', name: '', x: 2, y: 3, img: 'images/logo-512x512.png', targets: ['grand3'], pulseColor: '#E3B505' },
+
+    // Mother left children
     { id: 'grand1', name: 'Piston', x: 3, y: 1, img: 'https://static.wikia.nocookie.net/spaceengineers/images/2/28/Icon_Block_Piston.png', targets: [], pulseColor: '#E3B505' },
     { id: 'grand3', name: 'Rotor', x: 4, y: 2, img: 'https://static.wikia.nocookie.net/spaceengineers/images/9/9c/Icon_Block_Rotor.png', targets: [], pulseColor: '#E3B505' },
     { id: 'grand4', name: 'Landing Gear', x: 4, y: 4, img: 'https://static.wikia.nocookie.net/spaceengineers/images/2/2d/Icon_Block_Landing_Gear.png', targets: [], pulseColor: '#E3B505' },
     { id: 'grand5', name: 'Programmable Block', x: 3, y: 5, img: 'https://static.wikia.nocookie.net/spaceengineers/images/7/76/Icon_Block_Programmable_Block.png', targets: [], pulseColor: '#E3B505' },
+
+
+    // Mother right
     { id: 'greatgrand1', name: 'Mother', x: 6, y: 3, img: 'images/logo-512x512.png', targets: ['greatgreatgrand1', 'greatgreatgrand2'], pulseColor: '#E3B505' },
+    { id: 'greatgrand2', name: '', x: 6, y: 3, img: 'images/logo-512x512.png', targets: ['child3'], pulseColor: '#E3B505' },
+
+    // ,mother right children
     { id: 'greatgreatgrand1', name: 'Sound Block', x: 7, y: 2, img: 'https://static.wikia.nocookie.net/spaceengineers/images/4/4e/Icon_Block_Sound_Block.png', targets: [], pulseColor: '#E3B505' },
     { id: 'greatgreatgrand2', name: 'Light', x: 7, y: 4, img: 'https://static.wikia.nocookie.net/spaceengineers/images/2/21/Icon_Block_Interior_Light.png', targets: [], pulseColor: '#E3B505' },
 
-
-
+    // response
+    // { id: 'root3', name: 'Mother', x: 6, y: 3, img: 'images/logo-512x512.png', targets: ['child3'], pulseColor: '#0000ff' },
+     
   ];
 
   const nodes = {};

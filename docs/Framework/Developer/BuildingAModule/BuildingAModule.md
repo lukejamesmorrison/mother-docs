@@ -5,17 +5,14 @@ You will be creating an **Extension Module**. These are the main components of y
 [[toc]]
 
 ## Creating an Extension Module
-
-Extension modules must implement the `IExtensionModule` interface. It is recommended that they extend the `BaseExtensionModule` class which provides accessors for many common actions. 
-
 ::: note
-[Mother OS](../../../IngameScript/IngameScript.md) is composed mostly of extension modules to enable it's various capabilities.
+[Mother OS](../../../IngameScript/IngameScript.md) is a collection of extension modules built on top of Mother Core.
 :::
 
 
 ### Registering a Module
 
-Mother makes it easy to register Extension Modules via the `RegisterModule()` or `RegisterModules()` methods. This ensure our module is accessible when Mother boots. We register the module in the `Program` constructor of your script.
+Mother makes it easy to register Extension Modules via the `RegisterModule()` or `RegisterModules()` methods. This ensures our module is accessible when Mother boots. We register the module in the `Program` constructor of your script.
 
 Let's create the ``MissileGuidanceModule`` module.
 
@@ -46,7 +43,7 @@ partial class Program : MyGridProgram
         // Register module with Mother
         mother.RegisterModule(missileGuidanceModule);
 
-        // Or as part of list of modules
+        // Or as part of a list of modules
         mother.RegisterModules(new List<IExtensionModule> { 
             missileGuidanceModule,
             ...
@@ -82,12 +79,12 @@ class MissileGuidanceModule : BaseExtensionModule
 ```
 
 ### Running a Module
-You may also run processes each time the program cycles using the `Run()` method, though this is only recommended for specific use cases where you need the module to run every cycle.  Otherwise it is advised to use the [Clock's](../CoreModules/Clock.md) `Schedule()` method to control the frequency, or use an [Event](#handling-events) when you want your module to respond to events when they are fired.
+You may also run processes every program cycle using the `Run()` method. This is only recommended for specific use cases where you need the module to run 6 times per second.  Otherwise it is advised to use the [Clock's](../CoreModules/Clock.md) `Schedule()` method to control the frequency, or use an [Event](#handling-events) when you want your module to respond to an activity.
 
 ```csharp title="MissileGuidanceModule.cs"
 class MissileGuidanceModule : BaseExtensionModule
 {
-    // Run every program cycle. 
+    // Runs every program cycle automatically
     public void Run()
     {
         // Update the current position of the missile
@@ -111,7 +108,7 @@ Custom terminal commands are easily registered from within modules. Commands imp
 
 ### Creating a Command
 
-To create a custom command, you can extend the `BaseModuleCommand` class. It gives us access to many commonly used methods. This class requires the `Execute()` method, which is called when the command is executed by the player or other trigger. Let's create the `LaunchCommand` command.
+To create a custom command, you should extend the `BaseModuleCommand` class. It provides access to many useful methods. Your class must override the `Execute()` method, which is called when the command is executed by the [Command Bus](../CoreModules/CommandBus.md). Let's create the `LaunchCommand` command.
 
 ```plaintext
 /
@@ -399,8 +396,8 @@ void LaunchMissile()
 }
 ```
 
-::: note
-The [hinge/rotate](../../../IngameScript/Modules/Extension/HingeModule.md#rotate) command is an example of where the activity monitor is used. Mother OS used the Activity Monitor to track the motion of hinges, rotors and pistons.
+::: tip
+The [hinge/rotate](../../../IngameScript/Modules/Extension/HingeModule.md#rotate) command is an example of where the activity monitor is used. Mother OS uses the Activity Monitor to track the motion of hinges, rotors and pistons.
 :::
 
 #### Block State Changes
@@ -419,7 +416,7 @@ public void Boot()
         // We specify the block's property to monitor
         connector => connector.Status, 
         // We specify the action to use each cycle to compare the state
-        (block, state) => HandleConnectorStateChange(block as IMyShipConnector, state);
+        (block, newState) => HandleConnectorStateChange(block as IMyShipConnector, newState);
     );
 }
 ```

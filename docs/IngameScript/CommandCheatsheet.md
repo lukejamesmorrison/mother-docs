@@ -625,7 +625,7 @@ Reset a piston to its original position (0 meters).
 piston/reset <Piston>
 ```
 
-### speed
+### piston/speed
 Set the speed of a piston or group of pistons in m/s.
 ```
 piston/speed <piston|Group> <Speed> <Options>

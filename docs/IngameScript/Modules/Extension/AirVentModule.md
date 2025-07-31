@@ -38,9 +38,9 @@ The following hooks can be define in the block's Custom Data, and will be trigge
 |Key            | Trigger                               |
 |-              |-                                      |
 | `onDepressurized`      | Activated when an air vent is in the *Depressurized* state.    |
-| `onDepressurizing`       | Activated when an air vent is in the *Depressurized* state.       |
+| `onDepressurizing`       | Activated when an air vent is in the *Depressurizing* state.       |
 | `onPressurized`       | Activated when an air vent is in the *Pressurized* state.       |
-| `onPressurizing`       | Activated when an air vent is in the *Pressurized* state.       |
+| `onPressurizing`       | Activated when an air vent is in the *Pressurizing* state.       |
 
 **Example**
 
