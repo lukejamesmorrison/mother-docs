@@ -8,48 +8,10 @@ Grids running Mother will periodically communicate, at which time the Almanac is
 
 To immediately refresh the Almanac, you can run the `ping` command.
 
-![Flight Plan Map](../../Assets/flight-plan-1.png)
-
 
 ## Why Do We Have It?
 
 In order for grids to interoperate seamlessly, it is important for them to store key information about each other.  This includes properties like their id, position and speed.  Other modules can make use of this for secure communication, and sending remote commands.
-
-## Viewing the Map
-
-Mother can render a map showing all grids and waypoints in the Almanac. Simply add `[MMAP]` to the end of your LCD name and reboot Mother using the `boot` command. The projection will automatically update.
-
-You can target individual cockpit screens by targeting a screen index - `[MMAP:1]`.
-
-![Almanac LCD](../../Assets/almanac-lcd-1.png)
-
-## Configuration
-
-|Key| Value| Description|
-|-|-|-|
-|`mapScale`| decimal| Set the map scale in meters. Defaults to 100m. |
-|`center`| string | The point that the map should center on.  You can use the full GPS string, the X,Y,Z portions of a GPS string, or use the name of a grid/waypoint if present in the Almanac.|
-| `mode` | `2D`, `3D`| Whether the map should render in 2D or 3D.<br><br>**NOTE**: 3D map rendering is experimental and will change in future updates. | 
-
-
-### Example
-
-<!-- **LCD Custom Data** -->
-```ini title="LCD > Custom Data"
-[general]
-mapScale=150
-
-; full GPS String or;
-center=GPS:Mothership:227039.09:226939.44:227134.75:#FF75C9F1:
-; partial GPS String or;
-center=227039.09:226939.44:227134.75
-; grid name
-center=Mothership
-
-; render mode
-mode=2D
-```
-
 
 
 <!-- ## Friendly or Foe?

@@ -3,7 +3,6 @@
 
 [[toc]]
 
-## Intergrid Communication
 
 Grids running Mother can communication by sending messages to each other.  This is useful for coordinating actions between multiple ships like docking, or sharing position data.
 
@@ -15,7 +14,7 @@ At this time, grid names should not contain spaces `" "`.
 
 ![Terminal Info tab](../../Assets/terminal-info-1.png)
 
-### Sending a Remote Command
+## Sending a Remote Command
 
 The simplest form of intergrid communication is to send a remote command. Mother may send a command to any other grid running Mother contained in the [Almanac](../Core/Almanac.md), and available on the antenna network. The receiving grid will execute the command as if it were entered in the local Programmable Block terminal. See the [Security](../Core/Security.md) for more information on protecting intergrid communication from unauthorized access.
 
@@ -43,9 +42,36 @@ See the [Flight Planning Module](FlightPlanningModule.md) for more information o
 Mother will automatically reduce all remote commands to core commands listed in the [Command Cheatsheet](../../CommandCheatsheet.md). This means that all grids can run remote routines as long as they contain the same core command library. [Keep Mother OS up to date](https://steamcommunity.com/sharedfiles/filedetails/?id=3411507973) to ensure you have the most recent library of core commands across your grids.
 :::
 
+## Using Communication Channels
+
+As you add more grids to your network, you will quickly look for ways to organize them.  Mother supports communication channels, which enables communication with multiple factions at once, or the isolation of grids localized to an outpost, station, or squadron.
+
+Channels are defined in the `[channels]` section the Programmable Block's Custom Data.  The `*` channel is the default public channel.  You may leave a channel's `value` empty to indicate that the channel is unencrypted.  If a channel has a value, then it is encrypted using the provided passcode. 
+
+```ini title="Mother > Custom Data"
+[channels]
+; Set public channel as available and unencrypted. 
+*=
+
+; The private channels are encrypted if a passcode is provided.
+MyFaction=Sup3rSecr3tP@ssw0rd
+OtherFaction=An0therP@ssw0rd
+; No passcode means no encryption on this channel.
+ThirdFaction=  
+```
+
+::: important
+Communication channels are new in version **0.2.14**.  If you are using an older version of Mother, then you should update to the latest version.
+:::
+
+::: caution
+By default, all grids in Space Engineers can access Intergrid Communication (IGC), so ensuring that your faction's passcode is secure is important.  If you are in a public server, this is the only way to ensure other factions cannot intercept messages and execute remote commands on your grid. 
+:::
+
+Should your grid receive a unencrypted message, or with an incorrect passcode, Mother will log the message, but will not respond.
 
 
-### Running Commands Defined on a Remote Grid
+## Running Commands Defined on a Remote Grid
 
 In most cases, the commands you define will only be relevant to the current grid.  Custom commands defined in Custom Data are stored locally. When sending a command remotely, another grid will attempt to run it exactly as is. Let's take a look at the PowerOff command on our `SurveyDrone` grid.
 

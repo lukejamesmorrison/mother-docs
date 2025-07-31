@@ -108,9 +108,18 @@ nav/set-flight-plan "Midpoint TopSecretBase";
 Use the `nav/set-flight-plan` and `fcs/start` commands together to set the flight plan and begin autopilot immediately.
 :::
 
+#### Loading a Flight Plan
+[![Loading a Flight Plan](https://img.youtube.com/vi/jFMLTiwC3Sg/0.jpg)](https://www.youtube.com/watch?v=jFMLTiwC3Sg)
+
 ---
 
 <!-- ### Preflight -->
+
+### Viewing the Flight Plan
+
+Players can view the flight plan on a Map display using the `MMAP` tag in the LCD's name. See the [Map Module](MapModule.md) for more information on how to set up a map display.
+
+![Flight Plan Map](../../Assets/flight-plan-1.png)
 
 ### Running Routines at a Waypoint
 
@@ -137,8 +146,11 @@ An example of a roundtrip flight plan:
 nav/set-flight-plan "GPS:Midpoint:190.12:-54.45:45.89:#FF75C9F1: GPS:TopSecretBase:211.78:-52.93:59.19:#FF75C9F1: R";
 ```
 
-### Loading a Flight Plan
-[![Loading a Flight Plan](https://img.youtube.com/vi/jFMLTiwC3Sg/0.jpg)](https://www.youtube.com/watch?v=jFMLTiwC3Sg)
+
+
+
+
+
 
 ## Commands
 
