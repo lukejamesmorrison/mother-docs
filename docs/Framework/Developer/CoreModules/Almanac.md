@@ -5,7 +5,7 @@
 The Almanac manages a list of records that represent entities in the game world. These records can be used to track the location of entities, communicate with them, and display them on map displays. 
 
 
-## The Unique Indentifier
+## The Unique Identifier
 Since each instance of Mother is unique to its Programmable Block, we use the block's `EntityId` as the unique identifier.
 
 ```csharp

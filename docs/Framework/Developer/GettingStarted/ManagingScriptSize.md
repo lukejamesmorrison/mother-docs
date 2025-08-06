@@ -1,3 +1,7 @@
+---
+next: /Framework/Developer/BuildingAModule/BuildingAModule.md
+---
+
 # Managing Script Size & Complexity
 
 Size matters. Your script has a hard limit of 100,000 characters after minification.  Malware whipped together an awesome tool for this, but nonetheless, keywords and language features are not minified and come at a cost. Second, never loop within a loop. Never. On a grid of any meaningful size, this could cause your script to crash. Mother Core uses a combination of techniques to operate regardless of grid size via the [Block Catalogue](../CoreModules/BlockCatalogue.md).

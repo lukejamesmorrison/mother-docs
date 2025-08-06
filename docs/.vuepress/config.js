@@ -119,6 +119,10 @@ const MotherCoreSidebar = {
       // ],
     },
     {
+      text: 'Console',
+      link: '/Framework/Developer/Console.md',
+    },
+    {
       text: 'Core Modules',
       link: '/Framework/Developer/CoreModules/CoreModules.md',
       collapsible: true, // Allows collapsing sections
@@ -135,7 +139,6 @@ const MotherCoreSidebar = {
         '/Framework/Developer/CoreModules/Terminal.md',
       ],
     },
-  
     {
       text: 'Utilities',
       // link: '/Framework/Developer/Utilities/Utilities.md',

@@ -1,3 +1,8 @@
+---
+next: /Framework/Developer/GettingStarted/Installation.md
+---
+
+
 <script setup>
 import { ref, computed, onMounted } from 'vue'
 
@@ -22,6 +27,9 @@ onMounted(() => {
 </script>
 
 <!-- {{isDark ? 'Dark Mode' : 'Light Mode'}} -->
+
+
+
 
 
 # Mother Core (Script Framework)

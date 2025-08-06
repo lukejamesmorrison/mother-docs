@@ -53,7 +53,7 @@ graph RL
         BaseCoreModule .-> ICoreModule["ICoreModule"]
         CM2[<a href='/mother-docs/Framework/Developer/CoreModules/CommandBus.html' style='color: black; text-decoration: none'>Command Bus</a>] .-> BaseCoreModule
         CM3[<a href='/mother-docs/Framework/Developer/CoreModules/Almanac.html' style='color: black; text-decoration: none'>Almanac</a>] .-> BaseCoreModule
-        CM4["Storage"] .-> BaseCoreModule
+        CM4[<a href='/mother-docs/Framework/Developer/CoreModules/BlockCatalogue.html' style='color: black; text-decoration: none'>Block Catalogue</a>] .-> BaseCoreModule
     end
 
     subgraph Extension Modules

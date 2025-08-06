@@ -1,20 +1,83 @@
-# Building an Extension Module
+---
+prev: /Framework/Developer/GettingStarted/ManagingScriptSize.md
+---
+
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@%@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@@@@@@@@@@@@@@@@@@@%@@@@%%%%@@@@@@@@@@@@@%@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@@@@%-#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@%@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@#@@@@@@@@@@@@@@@@@@@@@@@@@@%@%%%%%%@@@@@@@@%%@%%%%%%%%%%%%%%%%%%%%%%@@@@@@@@@@@@@@@@%%@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@@@@@@@@@@@@@@@@@@@%@@@@@%%%%%%%%%%%%%%%%%%###*########*+#**##*##%%%%%%%%%%%%%%@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@@@@@@@@@@@@@%%%%%@%%%%%%%%%%%%%%%%%%%%%######**##*+*####**+*++++*#####%%%%%%%%%%@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@@@@@@@@@%%%%%@%%%%%%%%%%%%%%#%%%%%#%#***##############***++=====++++****###%%%%%%%%@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@@@@@@@%@@%%%@@@%%%%%%%%%%%######+#%%%%#%#########*****+++++++**++++*+=-=+++**##%%%%%%%%%%@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@@@@@@@%%%%%%%%%%%%%%%%%%%%################***+*+==+++=======++====+++++++*******###%%%%%%%%@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@@@%@@@@%%%%%%%%%%%%%%%%%###***#####*##*++++++=+=--========++++++++++=++=====+**++****#**#%%%%@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@@@@@@@@%%%%%%%%%%%%%%%%%*+**#*****==***++==-=====+++++++=+****+**+++++***+++**************##%%%%%%@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@@@@@@%@%%%%%%%%%%%%%%##*******=+++=-=+++=--==+++++++++++++**************+***#*************###**##%%%%%%@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+#%%@@%%#%%%%%%%%%%%%##%#*##***+++=++=+===========++=+==+++++******************###****###***##***+***#*#%%%%@@@@@@@@@@@@@%@@@@@@@@@@@@@
+@@@@@@%#+#%%%%%%%%%%%####***+++++++=++===========++++++++=++++++++**********##*****###*+*#*###*###*#+*+##%%%@@@@@@@@@@%+=%@@@@@@@@@@@@
+%@@@@@@%%#%%%%%%%##%%####**+=+++==++++====+=====+==++++++++++++++++++++****#####*############*######****+*#%%%@@@@@@@%@%%@@@@@@@@@@@@@
+@@@@@@@@%%%%%%%%%%#*####**==++==-=+++===++====--====++++++++++++++++++++++****##############*#####*###########%%@@@@@@@@%@@@@@@@@@@@@@
+@@@@@@@%@@%%%%%%%%%*+*##***++++=======-==++=======++++++++++++++++==++++++++++**#################******###*##**#%%%@@@@@@@@@@@@@@@@@@@
+@@@@%@%%%%#%%%%%%%%%%###***+++++==--=----+++==+++++++++++++++++++++===+==++++++++**#################*########***+#%%%@@@@@@@@%@@@@@@@@
+@@@@%%%%%%%%%%%%%%%%%%###**+=======--=-==+=+===++++++++=++++++++++++=+++++++=++++++***###############################%%%@@@@@@@@@@@@@@
+@@@@%%%%%%%#%%%%%%%%%%%##***++=++=++=---==+=+====++++=====================++++++===++***######################%%#######%%@@@@@@@@@@@@@
+@@@@@%#*%%%###%%%%%%#%%#####*++==++++==--=++========+==========-----========++++++++++++***##############*#######%%%%####%@@@@@@@@@@@@
+@@@@@%%###%%##*#%%%%%%#######*++======+=--===================-----------=======+++++++++++*#######################%%%%%%%#%%@@@@@@@@@@
+@%@%@@%%%%%######%%%%%########*++==-====+=--===+=============-----:::::---=======+++++++++++**#############%%%%%##%%%%%#%%%%%@@@@@@@@@
+@@@@@@@%%%%%%##+##%%%%%%####******++====++=--=+++============-----::..:::--=======++++++==+++***#####%%%#%%%%%%%%#%%%%#%%%%%%%@@@@@@@@
+@@@@@@@@@%#%#***#####%%###*####***+***+==++=--=+++=============----::::::---=======+++++++++++++**###%%##%%%%%%%%%%#%%%%%%%%%%%%%@@@@@
+@@@@@@@@@@@%%%%%##########*#####**+++**+=++*++====+===-=========------------=========++++++++++=-+**###%%##%%%%%%%%%%#%%%%%%%%%%%%%@@@
+@@@@@@@@@@@@@%%%%%##***############*++++******++===================--------==========++++++=-+++-:=+*#######%%%%%%%%%%%%%%%%%%%%%%@@@@
+@@@@@@@@@@@@@@@%%%%##*################+++=+**++**++===+=================--=========-=++++++++++++=-=+*####*##%%%#%%#%%%%%#%%@%%%%@@@@@
+@@@@@@@@@@@@@@@@%%%####******###########**++++******+===++=====================+++++====++++++=+++-:-+*****####%%%%%%%%%%%%%%%%%%%@@@@
+@@@@@@@@@@@@@*%@@@%%%#####*+**#*#########*********#***++=-=+=========+++++++++++++++====++++++++++==--=++++**###%%%%%%%%%%%%%%%%%%@@@@
+@@@@@@@@@@@@@@@@@@@@%%%%#####**+**#########**+***********+==============++==+++++++===+++++==+++**+=---=++***##%%%%%%%%%%%%##%%%%%%%@@
+@@@@@@@@@@@@@@@@@@@@@@@%%#%######+++*############**********+++-==========+++++++++++++++++++++++*+++=--==+**####%%%%%%%%%%%%%%%%%%%%@@
+@@@@@@@@@@@@@@@@@@@@@@@@%%%######*##*****########********+***++==----===+++++++=++++++++++++++*+++===--===++*#####%%%%%%%%%%%%%%%%%%@@
+@@@@@@@@@@@@@@@@@@@@@@@@@@%%%*****#****+******###*#**************++=========++++++++++++++++*+*+++++=:-==++++*####%%%%%%%@@@%%%%*###%@
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@%%#######***+++***######********+++**+++++=++======++==++++++++*+++==-=+=--===++*#######%%%%%%@@@@%%%%%%@
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@%%%%###%###****+++*****#*****++++++++++++++========+++=-==+++++=++++++=---=++****#####*+%%%%@@@@@%%%%%%@
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@%%%%%%%#*++++++*+******+***++++++++++++++++++++++++++++++====++++=---==++***#*##%#####%@@@@@@@%%%@@@
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@%%%%#####*+*++=-====+++++============+==-=+++++++++====+++++======+***#####%%####%%%%%%#%%%%%@%
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@%%%%#######***++++++==++=-=+++=-====+===++++++=====+++++*+++=++++****####%%%%####%%@%@@@@@@@@@
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@%%###########****++=++=====-====+++++++++++++=+*++++++=++++****#######%%%%%%###%%%@@@@@@@@@@
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@%###%%##*###%#%##*##*#*+++++*******+***************+++**+=#####**##%%%%%%%%####%%%%@@%@@@@@
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@%%@@%%%%%%%###%%%##*###############**##*#########*########%%%%%%%%@@@@%%##%%%%%@@@@@@@
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@%%%%%%%%%%%%%###%%%%%####%%%%%######%%%%%%#%%%%#%%%%%%%%%%%%@@@@@@@@%%%%%%@@@@@@@@
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@%@@@@@%%%#%%%%%%###%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%@@%%%@@@@@@@@%%%%%@@@@@@@@
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@%@@@@@@@@@%#%@@@@@@@%%%%%%%%%%%%%%##**@@@@@@@%%%%@@@@@@@@%%@@@@@@@@@@@@@@@@@@@@
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@%%%%%%%%%#%@%@@@@@@@@@%%%@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@%#%%%@@@@@@@@@#@@@@@@@@@@@@@@@@@@@
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@%%@@@@@@@@@@@@@@@@@#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+
+# Building a Module
 
 You will be creating an **Extension Module**. These are the main components of your scripts. This section will cover the basics of creating an extension module, registering custom terminal commands, and handling events.
 
 [[toc]]
 
-## Creating an Extension Module
+## Creating a Module
 ::: note
 [Mother OS](../../../IngameScript/IngameScript.md) is a collection of extension modules built on top of Mother Core.
 :::
 
 
-### Registering a Module
+Use the `make:module` command from within your project directory to create a new module in the `/Modules` directory. Let's create the ``MissileGuidanceModule`` module.
 
-Mother makes it easy to register Extension Modules via the `RegisterModule()` or `RegisterModules()` methods. This ensures our module is accessible when Mother boots. We register the module in the `Program` constructor of your script.
-
-Let's create the ``MissileGuidanceModule`` module.
+```bash
+mother make:module MissileGuidanceModule
+```
 
 ```plaintext
 /
@@ -24,6 +87,13 @@ Let's create the ``MissileGuidanceModule`` module.
     ├── MissileGuidanceModule/
         ├── MissileGuidanceModule.cs
 ```
+
+
+### Registering a Module
+
+Mother makes it easy to register Extension Modules via the `RegisterModule()` or `RegisterModules()` methods. This ensures our module is accessible when Mother boots. We register the module in the `Program` constructor of your script.
+
+
 
 And then we register it in the `Program` constructor:
 
@@ -108,7 +178,14 @@ Custom terminal commands are easily registered from within modules. Commands imp
 
 ### Creating a Command
 
-To create a custom command, you should extend the `BaseModuleCommand` class. It provides access to many useful methods. Your class must override the `Execute()` method, which is called when the command is executed by the [Command Bus](../CoreModules/CommandBus.md). Let's create the `LaunchCommand` command.
+Use the `make:command` command from within your project directory to create a new command. You may provide an optional module name if you wish to associate the command with a specific module.
+
+Let's create the `LaunchCommand` command.
+
+
+```bash
+mother make:command LaunchCommand --module MissileGuidanceModule
+```
 
 ```plaintext
 /
@@ -121,6 +198,26 @@ To create a custom command, you should extend the `BaseModuleCommand` class. It 
             ├── LaunchCommand.cs
 ```
 
+:::info
+Mother automatically registers the command in the modules' `Boot()` method when used in the `make:command` command.
+:::
+
+Running the `make:command` command without a module option will create a command in the `/Commands` folder of your project.
+
+```bash
+mother make:command HaltAndCatchFireCommand
+```
+
+```plaintext
+/
+├── Program.cs
+├── thumb.png
+├── Modules/
+├── Commands/
+    ├── HaltAndCatchFireCommand.cs
+```
+
+### Customizing a Command
 First we define the command's `Name`. This is what the player will use to call the command from the terminal.
 
 ```csharp title="LaunchCommand.cs"
@@ -194,27 +291,33 @@ public class LaunchCommand : BaseModuleCommand
 ### Registering a Command
 To register a command, we use the `RegisterCommand()` method. We define it in the `Boot()` method of the parent module.  This method can accept an instance of the module to allow access to its specialized methods from within the command.
 
+
 ```csharp title="MissileGuidanceModule.cs"
 public class MissileGuidanceModule : BaseExtensionModule
 {
     public void Boot()
     {
-        // Register commands
+        // Register command with access to the current module
         RegisterCommand(new LaunchCommand(this));
-        RegisterCommand(new DetonateCommand(this));
+        // Or without using the current module
+        RegisterCommand(new DetonateCommand());
     }
 }
 ```
 
 ## Events
 
-Events allow modules to communicate with each other without being tightly coupled.  Modules can emit events that other modules can use to take action. This allows for a more modular and flexible architecture.
+Events allow modules to communicate with each other without being tightly coupled.  Modules can emit events, then other modules may respond and take action. This keeps our scripts very modular.
 
-### Emitting Events
+### Creating an Event
 
-Modules can emit events using the `Emit()` method.  This method takes an `IEvent` instances as a parameter and an optional `object` of event data.
+Use the `make:event` command from within your project directory to create a new event. You may provide an optional module name if you wish to associate the event with a specific module.
 
-Let's create the `MissileLaunchedEvent` event that other modules can listen for.
+Let's create the `MissileLaunchedEvent` event.
+
+```bash
+mother make:event MissileLaunchedEvent --module MissileGuidanceModule
+```
 
 ```plaintext
 /
@@ -227,11 +330,65 @@ Let's create the `MissileLaunchedEvent` event that other modules can listen for.
             ├── MissileLaunchedEvent.cs
 ```
 
+Running the `make:event` command without a module option will create an event in the `/Events` folder of your project.
+
+```bash
+mother make:event EnemySpottedEvent
+```
+
+```plaintext
+/
+├── Program.cs
+├── thumb.png
+├── Modules/
+├── Events/
+    ├── EnemySpottedEvent.cs
+```
+
+### Emitting an Event
+
+Modules can emit events using the `Emit()` method.  This method takes an `IEvent` instance as a parameter, and an optional `object` of event data.
+
+```mermaid
+%%{
+  init: {
+    'theme': 'base',
+    'themeVariables': {
+        'primaryColor': '#BB2528',
+        'primaryBorderColor': 'red',
+        'mainBkg': 'white',
+        'nodeBorder': 'red',
+        'lineColor': 'black',
+        'secondaryColor': 'white',
+        'secondaryBorderColor': 'black',
+        'tertiaryColor': '#F2F2F2',
+        'tertiaryBorderColor': 'black'
+    }
+  }
+}%%
+
+sequenceDiagram
+    autonumber
+    participant ModuleA
+participant EventBus
+    participant ModuleB
+
+    ModuleB->>EventBus: Subscribe to Event
+    ModuleA->>EventBus: Emit event
+    EventBus-->>ModuleB: Broadcast event
+    ModuleB->>ModuleB: Handle event
+```
+
+When we launch our missile, we should emit the `MissileLaunchedEvent` event.
+
 ```csharp title="MissileGuidanceModule.cs"
     public void Launch()
     {
-        // Emit the event.  
-        // We pass in the event type with missile object as event data.
+        // Emit the event using the event Type, and event data  
+        object eventData;
+        Emit<MissileLaunchedEvent>(eventData);
+
+        // Or, we can emit without event data (nice a simple!)
         Emit<MissileLaunchedEvent>();
     }
 ```
@@ -240,9 +397,9 @@ Let's create the `MissileLaunchedEvent` event that other modules can listen for.
 The `Emit()` and `Subscribe()` methods are accessors for the [Event Bus](../CoreModules/EventBus.md) via the `BaseExtensionModule` class.
 :::
 
-### Subscribing to Events
+### Subscribing to an Event
 
-Mother allows modules to emit and subscribe to events, allowing modules to monitor the behaviour of other modules.  Once subscribed to an event, a module can intercept it via the `HandleEvent()` method:
+Modules can monitor the behaviour of other modules via events.  Once subscribed to an event, a module take action via the `HandleEvent()` method each time that event is emitted.
 
 Let's image we have a `WarheadModule` that needs to arm the warhead when a missile is launched.
 
@@ -259,7 +416,7 @@ Let's image we have a `WarheadModule` that needs to arm the warhead when a missi
             ├── MissileLaunchedEvent.cs
 ```
 
-First we need to **subscribe** to this event when our module boots. Then we can override the `HandleEvent()` method to handle the event when it is emitted.
+We subscribe to this event in our module's `Boot()` method. Then we override the `HandleEvent()` method to handle the event when it is emitted.
 
 ```csharp title="WarheadModule.cs"
 public class WarheadModule : BaseExtensionModule
@@ -270,7 +427,7 @@ public class WarheadModule : BaseExtensionModule
         Subscribe<MissileLaunchedEvent>();
     }
  
-    // Handle the event when it is emitted by a module
+    // Handle the event when it is emitted by this, or another module
     public override void HandleEvent(IEvent e, object eventData)
     {
         if(e is MissileLaunchedEvent) {
@@ -280,7 +437,9 @@ public class WarheadModule : BaseExtensionModule
         }
     }
 
-    void ArmWarhead() { }
+    void ArmWarhead() {
+        // Red light, green light
+    }
 }
 ```
 
@@ -288,13 +447,13 @@ public class WarheadModule : BaseExtensionModule
 
 ### Getting Blocks From the Grid
 
-The [Block Catalogue](../CoreModules/BlockCatalogue.md) makes a ledger of all blocks on the current grid during boot. This allows us to access these blocks more efficiency when updated via commands or events. 
+The [Block Catalogue](../CoreModules/BlockCatalogue.md) makes a ledger of all blocks on the current grid during boot. This allows us to access these blocks more efficiency when updated via commands or events. It also simplifies access to block configuration and state monitoring.
 
 ::: important
-Mother treats all blocks connected via hinges, rotors, and pistons as a single **construct**. It is fully compatible with subgrids and will not interfere with blocks on other grids via connector connections (ie. a docked ship). This means that your automations will not interfere with other ships when connected via connectors.
+Mother treats all blocks connected via hinges, rotors, and pistons as a single **construct**. It is fully compatible with subgrids and will not interfere with blocks on other grids via connector connections (ie. a docked ship). Your automations will not interfere with other ships when connected via connectors.
 :::
 
-Any `IMyTerminalBlock` on your construct can be accessed via the `GetBlocks()` method. It accepts a block type parameter, which is the type of block you want to get. The method accepts an optional action for filtering the retrieved blocks. 
+Any `IMyTerminalBlock` on your construct can be accessed via the `GetBlocks()` method. You can get a block by its type, use an optional action for filtering the retrieved blocks. 
 
 ::: tip
 See Malware's [API Index](https://github.com/malware-dev/MDK-SE/wiki/Api-Index) for more information on block types.
@@ -319,7 +478,7 @@ public class MissileGuidanceModule : BaseExtensionModule
 }
 ```
 
-The more practical situation is when we want to get a specific block on the grid, or multiple blocks within a *group*.  This can be done by via the `GetBlocksByName()` method.  It accepts a block type parameter, and a string for the block or group name.
+The more practical situation is when we want to get a specific block on the grid by it's *name*, or multiple blocks within a *group*.  This can be done by via the `GetBlocksByName()` method.  It accepts a block type, and a string for the block, group, or tag name.
 
 ```csharp title="MissileGuidanceModule.cs"
 public class MissileGuidanceModule : BaseExtensionModule
@@ -340,7 +499,7 @@ public class MissileGuidanceModule : BaseExtensionModule
 
         // or even via a tag
         IMyThrust taggedThruster = BlockCatalogue
-            .GetBlocksByName<IMyThrust>("#thruster")
+            .GetBlocksByName<IMyThrust>("#tagged-thruster")
             .firstOrDefault();
     }
 }
@@ -349,13 +508,15 @@ public class MissileGuidanceModule : BaseExtensionModule
 ### Monitoring Blocks For Changes
 
 #### Blocks in Motion
-Blocks that *move* can leverage the [Activity Monitor](../CoreModules/ActivityMonitor.md) to monitor their changing state ie. angle, distance.  In the case of hinges, we can set a hinge in motion, and then stop and lock it in place when it reaches the specified angle. For blocks that change state infrequently between discrete values, you can [monitoring for state changes](#state-changes) instead.
+Blocks that *move* can leverage the [Activity Monitor](../CoreModules/ActivityMonitor.md) to monitor their changing state ie. angle, distance.  In the case of hinges, we can set a hinge in motion, and then stop and lock it in place when it reaches the specified angle. 
+
+For blocks that change state infrequently between discrete values (ie. `VentStatus.Pressurizing`, `MyShipConnectorStatus.Connected`), you can [monitoring for state changes](#state-changes) instead.
 
 Before our missile launches, we should ensure the exhaust flaps are open.
 
 ```csharp title="MissileGuidanceModule.cs"
 const float HINGE_OPEN_ANGLE = 45f; // degrees
-const string STATE = "LAUNCH";
+const string STATE = "READY_FOR_LAUNCH";
 
 public void InitiateLaunch(targetCoordinate, detonationDistance, maxSpeed)
 {
@@ -374,7 +535,7 @@ public void InitiateLaunch(targetCoordinate, detonationDistance, maxSpeed)
                 hinge,
                 // we specify to condition where the hinge must stop
                 // ie. it reaches the desired angle
-                block => HingeAtTerminalPosition(block as IMyMotorStator, HINGE_OPEN_ANGLE),
+                block => HingeAtDesiredAngle(block as IMyMotorStator, HINGE_OPEN_ANGLE),
                 // we specify the action to take when the hinge stops
                 block => LaunchMissile()
             );
@@ -397,7 +558,7 @@ void LaunchMissile()
 ```
 
 ::: tip
-The [hinge/rotate](../../../IngameScript/Modules/Extension/HingeModule.md#rotate) command is an example of where the activity monitor is used. Mother OS uses the Activity Monitor to track the motion of hinges, rotors and pistons.
+The [hinge/rotate](../../../IngameScript/Modules/Extension/HingeModule.md#rotate) command is an example of where the activity monitor is used. [Mother OS](../../../IngameScript/IngameScript.md) uses the Activity Monitor to track the motion of hinges, rotors and pistons.
 :::
 
 #### Block State Changes

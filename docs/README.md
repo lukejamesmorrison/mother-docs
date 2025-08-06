@@ -26,7 +26,9 @@ footer: MIT Licensed | © 2025 Agentluke | The Empire must grow.
 
 <script setup>
   import MotherOSAnimation from '../../components/MotherOSAnimation.vue';
+  import MotherOSAnimation2 from '../../components/MotherOSAnimation2.vue';
   import MotherCoreAnimation from '../../components/MotherCoreAnimation.vue';
+  import MotherCoreOverview from '../../components/MotherCoreOverview.vue';
 </script>
 
 ## Mother OS
@@ -40,6 +42,10 @@ Unlock advanced automation, flight planning, and intergrid communication.
 <div>
   <MotherOSAnimation />
 </div>
+
+<!-- <div>
+  <MotherOSAnimation2 />
+</div> -->
 <br>
 <br>
 
@@ -58,16 +64,19 @@ Mother is in beta development. I'm on a quest to reduce the character count, and
 
 ## Mother Core
 
-Script Framework for custom Space Engineers ingame scripts.
+Script Framework for custom Space Engineers ingame scripts written in C#6 and deployed using [MDK2](https://github.com/malforge/mdk2/wiki).
 
-<!-- [Get Started](./Framework/README.md) | [MDK-SE API Index](https://github.com/malware-dev/MDK-SE/wiki) -->
+ <!--[Get Started](./Framework/README.md) | [MDK-SE API Index](https://github.com/malware-dev/MDK-SE/wiki)-->
+
+<MotherCoreOverview/> 
 
 <!-- <div>
   <MotherCoreAnimation />
 </div> -->
 
+
 ::: warning
-Mother Core is coming soon as a downloadable script framework for Space Engineers written in C#6. It depends on [MDK2](https://github.com/malforge/mdk2/wiki).  Stay tuned for updates!
+Mother Core is coming soon as a downloadable script framework.  Stay tuned for updates!
 :::
 
 ##  About Agentluke

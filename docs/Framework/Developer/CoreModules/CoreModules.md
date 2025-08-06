@@ -1,3 +1,7 @@
+---
+next: /Framework/Developer/Utilities/Utilities.md
+---
+
 # Core Modules
 
 Core modules act as Mother's framework, enabling extension modules.
