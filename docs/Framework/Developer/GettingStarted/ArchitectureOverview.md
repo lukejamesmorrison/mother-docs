@@ -1,7 +1,7 @@
 # Architecture Overview
 
 ::: warning
-Mother requires a **Remote Control block** to function.  This allows us to leverage autopilot and flight data across our modules easily.
+Mother requires a **Remote Control block** to function.  This allows us to leverage positional and environmental data across our modules easily.
 :::
 
 [[toc]]
@@ -9,7 +9,7 @@ Mother requires a **Remote Control block** to function.  This allows us to lever
  
 ## Entity Diagram
 
-Let's look at the entity diagram for Mother OS which is the same as your custom script.  This shows the relationship between Mother OS, Mother Core, and the Program.  The Program is the entry point for all scripts.
+Let's look at the entity diagram for [Mother OS](../../../IngameScript/IngameScript.md) which is the same as your custom script.  This shows the relationship between Mother OS, Mother Core, and the Program.  The Program is the entry point for all scripts.
 
   <!-- MotherOS["Mother OS"] e1@==> |Depends on| MotherCore
     e1@{animation: slow} -->
@@ -92,6 +92,7 @@ partial class Program : MyGridProgram
         mother.RegisterModules(new List<IExtensionModule> { 
             new RotorModule(mother),
             new FlightControlModule(mother),
+            new MissileGuidanceModule(mother),
             ...
         });
     }
@@ -111,12 +112,12 @@ Mother.Boot();
 
 ### Running the Script Each Cycle
 
-The `Run()` method is responsible for running all registered modules, managing communications, and executing scheduled actions. See the [Clock](../CoreModules/Clock.md) for more information on scheduling and delaying actions. We ensure the program calls this method within the `Main()` method to delegate all further action to Mother.
+The `Run()` method is responsible for running all registered modules, managing communications, and executing scheduled actions. See the [Clock](../CoreModules/Clock.md) for more information on scheduling and delaying actions. We ensure the Program calls this method within the `Main()` method to delegate all further action to Mother.
 
 :::info
 Mother runs at a default speed of **~6 ticks/second**, or **every 0.166 seconds** . This tolerance should be acceptable for most use cases. Each cycle, Mother's `Run()` method is called which will then run all registered modules.
 
-**UpdateType = UpdateType.Update10**
+**UpdateFrequency = UpdateFrequency.Update10**
 :::
 
 
@@ -124,10 +125,10 @@ Mother runs at a default speed of **~6 ticks/second**, or **every 0.166 seconds*
 partial class Program : MyGridProgram
 {
     // The game will run this method every cycle
-    public void Main(string argument, UpdateType updateSource)
+    public void Main(string argument, UpdateType updateType)
     {
         // So we delegate to Mother
-        Mother.Run(argument, updateSource);
+        Mother.Run(argument, updateType);
     }
 }
 ```
@@ -152,7 +153,7 @@ partial class Program : MyGridProgram
 }%%
 
 graph TD
-    A[Run] e1@-->|&nbsp;Determine updateSource&nbsp;| B{updateSource Type?}
+    A[Run] e1@-->|&nbsp;Determine updateType&nbsp;| B{updateType?}
     linkStyle 0 stroke-width:2px
     e1@{animation: slow}
 
@@ -204,6 +205,7 @@ When a command is trigger it is passed to the [Command Bus](../CoreModules/Comma
 }%%
 
 sequenceDiagram
+    autonumber
     participant Player/Script
     participant CommandBus
     participant ModuleA

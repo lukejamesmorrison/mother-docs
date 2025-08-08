@@ -75,12 +75,12 @@ You will be creating an **Extension Module**. These are the main components of y
 
 Use the `make:module` command from within your project directory to create a new module in the `/Modules` directory. Let's create the ``MissileGuidanceModule`` module.
 
-```bash
+```sh title="Console/Terminal"
 mother make:module MissileGuidanceModule
 ```
 
 ```plaintext
-/
+ExampleProject/
 ├── Program.cs
 ├── thumb.png
 ├── Modules/
@@ -92,8 +92,6 @@ mother make:module MissileGuidanceModule
 ### Registering a Module
 
 Mother makes it easy to register Extension Modules via the `RegisterModule()` or `RegisterModules()` methods. This ensures our module is accessible when Mother boots. We register the module in the `Program` constructor of your script.
-
-
 
 And then we register it in the `Program` constructor:
 
@@ -183,12 +181,12 @@ Use the `make:command` command from within your project directory to create a ne
 Let's create the `LaunchCommand` command.
 
 
-```bash
+```sh title="Console/Terminal"
 mother make:command LaunchCommand --module MissileGuidanceModule
 ```
 
 ```plaintext
-/
+ExampleProject/
 ├── Program.cs
 ├── thumb.png
 ├── Modules/
@@ -204,12 +202,12 @@ Mother automatically registers the command in the modules' `Boot()` method when 
 
 Running the `make:command` command without a module option will create a command in the `/Commands` folder of your project.
 
-```bash
+```sh title="Console/Terminal"
 mother make:command HaltAndCatchFireCommand
 ```
 
 ```plaintext
-/
+ExampleProject/
 ├── Program.cs
 ├── thumb.png
 ├── Modules/
@@ -247,9 +245,9 @@ public class LaunchCommand : BaseModuleCommand
 
 Now we implement the `Execute()` method, which will be called when the command is executed via a player command or other trigger.  The method takes a `TerminalCommand` object as the only parameter and returns a `string` which will be printed in the terminal.
 
-Let's image we run the following command to launch a missile:
+Let's imagine we run the following command in our Programmable Block terminal to launch a missile, which includes a target position, and option for max speed:
 
-```bash title="Terminal"
+```bash title="Programmable Block Terminal"
 launch 24422.23,32334.56,10045.33 --maxSpeed=50
 ```
 
@@ -270,8 +268,8 @@ public class LaunchCommand : BaseModuleCommand
         // get an option ie. --maxSpeed=50
         string maxSpeed = command.GetOption("maxSpeed");
 
-        // call Launch() method on parent module. The parent will 
-        // handle to core launch logic and may fire an even 
+        // call InitiateLaunch() method on parent module. The parent will 
+        // handle the core launch logic and may fire an event 
         // that other modules can listen for.
         bool success = Module.InitiateLaunch(
             targetCoordinate, 
@@ -291,7 +289,6 @@ public class LaunchCommand : BaseModuleCommand
 ### Registering a Command
 To register a command, we use the `RegisterCommand()` method. We define it in the `Boot()` method of the parent module.  This method can accept an instance of the module to allow access to its specialized methods from within the command.
 
-
 ```csharp title="MissileGuidanceModule.cs"
 public class MissileGuidanceModule : BaseExtensionModule
 {
@@ -299,6 +296,7 @@ public class MissileGuidanceModule : BaseExtensionModule
     {
         // Register command with access to the current module
         RegisterCommand(new LaunchCommand(this));
+
         // Or without using the current module
         RegisterCommand(new DetonateCommand());
     }
@@ -307,7 +305,7 @@ public class MissileGuidanceModule : BaseExtensionModule
 
 ## Events
 
-Events allow modules to communicate with each other without being tightly coupled.  Modules can emit events, then other modules may respond and take action. This keeps our scripts very modular.
+Events allow modules to communicate with each other without being tightly coupled.  Modules can emit events, then other modules may respond and take action. This keeps our scripts modular.
 
 ### Creating an Event
 
@@ -315,12 +313,12 @@ Use the `make:event` command from within your project directory to create a new 
 
 Let's create the `MissileLaunchedEvent` event.
 
-```bash
+```sh title="Console/Terminal"
 mother make:event MissileLaunchedEvent --module MissileGuidanceModule
 ```
 
 ```plaintext
-/
+ExampleProject/
 ├── Program.cs
 ├── thumb.png
 ├── Modules/
@@ -332,12 +330,12 @@ mother make:event MissileLaunchedEvent --module MissileGuidanceModule
 
 Running the `make:event` command without a module option will create an event in the `/Events` folder of your project.
 
-```bash
+```sh title="Console/Terminal"
 mother make:event EnemySpottedEvent
 ```
 
 ```plaintext
-/
+ExampleProject/
 ├── Program.cs
 ├── thumb.png
 ├── Modules/
@@ -404,7 +402,7 @@ Modules can monitor the behaviour of other modules via events.  Once subscribed 
 Let's image we have a `WarheadModule` that needs to arm the warhead when a missile is launched.
 
 ```plaintext
-/
+ExampleProject/
 ├── Program.cs
 ├── thumb.png
 ├── Modules/
@@ -453,7 +451,7 @@ The [Block Catalogue](../CoreModules/BlockCatalogue.md) makes a ledger of all bl
 Mother treats all blocks connected via hinges, rotors, and pistons as a single **construct**. It is fully compatible with subgrids and will not interfere with blocks on other grids via connector connections (ie. a docked ship). Your automations will not interfere with other ships when connected via connectors.
 :::
 
-Any `IMyTerminalBlock` on your construct can be accessed via the `GetBlocks()` method. You can get a block by its type, use an optional action for filtering the retrieved blocks. 
+Any `IMyTerminalBlock` on your construct can be accessed via the `GetBlocks()` method. You can get a block by its type, and use an optional action for filtering the retrieved blocks. 
 
 ::: tip
 See Malware's [API Index](https://github.com/malware-dev/MDK-SE/wiki/Api-Index) for more information on block types.
@@ -594,9 +592,12 @@ public void HandleConnectorStateChange(IMyShipConnector connector, object newSta
     {
         switch(newState)
         {
+            // The connector is now connected
             case ConnectorStatus.Connected:
                 Emit<ConnectorLockedEvent>(connector);
                 break;
+                
+            // The connector is now disconnected
             case ConnectorStatus.Unconnected:
                 Emit<ConnectorUnlockedEvent>(connector)
                 break;
@@ -606,5 +607,5 @@ public void HandleConnectorStateChange(IMyShipConnector connector, object newSta
 ```
 
 ::: note
-The Connector Module's [hooks](../../../IngameScript/Modules/Extension/ConnectorModule.md#hooks)  in Mother OS are activated by the connector's state change using the method above.
+In [Mother OS](../../../IngameScript/IngameScript.md), a connector's [hooks](../../../IngameScript/Modules/Extension/ConnectorModule.md#hooks) are activated by the connector's state change using the method above.
 :::

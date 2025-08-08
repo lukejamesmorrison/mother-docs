@@ -10,8 +10,6 @@
           class="ship-svg"
         >
 
-   
-
           <!-- Spaceship image -->
           <image href="/images/soyuz.svg" width="960" height="450" />
 

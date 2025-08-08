@@ -3,6 +3,8 @@
 
 The Block catalogue is responsible for cataloguing all terminal blocks available on the grid.  It is initiated when Mother boots, and reduces the need to search the entire grid for blocks when a command is run.
 
+[[toc]]
+
 ::: important
 The Block Catalogue will register terminal blocks on the main grid, as well as subgrids connected via a piston, hinge, or rotor.  It does not register blocks on subgrids connected via connectors to prevent side effects when docked. This is considered a single **construct**.
 :::

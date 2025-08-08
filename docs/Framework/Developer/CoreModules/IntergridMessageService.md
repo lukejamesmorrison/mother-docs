@@ -1,7 +1,5 @@
 # Intergrid Message Service
 
-[[toc]]
-
 Mother uses a Request/Response pattern for intergrid communication. Every instance of Mother Core uses this system to share information and enable remote command execution.
 
 ```mermaid
@@ -33,6 +31,9 @@ graph LR
     e2@{animation: slow}
 ```
 
+[[toc]]
+
+
 ## Requests
 
 ### The Request Object
@@ -44,8 +45,8 @@ Vector3D targetPosition = new Vector3D(1000, 2000, 3000);
 
 Dictionary<string, object> requestBody = new Dictionary<string, object>
 {
-    { "target", $"{tragetPosition}" },
-};;
+    { "target", $"{targetPosition}" },
+};
 
 Request request = CreateRequest("initiate-launch", requestBody);
 ```
@@ -77,7 +78,9 @@ public void SendLifeSupportInformation()
     intergridMessageService.SendOpenBroadcastRequest(request, OnLifeSupportResponse);
 }
 
-public void OnLifeSupportResponse(Response response) { }   
+public void OnLifeSupportResponse(Response response) {
+    // do something when response is received
+ }   
 ```
 
 
@@ -169,17 +172,26 @@ Many of these codes remain unused by act as placeholders for future functionalit
 
 ### Handing A Response
 
+Like we saw earlier, when registering send a request, we can define a callback for when a Response is received:
+
+```csharp
+// send request to a target, and define what happens when a response is received
+intergridMessageService.SendUnicastRequest(targetId, request, OnLifeSupportResponse);
+
+public void OnLifeSupportResponse(Response response) { 
+    // do something when the response is received
+}   
+```
+
 ## Routes
 
-If you would like your script to handle a request to a specific path, we can register this route in the module's `Boot()` method using the `Router.AddRoute()` method.
+If you would like your script to handle a request to a specific path, we can register this route in the module's `Boot()` method using the `AddRoute()` method.
 
 ```csharp title="MissileGuidanceModule.cs"
  public override void Boot()
  {
-    IntergridMessageService intergridMessageService = Mother.GetModule<IntergridMessageService>();
-
     // Register Routes
-    intergridMessageService.Router.AddRoute(
+    AddRoute(
         "initiate-launch", 
         request => HandleInitiateLaunchRequest(request)
     );
@@ -189,12 +201,22 @@ If you would like your script to handle a request to a specific path, we can reg
 ## Encrypting Messages
 When playing in a PvP environment, it quickly becomes important to secure your communications so that other players cannot remotely command your grids running Mother.  To do this, we can use Mother's built in encryption. Let's take a look at how we are using this during message transmission:
 
-:::tip
-To encrypt messages, ensure your `security > encrypt_messages` setting is set to `true` and that you have set a passcode in the programmable block's Custom Data.
-:::
+To encrypt messages, we use the [Security](../Utilities/Security.md) utility.
+
+## Channels
+
+Mother can communicate on multiple channels simultaneously.  We do this by defining channels in the programmable block's custom data, and provide a passcode if we wish to encrypt communications on that channel.
 
 ```ini title="Mother > Custom Data"
-[security]
-encrypt_messages=true
-passcodes=Sup3rSecr3tP@ssw0rd
+[channels]
+; Set public channel as available and unencrypted. 
+*=
+
+; The private channels are encrypted if a passcode is provided.
+MyFaction=Sup3rSecr3tP@ssw0rd
+OtherFaction=An0therP@ssw0rd
+; No passcode means no encryption on this channel.
+ThirdFaction=  
 ```
+
+When sending broadcasts, Mother will chose a single channel to use for communication.  This ensures that Mother is not overloading grids with multiples of the same request from different channels. This is done by assigning channels to [Almanac Records](../CoreModules/Almanac.md).

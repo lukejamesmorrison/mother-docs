@@ -1,23 +1,38 @@
 # Installation
 
-Creating a custom Mother project is straight forward.  We will need an IDE like [Visual Studio](https://visualstudio.microsoft.com/), and several Nuget packages to get started.  After that you can use several simple console commands to simplify your development.
+Creating a custom Mother project is straight forward.  We will need an IDE like [Visual Studio](https://visualstudio.microsoft.com/), and several Nuget packages to get started.  After that you can use several console commands to simplify your development.
+
+[[toc]]
 
 ## 1. Install MDK2
 
-First you will need MDK2, an amazing developer kit that Malware has created. You can easily download it [here](https://github.com/malforge/mdk2/wiki/Getting-Started-using-Visual-Studio). I highly recommend Visual Studio for developing scripts. Trust me.
+First you will need [MDK2](https://github.com/malforge/mdk2/wiki/Getting-Started-using-Visual-Studio), an amazing developer kit that Malware has created. I highly recommend Visual Studio for developing scripts. Trust me.
 
+![Malware MDK2 Packages](../../Assets/mdk2_packages.png)
 
 ## 2. Install Mother CLI Nuget Package
 
-To simplify building projects, you should install `mother-cli` which gives you helpers to create a project, as well as modules and commands. This will allow script developers to get right to work, without worrying about how to wire up their script.
+To simplify building projects, you should install [Mother CLI](https://www.nuget.org/packages/Mother.CLI/) which will assist you in quickly building out your project so you can get right to work without worrying about wiring things up.
 
-INAGE HERE
+![Mother Packages](../../Assets/mothercli_packages.png)
+
+Install Mother CLI using the following command in your terminal:
+
+```sh title="Console/Terminal"
+dotnet tool install --global Mother.CLI
+```
+
+This will make the `mother` command available across your projects.
+
+:::important
+You should install Mother CLI as a **global** dotnet package.  Due to differing .NetFramework versions, it cannot be installed for a specific project.
+:::
 
 ## 3. Create a new Project
 
-Now that we have `mother-cli` installed, we can simply create a new project in our current folder with the `new` command:
+Now that we have Mother CLI installed, we can simply create a new project in our current folder with the `new` command:
 
-```bash
+```sh title="Console/Terminal"
 mother new ExampleProject
 ```
 
@@ -25,23 +40,26 @@ mother new ExampleProject
 This framework only includes Core Modules shipped with the [Mother OS](../../../IngameScript/IngameScript.md) in-game script.
 :::
 
-After running the command, you should now have an `ExampleProject` folder containing your default project files.  With a few exceptions, this folder will look similar Progammable Block Script MDK2 can create for you. Mother CLI will automatically download all Mother Core modules into your project.
+After running the command, you should now have an `ExampleProject` folder containing your default project files.  With a few exceptions, this folder will look similar to the [MDK2](https://github.com/malforge/mdk2) Progammable Block Script template. Mother CLI will automatically download all Mother Core modules into your project.
 
 **Example folder structure:**
-```
-ExampleProject/
-├── Program.cs
-├── thumb.png
-├── Core/
-├── Modules/
-├── ...
+```sh title="sds"
+SpaceEngineersScripts/
+├── ExampleProject/
+    ├── Program.cs
+    ├── thumb.png
+    ├── Core/
+    ├── Modules/
+    ├── ...
+├── Mother OS/
+├── Mother GUI/
 ```
 
 ## 4. Create Your First Module
 
 Mother scripts store all of their logic in *Modules*.  Developers can access many powerful features by extending the `BaseExtensionModule` class.  To make this simple, Mother exposes the `make:module` command to quickly create new modules with the necessary scaffolding.
 
-```bash
+```sh title="Console/Terminal"
 mother make:module ExampleModule
 ```
 
@@ -67,8 +85,16 @@ You now have everything you need to get started.  Check out [Creating a Module](
 ## 4. Play
 When playing Space Engineers, your script should be available via the in game `Edit` menu on a Programmable Block.
 
-1. Image of edit + select script menu
+![Editing Programmable Block Script](../../Assets/edit_pb.png)
 
-## 5. Publish
+The click `Browse Scripts` to view all available programmable block scripts.
 
-1. Show how to public to steam workshop, mod.io
+![Browse Programmable Block Script](../../Assets/browse_scripts.png)
+
+`Double-click` the script thumbnail, or click `Copy to editor`:
+
+![Selecting Programmable Block Script](../../Assets/select_script.png)
+
+Finally, click `Ok` and your script shoot immediately begin its boot sequence.
+
+![Saving Programmable Block Script](../../Assets/save_script.png)

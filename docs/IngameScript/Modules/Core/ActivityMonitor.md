@@ -3,6 +3,8 @@
 
 The Activity Monitor enables Mother to monitor and manage functional blocks across cycles. It monitor the progress of an operation, and takes action when the operation is complete, like a rotor rotating to a position and locking afterwards.
 
+[[toc]]
+
 
 ## Why Do We Need It?
  Consider a rotor movement. The in-game interface required us to set the velocity, and upper and lower limits of rotation through a series of menus. We then must wait for the rotor to reach the desired angle, and stop/lock it using a Timer Block delay based on its speed of rotation.  This is a cumbersome process to set up via the user interface, and it is difficult to ensure that the rotor will stop at the correct angle without side effects, especially when part of a group. You're at the mercy of Clang.

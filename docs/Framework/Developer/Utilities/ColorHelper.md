@@ -1,5 +1,7 @@
 # Color Helper
 
+[[toc]]
+
 ## Getting a Color
 The `ColorHelper` class provides a simple way to access common colors by name or RGB string:
 

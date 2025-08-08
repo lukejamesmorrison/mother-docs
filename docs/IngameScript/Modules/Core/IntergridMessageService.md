@@ -1,12 +1,14 @@
 # Intergrid Message Service
 <!-- [< Modules](../Modules.md) -->
 
-[[toc]]
 
 
 Grids running Mother can communication by sending messages to each other.  This is useful for coordinating actions between multiple ships like docking, or sharing position data.
 
 To send a command to another grid remotely, you must begin the command with the grid's `Name`, which is stored in the [Almanac](../Core/Almanac.md).  Your grid's name is found in the `Info` tab of the terminal screen. 
+
+[[toc]]
+
 
 ::: caution
 At this time, grid names should not contain spaces `" "`.

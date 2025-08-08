@@ -1,8 +1,11 @@
 # Serializer
 
-On several occasions, it is most practical to convert our objects into strings. This is necessary when commiting data to [Local Storage](../CoreModules/LocalStorage.md) or when communicating with another grid via the Intergrid Messaging Service. 
+
+On several occasions, it is most practical to convert our objects into strings. This is necessary when commiting data to [Local Storage](../CoreModules/LocalStorage.md) or when communicating with another grid via the [Intergrid Message Service](../CoreModules/IntergridMessageService.md). 
 
 The `Serializer` utility class provides a set of static methods to serialize and deserialize objects.
+
+[[toc]]
 
 ## Serialize an Object
 
@@ -21,10 +24,10 @@ public virtual string Serialize()
 
     // Serialize the dictionary
     return  $"<header>{headerSerialized}</header>" +
-            $"{bodySerialized}";
+            $"<body>{bodySerialized}</body>";
 }
 ```
 
-See the [Intergrid Messaging Service]() for more information on how to send messages to other grids.
+See the [Intergrid Message Service](../CoreModules/IntergridMessageService.md) for more information on how to send messages to other grids.
 
-## Deserialize an Object
+<!-- ## Deserialize an Object -->

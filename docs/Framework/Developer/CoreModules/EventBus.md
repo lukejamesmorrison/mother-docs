@@ -1,5 +1,29 @@
 # Event Bus
 
+The Event Bus is uses to manage event subscriptions and ensure events are emitted to the correct modules.
+
+[[toc]]
+
+## Subscribing to an Event
+
+Before we can take action when an event is emitted, we need to subscribe to it. This is typically done in the `Boot()` method of an extension module.
+
+```csharp title="MissileGuidanceModule.cs"
+// show code to subscribe to an event from within an extension module with the boot method
+public class MissileGuidanceModule : BaseExtensionModule
+{
+    // show code to emit an event from within an extension module
+    public override void Boot()
+    {
+        // subscribe using the Event Bus module
+        Mother.GetModule<EventBus>().Subscribe<MissileLaunchedEvent>(this);
+
+        // Or via an accessor 
+        Subscribe<MissileLaunchedEvent>(this);
+    }
+}
+```
+
 ## Emitting an Event
 
 We can emit an event by using the `Emit()` method. Any module that has subscribe to this event will receive it.
@@ -24,33 +48,14 @@ public class MissileGuidanceModule : BaseExtensionModule
     {
         // Do launch stuff
         // ...
-        Emit(new MissileLaunchedEvent());
-    }
-}
-```
-## Subscribing to an Event
-
-Before we can take action when an event is emitted, we need to subscribe to it. This is typically done in the `Boot()` method of an extension module.
-
-```csharp title="MissileGuidanceModule.cs"
-// show code to subscribe to an event from within an extension module with the boot method
-public class MissileGuidanceModule : BaseExtensionModule
-{
-    // show code to emit an event from within an extension module
-    public override void Boot()
-    {
-        // subscribe using the Event Bus module
-        Mother.GetModule<EventBus>().Subscribe<MissileLaunchedEvent>(this);
-
-        // Or via an accessor 
-        Subscribe<MissileLaunchedEvent>(this);
+        Emit<MissileLaunchedEvent>();
     }
 }
 ```
 
 ## Listening for an Event
 
-Extension modules can override the `HandleEvent` method to listen for events they have subscribed to. This method will be called whenever an event is emitted to this module.
+Extension modules can override the `HandleEvent()` method to listen for events to which they have subscribed. This method will be called whenever an event is emitted to this module.
 
 ```csharp title="MissileGuidanceModule.cs"
 public class MissileGuidanceModule : BaseExtensionModule

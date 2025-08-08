@@ -60,14 +60,14 @@ onMounted(async () => {
 })
 
 const firstPulseSequence = [
-    { from: 'Button', to: 'Grid 1', color: '#E3B505', duration: 1 },
-    { from: 'Grid 1', to: 'Piston', color: '#E3B505', duration: 0.75 }
+    { from: 'Button', to: 'Grid 1', color: '#E3B505', duration: 0.5 },
+    { from: 'Grid 1', to: 'Piston', color: '#E3B505', duration: 0.5 }
 ]
 
 const secondPulseSequence = [
-    { from: 'Connector', to: 'Grid 1', color: '#00B0FF', duration: 1 },
-    { from: 'Grid 1', to: 'Grid 2', color: '#00B0FF', duration: 0.75 },
-    { from: 'Grid 2', to: 'Light', color: '#00B0FF', duration: 1 },
+    { from: 'Connector', to: 'Grid 1', color: '#00B0FF', duration: 0.5 },
+    { from: 'Grid 1', to: 'Grid 2', color: '#00B0FF', duration: 0.5 },
+    { from: 'Grid 2', to: 'Light', color: '#00B0FF', duration: 0.5 },
     // { from: 'Grid 2', to: 'Grid 1', color: '#00B0FF', duration: 1 }
 ]
 

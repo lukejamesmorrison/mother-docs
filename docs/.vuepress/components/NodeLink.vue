@@ -50,7 +50,7 @@ function animatePulse(onComplete, options = {}) {
     opacity: 1,
     duration,
     delay,
-    ease: 'power2.out',
+    ease: 'none',
     onComplete
   })
 }

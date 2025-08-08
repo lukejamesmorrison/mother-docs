@@ -144,9 +144,10 @@ const MotherCoreSidebar = {
       // link: '/Framework/Developer/Utilities/Utilities.md',
       collapsible: true, // Allows collapsing sections
       children: [
-        '/Framework/Developer/Utilities/Serializer.md',
         '/Framework/Developer/Utilities/ColorHelper.md',
-        '/Framework/Developer/Utilities/Geometry.md',
+        // '/Framework/Developer/Utilities/Geometry.md',
+        '/Framework/Developer/Utilities/Security.md',
+        '/Framework/Developer/Utilities/Serializer.md',
         // '/IngameScript/CommandLineInterface.md',
         // '/IngameScript/Configuration.md',
         // '/IngameScript/Modules/Modules.md',

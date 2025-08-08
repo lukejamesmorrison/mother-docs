@@ -6,7 +6,7 @@ The Almanac manages a list of records that represent entities in the game world.
 
 
 ## The Unique Identifier
-Since each instance of Mother is unique to its Programmable Block, we use the block's `EntityId` as the unique identifier.
+Since each instance of Mother is unique to its Programmable Block, we use the programmable block's `EntityId` as the unique identifier.
 
 ```csharp
 // via Mother (recommended)

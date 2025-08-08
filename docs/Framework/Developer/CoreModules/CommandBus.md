@@ -1,6 +1,6 @@
 # Command Bus
 
-The Command Bus handles commands execution for Mother.  Modules should register commands in the `Boot()` method to expose them to the player.
+The Command Bus handles command execution for Mother.  Modules should register commands in the `Boot()` method to expose them to the player.
 
 ## Registering a Command
 

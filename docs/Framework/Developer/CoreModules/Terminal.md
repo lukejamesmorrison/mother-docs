@@ -1,5 +1,7 @@
 # Terminal
 
+[[toc]]
+
 The terminal module manages the terminal interface for the programmable block.
 
 ## Printing to the Terminal
@@ -7,13 +9,15 @@ The terminal module manages the terminal interface for the programmable block.
 Once Mother has booted, you can use the `Print()` method to print values to the terminal stack. This is useful for debugging or displaying information to the user.
 
 ```csharp title="MissileGuidanceModule.cs"
-MissileState currentState = MissileState.Idle;
 public override void Launch()
 {
     Terminal terminal = Mother.GetModule<Terminal>();
     
     // Print a value to the terminal
     terminal.Print($"Launching missile...");
+
+    // or simply use to method on Mother
+    Mother.Print($"Launching missile...")
 }
 ```
 
@@ -24,10 +28,11 @@ MissileState currentState = MissileState.Idle;
 
 public override void Launch()
 {
-    Terminal terminal = Mother.GetModule<Terminal>();
-    
     // Print a long message without trimming
-    terminal.Print($"Missile launching in 10 seconds.\nCurrent state: {currentState}", false);
+    Mother.Print(
+        $"Missile launching in 10 seconds.\nCurrent state: {currentState}", 
+        false
+    );
 }
 ```
 

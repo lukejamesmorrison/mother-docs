@@ -1,10 +1,11 @@
 # Block Catalogue
 
-[[toc]]
-
-The Block Catalogue on of Mother's biggest stars.  It allows Mother to access all blocks on all connected grids easily.  It also manages their configuration during boot and exposes blocks for using later.
+The Block Catalogue one of Mother's biggest stars.  It allows Mother to access all blocks on all connected grids easily.  It also manages their configuration during boot and exposes blocks for use later.
 
 When Mother boots, she will cache all `IMyTerminalBlock` blocks on the grid and subgrids.
+
+[[toc]]
+
 
 ## Accessing Blocks
 
@@ -43,19 +44,32 @@ List<IMyThrust> lateralThrusters = Mother.GetModule<BlockCatalogue>()
 ```
 
 ### By Tag
-We also have the ability to access a block by its [tag](#working-with-tags). Again, we can reach for the `GetBlocksByName()` method. We will access our hydrogen engines with the tag `hydrogen` within their Custom Data.
+We also have the ability to access blocks with [tags](#working-with-tags). Again, we can reach for the `GetBlocksByName()` method. We will access our hydrogen engines with the tag `hydrogen` within their Custom Data.
 
 ```csharp
 List<IMyThrust> lateralThrusters = Mother.GetModule<BlockCatalogue>()
     .GetBlocksByName<IMyThrust>("#hydrogen");
 ```
 
+
 ## Working With Tags
 
 Tags allow us to create subgroups on our grid without using Grid Terminal System groups.  The problem with using groups is that they merge together when connecting with other grids via a connector.  This means that if you have a group called "Lateral Thrusters" on your ship, and you connect to another ship with the same group name, the two groups will merge into one causing conflict.
 
+
+**Example Custom Data:**
+```ini title="Ion Thruster 1 > Custom Data"
+[general]
+tags=lateral-thrusters
+```
+
+```ini title="Hydrogen Thruster 3 > Custom Data"
+[general]
+tags=retro-thruster
+```
+
 ### Setting a Tag
-To set a tag on a block, you can use the `SetBlockWithTag()` or `SetBlocksWithTag()` method.  IT accepts a block/group/tag name as its first parameter, and the tag to set as its second.
+To set a tag on a block, you can use the `SetBlockWithTag()` or `SetBlocksWithTag()` method.  It accepts a block/group/tag name as its first parameter, and the tag to set as its second.
 
 ```csharp
 // Add tag to the a single block - RetroThruster
@@ -76,16 +90,21 @@ List<IMyTerminalBlock> lateralThrusters = BlockCatalogue.GetBlocksByTag("lateral
 
 Mother uses hooks as triggers when certain events occur.  Players can define commands within the Custom Data field that will be excuted when a hook is run.
 
+```ini title="Connector > Custom Data"
+[hooks]
+onLock=light/color ConnectorLight red;
+```
+
 ### Running a Hook
 
-Mother registers all hooks during boot, so we only have to target the correct block with the name of the hook.
+Mother registers all hooks during boot, so we only have to target the correct block with the name of the hook. This is most practical to use when using [block state changes](../BuildingAModule/BuildingAModule.md#block-state-changes) to trigger hooks.
 
 ```csharp title="ConnectorModule.cs"
 IMyShipConnector connector = Mother.GetModule<BlockCatalogue>()
     .GetBlocksByName<IMyShipConnector>("Connector")
     .FirstOrDefault();
 
-// run the onReady hook for the connector
+// run the onLock hook for the connector
 Mother.GetModule<BlockCatalogue>().RunHook(connector, "onLock");
 ```
 
@@ -189,10 +208,10 @@ You can configure a block using its Custom Data field.  Mother uses the existing
 To get a blocks configuration, you can use the `GetBlockConfiguration()` method:
 
 ```csharp
-IMyTextPanel panel = BlockCatalogue.GetBlocksByName<IMyTextPanel>("HUD Display")
+IMyTextPanel textPanel = BlockCatalogue.GetBlocksByName<IMyTextPanel>("HUD Display")
     .FirstOrDefault();
 
-MyIni config = BlockCatalogue.GetBlockConfiguration(panel);
+MyIni config = BlockCatalogue.GetBlockConfiguration(textPanel);
 ```
 
 If we want to get a specific value from the configuration, we can use the `Get()` method:
