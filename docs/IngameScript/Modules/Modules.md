@@ -35,9 +35,10 @@ Extension modules provide additional functionality to a Space Engineer for contr
 ### By Function
 |Name													| Description|
 |-														|-								|
-| [FLight Planning](Extension/FlightPlanningModule.md)           | Provides navigation capabilities for the grid including dynamic flight planning.|
+| [Flight Planning](Extension/FlightPlanningModule.md)           | Provides navigation capabilities for the grid including dynamic flight planning.|
 | [Flight Control](Extension/FlightControlModule.md)	| Manaages autopilot and flight characteristics.|
 | [Docking](Extension/DockingModule.md)         | Manages docking procedures for the grid.|
+| [Map](Extension/MapModule.md)         | Manages map displays for the grid.|
 
 ### By Block Type
 |Name													| Description|

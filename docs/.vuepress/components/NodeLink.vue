@@ -1,5 +1,5 @@
 <template>
-  <g>
+  <g ref="group">
     <line
       :x1="x1"
       :y1="y1"
@@ -30,6 +30,7 @@ const props = defineProps({
 })
 
 const CELL_SIZE = 100
+const group = ref(null)
 const pulse = ref(null)
 
 const x1 = props.source.x * CELL_SIZE
@@ -37,9 +38,17 @@ const y1 = props.source.y * CELL_SIZE
 const x2 = props.target.x * CELL_SIZE
 const y2 = props.target.y * CELL_SIZE
 
+function bringPulseAboveItsLine() {
+  const g = group.value
+  const el = pulse.value
+  if (g && el) g.appendChild(el) // move pulse to be the LAST child of its group
+}
 function animatePulse(onComplete, options = {}) {
 
     const { color = props.color, duration = 0.75, delay = 0 } = options
+
+  // Ensure pulse is painted above its own line, but not above other groups/nodes
+  bringPulseAboveItsLine()
 
   gsap.fromTo(pulse.value, {
     attr: { cx: x1, cy: y1 },

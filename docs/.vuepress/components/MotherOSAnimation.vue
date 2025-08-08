@@ -44,19 +44,25 @@ const connections = ref([
   { source: 'root2', target: 'mother1' },
 
   { source: 'mother1', target: 'mother2' },
+  { source: 'mother2', target: 'mother1' },
+
   { source: 'mother1', target: 'mother1child1' },
   { source: 'mother1', target: 'mother1child2' },
   // { source: 'mother1', target: 'mother1child3' },
   { source: 'mother1', target: 'mother1child4' },
 
   { source: 'mother2', target: 'mother2child1' },
-  { source: 'mother2', target: 'mother2child2' }
+  { source: 'mother2', target: 'mother2child2' },
+  { source: 'mother2child2', target: 'mother2' }
+
 ])
 
 onMounted(async () => {
   // run 
   triggerPulseSequences();
-  setInterval(async () => triggerPulseSequences(), 5000)
+
+  setInterval(async () => triggerPulseSequences(), 4000)
+
 })
 
 const firstPulseSequence = [
@@ -68,20 +74,26 @@ const secondPulseSequence = [
     { from: 'Connector', to: 'Grid 1', color: '#00B0FF', duration: 0.5 },
     { from: 'Grid 1', to: 'Grid 2', color: '#00B0FF', duration: 0.5 },
     { from: 'Grid 2', to: 'Light', color: '#00B0FF', duration: 0.5 },
-    // { from: 'Grid 2', to: 'Grid 1', color: '#00B0FF', duration: 1 }
+]
+
+const thirdPulseSequence = [
+    { from: 'Sound Block', to: 'Grid 2', color: '#FF4081', duration: 0.5 },
+    { from: 'Grid 2', to: 'Grid 1', color: '#FF4081', duration: 0.5 },
+    { from: 'Grid 1', to: 'Rotor', color: '#FF4081', duration: 0.5 }
 ]
 
 async function triggerPulseSequences() {
-  await diagram.value.runPulseSequence(firstPulseSequence)
-  await diagram.value.runPulseSequence(secondPulseSequence)
+  await diagram.value?.runPulseSequence(firstPulseSequence)
+  await diagram.value?.runPulseSequence(secondPulseSequence)
+  await diagram.value?.runPulseSequence(thirdPulseSequence)
 }
 
 </script>
 
 <style scoped>
-.mother-os-diagram {
-  width: 100%;
-  max-width: 960px;
-  margin: 0 auto;
-}
+  .mother-os-diagram {
+    width: 100%;
+    max-width: 960px;
+    margin: 0 auto;
+  }
 </style>

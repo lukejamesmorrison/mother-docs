@@ -1,8 +1,8 @@
 # Map Module
 
-[[toc]]
-
 The map module allows Mother to visualize the positions of all grids and waypoints in the [Almanac](../Core/Almanac.md). This provides players with a spacial representation of all grids running Mother Core, and communicating via the antenna network.
+
+[[toc]]
 
 ## Viewing the Map
 
@@ -70,6 +70,10 @@ filter=-SurveyDrone -MyFaction
 <!-- **LCD Custom Data** -->
 ```ini title="LCD > Custom Data"
 [general]
+;filter grids
+filter=+MyFaction +SurveyDrone
+
+;the scale of the rendered map in meters
 mapScale=150
 
 ; full GPS String or;
@@ -81,4 +85,6 @@ center=Mothership
 
 ; render mode
 mode=2D
+
+
 ```

@@ -8,9 +8,8 @@ actions:
     type: primary
 
   # - text: Mother Core
-    # link: https://vuejs.press/guide/introduction.html
-    # link: /Framework/index.html
-    # type: secondary
+  #   link: /Framework/Readme.md
+  #   type: secondary
 
 features:
   - title: Intuitive Command Library
@@ -37,7 +36,13 @@ footer: MIT Licensed | © 2025 Agentluke | The Empire must grow.
 
 Unlock advanced automation, flight planning, and intergrid communication.
 
+
+::: warning
+Mother is in beta development.
+:::
+
 [Get Started](/IngameScript/IngameScript.md) | [Command Cheatsheet](/IngameScript/CommandCheatsheet.md) | [Examples](/IngameScript/Examples.md)
+
 
 <div>
   <MotherOSAnimation />
@@ -49,9 +54,7 @@ Unlock advanced automation, flight planning, and intergrid communication.
 <br>
 <br>
 
-::: warning
-Mother is in beta development. I'm on a quest to reduce the character count, and increase the functionality. Please report any issues you encounter, and expect some of the commands and underlying framework to change.
-:::
+
 
 <!-- <section>
     <h2>Mother OS</h2>
@@ -66,18 +69,23 @@ Mother is in beta development. I'm on a quest to reduce the character count, and
 
 Script Framework for custom Space Engineers ingame scripts written in C#6 and deployed using [MDK2](https://github.com/malforge/mdk2/wiki).
 
- <!--[Get Started](./Framework/README.md) | [MDK-SE API Index](https://github.com/malware-dev/MDK-SE/wiki)-->
-
-<MotherCoreOverview/> 
-
-<!-- <div>
-  <MotherCoreAnimation />
-</div> -->
-
-
 ::: warning
 Mother Core is coming soon as a downloadable script framework.  Stay tuned for updates!
 :::
+
+ [Get Started](./Framework/README.md) | [MDK-SE API Index](https://github.com/malware-dev/MDK-SE/wiki)
+
+<MotherCoreOverview/> 
+
+## Mother CLI
+
+[Mother CLI](./Framework/Developer/Console.md) is a simple command line tool to assist Space Engineers players with creating their own programmable block scripts using Mother Core.
+
+It is easily installed by running the following command in your console/terminal:
+
+```sh
+dotnet tool install --global Mother.CLI
+```
 
 ##  About Agentluke
 I have always been passionate about aviation and space. I studied Aerospace Engineering, and flew in fighter jets in the Air Force for over a decade. I have been writing software since university, and I have always been fascinated by the intersection of software and hardware.
