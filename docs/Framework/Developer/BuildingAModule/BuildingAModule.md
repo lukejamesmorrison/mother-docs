@@ -348,23 +348,6 @@ ExampleProject/
 Modules can emit events using the `Emit()` method.  This method takes an `IEvent` instance as a parameter, and an optional `object` of event data.
 
 ```mermaid
-%%{
-  init: {
-    'theme': 'base',
-    'themeVariables': {
-        'primaryColor': '#BB2528',
-        'primaryBorderColor': 'red',
-        'mainBkg': 'white',
-        'nodeBorder': 'red',
-        'lineColor': 'black',
-        'secondaryColor': 'white',
-        'secondaryBorderColor': 'black',
-        'tertiaryColor': '#F2F2F2',
-        'tertiaryBorderColor': 'black'
-    }
-  }
-}%%
-
 sequenceDiagram
     autonumber
     participant ModuleA

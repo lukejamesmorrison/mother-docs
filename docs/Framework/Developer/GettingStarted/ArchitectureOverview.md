@@ -24,18 +24,6 @@ Let's look at the entity diagram for [Mother OS](../../../IngameScript/IngameScr
         'defaultRenderer': 'elk'
     },
     'theme': 'base',
-    'themeVariables': {
-        'primaryColor': '#BB2528',
-        'primaryTextColor': '#fff',
-        'primaryBorderColor': '#7C0000',
-        'mainBkg': 'white',
-        'nodeBorder': 'red',
-        'lineColor': 'black',
-        'secondaryColor': 'white',
-        'secondaryBorderColor': 'black',
-        'tertiaryColor': '#F2F2F2',
-        'tertiaryBorderColor': 'black'
-    }
   }
 }%%
 graph RL
@@ -137,18 +125,7 @@ partial class Program : MyGridProgram
 %%{
   init: {
     'theme': 'base',
-    'themeVariables': {
-        'primaryColor': '#BB2528',
-        'primaryTextColor': '#fff',
-        'primaryBorderColor': '#7C0000',
-        'mainBkg': 'white',
-        'nodeBorder': 'red',
-        'lineColor': 'black',
-        'secondaryColor': '#F2F2F2',
-        'secondaryBorderColor': 'black',
-        'tertiaryColor': '#F2F2F2',
-        'tertiaryBorderColor': 'black'
-    }
+   
   }
 }%%
 
@@ -190,17 +167,6 @@ When a command is trigger it is passed to the [Command Bus](../CoreModules/Comma
 %%{
   init: {
     'theme': 'base',
-    'themeVariables': {
-        'primaryColor': '#BB2528',
-        'primaryBorderColor': 'red',
-        'mainBkg': 'white',
-        'nodeBorder': 'red',
-        'lineColor': 'black',
-        'secondaryColor': 'white',
-        'secondaryBorderColor': 'black',
-        'tertiaryColor': '#F2F2F2',
-        'tertiaryBorderColor': 'black'
-    }
   }
 }%%
 

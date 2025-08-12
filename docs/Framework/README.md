@@ -76,16 +76,7 @@ Scripts built with Mother Core depend on the [Program](https://github.com/malwar
   init: {
     'theme': 'base',
     'themeVariables': {
-        'primaryColor': '#BB2528',
-        'primaryTextColor': '#fff',
-        'primaryBorderColor': '#7C0000',
-        'mainBkg': 'white',
-        'nodeBorder': 'red',
-        'lineColor': 'black',
-        'secondaryColor': 'white',
-        'secondaryBorderColor': 'black',
-        'tertiaryColor': '#F2F2F2',
-        'tertiaryBorderColor': 'black'
+    
     }
   }
 }%%

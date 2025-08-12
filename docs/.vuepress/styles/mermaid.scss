@@ -1,0 +1,55 @@
+.mermaid-content {
+
+    rect.actor {
+        fill: var(--vp-c-bg) !important;
+        stroke: var(--vp-c-accent) !important;
+    }
+
+    line.actor-line {
+        stroke: var(--vp-c-text) !important;
+    }
+
+    .sequenceNumber {
+        color: var(--vp-c-text) !important;
+    }
+
+    g.node>rect {
+        fill: var(--vp-c-bg) !important;
+        stroke: var(--vp-c-accent) !important;
+    }
+
+    g.node {
+        .label-container {
+            fill: var(--vp-c-bg) !important;
+            stroke: var(--vp-c-accent) !important;
+
+        }
+    }
+
+
+    .nodeLabel {
+        a {
+            color: var(--vp-c-text) !important;
+        }
+    }
+
+    g.edgeLabel {
+        background-color: var(--vp-c-bg) !important;
+
+        .labelBkg {
+            background-color: var(--vp-c-bg) !important;
+        }
+
+        span.edgeLabel {
+
+            p {
+                color: var(--vp-c-text) !important;
+                background-color: var(--vp-c-bg) !important;
+            }
+        }
+
+
+    }
+
+
+}

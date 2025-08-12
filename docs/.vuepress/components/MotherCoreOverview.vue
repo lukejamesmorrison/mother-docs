@@ -5,13 +5,14 @@
       <div class="ship-container">
         <svg
           ref="svgEl"
-          viewBox="0 0 960 450"
+          :viewBox="`0 0 ${IMG_WIDTH} ${IMG_HEIGHT}`"
           xmlns="http://www.w3.org/2000/svg"
           class="ship-svg"
         >
 
           <!-- Spaceship image -->
-          <image href="/images/soyuz.svg" width="960" height="450" />
+          <!-- <image href="/images/soyuz.svg" width="960" height="450" /> -->
+          <Soyuz :width="IMG_WIDTH" :height="IMG_HEIGHT"/>
 
           <!-- Lines -->
           <line
@@ -22,7 +23,7 @@
             :y1="block.y1"
             :x2="block.x2"
             :y2="block.y2"
-            :stroke="isActive(index) ? '#e11d48' : '#9ca3af'"
+            :stroke="isActive(index) ? 'var(--vp-c-accent)' : 'var(--vp-c-text)'"
             :stroke-width="isActive(index) ? 3 : 1"
             stroke-linecap="round"
             :ref="el => lineEls[index] = el"
@@ -85,6 +86,10 @@
 <script setup>
 import { ref, onMounted, onBeforeUnmount } from 'vue'
 import { gsap } from 'gsap'
+import Soyuz from './Soyuz.vue'
+
+const IMG_HEIGHT = 480
+const IMG_WIDTH = 930
 
 const svgEl = ref(null)
 const lineEls = []
@@ -175,10 +180,14 @@ onBeforeUnmount(() => {
 </script>
 
 
-<style scoped>
+<style scoped lang="scss">
 .spaceship-feature {
   max-width: 960px;
   margin: 2rem auto;
+
+  svg g circle {
+    fill: var(--vp-c-bg);
+  }
 }
 
 .row {
@@ -207,10 +216,10 @@ onBeforeUnmount(() => {
 }
 
 .block {
-    border: 1px solid #ccc;
+    border: 1px solid var(--vp-c-border);
     border-radius: 6px;
     padding: 1rem;
-    background: white;
+    background: var(--vp-c-bg);
     transition: border-color 0.3s, background-color 0.3s;
     cursor: pointer;
     display: flex;
@@ -221,9 +230,10 @@ onBeforeUnmount(() => {
 
 .block-title {
     display: block;
-    color: #525252;
+    // color: #525252;
+    color: var(--vp-c-accent);
     font-size: 1rem;
-    font-weight: 500;
+    font-weight: 600;
     margin: 0;
     padding: 0;
 }
@@ -231,15 +241,17 @@ onBeforeUnmount(() => {
 .block-description {
     display: block;
   font-size: 0.875rem;
-  color: #525252;
+  // color: #525252;
+    color: var(--vp-c-text);
   margin: 0;
   padding: 0;
     line-height: 1.5;
 }
 
 .block.active {
-  border-color: #e11d48;
-  background-color: #ffe4e6;
+  // border-color: #e11d48;
+  border-color: var(--vp-c-accent);
+  background-color: var(--vp-c-bg);
 }
 
 @media (max-width: 768px) {

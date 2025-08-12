@@ -184,11 +184,21 @@ const NavbarLinks = () => {
 }
 
 export default defineUserConfig({
-  // define: {
-  //   __VUEPRESS_DEV__ : process.env.NODE_ENV,
-  // },
   base: '/mother-docs/',
   lang: 'en-US',
+  title: 'Mother Docs',
+  description: 'Documentation for Mother OS and Mother Core',
+
+  // Additional head elements. We add icons.
+  head: [
+    ['link', { rel: 'icon', href: 'favicon.ico' }],
+    ['link', { rel: 'icon', href: 'favicon-16x16.png' }],
+    ['link', { rel: 'icon', href: 'favicon-32x32.png' }],
+    ['link', { rel: 'icon', href: 'apple-touch-icon.png' }],
+    ['link', { rel: 'icon', href: 'android-chrome-192x192.png' }],
+    ['link', { rel: 'icon', href: 'android-chrome-512x512.png' }],
+  ],
+
   plugins: [
     mdEnhancePlugin({
       mermaid: true,
@@ -216,8 +226,7 @@ export default defineUserConfig({
       // },
     }),
   ],
-  title: 'Mother Docs',
-  description: 'Documentation for Mother OS and Mother Core',
+
 
   theme: defaultTheme({
     darkMode: false, // Enables the dark mode toggle
