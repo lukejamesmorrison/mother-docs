@@ -1,5 +1,5 @@
 # Console
-You can use [Mother CLI](https://www.nuget.org/packages/Mother.CLI/) to assist with creating project and many common file types. Simply install it as a **global** Nuget package and access it with `mother` in your Terminal/Console.  
+You can use [Mother CLI](https://www.nuget.org/packages/Mother.CLI/) to assist with creating projects and many common file types. Simply install it as a **global** Nuget package and access it with `mother` command in your Terminal/Console.  
 
 [[toc]]
 
@@ -17,7 +17,7 @@ dotnet tool install --global Mother.CLI
 Commands following the following format:
 
 ```sh
-mother [command] [arguments] [options]
+mother [command] [arguments] [--options=]
 ```
 
 ## Available Commands
@@ -32,21 +32,21 @@ mother install
 ```
 
 ### make:command
-Create a new terminal command. You may also specific a module to which this command belongs and Mother CLI will register the command for you automatically.
+Create a new terminal command. You may also specific a module to which this command belongs. Mother CLI will register it for you automatically, and place it within the `/Modules/{ModuleName}/Commands`.
 
 ```sh
 mother make:command [CommandName] --module? [ModuleName]
 ```
 
 ### make:event
-Create a new event.
+Create a new event. You may also specific a module to which this event belongs. Mother CLI will register it for you automatically, and place it within the `/Modules/{ModuleName}/Events`.
 
 ```sh
 mother make:event [EventName] --module? [ModuleName]
 ```
 
 ### make:module
-Create a new extension module.
+Create a new extension module. A project's modules will be created in the `/Modules` folder.
 
 ```sh
 mother make:module [ModuleName]
@@ -65,4 +65,8 @@ Update Mother Core modules. Running this periodically will ensure the Mother Cor
 ```sh
 mother update
 ```
+
+:::note
+I plan to improve Mother Core versioning in the future to reduce breaking changes introduced by changes to the [core modules](CoreModules/CoreModules.md).
+:::
 

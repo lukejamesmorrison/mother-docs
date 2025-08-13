@@ -41,7 +41,7 @@ const items = [
 
 # Powered By Mother
 
-This section showcases some of the best grids that utilize the Mother OS script to run their operations. If you are using Mother OS, show it off by completing this . [short questionnaire](https://docs.google.com/forms/d/e/1FAIpQLSfIK4i_UdRxobiCem7IqTA4Fc9fTmyq5Tg_vzdGWCdtuOOXYg/viewform?usp=dialog).
+This section showcases some of the best grids that utilize the Mother OS script to run their operations. If you are using Mother OS, show it off by completing this [short questionnaire](https://docs.google.com/forms/d/e/1FAIpQLSfIK4i_UdRxobiCem7IqTA4Fc9fTmyq5Tg_vzdGWCdtuOOXYg/viewform?usp=dialog).
 <br>
 <br>
 

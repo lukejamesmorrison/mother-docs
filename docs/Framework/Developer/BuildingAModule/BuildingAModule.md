@@ -197,7 +197,7 @@ ExampleProject/
 ```
 
 :::info
-Mother automatically registers the command in the modules' `Boot()` method when used in the `make:command` command.
+Mother automatically registers the command in the module's `Boot()` method when used in the `make:command` command.
 :::
 
 Running the `make:command` command without a module option will create a command in the `/Commands` folder of your project.
@@ -248,7 +248,7 @@ Now we implement the `Execute()` method, which will be called when the command i
 Let's imagine we run the following command in our Programmable Block terminal to launch a missile, which includes a target position, and option for max speed:
 
 ```bash title="Programmable Block Terminal"
-launch 24422.23,32334.56,10045.33 --maxSpeed=50
+launch 24422.23,32334.56,10045.33 25 --maxSpeed=50
 ```
 
 The `TerminalCommand` object will contain the command name, arguments, and options.  We can access these properties to get the information we need to execute the command.
@@ -262,7 +262,7 @@ public class LaunchCommand : BaseModuleCommand
         string targetCoordinate = command.Arguments[0];
 
         // second argument as a double
-        string detonationDistance;
+        double detonationDistance;
         double.TryParse(command.Arguments[1], out detonationDistance);
 
         // get an option ie. --maxSpeed=50
@@ -296,9 +296,6 @@ public class MissileGuidanceModule : BaseExtensionModule
     {
         // Register command with access to the current module
         RegisterCommand(new LaunchCommand(this));
-
-        // Or without using the current module
-        RegisterCommand(new DetonateCommand());
     }
 }
 ```
@@ -380,9 +377,7 @@ The `Emit()` and `Subscribe()` methods are accessors for the [Event Bus](../Core
 
 ### Subscribing to an Event
 
-Modules can monitor the behaviour of other modules via events.  Once subscribed to an event, a module take action via the `HandleEvent()` method each time that event is emitted.
-
-Let's image we have a `WarheadModule` that needs to arm the warhead when a missile is launched.
+Once subscribed to an event, a module take action via the `HandleEvent()` method each time that event is emitted. Let's imagine we have a `WarheadModule` that needs to arm the warhead when a missile is launched.
 
 ```plaintext
 ExampleProject/
@@ -397,7 +392,7 @@ ExampleProject/
             ├── MissileLaunchedEvent.cs
 ```
 
-We subscribe to this event in our module's `Boot()` method. Then we override the `HandleEvent()` method to handle the event when it is emitted.
+We subscribe to this event in our module's `Boot()` method. Then we use the `HandleEvent()` method to handle the event each time it is emitted.
 
 ```csharp title="WarheadModule.cs"
 public class WarheadModule : BaseExtensionModule
@@ -454,12 +449,12 @@ public class MissileGuidanceModule : BaseExtensionModule
 
         // or, only get blocks where name contains a key
         List<IMyThrust> thrusters = BlockCatalogue
-            .GetBlocks<IMyThrust>(block => block.CustomName.Contains("key"));
+            .GetBlocks<IMyThrust>(block => block.CustomName.Contains("door"));
     }
 }
 ```
 
-The more practical situation is when we want to get a specific block on the grid by it's *name*, or multiple blocks within a *group*.  This can be done by via the `GetBlocksByName()` method.  It accepts a block type, and a string for the block, group, or tag name.
+The more practical situation is when we want to get a specific block on the grid by it's *name*, or multiple blocks within a *group*.  This can be done by via the `GetBlocksByName()` method.  It accepts a block type, and a string for the block, group, or [tag](../CoreModules/BlockCatalogue.md#by-tag) name.
 
 ```csharp title="MissileGuidanceModule.cs"
 public class MissileGuidanceModule : BaseExtensionModule
@@ -499,7 +494,11 @@ Before our missile launches, we should ensure the exhaust flaps are open.
 const float HINGE_OPEN_ANGLE = 45f; // degrees
 const string STATE = "READY_FOR_LAUNCH";
 
-public void InitiateLaunch(targetCoordinate, detonationDistance, maxSpeed)
+public void InitiateLaunch(
+    string targetCoordinate, 
+    double detonationDistance, 
+    float maxSpeed
+)
 {
     // Get the hinge blocks
     var hinges = Mother.GetModule<BlockCatalogue>()
@@ -514,10 +513,16 @@ public void InitiateLaunch(targetCoordinate, detonationDistance, maxSpeed)
             .RegisterBlock(
                 // we pass in the hinge block
                 hinge,
-                // we specify to condition where the hinge must stop
-                // ie. it reaches the desired angle
-                block => HingeAtDesiredAngle(block as IMyMotorStator, HINGE_OPEN_ANGLE),
-                // we specify the action to take when the hinge stops
+                // We specify the condition to run 
+                // against the hinge each cycle
+                // ie. has it reached the desired angle?
+                block => HingeAtDesiredAngle(
+                    block as IMyMotorStator, 
+                    HINGE_OPEN_ANGLE
+                ),
+                // we specify the action to take when the above condition is 
+                // true, which can access the block if desired
+                // ie. the hinge has reached the desired angle
                 block => LaunchMissile()
             );
     });
@@ -547,6 +552,8 @@ All blocks on the grid can also be monitored for state changes.  The state value
 
 :::warning
 Use this capability with caution as this adds more computation per game cycle. Blocks being monitored like this will always be checked for state changes, even if they are not in motion. This is useful for blocks that change state infrequently, such as connectors, doors, and landing gear. 
+
+You should **only monitor individual blocks** - NOT groups, or tags.
 :::
 
 ```csharp title="MissileGuidanceModule.cs"
@@ -555,10 +562,13 @@ public void Boot()
     // Register connectors and monitor the Status property which 
     // tells us if the connector is connected or not.
     RegisterBlockTypeForStateMonitoring<IMyShipConnector>(
-        // We specify the block's property to monitor
+        // We specify the block's property to monitor (Status)
         connector => connector.Status, 
-        // We specify the action to use each cycle to compare the state
-        (block, newState) => HandleConnectorStateChange(block as IMyShipConnector, newState);
+        // We specify the action to take when the block's state changes
+        (block, newState) => HandleConnectorStateChange(
+            block as IMyShipConnector, 
+            newState
+        );
     );
 }
 ```

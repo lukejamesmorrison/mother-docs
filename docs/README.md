@@ -101,7 +101,7 @@ Space Engineer 🚀🇨🇦
 
 ## Thanks
 
-**Malware** has made done critical foundational work by building the [MDK-SE API Index](https://github.com/malware-dev/MDK-SE/wiki) and [MDK2](https://github.com/malforge/mdk2/wiki). Without these tools, developing a framwork of this complexity would not have been possible. Cheers mate 🍻 
+**Malware** has made done critical foundational work by building the [MDK-SE API Index](https://github.com/malware-dev/MDK-SE/wiki) and [MDK2](https://github.com/malforge/mdk2/wiki). Without these tools, developing a framework of this complexity would not have been possible. Cheers mate 🍻 
 
 ## Contributions
 Contributions are welcome. If you see where this documentation can be improved, please let me know or submit the change request!

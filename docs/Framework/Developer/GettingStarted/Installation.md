@@ -74,6 +74,8 @@ ExampleProject/
         ├── ExampleModule.cs
 ```
 
+Not bad huh? We've only scratched the surface. Mother CLI can also [create commands and events](../Console.md).
+
 ## 5. Build your Project
 
 Use `Ctrl + B` to build your script. The build tool should automatically save your script into the appropriate directory, for access in the game.
