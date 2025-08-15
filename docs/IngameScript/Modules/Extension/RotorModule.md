@@ -5,7 +5,7 @@ The rotor module allows the user to control rotors on the grid.  Rotors are part
 
 ## Commands
 
-### rotate
+### rotor/rotate
 Rotate a rotor or group of rotors to a specific angle between -360 and 360 degrees. 
 ```
 rotor/rotate <Rotor|Group> <Angle> [--options]
@@ -29,7 +29,7 @@ Increase the angle of the antenna rotor by 45 degrees:
 hinge/rotate LandingGearHinge 45 --add;
 ```
 
-### lock
+### rotor/lock
 Lock a rotor or group of rotors.
 ```
 rotor/lock <Rotor|Group>
@@ -40,7 +40,7 @@ rotor/lock <Rotor|Group>
 rotor/lock AntennaRotor;
 ```
 
-### unlock
+### rotor/unlock
 Unlock a rotor or group of rotors.
 ```
 rotor/unlock <Rotor|Group>
@@ -51,7 +51,7 @@ rotor/unlock <Rotor|Group>
 rotor/unlock AntennaRotor;
 ```
 
-### reset
+### rotor/reset
 Reset a rotor or group of rotors to their original position (0 degrees).
 ```
 rotor/reset <Rotor|Group>
@@ -62,7 +62,7 @@ rotor/reset <Rotor|Group>
 rotor/reset AntennaRotor;
 ```
 
-### speed
+### rotor/speed
 Set the speed of a rotor or group of rotors in RPM.
 ```
 rotor/speed <Rotor|Group> <Speed> <Options>

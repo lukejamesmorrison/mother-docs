@@ -7,7 +7,7 @@ The battery module allows the user to control batteries on the grid.  Batteries 
 
 ## Commands
 
-### charge
+### battery/charge
 Set the battery to `Recharge` mode.
 
 ```
@@ -19,7 +19,7 @@ battery/charge <Battery|Group>
 battery/charge "Main Battery";
 ```
 
-### discharge
+### battery/discharge
 Set the battery to `Discharge` mode.
 
 ```
@@ -31,7 +31,7 @@ battery/discharge <Battery|Group> [--options]
 battery/discharge "Main Battery";
 ```
 
-### auto
+### battery/auto
 Set the battery to `Auto` mode.
 
 ```
@@ -43,7 +43,7 @@ battery/auto <Battery|Group> [--options]
 battery/auto "Main Battery";
 ```
 
-### toggle
+### battery/toggle
 Toggle the battery between `Auto`, `Recharge` and `Discharge` mode.
 
 ```

@@ -7,7 +7,7 @@ The light module allows the user to control lights and searchlights on the grid.
 
 ## Commands
 
-### color
+### light/color
 
 Set the color of a light or group of lights. The color of the light is RGB ie. `255,255,255`.
 
@@ -38,7 +38,7 @@ light/color LandingLight red;
 light/color LandingLight 255,0,0;
 ```
 
-### blink
+### light/blink
 Make a light blink at an interval in seconds.
 
 ```
@@ -71,7 +71,7 @@ light/blink SignalLight slow;
 light/blink SignalLight 3 --length=0.3 --offset=0;
 ```
 
-### intensity
+### light/intensity
 
 Set the intensiity of a light or group of lights. The intensity is a value between 0 and 1, where 0 is off and 1 is full brightness.
 
@@ -97,7 +97,7 @@ Reduce the intensity of the signal light by 0.2 (20%):
 light/intensity SignalLight 0.2 --sub;
 ```
 
-### reset
+### light/reset
 
 Reset a light or group of lights to white and cease any blinking.
 

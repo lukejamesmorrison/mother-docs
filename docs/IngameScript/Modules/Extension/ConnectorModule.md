@@ -7,7 +7,7 @@ The connector module allows the user to control connectors on the grid.
 
 ## Commands
 
-### lock
+### connector/lock
 Lock a connector or group of connectors.
 
 ```
@@ -20,7 +20,7 @@ connector/lock <Connector|Group>
 connector/lock DockingConnector
 ```
 
-### unlock
+### connector/unlock
 Unlock a connector or group of connectors.
 
 ```
@@ -33,7 +33,7 @@ connector/unlock <Connector|Group>
 connector/unlock DockingConnector
 ```
 
-### toggle
+### connector/toggle
 Toggle the lock state of a connector or group of connectors.
 
 ```

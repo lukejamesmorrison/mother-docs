@@ -7,7 +7,7 @@ The hinge module allows the user to control hinges on the grid.  Hinges are part
 
 ## Commands
 
-### rotate
+### hinge/rotate
 Rotate a hinge or group of hinges to a specific angle between -90 degrees and 90 degrees.
 ```
 hinge/rotate <Hinge|Group> <Angle> [--options]
@@ -31,7 +31,7 @@ Reduce the angle of the landing gear hinge by 10 degrees.
 hinge/rotate LandingGearHinge 10 --sub;
 ```
 
-### lock
+### hinge/lock
 Lock a hinge or group of hinges.
 ```
 hinge/lock <Hinge|Group>
@@ -46,7 +46,7 @@ hinge/lock <Hinge|Group>
 hinge/lock LandingGearHinge;
 ```
 
-### unlock
+### hinge/unlock
 Unlock a hinge or group of hinges.
 ```
 hinge/unlock <Hinge|Group>
@@ -57,7 +57,7 @@ hinge/unlock <Hinge|Group>
 hinge/unlock LandingGearHinge;
 ```
 
-### reset
+### hinge/reset
 Reset a hinge or group of hinges to their original position (0 degrees).
 ```
 hinge/reset <Hinge|Group>
@@ -68,7 +68,7 @@ hinge/reset <Hinge|Group>
 hinge/reset LandingGearHinge;
 ```
 
-### speed
+### hinge/speed
 Set the speed of a hinge or group of hinges in RPM.
 ```
 hinge/speed <hinge|Group> <Speed> <Options>

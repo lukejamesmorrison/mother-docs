@@ -5,7 +5,7 @@ The Display Module allows the user to control LCD panels, and cockpit screens on
 [[toc]]
 
 ## Commands
-### print
+### screen/print
 
 Print a message to an LCD panel or group of panels.
 

@@ -7,7 +7,7 @@ The Landing Gear module allows the user to control landing gear and magnetic pla
 
 ## Commands
 
-### lock
+### gear/lock
 Lock a Landing Gear or group of Landing Gear.
 ```
 gear/lock <LandingGear|Group>
@@ -18,7 +18,7 @@ gear/lock <LandingGear|Group>
 gear/lock MainLandingGear;
 ```
 
-### unlock
+### gear/unlock
 Unlock a Landing Gear or group of Landing Gear.
 ```
 gear/unlock <LandingGear|Group
@@ -29,7 +29,7 @@ gear/unlock <LandingGear|Group
 gear/unlock MainLandingGear;
 ```
 
-### toggle
+### gear/toggle
 Toggle the lock state of a Landing Gear or group of Landing Gear between `Locked` nad `Unlocked`.
 ```
 gear/toggle <LandingGear|Group>
@@ -44,7 +44,7 @@ gear/toggle MainLandingGear;
 For more info about Landing Gear states, see [LandingGearMode](https://github.com/malware-dev/MDK-SE/wiki/SpaceEngineers.Game.ModAPI.Ingame.LandingGearMode) in MDK-SE.
 :::
 
-### auto
+### gear/auto
 Set the AutoLock state of a Landing Gear or group of Landing Gear.
 ```
 gear/auto <LandingGear|Group> <true|false>

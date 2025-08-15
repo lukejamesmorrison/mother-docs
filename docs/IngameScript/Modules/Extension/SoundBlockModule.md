@@ -7,7 +7,7 @@ The Sound Block Module allows the user to control sound blocks on the grid. Play
 
 ## Commands
 
-### play
+### sound/play
 
 Play the sound block with an optional sound.
 ```ini 
@@ -26,7 +26,7 @@ See the [`set`](#set) command for a list of available sounds.
 sound/play MainSpeaker "Danger Music 04";
 ```
 
-### stop
+### sound/stop
 
 Stop the sound block from playing.
 
@@ -40,7 +40,7 @@ sound/stop <SoundBlock|Group>
 sound/stop MainSpeaker;
 ```
 
-### set
+### sound/set
 
 Set the sound of the sound block.
 

@@ -6,7 +6,7 @@ The thruster module allows the user to control thrusters on the grid. Set a thru
 
 ## Commands
 
-### thrust
+### thruster/thrust
 Set the thrust of a thruster or group of thrusters.
 ```
 thruster/thrust <Thruster|Group> <valuePercent|valueNetwons> [--options]

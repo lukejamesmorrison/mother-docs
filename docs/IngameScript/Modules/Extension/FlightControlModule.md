@@ -7,7 +7,7 @@ This module manages autopilot and various flight characteristics of your grid. F
 
 ## Commands
 
-### start
+### fcs/start
 Engage the autopilot system, enabling the grid to fly autonomously if a [Flight Plan](../Extension/FlightPlanningModule.md) is loaded.
 ```
 fcs/start [--options]
@@ -29,7 +29,7 @@ By default, the max speed is 100 m/s, though you can use mods like [Configurable
 :::
 
 
-### stop
+### fcs/stop
 Disengage the autopilot system.
 ```
 fcs/stop

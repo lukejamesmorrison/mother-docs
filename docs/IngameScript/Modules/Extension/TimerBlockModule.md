@@ -7,7 +7,7 @@ The Timer Block module allows the user to interact with Timer Blocks on the grid
 
 ## Commands
 
-### start
+### timer/start
 Start execution for a timer block or group of timer blocks.
 
 ```
@@ -25,7 +25,7 @@ Options
 timer/start MainTimerBlock --delay=10;
 ```
 
-### trigger
+### timer/trigger
 Trigger the immediate execution of a timer block or group of timer blocks
 ```
 timer/trigger <TimerBlock|Group> [--options]
@@ -37,7 +37,7 @@ timer/trigger <TimerBlock|Group> [--options]
 timer/trigger MainTimerBlock;
 ```
 
-### stop
+### timer/stop
 Stop execution of a timer block or group of timer blocks
 
 ```

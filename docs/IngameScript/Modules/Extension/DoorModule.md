@@ -7,7 +7,7 @@ The door module allows the user to control doors on the grid.
 
 ## Commands
 
-### open
+### door/open
 Open a door or group of doors.
 ```
 door/open <Door|Group>
@@ -19,7 +19,7 @@ door/open <Door|Group>
 door/open "Missile Silo Door"
 ```
 
-### close
+### door/close
 Close a door or group of doors.
 ```
 door/close <Door|Group>
@@ -31,7 +31,7 @@ door/close <Door|Group>
 door/close "Missile Silo Door"
 ```
 
-### toggle
+### door/toggle
 Toggle the open state of a door or group of doors.
 ```bash
 door/toggle <Door|Group>

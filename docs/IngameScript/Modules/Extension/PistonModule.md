@@ -6,7 +6,7 @@ The piston module allows the user to control pistons on the grid.  Pistons are p
 
 ## Commands
 
-### distance
+### piston/distance
 Extend or retract a piston to a specific distance between 0 and `Max` meters.
 ```
 piston/distance <Piston|Group> <Distance> [--options]
@@ -34,7 +34,7 @@ Decrease the distance of the turret pistons by 1 meter:
 piston/distance TurretPistons 1 --sub; 
 ```
 
-### stop
+### piston/stop
 Stop a piston while in motion. Note that pistons do not lock like a Rotor or Hinge.
 ```
 piston/stop <Piston|Group>
@@ -45,7 +45,7 @@ piston/stop <Piston|Group>
 piston/stop TurretPistons;
 ```
 
-### reset
+### piston/reset
 Reset a piston to its original position (0 meters).
 ```
 piston/reset <Piston|Group>
@@ -56,7 +56,7 @@ piston/reset <Piston|Group>
 piston/reset TurretPistons;
 ```
 
-### speed
+### piston/speed
 Set the speed of a piston or group of pistons in m/s.
 ```
 piston/speed <piston|Group> <Speed> <Options>

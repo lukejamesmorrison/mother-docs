@@ -147,14 +147,9 @@ nav/set-flight-plan "GPS:Midpoint:190.12:-54.45:45.89:#FF75C9F1: GPS:TopSecretBa
 ```
 
 
-
-
-
-
-
 ## Commands
 
-### set-flight-plan
+### nav/set-flight-plan
 Set the active flight plan in the navigation system. Combine with [`fcs/start`](#flight-control-system) to initiate autopilot.
 
 ```

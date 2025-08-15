@@ -5,7 +5,7 @@ The Tank Module allows the user to control `Oxygen` and `Hydrogen` tanks on thei
 
 ## Commands
 
-### stockpile
+### tank/stockpile
 Set the Tank `Stockpile` to `on`.
 ```
 tank/stockpile <Tank|Group>
@@ -16,7 +16,7 @@ tank/stockpile <Tank|Group>
 tank/stockpile HydrogenTank;
 ```
 
-### share
+### tank/share
 Set the Tank `Stockpile` to `off`. The tank is now sharing its contents with your grid.
 ```
 tank/share <Tank|Group>
@@ -27,7 +27,7 @@ tank/share <Tank|Group>
 tank/share OxygenTank;
 ```
 
-### toggle
+### tank/toggle
 Toggle the Tank `Stockpile` between `on` and `off`.
 ```
 tank/toggle <Tank|Group>

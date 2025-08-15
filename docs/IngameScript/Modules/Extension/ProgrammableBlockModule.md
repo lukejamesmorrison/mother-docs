@@ -7,7 +7,7 @@ The Programmable Block modules allows players to interact with programmable bloc
 
 ## Commands
 
-### run
+### pb/run
 Run a programmable block with an optional argument.
 
 ```

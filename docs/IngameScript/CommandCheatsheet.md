@@ -56,7 +56,7 @@ battery/toggle <Battery|Group> [--options]
 ```
 
 ## Blocks
-[Block Module](Modules/Extension/BlockModule.md)
+[Terminal Block Module](Modules/Extension/TerminalBlockModule.md)
 
 All terminal blocks can be updated using the following commands:
 
@@ -70,6 +70,19 @@ block/on <Block|Group> [--options]
 Turn the block off.
 ```
 block/off <Block|Group> [--options]
+```
+
+### block/config
+
+Set a configuration value in the block's custom data.
+```ini
+block/config <AirVent|Group> <Section.Key> <Value>
+```
+
+**Example**
+```ini title="Terminal"
+; Set the scale of the map to 200m
+block/config MapLCD general.mapScale 200
 ```
 
 

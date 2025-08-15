@@ -54,8 +54,6 @@ Mother is in beta development.
 <br>
 <br>
 
-
-
 <!-- <section>
     <h2>Mother OS</h2>
     <p>Ingame Script for Space Engineers players</p>
@@ -73,11 +71,11 @@ Script Framework for custom Space Engineers ingame scripts written in C#6 and de
 Mother Core is coming soon as a downloadable script framework.  Stay tuned for updates!
 :::
 
- [Get Started](./Framework/README.md) | [MDK-SE API Index](https://github.com/malware-dev/MDK-SE/wiki)
+<!-- [Get Started](./Framework/README.md) | [MDK-SE API Index](https://github.com/malware-dev/MDK-SE/wiki) -->
 
 <MotherCoreOverview/> 
 
-## Mother CLI
+<!-- ## Mother CLI
 
 [Mother CLI](./Framework/Developer/Console.md) is a simple command line tool to assist Space Engineers players with creating their own programmable block scripts using Mother Core.
 
@@ -85,7 +83,7 @@ It is easily installed by running the following command in your console/terminal
 
 ```sh
 dotnet tool install --global Mother.CLI
-```
+``` -->
 
 ##  About Agentluke
 I have always been passionate about aviation and space. I studied Aerospace Engineering, and flew in fighter jets in the Air Force for over a decade. I have been writing software since university, and I have always been fascinated by the intersection of software and hardware.
