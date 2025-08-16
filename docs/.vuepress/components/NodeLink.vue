@@ -13,7 +13,7 @@
       ref="pulse"
       :cx="x1"
       :cy="y1"
-      r="10"
+      r="8"
       :fill="color"
     />
   </g>

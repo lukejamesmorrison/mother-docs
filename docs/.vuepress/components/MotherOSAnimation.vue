@@ -17,7 +17,8 @@ const images = {
   landingGear: "https://static.wikia.nocookie.net/spaceengineers/images/2/2d/Icon_Block_Landing_Gear.png",
   programmableBlock: "https://static.wikia.nocookie.net/spaceengineers/images/7/76/Icon_Block_Programmable_Block.png",
   soundBlock: "https://static.wikia.nocookie.net/spaceengineers/images/4/4e/Icon_Block_Sound_Block.png",
-  light: "https://static.wikia.nocookie.net/spaceengineers/images/2/21/Icon_Block_Interior_Light.png"
+  light: "https://static.wikia.nocookie.net/spaceengineers/images/2/21/Icon_Block_Interior_Light.png",
+  sensor: "https://static.wikia.nocookie.net/spaceengineers/images/0/07/Icon_Block_Sensor.png"
 }
 
 const diagram = ref(null)
@@ -36,7 +37,7 @@ const nodes = ref([
   { id: 'mother2', name: 'Grid 2', x: 6, y: 2, image: images.mother, pulseColor: '#E3B505' },
 
   { id: 'mother2child1', name: 'Light', x: 7, y: 1, image: images.light, pulseColor: '#E3B505' },
-  { id: 'mother2child2', name: 'Sound Block', x: 7, y: 3, image: images.soundBlock, pulseColor: '#E3B505' }
+  { id: 'mother2child2', name: 'Sensor', x: 7, y: 3, image: images.sensor, pulseColor: '#E3B505' }
 ])
 
 const connections = ref([
@@ -54,7 +55,6 @@ const connections = ref([
   { source: 'mother2', target: 'mother2child1' },
   { source: 'mother2', target: 'mother2child2' },
   { source: 'mother2child2', target: 'mother2' }
-
 ])
 
 onMounted(async () => {
@@ -62,7 +62,6 @@ onMounted(async () => {
   triggerPulseSequences();
 
   setInterval(async () => triggerPulseSequences(), 4000)
-
 })
 
 const firstPulseSequence = [
@@ -77,7 +76,7 @@ const secondPulseSequence = [
 ]
 
 const thirdPulseSequence = [
-    { from: 'Sound Block', to: 'Grid 2', color: '#FF4081', duration: 0.5 },
+    { from: 'Sensor', to: 'Grid 2', color: '#FF4081', duration: 0.5 },
     { from: 'Grid 2', to: 'Grid 1', color: '#FF4081', duration: 0.5 },
     { from: 'Grid 1', to: 'Rotor', color: '#FF4081', duration: 0.5 }
 ]

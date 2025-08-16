@@ -1,6 +1,18 @@
 # Upgrade Guide
 
 [[toc]]
+## 0.2.13 -> 0.2.14
+🕓 5 mins
+
+This update introduces changes to the way your grids communicate. I highly advise installing the latest version on Mother on all of your grids.  Mother Core now uses a Version Manager to help with this.
+
+If you are encountering issues or the rare complexity failure, you should purge storage to clear all data related to grid communications.
+
+```sh title="Terminal"
+purge * --force
+```
+
+<!-- [![v0.2.14 Video](https://img.youtube.com/vi/)](https://youtu.be/) -->
 
 ## 0.2.12 -> 0.2.13
 🕓 0 mins

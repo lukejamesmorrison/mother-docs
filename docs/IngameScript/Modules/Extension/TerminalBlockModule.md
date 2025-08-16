@@ -6,7 +6,7 @@ The Terminal Block Module allows the user to interact with **terminal blocks** o
 
 ## Commands
 
-### on
+### block/on
 Turn the block on.
 
 ```
@@ -18,7 +18,7 @@ block/on <Block|Group> [--options]
 block/on DrillPiston;
 ```
 
-### off
+### block/off
 Turn the block off.
 
 ```
@@ -30,7 +30,7 @@ block/off <Block|Group> [--options]
 block/off DrillPiston;
 ```
 
-### action
+### block/action
 Run a toolbar action on the block. This is more expensive than a traditional command and Malware advises against it. Use this command sparingly to access automations that Mother does not access natively.
 
 ```
@@ -49,6 +49,22 @@ block/action DrillPiston SetAndMove 5.0 2.5;
 ::: tip
 You can view a complete list of block actions [here](https://github.com/malware-dev/MDK-SE/wiki/List-Of-Terminal-Properties-and-Actions).
 :::
+
+### block/config
+Set a value in the block's custom data.
+
+```
+block/config <Block|Group> <Section.Key> <Value>
+```
+
+**Example**
+
+Let's update the default scale of our `MapLCD`:
+
+```bash title="Terminal"
+# set the scale to 200m
+block/config MapLCD general.mapScale 200
+```
 
 ## Hooks
 

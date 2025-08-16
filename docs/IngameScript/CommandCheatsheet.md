@@ -56,7 +56,7 @@ battery/toggle <Battery|Group> [--options]
 ```
 
 ## Blocks
-[Block Module](Modules/Extension/BlockModule.md)
+[Terminal Block Module](Modules/Extension/TerminalBlockModule.md)
 
 All terminal blocks can be updated using the following commands:
 
@@ -72,6 +72,41 @@ Turn the block off.
 block/off <Block|Group> [--options]
 ```
 
+### block/action
+Run a toolbar action on the block. This is more expensive than a traditional command and Malware advises against it. Use this command sparingly to access automations that Mother does not access natively.
+
+```
+block/action <Block|Group> <Action> <...ActionArgs>
+```
+
+**Example**
+
+We want to run the Set and Move action on a piston.  It accepts two arguments: the `distance` to move and the `speed` of the piston. These values are entered in the same order you would normally enter them via the ingame menus.
+
+```bash title="Terminal"
+# set the piston to move to 5m distance at 2.5m/s
+block/action DrillPiston SetAndMove 5.0 2.5;
+```
+
+::: tip
+You can view a complete list of block actions [here](https://github.com/malware-dev/MDK-SE/wiki/List-Of-Terminal-Properties-and-Actions).
+:::
+
+### block/config
+Set a value in the block's custom data.
+
+```
+block/config <Block|Group> <Section.Key> <Value>
+```
+
+**Example**
+
+Let's update the default scale of our `MapLCD`:
+
+```bash title="Terminal"
+# set the scale to 200m
+block/config MapLCD general.mapScale 200
+```
 
 ## Core
 
@@ -300,7 +335,7 @@ door/toggle <Door|Group>
 [Flight Control Module](Modules/Extension/FlightControlModule.md)
 
 ### fcs/start
-Engage the autopilot system, enabling the grid to fly autonomously if a [flight plan](../Extension/FlightPlanningModule.md) is loaded.
+Engage the autopilot system, enabling the grid to fly autonomously if a [flight plan](Modules/Extension/FlightPlanningModule.md) is loaded.
 ```
 fcs/start [--options]
 ```
@@ -330,7 +365,7 @@ nav/set-flight-plan <FlightPlanString> [--options]
 ```
 
 ## Gas Tanks
-[Tank Module](Modules/Extension/TankModule.md)
+[Gas Tank Module](Modules/Extension/GasTankModule.md)
 
 ### tank/stockpile
 Set the Tank `Stockpile` to `on`.
