@@ -1,3 +1,8 @@
+---
+prev: /Framework/Developer/GettingStarted/Installation.md
+next: /Framework/Developer/GettingStarted/ManagingScriptSize.md
+---
+
 # Architecture Overview
 
 ::: warning
