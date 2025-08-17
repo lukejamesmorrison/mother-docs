@@ -1,7 +1,7 @@
 {
   "name": "mother-docs",
   "version": "0.0.1",
-  "description": "A VuePress project",
+  "description": "Official documentation for the Mother project.  This project aims to simplify how players create and use ingame scripts in Space Engineers.",
   "license": "MIT",
   "type": "module",
   "scripts": {

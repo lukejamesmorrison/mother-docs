@@ -1,11 +1,13 @@
+---
+next: /IngameScript/Installation.md
+---
+
 <script setup lang="ts">
 // import NavbarLink from '/.vuepress/components/NavbarLink.vue';
 // import FeatureCard from '/.vuepress/components/FeatureCard.vue';
 // import CardGroup from '/.vuepress/components/CardGroup.vue';
-
 import { useClientData } from 'vuepress/client'
 import { usePageData } from 'vuepress/client'
-
 
 // const {
 //   pageData,
@@ -31,14 +33,6 @@ import { usePageData } from 'vuepress/client'
 <Badge type="info" text="&nbsp;Beta&nbsp;" vertical="middle" />
 <Badge type="warning" text="&nbsp;v0.2.14&nbsp;" vertical="middle" />
 
-<!-- <CardGroup>
-    <FeatureCard
-        icon="" 
-        title="Secure Communication" 
-        description="Grids <a href='Modules/Core/Almanac.html'>share positions</a> and easy easily send commands remotely to each other."
-    ></FeatureCard>
-</CardGroup> -->
-
 Mother OS is available as an ingame script for Programmable Blocks in Space Engineers. It interoperates seamlessly with Timer Blocks and Event Controllers to augment existing automations. Start by [installing Mother OS here](./Installation.md).
 
 ```bash title="Terminal"
@@ -58,16 +52,7 @@ Players can use this simple command syntax to take their automation to the next 
 Using Mother OS does not require any programming/coding experience.
 :::
 
-
-
-<!-- [Install Mother OS](Installation.md) and take your automations to the next level! -->
-
-<!-- <div> -->
-<!-- <a class="route-link auto-link vp-hero-action-button primary" :href="`${$site.base}IngameScript/Installation.html`" aria-label="Install Mother OS" style="text-decoration: none;">Install Mother OS</a> -->
-<!-- </div> -->
-
 [[toc]]
-
 
 ## Features
 <br>

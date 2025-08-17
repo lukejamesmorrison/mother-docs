@@ -30,6 +30,17 @@ footer: MIT Licensed | © 2025 Agentluke | The Empire must grow.
   import MotherCoreOverview from '../../components/MotherCoreOverview.vue';
 </script>
 
+ <!-- Full-width breakout -->
+<div class="relative left-1/2 right-1/2 -mx-[50vw] w-screen bg-blue-500 text-white py-8">
+  <div class="max-w-4xl mx-auto">
+    <h2 class="text-xl font-semibold">Full-Width Section</h2>
+    <p>
+      This background stretches across the entire viewport,
+      but the content inside is still aligned to the container.
+    </p>
+  </div>
+</div>
+
 ## Mother OS
 
 **Ingame Script** for Space Engineers players. 

@@ -6,9 +6,12 @@
 // === Light Theme ===
 :root {
   // accent colors
-  --vp-c-accent: #ff0000; /* Red */
-  --vp-c-accent-bg: #cc0000; /* Darker red */
-  --vp-c-accent-hover: #e60000; /* Brighter red */
+  --vp-c-accent: #ff0000;
+  /* Red */
+  --vp-c-accent-bg: #cc0000;
+  /* Darker red */
+  --vp-c-accent-hover: #e60000;
+  /* Brighter red */
   --vp-c-accent-text: var(--vp-c-white);
   --vp-c-accent-soft: rgb(255 0 0 / 14%);
 
@@ -76,57 +79,66 @@
 
 // Secondary button styling (applies to both themes)
 .auto-link.secondary {
-    color: var(--vp-c-text); /* Default text color */
-    border: 2px solid var(--vp-c-accent);
-    background: transparent;
-    transition: background 0.3s ease, color 0.3s ease;
-  
-    &:hover {
-        color: var(--vp-c-white); /* Default text color */
-        background: var(--vp-c-accent-bg); /* Match primary color */
-        // color: black !important; /* Ensure text turns black */
-    }
+  color: var(--vp-c-text);
+  /* Default text color */
+  border: 2px solid var(--vp-c-accent);
+  background: transparent;
+  transition: background 0.3s ease, color 0.3s ease;
+
+  &:hover {
+    color: var(--vp-c-white);
+    /* Default text color */
+    background: var(--vp-c-accent-bg);
+    /* Match primary color */
+    // color: black !important; /* Ensure text turns black */
   }
+}
 
-  // Search input styles
-  //
-  // We override the default styles of the search due to some 
-  // spacing issues with the icon and search input padding.
-  // @see https://ecosystem.vuejs.press/plugins/search/search.html#styles
-  form.search-box > input[type=search] {
+// Search input styles
+//
+// We override the default styles of the search due to some 
+// spacing issues with the icon and search input padding.
+// @see https://ecosystem.vuejs.press/plugins/search/search.html#styles
+form.search-box>input[type=search] {
 
-    background: var(--search-c-bg) url("/svg/search.svg") .6rem .5rem no-repeat !important;
-    background-size: 0.875rem !important;
+  background: var(--search-c-bg) url("/svg/search.svg") .6rem .5rem no-repeat !important;
+  background-size: 0.875rem !important;
 
-    // only on mobile
-    @media (max-width: 768px) {
-      background-size: 1rem !important;
+  // only on mobile
+  @media (max-width: 768px) {
+    background-size: 1rem !important;
 
-      &:focus {
-        padding-left: 2rem !important;
-      }
-    }
-
-    // only on tablet and desktop
-    @media (min-width: 768px) {
+    &:focus {
       padding-left: 2rem !important;
     }
   }
+
+  // only on tablet and desktop
+  @media (min-width: 768px) {
+    padding-left: 2rem !important;
+  }
+}
 
 
 // === Dark Theme ===
 [data-theme='dark'] {
   // brand colors
-  --vp-c-accent: #ff4d4d; /* Slightly lighter red */
-  --vp-c-accent-bg: #b30000; /* Deep red */
-  --vp-c-accent-hover: #ff6666; /* Brighter red */
+  --vp-c-accent: #ff4d4d;
+  /* Slightly lighter red */
+  --vp-c-accent-bg: #b30000;
+  /* Deep red */
+  --vp-c-accent-hover: #ff6666;
+  /* Brighter red */
   --vp-c-accent-text: white;
   --vp-c-accent-soft: rgb(255 77 77 / 16%);
 
   // background colors
-  --vp-c-bg: #1b1b1f; /* Dark mode background */
-  --vp-c-bg-alt: #161618; /* Darker alternative */
-  --vp-c-bg-elv: #202127; /* Elevated elements */
+  --vp-c-bg: #1b1b1f;
+  /* Dark mode background */
+  --vp-c-bg-alt: #161618;
+  /* Darker alternative */
+  --vp-c-bg-elv: #202127;
+  /* Elevated elements */
 
   // text colors
   --vp-c-text: rgb(235 235 245 / 86%);
@@ -146,3 +158,31 @@
   --vp-c-control-hover: rgb(101 117 133 / 18%);
   --vp-c-control-disabled: #363636;
 }
+
+nav.table-of-contents {
+  >ul>li>a {
+    // text-decoration: none !important;
+    font-weight: 700;
+  }
+
+  >ul>li>ul>li>a {
+
+    // text-decoration: none !important;
+
+    // color: var(--vp-c-text);
+
+  }
+
+  a {
+    text-decoration: none !important;
+
+    &:hover {
+      text-decoration: underline !important;
+    }
+
+  }
+}
+
+// a:hover {
+//   cursor: pointer !important;
+// }

@@ -1,4 +1,5 @@
 ---
+prev: /Framework/Developer/GettingStarted/ArchitectureOverview.md
 next: /Framework/Developer/BuildingAModule/BuildingAModule.md
 ---
 

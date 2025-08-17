@@ -1,3 +1,8 @@
+---
+prev: /Framework/Developer/BuildingAModule/BuildingAModule.md
+next: /Framework/Developer/CoreModules/CoreModules.md
+---
+
 # Console
 You can use [Mother CLI](https://www.nuget.org/packages/Mother.CLI/) to assist with creating projects and many common file types. Simply install it as a **global** Nuget package and access it with `mother` command in your Terminal/Console.  
 

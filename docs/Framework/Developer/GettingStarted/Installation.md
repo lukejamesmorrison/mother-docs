@@ -1,3 +1,8 @@
+---
+prev: /Framework/Developer/GettingStarted/Installation.md
+next: /Framework/Developer/GettingStarted/ArchitectureOverview.md
+---
+
 # Installation
 
 Creating a custom Mother project is straight forward.  We will need an IDE like [Visual Studio](https://visualstudio.microsoft.com/), and several Nuget packages to get started.  After that you can use several console commands to simplify your development.

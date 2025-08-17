@@ -1,5 +1,6 @@
 ---
 prev: /Framework/Developer/GettingStarted/ManagingScriptSize.md
+next: /Framework/Developer/Console.md
 ---
 
 
