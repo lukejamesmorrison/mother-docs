@@ -183,20 +183,60 @@ const NavbarLinks = () => {
   }
 }
 
+const basePath = '/mother-docs/';
+
+// console.log(process.env.NODE_ENV == 'development');
+
+const DEV_MODE = process.env.NODE_ENV == 'development';
+
 export default defineUserConfig({
-  base: '/mother-docs/',
-  lang: 'en-US',
-  title: 'Mother Docs',
+  base: basePath,
+  title: DEV_MODE ? 'Mother Docs (Dev)' : 'Mother Docs',
   description: 'Documentation for Mother OS and Mother Core',
 
   // Additional head elements. We add icons.
   head: [
-    ['link', { rel: 'icon', href: 'favicon.ico' }],
-    ['link', { rel: 'icon', href: 'favicon-16x16.png' }],
-    ['link', { rel: 'icon', href: 'favicon-32x32.png' }],
-    ['link', { rel: 'icon', href: 'apple-touch-icon.png' }],
-    ['link', { rel: 'icon', href: 'android-chrome-192x192.png' }],
-    ['link', { rel: 'icon', href: 'android-chrome-512x512.png' }],
+    [
+      'link', { 
+        rel: 'icon', 
+        href: DEV_MODE ? `${basePath}favicon-dev.ico`: `${basePath}favicon.ico`
+      }
+    ],
+    [
+      'link', 
+        { 
+          rel: 'icon', 
+          href: DEV_MODE ? `${basePath}favicon-16x16-dev.png` : `${basePath}favicon-16x16.png`
+        }
+    ],
+    [
+      'link', 
+      { 
+        rel: 'icon', 
+        href: DEV_MODE ? `${basePath}favicon-32x32-dev.png` : `${basePath}favicon-32x32.png`
+      }
+    ],
+    [
+      'link', 
+        { 
+          rel: 'icon', 
+          href: DEV_MODE ? `${basePath}apple-touch-icon-dev.png` : `${basePath}apple-touch-icon.png`
+        }
+    ],
+    [
+      'link', 
+      { 
+        rel: 'icon', 
+        href: DEV_MODE ? `${basePath}android-chrome-192x192-dev.png` : `${basePath}android-chrome-192x192.png`
+      }
+    ],
+    [
+      'link', 
+        { 
+          rel: 'icon', 
+          href: DEV_MODE ? `${basePath}android-chrome-512x512-dev.png` : `${basePath}android-chrome-512x512.png`
+        }
+    ],
   ],
 
   plugins: [
@@ -230,7 +270,7 @@ export default defineUserConfig({
 
   theme: defaultTheme({
     darkMode: false, // Enables the dark mode toggle
-    logo: 'images/logo-512x512.png',
+    logo: DEV_MODE ? 'images/logo-512x512-dev.png' : 'images/logo-512x512.png',
     navbar: [
       {
         text: 'Buy me a Coffee',

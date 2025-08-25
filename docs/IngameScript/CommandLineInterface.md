@@ -34,7 +34,7 @@ Commands are similar to a traditional command line interface, and consist of 3 *
 
 | Term Type  | Example | Description |
 | --------	|-| ------- |
-| Command	| `hinge/rotate`<br>`light/color`<br>`help` | The command determines which action is performced by Mother.  See the [Command Cheetsheet](CommandCheatsheet.md) for a complete list of commands, or run Mother with the `help` command.  |
+| Command	| `hinge/rotate`<br>`light/color`<br>`help` | The command determines which action is performed by Mother.  See the [Command Cheetsheet](CommandCheatsheet.md) for a complete list of commands, or run Mother with the `help` command.  |
 | Argument	| `Hinge`<br>`45`<br>`"Rotor 1"`<br>`#main-airlock`| Arguments are expected by most commands and contain the details they require to operate.  This is usually values like angle, color or a GPS waypoint. Use double quotes when your arguments include spaces. In most cases, the first argument of command will target a **Block**, **Group**, or **Tag** by its name. |
 | Option	| `--speed=2`<br>`--offset=0.1`<br>`--force` |Options can be used with commands to trigger specific modifications like rotational speed or blink offset. Sometimes they may be used without a set value.  |
 
@@ -148,7 +148,7 @@ The terminal window act as the primary interface for Mother.  You can run comman
 |-			|-|
 |#			| A number showing how many grids Mother is currently storing in the Almanac. Mother stores the position and status of other grids automatically as long as they are running Mother locally as well. |
 |M			| Shows a mechanical system is currently in motion and tracked by the Activity Monitor.  Blocks like rotors, hinges and pistons will be monitored, and locked when finished to protect Space Engineers from the Almighty Clang.|
-|C			| Indicates a communication is current in progress.  Girds running Mother will frequently communicate to share information automatically. |
+|C			| Indicates a communication is current in progress.  Grids running Mother will frequently communicate to share information automatically. |
 |Q			| Indicates that a command is queued for future execution at a waypoint. |
 |A			| Indicates that autopilot is currently enabled. |
 |W          | Indicates that a command is currently waiting to be exeucuted at a later time via the `wait` command. |

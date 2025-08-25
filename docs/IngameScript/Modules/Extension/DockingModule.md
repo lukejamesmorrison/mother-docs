@@ -38,4 +38,18 @@ dock Mothership --remote="Connector - MS.P1";
 dock Mothership;
 ```
 
+## Configuration
+
+|Key| Value| Description|
+|-|-|-|
+|`appDistance`| meters | The distance the approaching grid should approach from. Default is **30m**. This is set on the connector to be used for docking. |
+
+**Example**
+
+```ini title="DockConnector > Custom Data"
+[general]
+; Set the approach distance to 50 meters from the connector face
+appDistance=50
+```
+
 

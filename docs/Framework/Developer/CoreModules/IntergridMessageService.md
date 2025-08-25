@@ -66,14 +66,24 @@ public void SendLifeSupportInformation()
     // get power levels
 
     // create request with custom body
-    Dictionary<string, object> requestBody = new Dictionary<string, object>
+    Dictionary<string, object> customBody = new Dictionary<string, object>
     {
         { "h2", h2Level },
         { "o2", o2Level },
         { "power", powerLevel }
     };
 
-    Request request = intergridMessageService.CreateRequest(requestBody);
+    Dictionary<string, object> customHeaders = new Dictionary<string, object>
+    {
+        // Add any custom headers here
+    };
+
+    // create the request with a path, and optional body and headers
+    Request request = intergridMessageService.CreateRequest(
+        "life-support", 
+        customBody,
+        customHeaders
+    );
     
     intergridMessageService.SendOpenBroadcastRequest(request, OnLifeSupportResponse);
 }
@@ -98,14 +108,24 @@ public void SendLifeSupportInformation()
     // get power levels
 
     // create request with custom body
-    Dictionary<string, object> requestBody = new Dictionary<string, object>
+    Dictionary<string, object> customBody = new Dictionary<string, object>
     {
         { "h2", h2Level },
         { "o2", o2Level },
         { "power", powerLevel }
     };
 
-    Request request = intergridMessageService.CreateRequest(requestBody);
+    Dictionary<string, object> customHeaders = new Dictionary<string, object>
+    {
+        // Add any custom headers here
+    };
+
+    // create the request with a path, and optional body and headers
+    Request request = intergridMessageService.CreateRequest(
+        "life-support", 
+        customBody,
+        customHeaders
+    );
 
     // the name of the grid we are sending the request to
     string targetId = "RefuellingPlatform"
@@ -185,13 +205,13 @@ public void OnLifeSupportResponse(Response response) {
 
 ## Routes
 
-If you would like your script to handle a request to a specific path, we can register this route in the module's `Boot()` method using the `AddRoute()` method.
+If you would like your script to handle a request to a specific path, we can register the **route** when the module boots using the `RegisterRoute()` method.
 
 ```csharp title="MissileGuidanceModule.cs"
  public override void Boot()
  {
     // Register Routes
-    AddRoute(
+    RegisterRoute(
         "initiate-launch", 
         request => HandleInitiateLaunchRequest(request)
     );
