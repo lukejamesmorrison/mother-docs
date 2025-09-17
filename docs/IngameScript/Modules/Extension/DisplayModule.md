@@ -28,10 +28,6 @@ You have access to the following colors which may be used in place of their RGB 
 |![white](https://img.shields.io/badge/white-FFFFFF)    |255,255,255  | FFFFFF        |
 |![black](https://img.shields.io/badge/black-000000)    |0,0,0        | 000000        |
 
-::: info
-At this time Mother cannot adjust color for cockpit screens.
-:::
-
 **Example**
 
 Imagine we want to change to background color of our airlock screen.
@@ -62,10 +58,6 @@ You have access to the following colors which may be used in place of their RGB 
 |![white](https://img.shields.io/badge/white-FFFFFF)    |255,255,255  | FFFFFF        |
 |![black](https://img.shields.io/badge/black-000000)    |0,0,0        | 000000        |
 
-::: info
-At this time Mother cannot adjust color for cockpit screens.
-:::
-
 **Example**
 
 Imagine we want to change to color of our airlock screen.
@@ -81,10 +73,6 @@ Print a message to an LCD panel or group of panels.
 ```
 screen/print <Screen|Group> <Message> <Options>
 ```
-
-::: info
-At this time Mother cannot print text to cockpit screens.
-:::
 
 Options
 | Option  | Values      | Unit  | Description                                                           |
@@ -110,6 +98,10 @@ You have access to the following colors which may be used in place of their RGB 
 
 Imagine we want to print text to a screen based on our airlock status.  We contextualize it further with color and print a size that is easily legible.
 
-```bash title="Terminal"
+```ini title="Terminal"
+; with color name
 screen/print "AirlockStatusScreens" "Airlock SAFE" --color=green --size=4.4
+
+; with RGB value
+screen/print "AirlockStatusScreens" "Airlock SAFE" --color=0,255,0 --size=4.4
 ```

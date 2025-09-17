@@ -85,6 +85,4 @@ center=Mothership
 
 ; render mode
 mode=2D
-
-
 ```

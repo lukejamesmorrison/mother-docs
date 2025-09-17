@@ -4,10 +4,28 @@
 
 Let's look at some examples and how Mother simplifies them. See the [Command Cheatsheet](CommandCheatsheet.md) for a complete list of available commands.
 
-1. [Drill Deployment](#drill-deployment)
-2. [Welder Arm Actuation](#welder-arm-actuation)
-3. [Multi-destination Flight Automation](#multi-destination-flight-automation)
-4. [Dispatch Ship to a Landing Site via a Flight Plan](#dispatch-ship-to-a-landing-site-via-a-flight-plan)
+1. [Autoclosing Door](#autoclosing-door)
+2. [Drill Deployment](#drill-deployment)
+3. [Welder Arm Actuation](#welder-arm-actuation)
+4. [Multi-destination Flight Automation](#multi-destination-flight-automation)
+5. [Dispatch Ship to a Landing Site via a Flight Plan](#dispatch-ship-to-a-landing-site-via-a-flight-plan)
+6. [Building a Landing Pad](#building-a-landing-pad)
+
+## Autoclosing Door
+
+I always try to ensure my doors close themselves.  This preserves atmosphere in my spacecraft and stations.  You *could* download another script or mod focused on this, or you could use this simple [hook](../IngameScript/Modules/Extension/DoorModule.md#hooks) on your door to easily customize how long it should wait before closing.  This also allows you to do follow-on actions like change a light color:
+
+```ini title="Airlock Door > Custom Data"
+[hooks]
+onClose=
+| wait 5; 
+| door/close this;
+| light/color AirlockLight green;
+```
+
+:::tip
+You can use the `this` keyword to target the current block, rather than using its name.
+:::
 
 ## Drill Deployment
 
@@ -179,6 +197,10 @@ As we approach the `LandingSite`, we will slow down, and retract our wings. We c
 GPS:LandingSite:227081.47:226948.41:227068.73:#FF75C9F1:
  { fcs/start --speed=10; RectractWings; light/blink SignalLights med; }
 ```
+
+## Building a Landing Pad
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/CgA6k1xQfVE?si=6oLQbFLQXZbGIj8i" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
 
 

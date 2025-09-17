@@ -37,7 +37,7 @@ const MotherOSSidebar = {
       collapsible: true, // Allows collapsing sections
       children: [
         {
-          'link': '/IngameScript/Modules/Extension/AirVentModule.md',
+          link: '/IngameScript/Modules/Extension/AirVentModule.md',
           text: 'Air Vent Module'
         },
         '/IngameScript/Modules/Extension/BatteryModule.md',
@@ -58,7 +58,13 @@ const MotherOSSidebar = {
         '/IngameScript/Modules/Extension/PistonModule.md',
         '/IngameScript/Modules/Extension/ProgrammableBlockModule.md',
         '/IngameScript/Modules/Extension/RotorModule.md',
+        // Alias for DisplayModule
+        {
+          link: '/IngameScript/Modules/Extension/DisplayModule.md',
+          text: 'Screen Module',
+        },
         '/IngameScript/Modules/Extension/SensorModule.md',
+        '/IngameScript/Modules/Extension/SorterModule.md',
         '/IngameScript/Modules/Extension/SoundBlockModule.md',
         '/IngameScript/Modules/Extension/ThrusterModule.md',
         '/IngameScript/Modules/Extension/TimerBlockModule.md',

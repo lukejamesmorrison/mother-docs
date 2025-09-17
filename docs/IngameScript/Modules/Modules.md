@@ -47,7 +47,7 @@ Extension modules provide additional functionality to a Space Engineer for contr
 | [Batteries](Extension/BatteryModule.md)					| Manages batteries on the grid.|
 | [Cockpits](Extension/CockpitModule.md)					| Manages cockpits on the grid.|
 | [Connectors](Extension/ConnectorModule.md)			| Manages connectors on the grid.|
-| [Displays](Extension/DisplayModule.md)					| Manages displays on the grid.|
+| [Displays](Extension/DisplayModule.md)					| Manages displays (screens) on the grid.|
 | [Doors](Extension/DoorModule.md)						| Manages doors on the grid.|
 | [Gas Tanks](Extension/GasTankModule.md)					| Manages oxygen and hydrogen tanks on the grid.|
 | [Gyroscopes](Extension/GyroscopeModule.md)				| Manages gyroscopes on the grid.|
@@ -57,7 +57,9 @@ Extension modules provide additional functionality to a Space Engineer for contr
 | [Pistons](Extension/PistonModule.md)					| Manages pistons on the grid.|
 | [Programmable Blocks](Extension/ProgrammableBlockModule.md)	| Manages programmable blocks on the grid.|
 | [Rotors](Extension/RotorModule.md)					| Manages rotors on the grid.|
+| [Screens*](Extension/DisplayModule.md)					| Manages displays on the grid.|
 | [Sensors](Extension/SensorModule.md) | Manages sensors on the grid.|
+| [Sorter](Extension/SorterModule.md) | Manages conveyor sorters on the grid.|
 | [Sound Blocks](Extension/SoundBlockModule.md)				| Manages sound blocks on the grid. |
 | [Thrusters](Extension/ThrusterModule.md)              | Manages thrusters on the grid.|
 | [Timer Blocks](Extension/TimerBlockModule.md)			| Manages timer blocks on the grid.|

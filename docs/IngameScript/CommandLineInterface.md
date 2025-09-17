@@ -26,7 +26,9 @@ light/color LandingLight red; light/blink LandingLight fast;
 ```
 <br>
 
-[![Running a Command](https://img.youtube.com/vi/Ax5bhoeutcA/0.jpg)](https://www.youtube.com/watch?v=Ax5bhoeutcA)
+<!-- [![Running a Command](https://img.youtube.com/vi/Ax5bhoeutcA/0.jpg)](https://www.youtube.com/watch?v=Ax5bhoeutcA) -->
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/Ax5bhoeutcA?si=B2aE2rusI70_tcJg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
 
 ## Anatomy of a Command

@@ -72,7 +72,9 @@ Mother is in beta development. I'm on a quest to reduce the character count, and
 
 **Tutorial Video**
 
-[![Tutorial Video](https://img.youtube.com/vi/CgA6k1xQfVE/0.jpg)](https://www.youtube.com/watch?v=CgA6k1xQfVE)
+<!-- [![Tutorial Video](https://img.youtube.com/vi/CgA6k1xQfVE/0.jpg)](https://www.youtube.com/watch?v=CgA6k1xQfVE) -->
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/CgA6k1xQfVE?si=QefVhWt23W7t_sRy" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
 
 ### Upcoming Features

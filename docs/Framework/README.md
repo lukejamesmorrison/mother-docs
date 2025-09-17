@@ -28,10 +28,6 @@ onMounted(() => {
 
 <!-- {{isDark ? 'Dark Mode' : 'Light Mode'}} -->
 
-
-
-
-
 # Mother Core (Script Framework)
 <!-- ![Beta](https://img.shields.io/badge/Beta-_v1.0.0-blue) -->
 <Badge type="info" text="&nbsp;Beta&nbsp;" vertical="middle" />
@@ -43,11 +39,12 @@ Mother Core is a framework for developing custom Programmable Block scripts for 
 
 ## Common Activities
 
-1. [Create a Module](./Developer/BuildingAModule/BuildingAModule.md)
-2. [Create a Command](./Developer/BuildingAModule/BuildingAModule.md#creating-a-command)
-3. [Send a Message](./Developer/CoreModules/IntergridMessageService.md) 
-4. [Delay an Action](./Developer/CoreModules/Clock.md)
-5. [Retrieve a Block](./Developer/CoreModules/BlockCatalogue.md#accessing-blocks)
+1. [Installation](./Developer/GettingStarted/Installation.md)
+2. [Create a Module](./Developer/BuildingAModule/BuildingAModule.md)
+3. [Create a Command](./Developer/BuildingAModule/BuildingAModule.md#creating-a-command)
+4. [Send a Message](./Developer/CoreModules/IntergridMessageService.md) 
+5. [Delay an Action](./Developer/CoreModules/Clock.md)
+6. [Retrieve a Block](./Developer/CoreModules/BlockCatalogue.md#accessing-blocks)
 
 ## Overview
 

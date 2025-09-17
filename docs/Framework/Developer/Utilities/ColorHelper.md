@@ -1,5 +1,11 @@
 # Color Helper
 
+This utility provides a simple interface for common colors and is intended to be used for resolving colors from TerminalCommand arguments.  
+
+:::important
+If you are developing a script that does not need to use colors in commands, use the programmable block's built-in color constants instead. See [VRageMath.Color](https://github.com/malware-dev/MDK-SE/wiki/VRageMath.Color)
+:::
+
 [[toc]]
 
 ## Getting a Color

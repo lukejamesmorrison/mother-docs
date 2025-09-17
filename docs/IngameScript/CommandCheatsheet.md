@@ -11,51 +11,7 @@ The following is a list of commands available in the default modules.
 
 [[toc]]
 
-## Air Vents
-[Air Vent Module](Modules/Extension/AirVentModule.md)
-
-### vent/pressurize
-
-Set the air vent to pressurize mode.
-```bash
-vent/pressurize <AirVent|Group>
-```
-
-### vent/depressurize
-
-Set the air vent to pressurize mode.
-```bash
-vent/depressurize <AirVent|Group>
-```
-
-## Batteries
-[Battery Module](Modules/Extension/BatteryModule.md)
-
-### battery/charge
-Set the battery to `Recharge` mode.
-```
-battery/charge <Battery|Group> [--options]
-```
-
-### battery/discharge
-Set the battery to `Discharge` mode.
-```
-battery/discharge <Battery|Group> [--options]
-```
-
-### battery/auto
-Set the battery to `Auto` mode.
-```
-battery/auto <Battery|Group> [--options]
-```
-
-### battery/toggle
-Toggle the battery between `Auto`, `Recharge` and `Discharge` mode.
-```
-battery/toggle <Battery|Group> [--options]
-```
-
-## Blocks
+## Terminal Blocks (All Blocks)
 [Terminal Block Module](Modules/Extension/TerminalBlockModule.md)
 
 :::tip Tip
@@ -111,6 +67,82 @@ Let's update the default scale of our `MapLCD`:
 # set the scale to 200m
 block/config MapLCD general.mapScale 200
 ```
+
+### tag/get
+Get a all blocks with a specific tag. This will print a list of blocks to the terminal window.
+
+```
+tag/get <Tag>
+```
+
+**Example**
+
+Let's get all blocks with the `#cockpit-displays` tag:
+
+```text title="Terminal"
+tag/get #cockpit-displays;
+```
+
+### tag/set
+
+Set a tag on a block or group of blocks.
+
+```
+tag/set <Block|Group> <Tag>
+```
+
+**Example**
+
+Let's tag our cockpit displays so that we can easily set them to night mode:
+    
+```text title="Terminal"
+tag/set CockpitDisplays #cockpit-displays;
+```
+
+## Air Vents
+[Air Vent Module](Modules/Extension/AirVentModule.md)
+
+### vent/pressurize
+
+Set the air vent to pressurize mode.
+```bash
+vent/pressurize <AirVent|Group>
+```
+
+### vent/depressurize
+
+Set the air vent to pressurize mode.
+```bash
+vent/depressurize <AirVent|Group>
+```
+
+## Batteries
+[Battery Module](Modules/Extension/BatteryModule.md)
+
+### battery/charge
+Set the battery to `Recharge` mode.
+```
+battery/charge <Battery|Group> [--options]
+```
+
+### battery/discharge
+Set the battery to `Discharge` mode.
+```
+battery/discharge <Battery|Group> [--options]
+```
+
+### battery/auto
+Set the battery to `Auto` mode.
+```
+battery/auto <Battery|Group> [--options]
+```
+
+### battery/toggle
+Toggle the battery between `Auto`, `Recharge` and `Discharge` mode.
+```
+battery/toggle <Battery|Group> [--options]
+```
+
 
 ## Core
 
@@ -312,6 +344,113 @@ connector/unlock <Connector|Group>
 Toggle the lock state of a connector or group of connectors.
 ```bash
 connector/toggle <Connector|Group>
+```
+
+## Displays
+[Display Module](Modules/Extension/DisplayModule.md)
+
+### screen/bgcolor
+
+Set the background color of the screen using RGB values.
+
+```
+screen/bgcolor <Screen|Group> <Color>
+```
+
+You have access to the following colors which may be used in place of their RGB values:
+
+|Name                                                   | RGB         | Hexidecimal   |
+|---                                                    |---          | ---           |
+|![red](https://img.shields.io/badge/red-FF0000)        |255,0,0      | FF0000        |
+|![green](https://img.shields.io/badge/green-00FF00)    |0,255,0      | 00FF00        |
+|![blue](https://img.shields.io/badge/blue-0000FF)      |0,0,255      | 0000FF        |
+|![yellow](https://img.shields.io/badge/yellow-FFFF00)  |255,255,0    | FFFF00        |
+|![orange](https://img.shields.io/badge/orange-FFA500)  |255,165,0    | FFA500        |
+|![cyan](https://img.shields.io/badge/cyan-00FFFF)      |0,255,255    | 00FFFF        |
+|![magenta](https://img.shields.io/badge/magenta-FF00FF)|255,0,255    | FF00FF        |
+|![white](https://img.shields.io/badge/white-FFFFFF)    |255,255,255  | FFFFFF        |
+|![black](https://img.shields.io/badge/black-000000)    |0,0,0        | 000000        |
+
+**Example**
+
+Imagine we want to change to background color of our airlock screen.
+
+```bash title="Terminal"
+screen/bgcolor "AirlockStatusScreen" red;
+```
+
+### screen/color
+
+Set the color of the text on the screen using RGB values.
+
+```
+screen/color <Screen|Group> <Color>
+```
+
+You have access to the following colors which may be used in place of their RGB values:
+
+|Name                                                   | RGB         | Hexidecimal   |
+|---                                                    |---          | ---           |
+|![red](https://img.shields.io/badge/red-FF0000)        |255,0,0      | FF0000        |
+|![green](https://img.shields.io/badge/green-00FF00)    |0,255,0      | 00FF00        |
+|![blue](https://img.shields.io/badge/blue-0000FF)      |0,0,255      | 0000FF        |
+|![yellow](https://img.shields.io/badge/yellow-FFFF00)  |255,255,0    | FFFF00        |
+|![orange](https://img.shields.io/badge/orange-FFA500)  |255,165,0    | FFA500        |
+|![cyan](https://img.shields.io/badge/cyan-00FFFF)      |0,255,255    | 00FFFF        |
+|![magenta](https://img.shields.io/badge/magenta-FF00FF)|255,0,255    | FF00FF        |
+|![white](https://img.shields.io/badge/white-FFFFFF)    |255,255,255  | FFFFFF        |
+|![black](https://img.shields.io/badge/black-000000)    |0,0,0        | 000000        |
+
+**Example**
+
+Imagine we want to change to color of our airlock screen.
+
+```bash title="Terminal"
+screen/color "AirlockStatusScreen" green;
+```
+
+### screen/print
+
+Print a message to an LCD panel or group of panels.
+
+```
+screen/print <Screen|Group> <Message> <Options>
+```
+
+::: info
+At this time Mother cannot print text to cockpit screens.
+:::
+
+Options
+| Option  | Values      | Unit  | Description                                                           |
+| ------- | ----------  | ----  | -------------------------------------------------------------------   |
+| `color` | RGB         |       | Set the color of the text.                                            |
+| `size`  | Number    |       | Set the text size between 0.0 and 10.0.                                 |
+
+You have access to the following colors which may be used in place of their RGB values:
+
+|Name                                                   | RGB         | Hexidecimal   |
+|---                                                    |---          | ---           |
+|![red](https://img.shields.io/badge/red-FF0000)        |255,0,0      | FF0000        |
+|![green](https://img.shields.io/badge/green-00FF00)    |0,255,0      | 00FF00        |
+|![blue](https://img.shields.io/badge/blue-0000FF)      |0,0,255      | 0000FF        |
+|![yellow](https://img.shields.io/badge/yellow-FFFF00)  |255,255,0    | FFFF00        |
+|![orange](https://img.shields.io/badge/orange-FFA500)  |255,165,0    | FFA500        |
+|![cyan](https://img.shields.io/badge/cyan-00FFFF)      |0,255,255    | 00FFFF        |
+|![magenta](https://img.shields.io/badge/magenta-FF00FF)|255,0,255    | FF00FF        |
+|![white](https://img.shields.io/badge/white-FFFFFF)    |255,255,255  | FFFFFF        |
+|![black](https://img.shields.io/badge/black-000000)    |0,0,0        | 000000        |
+
+**Example**
+
+Imagine we want to print text to a screen based on our airlock status.  We contextualize it further with color and print a size that is easily legible.
+
+```bash title="Terminal"
+; with color name
+screen/print "AirlockStatusScreens" "Airlock SAFE" --color=green --size=4.4
+
+; with RGB value
+screen/print "AirlockStatusScreens" "Airlock SAFE" --color=0,255,0 --size=4.4
 ```
 
 ## Doors
@@ -695,108 +834,28 @@ pb/run "PB.ThrusterManager" dampeners_on;
 ```
 
 ## Screens
-[Display Module](Modules/Extension/DisplayModule.md)
+See the [Displays](#displays) section above.
 
-### screen/bgcolor
+## Sorters
+[Sorter Module](Modules/Extension/SorterModule.md)
 
-Set the background color of the screen using RGB values.
-
+### sorter/drain
+Set the drain all state of the sorter or group of sorters.
 ```
-screen/bgcolor <Screen|Group> <Color>
+sorter/drain <Sorter|Group> true|false
 ```
-
-You have access to the following colors which may be used in place of their RGB values:
-
-|Name                                                   | RGB         | Hexidecimal   |
-|---                                                    |---          | ---           |
-|![red](https://img.shields.io/badge/red-FF0000)        |255,0,0      | FF0000        |
-|![green](https://img.shields.io/badge/green-00FF00)    |0,255,0      | 00FF00        |
-|![blue](https://img.shields.io/badge/blue-0000FF)      |0,0,255      | 0000FF        |
-|![yellow](https://img.shields.io/badge/yellow-FFFF00)  |255,255,0    | FFFF00        |
-|![orange](https://img.shields.io/badge/orange-FFA500)  |255,165,0    | FFA500        |
-|![cyan](https://img.shields.io/badge/cyan-00FFFF)      |0,255,255    | 00FFFF        |
-|![magenta](https://img.shields.io/badge/magenta-FF00FF)|255,0,255    | FF00FF        |
-|![white](https://img.shields.io/badge/white-FFFFFF)    |255,255,255  | FFFFFF        |
-|![black](https://img.shields.io/badge/black-000000)    |0,0,0        | 000000        |
-
-::: info
-At this time Mother cannot adjust color for cockpit screens.
-:::
 
 **Example**
 
-Imagine we want to change to background color of our airlock screen.
-
+Turn on `DrainAll`
 ```bash title="Terminal"
-screen/bgcolor "AirlockStatusScreen" red;
+sorter/drain "Gravel Exhaust" true
 ```
 
-### screen/color
-
-Set the color of the text on the screen using RGB values.
-
-```
-screen/color <Screen|Group> <Color>
-```
-
-You have access to the following colors which may be used in place of their RGB values:
-
-|Name                                                   | RGB         | Hexidecimal   |
-|---                                                    |---          | ---           |
-|![red](https://img.shields.io/badge/red-FF0000)        |255,0,0      | FF0000        |
-|![green](https://img.shields.io/badge/green-00FF00)    |0,255,0      | 00FF00        |
-|![blue](https://img.shields.io/badge/blue-0000FF)      |0,0,255      | 0000FF        |
-|![yellow](https://img.shields.io/badge/yellow-FFFF00)  |255,255,0    | FFFF00        |
-|![orange](https://img.shields.io/badge/orange-FFA500)  |255,165,0    | FFA500        |
-|![cyan](https://img.shields.io/badge/cyan-00FFFF)      |0,255,255    | 00FFFF        |
-|![magenta](https://img.shields.io/badge/magenta-FF00FF)|255,0,255    | FF00FF        |
-|![white](https://img.shields.io/badge/white-FFFFFF)    |255,255,255  | FFFFFF        |
-|![black](https://img.shields.io/badge/black-000000)    |0,0,0        | 000000        |
-
-::: info
-At this time Mother cannot adjust color for cockpit screens.
-:::
-
-**Example**
-
-Imagine we want to change to color of our airlock screen.
-
+Turn off `DrainAll`
 ```bash title="Terminal"
-screen/color "AirlockStatusScreen" green;
+sorter/drain VerticalFarmHarvester false
 ```
-
-### screen/print
-
-Print a message to an LCD panel or group of panels.
-
-```
-screen/print <Screen|Group> <Message> <Options>
-```
-
-::: info
-At this time Mother cannot print text to cockpit screens.
-:::
-
-Options
-| Option  | Values      | Unit  | Description                                                           |
-| ------- | ----------  | ----  | -------------------------------------------------------------------   |
-| `color` | RGB         |       | Set the color of the text.                                            |
-| `size`  | Number      |       | Set the text size between 0.0 and 10.0.                                 |
-
-You have access to the following colors which may be used in place of their RGB values:
-
-|Name                                                   | RGB         | Hexidecimal   |
-|---                                                    |---          | ---           |
-|![red](https://img.shields.io/badge/red-FF0000)        |255,0,0      | FF0000        |
-|![green](https://img.shields.io/badge/green-00FF00)    |0,255,0      | 00FF00        |
-|![blue](https://img.shields.io/badge/blue-0000FF)      |0,0,255      | 0000FF        |
-|![yellow](https://img.shields.io/badge/yellow-FFFF00)  |255,255,0    | FFFF00        |
-|![orange](https://img.shields.io/badge/orange-FFA500)  |255,165,0    | FFA500        |
-|![cyan](https://img.shields.io/badge/cyan-00FFFF)      |0,255,255    | 00FFFF        |
-|![magenta](https://img.shields.io/badge/magenta-FF00FF)|255,0,255    | FF00FF        |
-|![white](https://img.shields.io/badge/white-FFFFFF)    |255,255,255  | FFFFFF        |
-|![black](https://img.shields.io/badge/black-000000)    |0,0,0        | 000000        |
-
 
 ## Sound Blocks
 [Sound Block Module](Modules/Extension/SoundBlockModule.md)

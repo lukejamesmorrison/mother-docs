@@ -23,7 +23,9 @@ Players can now use the `boot` command to run the Mother OS boot sequence. This 
 
 Players can also increment and decrement inputs for various commands like `hinge/rotate` and `piston/distance` using the `add` and `sub` command options.
 
-[![v0.2.13 Video](https://img.youtube.com/vi/cAdQMMQhYrQ/0.jpg)](https://youtu.be/cAdQMMQhYrQ)
+<iframe width="560" height="315" src="https://www.youtube.com/embed/cAdQMMQhYrQ?si=pXwoQzaQInuuhbTy" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+<!-- [![v0.2.13 Video](https://img.youtube.com/vi/cAdQMMQhYrQ/0.jpg)](https://youtu.be/cAdQMMQhYrQ) -->
 
 
 ## 0.2.11 -> 0.2.12

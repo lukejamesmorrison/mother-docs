@@ -187,7 +187,7 @@ The response object can be used to send back a variety of response types, includ
 | 604  | CONNECTOR_NOT_FOUND   | The specified connector was not found. |
 
 :::info
-Many of these codes remain unused by act as placeholders for future functionality.
+Many of these codes remain unused byut act as placeholders for future functionality.
 :::
 
 ### Handing A Response
@@ -235,6 +235,7 @@ Mother can communicate on multiple channels simultaneously.  We do this by defin
 ; The private channels are encrypted if a passcode is provided.
 MyFaction=Sup3rSecr3tP@ssw0rd
 OtherFaction=An0therP@ssw0rd
+
 ; No passcode means no encryption on this channel.
 ThirdFaction=  
 ```

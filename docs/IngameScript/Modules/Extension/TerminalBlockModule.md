@@ -66,6 +66,37 @@ Let's update the default scale of our `MapLCD`:
 block/config MapLCD general.mapScale 200
 ```
 
+### tag/get
+Get a all blocks with a specific tag. This will print a list of blocks to the terminal window.
+
+```
+tag/get <Tag>
+```
+
+**Example**
+
+Let's get all blocks with the `#cockpit-displays` tag:
+
+```text title="Terminal"
+tag/get #cockpit-displays;
+```
+
+### tag/set
+
+Set a tag on a block or group of blocks.
+
+```
+tag/set <Block|Group> <Tag>
+```
+
+**Example**
+
+Let's tag our cockpit displays so that we can easily set them to night mode:
+    
+```text title="Terminal"
+tag/set CockpitDisplays #cockpit-displays;
+```
+
 ## Hooks
 
 The following hooks can be define in the block's Custom Data, and will be triggered when the corresponding command is called:
