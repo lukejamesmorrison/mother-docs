@@ -44,13 +44,12 @@ List<IMyThrust> lateralThrusters = Mother.GetModule<BlockCatalogue>()
 ```
 
 ### By Tag
-We also have the ability to access blocks with [tags](#working-with-tags). Again, we can reach for the `GetBlocksByName()` method. We will access our hydrogen engines with the tag `hydrogen` within their Custom Data.
+We also have the ability to access blocks with [tags](#working-with-tags). Again, we can reach for the `GetBlocksByName()` method. We will access our thrusters with the tag `hydrogen` within their Custom Data.
 
 ```csharp
 List<IMyThrust> lateralThrusters = Mother.GetModule<BlockCatalogue>()
     .GetBlocksByName<IMyThrust>("#hydrogen");
 ```
-
 
 ## Working With Tags
 

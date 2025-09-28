@@ -1,6 +1,16 @@
 # Upgrade Guide
 
 [[toc]]
+
+## 0.2.14 -> 1.0.0
+🕓 5 mins
+
+This is a major release that introduces several new features and improvements. I highly recommend updating Mother OS on all of your grids to ensure compatibility and take advantage of the latest features. It never hurts to run the `purge * --force` command to clear out old data.
+
+This version introduces automatic refreshing to block custom data meaning you should only need to reach for the `boot` command, or hit recompile when things go wrong. This has massively improved our productivity and I'm sure it will for you too. You now also print messages to cockpit screens, and change both text and background colors.
+
+Enjoy!
+
 ## 0.2.13 -> 0.2.14
 🕓 5 mins
 

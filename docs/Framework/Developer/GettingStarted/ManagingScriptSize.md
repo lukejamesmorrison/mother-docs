@@ -12,7 +12,7 @@ Size matters. Your script has a hard limit of `100,000 characters` after minific
 
 ## Tips for Managing Size
 
-You may need to make compromises for what is the most safe/efficent, for what is least expensive in terms of character count. 
+You may need to compromise between what is the most safe/efficent, and what is least expensive in terms of character count. 
 
 ### Avoiding Multiple Block Type References
 
@@ -70,7 +70,7 @@ Boom - we no longer need any keywords within our loop and can save the brackets 
 
 ### Being Conscious of Keywords
 
-It is great practice to use keywords (`private`, `readonly`, etc.) as you are developing.  However, keywords come at a cost as they are not minifiable, and so take up space each time you use them. Mother CLI installs build tools that removes many of these during the build process as this makes no difference to the computer once running in the programmable block.
+It is great practice to use keywords (`private`, `readonly`, etc.) as you are developing.  However, keywords come at a cost as they are not minifiable, and so take up space each time you use them. Many of these are removed during the build process as this makes no difference to the computer once running in the programmable block.
 
 Nonetheless, always be consicous of language level keywords and punctuation. 100,000 characters adds up fast.
 
@@ -86,7 +86,7 @@ private readonly string SystemName = "Mother OS"
 string SystemName = "Mother OS"
 ```
 :::important
-It is good practive to **ALWAYS** use keywords. These exist for a reason and help keep our code clean and expressive.  I suggest only reaching for these types of optimizations when all other cleanup has been exhausted. Mother also removes many of these during build so *technically* you should be able to go nuts with them.
+It is good practive to **ALWAYS** use keywords. These exist for a reason and help keep our code clean and expressive.  I suggest only reaching for these types of optimizations when all other cleanup has been exhausted.
 :::
 
 ### Reducing String Size

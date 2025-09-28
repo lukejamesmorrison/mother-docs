@@ -163,7 +163,7 @@ Commands may be triggered via any one of the following methods:
 | **Button** | Via a button on a control panel that triggers the programmable block's `Run` action. |
 | **Timer Block** | Via a timer block that triggers the programmable block's `Run` action. |
 | **Event Controller** | Via an event trigger which runs the programmable block's `Run` action. |
-| **Block Hooks** | Via a block's [hooks](../CoreModules/BlockCatalogue.md#hooks) triggered by state change. |
+| **Block Hooks** | Via a block's [hooks](../CoreModules/BlockCatalogue.md#hooks) triggered by block state change. |
 | **Remote Message** | Via a message sent from another grid using the [Intergrid Message Service](../CoreModules/IntergridMessageService.md). |
 
 When a command is trigger it is passed to the [Command Bus](../CoreModules/CommandBus.md).  The Command Bus then executes the command on the appropriate module.

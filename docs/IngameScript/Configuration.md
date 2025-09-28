@@ -6,23 +6,14 @@ Players can easily configure Mother using the Programmable Block's **Custom Data
 
 [[toc]]
 
-::: important
-Don't forget to run the `boot` command when you update the Custom Data in the Programmable Block.
-:::
-
-
-## Mother OS Configuration
+## Mother Configuration
 ```ini title="Mother > Custom Data"
 [general]
 debug=false 
 
-[security]
-encrypt_messages=false
-passcodes=Sup3rSecr3tP@ssw0rd
-
 [Commands]
 ; single line command
-hinge0=hinge/rotate Hinge 0 --speed=2
+hinge0=hinge/rotate Hinge 0 --speed=2;
 
 ; single line routine
 hinge45=hinge/rotate Hinge 45 --speed=2; rotor/rotate Rotor 20 --speed=1;
@@ -105,7 +96,7 @@ OuterDoor.onOpen=
 ```
 
 ::: note
-The pipe character `|` is used to indicate a new line in the `Commands` section.  This is not required in the Programmable Block terminal but allows us to organize our commands and routines across multiple lines for readibility.
+The pipe character `|` is used to indicate a new line in the `commands` section.  This is not required in the Programmable Block terminal but allows us to organize our commands and routines across multiple lines for readibility.
 :::
 
 <!-- ## General Configuration

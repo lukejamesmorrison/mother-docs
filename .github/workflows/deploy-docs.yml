@@ -39,6 +39,7 @@ jobs:
         env:
           NODE_ENV: production
           NODE_OPTIONS: --max_old_space_size=8192
+          GOOGLE_ANALYTICS_ID: ${{ vars.GOOGLE_ANALYTICS_ID }}
         run: |-
           pnpm run docs:build
           > docs/.vuepress/dist/.nojekyll

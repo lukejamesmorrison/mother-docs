@@ -29,9 +29,9 @@ import { usePageData } from 'vuepress/client'
 
 # Mother OS (Ingame Script)
 
-<!-- [< Home](../README.md) -->
-<Badge type="info" text="&nbsp;Beta&nbsp;" vertical="middle" />
-<Badge type="warning" text="&nbsp;v0.2.14&nbsp;" vertical="middle" />
+<!-- <Badge type="info" text="&nbsp;Beta&nbsp;" vertical="middle" /> -->
+![Static Badge](https://img.shields.io/badge/Version-1.0.0-blue?color=green)
+
 
 Mother OS is available as an ingame script for Programmable Blocks in Space Engineers. It interoperates seamlessly with Timer Blocks and Event Controllers to augment existing automations. Start by [installing Mother OS here](./Installation.md).
 
@@ -65,9 +65,9 @@ Using Mother OS does not require any programming/coding experience.
   
 - **Copy Automations with Ease** - Easily port your automations from one grid to another by copying `Custom Data` text.
 
-::: warning
+<!-- ::: warning
 Mother is in beta development. I'm on a quest to reduce the character count, and increase the functionality. Please report any issues you encounter, and expect some of the commands and underlying framework to change.
-:::
+::: -->
 <br>
 
 **Tutorial Video**

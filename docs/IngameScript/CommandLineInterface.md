@@ -1,8 +1,6 @@
 # Command Line Interface (CLI)
 
-<!-- [< Installation](Installation.md) -->
-
-Mother's command line interface allows you to interact with your grid.  We can pass in *arguments* to the script to perform different actions.  The CLI is available in the programmable block terminal, and you can run it by hitting the `Run` button.
+Mother's command line interface allows you to interact with your grid.  We can pass in *arguments* to the script to perform different actions.  The CLI is available in the programmable block terminal, and you can run it by hitting the `Run` button (or using the Run action) with an argument.
 
 [[toc]]
 
@@ -28,7 +26,7 @@ light/color LandingLight red; light/blink LandingLight fast;
 
 <!-- [![Running a Command](https://img.youtube.com/vi/Ax5bhoeutcA/0.jpg)](https://www.youtube.com/watch?v=Ax5bhoeutcA) -->
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/Ax5bhoeutcA?si=B2aE2rusI70_tcJg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<iframe width="100%" height="300" src="https://www.youtube.com/embed/Ax5bhoeutcA?si=B2aE2rusI70_tcJg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
 
 ## Anatomy of a Command
@@ -53,6 +51,10 @@ We can see the [`hinge/rotate`](../IngameScript/Modules/Extension/HingeModule.md
 ```bash title="Terminal"
 hinge/rotate Hinge 45 --speed=2;
 ```
+
+::: important
+ Running `help` in the Programmable Block terminal will show all available commands.  
+:::
 
 ### Targeting Blocks
 
@@ -93,10 +95,10 @@ tags=airlock,airlock-light
 ```
 
 
-## Running Multiple Commands
+## Running a Routine
 
 ### Using the Terminal
-Sometimes it is useful to group commands in series to operate a system of blocks.  A `Routine` is simply a group of commands separated by a semi-colon `;`.  The following example changes the color of our `LandingLight`, and also initates a blinking effect.
+Sometimes it is useful to group commands into a series of actions.  A `Routine` is simply a group of commands separated by a semi-colon `;` that execute in sequence.  The following example changes the color of our `LandingLight`, and also initates a blinking effect.
 
 ```bash title="Terminal"
 light/color LandingLight red; light/blink LandingLight 0.5 --length=0.5;
@@ -105,20 +107,21 @@ The light will blink for 0.25s, every 0.5s (50% duty cycle).
 
 ### Custom Commands and Routines
 
-The command syntax can get verbose in the terminal, so it is recommended that you define routines in the `Commands` section of Mother's **Custom Data**. We can use a multi-line syntax to make it much more readable:
+The command syntax can get verbose in the terminal, so it is recommended that you define routines in the `commands` section of Mother's **Custom Data**. We can use a multi-line syntax to make it much more readable:
 
-```sh title="Mother > Custom Data"
+```ini title="Mother > Custom Data"
 [Commands]
+; Single line
+ExtendArm=wait 2; piston/distance LandingArm 3;
 
+; Multi-line
 ActivateLandingLight=
 | light/color LandingLight red;
 | light/blink LandingLight 0.5 --length=0.5;
-
-ExtendArm=piston/distance LandingArm 3;
 ```
 
 ::: tip
-The pipe character `|` is used to indicate a new line within Custom Data.  This is not required in the Programmable Block terminal. This only allows us to organize our commands and routines across multiple lines within Custom Data.
+The pipe character `|` is used to indicate a new line within Custom Data.  This is not required in the Programmable Block terminal. This only allows us to organize our commands and routines across multiple lines within Custom Data. See [MyIni](https://github.com/malware-dev/MDK-SE/wiki/VRage.Game.ModAPI.Ingame.Utilities.MyIni) for more information.
 :::
 
 Now we can run `ActivateLandingLight` in the terminal to execute the routine, or get clever and set it as an *Action* in an Event Controller, or a *hook* on a [Sensor](./Modules/Extension/SensorModule.md).
@@ -136,7 +139,7 @@ wait 10;
 door/close AirlockDoor;
 ```
 
-This works remotely as well:
+This works remotely as well. Imagine we want to run the `Arm` command stored on the `StealthMissile` grid:
 
 ```bash title="Terminal"
 @StealthMissile fcs/start; wait 10; _Arm;
@@ -169,7 +172,7 @@ You can run commands via several methods:
 4. Event Controller action
 5. Timer Block action
 
-### Programmable Block Terminal (Mother)
+### Programmable Block Terminal (Mother OS)
 
 From within your Programmable Block terminal, you can run commands directly.  This is the easiest way to interact with Mother and you will receive immediate feedback in the terminal window.
 

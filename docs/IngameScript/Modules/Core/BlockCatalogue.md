@@ -12,7 +12,7 @@ The Block Catalogue will register terminal blocks on the main grid, as well as s
 ## Supported Blocks
 
 Mother supports all block is type `IMyTerminalBlock` and includes the following blocks and more.
-
+<!-- 
 - Hinges
 - Pistons
 - Rotors
@@ -33,10 +33,10 @@ Mother supports all block is type `IMyTerminalBlock` and includes the following 
 - Programmable Blocks
 - Medical Rooms
 - Sensor Blocks
-- LCD Screens
+- LCD Screens -->
 
 ::: note
-For a complete list of supported blocks, see the [API Index](https://github.com/malware-dev/MDK-SE/wiki/Sandbox.ModAPI.Ingame.IMyTerminalBlock) created by Malware.
+For a complete list of supported blocks, check out the [Command Cheatsheet](../../CommandCheatsheet.md) or see the [API Index](https://github.com/malware-dev/MDK-SE/wiki/Sandbox.ModAPI.Ingame.IMyTerminalBlock) created by Malware.
 :::
 
 ## Why Do We Have It?

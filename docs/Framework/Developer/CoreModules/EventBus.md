@@ -18,8 +18,8 @@ public class MissileGuidanceModule : BaseExtensionModule
         // subscribe using the Event Bus module
         Mother.GetModule<EventBus>().Subscribe<MissileLaunchedEvent>(this);
 
-        // Or via an accessor 
-        Subscribe<MissileLaunchedEvent>(this);
+        // Or via a helper method
+        Subscribe<MissileLaunchedEvent>();
     }
 }
 ```

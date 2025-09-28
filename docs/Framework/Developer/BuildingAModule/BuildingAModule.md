@@ -106,15 +106,9 @@ partial class Program : MyGridProgram
         // Create Mother instance
         mother = new Mother(this);
 
-        // Instantiate module
-        MissileGuidanceModule missileGuidanceModule = new MissileGuidanceModule(this); 
-
         // Register module with Mother
-        mother.RegisterModule(missileGuidanceModule);
-
-        // Or as part of a list of modules
         mother.RegisterModules(new List<IExtensionModule> { 
-            missileGuidanceModule,
+            new MissileGuidanceModule(mother),
             ...
         });
     }
@@ -126,7 +120,7 @@ Extension Modules must conform the the `IExtensionModule` interface. It is recom
 :::
 
 ### Booting a Module
-The `Boot()` method of every module is called during boot by Mother. [Core Modules](../CoreModules/CoreModules.md) are booted before Extension Modules.  Modules are booted in the order they are registered. It is important to consider boot order to reduce conflicts among module dependencies and leverage [Events](#events) to keep modules decoupled.
+The `Boot()` method of every module is called during the boot process. [Core Modules](../CoreModules/CoreModules.md) are booted before Extension Modules in the order they are registered. It is important to consider boot order to reduce conflicts among module dependencies and leverage [Events](#events) to keep modules decoupled.
 
 ```csharp title="MissileGuidanceModule.cs"
 class MissileGuidanceModule : BaseExtensionModule

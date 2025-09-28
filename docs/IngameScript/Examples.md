@@ -60,10 +60,6 @@ DeployDrill=
 
 Now we can run the Programmable Block with the argument `DeployDrill` and your system should begin to operate. This can easily be assigned to a button now.
 
-::: important
-Don't forget to run the`boot` command when you update the Custom Data in the Programmable Block.
-:::
-
 ## Welder Arm Actuation
 
 As you begin building larger grids, it is likely that you will create a dedicated grid for welding.  One method to increase productivity is to mount forward-facing welders on hinges, to simplify welding up, down or forward. Though we can achieve this with the `Rotate to Angle` action released with the Signals update, the process to update these automations is still laborious via game menus.  Let's take a look at a simple implementation with Mother:
@@ -89,10 +85,6 @@ hinges-90=hinge/rotate "WelderHinges" -90 --speed=3;
 ```
 
 Now, we can run the programmable block with the argument `hinges90` to actuate the welder arm to 90 degrees, `hinges45` to actuate to 45 degrees, etc.  This can easily be assigned to a button or toolbar action using the `Run` action.  Also note that we can customize the speed of rotation via a command option. See the [Hinge Module](Modules/Extension/HingeModule.md) for more information.
-
-::: important
-Don't forget to run the`boot` command when you update the Custom Data in the Programmable Block.
-:::
 
 ## Automatically Flying to a Resource Node
 
@@ -126,11 +118,6 @@ si1=
 ```
 
 Now, we can run Mother with the argument `fe1` to automatically begin flying to our iron vein, `ice1` to begin flying towards ice, or `si1` to fly to silicon.  This is a much more intuitive way to control your ship than the base game's AI block. You can even create waypoints above your home base's docks to enable autopiloted return trips. Now we can easily tweak where the grid flies, how fast, etc. from a central location. 
-
-::: important
-Don't forget to run the`boot` command when you update the Custom Data in the Programmable Block.
-:::
-
 
 ## Dispatch Ship to a Landing Site via a Flight Plan
 

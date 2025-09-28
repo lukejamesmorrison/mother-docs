@@ -10,10 +10,14 @@ Grids running Mother will periodically communicate, at which time the Almanac is
 
 To immediately refresh the Almanac, you can run the `ping` command.
 
+::: tip
+Check out the Almanac in action using a [Map display](../Extension/MapModule.md).
+:::
+
 
 ## Why Do We Have It?
 
-In order for grids to interoperate seamlessly, it is important for them to store key information about each other.  This includes properties like their id, position and speed.  Other modules can make use of this for secure communication, and sending remote commands.
+In order for grids to interoperate seamlessly, it is important for them to store key information about each other.  This includes properties like their id, position and speed.  Other modules can make use of this for communication and navigation.
 
 
 <!-- ## Friendly or Foe?

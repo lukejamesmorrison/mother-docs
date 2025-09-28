@@ -2,7 +2,6 @@
 next: /Framework/Developer/GettingStarted/Installation.md
 ---
 
-
 <script setup>
 import { ref, computed, onMounted } from 'vue'
 
@@ -18,8 +17,6 @@ onMounted(() => {
     observer.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] })
 })
 
-
-
 // const isDark = computed(() => {
 //     return true;
 //     return document.documentElement.classList.contains('dark')
@@ -30,8 +27,12 @@ onMounted(() => {
 
 # Mother Core (Script Framework)
 <!-- ![Beta](https://img.shields.io/badge/Beta-_v1.0.0-blue) -->
-<Badge type="info" text="&nbsp;Beta&nbsp;" vertical="middle" />
-<Badge type="warning" text="&nbsp;v1.0.0&nbsp;" vertical="middle" />
+<!-- <Badge type="info" text="&nbsp;Beta&nbsp;" vertical="middle" /> -->
+<!-- <Badge type="tip" text="&nbsp;v1.0.0&nbsp;" vertical="middle" /> -->
+<!-- ![Static Badge](https://img.shields.io/badge/Version-1.0.0-blue?color=green) -->
+[![Static Badge](https://img.shields.io/badge/version-1.0.0-blue?color=green&logo=github)](https://github.com/lukejamesmorrison/mother-core)
+
+
 
 Mother Core is a framework for developing custom Programmable Block scripts for Space Engineers. It enables you to build interoperable modules to suit the specific needs of your ship or station. [Mother OS](../IngameScript/IngameScript.md) is built with Mother Core and a collection of extension modules.
 
@@ -147,7 +148,7 @@ partial class Program : MyGridProgram
 ## The Extension Module
 You can add new functionality to the program by creating an [Extension Module](./Developer/BuildingAModule/BuildingAModule.md). These modules are registered in the `Program` constructor using the `RegisterModules()` method. They may access all other modules directly and respond to changes when other modules emit [Events](Developer/BuildingAModule/BuildingAModule.md#events).
 
-We will use the `MissileGuidanceModule` as our example.  It provides functionality to launch and detonate missiles, and updates the thrusters on each run program cycle.
+We will use the `MissileGuidanceModule` as our example.  It provides functionality to launch and detonate missiles, and updates the thrusters on each program cycle.
 
 ```csharp title="MissileGuidanceModule.cs"
 class MissileGuidanceModule : BaseExtensionModule

@@ -1,7 +1,7 @@
 # Modules
 
 
-Mother comes with many functional modules. These modules can be categorized as [Core](#core-modules) Modules and [Extension](#extension-modules) Modules.
+Mother OS comes with many functional modules. These modules can be categorized as [Core](#core-modules) Modules and [Extension](#extension-modules) Modules.
 
 [[toc]]
 
@@ -20,7 +20,7 @@ Core modules act as Mother's framework, enabling extension modules.
 | [Intergrid Message Service](Core/IntergridMessageService.md) | Handles communication between grids running Mother. |
 | [Local Storage](Core/LocalStorage.md) | Allows Mother to store information across cycles, even if an error occurs or a player hits `Recompile`. |
 | Log | Logs information about the grid and Mother's activity. |
-| [Security](Core/Security.md) | Responsible for encrypting messages and and other system data. |
+<!-- | [Security](Core/Security.md) | Responsible for encrypting messages and and other system data. | -->
 
 ## Extension Modules
 

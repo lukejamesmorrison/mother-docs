@@ -4,7 +4,11 @@ next: /Framework/Developer/CoreModules/CoreModules.md
 ---
 
 # Console
-You can use [Mother CLI](https://www.nuget.org/packages/Mother.CLI/) to assist with creating projects and many common file types. Simply install it as a **global** Nuget package and access it with `mother` command in your Terminal/Console.  
+You can use [Mother CLI](https://www.nuget.org/packages/Mother.CLI/) to assist with creating projects and many common file types. Simply install it as a **global** Nuget package and access it with the `mother` command in your Terminal/Console.  
+
+```bash
+mother make:command CelebrateCommand --module CelebrationModule
+```
 
 [[toc]]
 
@@ -19,7 +23,7 @@ dotnet tool install --global Mother.CLI
 
 ## Usage
 
-Commands following the following format:
+Commands use the following format:
 
 ```sh
 mother [command] [arguments] [--options=]
@@ -43,11 +47,29 @@ Create a new terminal command. You may also specific a module to which this comm
 mother make:command [CommandName] --module? [ModuleName]
 ```
 
+Example:
+```bash
+# For a module
+mother make:command CelebrateCommand --module CelebrationModule
+
+# Without a module
+mother make:command CelebrateCommand
+```
+
 ### make:event
 Create a new event. You may also specific a module to which this event belongs. Mother CLI will register it for you automatically, and place it within the `/Modules/{ModuleName}/Events`.
 
 ```sh
 mother make:event [EventName] --module? [ModuleName]
+```
+
+Example:
+```bash
+# For a module
+mother make:event CelebrationStartedEvent --module CelebrationModule
+
+# Without a module
+mother make:event CelebrationStartedEvent
 ```
 
 ### make:module
@@ -57,12 +79,21 @@ Create a new extension module. A project's modules will be created in the `/Modu
 mother make:module [ModuleName]
 ```
 
+Example:
+```bash
+mother make:module CelebrationModule    
+```
+
 ### new
 Create a new Mother project. This will create a new project in the `ProjectName` directory, within your current directory. It will also install the latest version of Mother Core to your project.
 
 ```sh
 mother new [ProjectName]
 ```
+
+```bash
+mother new MotherParty
+``` 
 
 ### update
 Update Mother Core modules. Running this periodically will ensure the Mother Core remains up to date.  Think of the this like using `npm update` or `pip install --upgrade` to update project dependencies.

@@ -27,8 +27,8 @@ Check out the documentation for [UpdateTypes](https://github.com/malware-dev/MDK
 
 ### 1. Multiple Mother OS Instances
 
-You should NOT run multiple instances of Mother OS on your grid.  This will lead to duplicated event monitoring and the programmable blocks will compete to render your LCD displays.  Mother OS should only be installed once per ship/station *construct*.
+You should NOT run multiple instances of **Mother OS** on your grid.  This will lead to duplicated event monitoring and the programmable blocks will compete to render your LCD displays.  Mother OS should only be installed once per ship/station *construct*.
 
-:::info
+<!-- :::info
 Multiple instances of Mother will be supported in the upcoming **v1.0.0** release. Stay tuned!
-:::
+::: -->

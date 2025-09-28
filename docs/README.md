@@ -7,9 +7,9 @@ actions:
     link: /IngameScript/IngameScript.md
     type: primary
 
-  # - text: Mother Core
-  #   link: /Framework/Readme.md
-  #   type: secondary
+  - text: Mother Core
+    link: /Framework/Readme.md
+    type: secondary
 
 features:
   - title: Intuitive Command Library
@@ -28,7 +28,11 @@ footer: MIT Licensed | © 2025 Agentluke | The Empire must grow.
   // import MotherOSAnimation2 from '../../components/MotherOSAnimation2.vue';
   import MotherCoreAnimation from '../../components/MotherCoreAnimation.vue';
   import MotherCoreOverview from '../../components/MotherCoreOverview.vue';
+  import HomeHeroVideoSection from '../../components/HomeHeroVideoSection.vue';
 </script>
+
+  <HomeHeroVideoSection />
+
 
  <!-- Full-width breakout
 <div class="relative left-1/2 right-1/2 -mx-[50vw] w-screen bg-blue-500 text-white py-8">
@@ -45,58 +49,33 @@ footer: MIT Licensed | © 2025 Agentluke | The Empire must grow.
 
 **Ingame Script** for Space Engineers players. 
 
-Unlock advanced automation, flight planning, and intergrid communication.
-
-
-::: warning
-Mother is in beta development.
+::: tip Mother 1.0 Out Now!
+Mother OS 1.0 is now available!  Check out the [Get Started](IngameScript/IngameScript.md) guide to learn how to install and use Mother OS on your grids. Custom data now updates automatically and we've improved how you can print custom text to your LCDs.  Enjoy!
 :::
 
-[Get Started](/IngameScript/IngameScript.md) | [Command Cheatsheet](/IngameScript/CommandCheatsheet.md) | [Examples](/IngameScript/Examples.md)
+Mother OS has a robust library of nearly 100 commands to control your grid. Your changes are updated automatically using the block's custom data property. Easily copy and paste complex routines, take them with you without needing mods, timer blocks, or event controllers.  Mother OS makes it easy to wirelessly send commands to other grids, expanding how your grids can cooperate with each other
 
+[Get Started](./IngameScript/IngameScript.md) | [Command Cheatsheet](./IngameScript/CommandCheatsheet.md) | [Examples](./IngameScript/Examples.md)
 
 <div>
   <MotherOSAnimation />
 </div>
 
-<!-- <div>
-  <MotherOSAnimation2 />
-</div> -->
 <br>
 <br>
-
-
-
-<!-- <section>
-    <h2>Mother OS</h2>
-    <p>Ingame Script for Space Engineers players</p>
-    <p>Mother is a general purpose operating system for Space Engineers grids available as an in-game script. It exposes an intuitive command line interface (CLI), flexible flight control & planning, and an intergrid communication system to massively expand what you can do with your grid(s). I built Mother to make my ships operate more like spaceships on a network, rather than just a collection of blocks flying through space. With Mother's CLI, most common operations can easily be assigned to a button without needing a Timer or Event Block.</p>
-    <p>You do not need any programming experience to use Mother.  In fact, most of Mother's CLI commands offer a more intutive control mechanism than the base game itself. However, if you fancy yourself a programmer, you can easily extend Mother's functionality by creating a custom project. Mother is built on top of <a href="https://github.com/malware-dev/MDK-SE" target=_blank>MDK-SE</a>, thanks to the incredible contributions **Malware** has made to the Space Engineers community.  I hope you enjoy using Mother as much as I enjoyed building it.</p>
-    <p>The empire must grow.</p>
-</section> -->
-
 
 ## Mother Core
 
 Script Framework for custom Space Engineers ingame scripts written in C#6 and deployed using [MDK2](https://github.com/malforge/mdk2/wiki).
 
-::: warning
-Mother Core is coming soon as a downloadable script framework.  Stay tuned for updates!
+::: tip Mother Core 1.0 Out Now!
+Mother Core 1.0 is now available and all code is available on Github!  I hope this inspires a new generation of Space Engineers script developers to build amazing things.  Check out the [Get Started](./Framework/README.md) guide to learn how to install and use Mother Core in your own scripts.
 :::
 
- <!-- [Get Started](./Framework/README.md) | [MDK-SE API Index](https://github.com/malware-dev/MDK-SE/wiki) -->
+ [Get Started](./Framework/README.md) | [MDK-SE API Index](https://github.com/malware-dev/MDK-SE/wiki) | [Space Engineers Mod API](https://keensoftwarehouse.github.io/SpaceEngineersModAPI/api/index.html)
 
 <MotherCoreOverview/> 
 
-<!-- ## Mother CLI
-
-[Mother CLI](./Framework/Developer/Console.md) is a simple command line tool to assist Space Engineers players with creating their own programmable block scripts using Mother Core.
-
-It is easily installed by running the following command in your console/terminal:
-
-```sh
-dotnet tool install --global Mother.CLI
-``` -->
 
 ##  About Agentluke
 I have always been passionate about aviation and space. I studied Aerospace Engineering, and flew in fighter jets in the Air Force for over a decade. I have been writing software since university, and I have always been fascinated by the intersection of software and hardware.

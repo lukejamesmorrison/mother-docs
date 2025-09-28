@@ -528,6 +528,25 @@ Toggle the Tank `Stockpile` between `on` and `off`.
 tank/toggle <Tank|Group> [--options]
 ```
 
+## Gyroscopes
+[Gyroscope Module](Modules/Extension/GyroscopeModule.md)
+
+### Commands
+
+#### gyro/face
+Face the grid towards a **GPS Waypoint**.
+```
+gyro/face <GPS Waypoint>
+```
+
+**Example**
+
+```text title="Terminal"
+gyro/face GPS:TopSecretBase:211.78:-52.93:59.19:#FF75C9F1:
+```
+
+
+
 ## Hinges
 [Hinge Module](Modules/Extension/HingeModule.md)
 
@@ -942,6 +961,30 @@ sound/set MainSpeaker "Danger Music 04";
 
 # other sound
 sound/play MainSpeaker "Space Funk";
+```
+
+## Thrusters
+[Thruster Module](Modules/Extension/ThrusterModule.md)
+
+### Commands
+
+#### thrust
+Set the thrust of a thruster or group of thrusters.
+```
+thruster/thrust <Thruster|Group> <valuePercent|valueNetwons> [--options]
+```
+
+::: important
+The command expects a value in **percent** by default.  To use Newtons, ensure you follow the value with an `N`. 
+:::
+
+**Example**
+```bash title="Terminal"
+# Set the thruster's thruster override to 100%
+thruster/thrust MainThruster 100;
+
+# Set the thruster's thrust override to 10,000 Newtons
+thruster/thrust MainThruster 10000N;
 ```
 
 ## Timer Blocks

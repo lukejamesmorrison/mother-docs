@@ -11,7 +11,7 @@ Creating a custom Mother project is straight forward.  We will need an IDE like 
 
 ## 1. Install MDK2
 
-First you will need [MDK2](https://github.com/malforge/mdk2/wiki/Getting-Started-using-Visual-Studio), an amazing developer kit that Malware has created. I highly recommend Visual Studio for developing scripts. Trust me.
+First you will need [MDK2](https://github.com/malforge/mdk2/wiki/Getting-Started-using-Visual-Studio), an amazing developer kit that Malware has created. I highly recommend Visual Studio for developing scripts - it's great.
 
 ![Malware MDK2 Packages](../../Assets/mdk2_packages.png)
 

@@ -63,7 +63,7 @@ ThirdFaction=
 ```
 
 ::: important
-Communication channels are new in version **0.2.14**.  If you are using an older version of Mother, then you should update to the latest version.
+Communication channels are new in version **0.2.14**.  If you are using an older version of Mother OS, then you should update to the latest version.
 :::
 
 ::: caution
@@ -106,5 +106,7 @@ Failing to include an underscore `_` when running a remotely defined command cou
 :::
 
 
-**Video - Sending a Remote Command Video**
-[![Sending a Remote Command](https://img.youtube.com/vi/ubFKpvxrtz0/0.jpg)](https://www.youtube.com/watch?v=ubFKpvxrtz0)
+<!-- **Video - Sending a Remote Command Video** -->
+<!-- [![Sending a Remote Command](https://img.youtube.com/vi/ubFKpvxrtz0/0.jpg)](https://www.youtube.com/watch?v=ubFKpvxrtz0) -->
+
+<iframe width="100%" height="400" src="https://www.youtube.com/embed/ubFKpvxrtz0?si=E2ddgsA3cVjlpOj8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>

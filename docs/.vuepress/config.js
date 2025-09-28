@@ -3,6 +3,12 @@ import { defineUserConfig } from 'vuepress/cli'
 import { viteBundler } from '@vuepress/bundler-vite'
 import { mdEnhancePlugin } from "vuepress-plugin-md-enhance";
 import { searchPlugin } from '@vuepress/plugin-search'
+import { googleAnalyticsPlugin } from '@vuepress/plugin-google-analytics'
+
+import * as dotenv from 'dotenv'
+
+// Load environment variables from .env file
+dotenv.config();
 
 // Core Routes
 const MotherOSSidebar = {
@@ -125,7 +131,7 @@ const MotherCoreSidebar = {
       // ],
     },
     {
-      text: 'Console',
+      text: 'Console (CLI)',
       link: '/Framework/Developer/Console.md',
     },
     {
@@ -195,6 +201,8 @@ const basePath = '/mother-docs/';
 
 const DEV_MODE = process.env.NODE_ENV == 'development';
 
+// console.log(process.env);
+
 export default defineUserConfig({
   base: basePath,
   title: DEV_MODE ? 'Mother Docs (Dev)' : 'Mother Docs',
@@ -249,11 +257,15 @@ export default defineUserConfig({
     mdEnhancePlugin({
       mermaid: true,
     }),
+    googleAnalyticsPlugin({
+      id: process.env.GOOGLE_ANALYTICS_ID
+    }),
     searchPlugin({
       // options
       isSearchable: (page) => {
+        return true;
         // exclude access to Framework docs for now
-        return !page.path.startsWith('/Framework/');
+        // return !page.path.startsWith('/Framework/');
       },
       hotKeys: [
         {
@@ -304,7 +316,8 @@ export default defineUserConfig({
     sidebarDepth: 1,
     sidebar: [
       MotherOSSidebar,
-      process.env.NODE_ENV == 'development' ? MotherCoreSidebar : {},
+      MotherCoreSidebar,
+      // process.env.NODE_ENV == 'development' ? MotherCoreSidebar : {},
       "/PoweredByMother.md",
     ]
   }),
