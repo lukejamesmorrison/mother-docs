@@ -24,13 +24,19 @@ goto-ts-base=
 | fcs/start --speed=100;
 
 [hooks]
-; block hooks can be defined within Mother's Custom Data to trigger events on blocks.  This allows for localized automation of blocks.
+; block hooks can be defined within Mother's Custom Data to 
+; trigger events on blocks.  This allows for localized 
+; automation of blocks.
 AirlockOuterDoor.onOpen=
 | light/blink "Airlock Light" fast; 
 | vent/depressurize AirlockVent; 
 | wait 10; 
 | door/close OuterDoor;
 ```
+
+::: tip
+Setting `general.debug` to `true` will highlight the complexity your script in the terminal. Otherwise, you do not need to worry about this setting.
+:::
 
 ## Block Configuration
 All Terminal Blocks have a `Custom Data` field.  This is where you can define the block's configuration, tags, and hooks.
@@ -79,7 +85,6 @@ onClose=
 ```
 or, we can define the hook in Mother's Custom Data:
 
-```ini title="OuterDoor > Custom Data"
 
 ```ini title="Mother > Custom Data"
 [hooks]
@@ -98,15 +103,3 @@ OuterDoor.onOpen=
 ::: note
 The pipe character `|` is used to indicate a new line in the `commands` section.  This is not required in the Programmable Block terminal but allows us to organize our commands and routines across multiple lines for readibility.
 :::
-
-<!-- ## General Configuration
-
-| Key | Value | Description |
-| --- | --- | --- |
-| `debug` | **false**, true | Enable debug logging. | -->
- 
- 
-<!-- [waypoints]
-TopSecretBase="GPS:TopSecretBase:211.78:-52.93:59.19:#FF75C9F1:" -->
-
-<!-- [Modules >](Modules/Modules.md) -->
