@@ -1,1 +1,0 @@
-import{_ as e,c as n,a as o,g as a}from"./app-Du6kk5HX.js";const l={};function r(s,t){return a(),n("div",null,t[0]||(t[0]=[o("p",null,"404 Not Found",-1)]))}const _=e(l,[["render",r]]),i=JSON.parse('{"path":"/404.html","title":"","lang":"en-US","frontmatter":{"layout":"NotFound"},"git":{},"filePathRelative":null}');export{_ as comp,i as data};
