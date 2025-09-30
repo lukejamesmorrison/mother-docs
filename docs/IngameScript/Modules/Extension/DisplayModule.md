@@ -110,11 +110,11 @@ Imagine we want to print text to a screen based on our airlock status.  We conte
 
 ```ini title="Terminal"
 ; with color name
-screen/print "AirlockStatusScreens" "Airlock SAFE" --color=green --size=4.4
+screen/print "AirlockStatusScreens" "Airlock SAFE" --color=green --size=4.4;
 
 ; with RGB value
-screen/print "AirlockStatusScreens" "Airlock SAFE" --color=0,255,0 --size=4.4
+screen/print "AirlockStatusScreens" "Airlock SAFE" --color=0,255,0 --size=4.4;
 
 ; Cockpit LCD
-screen/print "PilotCockpit:1" "ALERT" --color=red --size=10
+screen/print "PilotCockpit:1" "ALERT" --color=red --size=10;
 ```
