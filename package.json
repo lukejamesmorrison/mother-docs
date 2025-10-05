@@ -24,7 +24,6 @@
     "@tsparticles/vue3": "^3.0.1",
     "dotenv": "^17.2.2",
     "gsap": "^3.13.0",
-    "particles.js": "^2.0.0",
     "tsparticles": "^3.9.1",
     "vuepress-plugin-md-enhance": "2.0.0-rc.74"
   },
