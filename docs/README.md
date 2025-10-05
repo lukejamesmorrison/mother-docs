@@ -29,9 +29,15 @@ footer: MIT Licensed | © 2025 Agentluke | The Empire must grow.
   import MotherCoreAnimation from '../../components/MotherCoreAnimation.vue';
   import MotherCoreOverview from '../../components/MotherCoreOverview.vue';
   import HomeHeroVideoSection from '../../components/HomeHeroVideoSection.vue';
+  import ParticlesContainer from '../../components/ParticlesContainer.vue';
+  // import ParticlesContainer2 from '../../components/ParticlesContainer2.vue';
+
 </script>
 
   <HomeHeroVideoSection />
+
+  <!-- <ParticlesContainer style="z-index: -1; top: 0; left:0; min-height: 100vh; height: 100%; position: absolute;"/> -->
+
 
 
  <!-- Full-width breakout

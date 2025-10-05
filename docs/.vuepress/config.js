@@ -5,6 +5,10 @@ import { mdEnhancePlugin } from "vuepress-plugin-md-enhance";
 import { searchPlugin } from '@vuepress/plugin-search'
 import { googleAnalyticsPlugin } from '@vuepress/plugin-google-analytics'
 
+// import Particles from "@tsparticles/vue3";
+// import { loadFull } from "tsparticles"; // if you are going to use `loadFull`, install the "tsparticles" package too.
+
+
 import * as dotenv from 'dotenv'
 
 // Load environment variables from .env file
@@ -167,6 +171,10 @@ const MotherCoreSidebar = {
         // '/IngameScript/CommandCheatsheet.md',
       ],
     },
+    {
+      text: 'Tutorials',
+      link: '/Framework/Developer/Tutorials/Tutorials.md',
+    }
   ]
 };
 
@@ -202,6 +210,22 @@ const basePath = '/mother-docs/';
 const DEV_MODE = process.env.NODE_ENV == 'development';
 
 // console.log(process.env);
+
+// const ParticlesPlugin = (app) => {
+//   app.use(Particles, {
+//     init: async engine => {
+//       await loadFull(engine); // you can load the full tsParticles library from "tsparticles" if you need it
+//       // await loadSlim(engine); // or you can load the slim version from "@tsparticles/slim" if don't need Shapes or Animations
+//     },
+//   });
+// }
+
+// export defineClientConfig({
+//   enhance({ app, router, siteData }) {
+//     // app.use(ParticlesPlugin);
+//     app.use(Particles);
+//   },
+// });
 
 export default defineUserConfig({
   base: basePath,
@@ -284,7 +308,6 @@ export default defineUserConfig({
       // },
     }),
   ],
-
 
   theme: defaultTheme({
     darkMode: false, // Enables the dark mode toggle
