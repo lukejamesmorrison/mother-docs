@@ -516,6 +516,14 @@ Set the active flight plan in the navigation system. Combine with [`fcs/start`](
 nav/set-flight-plan <FlightPlanString> [--options]
 ```
 
+### fp/clear
+
+Clear the current flight plan from the navigation system.
+
+```
+fp/clear
+```
+
 ## Gas Tanks
 [Gas Tank Module](Modules/Extension/GasTankModule.md)
 
