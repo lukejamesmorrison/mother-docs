@@ -95,3 +95,12 @@ Decrease speed by 1 RPM:
 rotor/speed AntennaRotor 1 --sub;
 ```
 
+## Hooks
+
+The following hooks can be define in the block's Custom Data, and will be triggered when the corresponding command is called:
+
+|Key            | Trigger                               |
+|-              |-                                      |
+| `onMoving`      | Activated when a rotor is put into motion by the [`rotor/rotate`](#rotate) command.    |
+| `onStop`      | Activated when a rotor stops from the [`rotor/rotate`](#rotate) command.      |
+

@@ -37,7 +37,7 @@ Similiarily, if we couple the autopilot start command into a routine, then the S
 # remotely set a flight plan, and start autopilot on SurveyDrone grid
 @SurveyDrone nav/set-flight-plan "GPS:CurrentPosition#1:211.78:-52.93:59.19:#FF75C9F1:"; fcs/start;
 ```
-See the [Flight Planning Module](FlightPlanningModule.md) for more information on flight planning.
+See the [Flight Planning Module](../Extension/FlightPlanningModule.md) for more information on flight planning.
 
 
 ::: note

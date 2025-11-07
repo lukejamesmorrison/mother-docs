@@ -975,9 +975,7 @@ sound/play MainSpeaker "Space Funk";
 ## Thrusters
 [Thruster Module](Modules/Extension/ThrusterModule.md)
 
-### Commands
-
-#### thrust
+### thruster/thrust
 Set the thrust of a thruster or group of thrusters.
 ```
 thruster/thrust <Thruster|Group> <valuePercent|valueNetwons> [--options]

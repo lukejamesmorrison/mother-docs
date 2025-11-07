@@ -1,0 +1,187 @@
+{
+  "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+  "name": "MotherScript",
+  "scopeName": "source.motherscript",
+  "patterns": [
+    {
+      "include": "#comments"
+    },
+    {
+      "include": "#header"
+    },
+    {
+      "include": "#pipeLine"
+    },
+    {
+      "include": "#singleLine"
+    }
+  ],
+  "repository": {
+    "comments": {
+      "patterns": [
+        {
+          "name": "comment.line.semicolon.motherscript",
+          "match": "^\\s*;.*$"
+        }
+      ]
+    },
+    "header": {
+      "patterns": [
+        {
+          "name": "meta.header.motherscript",
+          "match": "^\\s*([A-Za-z_][A-Za-z0-9_]*)\\s*(=)\\s*$",
+          "captures": {
+            "1": {
+              "name": "entity.name.function.motherscript"
+            },
+            "2": {
+              "name": "keyword.operator.assignment.motherscript"
+            }
+          }
+        }
+      ]
+    },
+    "pipeLine": {
+      "patterns": [
+        {
+          "begin": "^(\\s*)(\\|)\\s*([A-Za-z][A-Za-z0-9_-]*(?:/[A-Za-z][A-Za-z0-9_-]*)?)\\b",
+          "beginCaptures": {
+            "1": {
+              "name": "punctuation.whitespace.leading.motherscript"
+            },
+            "2": {
+              "name": "keyword.operator.pipe.motherscript"
+            },
+            "3": {
+              "name": "support.function.motherscript"
+            }
+          },
+          "end": ";\\s*$",
+          "endCaptures": {
+            "0": {
+              "name": "punctuation.terminator.semicolon.motherscript"
+            }
+          },
+          "name": "meta.pipeline.motherscript",
+          "patterns": [
+            {
+              "include": "#flags"
+            },
+            {
+              "include": "#numbers"
+            },
+            {
+              "include": "#strings"
+            },
+            {
+              "include": "#hashIds"
+            },
+            {
+              "include": "#commandSegment"
+            },
+            {
+              "include": "#bareString"
+            }
+          ]
+        }
+      ]
+    },
+    "singleLine": {
+  "patterns": [
+    {
+      "begin": "^\\s*([A-Za-z_][A-Za-z0-9_]*)\\s*(=)\\s*(?!\\|)\\s*([A-Za-z][A-Za-z0-9_-]*(?:/[A-Za-z][A-Za-z0-9_-]*)?)\\b",
+      "beginCaptures": {
+        "1": { "name": "entity.name.function.motherscript" },
+        "2": { "name": "keyword.operator.assignment.motherscript" },
+        "3": { "name": "support.function.motherscript" }
+      },
+      "end": ";\\s*$",
+      "endCaptures": {
+        "0": { "name": "punctuation.terminator.semicolon.motherscript" }
+      },
+      "name": "meta.singleline.motherscript",
+      "patterns": [
+        {
+          "match": "(;)(?:\\s*)([A-Za-z][A-Za-z0-9_-]*(?:/[A-Za-z][A-Za-z0-9_-]*)?)\\b",
+          "captures": {
+            "1": { "name": "punctuation.terminator.semicolon.motherscript" },
+            "2": { "name": "support.function.motherscript" }
+          }
+        },
+        { "include": "#flags" },
+        { "include": "#numbers" },
+        { "include": "#strings" },
+        { "include": "#hashIds" },
+        { "include": "#commandSegment" },
+        { "include": "#bareString" }
+      ]
+    }
+  ]
+}
+,
+    "commandSegment": {
+      "patterns": [
+        {
+          "name": "support.function.motherscript",
+          "match": "(?x)\\b([A-Za-z][A-Za-z0-9_-]*)/(?:[A-Za-z][A-Za-z0-9_-]*)\\b"
+        },
+        {
+          "name": "variable.parameter.motherscript",
+          "match": "(?x)\\bblock/(?:on|off|auto)\\b|\\bdampeners/(?:on|off)\\b"
+        }
+      ]
+    },
+    "flags": {
+      "patterns": [
+        {
+          "name": "keyword.other.flag.motherscript",
+          "match": "--[A-Za-z0-9_-]+(?:=(?:[^\\s\"';]+|\"[^\"]*\"|'[^']*'))?"
+        }
+      ]
+    },
+    "numbers": {
+      "patterns": [
+        {
+          "name": "constant.numeric.float.motherscript",
+          "match": "(?<![#A-Za-z0-9_])[-+]?[0-9]+\\.[0-9]+"
+        },
+        {
+          "name": "constant.numeric.integer.motherscript",
+          "match": "(?<![#A-Za-z0-9_])[-+]?[0-9]+(?![A-Za-z0-9_])"
+        }
+      ]
+    },
+    "strings": {
+      "patterns": [
+        {
+          "name": "string.quoted.double.motherscript",
+          "match": "\"[^\"]*\""
+        }
+      ]
+    },
+    "hashIds": {
+      "patterns": [
+        {
+          "name": "entity.other.attribute-name.id.motherscript",
+          "match": "#[A-Za-z0-9_-]+(?::[0-9]+)?"
+        }
+      ]
+    },
+    "bareString": {
+      "patterns": [
+        {
+          "name": "string.unquoted.motherscript",
+          "match": "\\b[A-Za-z][A-Za-z0-9_-]*\\b"
+        }
+      ]
+    },
+    "semicolon": {
+      "patterns": [
+        {
+          "name": "punctuation.terminator.semicolon.motherscript",
+          "match": ";"
+        }
+      ]
+    }
+  }
+}

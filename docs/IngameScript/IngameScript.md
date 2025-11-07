@@ -30,7 +30,7 @@ import { usePageData } from 'vuepress/client'
 # Mother OS (Ingame Script)
 
 <!-- <Badge type="info" text="&nbsp;Beta&nbsp;" vertical="middle" /> -->
-![Static Badge](https://img.shields.io/badge/Version-1.0.0-blue?color=green)
+![Static Badge](https://img.shields.io/badge/Version-1.0.1-blue?color=green)
 
 
 Mother OS is available as an ingame script for Programmable Blocks in Space Engineers. It interoperates seamlessly with Timer Blocks and Event Controllers to augment existing automations. Start by [installing Mother OS here](./Installation.md).
@@ -71,8 +71,6 @@ Mother is in beta development. I'm on a quest to reduce the character count, and
 <br>
 
 **Tutorial Video**
-
-<!-- [![Tutorial Video](https://img.youtube.com/vi/CgA6k1xQfVE/0.jpg)](https://www.youtube.com/watch?v=CgA6k1xQfVE) -->
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/CgA6k1xQfVE?si=QefVhWt23W7t_sRy" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 

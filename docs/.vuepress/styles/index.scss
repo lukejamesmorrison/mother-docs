@@ -83,6 +83,10 @@
   --search-result-width: 20rem;
 }
 
+#app {
+  position: relative;
+}
+
 .code-block-title-bar span {
   color: var(--vp-c-code-tab-title) !important;
 }
@@ -92,7 +96,8 @@
   color: var(--vp-c-text);
   /* Default text color */
   border: 2px solid var(--vp-c-accent);
-  background: transparent;
+  // background: transparent;
+  background: var(--vp-c-bg);
   transition: background 0.3s ease, color 0.3s ease;
 
   &:hover {

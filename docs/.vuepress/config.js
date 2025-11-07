@@ -4,6 +4,12 @@ import { viteBundler } from '@vuepress/bundler-vite'
 import { mdEnhancePlugin } from "vuepress-plugin-md-enhance";
 import { searchPlugin } from '@vuepress/plugin-search'
 import { googleAnalyticsPlugin } from '@vuepress/plugin-google-analytics'
+import { shikiPlugin } from '@vuepress/plugin-shiki'
+import { resolve } from 'path'
+import { fileURLToPath, pathToFileURL } from 'url'
+import fs from 'fs'
+
+import {theme, lang} from './shiki/MotherScriptDarkTheme.js';
 
 // import Particles from "@tsparticles/vue3";
 // import { loadFull } from "tsparticles"; // if you are going to use `loadFull`, install the "tsparticles" package too.
@@ -135,7 +141,7 @@ const MotherCoreSidebar = {
       // ],
     },
     {
-      text: 'Console (CLI)',
+      text: 'Mother CLI (Console)',
       link: '/Framework/Developer/Console.md',
     },
     {
@@ -180,8 +186,7 @@ const MotherCoreSidebar = {
 
 // Navbar Links
 const NavbarLinks = () => {
-  if (process.env.NODE_ENV == 'development') {
-    
+  // if (process.env.NODE_ENV == 'development') {
     return [
       {
         text: 'Mother OS (Ingame Script)',
@@ -192,15 +197,15 @@ const NavbarLinks = () => {
         link: '/Framework/README.md'
       }
     ]
-  }
-  else {
-    return [
-      {
-        text: 'Mother OS (Ingame Script)',
-        link: '/IngameScript/IngameScript.md'
-      }
-    ]
-  }
+  // }
+  // else {
+  //   return [
+  //     {
+  //       text: 'Mother OS (Ingame Script)',
+  //       link: '/IngameScript/IngameScript.md'
+  //     }
+  //   ]
+  // }
 }
 
 const basePath = '/mother-docs/';
@@ -227,6 +232,20 @@ const DEV_MODE = process.env.NODE_ENV == 'development';
 //   },
 // });
 
+// console.log(JSON.parse(fs.readFileSync(resolve(__dirname, 'shiki/motherscript-color-theme.json'))));
+
+// ✅ Load your custom theme JSON(s) as objects
+// const motherDarkTheme = JSON.parse(
+//   fs.readFileSync(resolve(__dirname, 'shiki/motherscript-color-theme.json'), 'utf-8')
+// )
+
+// const motherScriptDarkTheme = MotherScriptDarkTheme;
+
+// load your custom theme as an object (valid JSON, no comments/trailing commas)
+const motherScriptDarkTheme = JSON.parse(
+  fs.readFileSync(resolve(__dirname, 'shiki/motherscript-color-theme.json'), 'utf8')
+)
+
 export default defineUserConfig({
   base: basePath,
   title: DEV_MODE ? 'Mother Docs (Dev)' : 'Mother Docs',
@@ -234,6 +253,8 @@ export default defineUserConfig({
 
   // Additional head elements. We add icons.
   head: [
+    // ['script', { src: 'https://cdn.jsdelivr.net/npm/@tsparticles/slim@latest/tsparticles.slim.min.js', defer: '' }],
+
     [
       'link', { 
         rel: 'icon', 
@@ -286,6 +307,7 @@ export default defineUserConfig({
     }),
     searchPlugin({
       // options
+      maxSuggestions: 10,
       isSearchable: (page) => {
         return true;
         // exclude access to Framework docs for now
@@ -307,6 +329,22 @@ export default defineUserConfig({
       //   },
       // },
     }),
+    // shikiPlugin({
+    //   // theme: 'nord',
+    //   // theme: motherScriptDarkTheme,
+    //   theme: motherScriptDarkTheme,
+    //   langs: [
+    //     'csharp', // aliases: "cs" also works in fences
+    //     'bash',
+    //     'ini',
+    //     {
+    //       id: 'motherscript',
+    //       scopeName: 'source.motherscript',
+    //       path: resolve(__dirname, 'shiki/motherscript.tmLanguage.json'),
+    //       aliases: ['ms', 'motherscript'],
+    //     },
+    //   ],
+    // }),
   ],
 
   theme: defaultTheme({

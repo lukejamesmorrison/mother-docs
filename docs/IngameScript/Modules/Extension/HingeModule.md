@@ -98,6 +98,15 @@ Decrease speed by 1 RPM:
 hinge/speed LandingGearHinge 1 --sub;
 ```
 
+## Hooks
+
+The following hooks can be define in the block's Custom Data, and will be triggered when the corresponding command is called:
+
+|Key            | Trigger                               |
+|-              |-                                      |
+| `onMoving`      | Activated when a hinge is put into motion by the [`hinge/rotate`](#rotate) command.    |
+| `onStop`      | Activated when a hinge stops from the [`hinge/rotate`](#rotate) command.      |
+
 <!--- 
 OnOff, OnOff_On, OnOff_Off, ShowOnHUD, ShowOnHUD_On, ShowOnHUD_Off, IncreaseFontSize, DecreaseFontSize, IncreaseTextPaddingSlider, DecreaseTextPaddingSlider, IncreaseChangeIntervalSlider, DecreaseChangeIntervalSlider, PreserveAspectRatio, IncreaseWeld speed, DecreaseWeld speed, Force weld, IncreaseSafetyDetach, DecreaseSafetyDetach, ShareInertiaTensor, AddRotorTopPart, AddMediumRotorTopPart, AddSmallRotorTopPart, AddHingeTopPart, AddMediumHingeTopPart, AddSmallHingeTopPart, Reverse, Detach, Attach, RotorLock, RotorLock_On, RotorLock_Off, HingeLock, HingeLock_On, HingeLock_Off, IncreaseTorque, DecreaseTorque, IncreaseBrakingTorque, DecreaseBrakingTorque, IncreaseVelocity, DecreaseVelocity, ResetVelocity, RotateToAngle, SetVelocity, IncreaseLowerLimit, DecreaseLowerLimit, SetLowerLimit, IncreaseUpperLimit, DecreaseUpperLimit, SetUpperLimit, IncreaseDisplacement, DecreaseDisplacement
 

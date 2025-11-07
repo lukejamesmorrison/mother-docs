@@ -96,7 +96,7 @@ public void OnLifeSupportResponse(Response response) {
 
 ### Direct Broadcast
 
-Direct broadcasts go to a specific grid on the antenna network. This is most appropriate for private channels and 1-to-1 interactions. Mother will look for the target in the [Almanac](../Almanac.md) and send the request to the grid with the matching EntityId or name.
+Direct broadcasts go to a specific grid on the antenna network. This is most appropriate for private channels and 1-to-1 interactions. Mother will look for the target in the [Almanac](Almanac.md) and send the request to the grid with the matching EntityId or name.
 
 ```csharp
 public void SendLifeSupportInformation()

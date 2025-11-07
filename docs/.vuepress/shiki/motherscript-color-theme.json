@@ -1,0 +1,93 @@
+{
+    "$schema": "vscode://schemas/color-theme",
+    "name": "MotherScript Dark Theme",
+    "type": "dark",
+    "semanticHighlighting": false,
+    "colors": {
+        "editor.background": "#0E0E10",
+        "editor.foreground": "#D4D4D4"
+    },
+    "tokenColors": [
+        {
+            "scope": "keyword.operator.pipe.motherscript",
+            "settings": {
+                "foreground": "#4d4d4d",
+                "fontStyle": "bold"
+            }
+        },
+        {
+            "scope": "entity.name.function.motherscript",
+            "settings": {
+                "foreground": "#88C0D0",
+                "fontStyle": "bold"
+            }
+        },
+        {
+            "scope": "support.function.motherscript",
+            "settings": {
+                "foreground": "#cccccc"
+            }
+        },
+        {
+            "scope": "comment.line.semicolon.motherscript",
+            "settings": {
+                "foreground": "#6A9955",
+                "fontStyle": "italic"
+            }
+        },
+        {
+            "scope": "string.quoted.double",
+            "settings": {
+                "foreground": "#b48ead",
+                "fontStyle": "italic"
+            }
+        },
+        {
+            "scope": "string.quoted.single",
+            "settings": {
+                "foreground": "#b48ead",
+                "fontStyle": "italic"
+            }
+        },
+        {
+            "scope": "string.unquoted.motherscript",
+            "settings": {
+                "foreground": "#b48ead",
+                "fontStyle": "italic"
+            }
+        },
+        {
+            "scope": "string.unquoted.motherscript",
+            "settings": {
+                "foreground": "#b48ead",
+                "fontStyle": "italic"
+            }
+        },
+        {
+            "scope": "constant.numeric",
+            "settings": {
+                "foreground": "#d08770"
+            }
+        },
+        {
+            "scope": "constant.language.boolean",
+            "settings": {
+                "foreground": "#d08770",
+                "fontStyle": "bold"
+            }
+        },
+        {
+            "scope": "punctuation.terminator.semicolon.motherscript",
+            "settings": {
+                "foreground": "#cccccc",
+                "fontStyle": "italic"
+            }
+        },
+        {
+            "scope": "keyword.other.flag.motherscript",
+            "settings": {
+                "foreground": "#EBCB8B"
+            }
+        }
+    ]
+}

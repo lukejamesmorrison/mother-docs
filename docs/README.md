@@ -23,6 +23,7 @@ features:
 footer: MIT Licensed | © 2025 Agentluke | The Empire must grow.
 ---
 
+
 <script setup>
   import MotherOSAnimation from '../../components/MotherOSAnimation.vue';
   // import MotherOSAnimation2 from '../../components/MotherOSAnimation2.vue';
@@ -32,11 +33,22 @@ footer: MIT Licensed | © 2025 Agentluke | The Empire must grow.
   import ParticlesContainer from '../../components/ParticlesContainer.vue';
   // import ParticlesContainer2 from '../../components/ParticlesContainer2.vue';
 
+  import YoutubeCarousel from '../../components/YoutubeCarousel.vue';
+
+  import { onMounted } from 'vue';
+
 </script>
 
-  <HomeHeroVideoSection />
+  <HomeHeroVideoSection/>
 
-  <!-- <ParticlesContainer style="z-index: -1; top: 0; left:0; min-height: 100vh; height: 100%; position: absolute;"/> -->
+  <ParticlesContainer/>
+
+  <YoutubeCarousel style="display: none">
+    <!-- <iframe width="560" height="315" src="https://www.youtube.com/embed/1nX4YHk3b2g" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe> -->
+    <iframe style="height: 300px; width: 100%" src="https://www.youtube.com/embed/mHaCxK-0Jkg?si=nT4zM7Y7V5EhedTI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+    <!-- <iframe width="560" height="315" src="https://www.youtube.com/embed/1nX4YHk3b2g" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe> -->
+    <iframe style="height: 300px; width: 100%" src="https://www.youtube.com/embed/SLjJacXa5x0?si=iElsEtMpXdMD4IpD" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+  </YoutubeCarousel>
 
 
 

@@ -1,7 +1,8 @@
 <template>
-  <teleport :to="'#app'">
+  <div :to="'body'">
      <vue-particles
             id="tsparticles"
+            ref="tsparticles"
             @particles-loaded="null"
             :options="{
                     background: {
@@ -12,14 +13,14 @@
                     fpsLimit: 120,
                     interactivity: {
                         events: {
-                            onClick: {
-                                enable: true,
-                                mode: 'push'
-                            },
-                            onHover: {
-                                enable: true,
-                                mode: 'repulse'
-                            },
+                            // onClick: {
+                            //     enable: true,
+                            //     mode: 'push'
+                            // },
+                            // onHover: {
+                            //     enable: true,
+                            //     mode: 'repulse'
+                            // },
                         },
                         modes: {
                             bubble: {
@@ -40,7 +41,7 @@
                     particles: {
                         color: {
                             // value: '#ffffff'
-                            value: '#ff0000'
+                            value: '#cccccc'
 
                         },
                         // links: {
@@ -55,17 +56,17 @@
                             enable: true,
                             outModes: 'bounce',
                             random: false,
-                            speed: 0.5,
+                            speed: 0.1,
                             straight: false
                         },
                         number: {
                             density: {
                                 enable: true,
                             },
-                            value: 80
+                            value: 200
                         },
                         opacity: {
-                            value: 0.5
+                            value: 0.4
                         },
                         shape: {
                             type: 'circle'
@@ -77,6 +78,28 @@
                     detectRetina: true
                 }"
     />
-  </teleport>
+  </div>
   
 </template>
+
+<script setup>
+import { ref, onMounted } from 'vue';
+
+const tsparticles = ref(null);
+
+// prepend to body on mounted
+onMounted(() => {
+  const particlesContainer = document.querySelector('#tsparticles');
+  if (particlesContainer) {
+    document.body.prepend(particlesContainer);
+    // Object.assign(particlesContainer.style, {
+    //   position: 'fixed',
+    //   top: '0',
+    //   left: '0',
+    //   width: '100%',
+    //   height: '100%',
+    //   zIndex: '-1', // Ensure it's behind other content
+    // });
+  }
+});
+</script>
