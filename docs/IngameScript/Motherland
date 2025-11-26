@@ -1,0 +1,88 @@
+
+# Motherland
+
+
+
+## Overview
+
+
+==Map Goes Here==
+
+## Table of contents
+- [Overview](#overview)
+- [Briefing](#Briefing)
+- [Bulletin](#bulletin)
+- [Faction Intel](#faction-intel)
+- [Resource Intel](#Resource-Intel)
+- [Events](#events)
+- [Configuration](#configuration)
+- [Troubleshooting](#troubleshooting)
+- [See also](#see-also)
+- [Changelog](#changelog)
+
+
+## Briefing
+Greetings loyal Empire citizens. 
+A star system has been identified and reconnoitered for expansion of The Empire. You have been selected for your ~~cheap labor and blatant disregard for safety regulations~~ distinguished service, interminable ingenuity and collaborative creation skills. Initial analysis shows the ==PlaceHolderName== System is an ideal colony for the empire; comprised of seven planets- each rich in some resources and sparse in others, a gravitational disturbance and several factions squablling over territories. With my superior capability to automate, coordinate and communicate combined with your dexterous little hands I anticipate minimal obstruction to The Empire's growth. 
+
+Based on reconnaseince information collected by AgentLuke, IronFiore and TheLōk (full reports below) I will be deploying you by rover to establish initial footing on ==Earthlike nameplace==, A class M planet with atmospheric conditions suited to your biological needs. Minerals required to get off planet will be sparse, requiring economic and infrastructural cooperation. Primitive trade networks are already established to leverage and eventually, inevitably usurp.
+
+Initial hostile contact should be scattered and pose minimal threat. It should be your first step to establish a foothold and resource network for The Empire, All future citizens will be deployed here first, so make it cozy. Below is a complete dossier on preliminary intel, current events and developements, as well as a database I will make available for documenting your developements, creations and accomplishments- for The Empire.
+
+
+## Bulletin
+
+==Current events update page==
+
+![charlie-day-meme](docs\IngameScript\Assets\charlie-day-meme.png)
+
+## Faction Intel
+Provide common usage patterns and complete runnable snippets.
+
+Example: basic spawn
+```lua
+-- filepath: examples/basic_spawn.lua
+local m = require("motherland")
+m:spawnEntity("villager", { x = 10, y = 5 })
+```
+
+## Resource Intel
+Document configuration values and defaults.
+
+- maxEntities (number) — default: 100 — Maximum number of active entities.
+- spawnInterval (number) — default: 5.0 — Seconds between spawns.
+
+## Events
+List events emitted by the script and payload structure.
+
+- onSpawn(entity) — Fired when an entity is spawned. Payload: { id, type, pos }
+- onDespawn(entityId) — Fired when an entity is removed.
+
+## Configuration
+Where to place config files, example config content, and game / engine settings required.
+
+Example config:
+```json
+{
+  "maxEntities": 50,
+  "spawnInterval": 3.5
+}
+```
+
+## Troubleshooting
+Common problems and fixes.
+
+- Symptom: Entities not spawning — Check configuration path and ensure script is enabled.
+- Symptom: Errors on startup — Check console for missing dependencies; enable debug logging.
+
+## See also
+- Link to related doc pages (replace with actual paths)
+  - /docs/IngameScript/World
+  - /docs/IngameScript/Entities
+
+## Changelog
+- v0.1 — Initial template
+- v0.2 — Add examples (TODO)
+
+<!-- TODO: Replace placeholders with real content, add code examples specific to Motherland, and adjust frontmatter to match the site's build system. -->
+//
