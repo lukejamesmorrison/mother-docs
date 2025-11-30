@@ -63,7 +63,7 @@ Prominent Members:
   Mental Stability: Sharp as a tack, morally flexible  
   Physical Attractiveness: Dangerously attractive, 9/10  
 
-</details> -->
+</details>
 
 <!-- details>
 <summary><span style="color:red">Trade Operators Coalition (TOC)</span style="color:red"></summary>
@@ -227,9 +227,90 @@ Prominent Members:
   Physical Attractiveness: Disturbingly attractive, definitely a trap, 8/10  
 
     </details>
-</details>
+</details -->
 
-<details>
+## Planets
+
+### Tessara (Earthlike)
+| Attribute         | Value                                                                   |
+| ----------------- | ----------------------------------------------------------------------- |
+| Tourism Rating    | Lucrative                                                               |
+| Likely Facilities | Fancy resorts, fine dining, obnoxious tours                             |
+| Notes             | Perfect for corporate retreats, assuming you enjoy being bored to death |
+
+![Tessara](assets/Earthlike.png)
+
+### Skarat (Mars)
+| Attribute         | Value                                                          |
+| ----------------- | -------------------------------------------------------------- |
+| Tourism Rating    | Profitable                                                     |
+| Likely Facilities | Amusement parks, shopping malls, obnoxious tours               |
+| Notes             | Great for families, if your family enjoys industrial accidents |
+
+![Skarat](assets/Mars.png)
+
+### Julea (Limitar)
+| Attribute         | Value                                             |
+| ----------------- | ------------------------------------------------- |
+| Tourism Rating    | Build to Sell                                     |
+| Likely Facilities | Shopping malls, discount outlets, obnoxious tours |
+| Notes             | Like a space mall, but somehow more depressing    |
+
+![Julea](assets/Limitar.png)
+
+### Pinto (Moon)
+| Attribute         | Value                                                   |
+| ----------------- | ------------------------------------------------------- |
+| Tourism Rating    | Profitable                                              |
+| Likely Facilities | Mining tours, amusement parks, gift shops selling rocks |
+| Notes             | Low gravity fun, high radiation exposure                |
+
+![Pinto](assets/Moon.png)
+
+### Corven V (Atlas)
+| Attribute         | Value                                                            |
+| ----------------- | ---------------------------------------------------------------- |
+| Tourism Rating    | Arrested Development                                             |
+| Likely Facilities | Guantanamos, survival training camps, sketchy medical facilities |
+| Notes             | Extreme sports destination, emphasis on "extreme"                |
+
+![Bornax](assets/Atlas.png)
+
+### Battleworld (Salos)
+| Attribute         | Value                                                                |
+| ----------------- | -------------------------------------------------------------------- |
+| Likely Facilities | Gulags, corporate business retreats, amusement parks (but lame ones) |
+| Notes             | Come for the research, stay because you're probably trapped          |
+
+![Battleworld](assets/Battleworld.png)
+
+### Bornax (Salus)
+
+![Bornax](assets/Salus.png)
+
+###  Infernus (Ravcor)
+| Attribute         | Value                                                                      |
+| ----------------- | -------------------------------------------------------------------------- |
+| Tourism Rating    | Arrested Development                                                       |
+| Likely Facilities | Gulags, maximum security prisons, amusement parks (haunted, not by choice) |
+
+![Infernus](assets/Ravcor.png)
+<!-- <details>
+<summary><strong>Tarkin 61</strong style="color:teal"></summary> -->
+
+
+### Tarkin 61 (Black Hole)
+| Attribute         | Value                                                               |
+| ----------------- | ------------------------------------------------------------------- |
+| Tourism Rating    | Arrested Development                                                |
+| Likely Facilities | Scientific observation posts, emergency shelters, memorial services |
+| Notes             | Great views, terrible life expectancy                               |
+
+![Tarkin 61](assets/Blackhole.png)
+
+<!-- </details> -->
+
+<!-- <details>
 <summary><strong>Planetary Intel</strong style="color:teal"></summary>
 
 <details>
@@ -292,8 +373,8 @@ Likely Facilities: Scientific observation posts, emergency shelters, memorial se
 Notes: Great views, terrible life expectancy  
 </details>
 
-</details>
-<details>
+</details> -->
+<!-- <details>
 
 <summary>Resource Intel</summary>
 ==describe resource distrubution- maybe use a spectrometry imaging thingy==
