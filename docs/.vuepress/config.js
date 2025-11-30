@@ -195,6 +195,10 @@ const NavbarLinks = () => {
       {
         text: 'Mother Core (Script Framework)',
         link: '/Framework/README.md'
+      },
+      {
+        text: 'Motherland (Server)',
+        link: '/Motherland/Motherland.md'
       }
     ]
   // }
