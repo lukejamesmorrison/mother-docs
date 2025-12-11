@@ -1,13 +1,8 @@
 # Command Cheatsheet
 
-Commands belong to [Modules](Modules/Modules.md). Any command registered in a module will be made available by Mother to the Programmable Block terminal.
+Commands and hooks belong to [Modules](Modules/Modules.md). Commands are executed via the Programmable Block terminal, while hooks are automated triggers defined in block Custom Data.
 
-The following is a list of commands available in the default modules.
-
-
-<!-- <details>
-  <summary>Example</summary>
-</details> -->
+The following is a comprehensive reference for all commands and hooks available in the default modules.
 
 [[toc]]
 
@@ -18,7 +13,9 @@ The following is a list of commands available in the default modules.
 These commands and hooks work on all blocks accessible by Mother.
 :::
 
-Terminal blocks can be updated using the following commands:
+::: tabs
+
+@tab Commands
 
 ### block/on
 Turn the block on.
@@ -48,9 +45,9 @@ We want to run the Set and Move action on a piston.  It accepts two arguments: t
 block/action DrillPiston SetAndMove 5.0 2.5;
 ```
 
-:::tip Tip
-You can view a complete list of block actions [here](https://github.com/malware-dev/MDK-SE/wiki/List-Of-Terminal-Properties-and-Actions).
-:::
+  :::tip
+  You can view a complete list of block actions [here](https://github.com/malware-dev/MDK-SE/wiki/List-Of-Terminal-Properties-and-Actions).
+  :::
 
 ### block/config
 Set a value in the block's custom data.
@@ -99,8 +96,36 @@ Let's tag our cockpit displays so that we can easily set them to night mode:
 tag/set CockpitDisplays #cockpit-displays;
 ```
 
+@tab Hooks
+
+|Key        | Trigger                           |
+|-          |-                                  |
+| `onOn`    | Activated by `block/on` command   |
+| `onOff`   | Activated by `block/off` command   |
+
+**Example**
+
+```ini title = "DrillPiston > Custom Data"
+[hooks]
+onOn=light/color DrillIndicatorLight green;
+onOff=light/color DrillIndicatorLight red;
+```
+or
+
+```ini title="Mother > Custom Data"
+[hooks]
+DrillPiston.onOn=light/color DrillIndicatorLight green;
+"Emergency Batteries".onOff=light/blink "Battery Indicators" off;
+```
+
+:::
+
 ## Air Vents
 [Air Vent Module](Modules/Extension/AirVentModule.md)
+
+::: tabs
+
+@tab Commands
 
 ### vent/pressurize
 
@@ -116,8 +141,31 @@ Set the air vent to pressurize mode.
 vent/depressurize <AirVent|Group>
 ```
 
+@tab Hooks
+
+|Key                | Trigger                               |
+|-                  |-                                      |
+| `onDepressurized`      | Activated when an air vent is in the *Depressurized* state.    |
+| `onDepressurizing`       | Activated when an air vent is in the *Depressurizing* state.       |
+| `onPressurized`       | Activated when an air vent is in the *Pressurized* state.       |
+| `onPressurizing`       | Activated when an air vent is in the *Pressurizing* state.       |
+
+**Example**
+
+```ini title="AirlockVent > Custom Data"
+[hooks]
+onPressurized=light/color "Airlock Light" green; door/open "Inner Door";
+onDepressurized=light/color "Airlock Light" red; door/open "Outer Door";
+```
+
+:::
+
 ## Batteries
 [Battery Module](Modules/Extension/BatteryModule.md)
+
+::: tabs
+
+@tab Commands
 
 ### battery/charge
 Set the battery to `Recharge` mode.
@@ -144,7 +192,13 @@ battery/toggle <Battery|Group> [--options]
 ```
 
 
+:::
+
 ## Core
+
+::: tabs
+
+@tab Commands
 
 ### boot
 Run the Mother OS boot sequence. This is automatically run when the Programmable Block is started, but can be run manually to reset the system.
@@ -254,9 +308,14 @@ dock Mothership --remote="Connector - MS.P1";
 dock Mothership;
 ```
 
+:::
 
 ## Cockpits
 [Cockpit Module](Modules/Extension/CockpitModule.md)
+
+::: tabs
+
+@tab Commands
 
 ### dampeners/on
 Turn on thrust dampeners. By default, this command will use your Main cockpit. Otherwise, you may use an optional argument to specify a cockpit.
@@ -325,8 +384,29 @@ handbrake/off
 handbrake/off RearCockpit
 ```
 
+@tab Hooks
+
+|Key                | Trigger                               |
+|-                  |-                                      |
+| `onOccupied`          | Run when a Cockpit is occupied by a player.         |
+| `onEmpty`        | Run when a Cockpit is empty of players.        |
+
+**Example**
+
+```ini title="MainCockpit > Custom Data"
+[hooks]
+onDampenersOn=light/color "Dampener Indicator" green;
+onDampenersOff=light/color "Dampener Indicator" red;
+```
+
+:::
+
 ## Connectors
 [Connector Module](Modules/Extension/ConnectorModule.md)
+
+::: tabs
+
+@tab Commands
 
 ### connector/lock
 Lock a connector or group of connectors.
@@ -346,10 +426,37 @@ Toggle the lock state of a connector or group of connectors.
 connector/toggle <Connector|Group>
 ```
 
+@tab Hooks
+
+|Key                | Trigger                                       |
+|-                  |-                                              |
+| `onLock`          | Run when a connector locks.         |
+| `onUnlock`        | Run when a connector unlocks.        |
+| `onReady`         | Run when a connector is ready to lock.     |
+
+**Example**
+
+```ini title="DockConnector > Custom Data"
+[hooks]
+onLock=light/color "Dock Light" red;
+onUnlock=light/color "Dock Light" green;
+```
+or
+
+```ini title="Mother > Custom Data"
+[hooks]
+DockConnector.onUnlock=light/color "Dock Light" green;
+"Fuel Connector".onLock=tank/stockpile FuelTanks;
+```
+
+:::
+
 ## Displays
 [Display Module](Modules/Extension/DisplayModule.md)
 
-## Commands
+::: tabs
+
+@tab Commands
 
 ### screen/bgcolor
 
@@ -462,8 +569,15 @@ screen/print "AirlockStatusScreens" "Airlock SAFE" --color=0,255,0 --size=4.4;
 screen/print "PilotCockpit:1" "ALERT" --color=red --size=10;
 ```
 
+
+:::
+
 ## Doors
 [Door Module](Modules/Extension/DoorModule.md)
+
+::: tabs
+
+@tab Commands
 
 ### door/open
 Open a door or group of doors.
@@ -483,8 +597,35 @@ Toggle the open state of a door or group of doors.
 door/toggle <Door|Group>
 ```
 
+@tab Hooks
+
+|Key            | Trigger                               |
+|-              |-                                      |
+| `onOpen`      | Activated when a door is fully open.      |
+| `onOpening`    | Activated when a door is opening.    |
+| `onclose`     | Activated when a door is fully closed.    |
+| `onClosing`   | Activated when a door is closing.    |
+
+**Example**
+
+```ini title="OuterDoor > Custom Data"
+[hooks]
+onOpen=wait 10; door/close this;
+onClose=vent/pressurize AirlockVent; wait 2; light/blink "Airlock Light" off;
+```
+
+:::tip
+You can use `this` to refer to the block itself when targeting it from within its own custom data.
+:::
+
+:::
+
 ## Flight Control System
 [Flight Control Module](Modules/Extension/FlightControlModule.md)
+
+::: tabs
+
+@tab Commands
 
 ### fcs/start
 Engage the autopilot system, enabling the grid to fly autonomously if a [flight plan](Modules/Extension/FlightPlanningModule.md) is loaded.
@@ -504,9 +645,16 @@ Disengage the autopilot system, halting the grid.
 fcs/stop
 ```
 
+
+:::
+
 ## Flight Planning
 
 [Flight Planning Module](Modules/Extension/FlightPlanningModule.md)
+
+::: tabs
+
+@tab Commands
 
 ### nav/set-flight-plan
 
@@ -524,8 +672,15 @@ Clear the current flight plan from the navigation system.
 fp/clear
 ```
 
+
+:::
+
 ## Gas Tanks
 [Gas Tank Module](Modules/Extension/GasTankModule.md)
+
+::: tabs
+
+@tab Commands
 
 ### tank/stockpile
 Set the Tank `Stockpile` to `on`.
@@ -545,12 +700,17 @@ Toggle the Tank `Stockpile` between `on` and `off`.
 tank/toggle <Tank|Group> [--options]
 ```
 
+
+:::
+
 ## Gyroscopes
 [Gyroscope Module](Modules/Extension/GyroscopeModule.md)
 
-### Commands
+::: tabs
 
-#### gyro/face
+@tab Commands
+
+### gyro/face
 Face the grid towards a **GPS Waypoint**.
 ```
 gyro/face <GPS Waypoint>
@@ -563,9 +723,14 @@ gyro/face GPS:TopSecretBase:211.78:-52.93:59.19:#FF75C9F1:
 ```
 
 
+:::
 
 ## Hinges
 [Hinge Module](Modules/Extension/HingeModule.md)
+
+::: tabs
+
+@tab Commands
 
 ### hinge/rotate
 Rotate a hinge or group of hinges to a specific angle between -90 degrees and 90 degrees.
@@ -616,8 +781,29 @@ Options
 | `add` | `true`, `false` | `bool`  | Indicates that the provided speed should be *added* to the current speed. Allows incremental changes to speed. |
 | `sub` | `true`, `false` | `bool`  | Indicates that the provided speed should be *subtracted* from the current speed. Allows decremental changes to speed. |
 
+@tab Hooks
+
+|Key                | Trigger                               |
+|-                  |-                                      |
+| `onMoving`      | Activated when a hinge is put into motion by the [`hinge/rotate`](#rotate) command.    |
+| `onStop`      | Activated when a hinge stops from the [`hinge/rotate`](#rotate) command.      |
+
+**Example**
+
+```ini title="DoorHinge > Custom Data"
+[hooks]
+onMoving=light/color "Hinge Indicator" green;
+onStop=light/color "Hinge Indicator" red;
+```
+
+:::
+
 ## Landing Gear
 [Landing Gear Module](Modules/Extension/LandingGearModule.md)
+
+::: tabs
+
+@tab Commands
 
 ### gear/lock
 Lock a Landing Gear or group of Landing Gear.
@@ -637,9 +823,9 @@ Toggle the lock state of a Landing Gear or group of Landing Gear between `Locked
 gear/toggle <LandingGear|Group>
 ```
 
-::: note
-For more info about Landing Gear states, see [LandingGearMode](https://github.com/malware-dev/MDK-SE/wiki/SpaceEngineers.Game.ModAPI.Ingame.LandingGearMode) in MDK-SE.
-:::
+  ::: note
+  For more info about Landing Gear states, see [LandingGearMode](https://github.com/malware-dev/MDK-SE/wiki/SpaceEngineers.Game.ModAPI.Ingame.LandingGearMode) in MDK-SE.
+  :::
 
 ### gear/auto
 Set the AutoLock state of a Landing Gear or group of Landing Gear.
@@ -647,8 +833,30 @@ Set the AutoLock state of a Landing Gear or group of Landing Gear.
 gear/auto <LandingGear|Group> <true|false>
 ```
 
+@tab Hooks
+
+|Key                | Trigger                               |
+|-                  |-                                      |
+| `onLock`          | Run when a landing gear block locks.       |
+| `onUnlock`        | Run when a landing gear block unlocks.     |
+| `onReady`         | Run when a landing gear block is ready to lock.     |
+
+**Example**
+
+```ini title="MainGear > Custom Data"
+[hooks]
+onLock=light/color "Landing Light" green;
+onUnlock=light/color "Landing Light" red;
+```
+
+:::
+
 ## Lights
 [Light Module](Modules/Extension/LightModule.md)
+
+::: tabs
+
+@tab Commands
 
 ### light/color
 
@@ -736,7 +944,14 @@ Reset a light or group of lights to white and cease any blinking.
 light/reset <Light|Group>
 ```
 
+
+:::
+
 ## Local Storage
+
+::: tabs
+
+@tab Commands
 
 ### get
 Get a value stored in LocalStorage.
@@ -750,12 +965,112 @@ Set a value in LocalStorage.
 set <key> <value>
 ```
 
-::: note
-The `set` command provides no practical use to players at this time.
+  ::: note
+  The `set` command provides no practical use to players at this time.
+  :::
+
 :::
+
+## Pistons
+[Piston Module](Modules/Extension/PistonModule.md)
+
+::: tabs
+
+@tab Commands
+
+### piston/distance
+Extend or retract a piston to a specific distance.
+```
+piston/distance <Piston> <Distance> [--options]
+```
+
+  ::: note
+  Small grid pistons have a maximum distance of **2 meters**, while large grid pistons have a maximum distance of **10 meters**.
+  :::
+
+Options
+| Option  | Values     | Unit | Description                                                         |
+| ------- | ---------- | ---- | ------------------------------------------------------------------- |
+| `add` | `true`, `false` | `bool`  | Indicates that the distance should be *added* to the current distance. Allows incremental changes to distance. |
+| `sub` | `true`, `false` | `bool`  | Indicates that the distance should be *subtracted* from the current distance. Allows decremental changes to distance. |
+
+### piston/stop
+Stop a piston while in motion. Note that pistons do not lock like a Rotor or Hinge.
+```
+piston/stop <Piston|Group>
+```
+
+### piston/reset
+Reset a piston to its original position (0 meters).
+```
+piston/reset <Piston>
+```
+
+### piston/speed
+Set the speed of a piston or group of pistons in m/s.
+```
+piston/speed <piston|Group> <Speed> <Options>
+```
+
+Options
+| Option  | Values     | Unit | Description                                                         |
+| ------- | ---------- | ---- | ------------------------------------------------------------------- |
+| `add` | `true`, `false` | `bool`  | Indicates that the provided speed should be *added* to the current speed. Allows incremental changes to speed. |
+| `sub` | `true`, `false` | `bool`  | Indicates that the provided speed should be *subtracted* from the current speed. Allows decremental changes to speed. |
+
+@tab Hooks
+
+|Key            | Trigger                               |
+|-              |-                                      |
+| `onExtending`      | Activated when a piston is extending.    |
+| `onExtended`      | Activated when a piston is fully extended.      |
+| `onRetracting`     | Activated when a piston is retracting.    |
+| `onRetracted`   | Activated when a piston is fully retracted.    |
+
+
+**Example**
+
+Imagine our piston is connected to a fuel boom:
+
+```ini title="FuelBoomPiston > Custom Data"
+[hooks]
+onExtending=light/blink "Fuel Boom Light" fast;
+onRetracted=light/blink "Fuel Boom Light" off;
+```
+
+:::
+
+## Programmable Block
+[Programmable Block Module](Modules/Extension/ProgrammableBlockModule.md)
+
+::: tabs
+
+@tab Commands
+
+### pb/run
+Run a programmable block with an optional argument.
+
+```
+pb/run <ProgrammableBlock|Group> <argument> [--options]
+```
+
+**Example**
+
+We have [Whip's Subgrid Thruster Manager](https://steamcommunity.com/sharedfiles/filedetails/?id=757123653) installed on another Programmable block named `PB.ThrusterManager`. It is particularly helpful when using thrusters on subgrids.
+```ini title="Terminal"
+pb/run "PB.ThrusterManager" dampeners_on;
+```
+
+
+:::
+
 
 ## Rotors
 [Rotor Module](Modules/Extension/RotorModule.md)
+
+::: tabs
+
+@tab Commands
 
 ### rotor/rotate
 Rotate a rotor or group of rotors to a specific angle between -360 and 360 degrees. 
@@ -807,73 +1122,56 @@ Options
 | `add` | `true`, `false` | `bool`  | Indicates that the provided speed should be *added* to the current speed. Allows incremental changes to speed. |
 | `sub` | `true`, `false` | `bool`  | Indicates that the provided speed should be *subtracted* from the current speed. Allows decremental changes to speed. |
 
+@tab Hooks
 
-## Pistons
-[Piston Module](Modules/Extension/PistonModule.md)
-
-### piston/distance
-Extend or retract a piston to a specific distance.
-```
-piston/distance <Piston> <Distance> [--options]
-```
-
-::: note
-Small grid pistons have a maximum distance of **2 meters**, while large grid pistons have a maximum distance of **10 meters**.
-:::
-
-Options
-| Option  | Values     | Unit | Description                                                         |
-| ------- | ---------- | ---- | ------------------------------------------------------------------- |
-| `add` | `true`, `false` | `bool`  | Indicates that the distance should be *added* to the current distance. Allows incremental changes to distance. |
-| `sub` | `true`, `false` | `bool`  | Indicates that the distance should be *subtracted* from the current distance. Allows decremental changes to distance. |
-
-### piston/stop
-Stop a piston while in motion. Note that pistons do not lock like a Rotor or Hinge.
-```
-piston/stop <Piston|Group>
-```
-
-### piston/reset
-Reset a piston to its original position (0 meters).
-```
-piston/reset <Piston>
-```
-
-### piston/speed
-Set the speed of a piston or group of pistons in m/s.
-```
-piston/speed <piston|Group> <Speed> <Options>
-```
-
-Options
-| Option  | Values     | Unit | Description                                                         |
-| ------- | ---------- | ---- | ------------------------------------------------------------------- |
-| `add` | `true`, `false` | `bool`  | Indicates that the provided speed should be *added* to the current speed. Allows incremental changes to speed. |
-| `sub` | `true`, `false` | `bool`  | Indicates that the provided speed should be *subtracted* from the current speed. Allows decremental changes to speed. |
-
-
-## Programmable Block
-[Programmable Block Module](Modules/Extension/ProgrammableBlockModule.md)
-
-### pb/run
-Run a programmable block with an optional argument.
-
-```
-pb/run <ProgrammableBlock|Group> <argument> [--options]
-```
+|Key            | Trigger                               |
+|-              |-                                      |
+| `onMoving`      | Activated when a rotor is put into motion by the [`rotor/rotate`](#rotate) command.    |
+| `onStop`      | Activated when a rotor stops from the [`rotor/rotate`](#rotate) command.      |
 
 **Example**
 
-We have [Whip's Subgrid Thruster Manager](https://steamcommunity.com/sharedfiles/filedetails/?id=757123653) installed on another Programmable block named `PB.ThrusterManager`. It is particularly helpful when using thrusters on subgrids.
-```ini title="Terminal"
-pb/run "PB.ThrusterManager" dampeners_on;
+```ini title="TurretRotor > Custom Data"
+[hooks]
+onLock=light/color "Turret Status" red;
+onUnlock=light/color "Turret Status" green;
 ```
+
+:::
+
 
 ## Screens
 See the [Displays](#displays) section above.
 
+## Sensors
+
+::: tabs
+
+@tab Hooks
+
+|Key                | Trigger                                       |
+|-                  |-                                              |
+| `onDetect`          | Run when a Sensor block detects an entity.       |
+| `onClear`        | Run when a Sensor block does not detect an entity.     |
+
+**Example**
+
+Imagine our Sensor has a status light we want to view elsewhere:
+
+```ini title="LandingPadSensor > Custom Data"
+[hooks]
+onDetect=light/blink "Landing Pad Light" fast;
+onClear=light/blink "Landing Pad Light" off;
+```
+
+:::
+
 ## Sorters
 [Sorter Module](Modules/Extension/SorterModule.md)
+
+::: tabs
+
+@tab Commands
 
 ### sorter/drain
 Set the drain all state of the sorter or group of sorters.
@@ -893,8 +1191,14 @@ Turn off `DrainAll`
 sorter/drain VerticalFarmHarvester false
 ```
 
+:::
+
 ## Sound Blocks
 [Sound Block Module](Modules/Extension/SoundBlockModule.md)
+
+::: tabs
+
+@tab Commands
 
 ### sound/play
 
@@ -980,8 +1284,14 @@ sound/set MainSpeaker "Danger Music 04";
 sound/play MainSpeaker "Space Funk";
 ```
 
+:::
+
 ## Thrusters
 [Thruster Module](Modules/Extension/ThrusterModule.md)
+
+::: tabs
+
+@tab Commands
 
 ### thruster/thrust
 Set the thrust of a thruster or group of thrusters.
@@ -989,9 +1299,9 @@ Set the thrust of a thruster or group of thrusters.
 thruster/thrust <Thruster|Group> <valuePercent|valueNetwons> [--options]
 ```
 
-::: important
-The command expects a value in **percent** by default.  To use Newtons, ensure you follow the value with an `N`. 
-:::
+  ::: important
+  The command expects a value in **percent** by default.  To use Newtons, ensure you follow the value with an `N`. 
+  :::
 
 **Example**
 ```bash title="Terminal"
@@ -1002,7 +1312,16 @@ thruster/thrust MainThruster 100;
 thruster/thrust MainThruster 10000N;
 ```
 
+
+:::
+
 ## Timer Blocks
+[Timer Block Module](Modules/Extension/TimerBlockModule.md)
+
+::: tabs
+
+@tab Commands
+
 ### timer/start
 Start execution for a timer block or group of timer blocks
 ```
@@ -1021,6 +1340,9 @@ Stop execution of a timer block or group of timer blocks.
 ```
 timer/stop <TimerBlock|Group> [--options]
 ```
+
+
+:::
 
 
 

@@ -184,32 +184,33 @@ const MotherCoreSidebar = {
   ]
 };
 
+const devLinks = [
+  {
+    text: 'Motherland (Server)',
+    link: '/Motherland/Motherland.md'
+  }
+];
+
 // Navbar Links
 const NavbarLinks = () => {
   // if (process.env.NODE_ENV == 'development') {
-    return [
-      {
+
+  let links = [
+    {
         text: 'Mother OS (Ingame Script)',
         link: '/IngameScript/IngameScript.md'
       },
       {
         text: 'Mother Core (Script Framework)',
         link: '/Framework/README.md'
-      },
-      {
-        text: 'Motherland (Server)',
-        link: '/Motherland/Motherland.md'
       }
-    ]
-  // }
-  // else {
-  //   return [
-  //     {
-  //       text: 'Mother OS (Ingame Script)',
-  //       link: '/IngameScript/IngameScript.md'
-  //     }
-  //   ]
-  // }
+  ];
+
+  if(DEV_MODE) {
+    links.push(...devLinks);
+  }
+
+  return links;
 }
 
 const basePath = '/mother-docs/';
