@@ -73,7 +73,7 @@ Mother OS 1.0 is now available!  Check out the [Get Started](IngameScript/Ingame
 
 Mother OS has a robust library of nearly 100 commands to control your grid. Your changes are updated automatically using the block's custom data property. Easily copy and paste complex routines, take them with you without needing mods, timer blocks, or event controllers.  Mother OS makes it easy to wirelessly send commands to other grids.
 
-[Get Started](./IngameScript/IngameScript.md) | [Command Cheatsheet](./IngameScript/CommandCheatsheet.md) | [Examples](./IngameScript/Examples.md)
+[Get Started](./IngameScript/IngameScript.md) | [Cheatsheet](./IngameScript/Cheatsheet.md) | [Examples](./IngameScript/Examples.md)
 
 <div>
   <MotherOSAnimation />

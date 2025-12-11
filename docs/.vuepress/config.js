@@ -87,9 +87,9 @@ const MotherOSSidebar = {
       ],
     },
     {
-      text: 'Command Cheatsheet',
+      text: 'Cheatsheet',
       collapsible: true, // Allows collapsing sections
-      link: '/IngameScript/CommandCheatsheet.md',
+      link: '/IngameScript/Cheatsheet.md',
     },
     '/IngameScript/Compatibility.md',
     '/IngameScript/Examples.md',
@@ -124,7 +124,7 @@ const MotherCoreSidebar = {
         // '/IngameScript/Configuration.md',
         // '/IngameScript/Modules/Modules.md',
         // '/IngameScript/Examples.md',
-        // '/IngameScript/CommandCheatsheet.md',
+        // '/IngameScript/Cheatsheet.md',
       ],
     },
     {
@@ -137,7 +137,7 @@ const MotherCoreSidebar = {
       //   // '/IngameScript/Configuration.md',
       //   // '/IngameScript/Modules/Modules.md',
       //   // '/IngameScript/Examples.md',
-      //   // '/IngameScript/CommandCheatsheet.md',
+      //   // '/IngameScript/Cheatsheet.md',
       // ],
     },
     {
@@ -174,7 +174,7 @@ const MotherCoreSidebar = {
         // '/IngameScript/Configuration.md',
         // '/IngameScript/Modules/Modules.md',
         // '/IngameScript/Examples.md',
-        // '/IngameScript/CommandCheatsheet.md',
+        // '/IngameScript/Cheatsheet.md',
       ],
     },
     {

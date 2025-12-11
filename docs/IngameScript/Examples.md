@@ -2,7 +2,7 @@
 
 <!-- [< Modules](Modules/Modules.md) -->
 
-Let's look at some examples and how Mother simplifies them. See the [Command Cheatsheet](CommandCheatsheet.md) for a complete list of available commands.
+Let's look at some examples and how Mother simplifies them. See the [Cheatsheet](Cheatsheet.md) for a complete list of available commands.
 
 1. [Autoclosing Door](#autoclosing-door)
 2. [Drill Deployment](#drill-deployment)

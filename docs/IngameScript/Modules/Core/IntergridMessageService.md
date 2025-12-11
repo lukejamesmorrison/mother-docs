@@ -41,7 +41,7 @@ See the [Flight Planning Module](../Extension/FlightPlanningModule.md) for more 
 
 
 ::: note
-Mother will automatically reduce all remote commands to core commands listed in the [Command Cheatsheet](../../CommandCheatsheet.md). This means that all grids can run remote routines as long as they contain the same core command library. [Keep Mother OS up to date](https://steamcommunity.com/sharedfiles/filedetails/?id=3411507973) to ensure you have the most recent library of core commands across your grids.
+Mother will automatically reduce all remote commands to core commands listed in the [Cheatsheet](../../Cheatsheet.md). This means that all grids can run remote routines as long as they contain the same core command library. [Keep Mother OS up to date](https://steamcommunity.com/sharedfiles/filedetails/?id=3411507973) to ensure you have the most recent library of core commands across your grids.
 :::
 
 ## Using Communication Channels

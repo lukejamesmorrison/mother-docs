@@ -1,4 +1,4 @@
-# Command Cheatsheet
+# Cheatsheet
 
 Commands and hooks belong to [Modules](Modules/Modules.md). Commands are executed via the Programmable Block terminal, while hooks are automated triggers defined in block Custom Data.
 

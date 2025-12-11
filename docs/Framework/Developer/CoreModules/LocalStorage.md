@@ -32,5 +32,5 @@ Mother.GetModule<LocalStorage>().Clear();
 ```
 
 :::note
-The [purge](../../../IngameScript/CommandCheatsheet.md#purge) command can be used to clear the local storage.
+The [purge](../../../IngameScript/Cheatsheet.md#purge) command can be used to clear the local storage.
 :::

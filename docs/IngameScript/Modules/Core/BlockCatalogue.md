@@ -36,7 +36,7 @@ Mother supports all block is type `IMyTerminalBlock` and includes the following 
 - LCD Screens -->
 
 ::: note
-For a complete list of supported blocks, check out the [Command Cheatsheet](../../CommandCheatsheet.md) or see the [API Index](https://github.com/malware-dev/MDK-SE/wiki/Sandbox.ModAPI.Ingame.IMyTerminalBlock) created by Malware.
+For a complete list of supported blocks, check out the [Cheatsheet](../../Cheatsheet.md) or see the [API Index](https://github.com/malware-dev/MDK-SE/wiki/Sandbox.ModAPI.Ingame.IMyTerminalBlock) created by Malware.
 :::
 
 ## Why Do We Have It?

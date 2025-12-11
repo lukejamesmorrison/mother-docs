@@ -5,7 +5,7 @@ Mother's command line interface allows you to interact with your grid.  We can p
 [[toc]]
 
 ::: tip
-See the [Command Cheatsheet](CommandCheatsheet.md) to get started!
+See the [Cheatsheet](Cheatsheet.md) to get started!
 :::
 
 **Command Syntax**
@@ -34,7 +34,7 @@ Commands are similar to a traditional command line interface, and consist of 3 *
 
 | Term Type  | Example | Description |
 | --------	|-| ------- |
-| Command	| `hinge/rotate`<br>`light/color`<br>`help` | The command determines which action is performed by Mother.  See the [Command Cheetsheet](CommandCheatsheet.md) for a complete list of commands, or run Mother with the `help` command.  |
+| Command	| `hinge/rotate`<br>`light/color`<br>`help` | The command determines which action is performed by Mother.  See the [Command Cheetsheet](Cheatsheet.md) for a complete list of commands, or run Mother with the `help` command.  |
 | Argument	| `Hinge`<br>`45`<br>`"Rotor 1"`<br>`#main-airlock`| Arguments are expected by most commands and contain the details they require to operate.  This is usually values like angle, color or a GPS waypoint. Use double quotes when your arguments include spaces. In most cases, the first argument of command will target a **Block**, **Group**, or **Tag** by its name. |
 | Option	| `--speed=2`<br>`--offset=0.1`<br>`--force` |Options can be used with commands to trigger specific modifications like rotational speed or blink offset. Sometimes they may be used without a set value.  |
 

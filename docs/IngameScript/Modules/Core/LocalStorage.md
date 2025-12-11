@@ -6,7 +6,7 @@ Mother can save information across sessions and recompiles using LocalStorage.  
 
 ## Clearing Data
 
-To clear all data stored in LocalStorage, players can use the [`purge`](../../CommandCheatsheet.md#purge) command with the `storage` module name.
+To clear all data stored in LocalStorage, players can use the [`purge`](../../Cheatsheet.md#purge) command with the `storage` module name.
 
 ```bash title="Terminal"
 purge storage --force
