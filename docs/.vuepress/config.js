@@ -188,6 +188,10 @@ const devLinks = [
   {
     text: 'Motherland (Server)',
     link: '/Motherland/Motherland.md'
+  },
+  {
+    text: 'Mother Autopilot System (MAPS)',
+    link: '/MotherAutopilotSystem/README.md'
   }
 ];
 
