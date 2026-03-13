@@ -62,7 +62,7 @@ Take note of the double quotes `"`. These must enclose the entire flight plan st
 ### Setting a GPS Waypoint
 You can copy any GPS waypoint you have created to your clipboad by selecting it in the GPS panel and clicking the `Copy to clipboard` button. This makes GPS waypoints easy to transfer into flight plans.
 
-![Copy GPS to Clipboard](../../Assets/terminal-gps-1.png)
+![Copy GPS to Clipboard](../Assets/terminal-gps-1.png)
 
 ### Setting a Flight Plan
 
@@ -97,7 +97,7 @@ set-route-1=
 | ";
 ```
 
-Under the hood, Mother will monitoring and update progress towards each waypoint, interfacing with the grid's Remote Control block. When a flight plan is created, GPS waypoints will be added automatically to the [Almanac](../Core/Almanac.md), and you may use them by name in subsequent flight planning.
+Under the hood, Mother will monitoring and update progress towards each waypoint, interfacing with the grid's Remote Control block. When a flight plan is created, GPS waypoints will be added automatically to the [Almanac](../../IngameScript/Modules/Core/Almanac.md), and you may use them by name in subsequent flight planning.
 
 Next time we want to run the flight plan we can shorten it:
 
@@ -119,7 +119,7 @@ Use the `nav/set-flight-plan` and `fcs/start` commands together to set the fligh
 
 Players can view the flight plan on a Map display using the `MMAP` tag in the LCD's name. See the [Map Module](MapModule.md) for more information on how to set up a map display.
 
-![Flight Plan Map](../../Assets/flight-plan-1.png)
+![Flight Plan Map](../Assets/flight-plan-1.png)
 
 ### Running Routines at a Waypoint
 

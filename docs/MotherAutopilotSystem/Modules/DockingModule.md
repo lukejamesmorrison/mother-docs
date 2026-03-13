@@ -3,7 +3,7 @@
 The Docking Module handles docking procedures for the grid.
 
 ::: caution
-Docking is only recommended in space at this time.  Undocking is not supported, but is coming soon. If undocking is just thrusting away from the connector, consider leveraging the [`thrust`](./ThrusterModule.md#thrust) command with the [`wait`](../../CommandLineInterface.md#delaying-command-execution) command. 
+Docking is only recommended in space at this time.  Undocking is not supported, but is coming soon. If undocking is just thrusting away from the connector, consider leveraging the [`thrust`](../../IngameScript/Modules/Extension/ThrusterModule.md#thrust) command with the [`wait`](../../IngameScript/CommandLineInterface.md#delaying-command-execution) command. 
 :::
 
 [[toc]]

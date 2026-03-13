@@ -8,10 +8,10 @@ Mother maintains a list of all grids in the world running Mother that are connec
 Grids running Mother will periodically communicate, at which time the Almanac is updated with details specific to each grid.
 :::
 
-To immediately refresh the Almanac, you can run the `ping` command.
+To immediately refresh the Almanac, you can run the `ping` comman
 
 ::: tip
-Check out the Almanac in action using a [Map display](../Extension/MapModule.md).
+Check out the Almanac in action using the [Map display](../../../MotherAutopilotSystem/Modules/MapModule.md) in the [Mother Autopilot System](../../../MotherAutopilotSystem/README.md).
 :::
 
 

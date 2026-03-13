@@ -35,10 +35,10 @@ Extension modules provide additional functionality to a Space Engineer for contr
 ### By Function
 |Name													| Description|
 |-														|-								|
-| [Flight Planning](Extension/FlightPlanningModule.md)           | Provides navigation capabilities for the grid including dynamic flight planning.|
+<!-- | [Flight Planning](Extension/FlightPlanningModule.md)           | Provides navigation capabilities for the grid including dynamic flight planning.|
 | [Flight Control](Extension/FlightControlModule.md)	| Manaages autopilot and flight characteristics.|
-| [Docking](Extension/DockingModule.md)         | Manages docking procedures for the grid.|
-| [Map](Extension/MapModule.md)         | Manages map displays for the grid.|
+| [Docking](Extension/DockingModule.md)         | Manages docking procedures for the grid.| -->
+<!-- | [Map](Extension/MapModule.md)         | Manages map displays for the grid.| -->
 
 ### By Block Type
 |Name													| Description|
@@ -50,7 +50,7 @@ Extension modules provide additional functionality to a Space Engineer for contr
 | [Displays](Extension/DisplayModule.md)					| Manages displays (screens) on the grid.|
 | [Doors](Extension/DoorModule.md)						| Manages doors on the grid.|
 | [Gas Tanks](Extension/GasTankModule.md)					| Manages oxygen and hydrogen tanks on the grid.|
-| [Gyroscopes](Extension/GyroscopeModule.md)				| Manages gyroscopes on the grid.|
+<!-- | [Gyroscopes](Extension/GyroscopeModule.md)				| Manages gyroscopes on the grid.| -->
 | [Hinges](Extension/HingeModule.md)					| Manages hinges on the grid.|
 | [Landing Gear](Extension/LandingGearModule.md) | Manages landing gear and magnetic plates on the grid.|
 | [Lights](Extension/LightModule.md)                    | Manages lights on the grid.|

@@ -61,7 +61,7 @@ Using Mother OS does not require any programming/coding experience.
   
 - **Expanded Automation** - Mother simplifies interacting with the mechanical systems on your grid, and monitors them for changes. See the [Cheatsheet](Cheatsheet.md).
   
-- **Flight Planning and Visualization** - Leverage the existing GPS system and Remote Control block to program and [fly flight plans dynamically](Modules/Extension/FlightPlanningModule.md#flight-planning).
+- **Flight Planning and Visualization** - Leverage the existing GPS system and Remote Control block to program and [fly flight plans dynamically](../MotherAutopilotSystem//Modules/FlightPlanningModule.md#flight-planning).
   
 - **Copy Automations with Ease** - Easily port your automations from one grid to another by copying `Custom Data` text.
 
@@ -80,7 +80,7 @@ Mother is in beta development. I'm on a quest to reduce the character count, and
 #### Autodocking
 <Badge type="info" text="&nbsp;Beta&nbsp;" vertical="middle" />
 
-Automatic docking between grids is now supported with the [`dock`](./Modules/Extension/DockingModule.md#dock) command. Docking is stable in some scenarios and I am continuing to tune it.  Mother OS uses several fail safes to ensure unstable docking procedures are aborted. Undocking is in development before calling this feature complete.
+Automatic docking between grids is now supported with the [`dock`](../MotherAutopilotSystem/Modules/DockingModule.md#dock) command. Docking is stable in some scenarios and I am continuing to tune it.  Mother OS uses several fail safes to ensure unstable docking procedures are aborted. Undocking is in development before calling this feature complete.
 
 **Objective** 
 

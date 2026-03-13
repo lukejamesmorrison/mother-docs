@@ -9,16 +9,16 @@
 * and submitting a pull request.
 */
 export default [
-    {
-        name: 'L.A.U.G.H.',
-        author: 'TheLōk',
-        author_link: 'https://steamcommunity.com/profiles/76561199222627540/',
-        link:  'https://steamcommunity.com/sharedfiles/filedetails/?id=3680264768',
-        image_link: 'https://images.steamusercontent.com/ugc/12962967277729538923/A1451D1E68C73DBB24A8DC11AAE2A8CCC6F531C5/',
-        video_link: 'https://www.youtube.com/watch?v=QrsWz3A4k1Q',
-        description: 'The L.A.U.G.H. is a large, heavily armed capital ship designed for deep space combat and long-range missions. It features advanced automation systems powered by Mother OS, allowing it to operate with minimal crew while maintaining high efficiency in battle.',
+    // {
+    //     name: 'L.A.U.G.H.',
+    //     author: 'TheLōk',
+    //     author_link: 'https://steamcommunity.com/profiles/76561199222627540/',
+    //     link:  'https://steamcommunity.com/sharedfiles/filedetails/?id=3680264768',
+    //     image_link: 'https://images.steamusercontent.com/ugc/12962967277729538923/A1451D1E68C73DBB24A8DC11AAE2A8CCC6F531C5/',
+    //     video_link: 'https://www.youtube.com/watch?v=QrsWz3A4k1Q',
+    //     description: 'The L.A.U.G.H. is a large, heavily armed capital ship designed for deep space combat and long-range missions. It features advanced automation systems powered by Mother OS, allowing it to operate with minimal crew while maintaining high efficiency in battle.',
 
-    },
+    // },
     {
         name: 'SPF-01 (Spiff)',
         author: 'Agentluke',

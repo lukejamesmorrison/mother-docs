@@ -1,6 +1,6 @@
 # Map Module
 
-The map module allows Mother to visualize the positions of all grids and waypoints in the [Almanac](../Core/Almanac.md). This provides players with a spacial representation of all grids running Mother Core, and communicating via the antenna network.
+The map module allows Mother to visualize the positions of all grids and waypoints in the [Almanac](../../IngameScript/Modules/Core/Almanac.md). This provides players with a spacial representation of all grids running Mother Core, and communicating via the antenna network.
 
 [[toc]]
 
@@ -10,9 +10,9 @@ Mother can render a map showing all grids and waypoints in the Almanac. Simply a
 
 You can target individual cockpit screens by targeting a screen index - `[MMAP:1]`.
 
-![Almanac LCD](../../Assets/almanac-lcd-1.png)
+![Almanac LCD](../Assets/almanac-lcd-1.png)
 
-![Flight Plan Map](../../Assets/flight-plan-1.png)
+![Flight Plan Map](../Assets/flight-plan-1.png)
 
 ## Filtering the Map
 

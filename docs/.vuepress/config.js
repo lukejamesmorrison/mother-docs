@@ -184,15 +184,47 @@ const MotherCoreSidebar = {
   ]
 };
 
+const MotherAutopilotSystemSidebar = {
+  text: 'Mother Autopilot System (MAPS)',
+  link: '/MotherAutopilotSystem/README.md',
+  children: [
+    {
+      text: 'Getting Started',
+      collapsible: true, // Allows collapsing sections
+      children: [
+        '/MotherAutopilotSystem/UpgradeGuide.md',
+        '/MotherAutopilotSystem/Installation.md',
+      ],
+    },
+    {
+      text: 'Modules',
+      collapsible: true, // Allows collapsing sections
+      children: [
+        '/MotherAutopilotSystem/Modules/FlightPlanningModule.md',
+        // '/MotherAutopilotSystem/Modules/MapModule.md',
+        '/MotherAutopilotSystem/Modules/FlightControlModule.md',
+        '/MotherAutopilotSystem/Modules/AttitudeModule.md',
+        '/MotherAutopilotSystem/Modules/DockingModule.md',
+
+        // '/IngameScript/Modules/Core/Almanac.md',
+        // '/IngameScript/Modules/Core/BlockCatalogue.md',
+        // '/IngameScript/Modules/Core/LocalStorage.md',
+        // // '/IngameScript/Modules/Core/Security.md',
+        // '/IngameScript/Modules/Core/IntergridMessageService.md',
+      ],
+    },
+  ]
+};
+
 const devLinks = [
+  {
+    text: 'Mother Autopilot System (MAPS)',
+    link: '/MotherAutopilotSystem/README.md'
+  },
   {
     text: 'Motherland (Server)',
     link: '/Motherland/Motherland.md'
   },
-  {
-    text: 'Mother Autopilot System (MAPS)',
-    link: '/MotherAutopilotSystem/README.md'
-  }
 ];
 
 // Navbar Links
@@ -387,7 +419,7 @@ export default defineUserConfig({
     sidebar: [
       MotherOSSidebar,
       MotherCoreSidebar,
-      // process.env.NODE_ENV == 'development' ? MotherCoreSidebar : {},
+      process.env.NODE_ENV == 'development' ? MotherAutopilotSystemSidebar : {},
       "/PoweredByMother.md",
     ]
   }),
