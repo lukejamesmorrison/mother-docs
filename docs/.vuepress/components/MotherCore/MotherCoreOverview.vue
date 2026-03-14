@@ -86,7 +86,7 @@
 <script setup>
 import { ref, onMounted, onBeforeUnmount } from 'vue'
 import { gsap } from 'gsap'
-import Soyuz from './Soyuz.vue'
+import Soyuz from '../Soyuz.vue'
 
 const IMG_HEIGHT = 480
 const IMG_WIDTH = 930

@@ -3,24 +3,24 @@ home: true
 title: Home
 # heroImage: images/title.png
 actions:
-  - text: Mother OS
-    link: /IngameScript/IngameScript.md
-    type: primary
+  # - text: Mother OS
+  #   link: /IngameScript/IngameScript.md
+  #   type: primary
 
-  - text: Mother Core
-    link: /Framework/Readme.md
-    type: secondary
+  # - text: Mother Core
+  #   link: /Framework/Readme.md
+  #   type: secondary
 
 features:
-  - title: Intuitive Command Library
-    details: Control most common block operations with a simple command line interface.
-  - title: Dynamic Flight Planning
-    details: Create flight plans using GPS waypoints and fly them with ease.
-  - title: Secure Communication
-    details: Send encrypted commands to other grids to supercharge cooperation.
+  # - title: Intuitive Command Library
+  #   details: Control most common block operations with a simple command line interface.
+  # - title: Dynamic Flight Planning
+  #   details: Create flight plans using GPS waypoints and fly them with ease.
+  # - title: Secure Communication
+  #   details: Send encrypted commands to other grids to supercharge cooperation.
 
 
-footer: MIT Licensed | © 2025 Agentluke | The Empire must grow.
+footer: MIT Licensed | © 2026 Agentluke | The Empire must grow.
 ---
 
 
@@ -28,8 +28,10 @@ footer: MIT Licensed | © 2025 Agentluke | The Empire must grow.
   import MotherOSAnimation from '../../components/MotherOSAnimation.vue';
   // import MotherOSAnimation2 from '../../components/MotherOSAnimation2.vue';
   import MotherCoreAnimation from '../../components/MotherCoreAnimation.vue';
-  import MotherCoreOverview from '../../components/MotherCoreOverview.vue';
+  import MotherCoreOverview from '../../components/MotherCore/MotherCoreOverview.vue';
   import HomeHeroVideoSection from '../../components/HomeHeroVideoSection.vue';
+  import HomeHeroOverrideSection from '../../components/HomeHeroOverrideSection.vue';
+  import MotherProjectSpacecraftNavigator from '../../components/MotherProjectSpacecraftNavigator.vue';
   import ParticlesContainer from '../../components/ParticlesContainer.vue';
   // import ParticlesContainer2 from '../../components/ParticlesContainer2.vue';
 
@@ -39,7 +41,13 @@ footer: MIT Licensed | © 2025 Agentluke | The Empire must grow.
 
 </script>
 
-  <HomeHeroVideoSection/>
+  <!-- <MotherCoreOverview/>  -->
+
+  <!-- <HomeHeroVideoSection/> -->
+
+  <HomeHeroOverrideSection>
+    <MotherProjectSpacecraftNavigator/> 
+  </HomeHeroOverrideSection>
 
   <ParticlesContainer/>
 

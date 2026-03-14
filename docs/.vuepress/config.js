@@ -8,17 +8,20 @@ import { shikiPlugin } from '@vuepress/plugin-shiki'
 import { resolve } from 'path'
 import { fileURLToPath, pathToFileURL } from 'url'
 import fs from 'fs'
-
-import {theme, lang} from './shiki/MotherScriptDarkTheme.js';
-
-// import Particles from "@tsparticles/vue3";
-// import { loadFull } from "tsparticles"; // if you are going to use `loadFull`, install the "tsparticles" package too.
-
-
 import * as dotenv from 'dotenv'
+import {theme, lang} from './shiki/MotherScriptDarkTheme.js';
 
 // Load environment variables from .env file
 dotenv.config();
+
+const DEV_MODE = process.env.NODE_ENV == 'development';
+
+const TITLE = DEV_MODE ? 'Mother Docs (Dev)' : 'Mother Docs';
+
+const DESCRIPTION = 'Documentation for the Mother Project';
+
+const basePath = '/mother-docs/';
+
 
 // Core Routes
 const MotherOSSidebar = {
@@ -184,6 +187,7 @@ const MotherCoreSidebar = {
   ]
 };
 
+// MAPS Routes
 const MotherAutopilotSystemSidebar = {
   text: 'Mother Autopilot System (MAPS)',
   link: '/MotherAutopilotSystem/README.md',
@@ -216,22 +220,8 @@ const MotherAutopilotSystemSidebar = {
   ]
 };
 
-const devLinks = [
-  {
-    text: 'Mother Autopilot System (MAPS)',
-    link: '/MotherAutopilotSystem/README.md'
-  },
-  {
-    text: 'Motherland (Server)',
-    link: '/Motherland/Motherland.md'
-  },
-];
-
 // Navbar Links
-const NavbarLinks = () => {
-  // if (process.env.NODE_ENV == 'development') {
-
-  let links = [
+const navbarLinks = [
     {
         text: 'Mother OS (Ingame Script)',
         link: '/IngameScript/IngameScript.md'
@@ -242,36 +232,32 @@ const NavbarLinks = () => {
       }
   ];
 
+// Dev-only Navbar Links
+const devNavbarLinks = [
+  {
+    text: 'Mother Autopilot System (MAPS)',
+    link: '/MotherAutopilotSystem/README.md'
+  },
+  {
+    text: 'Motherland (Server)',
+    link: '/Motherland/Motherland.md'
+  },
+];
+
+// All Navbar Links
+const NavbarLinks = () => {
+
+  let links = navbarLinks;
+
   if(DEV_MODE) {
-    links.push(...devLinks);
+    links.push(...devNavbarLinks);
   }
 
   return links;
 }
 
-const basePath = '/mother-docs/';
 
-// console.log(process.env.NODE_ENV == 'development');
 
-const DEV_MODE = process.env.NODE_ENV == 'development';
-
-// console.log(process.env);
-
-// const ParticlesPlugin = (app) => {
-//   app.use(Particles, {
-//     init: async engine => {
-//       await loadFull(engine); // you can load the full tsParticles library from "tsparticles" if you need it
-//       // await loadSlim(engine); // or you can load the slim version from "@tsparticles/slim" if don't need Shapes or Animations
-//     },
-//   });
-// }
-
-// export defineClientConfig({
-//   enhance({ app, router, siteData }) {
-//     // app.use(ParticlesPlugin);
-//     app.use(Particles);
-//   },
-// });
 
 // console.log(JSON.parse(fs.readFileSync(resolve(__dirname, 'shiki/motherscript-color-theme.json'))));
 
@@ -289,8 +275,8 @@ const motherScriptDarkTheme = JSON.parse(
 
 export default defineUserConfig({
   base: basePath,
-  title: DEV_MODE ? 'Mother Docs (Dev)' : 'Mother Docs',
-  description: 'Documentation for Mother OS and Mother Core',
+  title: TITLE,
+  description: DESCRIPTION,
 
   // Additional head elements. We add icons.
   head: [
@@ -407,12 +393,6 @@ export default defineUserConfig({
       {
         text: 'Docs',
         children: NavbarLinks()
-        // [
-        //   {
-        //     text: 'Mother OS (Ingame Script)',
-        //     link: '/IngameScript/IngameScript.md'
-        //   },
-        // ]
       }
     ],
     sidebarDepth: 1,
