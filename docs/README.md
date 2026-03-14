@@ -51,12 +51,16 @@ footer: MIT Licensed | © 2026 Agentluke | The Empire must grow.
 
   <ParticlesContainer/>
 
-  <YoutubeCarousel style="display: none">
-    <!-- <iframe width="560" height="315" src="https://www.youtube.com/embed/1nX4YHk3b2g" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe> -->
-    <iframe style="height: 300px; width: 100%" src="https://www.youtube.com/embed/mHaCxK-0Jkg?si=nT4zM7Y7V5EhedTI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-    <!-- <iframe width="560" height="315" src="https://www.youtube.com/embed/1nX4YHk3b2g" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe> -->
-    <iframe style="height: 300px; width: 100%" src="https://www.youtube.com/embed/SLjJacXa5x0?si=iElsEtMpXdMD4IpD" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-  </YoutubeCarousel>
+  <YoutubeCarousel 
+    :videos="[
+      'https://www.youtube.com/embed/SLjJacXa5x0',
+      'https://www.youtube.com/embed/mHaCxK-0Jkg',
+      'https://www.youtube.com/embed/ar-oXKlYshY',
+      'https://www.youtube.com/embed/PSEBSYtT2Qk'
+    ]"
+    :autoplay="true"
+    :interval="5000"
+  />
 
 
 
@@ -75,8 +79,8 @@ footer: MIT Licensed | © 2026 Agentluke | The Empire must grow.
 
 **Ingame Script** for Space Engineers players. 
 
-::: tip Mother 1.0 Out Now!
-Mother OS 1.0 is now available!  Check out the [Get Started](IngameScript/IngameScript.md) guide to learn how to install and use Mother OS on your grids. Custom data now updates automatically and we've improved how you can print custom text to your LCDs.  Enjoy!
+::: tip Mother 1.1 Out Now!
+Mother OS 1.1 is now available!  Check out the [Get Started](IngameScript/IngameScript.md) guide to learn how to install and use Mother OS on your grids. Mother OS now interoperates automatically with other scripts running Mother Core, like the new Mother Autopilot System (MAPS) that will own autopilot capabilities moving forward.
 :::
 
 Mother OS has a robust library of nearly 100 commands to control your grid. Your changes are updated automatically using the block's custom data property. Easily copy and paste complex routines, take them with you without needing mods, timer blocks, or event controllers.  Mother OS makes it easy to wirelessly send commands to other grids.
@@ -90,12 +94,14 @@ Mother OS has a robust library of nearly 100 commands to control your grid. Your
 <br>
 <br>
 
+## Mother Autopilot System (MAPS)
+
 ## Mother Core
 
 Script Framework for custom Space Engineers ingame scripts written in C#6 and deployed using [MDK2](https://github.com/malforge/mdk2/wiki).
 
-::: tip Mother Core 1.0 Out Now!
-Mother Core 1.0 is now available and all code is available on Github!  I hope this inspires a new generation of Space Engineers script developers to build amazing things.  Check out the [Get Started](./Framework/README.md) guide to learn how to install and use Mother Core in your own scripts.
+::: tip Mother Core 1.1 Out Now!
+Mother Core 1.1 is now available and all code is available on Github!  I hope this inspires a new generation of Space Engineers script developers to build amazing things. Check out the [Get Started](./Framework/README.md) guide to learn how to install and use Mother Core in your own scripts.
 :::
 
  [Get Started](./Framework/README.md) | [MDK-SE API Index](https://github.com/malware-dev/MDK-SE/wiki) | [Space Engineers Mod API](https://keensoftwarehouse.github.io/SpaceEngineersModAPI/api/index.html)
