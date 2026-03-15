@@ -32,9 +32,19 @@ footer: MIT Licensed | © 2026 Agentluke | The Empire must grow.
   import MotherProjectSpacecraftNavigator from '../../components/MotherProjectSpacecraftNavigator.vue';
   import ParticlesContainer from '../../components/ParticlesContainer.vue';
   import YoutubeCarousel from '../../components/YoutubeCarousel.vue';
+  import AnnouncementBanner from '../../components/AnnouncementBanner.vue';
   import exampleVideos from '../../exampleVideos'
   import { onMounted } from 'vue';
 </script>
+
+<AnnouncementBanner 
+  icon="🎉" 
+  link="/IngameScript/UpgradeGuide.md" 
+  linkText="Learn more →"
+  storageKey="v1.1-announcement-v1"
+>
+  Mother OS and Mother Core v1.1 are now available!
+</AnnouncementBanner>
 
 <HomeHeroOverrideSection>
   <MotherProjectSpacecraftNavigator/> 

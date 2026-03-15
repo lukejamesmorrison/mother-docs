@@ -1,5 +1,6 @@
 <template>
   <div class="mother-os-diagram">
+    <CliDisplay ref="cli" title="Mother OS Terminal" :maxLines="3" />
     <NodeDiagram ref="diagram" :nodes="nodes" :connections="connections" />
   </div>
 </template>
@@ -7,6 +8,7 @@
 <script setup>
 import { ref, onMounted } from 'vue'
 import NodeDiagram from './NodeDiagram.vue'
+import CliDisplay from './CliDisplay.vue'
 
 const images = {
   mother: "images/logo-512x512.png",
@@ -22,6 +24,7 @@ const images = {
 }
 
 const diagram = ref(null)
+const cli = ref(null)
 
 const nodes = ref([
   { id: 'root1', name: 'Button', x: 1, y: 2, image: images.button, pulseColor: '#E3B505' },
@@ -81,9 +84,22 @@ const thirdPulseSequence = [
     { from: 'Grid 1', to: 'Rotor', color: '#FF4081', duration: 0.5 }
 ]
 
+const commands = [
+  { text: 'piston/distance LandingGearPistons 4 --share;', color: '#E3B505' },
+  { text: 'DockingConnector.onLock= @Grid2 light/color DockLight green;', color: '#00B0FF' },
+  { text: 'CollisionSensor.onDetect= @Grid1 rotor/rotate BumperRotor 45;', color: '#FF4081' }
+]
+
 async function triggerPulseSequences() {
+  cli.value?.clear()
+  
+  cli.value?.addLine(commands[0])
   await diagram.value?.runPulseSequence(firstPulseSequence)
+  
+  cli.value?.addLine(commands[1])
   await diagram.value?.runPulseSequence(secondPulseSequence)
+  
+  cli.value?.addLine(commands[2])
   await diagram.value?.runPulseSequence(thirdPulseSequence)
 }
 
@@ -95,4 +111,8 @@ async function triggerPulseSequences() {
     max-width: 960px;
     margin: 0 auto;
   }
+
+  /* .mother-os-diagram :deep(.cli-display) {
+    margin-bottom: 20px;
+  } */
 </style>
