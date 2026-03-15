@@ -32,8 +32,8 @@
           v-for="node in nodes"
           :key="node.id"
           :transform="`translate(${node.x}, ${node.y})`"
-          class="script-node"
         >
+          <g class="script-node">
           <!-- Outer glow ring -->
           <circle
             r="60"
@@ -84,6 +84,7 @@
                 font-family="monospace"
               >{{ cmd }}</text>
             </g>
+          </g>
           </g>
         </g>
       </svg>
@@ -314,20 +315,13 @@ onBeforeUnmount(() => {
 
 .script-node {
   cursor: pointer;
+  transform-box: fill-box;
+  transform-origin: center center;
   transition: transform 0.2s ease;
 }
 
 .script-node:hover {
   transform: scale(1.05);
-}
-
-.node-ring {
-  transition: all 0.3s ease;
-}
-
-.script-node:hover .node-ring {
-  stroke-width: 4;
-  filter: drop-shadow(0 0 8px currentColor);
 }
 
 .node-label {
