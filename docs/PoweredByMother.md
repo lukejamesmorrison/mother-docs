@@ -1,6 +1,6 @@
 <script setup>
-import PoweredByMotherItem from '../../components/PoweredByMotherItem.vue'
-import PoweredByMotherGrids from '../../PoweredByMotherGrids.js'
+import PoweredByMotherItem from '../../components/PoweredByMother/PoweredByMotherItem.vue'
+import PoweredByMotherGrids from '../../components/PoweredByMother/PoweredByMotherGrids.js'
 </script>
 
 # Powered By Mother
