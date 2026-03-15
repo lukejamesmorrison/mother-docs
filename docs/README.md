@@ -33,6 +33,7 @@ footer: MIT Licensed | © 2026 Agentluke | The Empire must grow.
   import ParticlesContainer from '../../components/ParticlesContainer.vue';
   import YoutubeCarousel from '../../components/YoutubeCarousel.vue';
   import AnnouncementBanner from '../../components/AnnouncementBanner.vue';
+  import FlightPlanAnimation from '../../components/MotherAutopilotSystem/FlightPlanAnimation.vue';
   import exampleVideos from '../../exampleVideos'
   import { onMounted } from 'vue';
 </script>
@@ -56,15 +57,17 @@ footer: MIT Licensed | © 2026 Agentluke | The Empire must grow.
  
 ## Mother OS
 
-**Ingame Script** for Space Engineers players. 
+<!-- **Ingame Script** for Space Engineers players.  -->
 
-::: tip Mother 1.1 Out Now!
+<!-- ::: tip Mother 1.1 Out Now!
 Mother OS 1.1 is now available!  Check out the [Get Started](IngameScript/IngameScript.md) guide to learn how to install and use Mother OS on your grids. Mother OS now interoperates automatically with other scripts running Mother Core, like the new Mother Autopilot System (MAPS) that will own autopilot capabilities moving forward.
-:::
-
-Mother OS has a robust library of nearly 100 commands to control your grid. Your changes are updated automatically using the block's custom data property. Easily copy and paste complex routines, take them with you without needing mods, timer blocks, or event controllers.  Mother OS makes it easy to wirelessly send commands to other grids.
+::: -->
 
 [Get Started](./IngameScript/IngameScript.md) | [Cheatsheet](./IngameScript/Cheatsheet.md) | [Examples](./IngameScript/Examples.md)
+
+Mother OS is an **ingame script** with a robust library of nearly 100 commands to control your grid. Your changes are updated automatically using the block's custom data property. Easily copy and paste complex routines, take them with you without needing mods, timer blocks, or event controllers.  Mother OS makes it easy to wirelessly send commands to other grids.
+
+<br>
 
 <div>
   <MotherOSAnimation />
@@ -74,6 +77,17 @@ Mother OS has a robust library of nearly 100 commands to control your grid. Your
 <br>
 
 ## Mother Autopilot System (MAPS)
+
+**Flight Planning Module** for Space Engineers ships and stations.
+
+MAPS takes autopilot to the next level by allowing you to create dynamic flight plans using GPS waypoints. As your ship navigates each waypoint, Mother can automatically execute commands—like toggling lights, adjusting speed, or extending landing gear.
+
+[Get Started](./MotherAutopilotSystem/README.md) | [Flight Planning](./MotherAutopilotSystem/Modules/FlightPlanningModule.md) | [Docking](./MotherAutopilotSystem/Modules/DockingModule.md)
+
+<FlightPlanAnimation />
+
+<br>
+<br>
 
 ## Mother Core
 
