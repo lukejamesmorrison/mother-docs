@@ -78,7 +78,7 @@ const dismiss = () => {
   color: var(--vp-c-accent-text, white);
   padding: 0.6rem 1rem;
   text-align: center;
-  z-index: 99;
+  z-index: 1;
   transition: max-height 0.3s ease, opacity 0.3s ease, padding 0.3s ease;
   max-height: 100px;
   overflow: hidden;
