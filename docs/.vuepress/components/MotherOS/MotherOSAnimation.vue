@@ -68,8 +68,11 @@ onMounted(async () => {
 })
 
 const firstPulseSequence = [
-    { from: 'Button', to: 'Grid 1', color: '#E3B505', duration: 0.5 },
-    { from: 'Grid 1', to: 'Piston', color: '#E3B505', duration: 0.5 }
+    [{ from: 'Button', to: 'Grid 1', color: '#E3B505', duration: 0.5 }],
+    [
+      { from: 'Grid 1', to: 'Piston', color: '#E3B505', duration: 0.5 },
+      { from: 'Grid 1', to: 'Rotor', color: '#E3B505', duration: 0.5 }
+    ]
 ]
 
 const secondPulseSequence = [
@@ -85,7 +88,7 @@ const thirdPulseSequence = [
 ]
 
 const commands = [
-  { text: 'piston/distance LandingGearPistons 4 --share;', color: '#E3B505' },
+  { text: 'piston/distance LandingGearPistons 4 --share; rotor/rotate LandingGearRotor 50;', color: '#E3B505' },
   { text: 'DockingConnector.onLock= @Grid2 light/color DockLight green;', color: '#00B0FF' },
   { text: 'CollisionSensor.onDetect= @Grid1 rotor/rotate BumperRotor 45;', color: '#FF4081' }
 ]
