@@ -17,11 +17,11 @@
           class="connection-line"
         />
         
-        <!-- Pulse circles (animated) -->
+        <!-- Pulse circles (animated) - pool of reusable pulses -->
         <circle
-          v-for="conn in connections"
-          :key="`pulse-${conn.source}-${conn.target}`"
-          :ref="el => setPulseRef(conn, el)"
+          v-for="i in pulsePoolSize"
+          :key="`pulse-${i}`"
+          :ref="el => setPulseRef(i, el)"
           r="10"
           fill="#E3B505"
           opacity="0"
@@ -168,12 +168,20 @@ const connections = ref([
 // Refs
 const cli = ref(null)
 const pulseRefs = ref({})
+const pulsePoolSize = 6  // Pool of reusable pulse circles
+let nextPulseIndex = 0
 let animationInterval = null
 
-const setPulseRef = (conn, el) => {
+const setPulseRef = (index, el) => {
   if (el) {
-    pulseRefs.value[`${conn.source}-${conn.target}`] = el
+    pulseRefs.value[index] = el
   }
+}
+
+const getNextPulse = () => {
+  const index = nextPulseIndex
+  nextPulseIndex = (nextPulseIndex + 1) % pulsePoolSize
+  return pulseRefs.value[index + 1]  // +1 because v-for uses 1-based index
 }
 
 const getNode = (id) => nodes.value.find(n => n.id === id)
@@ -195,14 +203,16 @@ const sequences = [
     command: { text: 'block/on HangarLights; light/color HangarLights red;', color: '#00B0FF' },
     description: 'Your Script calls Mother OS remotely',
     pulses: [
-      { from: 'yourscript', to: 'motheros', color: '#00B0FF' }
+      { from: 'yourscript', to: 'motheros', color: '#00B0FF' },
+      { from: 'yourscript', to: 'motheros', color: '#00B0FF', delay: 0.2 }
     ]
   },
   {
     command: { text: 'fp/set "Mothership LandingSite"; fcs/start;', color: '#00B0FF' },
     description: 'Your Script calls MAPS navigation remotely',
     pulses: [
-      { from: 'yourscript', to: 'maps', color: '#00B0FF' }
+      { from: 'yourscript', to: 'maps', color: '#00B0FF' },
+      { from: 'yourscript', to: 'maps', color: '#00B0FF', delay: 0.2 }
     ]
   },
   {
@@ -210,14 +220,13 @@ const sequences = [
     description: 'Your Script orchestrates multi-script docking',
     pulses: [
       { from: 'yourscript', to: 'motheros', color: '#00B0FF' },
-      { from: 'yourscript', to: 'maps', color: '#00B0FF', delay: 0.3 }
+      { from: 'yourscript', to: 'maps', color: '#00B0FF', delay: 0.1 },
     ]
   }
 ]
 
 async function animatePulse(from, to, color, delay = 0) {
-  const key = `${from}-${to}`
-  const pulseEl = pulseRefs.value[key]
+  const pulseEl = getNextPulse()
   if (!pulseEl) return
 
   const sourceNode = getNode(from)
