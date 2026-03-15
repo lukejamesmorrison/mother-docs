@@ -84,7 +84,7 @@ partial class Program : MyGridProgram
         // Register Extension Modules
         mother.RegisterModules(new List<IExtensionModule> { 
             new RotorModule(mother),
-            new FlightControlModule(mother),
+            new HingeModule(mother),
             new MissileGuidanceModule(mother),
             ...
         });

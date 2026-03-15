@@ -157,7 +157,7 @@ class MissileGuidanceModule : BaseExtensionModule
     public void Boot()
     {
         // Reference important modules
-        FlightPlanningModule = Mother.GetModule<FlightPlanningModule>();
+        Almanac = Mother.GetModule<Almanac>();
 
         // Register custom terminal commands like 'detonate' and 'launch'
         RegisterCommand(new LaunchCommand(this));

@@ -59,15 +59,10 @@ Using Mother OS does not require any programming/coding experience.
 
 - **Secure Intergrid Communication** - Grids [share positions](Modules/Core/Almanac.md) and easy easily send commands remotely to each other.
   
-- **Expanded Automation** - Mother simplifies interacting with the mechanical systems on your grid, and monitors them for changes. See the [Cheatsheet](Cheatsheet.md).
-  
-- **Flight Planning and Visualization** - Leverage the existing GPS system and Remote Control block to program and [fly flight plans dynamically](../MotherAutopilotSystem//Modules/FlightPlanningModule.md#flight-planning).
+- **Expanded Automation** - Mother OS simplifies interacting with the mechanical systems on your grid, and monitors them for changes. See the [Cheatsheet](Cheatsheet.md).
   
 - **Copy Automations with Ease** - Easily port your automations from one grid to another by copying `Custom Data` text.
 
-<!-- ::: warning
-Mother is in beta development. I'm on a quest to reduce the character count, and increase the functionality. Please report any issues you encounter, and expect some of the commands and underlying framework to change.
-::: -->
 <br>
 
 **Tutorial Video**
@@ -77,21 +72,12 @@ Mother is in beta development. I'm on a quest to reduce the character count, and
 
 ### Upcoming Features
 
-#### Autodocking
-<Badge type="info" text="&nbsp;Beta&nbsp;" vertical="middle" />
-
-Automatic docking between grids is now supported with the [`dock`](../MotherAutopilotSystem/Modules/DockingModule.md#dock) command. Docking is stable in some scenarios and I am continuing to tune it.  Mother OS uses several fail safes to ensure unstable docking procedures are aborted. Undocking is in development before calling this feature complete.
-
-**Objective** 
-
-Enable players to intitate and fly docking sequences automatically using intergrid communication and flight planning.
-
-#### Master-Node Architecture
+#### Conditional Logic
 <Badge type="warning" text="&nbsp;In development&nbsp;" vertical="middle" />
 
 **Objective** 
 
-Allow multiple programmable blocks running Mother Core to cooperate on the same grid. This will enable more complex automations and distributed processing. Script developers will build on top of Mother Core to interoperate with Mother OS via this paradigm.
+Allow players to monitor blocks and apply conditional logic to their automations.
 
 ---
 

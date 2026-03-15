@@ -32,13 +32,16 @@ Extension modules provide additional functionality to a Space Engineer for contr
 |-														|-								|
 | [Terminal Block](Extension/TerminalBlockModule.md)              | Manages terminal blocks on the grid. Commands in this module may be used on any block supported by Mother. |
 
-### By Function
-|Name													| Description|
-|-														|-								|
-<!-- | [Flight Planning](Extension/FlightPlanningModule.md)           | Provides navigation capabilities for the grid including dynamic flight planning.|
-| [Flight Control](Extension/FlightControlModule.md)	| Manaages autopilot and flight characteristics.|
-| [Docking](Extension/DockingModule.md)         | Manages docking procedures for the grid.| -->
-<!-- | [Map](Extension/MapModule.md)         | Manages map displays for the grid.| -->
+
+
+::: tip Looking for Flight, Docking, or Map modules?
+These modules have been moved to the [Mother Autopilot System](../../MotherAutopilotSystem/README.md):
+- [Flight Planning Module](../../MotherAutopilotSystem/Modules/FlightPlanningModule.md)
+- [Flight Control Module](../../MotherAutopilotSystem/Modules/FlightControlModule.md)
+- [Docking Module](../../MotherAutopilotSystem/Modules/DockingModule.md)
+- [Map Module](../../MotherAutopilotSystem/Modules/MapModule.md)
+- [Attitude (Gyro) Module](../../MotherAutopilotSystem/Modules/AttitudeModule.md)
+:::
 
 ### By Block Type
 |Name													| Description|
@@ -50,7 +53,6 @@ Extension modules provide additional functionality to a Space Engineer for contr
 | [Displays](Extension/DisplayModule.md)					| Manages displays (screens) on the grid.|
 | [Doors](Extension/DoorModule.md)						| Manages doors on the grid.|
 | [Gas Tanks](Extension/GasTankModule.md)					| Manages oxygen and hydrogen tanks on the grid.|
-<!-- | [Gyroscopes](Extension/GyroscopeModule.md)				| Manages gyroscopes on the grid.| -->
 | [Hinges](Extension/HingeModule.md)					| Manages hinges on the grid.|
 | [Landing Gear](Extension/LandingGearModule.md) | Manages landing gear and magnetic plates on the grid.|
 | [Lights](Extension/LightModule.md)                    | Manages lights on the grid.|
