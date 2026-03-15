@@ -79,7 +79,7 @@
               v-for="(cmd, cmdIndex) in waypoint.commands" 
               :key="'cmd-' + cmdIndex"
               class="waypoint-command"
-              :class="{ 'command-active': waypoint.activeCommand === cmdIndex }"
+              :class="{ 'command-active': waypoint.activeCommand === cmdIndex, 'command-completed': waypoint.completedCommands?.includes(cmdIndex) }"
               :dy="cmdIndex * 16"
             >
               <tspan class="command-arrow">→</tspan> {{ cmd }}
@@ -188,7 +188,8 @@ const waypoints = ref([
     active: false,
     completed: false,
     showCommands: true,
-    activeCommand: -1
+    activeCommand: -1,
+    completedCommands: []
   },
   { 
     id: 'landing',
@@ -209,7 +210,8 @@ const waypoints = ref([
     active: false,
     completed: false,
     showCommands: true,
-    activeCommand: -1
+    activeCommand: -1,
+    completedCommands: []
   }
 ])
 
@@ -287,9 +289,9 @@ async function executeCommands(waypointId) {
     waypoint.activeCommand = i
     addCliLine(cliCmds[i], '#FFD700')
     await sleep(commandDelay)
+    waypoint.completedCommands.push(i)
+    waypoint.activeCommand = -1
   }
-  
-  waypoint.activeCommand = -1
   waypoint.completed = true
   waypoint.active = false
 }
@@ -341,6 +343,7 @@ async function runFlightPlan() {
     w.active = false
     w.completed = false
     w.activeCommand = -1
+    if (w.completedCommands) w.completedCommands = []
   })
   waypoints.value[0].active = true // Mothership active
   
@@ -391,20 +394,21 @@ onUnmounted(() => {
   width: 100%;
   max-width: 960px;
   margin: 0 auto;
-  background: linear-gradient(180deg, #0a0a0a 0%, #1a1a2e 100%);
+  background: var(--vp-c-bg-alt);
   border-radius: 12px;
   overflow: hidden;
-  border: 1px solid #333;
+  border: 1px solid var(--vp-c-border);
+  box-shadow: 0 4px 20px var(--vp-c-shadow);
 }
 
 .flight-plan-header {
-  background: rgba(0, 0, 0, 0.5);
+  background: var(--vp-c-bg-elv);
   padding: 10px 20px;
-  border-bottom: 1px solid #333;
+  border-bottom: 1px solid var(--vp-c-border);
 }
 
 .route-label {
-  color: #fff;
+  color: var(--vp-c-text);
   font-size: 16px;
   font-weight: 600;
   font-family: var(--vp-font-family-mono);
@@ -424,7 +428,7 @@ onUnmounted(() => {
 /* Flight path styling */
 .flight-path {
   fill: none;
-  stroke: #555;
+  stroke: var(--vp-c-border);
   stroke-width: 3;
   stroke-linecap: round;
   stroke-linejoin: round;
@@ -432,13 +436,13 @@ onUnmounted(() => {
 }
 
 .flight-path.path-active {
-  stroke: #888;
+  stroke: var(--vp-c-text-mute);
   stroke-dasharray: 8, 4;
   animation: dash 0.5s linear infinite;
 }
 
 .flight-path.path-completed {
-  stroke: #fff;
+  stroke: var(--vp-c-text);
 }
 
 @keyframes dash {
@@ -458,20 +462,20 @@ onUnmounted(() => {
 
 /* Text styling */
 .waypoint-name {
-  fill: #fff;
+  fill: var(--vp-c-text);
   font-size: 14px;
   font-weight: 600;
   font-family: var(--vp-font-family-base);
 }
 
 .waypoint-distance {
-  fill: #888;
+  fill: var(--vp-c-text-mute);
   font-size: 11px;
   font-family: var(--vp-font-family-mono);
 }
 
 .waypoint-command {
-  fill: #4CAF50;
+  fill: var(--vp-c-accent);
   font-size: 12px;
   font-family: var(--vp-font-family-mono);
   opacity: 0.7;
@@ -484,8 +488,13 @@ onUnmounted(() => {
   font-weight: 600;
 }
 
+.waypoint-command.command-completed {
+  fill: #4CAF50;
+  opacity: 1;
+}
+
 .command-arrow {
-  fill: #FF4444;
+  fill: #fff;
 }
 
 /* Ship styling */
@@ -511,18 +520,18 @@ onUnmounted(() => {
 
 /* CLI Display */
 .cli-display {
-  background: #1a1a2e;
-  border-top: 1px solid #333;
+  background: var(--vp-c-bg-alt);
+  border-top: 1px solid var(--vp-c-border);
   font-family: var(--vp-font-family-mono);
 }
 
 .cli-header {
-  background: #0d0d1a;
+  background: var(--vp-c-bg-elv);
   padding: 8px 12px;
   display: flex;
   align-items: center;
   gap: 6px;
-  border-bottom: 1px solid #333;
+  border-bottom: 1px solid var(--vp-c-border);
 }
 
 .cli-dot {
@@ -531,13 +540,13 @@ onUnmounted(() => {
   border-radius: 50%;
 }
 
-.cli-dot.red { background: #ff5f56; }
+.cli-dot.red { background: var(--vp-c-accent); }
 .cli-dot.yellow { background: #ffbd2e; }
 .cli-dot.green { background: #27ca40; }
 
 .cli-title {
   margin-left: 8px;
-  color: #888;
+  color: var(--vp-c-text-mute);
   font-size: 12px;
 }
 
@@ -560,16 +569,17 @@ onUnmounted(() => {
 }
 
 .cli-prompt {
-  color: #4CAF50;
+  color: var(--vp-c-accent);
   margin-right: 8px;
 }
 
 .cli-command {
   font-weight: 500;
+  color: var(--vp-c-text);
 }
 
 .cli-cursor {
-  color: #4CAF50;
+  color: var(--vp-c-accent);
   animation: blink 1s step-end infinite;
 }
 
