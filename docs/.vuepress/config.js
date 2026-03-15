@@ -243,6 +243,15 @@ const NavbarLinks = () => {
     links.push(...devNavbarLinks);
   }
 
+  // add cheatsheet link
+  links.push(
+    {
+        text: 'Cheatsheet',
+        collapsible: true, // Allows collapsing sections
+        link: '/Cheatsheet.md',
+      },
+  )
+
   return links;
 }
 
@@ -387,15 +396,15 @@ export default defineUserConfig({
     ],
     sidebarDepth: 1,
     sidebar: [
+      MotherOSSidebar,
+      MotherCoreSidebar,
+      process.env.NODE_ENV == 'development' ? MotherAutopilotSystemSidebar : {},
       // Cheatsheet
       {
         text: 'Cheatsheet',
         collapsible: true, // Allows collapsing sections
         link: '/Cheatsheet.md',
       },
-      MotherOSSidebar,
-      MotherCoreSidebar,
-      process.env.NODE_ENV == 'development' ? MotherAutopilotSystemSidebar : {},
       "/PoweredByMother.md",
     ]
   }),
