@@ -1,6 +1,6 @@
 # Announcements
 
-[[toc]]
+<!-- [[toc]] -->
 
 ---
 

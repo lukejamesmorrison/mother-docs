@@ -94,6 +94,65 @@ Tags are defined within a block's Custom Data:
 tags=airlock,airlock-light
 ```
 
+### Variables
+
+Players can use variables in their commands to store and reuse values and logic. They can be defined in the Custom Data in the `[variables]` section, or provided by players at the time of command execution.
+
+#### Global Variables in Custom Data
+
+Global variables are defined *once* in the `[variables]` section of Mother's Custom Data. We don't expect these to change and so consider them constant during Mother runtime.  They can be used across all commands and routines, and are a great way to store values that are used frequently across your commands.
+
+```ini title="Mother > Custom Data"
+; Define a variable for use in commands
+[variables]
+WARNING_COLOR=red
+CLEAR_COLOR=green
+
+; Use the variable in a command with the $ prefix
+[commands]
+Alert=light/color AirlockLightInner $WARNING_COLOR;
+Clear=light/color AirlockLightInner $CLEAR_COLOR;
+```
+
+#### Runtime Variables in Commands
+
+Runtime Variables provide players with the flexibility to define dynamic commands that can be reused with different values.  They are used at the time of command execution giving players the ability to customize their commands on the fly. We use double curly braces `{{ }}` to indicate a runtime variable in a command. A default value can also be provided.
+
+```ini title="Example Syntax"
+CustomCommand=command {{name:default}};
+```
+
+Let's imagine we want a single command to open any door on our grid. We can define a command with a runtime variable like this:
+
+```ini title="Mother > Custom Data"
+[commands]
+; Single command with a runtime variable for the door name
+OpenDoor=door/open {{door}};
+
+; Or with a default value
+OpenDoor=door/open {{door:AirlockDoor}};
+
+; Or using a global variable for the default value
+OpenDoor=door/open {{door:$MAIN_DOOR}};
+
+; Routine with a runtime variable for a group of landing gear blocks
+ExtendLandingGear=
+| piston/distance {{blockGroup}} 3;
+| hinge/rotate {{blockGroup}} 70;
+```
+
+We can execute the command, and provide the `door` option where we specifically target the `AirlockDoor`. When using a routine, we can provide the `blockGroup` variable to target the entire `LandingGearAssembly` group and the command will determine which blocks in the groups should operate based on the group name.
+
+```bash title="Terminal"
+# Single command with runtime variable
+OpenDoor --door=AirlockDoor;
+
+# Or with default value
+OpenDoor;
+
+# Routine with runtime variable
+ExtendLandingGear --blockGroup=LandingGearAssembly;
+```
 
 ## Running a Routine
 
@@ -130,6 +189,37 @@ Now we can run `ActivateLandingLight` in the terminal to execute the routine, or
 ActivateLandingLight; ExtendArm;
 ```
 
+## Running Commands in Parallel
+
+As your library of commands and routines grows, you will quickly want to dispatch them in parallel, rather than having everything run sequentially.  By default, commands and routines run sequentially, meaning that the next command will not start until the previous one has finished.  To run commands in parallel, we simply wrap then in single curly braces `{ }`:
+
+```ini
+[commands]
+; Sequential commands (run one after another).
+SequentialRoutine=
+| light/color Light1 red;
+| light/color Light2 green;
+| light/color Light3 blue;
+
+; Parallel commands (run at the same time).
+ParallelRoutine=
+| {light/color Light1 red} 
+| {light/color Light2 green}
+| {light/color Light3 blue}
+
+; Combo routine with both sequential and parallel commands.
+; wait 5 seconds, then execute parallel commands
+ComboRoutine=
+| wait 5;
+| {light/color Light2 green}
+| {light/color Light3 blue}
+```
+
+::: note
+Commands are not technically run in parallel, but this is imperceptible to the player as they usually execute within the same program cycle.
+:::
+
+
 ## Delaying Command Execution
 Mother comes with a `wait` command that allow you to delays a command for execution in seconds.
 
@@ -154,9 +244,10 @@ The terminal window act as the primary interface for Mother.  You can run comman
 |#			| A number showing how many grids Mother is currently storing in the Almanac. Mother stores the position and status of other grids automatically as long as they are running Mother locally as well. |
 |M			| Shows a mechanical system is currently in motion and tracked by the Activity Monitor.  Blocks like rotors, hinges and pistons will be monitored, and locked when finished to protect Space Engineers from the Almighty Clang.|
 |C			| Indicates a communication is current in progress.  Grids running Mother will frequently communicate to share information automatically. |
-|Q			| Indicates that a command is queued for future execution at a waypoint. |
 |A			| Indicates that autopilot is currently enabled. |
 |W          | Indicates that a command is currently waiting to be exeucuted at a later time via the `wait` command. |
+
+<!-- |Q			| Indicates that a command is queued for future execution at a waypoint. | -->
 
 
 ![The terminal window](Assets/terminal-1.png)

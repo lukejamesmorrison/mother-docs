@@ -19,6 +19,7 @@ Options
 | `speed` | [-5.0, 5.0] | RPM  | Set the speed of the hinge. Negative values will reverse the hinge. Default is 1 RPM. |
 | `add` | `true`, `false` | `bool`  | Indicates that the provided angle should be *added* to the current angle. Allows incremental changes to angle. |
 | `sub` | `true`, `false` | `bool`  | Indicates that the provided angle should be *subtracted* from the current angle. Allows decremental changes to angle. |
+| `share` |  |  | Indicates that the angle should be shared across all hinges in the group. This means that if you have 3 hinges in a group and set an angle of 90 degrees with sharing enabled, each hinge will rotate to 30 degrees. If sharing is disabled, each hinge will rotate to the full 90 degrees. |
 
 **Example**
 Rotate the landing gear hinge to 90 degrees.
@@ -29,6 +30,11 @@ hinge/rotate LandingGearHinge 90;
 Reduce the angle of the landing gear hinge by 10 degrees.
 ```bash title="Terminal"
 hinge/rotate LandingGearHinge 10 --sub;
+```
+
+Share an angle of 90 degrees across 3 hinges in the "Turret Hinges" group:
+```bash title="Terminal"
+hinge/rotate "Turret Hinges" 90 --share;
 ```
 
 ### lock

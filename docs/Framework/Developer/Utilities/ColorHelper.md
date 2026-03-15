@@ -17,6 +17,9 @@ Color red = ColorHelper.GetColor("red");
 
 // by RGB string
 Color blue = ColorHelper.GetColor("0,0,255");
+
+// by hexidecimal string
+Color green = ColorHelper.GetColor("#00FF00");
 ```
 
 ## Available Colors

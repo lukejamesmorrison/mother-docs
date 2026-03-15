@@ -21,6 +21,7 @@ Options
 | ------- | ---------- | ---- | ------------------------------------------------------------------- |
 | `add` | `true`, `false` | `bool`  | Indicates that the distance should be *added* to the current distance. Allows incremental changes to distance. |
 | `sub` | `true`, `false` | `bool`  | Indicates that the distance should be *subtracted* from the current distance. Allows decremental changes to distance. |
+| `share` |  |  | Indicates that the distance should be shared across all pistons in the group. This means that if you have 4 pistons in a group and set a distance of 2 meters with sharing enabled, each piston will extend to 0.5 meters. If sharing is disabled, each piston will extend to the full 2 meters. |
 
 **Example**
 
@@ -32,6 +33,11 @@ piston/distance TurretPistons 5;
 Decrease the distance of the turret pistons by 1 meter:
 ```bash title="Terminal"
 piston/distance TurretPistons 1 --sub; 
+```
+
+Share a distance of 4 meters across 4 pistons in the "Landing Gear Pistons" group:
+```bash title="Terminal"
+piston/distance "Landing Gear Pistons" 4 --share;
 ```
 
 ### stop

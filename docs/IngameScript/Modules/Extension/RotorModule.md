@@ -17,6 +17,7 @@ Options
 | `speed` | [-5.0, 5.0] | RPM  | Set the speed of the rotor. Negative values will reverse the hinge. Default is 1 RPM. |
 | `add` | `true`, `false` | `bool`  | Indicates that the provided angle should be *added* to the current angle. Allows incremental changes to angle. |
 | `sub` | `true`, `false` | `bool`  | Indicates that the provided angle should be *subtracted* from the current angle. Allows decremental changes to angle. |
+| `share` |  |  | Indicates that the angle should be shared across all rotors in the group. This means that if you have 3 rotors in a group and set an angle of 90 degrees with sharing enabled, each rotor will rotate to 30 degrees. If sharing is disabled, each rotor will rotate to the full 90 degrees. |
 
 **Example**
 Set the antenna rotor to 90 degrees with a speed of 2.5 RPM:
@@ -27,6 +28,11 @@ rotor/rotate AntennaRotor 90 --speed=2.5;
 Increase the angle of the antenna rotor by 45 degrees:
 ```bash title="Terminal"
 hinge/rotate LandingGearHinge 45 --add;
+```
+
+Share an angle of 90 degrees across 3 rotors in the "Solar Panel Rotors" group:
+```bash title="Terminal"
+rotor/rotate "Solar Panel Rotors" 90 --share;
 ```
 
 ### lock

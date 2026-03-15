@@ -469,19 +469,19 @@ Set the background color of the screen using RGB values.
 screen/bgcolor <Screen|Group> <Color>
 ```
 
-You have access to the following colors which may be used in place of their RGB values:
+You have access to the following colors which may be used in place of their RGB or Hex values:
 
 |Name                                                   | RGB         | Hexidecimal   |
 |---                                                    |---          | ---           |
-|![red](https://img.shields.io/badge/red-FF0000)        |255,0,0      | FF0000        |
-|![green](https://img.shields.io/badge/green-00FF00)    |0,255,0      | 00FF00        |
-|![blue](https://img.shields.io/badge/blue-0000FF)      |0,0,255      | 0000FF        |
-|![yellow](https://img.shields.io/badge/yellow-FFFF00)  |255,255,0    | FFFF00        |
-|![orange](https://img.shields.io/badge/orange-FFA500)  |255,165,0    | FFA500        |
-|![cyan](https://img.shields.io/badge/cyan-00FFFF)      |0,255,255    | 00FFFF        |
-|![magenta](https://img.shields.io/badge/magenta-FF00FF)|255,0,255    | FF00FF        |
-|![white](https://img.shields.io/badge/white-FFFFFF)    |255,255,255  | FFFFFF        |
-|![black](https://img.shields.io/badge/black-000000)    |0,0,0        | 000000        |
+|![red](https://img.shields.io/badge/red-FF0000)        |255,0,0      | #FF0000        |
+|![green](https://img.shields.io/badge/green-00FF00)    |0,255,0      | #00FF00        |
+|![blue](https://img.shields.io/badge/blue-0000FF)      |0,0,255      | #0000FF        |
+|![yellow](https://img.shields.io/badge/yellow-FFFF00)  |255,255,0    | #FFFF00        |
+|![orange](https://img.shields.io/badge/orange-FFA500)  |255,165,0    | #FFA500        |
+|![cyan](https://img.shields.io/badge/cyan-00FFFF)      |0,255,255    | #00FFFF        |
+|![magenta](https://img.shields.io/badge/magenta-FF00FF)|255,0,255    | #FF00FF        |
+|![white](https://img.shields.io/badge/white-FFFFFF)    |255,255,255  | #FFFFFF        |
+|![black](https://img.shields.io/badge/black-000000)    |0,0,0        | #000000        |
 
 **Example**
 
@@ -503,19 +503,19 @@ Set the color of the text on the screen using RGB values.
 screen/color <Screen|Group> <Color>
 ```
 
-You have access to the following colors which may be used in place of their RGB values:
+You have access to the following colors which may be used in place of their RGB or Hex values:
 
 |Name                                                   | RGB         | Hexidecimal   |
 |---                                                    |---          | ---           |
-|![red](https://img.shields.io/badge/red-FF0000)        |255,0,0      | FF0000        |
-|![green](https://img.shields.io/badge/green-00FF00)    |0,255,0      | 00FF00        |
-|![blue](https://img.shields.io/badge/blue-0000FF)      |0,0,255      | 0000FF        |
-|![yellow](https://img.shields.io/badge/yellow-FFFF00)  |255,255,0    | FFFF00        |
-|![orange](https://img.shields.io/badge/orange-FFA500)  |255,165,0    | FFA500        |
-|![cyan](https://img.shields.io/badge/cyan-00FFFF)      |0,255,255    | 00FFFF        |
-|![magenta](https://img.shields.io/badge/magenta-FF00FF)|255,0,255    | FF00FF        |
-|![white](https://img.shields.io/badge/white-FFFFFF)    |255,255,255  | FFFFFF        |
-|![black](https://img.shields.io/badge/black-000000)    |0,0,0        | 000000        |
+|![red](https://img.shields.io/badge/red-FF0000)        |255,0,0      | #FF0000        |
+|![green](https://img.shields.io/badge/green-00FF00)    |0,255,0      | #00FF00        |
+|![blue](https://img.shields.io/badge/blue-0000FF)      |0,0,255      | #0000FF        |
+|![yellow](https://img.shields.io/badge/yellow-FFFF00)  |255,255,0    | #FFFF00        |
+|![orange](https://img.shields.io/badge/orange-FFA500)  |255,165,0    | #FFA500        |
+|![cyan](https://img.shields.io/badge/cyan-00FFFF)      |0,255,255    | #00FFFF        |
+|![magenta](https://img.shields.io/badge/magenta-FF00FF)|255,0,255    | #FF00FF        |
+|![white](https://img.shields.io/badge/white-FFFFFF)    |255,255,255  | #FFFFFF        |
+|![black](https://img.shields.io/badge/black-000000)    |0,0,0        | #000000        |
 
 **Example**
 
@@ -540,22 +540,22 @@ screen/print <Screen|Group> <Message> <Options>
 Options
 | Option  | Values      | Unit  | Description                                                           |
 | ------- | ----------  | ----  | -------------------------------------------------------------------   |
-| `color` | RGB         |       | Set the color of the text.                                            |
+| `color` | RGB, Hex         |       | Set the color of the text.                                            |
 | `size`  | Number    |       | Set the text size between 0.0 and 10.0.                                 |
 
-You have access to the following colors which may be used in place of their RGB values:
+You have access to the following colors which may be used in place of their RGB or Hex values:
 
 |Name                                                   | RGB         | Hexidecimal   |
 |---                                                    |---          | ---           |
-|![red](https://img.shields.io/badge/red-FF0000)        |255,0,0      | FF0000        |
-|![green](https://img.shields.io/badge/green-00FF00)    |0,255,0      | 00FF00        |
-|![blue](https://img.shields.io/badge/blue-0000FF)      |0,0,255      | 0000FF        |
-|![yellow](https://img.shields.io/badge/yellow-FFFF00)  |255,255,0    | FFFF00        |
-|![orange](https://img.shields.io/badge/orange-FFA500)  |255,165,0    | FFA500        |
-|![cyan](https://img.shields.io/badge/cyan-00FFFF)      |0,255,255    | 00FFFF        |
-|![magenta](https://img.shields.io/badge/magenta-FF00FF)|255,0,255    | FF00FF        |
-|![white](https://img.shields.io/badge/white-FFFFFF)    |255,255,255  | FFFFFF        |
-|![black](https://img.shields.io/badge/black-000000)    |0,0,0        | 000000        |
+|![red](https://img.shields.io/badge/red-FF0000)        |255,0,0      | #FF0000        |
+|![green](https://img.shields.io/badge/green-00FF00)    |0,255,0      | #00FF00        |
+|![blue](https://img.shields.io/badge/blue-0000FF)      |0,0,255      | #0000FF        |
+|![yellow](https://img.shields.io/badge/yellow-FFFF00)  |255,255,0    | #FFFF00        |
+|![orange](https://img.shields.io/badge/orange-FFA500)  |255,165,0    | #FFA500        |
+|![cyan](https://img.shields.io/badge/cyan-00FFFF)      |0,255,255    | #00FFFF        |
+|![magenta](https://img.shields.io/badge/magenta-FF00FF)|255,0,255    | #FF00FF        |
+|![white](https://img.shields.io/badge/white-FFFFFF)    |255,255,255  | #FFFFFF        |
+|![black](https://img.shields.io/badge/black-000000)    |0,0,0        | #000000        |
 
 **Example**
 
@@ -748,6 +748,7 @@ Options
 | `speed` | [-5.0, 5.0] | RPM  | Set the speed of the hinge. Negative values will reverse the hinge. Default is 1 RPM. |
 | `add` | `true`, `false` | `bool`  | Indicates that the provided angle should be *added* to the current angle. Allows incremental changes to angle. |
 | `sub` | `true`, `false` | `bool`  | Indicates that the provided angle should be *subtracted* from the current angle. Allows decremental changes to angle. |
+| `share` |  |  | Indicates that the angle should be shared across all hinges in the group. This means that if you have 3 hinges in a group and set an angle of 90 degrees with sharing enabled, each hinge will rotate to 30 degrees. If sharing is disabled, each hinge will rotate to the full 90 degrees. |
 
 ### hinge/lock
 Lock a hinge or group of hinges.
@@ -870,19 +871,19 @@ Set the color of a light or group of lights. The color of the light is RGB ie. `
 light/color <Light|Group> <color>
 ```
 
-You have access to the following colors which may be used in place of their RGB values:
+You have access to the following colors which may be used in place of their RGB or Hex values:
 
 |Name                                                   | RGB         | Hexidecimal   |
 |---                                                    |---          | ---           |
-|![red](https://img.shields.io/badge/red-FF0000)        |255,0,0      | FF0000        |
-|![green](https://img.shields.io/badge/green-00FF00)    |0,255,0      | 00FF00        |
-|![blue](https://img.shields.io/badge/blue-0000FF)      |0,0,255      | 0000FF        |
-|![yellow](https://img.shields.io/badge/yellow-FFFF00)  |255,255,0    | FFFF00        |
-|![orange](https://img.shields.io/badge/orange-FFA500)  |255,165,0    | FFA500        |
-|![cyan](https://img.shields.io/badge/cyan-00FFFF)      |0,255,255    | 00FFFF        |
-|![magenta](https://img.shields.io/badge/magenta-FF00FF)|255,0,255    | FF00FF        |
-|![white](https://img.shields.io/badge/white-FFFFFF)    |255,255,255  | FFFFFF        |
-|![black](https://img.shields.io/badge/black-000000)    |0,0,0        | 000000        |
+|![red](https://img.shields.io/badge/red-FF0000)        |255,0,0      | #FF0000        |
+|![green](https://img.shields.io/badge/green-00FF00)    |0,255,0      | #00FF00        |
+|![blue](https://img.shields.io/badge/blue-0000FF)      |0,0,255      | #0000FF        |
+|![yellow](https://img.shields.io/badge/yellow-FFFF00)  |255,255,0    | #FFFF00        |
+|![orange](https://img.shields.io/badge/orange-FFA500)  |255,165,0    | #FFA500        |
+|![cyan](https://img.shields.io/badge/cyan-00FFFF)      |0,255,255    | #00FFFF        |
+|![magenta](https://img.shields.io/badge/magenta-FF00FF)|255,0,255    | #FF00FF        |
+|![white](https://img.shields.io/badge/white-FFFFFF)    |255,255,255  | #FFFFFF        |
+|![black](https://img.shields.io/badge/black-000000)    |0,0,0        | #000000        |
 
 **Example**
 
@@ -891,6 +892,8 @@ You have access to the following colors which may be used in place of their RGB 
 light/color LandingLight red;
 # by RGB
 light/color LandingLight 255,0,0;
+# by Hex
+light/color LandingLight #FF0000;
 ```
 
 ### light/blink
@@ -996,6 +999,7 @@ Options
 | ------- | ---------- | ---- | ------------------------------------------------------------------- |
 | `add` | `true`, `false` | `bool`  | Indicates that the distance should be *added* to the current distance. Allows incremental changes to distance. |
 | `sub` | `true`, `false` | `bool`  | Indicates that the distance should be *subtracted* from the current distance. Allows decremental changes to distance. |
+| `share` |  |   | Indicates that the distance should be shared across all pistons in the group. This means that if you have 4 pistons in a group and set a distance of 2 meters with sharing enabled, each piston will extend to 0.5 meters. If sharing is disabled, each piston will extend to the full 2 meters. |
 
 ### piston/stop
 Stop a piston while in motion. Note that pistons do not lock like a Rotor or Hinge.
@@ -1085,6 +1089,7 @@ Options
 | `speed` | [-5.0, 5.0] | RPM  | Set the speed of the rotor. Negative values will reverse the hinge. Default is 1 RPM. |
 | `add` | `true`, `false` | `bool`  | Indicates that the provided angle should be *added* to the current angle. Allows incremental changes to angle. |
 | `sub` | `true`, `false` | `bool`  | Indicates that the provided angle should be *subtracted* from the current angle. Allows decremental changes to angle. |
+| `share` |  |  | Indicates that the angle should be shared across all rotors in the group. This means that if you have 3 rotors in a group and set an angle of 90 degrees with sharing enabled, each rotor will rotate to 30 degrees. If sharing is disabled, each rotor will rotate to the full 90 degrees. |
 
 
 ### rotor/lock
