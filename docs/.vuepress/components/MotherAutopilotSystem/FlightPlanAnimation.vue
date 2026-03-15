@@ -96,11 +96,11 @@
             stroke-width="2"
           />
           <!-- Engine glow -->
-          <ellipse 
+          <!-- <ellipse 
             cx="0" cy="10" rx="3" ry="5"
             fill="#FF6B35"
             class="engine-glow"
-          />
+          /> -->
         </g>
       </svg>
     </div>
@@ -475,10 +475,10 @@ onUnmounted(() => {
 }
 
 .waypoint-command {
-  fill: var(--cli-c-accent);
+  fill: #FF4444;
   font-size: 12px;
   font-family: var(--vp-font-family-mono);
-  opacity: 0.7;
+  opacity: 0.8;
   transition: all 0.3s ease;
 }
 
@@ -489,7 +489,7 @@ onUnmounted(() => {
 }
 
 .waypoint-command.command-completed {
-  fill: var(--cli-c-accent);
+  fill: #4CAF50;
   opacity: 1;
 }
 
@@ -499,7 +499,7 @@ onUnmounted(() => {
 
 /* Ship styling */
 .ship {
-  filter: drop-shadow(0 0 8px rgba(76, 175, 80, 0.8));
+  /* filter: drop-shadow(0 0 8px rgba(76, 175, 80, 0.8)); */
   transition: transform 0.1s linear;
 }
 
