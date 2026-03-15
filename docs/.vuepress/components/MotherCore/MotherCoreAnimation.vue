@@ -296,11 +296,11 @@ onBeforeUnmount(() => {
 }
 
 .diagram-container {
-  background: var(--vp-c-bg-alt);
+  background: var(--cli-c-bg);
   border-radius: 12px;
   padding: 1rem;
   margin-top: 1rem;
-  border: 1px solid var(--vp-c-border);
+  border: 1px solid var(--cli-c-border);
 }
 
 .core-svg {

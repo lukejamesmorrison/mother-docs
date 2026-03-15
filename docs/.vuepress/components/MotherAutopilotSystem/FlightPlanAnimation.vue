@@ -394,21 +394,21 @@ onUnmounted(() => {
   width: 100%;
   max-width: 960px;
   margin: 0 auto;
-  background: var(--vp-c-bg-alt);
+  background: var(--cli-c-bg);
   border-radius: 12px;
   overflow: hidden;
-  border: 1px solid var(--vp-c-border);
-  box-shadow: 0 4px 20px var(--vp-c-shadow);
+  border: 1px solid var(--cli-c-border);
+  box-shadow: 0 4px 20px var(--cli-c-shadow);
 }
 
 .flight-plan-header {
-  background: var(--vp-c-bg-elv);
+  background: var(--cli-c-bg-elv);
   padding: 10px 20px;
-  border-bottom: 1px solid var(--vp-c-border);
+  border-bottom: 1px solid var(--cli-c-border);
 }
 
 .route-label {
-  color: var(--vp-c-text);
+  color: var(--cli-c-text);
   font-size: 16px;
   font-weight: 600;
   font-family: var(--vp-font-family-mono);
@@ -428,7 +428,7 @@ onUnmounted(() => {
 /* Flight path styling */
 .flight-path {
   fill: none;
-  stroke: var(--vp-c-border);
+  stroke: var(--cli-c-border);
   stroke-width: 3;
   stroke-linecap: round;
   stroke-linejoin: round;
@@ -436,13 +436,13 @@ onUnmounted(() => {
 }
 
 .flight-path.path-active {
-  stroke: var(--vp-c-text-mute);
+  stroke: var(--cli-c-text-mute);
   stroke-dasharray: 8, 4;
   animation: dash 0.5s linear infinite;
 }
 
 .flight-path.path-completed {
-  stroke: var(--vp-c-text);
+  stroke: var(--cli-c-text);
 }
 
 @keyframes dash {
@@ -462,20 +462,20 @@ onUnmounted(() => {
 
 /* Text styling */
 .waypoint-name {
-  fill: var(--vp-c-text);
+  fill: var(--cli-c-text);
   font-size: 14px;
   font-weight: 600;
   font-family: var(--vp-font-family-base);
 }
 
 .waypoint-distance {
-  fill: var(--vp-c-text-mute);
+  fill: var(--cli-c-text-mute);
   font-size: 11px;
   font-family: var(--vp-font-family-mono);
 }
 
 .waypoint-command {
-  fill: var(--vp-c-accent);
+  fill: var(--cli-c-accent);
   font-size: 12px;
   font-family: var(--vp-font-family-mono);
   opacity: 0.7;
@@ -489,12 +489,12 @@ onUnmounted(() => {
 }
 
 .waypoint-command.command-completed {
-  fill: #4CAF50;
+  fill: var(--cli-c-accent);
   opacity: 1;
 }
 
 .command-arrow {
-  fill: #fff;
+  fill: var(--cli-c-text);
 }
 
 /* Ship styling */
@@ -520,18 +520,18 @@ onUnmounted(() => {
 
 /* CLI Display */
 .cli-display {
-  background: var(--vp-c-bg-alt);
-  border-top: 1px solid var(--vp-c-border);
+  background: var(--cli-c-bg);
+  border-top: 1px solid var(--cli-c-border);
   font-family: var(--vp-font-family-mono);
 }
 
 .cli-header {
-  background: var(--vp-c-bg-elv);
+  background: var(--cli-c-bg-elv);
   padding: 8px 12px;
   display: flex;
   align-items: center;
   gap: 6px;
-  border-bottom: 1px solid var(--vp-c-border);
+  border-bottom: 1px solid var(--cli-c-border);
 }
 
 .cli-dot {
@@ -540,13 +540,13 @@ onUnmounted(() => {
   border-radius: 50%;
 }
 
-.cli-dot.red { background: var(--vp-c-accent); }
-.cli-dot.yellow { background: #ffbd2e; }
-.cli-dot.green { background: #27ca40; }
+.cli-dot.red { background: var(--cli-c-dot-red); }
+.cli-dot.yellow { background: var(--cli-c-dot-yellow); }
+.cli-dot.green { background: var(--cli-c-dot-green); }
 
 .cli-title {
   margin-left: 8px;
-  color: var(--vp-c-text-mute);
+  color: var(--cli-c-text-mute);
   font-size: 12px;
 }
 
@@ -569,17 +569,17 @@ onUnmounted(() => {
 }
 
 .cli-prompt {
-  color: var(--vp-c-accent);
+  color: var(--cli-c-accent);
   margin-right: 8px;
 }
 
 .cli-command {
   font-weight: 500;
-  color: var(--vp-c-text);
+  color: var(--cli-c-text);
 }
 
 .cli-cursor {
-  color: var(--vp-c-accent);
+  color: var(--cli-c-accent);
   animation: blink 1s step-end infinite;
 }
 

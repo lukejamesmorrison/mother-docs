@@ -62,21 +62,21 @@ defineExpose({
 
 <style scoped>
 .cli-display {
-  background: var(--vp-c-bg-alt);
+  background: var(--cli-c-bg);
   border-radius: 8px;
   overflow: hidden;
   font-family: var(--vp-font-family-mono);
-  box-shadow: 0 4px 20px var(--vp-c-shadow);
-  border: 1px solid var(--vp-c-border);
+  box-shadow: 0 4px 20px var(--cli-c-shadow);
+  border: 1px solid var(--cli-c-border);
 }
 
 .cli-header {
-  background: var(--vp-c-bg-elv);
+  background: var(--cli-c-bg-elv);
   padding: 8px 12px;
   display: flex;
   align-items: center;
   gap: 6px;
-  border-bottom: 1px solid var(--vp-c-border);
+  border-bottom: 1px solid var(--cli-c-border);
 }
 
 .cli-dot {
@@ -85,13 +85,13 @@ defineExpose({
   border-radius: 50%;
 }
 
-.cli-dot.red { background: var(--vp-c-accent); }
-.cli-dot.yellow { background: #ffbd2e; }
-.cli-dot.green { background: #27ca40; }
+.cli-dot.red { background: var(--cli-c-dot-red); }
+.cli-dot.yellow { background: var(--cli-c-dot-yellow); }
+.cli-dot.green { background: var(--cli-c-dot-green); }
 
 .cli-title {
   margin-left: 8px;
-  color: var(--vp-c-text-mute);
+  color: var(--cli-c-text-mute);
   font-size: 12px;
 }
 
@@ -113,17 +113,17 @@ defineExpose({
 }
 
 .cli-prompt {
-  color: var(--vp-c-accent);
+  color: var(--cli-c-accent);
   margin-right: 8px;
 }
 
 .cli-command {
   font-weight: 500;
-  color: var(--vp-c-text);
+  color: var(--cli-c-text);
 }
 
 .cli-cursor {
-  color: var(--vp-c-accent);
+  color: var(--cli-c-accent);
   animation: blink 1s step-end infinite;
 }
 

@@ -121,7 +121,7 @@ const blocks = [
     id: 'mother-core', 
     title: 'Mother Core', 
     description: 'Develop your own scripts with a rich framework for spacecraft automation', 
-    path: '/MotherCore/README.md',
+    path: '/Framework/README.md',
     x1: 340, y1: 320, x2: 960, y2: 440
   }
 ]

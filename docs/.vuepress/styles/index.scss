@@ -71,6 +71,19 @@
   --badge-c-note-text: var(--vp-c-grey-text);
   --badge-c-note-bg: var(--vp-c-grey-soft);
 
+  // CLI/Terminal colors - always dark regardless of theme
+  --cli-c-bg: #1b1b1f;
+  --cli-c-bg-alt: #161618;
+  --cli-c-bg-elv: #202127;
+  --cli-c-text: rgb(235 235 245 / 86%);
+  --cli-c-text-mute: rgb(235 235 245 / 60%);
+  --cli-c-border: #3c3f44;
+  --cli-c-shadow: rgb(0 0 0 / 30%);
+  --cli-c-accent: #4CAF50;
+  --cli-c-dot-red: #ff5f56;
+  --cli-c-dot-yellow: #ffbd2e;
+  --cli-c-dot-green: #27ca40;
+
   // search input styles
   // @see https://ecosystem.vuejs.press/plugins/search/search.html#styles
   // --search-c-bg: var(--vp-c-bg);
