@@ -40,7 +40,7 @@ footer: MIT Licensed | © 2026 Agentluke | The Empire must grow.
 
 <AnnouncementBanner 
   icon="🎉" 
-  link="/IngameScript/UpgradeGuide.md" 
+  link="/Announcements.md#version-1-1-now-available---march-15-2026" 
   linkText="Learn more →"
   storageKey="v1.1-announcement-v1"
 >

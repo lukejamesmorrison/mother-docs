@@ -198,7 +198,7 @@ const sequences = [
     ]
   },
   {
-    command: { text: 'fp/set "{ Mothership }"; fcs/start;', color: '#00B0FF' },
+    command: { text: 'fp/set "Mothership LandingSite"; fcs/start;', color: '#00B0FF' },
     description: 'Your Script calls MAPS navigation remotely',
     pulses: [
       { from: 'yourscript', to: 'maps', color: '#00B0FF' }
