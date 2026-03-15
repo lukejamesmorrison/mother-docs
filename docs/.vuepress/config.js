@@ -84,11 +84,6 @@ const MotherOSSidebar = {
         '/IngameScript/Modules/Extension/TimerBlockModule.md',
       ],
     },
-    {
-      text: 'Cheatsheet',
-      collapsible: true, // Allows collapsing sections
-      link: '/IngameScript/Cheatsheet.md',
-    },
     '/IngameScript/Compatibility.md',
     '/IngameScript/Examples.md',
     // '/PoweredByMother.md',
@@ -392,6 +387,12 @@ export default defineUserConfig({
     ],
     sidebarDepth: 1,
     sidebar: [
+      // Cheatsheet
+      {
+        text: 'Cheatsheet',
+        collapsible: true, // Allows collapsing sections
+        link: '/Cheatsheet.md',
+      },
       MotherOSSidebar,
       MotherCoreSidebar,
       process.env.NODE_ENV == 'development' ? MotherAutopilotSystemSidebar : {},

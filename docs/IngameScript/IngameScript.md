@@ -59,7 +59,7 @@ Using Mother OS does not require any programming/coding experience.
 
 - **Secure Intergrid Communication** - Grids [share positions](Modules/Core/Almanac.md) and easy easily send commands remotely to each other.
   
-- **Expanded Automation** - Mother OS simplifies interacting with the mechanical systems on your grid, and monitors them for changes. See the [Cheatsheet](Cheatsheet.md).
+- **Expanded Automation** - Mother OS simplifies interacting with the mechanical systems on your grid, and monitors them for changes. See the [Cheatsheet](../Cheatsheet.md).
   
 - **Copy Automations with Ease** - Easily port your automations from one grid to another by copying `Custom Data` text.
 

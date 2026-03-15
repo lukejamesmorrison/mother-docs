@@ -1,13 +1,11 @@
 # Cheatsheet
 
-Commands and hooks belong to [Modules](Modules/Modules.md). Commands are executed via the Programmable Block terminal, while hooks are automated triggers defined in block Custom Data.
-
-The following is a comprehensive reference for all commands and hooks available in the default modules.
+This cheatsheet contains commands and hooks for all Mother project scripts. Currently, this includes [Mother Core](Framework/README.md), [Mother OS](IngameScript/IngameScript.md), and [Mother Autopilot System (MAPS)](MotherAutopilotSystem/README.md).  All commands and modules are anotated with the script they belong to, so you can easily find more information about how to use them in the documentation.
 
 [[toc]]
 
 ## Terminal Blocks (All Blocks)
-[![Static Badge](https://img.shields.io/badge/Terminal_Block_Module-Mother_OS-red?color=red)](Modules/Extension/TerminalBlockModule.md)
+[![Static Badge](https://img.shields.io/badge/Terminal_Block_Module-Mother_OS-red?color=red)](IngameScript/Modules/Extension/TerminalBlockModule.md)
 
 :::tip Tip
 These commands and hooks work on all blocks accessible by Mother.
@@ -121,7 +119,7 @@ DrillPiston.onOn=light/color DrillIndicatorLight green;
 :::
 
 ## Air Vents
-[![Static Badge](https://img.shields.io/badge/Air_Vent_Module-Mother_OS-red?color=red)](Modules/Extension/AirVentModule.md)
+[![Static Badge](https://img.shields.io/badge/Air_Vent_Module-Mother_OS-red?color=red)](IngameScript/Modules/Extension/AirVentModule.md)
 
 ::: tabs
 
@@ -161,7 +159,7 @@ onDepressurized=light/color "Airlock Light" red; door/open "Outer Door";
 :::
 
 ## Batteries
-[![Static Badge](https://img.shields.io/badge/Battery_Module-Mother_OS-red?color=red)](Modules/Extension/BatteryModule.md)
+[![Static Badge](https://img.shields.io/badge/Battery_Module-Mother_OS-red?color=red)](IngameScript/Modules/Extension/BatteryModule.md)
 
 ::: tabs
 
@@ -219,7 +217,7 @@ clear
 ```
 
 ### ping
-[![Static Badge](https://img.shields.io/badge/Almanac-Mother_Core-red?color=red)](Modules/Core/Almanac.md)
+[![Static Badge](https://img.shields.io/badge/Almanac-Mother_Core-red?color=red)](IngameScript/Modules/Core/Almanac.md)
 
 Ping all grids on the network and update the Almanac.
 ```bash
@@ -227,7 +225,7 @@ ping
 ```
 
 ### wait
-[Command Line Interface](CommandLineInterface.md)
+[Command Line Interface](IngameScript/CommandLineInterface.md)
 
 Delay a command or routine for execution. This can be used remotely as well.
 
@@ -243,11 +241,11 @@ light/color IndicatorLight red; wait 5; light/color IndicatorLight green;
 ```
 
 ### purge
-[![Static Badge](https://img.shields.io/badge/Almanac-Mother_Core-red?color=red)](Modules/Core/Almanac.md)&nbsp;
-[![Static Badge](https://img.shields.io/badge/Local_Storage-Mother_Core-red?color=red)](Modules/Core/LocalStorage.md)
+[![Static Badge](https://img.shields.io/badge/Almanac-Mother_Core-red?color=red)](IngameScript/Modules/Core/Almanac.md)&nbsp;
+[![Static Badge](https://img.shields.io/badge/Local_Storage-Mother_Core-red?color=red)](IngameScript/Modules/Core/LocalStorage.md)
 
 
-<!-- [Almanac](Modules/Core/Almanac.md), [LocalStorage](Modules/Core/LocalStorage.md) -->
+<!-- [Almanac](IngameScript/Modules/Core/Almanac.md), [LocalStorage](IngameScript/Modules/Core/LocalStorage.md) -->
 
 Purge modules of data.  This can be used to reset module data like the Almanac and LocalStorage.
 
@@ -284,7 +282,7 @@ purge almanac,storage --fo
 
 
 ### dock
-[![Static Badge](https://img.shields.io/badge/Docking_Module-Mother_Autopilot_System-red?color=red)](../MotherAutopilotSystem/Modules/DockingModule.md)
+[![Static Badge](https://img.shields.io/badge/Docking_Module-Mother_Autopilot_System-red?color=red)](MotherAutopilotSystem/Modules/DockingModule.md)
 
 Dock with a grid and specify optional connectors.  If you do not provide a connector, the grids will automatically select the connectors to use. This is most useful when you are building drones, and utility vehicles with only one connector. 
 
@@ -316,7 +314,7 @@ dock Mothership;
 :::
 
 ## Cockpits
-[![Static Badge](https://img.shields.io/badge/Copckpit_Module-Mother_OS-red?color=red)](Modules/Extension/CockpitModule.md)
+[![Static Badge](https://img.shields.io/badge/Copckpit_Module-Mother_OS-red?color=red)](IngameScript/Modules/Extension/CockpitModule.md)
 
 ::: tabs
 
@@ -407,7 +405,7 @@ onDampenersOff=light/color "Dampener Indicator" red;
 :::
 
 ## Connectors
-[![Static Badge](https://img.shields.io/badge/Connector_Module-Mother_OS-red?color=red)](Modules/Extension/ConnectorModule.md)
+[![Static Badge](https://img.shields.io/badge/Connector_Module-Mother_OS-red?color=red)](IngameScript/Modules/Extension/ConnectorModule.md)
 
 ::: tabs
 
@@ -457,7 +455,7 @@ DockConnector.onUnlock=light/color "Dock Light" green;
 :::
 
 ## Displays
-[![Static Badge](https://img.shields.io/badge/Display_Module-Mother_OS-red?color=red)](Modules/Extension/DisplayModule.md)
+[![Static Badge](https://img.shields.io/badge/Display_Module-Mother_OS-red?color=red)](IngameScript/Modules/Extension/DisplayModule.md)
 
 ::: tabs
 
@@ -578,7 +576,7 @@ screen/print "PilotCockpit:1" "ALERT" --color=red --size=10;
 :::
 
 ## Doors
-[![Static Badge](https://img.shields.io/badge/Door_Module-Mother_OS-red?color=red)](Modules/Extension/DoorModule.md)
+[![Static Badge](https://img.shields.io/badge/Door_Module-Mother_OS-red?color=red)](IngameScript/Modules/Extension/DoorModule.md)
 
 ::: tabs
 
@@ -626,13 +624,13 @@ You can use `this` to refer to the block itself when targeting it from within it
 :::
 
 ## Flight Control System
-[![Static Badge](https://img.shields.io/badge/Flight_Control_Module-Mother_Autopilot_System-red?color=red)](../MotherAutopilotSystem/Modules/FlightControlModule.md)
+[![Static Badge](https://img.shields.io/badge/Flight_Control_Module-Mother_Autopilot_System-red?color=red)](MotherAutopilotSystem/Modules/FlightControlModule.md)
 
 ::: tabs
 
 @tab Commands
 ### fcs/start
-Engage the autopilot system, enabling the grid to fly autonomously if a [flight plan](../MotherAutopilotSystem/Modules/FlightPlanningModule.md) is loaded.
+Engage the autopilot system, enabling the grid to fly autonomously if a [flight plan](MotherAutopilotSystem/Modules/FlightPlanningModule.md) is loaded.
 ```
 fcs/start [--options]
 ```
@@ -654,7 +652,7 @@ fcs/stop
 
 ## Flight Planning
 
-[![Static Badge](https://img.shields.io/badge/Flight_Planning_Module-Mother_Autopilot_System-red?color=red)](../MotherAutopilotSystem/Modules/FlightPlanningModule.md)
+[![Static Badge](https://img.shields.io/badge/Flight_Planning_Module-Mother_Autopilot_System-red?color=red)](MotherAutopilotSystem/Modules/FlightPlanningModule.md)
 
 ::: tabs
 
@@ -680,7 +678,7 @@ fp/clear
 :::
 
 ## Gas Tanks
-[![Static Badge](https://img.shields.io/badge/Gas_Tank_Module-Mother_OS-red?color=red)](Modules/Extension/GasTankModule.md)
+[![Static Badge](https://img.shields.io/badge/Gas_Tank_Module-Mother_OS-red?color=red)](IngameScript/Modules/Extension/GasTankModule.md)
 
 ::: tabs
 
@@ -708,9 +706,9 @@ tank/toggle <Tank|Group> [--options]
 :::
 
 ## Attitude Module
-<!-- [Attitude Module](Modules/Extension/GyroscopeModule.md) -->
+<!-- [Attitude Module](IngameScript/Modules/Extension/GyroscopeModule.md) -->
 
-[![Static Badge](https://img.shields.io/badge/Attitude_Module-Mother_Autopilot_System-red?color=red)](../MotherAutopilotSystem/Modules/AttitudeModule.md)
+[![Static Badge](https://img.shields.io/badge/Attitude_Module-Mother_Autopilot_System-red?color=red)](MotherAutopilotSystem/Modules/AttitudeModule.md)
 
 ::: tabs
 
@@ -732,7 +730,7 @@ gyro/face GPS:TopSecretBase:211.78:-52.93:59.19:#FF75C9F1:
 :::
 
 ## Hinges
-[![Static Badge](https://img.shields.io/badge/Hinge_Module-Mother_OS-red?color=red)](Modules/Extension/HingeModule.md)
+[![Static Badge](https://img.shields.io/badge/Hinge_Module-Mother_OS-red?color=red)](IngameScript/Modules/Extension/HingeModule.md)
 
 ::: tabs
 
@@ -805,7 +803,7 @@ onStop=light/color "Hinge Indicator" red;
 :::
 
 ## Landing Gear
-[![Static Badge](https://img.shields.io/badge/Landing_Gear_Module-Mother_OS-red?color=red)](Modules/Extension/LandingGearModule.md)
+[![Static Badge](https://img.shields.io/badge/Landing_Gear_Module-Mother_OS-red?color=red)](IngameScript/Modules/Extension/LandingGearModule.md)
 
 ::: tabs
 
@@ -858,7 +856,7 @@ onUnlock=light/color "Landing Light" red;
 :::
 
 ## Lights
-[![Static Badge](https://img.shields.io/badge/Light_Module-Mother_OS-red?color=red)](Modules/Extension/LightModule.md)
+[![Static Badge](https://img.shields.io/badge/Light_Module-Mother_OS-red?color=red)](IngameScript/Modules/Extension/LightModule.md)
 
 ::: tabs
 
@@ -906,10 +904,10 @@ You have access to several blinks which may be used instead of the value in seco
 
 | Name         | Blink Interval (s)  | Blink Length (%)    | Blink Offset (%)  | Example                                                                 |
 |--------------|:---------------:|:---------------:|:--------------------:|------------------------------------------------------------------------|
-| `off `        | 0             | 0            | 0                 | ![off-red](Assets/Blinks/off_blink_red.gif) ![off-green](Assets/Blinks/off_blink_green.gif) ![off-blue](Assets/Blinks/off_blink_blue.gif) |
-| `slow `        | 3             | 30            | 0                 | ![slow-red](Assets/Blinks/slow_blink_red.gif) ![slow-green](Assets/Blinks/slow_blink_green.gif) ![slow-blue](Assets/Blinks/slow_blink_blue.gif) |
-| `med`          | 1             | 50            | 0                 | ![med-red](Assets/Blinks/med_blink_red.gif) ![med-green](Assets/Blinks/med_blink_green.gif) ![med-blue](Assets/Blinks/med_blink_blue.gif)     |
-| `fast`         | 0.25          | 50            | 0                 | ![fast-red](Assets/Blinks/fast_blink_red.gif) ![fast-green](Assets/Blinks/fast_blink_green.gif) ![fast-blue](Assets/Blinks/fast_blink_blue.gif) |
+| `off `        | 0             | 0            | 0                 | ![off-red](IngameScript/Assets/Blinks/off_blink_red.gif) ![off-green](IngameScript/Assets/Blinks/off_blink_green.gif) ![off-blue](IngameScript/Assets/Blinks/off_blink_blue.gif) |
+| `slow `        | 3             | 30            | 0                 | ![slow-red](IngameScript/Assets/Blinks/slow_blink_red.gif) ![slow-green](IngameScript/Assets/Blinks/slow_blink_green.gif) ![slow-blue](IngameScript/Assets/Blinks/slow_blink_blue.gif) |
+| `med`          | 1             | 50            | 0                 | ![med-red](IngameScript/Assets/Blinks/med_blink_red.gif) ![med-green](IngameScript/Assets/Blinks/med_blink_green.gif) ![med-blue](IngameScript/Assets/Blinks/med_blink_blue.gif)     |
+| `fast`         | 0.25          | 50            | 0                 | ![fast-red](IngameScript/Assets/Blinks/fast_blink_red.gif) ![fast-green](IngameScript/Assets/Blinks/fast_blink_green.gif) ![fast-blue](IngameScript/Assets/Blinks/fast_blink_blue.gif) |
 
 
 #### Options
@@ -977,7 +975,7 @@ set <key> <value>
 :::
 
 ## Pistons
-[![Static Badge](https://img.shields.io/badge/Piston_Module-Mother_OS-red?color=red)](Modules/Extension/PistonModule.md)
+[![Static Badge](https://img.shields.io/badge/Piston_Module-Mother_OS-red?color=red)](IngameScript/Modules/Extension/PistonModule.md)
 
 ::: tabs
 
@@ -1046,7 +1044,7 @@ onRetracted=light/blink "Fuel Boom Light" off;
 :::
 
 ## Programmable Block
-[![Static Badge](https://img.shields.io/badge/Programmable_Block_Module-Mother_OS-red?color=red)](Modules/Extension/ProgrammableBlockModule.md)
+[![Static Badge](https://img.shields.io/badge/Programmable_Block_Module-Mother_OS-red?color=red)](IngameScript/Modules/Extension/ProgrammableBlockModule.md)
 
 ::: tabs
 
@@ -1069,7 +1067,7 @@ pb/run "PB.ThrusterManager" dampeners_on;
 :::
 
 ## Rotors
-[![Static Badge](https://img.shields.io/badge/Rotor_Module-Mother_OS-red?color=red)](Modules/Extension/RotorModule.md)
+[![Static Badge](https://img.shields.io/badge/Rotor_Module-Mother_OS-red?color=red)](IngameScript/Modules/Extension/RotorModule.md)
 
 ::: tabs
 
@@ -1148,7 +1146,7 @@ See the [Displays](#displays) section above.
 
  
 ## Sensors
-[![Static Badge](https://img.shields.io/badge/Sensor_Module-Mother_OS-red?color=red)](Modules/Extension/SensorModule.md)
+[![Static Badge](https://img.shields.io/badge/Sensor_Module-Mother_OS-red?color=red)](IngameScript/Modules/Extension/SensorModule.md)
 
 ::: tabs
 
@@ -1172,7 +1170,7 @@ onClear=light/blink "Landing Pad Light" off;
 :::
 
 ## Sorters
-[![Static Badge](https://img.shields.io/badge/Sorter_Module-Mother_OS-red?color=red)](Modules/Extension/SorterModule.md)
+[![Static Badge](https://img.shields.io/badge/Sorter_Module-Mother_OS-red?color=red)](IngameScript/Modules/Extension/SorterModule.md)
 
 ::: tabs
 
@@ -1199,7 +1197,7 @@ sorter/drain VerticalFarmHarvester false
 :::
 
 ## Sound Blocks
-[![Static Badge](https://img.shields.io/badge/Sound_Block_Module-Mother_OS-red?color=red)](Modules/Extension/SoundBlockModule.md)
+[![Static Badge](https://img.shields.io/badge/Sound_Block_Module-Mother_OS-red?color=red)](IngameScript/Modules/Extension/SoundBlockModule.md)
 
 ::: tabs
 
@@ -1292,7 +1290,7 @@ sound/play MainSpeaker "Space Funk";
 :::
 
 ## Thrusters
-[![Static Badge](https://img.shields.io/badge/Thruster_Module-Mother_OS-red?color=red)](Modules/Extension/ThrusterModule.md)
+[![Static Badge](https://img.shields.io/badge/Thruster_Module-Mother_OS-red?color=red)](IngameScript/Modules/Extension/ThrusterModule.md)
 
 ::: tabs
 
@@ -1321,7 +1319,7 @@ thruster/thrust MainThruster 10000N;
 :::
 
 ## Timer Blocks
-[![Static Badge](https://img.shields.io/badge/Timer_Block_Module-Mother_OS-red?color=red)](Modules/Extension/TimerBlockModule.md)
+[![Static Badge](https://img.shields.io/badge/Timer_Block_Module-Mother_OS-red?color=red)](IngameScript/Modules/Extension/TimerBlockModule.md)
 
 ::: tabs
 
