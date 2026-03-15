@@ -212,6 +212,7 @@ onBeforeUnmount(() => {
   display: block;
   width: 100%;
   height: auto;
+  background: transparent;
 }
 
 .block {

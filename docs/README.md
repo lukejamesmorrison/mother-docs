@@ -23,57 +23,26 @@ features:
 footer: MIT Licensed | © 2026 Agentluke | The Empire must grow.
 ---
 
-
 <script setup>
-  import MotherOSAnimation from '../../components/MotherOSAnimation.vue';
-  // import MotherOSAnimation2 from '../../components/MotherOSAnimation2.vue';
+  import MotherOSAnimation from '../../components/MotherOS/MotherOSAnimation.vue';
   import MotherCoreAnimation from '../../components/MotherCoreAnimation.vue';
   import MotherCoreOverview from '../../components/MotherCore/MotherCoreOverview.vue';
   import HomeHeroVideoSection from '../../components/HomeHeroVideoSection.vue';
   import HomeHeroOverrideSection from '../../components/HomeHeroOverrideSection.vue';
   import MotherProjectSpacecraftNavigator from '../../components/MotherProjectSpacecraftNavigator.vue';
   import ParticlesContainer from '../../components/ParticlesContainer.vue';
-  // import ParticlesContainer2 from '../../components/ParticlesContainer2.vue';
-
   import YoutubeCarousel from '../../components/YoutubeCarousel.vue';
-
+  import exampleVideos from '../../exampleVideos'
   import { onMounted } from 'vue';
-
 </script>
 
-  <!-- <MotherCoreOverview/>  -->
+<HomeHeroOverrideSection>
+  <MotherProjectSpacecraftNavigator/> 
+</HomeHeroOverrideSection>
 
-  <!-- <HomeHeroVideoSection/> -->
+<ParticlesContainer/>
 
-  <HomeHeroOverrideSection>
-    <MotherProjectSpacecraftNavigator/> 
-  </HomeHeroOverrideSection>
-
-  <ParticlesContainer/>
-
-  <YoutubeCarousel 
-    :videos="[
-      'https://www.youtube.com/embed/SLjJacXa5x0',
-      'https://www.youtube.com/embed/mHaCxK-0Jkg',
-      'https://www.youtube.com/embed/ar-oXKlYshY',
-      'https://www.youtube.com/embed/PSEBSYtT2Qk'
-    ]"
-    :autoplay="true"
-    :interval="5000"
-  />
-
-
-
- <!-- Full-width breakout
-<div class="relative left-1/2 right-1/2 -mx-[50vw] w-screen bg-blue-500 text-white py-8">
-  <div class="max-w-4xl mx-auto">
-    <h2 class="text-xl font-semibold">Full-Width Section</h2>
-    <p>
-      This background stretches across the entire viewport,
-      but the content inside is still aligned to the container.
-    </p>
-  </div>
-</div> -->
+<YoutubeCarousel :videos=exampleVideos :autoplay="true" :interval="5000"/>
  
 ## Mother OS
 
