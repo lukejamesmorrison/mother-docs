@@ -20,6 +20,7 @@ Core modules act as Mother's framework, enabling extension modules.
 | [Intergrid Message Service](Core/IntergridMessageService.md) | Handles communication between grids running Mother. |
 | [Local Storage](Core/LocalStorage.md) | Allows Mother to store information across cycles, even if an error occurs or a player hits `Recompile`. |
 | Log | Logs information about the grid and Mother's activity. |
+| [Merge Block](Core/MergeBlockModule.md) | Monitors merge blocks on the grid via hooks. |
 <!-- | [Security](Core/Security.md) | Responsible for encrypting messages and and other system data. | -->
 
 ## Extension Modules

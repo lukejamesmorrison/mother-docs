@@ -46,9 +46,10 @@ const MotherOSSidebar = {
         '/IngameScript/Modules/Core/ActivityMonitor.md',
         '/IngameScript/Modules/Core/Almanac.md',
         '/IngameScript/Modules/Core/BlockCatalogue.md',
-        '/IngameScript/Modules/Core/LocalStorage.md',
-        // '/IngameScript/Modules/Core/Security.md',
         '/IngameScript/Modules/Core/IntergridMessageService.md',
+        '/IngameScript/Modules/Core/LocalStorage.md',
+        '/IngameScript/Modules/Core/MergeBlockModule.md',
+        // '/IngameScript/Modules/Core/Security.md',
       ],
     },
     {
@@ -396,15 +397,16 @@ export default defineUserConfig({
     ],
     sidebarDepth: 1,
     sidebar: [
-      MotherOSSidebar,
-      MotherCoreSidebar,
-      process.env.NODE_ENV == 'development' ? MotherAutopilotSystemSidebar : {},
       // Cheatsheet
       {
         text: 'Cheatsheet',
         collapsible: true, // Allows collapsing sections
         link: '/Cheatsheet.md',
       },
+      MotherOSSidebar,
+      MotherCoreSidebar,
+      process.env.NODE_ENV == 'development' ? MotherAutopilotSystemSidebar : {},
+      
       "/PoweredByMother.md",
     ]
   }),

@@ -63,9 +63,7 @@ footer: MIT Licensed | © 2026 Agentluke | The Empire must grow.
 Mother OS 1.1 is now available!  Check out the [Get Started](IngameScript/IngameScript.md) guide to learn how to install and use Mother OS on your grids. Mother OS now interoperates automatically with other scripts running Mother Core, like the new Mother Autopilot System (MAPS) that will own autopilot capabilities moving forward.
 ::: -->
 
-
-
-Mother OS is an **ingame script** with a robust library of nearly 100 commands to control your grid. Your changes are updated automatically using the block's custom data property. Easily copy and paste complex routines, take them with you without needing mods, timer blocks, or event controllers.  Mother OS makes it easy to wirelessly send commands to other grids.
+Mother OS is an **ingame script** with a robust library of commands to control your grid. Your changes are updated automatically using the block's custom data property. Easily copy and paste complex routines, take them with you without needing mods, timer blocks, or event controllers.  Mother OS makes it easy to wirelessly send commands to other grids.
 
 [Get Started](./IngameScript/IngameScript.md) | [Cheatsheet](Cheatsheet.md) | [Examples](./IngameScript/Examples.md)
 

@@ -803,6 +803,32 @@ onStop=light/color "Hinge Indicator" red;
 
 :::
 
+## Merge Blocks
+[![Static Badge](https://img.shields.io/badge/Merge_Block_Module-Mother_Core-red?color=red)](IngameScript/Modules/Core/MergeBlockModule.md)
+
+::: tabs
+
+@tab Commands
+
+This module does not have any commands.
+
+@tab Hooks
+
+|Key                | Trigger                                       |
+|-                  |-                                              |
+| `onLock`          | Run when a merge block locks (merges with another block).         |
+| `onUnlock`        | Run when a merge block unlocks (separates from another block).        |
+
+**Example**
+
+```ini title="RampMergeBlock > Custom Data"
+[hooks]
+onLock=light/color "Ramp Light" green;
+onUnlock=light/color "Ramp Light" red;
+```
+
+:::
+
 ## Landing Gear
 [![Static Badge](https://img.shields.io/badge/Landing_Gear_Module-Mother_OS-red?color=red)](IngameScript/Modules/Extension/LandingGearModule.md)
 

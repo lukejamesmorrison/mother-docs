@@ -187,7 +187,7 @@ The response object can be used to send back a variety of response types, includ
 | 604  | CONNECTOR_NOT_FOUND   | The specified connector was not found. |
 
 :::info
-Many of these codes remain unused byut act as placeholders for future functionality.
+Many of these codes remain unused but act as placeholders for future functionality.
 :::
 
 ### Handing A Response
