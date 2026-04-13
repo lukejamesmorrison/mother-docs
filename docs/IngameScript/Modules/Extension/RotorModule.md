@@ -109,4 +109,6 @@ The following hooks can be define in the block's Custom Data, and will be trigge
 |-              |-                                      |
 | `onMoving`      | Activated when a rotor is put into motion by the [`rotor/rotate`](#rotate) command.    |
 | `onStop`      | Activated when a rotor stops from the [`rotor/rotate`](#rotate) command.      |
+| `onAttach`      | Activated when a rotor head is attached.      |
+| `onDetach`      | Activated when a rotor head is detached.      |
 

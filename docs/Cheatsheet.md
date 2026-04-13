@@ -792,6 +792,8 @@ Options
 |-                  |-                                      |
 | `onMoving`      | Activated when a hinge is put into motion by the [`hinge/rotate`](#rotate) command.    |
 | `onStop`      | Activated when a hinge stops from the [`hinge/rotate`](#rotate) command.      |
+| `onAttach`      | Activated when a hinge head is attached.      |
+| `onDetach`      | Activated when a hinge head is detached.      |
 
 **Example**
 
@@ -816,15 +818,15 @@ This module does not have any commands.
 
 |Key                | Trigger                                       |
 |-                  |-                                              |
-| `onLock`          | Run when a merge block locks (merges with another block).         |
-| `onUnlock`        | Run when a merge block unlocks (separates from another block).        |
+| `onMerge`          | Run when a merge block locks (merges with another block).         |
+| `onUnmerge`        | Run when a merge block unlocks (separates from another block).        |
 
 **Example**
 
 ```ini title="RampMergeBlock > Custom Data"
 [hooks]
-onLock=light/color "Ramp Light" green;
-onUnlock=light/color "Ramp Light" red;
+onMerge=light/color "Ramp Light" green;
+onUnmerge=light/color "Ramp Light" red;
 ```
 
 :::
@@ -1059,6 +1061,8 @@ Options
 | `onExtended`      | Activated when a piston is fully extended.      |
 | `onRetracting`     | Activated when a piston is retracting.    |
 | `onRetracted`   | Activated when a piston is fully retracted.    |
+| `onAttach`      | Activated when a piston head is attached.      |
+| `onDetach`      | Activated when a piston head is detached.      |
 
 
 **Example**
@@ -1160,6 +1164,8 @@ Options
 |-              |-                                      |
 | `onMoving`      | Activated when a rotor is put into motion by the [`rotor/rotate`](#rotate) command.    |
 | `onStop`      | Activated when a rotor stops from the [`rotor/rotate`](#rotate) command.      |
+| `onAttach`      | Activated when a rotor head is attached.      |
+| `onDetach`      | Activated when a rotor head is detached.      |
 
 **Example**
 

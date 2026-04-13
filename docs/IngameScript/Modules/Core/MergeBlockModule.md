@@ -14,8 +14,8 @@ The following hooks can be defined in the block's Custom Data, and will be trigg
 
 |Key                | Trigger                                       |
 |-                  |-                                              |
-| `onLock`          | Run when a merge block locks (merges with another block).         |
-| `onUnlock`        | Run when a merge block unlocks (separates from another block, or turns off).        |
+| `onMerge`          | Run when a merge block locks (merges with another block).         |
+| `onUnmerge`        | Run when a merge block unlocks (separates from another block, or turns off).        |
 
 **Example**
 
@@ -23,15 +23,15 @@ Imagine our merge block controls a detachable module and we want to indicate its
 
 ```ini title="ModuleMergeBlock > Custom Data"
 [hooks]
-onLock=light/color "Module Status Light" green;
-onUnlock=light/color "Module Status Light" red;
+onMerge=light/color "Module Status Light" green;
+onUnmerge=light/color "Module Status Light" red;
 ```
 or
 
 ```ini title="Mother > Custom Data"
 [hooks]
-RampMergeBlock.onLock=light/color "Ramp Light" green;
-"Cargo Pod Merge".onUnlock=sound/play "Separation Alarm";
+RampMergeBlock.onMerge=light/color "Ramp Light" green;
+"Cargo Pod Merge".onUnmerge=sound/play "Separation Alarm";
 ```
 
 :::note

@@ -103,6 +103,8 @@ The following hooks can be define in the block's Custom Data, and will be trigge
 | `onExtended`      | Activated when a piston is fully extended.      |
 | `onRetracting`     | Activated when a piston is retracting.    |
 | `onRetracted`   | Activated when a piston is fully retracted.    |
+| `onAttach`      | Activated when a piston head is attached.      |
+| `onDetach`      | Activated when a piston head is detached.      |
 
 
 **Example**
