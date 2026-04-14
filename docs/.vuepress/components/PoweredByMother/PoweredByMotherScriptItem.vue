@@ -1,4 +1,4 @@
-<!-- MyComponent.vue -->
+<!-- PoweredByMotherScriptItem.vue -->
 <template>
     <div class="powered-by-mother-item-card">
       <!-- Image -->
@@ -17,13 +17,13 @@
           <span class="author">by {{ item.author }}</span>
         </div>
 
-        <div class="scripts-container" v-if="item.scripts && item.scripts.length">
+        <div class="tags-container" v-if="item.tags && item.tags.length">
           <span 
-            v-for="script in item.scripts" 
-            :key="script" 
-            class="script-pill"
+            v-for="tag in item.tags" 
+            :key="tag" 
+            class="tag-pill"
           >
-            {{ script }}
+            {{ tag }}
           </span>
         </div>
 
@@ -31,11 +31,6 @@
 
         <a :href="item.link" target="_blank" rel="noopener noreferrer" class="">
           <span>Steam Workshop</span>
-          <!-- <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
-            <polyline points="15 3 21 3 21 9"></polyline>
-            <line x1="10" y1="14" x2="21" y2="3"></line>
-          </svg> -->
         </a>
       </div>
     </div>
@@ -117,14 +112,14 @@ defineProps({
   font-weight: 500;
 }
 
-.scripts-container {
+.tags-container {
   display: flex;
   gap: 0.5rem;
   flex-wrap: wrap;
   margin-top: 0.25rem;
 }
 
-.script-pill {
+.tag-pill {
   display: inline-flex;
   align-items: center;
   padding: 0.25rem 0.75rem;
@@ -146,4 +141,3 @@ defineProps({
   color: var(--vp-c-text-2);
 }
 </style>
-

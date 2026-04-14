@@ -147,20 +147,20 @@ Use this badge to indicate your grid, project, or content uses the Mother ecosys
 #### Light Version
 For use on dark backgrounds.
 
-<!-- <div style="padding: 2rem; background: #1b1b1f; border-radius: 8px; display: inline-block; margin: 1rem 0;">
-  <img src="/mother-docs/svg/powered-by-mother-light.svg" alt="Powered By Mother (Light)" style="height: 60px;" />
+<div style="padding: 2rem; background: #1b1b1f; border-radius: 8px; display: inline-block; margin: 1rem 0;">
+  <img src="/mother-docs/brand-assets/powered-by-mother-badge-dark-transparent.svg" alt="Powered By Mother (Light)" style="height: 100px;" />
 </div>
 
-**Download:** [powered-by-mother-light.svg](/mother-docs/svg/powered-by-mother-light.svg) -->
+**Download:** [powered-by-mother-badge-dark-transparent.svg](/mother-docs/brand-assets/powered-by-mother-badge-dark-transparent.svg)
 
 #### Dark Version
 For use on light backgrounds.
 
-<!-- <div style="padding: 2rem; background: #fff; border-radius: 8px; border: 1px solid #e2e2e3; display: inline-block; margin: 1rem 0;">
-  <img src="/mother-docs/svg/powered-by-mother-dark.svg" alt="Powered By Mother (Dark)" style="height: 60px;" />
+<div style="padding: 2rem; background: #fff; border-radius: 8px; border: 1px solid #e2e2e3; display: inline-block; margin: 1rem 0;">
+  <img src="/mother-docs/brand-assets/powered-by-mother-badge-light-transparent.svg" alt="Powered By Mother (Dark)" style="height: 100px;" />
 </div>
 
-**Download:** [powered-by-mother-dark.svg](/mother-docs/svg/powered-by-mother-dark.svg) -->
+**Download:** [powered-by-mother-badge-light-transparent.svg](/mother-docs/brand-assets/powered-by-mother-badge-light-transparent.svg)
 
 ---
 
