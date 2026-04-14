@@ -51,6 +51,28 @@ piston/stop <Piston|Group>
 piston/stop TurretPistons;
 ```
 
+### attach
+Attach the head of a piston or group of pistons.
+```
+piston/attach <Piston|Group>
+```
+
+**Example**
+```bash title="Terminal"
+piston/attach TurretPistons;
+```
+
+### detach
+Detach the head of a piston or group of pistons.
+```
+piston/detach <Piston|Group>
+```
+
+**Example**
+```bash title="Terminal"
+piston/detach TurretPistons;
+```
+
 ### reset
 Reset a piston to its original position (0 meters).
 ```

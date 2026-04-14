@@ -74,6 +74,28 @@ hinge/reset <Hinge|Group>
 hinge/reset LandingGearHinge;
 ```
 
+### attach
+Attach the head of a hinge or group of hinges.
+```
+hinge/attach <Hinge|Group>
+```
+
+**Example**
+```bash title="Terminal"
+hinge/attach LandingGearHinge;
+```
+
+### detach
+Detach the head of a hinge or group of hinges.
+```
+hinge/detach <Hinge|Group>
+```
+
+**Example**
+```bash title="Terminal"
+hinge/detach LandingGearHinge;
+```
+
 ### speed
 Set the speed of a hinge or group of hinges in RPM.
 ```

@@ -30,6 +30,18 @@ block/off <Block|Group> [--options]
 block/off DrillPiston;
 ```
 
+### block/toggle
+Toggle the block on or off.
+
+```
+block/toggle <Block|Group> [--options]
+```
+
+**Example**
+```bash title="Terminal"
+block/toggle DrillPiston;
+```
+
 ### block/action
 Run a toolbar action on the block. This is more expensive than a traditional command and Malware advises against it. Use this command sparingly to access automations that Mother does not access natively.
 
@@ -49,6 +61,19 @@ block/action DrillPiston SetAndMove 5.0 2.5;
 ::: tip
 You can view a complete list of block actions [here](https://github.com/malware-dev/MDK-SE/wiki/List-Of-Terminal-Properties-and-Actions).
 :::
+
+### block/actions
+
+Print all available terminal actions for a block. Use this to discover actions for the `block/action` command.
+
+```
+block/actions <Block>
+```
+
+**Example**
+```bash title="Terminal"
+block/actions DrillPiston;
+```
 
 ### block/config
 Set a value in the block's custom data.
@@ -112,6 +137,8 @@ Let's tag our cockpit displays so that we can easily set them to night mode:
 ```text title="Terminal"
 tag/set CockpitDisplays #cockpit-displays;
 ```
+
+
 
 ## Hooks
 

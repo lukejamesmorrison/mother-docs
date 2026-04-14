@@ -68,6 +68,28 @@ rotor/reset <Rotor|Group>
 rotor/reset AntennaRotor;
 ```
 
+### attach
+Attach the head of a rotor or group of rotors.
+```
+rotor/attach <Rotor|Group>
+```
+
+**Example**
+```bash title="Terminal"
+rotor/attach AntennaRotor;
+```
+
+### detach
+Detach the head of a rotor or group of rotors.
+```
+rotor/detach <Rotor|Group>
+```
+
+**Example**
+```bash title="Terminal"
+rotor/detach AntennaRotor;
+```
+
 ### speed
 Set the speed of a rotor or group of rotors in RPM.
 ```

@@ -21,7 +21,7 @@ vent/pressurize AirlockAirVent
 
 ### depressurize
 
-Set the air vent to pressurize mode.
+Set the air vent to depressurize mode.
 ```ini
 vent/depressurize <AirVent|Group>
 ```
@@ -29,6 +29,18 @@ vent/depressurize <AirVent|Group>
 **Example**
 ```ini title="Terminal"
 vent/depressurize "Atmosphere Intake Fan"
+```
+
+### toggle
+
+Toggle the air vent between pressurize and depressurize mode.
+```ini
+vent/toggle <AirVent|Group>
+```
+
+**Example**
+```ini title="Terminal"
+vent/toggle AirlockAirVent
 ```
 
 ## Hooks

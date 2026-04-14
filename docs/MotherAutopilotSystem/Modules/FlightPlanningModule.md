@@ -28,16 +28,16 @@ We use this format since at any time, a player may copy a GPS waypoint to their 
 
 ## The Flight Plan
 
-A flight plan is broken into terms, separated by a space ` `. Each term is a **GPS waypoint**, a **routine**, or a **modifier**.  The flight plan can be passed as a single string to the [`nav/set-flight-plan`](#set-flight-plan) command.
+A flight plan is broken into terms, separated by a space ` `. Each term is a **GPS waypoint**, a **routine**, or a **modifier**.  The flight plan can be passed as a single string to the [`fp/set`](#set-flight-plan) command.
 
 ```bash title="Terminal"
-nav/set-flight-plan "GPS:TopSecretBase:211.78:-52.93:59.19:#FF75C9F1: { DoSomethingSecret; light/blink SignalLights med; }";
+fp/set "GPS:TopSecretBase:211.78:-52.93:59.19:#FF75C9F1: { DoSomethingSecret; light/blink SignalLights med; }";
 ```
 
 Every waypoint may be followed by a routine, which will run when that waypoint is reached. You may also start the flight plan with a routine which will run immediately. Perfect for pre-flight.
 
 ```bash title="Terminal"
-nav/set-flight-plan "{ RetractLandingGear } GPS:TopSecretBase:211.78:-52.93:59.19:#FF75C9F1: { DoSomethingSecret; light/blink SignalLights med; }";
+fp/set "{ RetractLandingGear } GPS:TopSecretBase:211.78:-52.93:59.19:#FF75C9F1: { DoSomethingSecret; light/blink SignalLights med; }";
 ```
 
 This looks best as a custom command in **Custom Data**:
@@ -46,7 +46,7 @@ This looks best as a custom command in **Custom Data**:
 [Commands]
 
 FlyToTopSecretBase=
-| nav/set-flight-plan 
+| fp/set 
 | "
 |     { RetractLandingGear } 
 | 
@@ -75,13 +75,13 @@ GPS:TopSecretBase:211.78:-52.93:59.19:#FF75C9F1:
 To chart a course to this waypoint, we can set it as Mother's current flight plan:
 
 ```bash title="Terminal"
-nav/set-flight-plan "GPS:TopSecretBase:211.78:-52.93:59.19:#FF75C9F1:";
+fp/set "GPS:TopSecretBase:211.78:-52.93:59.19:#FF75C9F1:";
 ```
 
 If we wanted to fly to a `Midpoint`, before proceeding to the `TopSecretBase`, we can simply add the term to our flight plan, separated by a space:
 
 ```bash title="Terminal"
-nav/set-flight-plan "GPS:Midpoint:190.12:-54.45:45.89:#FF75C9F1: GPS:TopSecretBase:211.78:-52.93:59.19:#FF75C9F1:";
+fp/set "GPS:Midpoint:190.12:-54.45:45.89:#FF75C9F1: GPS:TopSecretBase:211.78:-52.93:59.19:#FF75C9F1:";
 ```
 
 If this is a long flight plan, it is most intuitive to store the command in the Programmable Block's **Custom Data**:
@@ -90,7 +90,7 @@ If this is a long flight plan, it is most intuitive to store the command in the 
 [Commands]
 
 set-route-1=
-| nav/set-flight-plan 
+| fp/set 
 | "
 |     GPS:Midpoint:190.12:-54.45:45.89:#FF75C9F1: 
 |     GPS:TopSecretBase:211.78:-52.93:59.19:#FF75C9F1:

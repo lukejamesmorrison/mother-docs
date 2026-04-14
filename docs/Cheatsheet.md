@@ -27,6 +27,12 @@ Turn the block off.
 block/off <Block|Group> [--options]
 ```
 
+### block/toggle
+Toggle the block on or off.
+```
+block/toggle <Block|Group> [--options]
+```
+
 ### block/action
 Run a toolbar action on the block. This is more expensive than a traditional command and Malware advises against it. Use this command sparingly to access automations that Mother does not access natively.
 
@@ -46,6 +52,14 @@ block/action DrillPiston SetAndMove 5.0 2.5;
   :::tip
   You can view a complete list of block actions [here](https://github.com/malware-dev/MDK-SE/wiki/List-Of-Terminal-Properties-and-Actions).
   :::
+
+### block/actions
+
+Print all available terminal actions for a block. Use this to discover actions for the `block/action` command.
+
+```
+block/actions <Block>
+```
 
 ### block/config
 Set a value in the block's custom data.
@@ -148,9 +162,16 @@ vent/pressurize <AirVent|Group>
 
 ### vent/depressurize
 
-Set the air vent to pressurize mode.
+Set the air vent to depressurize mode.
 ```bash
 vent/depressurize <AirVent|Group>
+```
+
+### vent/toggle
+
+Toggle the air vent between pressurize and depressurize mode.
+```bash
+vent/toggle <AirVent|Group>
 ```
 
 @tab Hooks
@@ -412,8 +433,8 @@ handbrake/off RearCockpit
 
 ```ini title="MainCockpit > Custom Data"
 [hooks]
-onDampenersOn=light/color "Dampener Indicator" green;
-onDampenersOff=light/color "Dampener Indicator" red;
+onOccupied=light/color "Cockpit Indicator" green;
+onEmpty=light/color "Cockpit Indicator" red;
 ```
 
 :::
@@ -620,7 +641,7 @@ door/toggle <Door|Group>
 |-              |-                                      |
 | `onOpen`      | Activated when a door is fully open.      |
 | `onOpening`    | Activated when a door is opening.    |
-| `onclose`     | Activated when a door is fully closed.    |
+| `onClose`     | Activated when a door is fully closed.    |
 | `onClosing`   | Activated when a door is closing.    |
 
 **Example**
@@ -672,20 +693,12 @@ fcs/stop
 
 @tab Commands
 
-### nav/set-flight-plan
+### fp/set
 
 Set the active flight plan in the navigation system. Combine with [`fcs/start`](#flight-control-system) to begin flying.
 
 ```
-nav/set-flight-plan <FlightPlanString> [--options]
-```
-
-### fp/clear
-
-Clear the current flight plan from the navigation system.
-
-```
-fp/clear
+fp/set <FlightPlanString> [--options]
 ```
 
 
@@ -785,6 +798,18 @@ hinge/unlock <Hinge|Group>
 Reset a hinge or group of hinges to their original position (0 degrees).
 ```
 hinge/reset <Hinge|Group>
+```
+
+### hinge/attach
+Attach the head of a hinge or group of hinges.
+```
+hinge/attach <Hinge|Group>
+```
+
+### hinge/detach
+Detach the head of a hinge or group of hinges.
+```
+hinge/detach <Hinge|Group>
 ```
 
 ### hinge/speed
@@ -1049,6 +1074,18 @@ Stop a piston while in motion. Note that pistons do not lock like a Rotor or Hin
 piston/stop <Piston|Group>
 ```
 
+### piston/attach
+Attach the head of a piston or group of pistons.
+```
+piston/attach <Piston|Group>
+```
+
+### piston/detach
+Detach the head of a piston or group of pistons.
+```
+piston/detach <Piston|Group>
+```
+
 ### piston/reset
 Reset a piston to its original position (0 meters).
 ```
@@ -1157,6 +1194,18 @@ rotor/unlock <Rotor|Group>
 Reset a rotor or group of rotors to their original position (0 degrees).
 ```
 rotor/reset <Rotor|Group>
+```
+
+### rotor/attach
+Attach the head of a rotor or group of rotors.
+```
+rotor/attach <Rotor|Group>
+```
+
+### rotor/detach
+Detach the head of a rotor or group of rotors.
+```
+rotor/detach <Rotor|Group>
 ```
 
 ### rotor/speed
