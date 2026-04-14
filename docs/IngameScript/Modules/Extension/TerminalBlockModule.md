@@ -66,6 +66,22 @@ Let's update the default scale of our `MapLCD`:
 block/config MapLCD general.mapScale 200
 ```
 
+### block/rename
+
+Rename a block by setting its custom name.
+
+```
+block/rename <Block|Group> <NewName>
+```
+
+**Example**
+
+Let's rename our drill piston to something more descriptive:
+
+```bash title="Terminal"
+block/rename "Piston 1" DrillPiston;
+```
+
 ### tag/get
 Get a all blocks with a specific tag. This will print a list of blocks to the terminal window.
 
