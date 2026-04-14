@@ -1384,6 +1384,92 @@ timer/stop <TimerBlock|Group> [--options]
 
 :::
 
+## Wheels
+[![Static Badge](https://img.shields.io/badge/Wheel_Module-Mother_OS-red?color=red)](IngameScript/Modules/Extension/WheelModule.md)
+
+::: tabs
+
+@tab Commands
+
+### wheel/height
+Set the height offset of a wheel or group of wheels. The height offset controls the suspension position.
+
+```
+wheel/height <Wheel|Group> <Height> [--options]
+```
+
+Options
+| Option  | Values          | Unit   | Description                                                         |
+| ------- | --------------- | ------ | ------------------------------------------------------------------- |
+| `add`   | `true`, `false` | `bool` | Indicates that the height should be *added* to the current height. Allows incremental changes to height. |
+| `sub`   | `true`, `false` | `bool` | Indicates that the height should be *subtracted* from the current height. Allows decremental changes to height. |
+
+**Example**
+
+```bash title="Terminal"
+# Set the front wheels to a height offset of -0.5m
+wheel/height "Front Wheels" -0.5;
+
+# Raise the rear wheels by 0.2m
+wheel/height "Rear Wheels" 0.2 --add;
+
+# Lower all wheels by 0.1m
+wheel/height "All Wheels" 0.1 --sub;
+```
+
+### wheel/power
+Set the power of a wheel or group of wheels as a percentage.
+
+```
+wheel/power <Wheel|Group> <Power%>
+```
+
+**Example**
+
+```bash title="Terminal"
+# Set all wheels to 50% power
+wheel/power "All Wheels" 50;
+
+# Set front wheels to full power
+wheel/power "Front Wheels" 100;
+```
+
+### wheel/friction
+Set the friction of a wheel or group of wheels as a percentage.
+
+```
+wheel/friction <Wheel|Group> <Friction%>
+```
+
+**Example**
+
+```bash title="Terminal"
+# Set all wheels to 75% friction
+wheel/friction "All Wheels" 75;
+
+# Reduce front wheel friction for drifting
+wheel/friction "Front Wheels" 25;
+```
+
+### wheel/strength
+Set the strength of a wheel or group of wheels as a percentage. Strength controls the suspension stiffness.
+
+```
+wheel/strength <Wheel|Group> <Strength%>
+```
+
+**Example**
+
+```bash title="Terminal"
+# Set all wheels to maximum strength
+wheel/strength "All Wheels" 100;
+
+# Soften rear suspension
+wheel/strength "Rear Wheels" 40;
+```
+
+:::
+
 
 
 

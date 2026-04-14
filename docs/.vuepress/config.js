@@ -83,6 +83,7 @@ const MotherOSSidebar = {
         '/IngameScript/Modules/Extension/SoundBlockModule.md',
         '/IngameScript/Modules/Extension/ThrusterModule.md',
         '/IngameScript/Modules/Extension/TimerBlockModule.md',
+        '/IngameScript/Modules/Extension/WheelModule.md',
       ],
     },
     '/IngameScript/Compatibility.md',
@@ -161,6 +162,7 @@ const MotherCoreSidebar = {
       collapsible: true, // Allows collapsing sections
       children: [
         '/Framework/Developer/Utilities/ColorHelper.md',
+        '/Framework/Developer/Utilities/NumberHelper.md',
         // '/Framework/Developer/Utilities/Geometry.md',
         '/Framework/Developer/Utilities/Security.md',
         '/Framework/Developer/Utilities/Serializer.md',
