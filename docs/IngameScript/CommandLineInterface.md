@@ -219,6 +219,27 @@ ComboRoutine=
 Commands are not technically run in parallel, but this is imperceptible to the player as they usually execute within the same program cycle.
 :::
 
+## Important Commands
+
+When running multiple Mother Core scripts on the same construct, you may want certain commands to always be handled by a specific script. Mark a command as "important" by prefixing it with `!` in your Custom Data:
+
+```ini title="Main Ship Script > Custom Data"
+[commands]
+; This script will handle ALL 'Alert' commands on the construct
+!Alert=light/color WarningLights red; sound/play AlarmSound;
+```
+
+Important commands take priority over local commands. When any script on the construct runs `Alert`, it will be delegated to the script that has `!Alert` defined.
+
+### Overriding Important Commands
+
+If you need to run a local command instead of the important version, prefix your command with `!!`:
+
+```bash title="Terminal"
+!!Alert;  # Forces local execution, ignoring important commands on construct
+```
+
+This is useful when you want to test a local command, or when a specific script needs its own behavior for a commonly-used command name.
 
 ## Delaying Command Execution
 Mother comes with a `wait` command that allow you to delays a command for execution in seconds.
