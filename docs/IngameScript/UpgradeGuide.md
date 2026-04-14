@@ -2,6 +2,96 @@
 
 [[toc]]
 
+## 1.0.0 -> 1.1.0
+🕓 10-15 mins
+
+This is a significant update that restructures how autopilot features are delivered. Flight-related modules have been extracted into a new companion script called **Mother Autopilot System (MAPS)**. If you use flight plans, docking, or gyro commands, you'll need to install MAPS alongside Mother OS.
+
+### Breaking Changes
+
+#### 1. Autopilot Modules Moved to MAPS
+
+The following modules have been removed from Mother OS and are now part of MAPS:
+- `FlightControlModule`
+- `FlightPlanningModule`
+- `DockingModule`
+- `GyroModule` (now called `AttitudeModule`)
+
+::: warning Action Required
+If you use any flight-related commands (`nav/set-flight-plan`, `dock`, `gyro/face`, `fcs/*`), you must install MAPS into a second programmable block on your grid.
+:::
+
+**Installation:**
+1. Subscribe to MAPS on the Steam Workshop
+2. Load the MAPS script into a new programmable block on your grid
+3. Both scripts will automatically sync during boot
+
+#### 2. Flight Plan Command Renamed
+
+The `nav/set-flight-plan` command has been renamed to `fp/set`.
+
+**Before:**
+```bash
+nav/set-flight-plan "GPS:Waypoint1:0:0:0:#FFFFFF:"
+```
+
+**After:**
+```bash
+fp/set "GPS:Waypoint1:0:0:0:#FFFFFF:"
+```
+
+Update any custom commands or hooks that reference `nav/set-flight-plan`.
+
+#### 3. Display Type Configuration Changed
+
+Display types (like `map`, `log`, `almanac`) are no longer set via the block name. Instead, use the `type` property in the block's Custom Data.
+
+**Before (block name):**
+```
+LCD Panel [MMAP]
+```
+
+**After (Custom Data):**
+```ini
+[general]
+type=map # display type
+source=MAPS #source instance name
+surfaceIndex=0 # optional screen target
+```
+
+The block can now be named anything you like. This applies to all display types.
+
+::: tip
+Map and Almanac displays are now rendered by MAPS, not Mother Core. Make sure MAPS is installed if you want to use these display types.
+:::
+
+#### 4. Debug/Log Display Consolidation
+
+The `debug` display type has been merged with `log`. Use `log` for all logging output.
+
+### Migration Checklist
+
+- [ ] Install MAPS if you use flight/docking features
+- [ ] Replace `nav/set-flight-plan` with `fp/set` in all custom commands
+- [ ] Replace `gyro/face` usage (now in MAPS)
+- [ ] Update display configurations from block names to Custom Data `type` property
+- [ ] Change any `debug` display types to `log`
+- [ ] Run `boot` command after updating Custom Data
+
+### New Features Available
+
+After upgrading, you'll have access to:
+- **Variables** - Use `$VARNAME` in commands
+- **Command parameters** - Define `{{param:default}}` in custom commands
+- **Parallel execution** - Run commands simultaneously with `{command1} {command2}`
+- **Wheel commands** - `wheel/height`, `wheel/power`, `wheel/strength`, `wheel/friction`
+- **`--share` flag** - Distribute values across block groups
+- **Merge block support** - `onMerge`/`onUnmerge` hooks
+- **`block/rename`** - Rename blocks programmatically
+- **`onBoot` hook** - Trigger commands after boot completes
+
+---
+
 ## 0.2.14 -> 1.0.0
 🕓 5 mins
 
