@@ -253,6 +253,14 @@ const NavbarLinks = () => {
       },
   )
 
+  // add brand guidelines link
+  links.push(
+    {
+        text: 'Brand Guidelines',
+        link: '/BrandGuidelines.md',
+      },
+  )
+
   return links;
 }
 
@@ -408,6 +416,7 @@ export default defineUserConfig({
       process.env.NODE_ENV == 'development' ? MotherAutopilotSystemSidebar : {},
       
       "/PoweredByMother.md",
+      "/BrandGuidelines.md",
     ]
   }),
 
