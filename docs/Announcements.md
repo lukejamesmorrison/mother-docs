@@ -108,6 +108,7 @@ Rotors, Pistons, and Hinges now support:
 
 #### Other New Features
 
+- **`rename`** - Rename the grid with optional `--unique` flag for randomized names (great for printed missiles/drones)
 - **`block/rename`** - Rename terminal blocks programmatically
 - **Hexadecimal colors** - Use `#FF0000` anywhere colors are accepted
 - **`onBoot` hook** - Trigger commands after successful boot

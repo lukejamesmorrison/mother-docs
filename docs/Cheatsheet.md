@@ -259,6 +259,29 @@ Ping all grids on the network and update the Almanac.
 ping
 ```
 
+### rename
+
+Rename the grid by setting its custom name. This is useful for giving unique names to printed grids like missiles or drones.
+
+
+**Options**
+| Option   | Values          | Description                                                         |
+| -------- | --------------- | ------------------------------------------------------------------- |
+| `unique` | **false**, true | Appends a random 5-digit number to the name for uniqueness.         |
+
+**Example**
+
+```bash title="Terminal"
+# Set the grid name to "Scout Drone"
+rename "Scout Drone";
+
+# Set a unique grid name like "Missile-12345"
+rename Missile --unique;
+```
+::: tip Randomizing Printed Grids
+Use the `rename` command with `--unique` in the `onBoot` hook to automatically give unique names to missiles or drones when they are printed and initialized.
+:::
+
 ### wait
 [Command Line Interface](IngameScript/CommandLineInterface.md)
 
