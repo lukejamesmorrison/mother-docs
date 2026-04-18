@@ -1,5 +1,5 @@
 <script setup>
-aimport { ref, computed } from 'vue'
+import { ref, computed } from 'vue'
 import PoweredByMotherItem from '../../components/PoweredByMother/PoweredByMotherItem.vue'
 import PoweredByMotherGrids from '../../components/PoweredByMother/PoweredByMotherGrids.js'
 import PoweredByMotherScriptItem from '../../components/PoweredByMother/PoweredByMotherScriptItem.vue'
