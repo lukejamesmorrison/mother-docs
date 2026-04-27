@@ -18,23 +18,25 @@ Please feel free to provide feedback here with code examples and screenshots/vid
 
 ## Mother OS (v1.1)
 
-IMPORTANT - Mother OS no longer supports flight planning or autopilot features. These have been moved to the [Mother Autopilot System](#mother-autopilot-system---maps-v01).
+IMPORTANT - Mother OS no longer supports flight planning or autopilot features. These have been moved to the [Mother Autopilot System](#mother-autopilot-system---maps-v01)
 
 ### Command Sharing
 
-Mother OS, MAPS, and Mother GUI will all interoperate seamlessly when you load them.  GUI can easily call a command registered on another other script running Mother Core. I have tried extremely hard to make this next generation of Mother Core scripts operate without requiring any additional work from the player.
+Mother OS, MAPS, and Mother GUI will all interoperate seamlessly when you load them.  GUI can easily call a command registered on another script running Mother Core. I have tried extremely hard to make this next generation of Mother Core scripts operate without requiring any additional work from the player.
 
 **Example**
 
 We can call a command registered in MOS from Mother GUI, and vice-versa.
 
 MOS Programmable Block
+
 ```ini
 [commands]
 LightsOn=block/on Lights; light/color Lights white;
 ```
 
 Mother GUI Programmable Block
+
 ```ini
 [commands]
 ActivateLights=LightsOn;
@@ -42,7 +44,7 @@ ActivateLights=LightsOn;
 
 ### Merge Block & Mechanical Block Attachment Support
 
-After a very long wait, Mother Core now natively supports connecting and disconnection from other grids using merge blocks and mechanical connections (piston, rotor, hinge). With some of your help, the Block Catalogue has evolved to be an extremely responsive system that watches your grid for changes and updates the relevant configurations without breaking a sweat. Mother OS is now running buttery smooth on every grid she's been tested on - big and small.
+After a very long wait, Mother Core now natively supports connecting and disconnecting from other grids using merge blocks and mechanical connections (piston, rotor, hinge). With some of your help, the Block Catalogue has evolved to be an extremely responsive system that watches your grid for changes and updates the relevant configurations without breaking a sweat. Mother OS is now running buttery smooth on every grid she's been tested on - big and small.
 
 ### Variables
 
@@ -61,6 +63,7 @@ greeting=screen/print BedroomDisplay "Good morning, $PLAYER"
 ```
 
  **Example - Execute in Terminal**
+
 ```bash
 greeting
 # => Good morning, Dave!
@@ -74,6 +77,7 @@ greeting=screen/print AirlockScreen "Hello, {{player:Space Engineer}}!"
 ```
 
 **Example - Execute in Terminal**
+
 ```bash
 # without parameter
 greeting
@@ -90,7 +94,7 @@ greeting --player="Ellen Ripley"
 
 ### *Parallel* Command Execution
 
-You can now run commands in a pseudo-parallel fashion meaning you can for example, trigger several large hangar doors to open simultaneously vs. having them open in sequence. I have found this most useful when you have several complex commands that need to run independently. By encapsulating commands and routines in curly braces `{}`, we can tell the Command Bus to execute them separately (in parallel), vs. in series.
+You can now run commands in a pseudo-parallel fashion, meaning you can, for example, trigger several large hangar doors to open simultaneously vs. having them open in sequence. I have found this most useful when you have several complex commands that need to run independently. By encapsulating commands and routines in curly braces `{}`, we can tell the Command Bus to execute them separately (in parallel), vs. in series.
 
 **Example - Programmable Block Custom Data**
 
@@ -124,7 +128,7 @@ light/color Light1 255,0,0;
 
 #### piston/distance, rotor/rotate, hinge/rotate
 
-All three "set into motion" mechanical block commands now support a `--share` option which allow the player to distribute movement across a group of blocks. The examples show how we could either move a single block to position, or use the shared motion of several blocks to achieve the same outcome. This is a great QoL improvement for the more complex extension and retraction mechanisms some of you are building.
+All three "set into motion" mechanical block commands now support a `--share` option which allows the player to distribute movement across a group of blocks. The examples show how we could either move a single block to position, or use the shared motion of several blocks to achieve the same outcome. This is a great QoL improvement for the more complex extension and retraction mechanisms some of you are building.
 
 **Example - Piston Distance**
 ```bash
@@ -155,7 +159,7 @@ hinge/rotate HingeGroup 60 --share
 
 #### `piston/attach`, `piston/detach`, `rotor/attach`, `rotor/detach`, `hinge/attach`, `hinge/detach`
 
-With Mother now supporting grid construct changes, it was natural to introduce commands to attach and detach mechanical blocks to take advantage of this new capability. They would exactly as you'd expect:
+With Mother now supporting grid construct changes, it was natural to introduce commands to attach and detach mechanical blocks to take advantage of this new capability. They work exactly as you'd expect:
 
 **Example**
 
@@ -218,7 +222,7 @@ block/rename "Piston 1" DrillPiston;
 
 #### `rename`
 
-This allows you to rename your current grid.  This is extremely useful when printing unique variants of a grid, so it also supports an option to support uniqueness.
+This allows you to rename your current grid.  This is extremely useful when printing unique variants of a grid, so it also supports a `--unique` option.
 
 ```ini
 ; rename the current grid (we just provide the new name - easy peasy)
@@ -228,21 +232,6 @@ rename Mothership
 rename Missile --unique
 ; CustomName = Missile-12345
 ```
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 ### New Hooks
 
@@ -261,18 +250,6 @@ Players can now override the instance name via configuration. This allows a prog
 name="Slave 2"
 ```
 
-
-
-
-
-
-
-
-
-
-
-
-
 ## Mother Core (v1.1)
 
 ### Remove dependency on Remote Control Block
@@ -289,15 +266,15 @@ The `BlockCatalogue` will now automatically update when merge blocks are merged/
 
 ### ⚠️Change to Display Rendering
 
-In order to support a wider scope of compatibility, all Mother Core scripts will now target displays and surfaces different. This new methodology enables rich display targeting and formatting, best demonstrated with [Mother GUI](#mother-gui-v01)
+In order to support a wider scope of compatibility, all Mother Core scripts will now target displays and surfaces differently. This new methodology enables rich display targeting and formatting, best demonstrated with [Mother GUI](#mother-gui-v01).
 
 **OLD Method - Change Block Name**
 
-Add `MMAP`, `MALMANAC`, etc. to the block's name. We also optionally supported cockpit/nested displays - `MLOG:1`. The problem is, when if I want `MMAP:2` as well? This makes the names very verbose and I have come to the opinion that this is the wrong approach.
+Add `MMAP`, `MALMANAC`, etc. to the block's name. We also optionally supported cockpit/nested displays - `MLOG:1`. The problem is, what if I want `MMAP:2` as well? This makes names very verbose and, in my opinion, is the wrong approach.
 
 **New Method - Use Custom Data**
 
-Shifting closer to Mother's default configuration approach, we now set up our displays using their custom data. Not only does this allow for use to target multiple screens, but it allows multiple scripts to target multiple difference screens simultaneously.
+Shifting closer to Mother's default configuration approach, we now set up our displays using their custom data. Not only does this allow for us to target multiple screens, but it allows multiple scripts to target multiple different screens simultaneously.
 
 **Example - Display/Cockpit Custom Data**
 ```ini
@@ -349,7 +326,7 @@ The `DisplayModule` from Mother OS has moved most capability to Core so that scr
 
 ### Improved `ColorHelper` Utility
 
-The `ColorHelper` utility class now support hexadecimal color values.
+The `ColorHelper` utility class now supports hexadecimal color values.
 
 ### Other Improvements
 
@@ -373,15 +350,15 @@ The `ColorHelper` utility class now support hexadecimal color values.
 
 ## Mother Autopilot System - MAPS (v0.1)
 
-Mother Autopilot System is a fully independent script containing all flight planning and autopilot related logic originally contained in Mother OS. The ensure the same gameplay experience, players should use Mother OS and MAPS so that they may access a wide command library in cooperation with autopilot features.
+Mother Autopilot System is a fully independent script containing all flight planning and autopilot-related logic originally contained in Mother OS. To ensure the same gameplay experience, players should use Mother OS and MAPS so that they may access a wide command library in cooperation with autopilot features.
 
-I intend to put a lot for focus into MAPS moving forward to ensure it is a competitive and feature rich addition to the Space Engineers autopilot ecosystem.
+I intend to put a lot of focus into MAPS moving forward to ensure it is a competitive and feature-rich addition to the Space Engineers autopilot ecosystem.
 
 There are a few areas that have changed which will need attention:
 
 ### Map and Almanac Display Rendering
 
-Mother Core 1.1 reworks how screens are targets.  In order to show the Map and Almanac screens, we now use custom data configuration on the screen/block.
+Mother Core 1.1 reworks how screens are targeted.  In order to show the Map and Almanac screens, we now use custom data configuration on the screen/block.
 
 ```ini
 ;standard LCD panel (only has one surface at index 0)
@@ -399,7 +376,7 @@ This surface targeting paradigm makes Mother Core extremely flexible and powerfu
 
 ## Mother GUI (v0.1)
 
-Mother GUI is a brand new entry to the Mother Project. It is designed to show visualization using Mother Core tools, but also demonstrates the cooperation between an execution-based script (Mother OS), and a player-interface and visualization script (Mother GUI). Both are built with Mother Core and so interoperate seamlessly from the player's perspective. 
+Mother GUI is a brand new entry to the Mother Project. It is designed to render visualizations using Mother Core tools, but also demonstrates the cooperation between an execution-based script (Mother OS) and a player-interface and visualization script (Mother GUI). Both are built with Mother Core and so interoperate seamlessly from the player's perspective. 
 
 ![mother-gui1](./assets/mother-gui1.png)
 ![mother-gui2](./assets/mother-gui2.png)
@@ -449,7 +426,7 @@ scale=1.2
 
 ### Setting Up Menus
 
-Menus are a powerful feature built into Mother GUI and take inspiration from other scripts to enable a menu-navigation system.  We can run commands and routines from these menus, as well as nest them to build a rich interfaces for interacting with your grid.
+Menus are a powerful feature built into Mother GUI and take inspiration from other scripts to enable a menu-navigation system.  We can run commands and routines from these menus, as well as nest them to build rich interfaces for interacting with your grid.
 
 Menus are defined in the PB's Custom Data using [menu:name] sections. Items use leading dots to express hierarchy (one dot per level of depth). Every line must include = to be INI-compatible. You can use an empty value for submenus.
 
@@ -480,11 +457,11 @@ Lights=
 ..1:Toggle= block/toggle Light2;
 ```
 
-Without unique ids, MyIni would discover two `Toggle` keys and throw an error. This only applies to a simple menu, though, so we can nest additional menus to get around this problem.
+Without unique IDs, MyIni would discover two `Toggle` keys and throw an error. This only applies to a simple menu, though, so we can nest additional menus to get around this problem.
 
 ### Built-In Views
 
-⚠️These are subject to change and are evolving as Mother GUI evolves. Please let me know what missing, or how you'd improve these.
+⚠️These are subject to change as Mother GUI evolves. Please let me know what's missing, or how you'd improve these.
 
 #### RotorView
 Displays rotor diagnostics: name, lock state, torque, braking torque, and a live angle dial.
@@ -512,7 +489,7 @@ view/go BridgeLCD PistonView LiftPiston
 ```
 
 ### Widescreen / Split-views
-On widescreen displays the script automatically splits the viewport in two:
+On widescreen displays, the script automatically splits the viewport in two:
 
 - Left half — the active menu.
 - Right half — a side-panel view (pushed via view/go on a widescreen display).
@@ -576,10 +553,10 @@ This means the same menu definition works correctly whether it is displayed on "
 
 ### Tips and Gotchas
 
-- Every line in a [menu:*] section must contain an equals sign `=`. MyIni drops lines without it. Use `[Label]=` for group headers (ie. `Rotors=`).
+- Every line in a [menu:*] section must contain an equals sign `=`. MyIni drops lines without it. Use `[Label]=` for group headers (e.g. `Rotors=`).
 - Surface indices on cockpit screens start at 0. Use "BlockName:1" to target the second screen, "BlockName:2" for the third, and so on.
 - When multiple cockpit screens share the same button panel, use self in command strings so a single button wiring works for all of them regardless of surface index.
-- Mechanical block views (RotorView, HingeView, PistonView) are live views. Views refresh every program cycle while visible, so angles and positions always stay current.
+- Mechanical block views (RotorView, HingeView, PistonView) refresh every program cycle while visible, so angles and positions always stay current.
 - Custom Data changes to any display block are detected at runtime and trigger automatic re-discovery. No PB recompile or boot needed.
 
 ## Mother CLI (v1.0.3)
