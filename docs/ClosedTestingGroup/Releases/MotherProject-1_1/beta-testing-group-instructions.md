@@ -233,6 +233,27 @@ rename Missile --unique
 ; CustomName = Missile-12345
 ```
 
+#### `var/set`
+
+Dynamically sets a variable from the terminal or from within a command routine. Useful for updating values that are shared across commands without editing Custom Data.
+
+```bash
+var/set PLAYER Agentluke;
+greeting
+# => Good morning, Agentluke!
+```
+
+### New Hooks
+
+#### `onBoot` Hook
+
+Define on the programmable block itself to run commands after a successful boot cycle.
+
+```ini
+[hooks]
+onBoot=screen/print StatusLCD "Mother Online";
+```
+
 ### New Hooks
 
 #### `onMerge`, `onUnmerge`, `onAttach`, `onDetach`
