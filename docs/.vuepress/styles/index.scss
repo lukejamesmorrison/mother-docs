@@ -104,6 +104,74 @@
   color: var(--vp-c-code-tab-title) !important;
 }
 
+.code-block-with-title {
+  margin: 0 !important;
+  border: 1px solid rgb(95 104 122 / 28%);
+  border-radius: 12px;
+  overflow: hidden;
+  background: #11161d;
+}
+
+.code-block-with-title .code-block-title-bar {
+  display: flex;
+  align-items: center;
+  // min-height: 2rem;
+  margin: 0 !important;
+  padding: 0.2rem 0rem 0.2rem 0.75rem;
+  border-bottom: 1px solid rgb(255 255 255 / 6%);
+  background: #1a212b;
+}
+
+.code-block-with-title .code-block-title-bar span {
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgb(216 222 233 / 72%) !important;
+}
+
+.code-block-with-title > div[class^='language-'] {
+  background: #0d1117;
+}
+
+.code-block-with-title > div[class*='line-numbers-mode'] {
+  --code-line-number-width: 0;
+  padding-left: 0 !important;
+  margin: 0 !important;
+}
+
+.code-block-with-title > div[class*='line-numbers-mode']::after {
+  display: none !important;
+  border-right: 0 !important;
+  width: 0 !important;
+}
+
+.code-block-with-title > div[class*='line-numbers-mode'] pre {
+  margin-left: 0 !important;
+}
+
+.code-block-with-title > div[class*='line-numbers-mode'] code {
+  padding-left: 0 !important;
+}
+
+.code-block-with-title pre.shiki {
+  margin: 0 !important;
+  padding: 0.25rem 1rem !important;
+  background: transparent !important;
+  font-size: 0.96rem;
+  line-height: 1.72;
+  letter-spacing: 0.01em;
+}
+
+.code-block-with-title pre.shiki code {
+  font-family: 'JetBrains Mono', 'SFMono-Regular', ui-monospace, monospace;
+}
+
+.code-block-with-title .line-numbers {
+  display: none !important;
+  width: 0 !important;
+}
+
 // Secondary button styling (applies to both themes)
 .auto-link.secondary {
   color: var(--vp-c-text);
@@ -191,14 +259,6 @@ nav.table-of-contents {
   >ul>li>a {
     // text-decoration: none !important;
     font-weight: 700;
-  }
-
-  >ul>li>ul>li>a {
-
-    // text-decoration: none !important;
-
-    // color: var(--vp-c-text);
-
   }
 
   a {

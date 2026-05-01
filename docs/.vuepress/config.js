@@ -5,11 +5,9 @@ import { mdEnhancePlugin } from "vuepress-plugin-md-enhance";
 import { searchPlugin } from '@vuepress/plugin-search'
 import { googleAnalyticsPlugin } from '@vuepress/plugin-google-analytics'
 import { shikiPlugin } from '@vuepress/plugin-shiki'
-import { resolve } from 'path'
-import { fileURLToPath, pathToFileURL } from 'url'
+import { fileURLToPath } from 'url'
 import fs from 'fs'
 import * as dotenv from 'dotenv'
-import {theme, lang} from './shiki/MotherScriptDarkTheme.js';
 
 // Load environment variables from .env file
 dotenv.config();
@@ -21,6 +19,8 @@ const TITLE = DEV_MODE ? 'Mother Docs (Dev)' : 'Mother Docs';
 const DESCRIPTION = 'Documentation for the Mother Project';
 
 const basePath = '/mother-docs/';
+const motherScriptThemePath = fileURLToPath(new URL('./shiki/motherscript-color-theme.json', import.meta.url))
+const motherScriptGrammarPath = fileURLToPath(new URL('./shiki/motherscript.tmLanguage.json', import.meta.url))
 
 
 // Core Routes
@@ -278,9 +278,9 @@ const NavbarLinks = () => {
 
 // const motherScriptDarkTheme = MotherScriptDarkTheme;
 
-// load your custom theme as an object (valid JSON, no comments/trailing commas)
+// Load the MotherScript theme object directly so Shiki can use it for fenced ```ms blocks.
 const motherScriptDarkTheme = JSON.parse(
-  fs.readFileSync(resolve(__dirname, 'shiki/motherscript-color-theme.json'), 'utf8')
+  fs.readFileSync(motherScriptThemePath, 'utf8')
 )
 
 export default defineUserConfig({
@@ -366,22 +366,20 @@ export default defineUserConfig({
       //   },
       // },
     }),
-    // shikiPlugin({
-    //   // theme: 'nord',
-    //   // theme: motherScriptDarkTheme,
-    //   theme: motherScriptDarkTheme,
-    //   langs: [
-    //     'csharp', // aliases: "cs" also works in fences
-    //     'bash',
-    //     'ini',
-    //     {
-    //       id: 'motherscript',
-    //       scopeName: 'source.motherscript',
-    //       path: resolve(__dirname, 'shiki/motherscript.tmLanguage.json'),
-    //       aliases: ['ms', 'motherscript'],
-    //     },
-    //   ],
-    // }),
+    shikiPlugin({
+      theme: motherScriptDarkTheme,
+      langs: [
+        'csharp',
+        'bash',
+        'ini',
+        {
+          id: 'motherscript',
+          scopeName: 'source.motherscript',
+          path: motherScriptGrammarPath,
+          aliases: ['ms', 'motherscript'],
+        },
+      ],
+    }),
   ],
 
   theme: defaultTheme({
