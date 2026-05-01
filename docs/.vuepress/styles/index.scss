@@ -72,14 +72,17 @@
   --badge-c-note-bg: var(--vp-c-grey-soft);
 
   // CLI/Terminal colors - always dark regardless of theme
-  --cli-c-bg: #1b1b1f;
-  --cli-c-bg-alt: #161618;
-  --cli-c-bg-elv: #202127;
-  --cli-c-text: rgb(235 235 245 / 86%);
-  --cli-c-text-mute: rgb(235 235 245 / 60%);
-  --cli-c-border: #3c3f44;
+  --cli-c-bg: #0d0706;
+  --cli-c-bg-alt: #120c0b;
+  --cli-c-bg-elv: #1a1412;
+  --cli-c-text: rgb(242 240 236 / 92%);
+  --cli-c-text-mute: rgb(166 166 166 / 80%);
+  --cli-c-border: rgb(166 166 166 / 18%);
   --cli-c-shadow: rgb(0 0 0 / 30%);
   --cli-c-accent: #4CAF50;
+  --cli-c-primary: #c20000;
+  --cli-c-caution: #b59336;
+  --cli-c-steel: #a6a6a6;
   --cli-c-dot-red: #ff5f56;
   --cli-c-dot-yellow: #ffbd2e;
   --cli-c-dot-green: #27ca40;
@@ -106,10 +109,10 @@
 
 .code-block-with-title {
   margin: 0 !important;
-  border: 1px solid rgb(95 104 122 / 28%);
+  border: 1px solid var(--cli-c-border);
   border-radius: 12px;
   overflow: hidden;
-  background: #11161d;
+  background: var(--cli-c-bg);
 }
 
 .code-block-with-title .code-block-title-bar {
@@ -118,20 +121,20 @@
   // min-height: 2rem;
   margin: 0 !important;
   padding: 0.2rem 0rem 0.2rem 0.75rem;
-  border-bottom: 1px solid rgb(255 255 255 / 6%);
-  background: #1a212b;
+  border-bottom: 1px solid var(--cli-c-border);
+  background: var(--cli-c-bg-elv);
 }
 
 .code-block-with-title .code-block-title-bar span {
-  font-size: 0.78rem;
+  font-size: 0.75rem;
   font-weight: 600;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: rgb(216 222 233 / 72%) !important;
+  color: var(--cli-c-text-mute) !important;
 }
 
 .code-block-with-title > div[class^='language-'] {
-  background: #0d1117;
+  background: var(--cli-c-bg);
 }
 
 .code-block-with-title > div[class*='line-numbers-mode'] {
@@ -158,9 +161,10 @@
   margin: 0 !important;
   padding: 0.25rem 1rem !important;
   background: transparent !important;
-  font-size: 0.96rem;
-  line-height: 1.72;
-  letter-spacing: 0.01em;
+  color: var(--cli-c-text) !important;
+  font-size: 0.875rem;
+  // line-height: 1.72;
+  // letter-spacing: 0.01em;
 }
 
 .code-block-with-title pre.shiki code {
