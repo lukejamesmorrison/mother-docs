@@ -106,7 +106,7 @@ const blocks = [
   { 
     id: 'mother-os', 
     title: 'Mother OS', 
-    description: 'Leverage a library of over 100 commands to automate your grids with ease', 
+    description: 'Leverage a rich library of commands to automate your grids with ease', 
     path: '/IngameScript/IngameScript.md',
     x1: 640, y1: 75, x2: 960, y2: 70
   },

@@ -454,14 +454,56 @@ Menus are defined in the PB's Custom Data using [menu:name] sections. Items use 
 Let's define our `MainMenu`:
 
 ```ini
-[menu:main]
+[menu:Main Menu]
+; Define simple command
+Startup=battery/auto MainBatteries; block/on #atmo-thrusters;
 ; Define a Lights submenu
 Lights=
-.Light1 - TOGGLE= block/toggle Light1;
-.Light2 - TOGGLE= block/toggle Light2;
+.Toggle Light 1= block/toggle Light1;
+.Toggle Light 2= block/toggle Light2;
 ; define a reboot action
 Reboot=boot;
 ```
+
+In the above example, the player will see:
+
+```
+Main Menu      ⚬
+----------------
+> Startup
+  Lights       >
+  Reboot
+```
+
+If they select the `Lights` option, the nested submenu will open:
+
+```
+Lights         ⚬
+----------------
+> Toggle Light 1
+  Toggle Light 2
+  << Back
+```
+
+Let's go even further and define a `Lights Menu` menu that we can navigate to:
+
+```ini
+; The new menu
+[menu:Lights Menu]
+Toggle Light 1= block/toggle Light1;
+Toggle Light 2= block/toggle Light2;
+
+[menu:Main Menu]
+; Define simple command
+Startup=battery/auto MainBatteries; block/on #atmo-thrusters;
+; navigate to the Lights Menu
+Lights=view/go self "Lights Menu"
+; define a reboot action
+Reboot=boot;
+```
+
+Breaking up menus allows you to keep functionality modular. Remember to use the `self`keyword so the navigate know to target the screen you have run the `select` action for.
+
 
 #### Duplicate label disambiguation
 
