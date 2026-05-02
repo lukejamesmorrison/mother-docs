@@ -441,10 +441,10 @@ handbrake/off <Cockpit|Group>
 
 **Example**
 
-```bash title="Terminal"
-# turn off the handbrake of the Main cockpit
+```ms title="Terminal"
+; turn off the handbrake of the Main cockpit
 handbrake/off
-# turn off handbrake for a specific cockpit
+; turn off handbrake for a specific cockpit
 handbrake/off RearCockpit
 ```
 
@@ -457,7 +457,7 @@ handbrake/off RearCockpit
 
 **Example**
 
-```ini title="MainCockpit > Custom Data"
+```ms title="MainCockpit > Custom Data"
 [hooks]
 onOccupied=light/color "Cockpit Indicator" green;
 onEmpty=light/color "Cockpit Indicator" red;
@@ -478,16 +478,34 @@ Lock a connector or group of connectors.
 connector/lock <Connector|Group>
 ```
 
+**Example**
+
+```ms title="Terminal"
+connector/lock DockingConnector
+```
+
 ### connector/unlock
 Unlock a connector or group of connectors.
 ```
 connector/unlock <Connector|Group>
 ```
 
+**Example**
+
+```ms title="Terminal"
+connector/unlock DockingConnector
+```
+
 ### connector/toggle
 Toggle the lock state of a connector or group of connectors.
-```bash
+```
 connector/toggle <Connector|Group>
+```
+
+**Example**
+
+```ms title="Terminal"
+connector/toggle DockingConnector
 ```
 
 @tab Hooks
@@ -500,14 +518,14 @@ connector/toggle <Connector|Group>
 
 **Example**
 
-```ini title="DockConnector > Custom Data"
+```ms title="DockConnector > Custom Data"
 [hooks]
 onLock=light/color "Dock Light" red;
 onUnlock=light/color "Dock Light" green;
 ```
 or
 
-```ini title="Mother > Custom Data"
+```ms title="Mother > Custom Data"
 [hooks]
 DockConnector.onUnlock=light/color "Dock Light" green;
 "Fuel Connector".onLock=tank/stockpile FuelTanks;
@@ -548,11 +566,11 @@ You have access to the following colors which may be used in place of their RGB 
 
 Imagine we want to change to background color of our airlock screen.
 
-```bash title="Terminal"
-# Normal LCD
+```ms title="Terminal"
+; Normal LCD
 screen/bgcolor "AirlockStatusScreen" red;
 
-# Cockpit LCD
+; Cockpit LCD
 screen/bgcolor "PilotCockpit:1" red;
 ```
 
@@ -582,11 +600,11 @@ You have access to the following colors which may be used in place of their RGB 
 
 Imagine we want to change to color of our airlock screen.
 
-```bash title="Terminal"
-# Normal LCD
+```ms title="Terminal"
+; Normal LCD
 screen/color "AirlockStatusScreen" green;
 
-# Cockpit LCD
+; Cockpit LCD
 screen/color "PilotCockpit:1" green;
 ```
 
@@ -622,7 +640,7 @@ You have access to the following colors which may be used in place of their RGB 
 
 Imagine we want to print text to a screen based on our airlock status.  We contextualize it further with color and print a size that is easily legible.
 
-```ini title="Terminal"
+```ms title="Terminal"
 ; with color name
 screen/print "AirlockStatusScreens" "Airlock SAFE" --color=green --size=4.4;
 
@@ -632,7 +650,6 @@ screen/print "AirlockStatusScreens" "Airlock SAFE" --color=0,255,0 --size=4.4;
 ; Cockpit LCD
 screen/print "PilotCockpit:1" "ALERT" --color=red --size=10;
 ```
-
 
 :::
 
@@ -657,7 +674,7 @@ door/close <Door|Group>
 
 ### door/toggle
 Toggle the open state of a door or group of doors.
-```bash
+```
 door/toggle <Door|Group>
 ```
 
@@ -672,7 +689,7 @@ door/toggle <Door|Group>
 
 **Example**
 
-```ini title="OuterDoor > Custom Data"
+```ms title="OuterDoor > Custom Data"
 [hooks]
 onOpen=wait 10; door/close this;
 onClose=vent/pressurize AirlockVent; wait 2; light/blink "Airlock Light" off;
@@ -704,7 +721,7 @@ Options
 ### fcs/stop
 Disengage the autopilot system, halting the grid.
 
-```
+```ms title="Terminal"
 fcs/stop
 ```
 
@@ -775,7 +792,7 @@ gyro/face <GPS Waypoint>
 
 **Example**
 
-```text title="Terminal"
+```ms title="Terminal"
 gyro/face GPS:TopSecretBase:211.78:-52.93:59.19:#FF75C9F1:
 ```
 
@@ -862,7 +879,7 @@ Options
 
 **Example**
 
-```ini title="DoorHinge > Custom Data"
+```ms title="DoorHinge > Custom Data"
 [hooks]
 onMoving=light/color "Hinge Indicator" green;
 onStop=light/color "Hinge Indicator" red;
@@ -888,7 +905,7 @@ This module does not have any commands.
 
 **Example**
 
-```ini title="RampMergeBlock > Custom Data"
+```ms title="RampMergeBlock > Custom Data"
 [hooks]
 onMerge=light/color "Ramp Light" green;
 onUnmerge=light/color "Ramp Light" red;
@@ -905,13 +922,13 @@ onUnmerge=light/color "Ramp Light" red;
 
 ### gear/lock
 Lock a Landing Gear or group of Landing Gear.
-```bash
+```
 gear/lock <LandingGear|Group>
 ```
 
 ### gear/unlock
 Unlock a Landing Gear or group of Landing Gear.
-```bash
+```
 gear/unlock <LandingGear|Group>
 ```
 
@@ -941,7 +958,7 @@ gear/auto <LandingGear|Group> <true|false>
 
 **Example**
 
-```ini title="MainGear > Custom Data"
+```ms title="MainGear > Custom Data"
 [hooks]
 onLock=light/color "Landing Light" green;
 onUnlock=light/color "Landing Light" red;
@@ -980,12 +997,12 @@ You have access to the following colors which may be used in place of their RGB 
 
 **Example**
 
-```bash title="Terminal"
-# by name
+```ms title="Terminal"
+; by name
 light/color LandingLight red;
-# by RGB
+; by RGB
 light/color LandingLight 255,0,0;
-# by Hex
+; by Hex
 light/color LandingLight #FF0000;
 ```
 
@@ -1015,11 +1032,11 @@ You have access to several blinks which may be used instead of the value in seco
 
 **Example**
 
-```bash title="Terminal"
-# using preset
+```ms title="Terminal"
+; using preset
 light/blink SignalLight slow;
 
-# using values and options
+; using values and options
 light/blink SignalLight 3 --length=0.3 --offset=0;
 ```
 ### light/intensity
@@ -1054,13 +1071,13 @@ light/reset <Light|Group>
 
 ### get
 Get a value stored in LocalStorage.
-```bash
+```
 get <key>
 ```
 
 ### set
 Set a value in LocalStorage.
-```bash
+```
 set <key> <value>
 ```
 
@@ -1146,7 +1163,7 @@ Options
 
 Imagine our piston is connected to a fuel boom:
 
-```ini title="FuelBoomPiston > Custom Data"
+```ms title="FuelBoomPiston > Custom Data"
 [hooks]
 onExtending=light/blink "Fuel Boom Light" fast;
 onRetracted=light/blink "Fuel Boom Light" off;
@@ -1171,7 +1188,7 @@ pb/run <ProgrammableBlock|Group> <argument> [--options]
 **Example**
 
 We have [Whip's Subgrid Thruster Manager](https://steamcommunity.com/sharedfiles/filedetails/?id=757123653) installed on another Programmable block named `PB.ThrusterManager`. It is particularly helpful when using thrusters on subgrids.
-```ini title="Terminal"
+```ms title="Terminal"
 pb/run "PB.ThrusterManager" dampeners_on;
 ```
 
@@ -1258,7 +1275,7 @@ Options
 
 **Example**
 
-```ini title="TurretRotor > Custom Data"
+```ms title="TurretRotor > Custom Data"
 [hooks]
 onLock=light/color "Turret Status" red;
 onUnlock=light/color "Turret Status" green;
@@ -1287,7 +1304,7 @@ See the [Displays](#displays) section above.
 
 Imagine our Sensor has a status light we want to view elsewhere:
 
-```ini title="LandingPadSensor > Custom Data"
+```ms title="LandingPadSensor > Custom Data"
 [hooks]
 onDetect=light/blink "Landing Pad Light" fast;
 onClear=light/blink "Landing Pad Light" off;
@@ -1311,12 +1328,12 @@ sorter/drain <Sorter|Group> true|false
 **Example**
 
 Turn on `DrainAll`
-```bash title="Terminal"
+```ms title="Terminal"
 sorter/drain "Gravel Exhaust" true
 ```
 
 Turn off `DrainAll`
-```bash title="Terminal"
+```ms title="Terminal"
 sorter/drain VerticalFarmHarvester false
 ```
 
@@ -1331,21 +1348,21 @@ sorter/drain VerticalFarmHarvester false
 
 ### sound/play
 
-Play the sound block with an optional sound.
-```bash
-# play the block
+Play the sound block:
+```
 sound/play <SoundBlock|Group>
-
-# play the block with a specific sound
+```
+Or, play the block with a specific sound:
+```
 sound/play <SoundBlock|Group> <sound>
 ```
 
-See the [`set`](#set) command for a list of available sounds.
+See the [`sound/set`](#set) command for a list of available sounds.
 
 ### sound/stop
 
 Stop the sound block from playing.
-```ini
+```
 sound/stop <SoundBlock|Group>
 ```
 
@@ -1403,13 +1420,14 @@ You may use the sound as it appears in the sound block list or, for default soun
 
 **Example**
 
-```bash title="Terminal"
-# default sound with sound id
+```ms title="Terminal"
+; default sound with sound id
 sound/set MainSpeaker MusDanger_04;
-# default sound with ingame name
+
+; default sound with ingame name
 sound/set MainSpeaker "Danger Music 04";
 
-# other sound
+; other sound
 sound/play MainSpeaker "Space Funk";
 ```
 
@@ -1433,11 +1451,11 @@ thruster/thrust <Thruster|Group> <valuePercent|valueNetwons> [--options]
   :::
 
 **Example**
-```bash title="Terminal"
-# Set the thruster's thruster override to 100%
+```ms title="Terminal"
+; Set the thruster's thruster override to 100%
 thruster/thrust MainThruster 100;
 
-# Set the thruster's thrust override to 10,000 Newtons
+; Set the thruster's thrust override to 10,000 Newtons
 thruster/thrust MainThruster 10000N;
 ```
 
@@ -1495,14 +1513,14 @@ Options
 
 **Example**
 
-```bash title="Terminal"
-# Set the front wheels to a height offset of -0.5m
+```ms title="Terminal"
+; Set the front wheels to a height offset of -0.5m
 wheel/height "Front Wheels" -0.5;
 
-# Raise the rear wheels by 0.2m
+; Raise the rear wheels by 0.2m
 wheel/height "Rear Wheels" 0.2 --add;
 
-# Lower all wheels by 0.1m
+; Lower all wheels by 0.1m
 wheel/height "All Wheels" 0.1 --sub;
 ```
 
@@ -1515,11 +1533,11 @@ wheel/power <Wheel|Group> <Power%>
 
 **Example**
 
-```bash title="Terminal"
-# Set all wheels to 50% power
+```ms title="Terminal"
+; Set all wheels to 50% power
 wheel/power "All Wheels" 50;
 
-# Set front wheels to full power
+; Set front wheels to full power
 wheel/power "Front Wheels" 100;
 ```
 
@@ -1532,11 +1550,11 @@ wheel/friction <Wheel|Group> <Friction%>
 
 **Example**
 
-```bash title="Terminal"
-# Set all wheels to 75% friction
+```ms title="Terminal"
+; Set all wheels to 75% friction
 wheel/friction "All Wheels" 75;
 
-# Reduce front wheel friction for drifting
+; Reduce front wheel friction for drifting
 wheel/friction "Front Wheels" 25;
 ```
 
@@ -1549,11 +1567,11 @@ wheel/strength <Wheel|Group> <Strength%>
 
 **Example**
 
-```bash title="Terminal"
-# Set all wheels to maximum strength
+```ms title="Terminal"
+; Set all wheels to maximum strength
 wheel/strength "All Wheels" 100;
 
-# Soften rear suspension
+; Soften rear suspension
 wheel/strength "Rear Wheels" 40;
 ```
 
