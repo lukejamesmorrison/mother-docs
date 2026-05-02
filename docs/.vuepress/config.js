@@ -19,6 +19,7 @@ const TITLE = DEV_MODE ? 'Mother Docs (Dev)' : 'Mother Docs';
 const DESCRIPTION = 'Documentation for the Mother Project';
 
 const basePath = '/mother-docs/';
+const shikiBaseThemePath = fileURLToPath(new URL('../../node_modules/@vuepress/plugin-shiki/node_modules/shiki/themes/dark-plus.json', import.meta.url))
 const motherScriptThemePath = fileURLToPath(new URL('./shiki/motherscript-color-theme.json', import.meta.url))
 const motherScriptGrammarPath = fileURLToPath(new URL('./shiki/motherscript.tmLanguage.json', import.meta.url))
 
@@ -279,10 +280,42 @@ const NavbarLinks = () => {
 
 // const motherScriptDarkTheme = MotherScriptDarkTheme;
 
-// Load the MotherScript theme object directly so Shiki can use it for fenced ```ms blocks.
+const shikiBaseTheme = JSON.parse(
+  fs.readFileSync(shikiBaseThemePath, 'utf8')
+)
+
 const motherScriptDarkTheme = JSON.parse(
   fs.readFileSync(motherScriptThemePath, 'utf8')
 )
+
+const motherScriptTokenColors = motherScriptDarkTheme.tokenColors
+  .map((tokenColor) => {
+    const scopes = Array.isArray(tokenColor.scope)
+      ? tokenColor.scope
+      : `${tokenColor.scope ?? ''}`
+          .split(',')
+          .map((scope) => scope.trim())
+          .filter(Boolean)
+
+    const motherScriptScopes = scopes.filter((scope) => scope.includes('motherscript'))
+
+    if (motherScriptScopes.length === 0)
+      return null
+
+    return {
+      ...tokenColor,
+      scope: Array.isArray(tokenColor.scope) ? motherScriptScopes : motherScriptScopes.join(', '),
+    }
+  })
+  .filter(Boolean)
+
+const shikiTheme = {
+  ...shikiBaseTheme,
+  tokenColors: [
+    ...shikiBaseTheme.tokenColors,
+    ...motherScriptTokenColors,
+  ],
+}
 
 export default defineUserConfig({
   base: basePath,
@@ -368,7 +401,7 @@ export default defineUserConfig({
       // },
     }),
     shikiPlugin({
-      theme: motherScriptDarkTheme,
+      theme: shikiTheme,
       langs: [
         'csharp',
         'bash',

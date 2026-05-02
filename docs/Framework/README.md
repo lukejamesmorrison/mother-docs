@@ -112,7 +112,7 @@ A **Module** is the primary unit of functionality.  Therefore modules should in 
 
 We use the existing `Program` wrapper created using [MDK2](https://github.com/malforge/mdk2), but with a few modifications that allow Mother to do her thing.  We register our Modules in the constructor, and hook into the `Save()` and `Run()` methods to give Mother complete control.
 
-```csharp
+```csharp title="Program.cs"
 partial class Program : MyGridProgram
 {
     private Mother mother;
