@@ -1,4 +1,4 @@
-# Gas Tank Module
+﻿# Gas Tank Module
 The Tank Module allows the user to control `Oxygen` and `Hydrogen` tanks on their grid.
 
 [[toc]]
@@ -12,7 +12,7 @@ tank/stockpile <Tank|Group>
 ```
 
 **Example**
-```bash title="Terminal"
+```ms title="Terminal"
 tank/stockpile HydrogenTank;
 ```
 
@@ -23,7 +23,7 @@ tank/share <Tank|Group>
 ```
 
 **Example**
-```bash title="Terminal"
+```ms title="Terminal"
 tank/share OxygenTank;
 ```
 
@@ -34,7 +34,7 @@ tank/toggle <Tank|Group>
 ```
 
 **Example**
-```bash title="Terminal"
+```ms title="Terminal"
 tank/toggle HydrogenTank;
 ```
 
@@ -43,4 +43,5 @@ const isDev = __VUEPRESS_DEV__ ? "L" : "J";
 </script>
 
 {{isDev}} -->
+
 

@@ -1,4 +1,4 @@
-# Flight Control Module
+﻿# Flight Control Module
 <!-- [< Modules](../Modules.md) -->
 
 This module manages autopilot and various flight characteristics of your grid. For this module to function, the grid must have a Remote Control block.
@@ -20,7 +20,7 @@ Options
 
 **Example**
 
-```bash title="Terminal"
+```ms title="Terminal"
 fcs/start --speed=50;
 ```
 
@@ -37,6 +37,7 @@ fcs/stop
 
 **Example**
 
-```bash title="Terminal"
+```ms title="Terminal"
 fcs/stop;
 ```
+

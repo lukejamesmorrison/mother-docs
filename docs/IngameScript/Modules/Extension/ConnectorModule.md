@@ -1,4 +1,4 @@
-# Connector Module
+﻿# Connector Module
 <!-- [< Modules](../Modules.md) -->
 
 The connector module allows the user to control connectors on the grid.
@@ -16,7 +16,7 @@ connector/lock <Connector|Group>
 
 **Example**
 
-```bash title="Terminal"
+```ms title="Terminal"
 connector/lock DockingConnector
 ```
 
@@ -29,7 +29,7 @@ connector/unlock <Connector|Group>
 
 **Example**
 
-```bash title="Terminal"
+```ms title="Terminal"
 connector/unlock DockingConnector
 ```
 
@@ -42,7 +42,7 @@ connector/toggle <Connector|Group>
 
 **Example**
 
-```bash title="Terminal"
+```ms title="Terminal"
 connector/toggle DockingConnector
 ```
 
@@ -60,15 +60,16 @@ The following hooks can be define in the block's Custom Data, and will be trigge
 
 Imagine our connector has a status light we want to view elsewhere:
 
-```ini title="DockConnector > Custom Data"
+```ms title="DockConnector > Custom Data"
 [hooks]
 onLock=light/color "Dock Light" red;
 onUnlock=light/color "Dock Light" green;
 ```
 or
 
-```ini title="Mother > Custom Data"
+```ms title="Mother > Custom Data"
 [hooks]
 DockConnector.onUnlock=light/color "Dock Light" green;
 "Fuel Connector".onLock=tank/stockpile FuelTanks;
 ```
+

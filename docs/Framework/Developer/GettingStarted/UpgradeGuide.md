@@ -144,14 +144,14 @@ AlmanacRecord.TransponderCode.Construct
 When multiple scripts define a command with the same name, you can mark one as "important" using the `!` prefix in Custom Data. Important commands take priority over the same command defined on other Mother Core instances.
 
 **Custom Data (Instance A - authoritative):**
-```ini
+```ms title="Terminal"
 [commands]
 ; This command takes priority across all instances on the construct
 !dock=connector/lock DockingPort
 ```
 
 **Custom Data (Instance B):**
-```ini
+```ms title="Terminal"
 [commands]
 ; This local command will be ignored in favor of Instance A's important command
 dock=echo "Local dock command"
@@ -160,15 +160,16 @@ dock=echo "Local dock command"
 When Instance B runs `dock`, it executes Instance A's important command instead.
 
 **Force Local Execution:** Use `!!` prefix when running a command to bypass important commands:
-```bash
-!!dock  # Forces local execution, ignoring important commands on other instances
+```ms title="Terminal"
+; Forces local execution, ignoring important commands on other instances
+!!dock
 ```
 
 #### onBoot Hook
 
 A new `onBoot` hook fires after successful boot completion. Users can define this in their Custom Data:
 
-```ini
+```ms title="Terminal"
 [hooks]
 onBoot=light/color StatusLight green; screen/print MainDisplay "System Ready"
 ```
@@ -228,11 +229,11 @@ protected float GetDistributedValue(float totalValue, int blockCount, bool isCum
 ```
 
 **Usage:**
-```bash
-# Each piston extends to 10m
+```ms title="Terminal"
+; Each piston extends to 10m
 piston/distance PistonGroup 10
 
-# Total 10m shared between pistons (5m each for 2 pistons)
+; Total 10m shared between pistons (5m each for 2 pistons)
 piston/distance PistonGroup 10 --share
 ```
 
@@ -272,7 +273,7 @@ var color3 = ColorHelper.GetColor("#FF0000");
 
 Users can now define variables in Custom Data and use them in commands:
 
-```ini
+```ms title="Terminal"
 [variables]
 SHIP_NAME=Serenity
 

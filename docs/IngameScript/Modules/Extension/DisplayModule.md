@@ -1,4 +1,4 @@
-# Display Module
+﻿# Display Module
 
 The Display Module allows the user to control LCD panels, and cockpit screens on the grid.
 
@@ -34,11 +34,11 @@ You have access to the following colors which may be used in place of their RGB 
 
 Imagine we want to change to background color of our airlock screen.
 
-```bash title="Terminal"
-# Normal LCD
+```ms title="Terminal"
+; Normal LCD
 screen/bgcolor "AirlockStatusScreen" red;
 
-# Cockpit LCD
+; Cockpit LCD
 screen/bgcolor "PilotCockpit:1" red;
 ```
 
@@ -68,11 +68,11 @@ You have access to the following colors which may be used in place of their RGB 
 
 Imagine we want to change to color of our airlock screen.
 
-```bash title="Terminal"
-# Normal LCD
+```ms title="Terminal"
+; Normal LCD
 screen/color "AirlockStatusScreen" green;
 
-# Cockpit LCD
+; Cockpit LCD
 screen/color "PilotCockpit:1" green;
 ```
 
@@ -108,7 +108,7 @@ You have access to the following colors which may be used in place of their RGB 
 
 Imagine we want to print text to a screen based on our airlock status.  We contextualize it further with color and print a size that is easily legible.
 
-```ini title="Terminal"
+```ms title="Terminal"
 ; with color name
 screen/print "AirlockStatusScreens" "Airlock SAFE" --color=green --size=4.4;
 
@@ -118,3 +118,4 @@ screen/print "AirlockStatusScreens" "Airlock SAFE" --color=0,255,0 --size=4.4;
 ; Cockpit LCD
 screen/print "PilotCockpit:1" "ALERT" --color=red --size=10;
 ```
+

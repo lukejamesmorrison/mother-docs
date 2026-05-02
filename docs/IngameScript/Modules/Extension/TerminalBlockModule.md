@@ -1,4 +1,4 @@
-# Terminal Block Module
+﻿# Terminal Block Module
 
 The Terminal Block Module allows the user to interact with **terminal blocks** on the grid. All blocks accessible via [Block Catalogue](../Core/BlockCatalogue.md) are considered terminal blocks.
 
@@ -14,7 +14,7 @@ block/on <Block|Group> [--options]
 ```
 
 **Example**
-```bash title="Terminal"
+```ms title="Terminal"
 block/on DrillPiston;
 ```
 
@@ -26,7 +26,7 @@ block/off <Block|Group> [--options]
 ```
 
 **Example**
-```bash title="Terminal"
+```ms title="Terminal"
 block/off DrillPiston;
 ```
 
@@ -38,7 +38,7 @@ block/toggle <Block|Group> [--options]
 ```
 
 **Example**
-```bash title="Terminal"
+```ms title="Terminal"
 block/toggle DrillPiston;
 ```
 
@@ -53,8 +53,8 @@ block/action <Block|Group> <Action> <...ActionArgs>
 
 We want to run the Set and Move action on a piston.  It accepts two arguments: the `distance` to move and the `speed` of the piston. These values are entered in the same order you would normally enter them via the ingame menus.
 
-```bash title="Terminal"
-# set the piston to move to 5m distance at 2.5m/s
+```ms title="Terminal"
+; set the piston to move to 5m distance at 2.5m/s
 block/action DrillPiston SetAndMove 5.0 2.5;
 ```
 
@@ -71,7 +71,7 @@ block/actions <Block>
 ```
 
 **Example**
-```bash title="Terminal"
+```ms title="Terminal"
 block/actions DrillPiston;
 ```
 
@@ -86,8 +86,8 @@ block/config <Block|Group> <Section.Key> <Value>
 
 Let's update the default scale of our `MapLCD`:
 
-```bash title="Terminal"
-# set the scale to 200m
+```ms title="Terminal"
+; set the scale to 200m
 block/config MapLCD general.mapScale 200
 ```
 
@@ -103,7 +103,7 @@ block/rename <Block|Group> <NewName>
 
 Let's rename our drill piston to something more descriptive:
 
-```bash title="Terminal"
+```ms title="Terminal"
 block/rename "Piston 1" DrillPiston;
 ```
 
@@ -118,7 +118,7 @@ tag/get <Tag>
 
 Let's get all blocks with the `#cockpit-displays` tag:
 
-```text title="Terminal"
+```ms title="Terminal"
 tag/get #cockpit-displays;
 ```
 
@@ -134,7 +134,7 @@ tag/set <Block|Group> <Tag>
 
 Let's tag our cockpit displays so that we can easily set them to night mode:
     
-```text title="Terminal"
+```ms title="Terminal"
 tag/set CockpitDisplays #cockpit-displays;
 ```
 
@@ -151,15 +151,16 @@ The following hooks can be define in the block's Custom Data, and will be trigge
 
 **Example**
 
-```ini title = "DrillPiston > Custom Data"
+```ms title = "DrillPiston > Custom Data"
 [hooks]
 onOn=light/color DrillIndicatorLight green;
 onOff=light/color DrillIndicatorLight red;
 ```
 or
 
-```ini title="Mother > Custom Data"
+```ms title="Mother > Custom Data"
 [hooks]
 DrillPiston.onOn=light/color DrillIndicatorLight green;
 "Emergency Batteries".onOff=light/blink "Battery Indicators" off;
 ```
+

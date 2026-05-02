@@ -1,4 +1,4 @@
-# Cockpit Module
+﻿# Cockpit Module
 
 The Cockpit module allows the user to control cockpits on the grid and access thrust dampeners, handbrakes, and more.
 
@@ -15,11 +15,11 @@ dampeners/on <Cockpit|Group>
 
 **Example**
 
-```bash title="Terminal"
-# turn on the dampeners of the Main cockpit
+```ms title="Terminal"
+; turn on the dampeners of the Main cockpit
 dampeners/on
 
-# turn on dampeners for a specific cockpit
+; turn on dampeners for a specific cockpit
 dampeners/on RearCockpit
 ```
 
@@ -32,11 +32,11 @@ dampeners/off <Cockpit|Group>
 
 **Example**
 
-```bash title="Terminal"
-# turn off the dampeners of the Main cockpit
+```ms title="Terminal"
+; turn off the dampeners of the Main cockpit
 dampeners/off
 
-# turn off dampeners for a specific cockpit
+; turn off dampeners for a specific cockpit
 dampeners/off RearCockpit
 ```
 
@@ -49,10 +49,10 @@ handbrake/on <Cockpit|Group>
 ```
 **Example**
 
-```bash title="Terminal"
-# turn on the handbrake of the Main cockpit
+```ms title="Terminal"
+; turn on the handbrake of the Main cockpit
 handbrake/on
-# turn on handbrake for a specific cockpit
+; turn on handbrake for a specific cockpit
 handbrake/on RearCockpit
 ```
 
@@ -66,10 +66,10 @@ handbrake/off <Cockpit|Group>
 
 **Example**
 
-```bash title="Terminal"
-# turn off the handbrake of the Main cockpit
+```ms title="Terminal"
+; turn off the handbrake of the Main cockpit
 handbrake/off
-# turn off handbrake for a specific cockpit
+; turn off handbrake for a specific cockpit
 handbrake/off RearCockpit
 ```
 
@@ -83,7 +83,7 @@ Cockpit/toggle <Cockpit|Group>
 <!-- 
 **Example**
 
-```bash title="Terminal"
+```ms title="Terminal"
 Cockpit/toggle DockingCockpit
 ``` -->
 
@@ -100,15 +100,16 @@ The following hooks can be define in the block's Custom Data, and will be trigge
 
 When we enter the cockpit, let's ensure our batteries are on auto and our lights are on.
 
-```ini title="RearCockpit > Custom Data"
+```ms title="RearCockpit > Custom Data"
 [hooks]
 onOccupied=battery/auto Batteries; block/on SignalLights;
 onEmpty=block/off SignalLights;
 ```
 or
 
-```ini title="Mother > Custom Data"
+```ms title="Mother > Custom Data"
 [hooks]
 RearCockpit.onOccupied=battery/auto Batteries; block/on SignalLights;
 "Drill Cockpit".onEmpty=block/off MainDrills;
 ```
+

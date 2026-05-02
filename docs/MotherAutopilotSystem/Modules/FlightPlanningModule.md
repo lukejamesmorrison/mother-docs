@@ -1,4 +1,4 @@
-# Flight Planning Module
+﻿# Flight Planning Module
 <!-- [< Modules](../Modules.md) -->
 
 [[toc]]
@@ -10,7 +10,7 @@ Mother has a built-in flight planning system that allows you to dynamical assign
 
 Let's start with reviewing the GPS Waypoint system. A **GPS Waypoint** has 6 parts, which are separated by colons `:`
 
-```bash
+```
 <Identifier>:<Name>:<X>:<Y>:<Z>:<Color>:
 ```
 
@@ -30,19 +30,19 @@ We use this format since at any time, a player may copy a GPS waypoint to their 
 
 A flight plan is broken into terms, separated by a space ` `. Each term is a **GPS waypoint**, a **routine**, or a **modifier**.  The flight plan can be passed as a single string to the [`fp/set`](#set-flight-plan) command.
 
-```bash title="Terminal"
+```ms title="Terminal"
 fp/set "GPS:TopSecretBase:211.78:-52.93:59.19:#FF75C9F1: { DoSomethingSecret; light/blink SignalLights med; }";
 ```
 
 Every waypoint may be followed by a routine, which will run when that waypoint is reached. You may also start the flight plan with a routine which will run immediately. Perfect for pre-flight.
 
-```bash title="Terminal"
+```ms title="Terminal"
 fp/set "{ RetractLandingGear } GPS:TopSecretBase:211.78:-52.93:59.19:#FF75C9F1: { DoSomethingSecret; light/blink SignalLights med; }";
 ```
 
 This looks best as a custom command in **Custom Data**:
 
-```ini title="Mother > Custom Data"
+```ms title="Mother > Custom Data"
 [Commands]
 
 FlyToTopSecretBase=
@@ -74,19 +74,19 @@ GPS:TopSecretBase:211.78:-52.93:59.19:#FF75C9F1:
 
 To chart a course to this waypoint, we can set it as Mother's current flight plan:
 
-```bash title="Terminal"
+```ms title="Terminal"
 fp/set "GPS:TopSecretBase:211.78:-52.93:59.19:#FF75C9F1:";
 ```
 
 If we wanted to fly to a `Midpoint`, before proceeding to the `TopSecretBase`, we can simply add the term to our flight plan, separated by a space:
 
-```bash title="Terminal"
+```ms title="Terminal"
 fp/set "GPS:Midpoint:190.12:-54.45:45.89:#FF75C9F1: GPS:TopSecretBase:211.78:-52.93:59.19:#FF75C9F1:";
 ```
 
 If this is a long flight plan, it is most intuitive to store the command in the Programmable Block's **Custom Data**:
 
-```ini title="Mother > Custom Data"
+```ms title="Mother > Custom Data"
 [Commands]
 
 set-route-1=
@@ -101,7 +101,7 @@ Under the hood, Mother will monitoring and update progress towards each waypoint
 
 Next time we want to run the flight plan we can shorten it:
 
-```bash title="Terminal"
+```ms title="Terminal"
 nav/set-flight-plan "Midpoint TopSecretBase";
 ```
 ::: tip
@@ -125,7 +125,7 @@ Players can view the flight plan on a Map display using the `MMAP` tag in the LC
 
 Mother supports running routines when your grid reaches a specific waypoint.  This is done by adding a routine to the flight plan string.
 
-```bash title="Terminal"
+```ms title="Terminal"
 nav/set-flight-plan "GPS:Midpoint:190.12:-54.45:45.89:#FF75C9F1: { ExtendWings; light/blink SignalLights off; block/off BoosterThrusters; }"; 
 ```
 
@@ -141,8 +141,8 @@ A flight plan may be modified with the following options, as the last term in th
 
 An example of a roundtrip flight plan:
 
-```bash title="Terminal"
-# Fly to Midpoint, then TopSecretBase, then return to Midpoint
+```ms title="Terminal"
+; Fly to Midpoint, then TopSecretBase, then return to Midpoint
 nav/set-flight-plan "GPS:Midpoint:190.12:-54.45:45.89:#FF75C9F1: GPS:TopSecretBase:211.78:-52.93:59.19:#FF75C9F1: R";
 ```
 
@@ -163,7 +163,7 @@ nav/set-flight-plan <FlightPlanString> [--options]
 
 **Example:**
 
-```bash title="Terminal"
+```ms title="Terminal"
 nav/set-flight-plan "GPS:Midpoint:190.12:-54.45:45.89:#FF75C9F1: GPS:TopSecretBase:211.78:-52.93:59.19:#FF75C9F1:";
 ```
 
@@ -179,14 +179,15 @@ fp/clear;
 
 Let's go further. Flying a route isn't always enough. Sometimes we need to perform actions at each waypoint.  This is where Actions come in.  We can instruct a grid to perform an action at each waypoint, such as running a command.
 
-```bash
-# Fly to TargetPosition and deploy solar panels
+```ms
+; Fly to TargetPosition and deploy solar panels
 nav/set-flight-plan "GPS:TargetPosition:190.12:-54.45:45.89:#FF75C9F1:?command=DeploySolarPanels";
 ```
 
 Where the `DeploySolarPanels` command is a custom routine that actuates rotors and hinges.
 
-```bash
+`$blockLang
 # DeploySolarPanels
 hinge/rotate SolarPanelArrayHinges 0; rotor/rotate SolarPanelArrayRotors 135;
 ``` -->
+

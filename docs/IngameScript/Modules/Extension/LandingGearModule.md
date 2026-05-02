@@ -1,4 +1,4 @@
-# Landing Gear Module
+﻿# Landing Gear Module
 <!-- [< Modules](../Modules.md) -->
 
 The Landing Gear module allows the user to control landing gear and magnetic plate blocks on the grid.
@@ -14,7 +14,7 @@ gear/lock <LandingGear|Group>
 ```
 
 **Example**
-```bash title="Terminal"
+```ms title="Terminal"
 gear/lock MainLandingGear;
 ```
 
@@ -25,7 +25,7 @@ gear/unlock <LandingGear|Group
 ```
 
 **Example**
-```bash title="Terminal"
+```ms title="Terminal"
 gear/unlock MainLandingGear;
 ```
 
@@ -36,7 +36,7 @@ gear/toggle <LandingGear|Group>
 ```
 
 **Example**
-```bash title="Terminal"
+```ms title="Terminal"
 gear/toggle MainLandingGear;
 ```
 
@@ -51,7 +51,7 @@ gear/auto <LandingGear|Group> <true|false>
 ```
 
 **Example**
-```bash title="Terminal"
+```ms title="Terminal"
 gear/auto MainLandingGear true;
 ```
 
@@ -70,13 +70,13 @@ The following hooks can be define in the block's Custom Data, and will be trigge
 
 Imagine our landing gear has a status light we want to view elsewhere:
 
-```ini title="MainLandingGear > Custom Data"
+```ms title="MainLandingGear > Custom Data"
 [hooks]
 onLock=light/color "Gear Indicator Light" red;
 onUnlock=light/color "Gear Indicator Light" green;
 ```
 or
-```ini title="Mother > Custom Data"
+```ms title="Mother > Custom Data"
 [hooks]
 MainLandingGear.onUnlock=light/color "Gear Indicator Light" green;
 "Boom Mag Plate".onLock=rotor/rotate BoomRotor 90;
@@ -85,3 +85,4 @@ MainLandingGear.onUnlock=light/color "Gear Indicator Light" green;
 :::note
 Landing Gear hooks are also fired when the Landing Gear is used for parking via a toolbar action or the parking button `P`.
 :::
+

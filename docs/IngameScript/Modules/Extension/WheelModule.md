@@ -1,4 +1,4 @@
-# Wheel Module
+﻿# Wheel Module
 The Wheel Module allows the user to control wheel suspension blocks on the grid. Wheels (motor suspensions) are essential for ground vehicles, rovers, and other wheeled craft. This module provides commands for adjusting wheel height offset, allowing for fine-tuned control over vehicle ride height and suspension behavior.
 
 [[toc]]
@@ -21,17 +21,17 @@ Options
 **Example**
 
 Set the front wheels to a height offset of -0.5m:
-```bash title="Terminal"
+```ms title="Terminal"
 wheel/height "Front Wheels" -0.5;
 ```
 
 Raise the rear wheels by 0.2m:
-```bash title="Terminal"
+```ms title="Terminal"
 wheel/height "Rear Wheels" 0.2 --add;
 ```
 
 Lower all wheels by 0.1m:
-```bash title="Terminal"
+```ms title="Terminal"
 wheel/height "All Wheels" 0.1 --sub;
 ```
 
@@ -45,12 +45,12 @@ wheel/power <Wheel|Group> <Power%>
 **Example**
 
 Set all wheels to 50% power:
-```bash title="Terminal"
+```ms title="Terminal"
 wheel/power "All Wheels" 50;
 ```
 
 Set front wheels to full power:
-```bash title="Terminal"
+```ms title="Terminal"
 wheel/power "Front Wheels" 100;
 ```
 
@@ -64,12 +64,12 @@ wheel/friction <Wheel|Group> <Friction%>
 **Example**
 
 Set all wheels to 75% friction:
-```bash title="Terminal"
+```ms title="Terminal"
 wheel/friction "All Wheels" 75;
 ```
 
 Reduce front wheel friction for drifting:
-```bash title="Terminal"
+```ms title="Terminal"
 wheel/friction "Front Wheels" 25;
 ```
 
@@ -83,11 +83,12 @@ wheel/strength <Wheel|Group> <Strength%>
 **Example**
 
 Set all wheels to maximum strength:
-```bash title="Terminal"
+```ms title="Terminal"
 wheel/strength "All Wheels" 100;
 ```
 
 Soften rear suspension:
-```bash title="Terminal"
+```ms title="Terminal"
 wheel/strength "Rear Wheels" 40;
 ```
+

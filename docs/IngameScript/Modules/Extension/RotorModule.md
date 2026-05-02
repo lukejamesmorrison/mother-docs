@@ -1,4 +1,4 @@
-# Rotor Module
+﻿# Rotor Module
 The rotor module allows the user to control rotors on the grid.  Rotors are particularly vulnerable to phantom forces and the Almighty Clang, so we leverage the Activity Monitor to ensure rotors are stopped and locked when not in use. Players can simply define an angle and speed of rotation without worrying about direction, upper/lower limits, or the grid ripping itself apart.
 
 [[toc]]
@@ -21,17 +21,17 @@ Options
 
 **Example**
 Set the antenna rotor to 90 degrees with a speed of 2.5 RPM:
-```bash title="Terminal"
+```ms title="Terminal"
 rotor/rotate AntennaRotor 90 --speed=2.5;
 ```
 
 Increase the angle of the antenna rotor by 45 degrees:
-```bash title="Terminal"
+```ms title="Terminal"
 hinge/rotate LandingGearHinge 45 --add;
 ```
 
 Share an angle of 90 degrees across 3 rotors in the "Solar Panel Rotors" group:
-```bash title="Terminal"
+```ms title="Terminal"
 rotor/rotate "Solar Panel Rotors" 90 --share;
 ```
 
@@ -42,7 +42,7 @@ rotor/lock <Rotor|Group>
 ```
 
 **Example**
-```bash title="Terminal"
+```ms title="Terminal"
 rotor/lock AntennaRotor;
 ```
 
@@ -53,7 +53,7 @@ rotor/unlock <Rotor|Group>
 ```
 
 **Example**
-```bash title="Terminal"
+```ms title="Terminal"
 rotor/unlock AntennaRotor;
 ```
 
@@ -64,7 +64,7 @@ rotor/reset <Rotor|Group>
 ```
 
 **Example**
-```bash title="Terminal"
+```ms title="Terminal"
 rotor/reset AntennaRotor;
 ```
 
@@ -75,7 +75,7 @@ rotor/attach <Rotor|Group>
 ```
 
 **Example**
-```bash title="Terminal"
+```ms title="Terminal"
 rotor/attach AntennaRotor;
 ```
 
@@ -86,7 +86,7 @@ rotor/detach <Rotor|Group>
 ```
 
 **Example**
-```bash title="Terminal"
+```ms title="Terminal"
 rotor/detach AntennaRotor;
 ```
 
@@ -107,19 +107,19 @@ Options
 
 Set speed to 2 RPM and allow rotor to rotate freely:
 
-```bash title="Terminal"
+```ms title="Terminal"
 rotor/speed AntennaRotor 2 --free;
 ```
 
 Increase speed by 2.5 RPM:
 
-```bash title="Terminal"
+```ms title="Terminal"
 rotor/speed AntennaRotor 2.5 --add;
 ```
 
 Decrease speed by 1 RPM:
 
-```bash title="Terminal"
+```ms title="Terminal"
 rotor/speed AntennaRotor 1 --sub;
 ```
 
@@ -133,4 +133,5 @@ The following hooks can be define in the block's Custom Data, and will be trigge
 | `onStop`      | Activated when a rotor stops from the [`rotor/rotate`](#rotate) command.      |
 | `onAttach`      | Activated when a rotor head is attached.      |
 | `onDetach`      | Activated when a rotor head is detached.      |
+
 

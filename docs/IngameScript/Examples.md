@@ -4,18 +4,21 @@
 
 Let's look at some examples and how Mother simplifies them. See the [Cheatsheet](../Cheatsheet.md) for a complete list of available commands.
 
-1. [Autoclosing Door](#autoclosing-door)
-2. [Drill Deployment](#drill-deployment)
-3. [Welder Arm Actuation](#welder-arm-actuation)
-4. [Multi-destination Flight Automation](#multi-destination-flight-automation)
-5. [Dispatch Ship to a Landing Site via a Flight Plan](#dispatch-ship-to-a-landing-site-via-a-flight-plan)
-6. [Building a Landing Pad](#building-a-landing-pad)
+- [Examples](#examples)
+  - [Autoclosing Door](#autoclosing-door)
+  - [Drill Deployment](#drill-deployment)
+  - [Welder Arm Actuation](#welder-arm-actuation)
+  - [Automatically Flying to a Resource Node](#automatically-flying-to-a-resource-node)
+  - [Dispatch Ship to a Landing Site via a Flight Plan](#dispatch-ship-to-a-landing-site-via-a-flight-plan)
+    - [Preflight](#preflight)
+    - [Waypoints](#waypoints)
+  - [Building a Landing Pad](#building-a-landing-pad)
 
 ## Autoclosing Door
 
 I always try to ensure my doors close themselves.  This preserves atmosphere in my spacecraft and stations.  You *could* download another script or mod focused on this, or you could use this simple [hook](../IngameScript/Modules/Extension/DoorModule.md#hooks) on your door to easily customize how long it should wait before closing.  This also allows you to do follow-on actions like change a light color:
 
-```ini title="Airlock Door > Custom Data"
+```ms title="Airlock Door > Custom Data"
 [hooks]
 onClose=
 | wait 5; 
@@ -36,19 +39,19 @@ In our drill deployment we want to:
 3. Begin extending piston (`DrillPiston`) to a specific distance, at a specific speed
 
 Lets break this down into a routine:
-```bash title="Mother > Custom Data"
-# Open the hatch (move to zero degrees)
+```ms title="Mother > Custom Data"
+; Open the hatch (move to zero degrees)
 hinge/rotate DrillHinge 0;
-# Rotate the rotor to 65 degrees
+; Rotate the rotor to 65 degrees
 rotor/rotate DrillRotor 65;
-# Extend the piston to 10 meters, at 0.2 m/s
+; Extend the piston to 10 meters, at 0.2 m/s
 piston/distance DrillPiston 10 --speed=0.2;
 ```
 
 Putting these together, you can create a routine by adding the following to the `[Commands]` section of the grid's **Custom Data**.
 
 
-```ini title="Mother > Custom Data"
+```ms title="Mother > Custom Data"
 [Commands]
 
 ; We can take advantage of the multi-line syntax
@@ -74,7 +77,7 @@ We want our welder arm to actuate to the following angles:
 
 Let's set these as custom commands within the Programmable Block's **Custom Data**:
 
-```ini title="Mother > Custom Data"
+```ms title="Mother > Custom Data"
 [Commands]
 
 hinges90=hinge/rotate "WelderHinges" 90 --speed=3;
@@ -102,7 +105,7 @@ We are using the GPS waypoint string, which you can get by copying the waypoint 
 
 Let's create a routine to fly to each waypoints In the progammable block's **Custom Data**. We can take advantage of the `fcs/start` command to enable autopilot:
 
-```ini title="Mother > Custom Data"
+```ms title="Mother > Custom Data"
 [Commands]
 fe1=
 | nav/set-flight-plan "GPS:Iron#1:1023697:182968.67:1599556.3:#FF75C9F1:";
@@ -124,7 +127,7 @@ Now, we can run Mother with the argument `fe1` to automatically begin flying to 
 Mother allows players to queue commands for execution from within the flight plan string.  This allows players to change aircraft configuration and behavior at each waypoint.  Let's look at an example where we dispatch a ship to a landing site, and change the ship's configuration at each waypoint using the familiar `routine` sytnax.
 
 Our routine:
-```ini title="Mother > Custom Data"
+```ms title="Mother > Custom Data"
 FlyToLandingSite=
 | nav/set-flight-plan
 | "
@@ -143,18 +146,18 @@ FlyToLandingSite=
 
 We can see 4 distinct steps in the flight plan. We will omit the pipe `|` character for ease of readibility in this example. Terms must always we separated by a space ` `.
 
-```bash title="Mother > Custom Data"
-# preflight
+```ms title="Mother > Custom Data"
+; preflight
 { door/close MainDoor; light/blink SignalLights med; }
 
-## first wayoint
+; first wayoint
 GPS:MothershipExit:226963.8:226982.08:227068.34:#FF75C9F1:
  { ExtendWings; light/blink SignalLights off; block/off BoosterThrusters; }
 
-## second waypoint
+; second waypoint
 GPS:HyperionOutpost:227001.34:227004.02:227021.9:#FF75C9F1:
 
-## final waypoint
+; final waypoint
 GPS:LandingSite:227081.47:226948.41:227068.73:#FF75C9F1:
  { fcs/start --speed=10; RectractWings; light/blink SignalLights med; }
 ```
@@ -163,7 +166,7 @@ GPS:LandingSite:227081.47:226948.41:227068.73:#FF75C9F1:
 
 The preflight is run as soon as the `nav/set-flight-plan` command is executed. We can see that we are closing our `MainDoor` door block, and blinking our `SignalLights` - safety first.
 
-```bash title="Mother > Custom Data"
+```ms title="Mother > Custom Data"
 { door/close MainDoor; light/blink SignalLights med; }
 ```
 
@@ -171,7 +174,7 @@ The preflight is run as soon as the `nav/set-flight-plan` command is executed. W
 
 At the `MothershipExit` GPS waypoint we want to extend our wings with our custom command `ExtendWings`, and also turn off our `BoosterThrusters` group.
 
-```bash title="Mother > Custom Data"
+```ms title="Mother > Custom Data"
 GPS:MothershipExit:226963.8:226982.08:227068.34:#FF75C9F1: 
  { ExtendWings; light/blink SignalLights off; block/off BoosterThrusters; }
 ```
@@ -180,7 +183,7 @@ There is no routine defined at the `HyperionOutpost` waypoint so we simply fly t
 
 As we approach the `LandingSite`, we will slow down, and retract our wings. We can do this by setting the speed to 10 m/s, and calling our `RetractWings` command.
 
-```bash title="Mother > Custom Data"
+```ms title="Mother > Custom Data"
 GPS:LandingSite:227081.47:226948.41:227068.73:#FF75C9F1:
  { fcs/start --speed=10; RectractWings; light/blink SignalLights med; }
 ```

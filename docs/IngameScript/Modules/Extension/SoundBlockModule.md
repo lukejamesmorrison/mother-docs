@@ -1,32 +1,33 @@
-# Sound Block Module
+﻿# Sound Block Module
 <!-- [< Modules](../Modules.md) -->
 
-The Sound Block Module allows the user to control sound blocks on the grid. Players can play, stop, and set the sound of sound blocks. Use this to add alerts, and music to your grids to crank up the vibe! 🪩
+The Sound Block Module allows the user to control sound blocks on the grid. Players can play, stop, and set the sound of sound blocks. Use this to add alerts, and music to your grids to crank up the vibe! ðŸª©
 
 [[toc]]
 
 ## Commands
 
-### play
+### sound/play
 
-Play the sound block with an optional sound.
-```ini 
-; play to block
+Play the sound block:
+```
 sound/play <SoundBlock|Group>
+```
 
-; play the block with a specific sound
+Or, play the block with a specific sound:
+```
 sound/play <SoundBlock|Group> <sound>
 ```
 
-See the [`set`](#set) command for a list of available sounds.
+See the [`sound/set`](#sound-set) command for a list of available sounds.
 
 **Example**
 
-```bash title="Terminal"
+```ms title="Terminal"
 sound/play MainSpeaker "Danger Music 04";
 ```
 
-### stop
+### sound/stop
 
 Stop the sound block from playing.
 
@@ -36,11 +37,11 @@ sound/stop <SoundBlock|Group>
 
 **Example**
 
-```bash title="Terminal"
+```ms title="Terminal"
 sound/stop MainSpeaker;
 ```
 
-### set
+### sound/set
 
 Set the sound of the sound block.
 
@@ -50,7 +51,7 @@ sound/set <SoundBlock|Group> <sound>
 
 **Example**
 
-```bash title="Terminal"
+```ms title="Terminal"
 sound/set MainSpeaker MusDanger_04;
 ```
 
@@ -101,12 +102,13 @@ You may use the sound as it appears in the sound block list or, for default soun
 
 **Example**
 
-```bash title="Terminal"
-# default sound with sound id
+```ms title="Terminal"
+; default sound with sound id
 sound/set MainSpeaker MusDanger_04;
-# default sound with ingame name
+; default sound with ingame name
 sound/set MainSpeaker "Danger Music 04";
 
-# other sound
+; other sound
 sound/play MainSpeaker "Space Funk";
 ```
+

@@ -1,4 +1,4 @@
-# Air Vent Module
+﻿# Air Vent Module
 <!-- [< Modules](../Modules.md) -->
 
 The air vent module allows players to control air vents for uses like airlocks and oxygen capture.
@@ -10,36 +10,36 @@ The air vent module allows players to control air vents for uses like airlocks a
 ### pressurize
 
 Set the air vent to pressurize mode.
-```ini 
+```
 vent/pressurize <AirVent|Group>
 ```
 
 **Example**
-```ini title="Terminal"
+```ms title="Terminal"
 vent/pressurize AirlockAirVent
 ```
 
 ### depressurize
 
 Set the air vent to depressurize mode.
-```ini
+```
 vent/depressurize <AirVent|Group>
 ```
 
 **Example**
-```ini title="Terminal"
+```ms title="Terminal"
 vent/depressurize "Atmosphere Intake Fan"
 ```
 
 ### toggle
 
 Toggle the air vent between pressurize and depressurize mode.
-```ini
+```
 vent/toggle <AirVent|Group>
 ```
 
 **Example**
-```ini title="Terminal"
+```ms title="Terminal"
 vent/toggle AirlockAirVent
 ```
 
@@ -58,7 +58,7 @@ The following hooks can be define in the block's Custom Data, and will be trigge
 
 Imagine our air vent is part of our airlock:
 
-```ini title="Main Airlock Air Vent > Custom Data"
+```ms title="Main Airlock Air Vent > Custom Data"
 [hooks]
 onDepressurizing=light/color "MainAirlockLight" red;
 onPressurized=door/open "MainAirlockInnerDoor";
@@ -69,7 +69,7 @@ You can use `this` to refer to the block itself when targeting it from within it
 :::
 
 or
-```ini title="Mother > Custom Data"
+```ms title="Mother > Custom Data"
 [hooks]
 "Main Airlock Air Vent".onDepressurizing=
 | light/color "MainAirlockLight" red;
@@ -77,3 +77,4 @@ or
 ExternalAirVent.onPressurized=
 | screen/print "Atmosphere Screen" "IN ATMOSPHERE"
 ```
+

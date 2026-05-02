@@ -1,4 +1,4 @@
-# Attitude Module
+﻿# Attitude Module
 <!-- [< Modules](../Modules.md) -->
 
 ::: warning
@@ -19,7 +19,8 @@ gyro/face <GPS Waypoint>
 
 **Example**
 
-```text title="Terminal"
+```ms title="Terminal"
 gyro/face GPS:TopSecretBase:211.78:-52.93:59.19:#FF75C9F1:
 ```
+
 

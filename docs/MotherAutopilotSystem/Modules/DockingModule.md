@@ -1,4 +1,4 @@
-# Docking Module
+﻿# Docking Module
 
 The Docking Module handles docking procedures for the grid.
 
@@ -27,14 +27,14 @@ Options
 
 We want to dock with a grid named `Mothership` using the local grid's connector named `MainConnector`, and the remote grid's connector named `Connector - MS.P1`.
 
-```bash title="Terminal"
-# Specify both connectors by name
+```ms title="Terminal"
+; Specify both connectors by name
 dock Mothership --local=MainConnector --remote="Connector - MS.P1";
 
-# If there is one connector on our grid, we only specify the remote connector
+; If there is one connector on our grid, we only specify the remote connector
 dock Mothership --remote="Connector - MS.P1";
 
-# Or we let the grids decide which connectors to use
+; Or we let the grids decide which connectors to use
 dock Mothership;
 ```
 
@@ -46,10 +46,11 @@ dock Mothership;
 
 **Example**
 
-```ini title="DockConnector > Custom Data"
+```ms title="DockConnector > Custom Data"
 [general]
 ; Set the approach distance to 50 meters from the connector face
 appDistance=50
 ```
+
 
 

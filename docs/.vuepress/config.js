@@ -198,7 +198,7 @@ const MotherAutopilotSystemSidebar = {
       collapsible: true, // Allows collapsing sections
       children: [
         '/MotherAutopilotSystem/Modules/FlightPlanningModule.md',
-        // '/MotherAutopilotSystem/Modules/MapModule.md',
+        '/MotherAutopilotSystem/Modules/MapModule.md',
         '/MotherAutopilotSystem/Modules/FlightControlModule.md',
         '/MotherAutopilotSystem/Modules/AttitudeModule.md',
         '/MotherAutopilotSystem/Modules/DockingModule.md',

@@ -34,14 +34,14 @@ MAPS contains the flight-related modules that were previously part of Mother OS:
 
 Map and Almanac displays are now rendered by MAPS. Configure displays using the block's Custom Data:
 
-```ini
-[general]
-type=map
+```ms title="Block > Custom Data"
+[surfaces]
+0=MapView
 ```
 
-Available display types in MAPS:
-- `map` - Visual map of tracked grids and waypoints
-- `almanac` - List of almanac records
+Available views:
+- `MapView` - Visual map of tracked grids and waypoints
+- `AlmanacView` - List of almanac records
 
 ::: tip Automatic Command Sharing
 You don't need to remember which script has which command. Mother Core automatically syncs commands between all Mother-powered scripts on your construct. Just run the command and it will be routed to the correct script.

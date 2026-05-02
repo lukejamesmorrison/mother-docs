@@ -1,4 +1,4 @@
-# Hinge Module
+﻿# Hinge Module
 <!-- [< Modules](../Modules.md) -->
 
 The hinge module allows the user to control hinges on the grid.  Hinges are particularly vulnerable to phantom forces and the *Almighty Clang*, so we leverage the [Activity Monitor](/IngameScript/Modules/Core/ActivityMonitor.md) to ensure hinges are stopped and locked when not in use. Players can simply define an angle and speed of rotation without worrying about direction, upper/lower limits, or their grid ripping itself apart.
@@ -23,17 +23,17 @@ Options
 
 **Example**
 Rotate the landing gear hinge to 90 degrees.
-```bash title="Terminal"
+```ms title="Terminal"
 hinge/rotate LandingGearHinge 90;
 ```
 
 Reduce the angle of the landing gear hinge by 10 degrees.
-```bash title="Terminal"
+```ms title="Terminal"
 hinge/rotate LandingGearHinge 10 --sub;
 ```
 
 Share an angle of 90 degrees across 3 hinges in the "Turret Hinges" group:
-```bash title="Terminal"
+```ms title="Terminal"
 hinge/rotate "Turret Hinges" 90 --share;
 ```
 
@@ -48,7 +48,7 @@ hinge/lock <Hinge|Group>
 | `stop` | **false**, true | bool | Set the hinge's velocity to 0 when locking. | -->
 
 **Example**
-```bash title="Terminal"
+```ms title="Terminal"
 hinge/lock LandingGearHinge;
 ```
 
@@ -59,7 +59,7 @@ hinge/unlock <Hinge|Group>
 ```
 
 **Example**
-```bash title="Terminal"
+```ms title="Terminal"
 hinge/unlock LandingGearHinge;
 ```
 
@@ -70,7 +70,7 @@ hinge/reset <Hinge|Group>
 ```
 
 **Example**
-```bash title="Terminal"
+```ms title="Terminal"
 hinge/reset LandingGearHinge;
 ```
 
@@ -81,7 +81,7 @@ hinge/attach <Hinge|Group>
 ```
 
 **Example**
-```bash title="Terminal"
+```ms title="Terminal"
 hinge/attach LandingGearHinge;
 ```
 
@@ -92,7 +92,7 @@ hinge/detach <Hinge|Group>
 ```
 
 **Example**
-```bash title="Terminal"
+```ms title="Terminal"
 hinge/detach LandingGearHinge;
 ```
 
@@ -112,17 +112,17 @@ Options
 **Example**
 
 Set speed to 2 RPM and allow hinge to rotate freely:
-```bash title="Terminal"
+```ms title="Terminal"
 hinge/speed LandingGearHinge 2 --free;
 ```
 
 Increase speed by 2.5 RPM:
-```bash title="Terminal"
+```ms title="Terminal"
 hinge/speed LandingGearHinge 2.5 --add;
 ```
 
 Decrease speed by 1 RPM:
-```bash title="Terminal"
+```ms title="Terminal"
 hinge/speed LandingGearHinge 1 --sub;
 ```
 
@@ -142,3 +142,4 @@ OnOff, OnOff_On, OnOff_Off, ShowOnHUD, ShowOnHUD_On, ShowOnHUD_Off, IncreaseFont
 
 
 --->
+

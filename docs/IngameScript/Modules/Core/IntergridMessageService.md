@@ -1,4 +1,4 @@
-# Intergrid Message Service
+﻿# Intergrid Message Service
 <!-- [< Modules](../Modules.md) -->
 
 
@@ -26,15 +26,15 @@ Imagine we have a drone and want it come directly to our position.  We could pil
 
 We can use the `nav/set-flight-plan` command to send a GPS waypoint to the ship so it knows where to go.
 
-```bash title="Terminal"
-# remotely set a flight plan on SurveyDrone grid
+```ms title="Terminal"
+; remotely set a flight plan on SurveyDrone grid
 @SurveyDrone nav/set-flight-plan "GPS:CurrentPosition#1:211.78:-52.93:59.19:#FF75C9F1:"
 ```
 
 Similiarily, if we couple the autopilot start command into a routine, then the SurveyDrone will start flying to the GPS waypoint as soon as it receives the command.:
 
-```bash title="Terminal"
-# remotely set a flight plan, and start autopilot on SurveyDrone grid
+```ms title="Terminal"
+; remotely set a flight plan, and start autopilot on SurveyDrone grid
 @SurveyDrone nav/set-flight-plan "GPS:CurrentPosition#1:211.78:-52.93:59.19:#FF75C9F1:"; fcs/start;
 ```
 See the [Flight Planning Module](../../../MotherAutopilotSystem/Modules/FlightPlanningModule.md) for more information on flight planning.
@@ -50,14 +50,15 @@ As you add more grids to your network, you will quickly look for ways to organiz
 
 Channels are defined in the `[channels]` section the Programmable Block's Custom Data.  The `*` channel is the default public channel.  You may leave a channel's `value` empty to indicate that the channel is unencrypted.  If a channel has a value, then it is encrypted using the provided passcode. 
 
-```ini title="Mother > Custom Data"
+```ms title="Mother > Custom Data"
 [channels]
 ; Set public channel as available and unencrypted. 
 *=
 
 ; The private channels are encrypted if a passcode is provided.
-MyFaction=Sup3rSecr3tP@ssw0rd
-OtherFaction=An0therP@ssw0rd
+MyFaction=Sup3rSecr3tP4ssw0rd
+OtherFaction=An0therP4ssw0rd
+
 ; No passcode means no encryption on this channel.
 ThirdFaction=  
 ```
@@ -77,7 +78,7 @@ Should your grid receive a unencrypted message, or with an incorrect passcode, M
 
 In most cases, the commands you define will only be relevant to the current grid.  Custom commands defined in Custom Data are stored locally. When sending a command remotely, another grid will attempt to run it exactly as is. Let's take a look at the PowerOff command on our `SurveyDrone` grid.
 
-```ini title="SurveyDrone > Custom Data"
+```ms title="SurveyDrone > Custom Data"
 [commands]
 PowerOff=
 | block/off Thrusters; 
@@ -87,7 +88,7 @@ PowerOff=
 
 To run this, we can use the following with the `SurveyDrone`'s terminal:
 
-```bash title="SurveyDrone > Terminal"    
+```ms title="SurveyDrone > Terminal"    
 PowerOff;
 ```
 
@@ -95,7 +96,7 @@ We may want to call this command remotely. However, the `Mothership` has no know
 
 We can prefix the remote command with an underscore `_` to indicate that the command is defined locally on the remote grid. This allows Mothership to call commands defined locally on the `SurveyDrone` grid.
 
-```bash title="Mothership > Terminal"
+```ms title="Mothership > Terminal"
 @SurveyDrone _PowerOff
 ```
 
@@ -110,3 +111,4 @@ Failing to include an underscore `_` when running a remotely defined command cou
 <!-- [![Sending a Remote Command](https://img.youtube.com/vi/ubFKpvxrtz0/0.jpg)](https://www.youtube.com/watch?v=ubFKpvxrtz0) -->
 
 <iframe width="100%" height="400" src="https://www.youtube.com/embed/ubFKpvxrtz0?si=E2ddgsA3cVjlpOj8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+

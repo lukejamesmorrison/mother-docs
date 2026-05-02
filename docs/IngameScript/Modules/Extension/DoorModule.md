@@ -1,4 +1,4 @@
-# Door Module
+﻿# Door Module
 <!-- [< Modules](../Modules.md) -->
 
 The door module allows the user to control doors on the grid.
@@ -15,7 +15,7 @@ door/open <Door|Group>
 
 **Example**
 
-```bash title="Terminal"
+```ms title="Terminal"
 door/open "Missile Silo Door"
 ```
 
@@ -27,19 +27,19 @@ door/close <Door|Group>
 
 **Example**
 
-```bash title="Terminal"
+```ms title="Terminal"
 door/close "Missile Silo Door"
 ```
 
 ### toggle
 Toggle the open state of a door or group of doors.
-```bash
+```
 door/toggle <Door|Group>
 ```
 
 **Example**
 
-```bash title="Terminal"
+```ms title="Terminal"
 door/toggle "Missile Silo Door"
 ```
 
@@ -59,7 +59,7 @@ The following hooks can be define in the block's Custom Data, and will be trigge
 
 Imagine our door is part of an airlock:
 
-```ini title="OuterDoor > Custom Data"
+```ms title="OuterDoor > Custom Data"
 [hooks]
 onOpen=wait 10; door/close this;
 onClose=vent/pressurize AirlockVent; wait 2; light/blink "Airlock Light" off;
@@ -70,7 +70,7 @@ You can use `this` to refer to the block itself when targeting it from within it
 :::
 
 or
-```ini title="Mother > Custom Data"
+```ms title="Mother > Custom Data"
 [hooks]
 OuterDoor.onOpen=
 | light/blink "Airlock Light" fast; 
@@ -83,3 +83,4 @@ OuterDoor.onOpen=
 | wait 2; 
 | light/blink "Airlock Light" off;
 ```
+

@@ -1,4 +1,4 @@
-# Sorter Module
+﻿# Sorter Module
 <!-- [< Modules](../Modules.md) -->
 
 The sorter module allows the user to control conveyor sorters on the grid.
@@ -16,11 +16,12 @@ sorter/drain <Sorter|Group> true|false
 **Example**
 
 Turn on `DrainAll`
-```bash title="Terminal"
+```ms title="Terminal"
 sorter/drain "Gravel Exhaust" true
 ```
 
 Turn off `DrainAll`
-```bash title="Terminal"
+```ms title="Terminal"
 sorter/drain VerticalFarmHarvester false
 ```
+

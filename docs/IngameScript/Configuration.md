@@ -7,7 +7,7 @@ Players can easily configure Mother using the Programmable Block's **Custom Data
 [[toc]]
 
 ## Mother Configuration
-```ini title="Mother > Custom Data"
+```ms title="Mother > Custom Data"
 [general]
 debug=false 
 
@@ -41,7 +41,7 @@ Setting `general.debug` to `true` will highlight the complexity your script in t
 ## Block Configuration
 All Terminal Blocks have a `Custom Data` field.  This is where you can define the block's configuration, tags, and hooks.
 
-```ini title="AirlockDoor > Custom Data"
+```ms title="AirlockDoor > Custom Data"
 [general]
 tags=airlock,door
 
@@ -70,7 +70,7 @@ Hooks are defined within Modules where available.  See the [Connector Module](Mo
 
 For when the `OuterDoor` opens, a light will blink, a vent will depressurize, and the door will close.
 
-```ini title="OuterDoor > Custom Data"
+```ms title="OuterDoor > Custom Data"
 [hooks]
 onOpen=
 | light/blink "Airlock Light" fast; 
@@ -86,7 +86,7 @@ onClose=
 or, we can define the hook in Mother's Custom Data:
 
 
-```ini title="Mother > Custom Data"
+```ms title="Mother > Custom Data"
 [hooks]
 OuterDoor.onOpen=
 | light/blink "Airlock Light" fast; 

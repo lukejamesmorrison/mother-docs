@@ -31,12 +31,12 @@ If you use any flight-related commands (`nav/set-flight-plan`, `dock`, `gyro/fac
 The `nav/set-flight-plan` command has been renamed to `fp/set`.
 
 **Before:**
-```bash
+```ms title="Terminal"
 nav/set-flight-plan "GPS:Waypoint1:0:0:0:#FFFFFF:"
 ```
 
 **After:**
-```bash
+```ms title="Terminal"
 fp/set "GPS:Waypoint1:0:0:0:#FFFFFF:"
 ```
 
@@ -52,11 +52,14 @@ LCD Panel [MMAP]
 ```
 
 **After (Custom Data):**
-```ini
-[general]
-type=map # display type
-source=MAPS #source instance name
-surfaceIndex=0 # optional screen target
+Use the `[surfaces]` section on the display block set views for each surface:
+```ms title="Custom Data"
+[surfaces]
+; show the MAPS map view of surface 0
+0=MapView
+
+; view a script's log on surface 1
+1=LogView "Mother OS"
 ```
 
 The block can now be named anything you like. This applies to all display types.
@@ -108,7 +111,7 @@ This update introduces changes to the way your grids communicate. I highly advis
 
 If you are encountering issues or the rare complexity failure, you should purge storage to clear all data related to grid communications.
 
-```sh title="Terminal"
+```ms title="Terminal"
 purge * --force
 ```
 

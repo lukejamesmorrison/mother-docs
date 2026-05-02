@@ -1,4 +1,4 @@
-# Light Module
+﻿# Light Module
 <!-- [< Modules](../Modules.md) -->
 
 The light module allows the user to control lights and searchlights on the grid.  Players can now dynamically control light color and blinking. Use this to take your landing pads and warning lights to the next level.
@@ -31,12 +31,12 @@ You have access to the following colors which may be used in place of their RGB 
 
 **Example**
 
-```bash title="Terminal"
-# by name
+```ms title="Terminal"
+; by name
 light/color LandingLight red;
-# by RGB
+; by RGB
 light/color LandingLight 255,0,0;
-# by Hex
+; by Hex
 light/color LandingLight #FF0000;
 ```
 
@@ -65,11 +65,11 @@ You have access to several blinks which may be used instead of the value in seco
 
 **Example**
 
-```bash title="Terminal"
-# using preset
+```ms title="Terminal"
+; using preset
 light/blink SignalLight slow;
 
-# using values and options
+; using values and options
 light/blink SignalLight 3 --length=0.3 --offset=0;
 ```
 
@@ -90,12 +90,12 @@ Options
 **Example**
 
 Set the intensity of the signal light to 0.5 (50% brightness):
-```bash title="Terminal"
+```ms title="Terminal"
 light/intensity SignalLight 0.5;
 ```
 
 Reduce the intensity of the signal light by 0.2 (20%):
-```bash title="Terminal"
+```ms title="Terminal"
 light/intensity SignalLight 0.2 --sub;
 ```
 
@@ -109,6 +109,7 @@ light/reset <Light|Group>
 
 **Example**
 
-```bash title="Terminal"
+```ms title="Terminal"
 light/reset SignalLight;
 ```
+

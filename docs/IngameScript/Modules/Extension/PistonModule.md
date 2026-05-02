@@ -1,4 +1,4 @@
-# Piston Module
+﻿# Piston Module
 
 The piston module allows the user to control pistons on the grid.  Pistons are particularly vulnerable to phantom forces and the Almighty Clang, so we leverage the Activity Monitor to ensure pistons are stopped when not in use. Players can simply define a distance and speed without worrying about upper/lower limits.
 
@@ -26,17 +26,17 @@ Options
 **Example**
 
 Extend the turret pistons to 5 meters:
-```bash title="Terminal"
+```ms title="Terminal"
 piston/distance TurretPistons 5;
 ```
 
 Decrease the distance of the turret pistons by 1 meter:
-```bash title="Terminal"
+```ms title="Terminal"
 piston/distance TurretPistons 1 --sub; 
 ```
 
 Share a distance of 4 meters across 4 pistons in the "Landing Gear Pistons" group:
-```bash title="Terminal"
+```ms title="Terminal"
 piston/distance "Landing Gear Pistons" 4 --share;
 ```
 
@@ -47,7 +47,7 @@ piston/stop <Piston|Group>
 ```
 
 **Example**
-```bash title="Terminal"
+```ms title="Terminal"
 piston/stop TurretPistons;
 ```
 
@@ -58,7 +58,7 @@ piston/attach <Piston|Group>
 ```
 
 **Example**
-```bash title="Terminal"
+```ms title="Terminal"
 piston/attach TurretPistons;
 ```
 
@@ -69,7 +69,7 @@ piston/detach <Piston|Group>
 ```
 
 **Example**
-```bash title="Terminal"
+```ms title="Terminal"
 piston/detach TurretPistons;
 ```
 
@@ -80,7 +80,7 @@ piston/reset <Piston|Group>
 ```
 
 **Example**
-```bash title="Terminal"
+```ms title="Terminal"
 piston/reset TurretPistons;
 ```
 
@@ -99,19 +99,19 @@ Options
 #### Examples
 Set speed to 0.5 m/s:
 
-```bash title="Terminal"
+```ms title="Terminal"
 piston/speed TurretPistons 0.5;
 ```
 
 Increase speed by 0.2 m/s:
 
-```bash
+```ms
 piston/speed TurretPistons 0.2 --add;
 ```
 
 Decrease speed by 0.1 m/s:
 
-```bash
+```ms
 piston/speed TurretPistons 0.1 --sub;
 ```
 
@@ -133,7 +133,7 @@ The following hooks can be define in the block's Custom Data, and will be trigge
 
 Imagine our piston is connected to a fuel boom:
 
-```ini title="FuelBoomPiston > Custom Data"
+```ms title="FuelBoomPiston > Custom Data"
 [hooks]
 onExtending=light/blink "Fuel Boom Light" fast;
 onRetracted=light/blink "Fuel Boom Light" off;
@@ -144,7 +144,7 @@ You can use `this` to refer to the block itself when targeting it from within it
 :::
 
 or
-```ini title="Mother > Custom Data"
+```ms title="Mother > Custom Data"
 [hooks]
 FuelBoomPiston.onExtending=
 | light/blink "Fuel Boom Light" fast;
@@ -245,3 +245,4 @@ Labels are uneccesary but may be added as the last parameter.
 | ShowOnHUD_Off						|			|			|         |         |         |
 | ShowOnHUD_On						|			|			|         |         |         |
 --->
+

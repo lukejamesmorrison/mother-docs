@@ -1,4 +1,4 @@
-# Map Module
+﻿# Map Module
 
 The map module allows Mother to visualize the positions of all grids and waypoints in the [Almanac](../../IngameScript/Modules/Core/Almanac.md). This provides players with a spacial representation of all grids running Mother Core, and communicating via the antenna network.
 
@@ -31,7 +31,7 @@ Let's imagine our grid is currently communicating on the following channels, wit
 
 If we want to only include specific grids, or channels, we can use a `+` symbol:
 
-```ini title="LCD > Custom Data"
+```ms title="LCD > Custom Data"
 [general]
 ; show only the Survey Drone grid, or
 filter=+SurveyDrone
@@ -45,7 +45,7 @@ filter=+SurveyDrone +MyFaction
 
 If we want to exclude specific grids, or channels, we can use a `-` symbol. All other grids will be shown.
 
-```ini title="LCD > Custom Data"    
+```ms title="LCD > Custom Data"    
 [general]
 ; exclude the Survey Drone grid, or
 filter=-SurveyDrone
@@ -68,7 +68,7 @@ filter=-SurveyDrone -MyFaction
 **Example**
 
 <!-- **LCD Custom Data** -->
-```ini title="LCD > Custom Data"
+```ms title="LCD > Custom Data"
 [general]
 ;filter grids
 filter=+MyFaction +SurveyDrone
@@ -86,3 +86,4 @@ center=Mothership
 ; render mode
 mode=2D
 ```
+

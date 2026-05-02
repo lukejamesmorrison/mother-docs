@@ -1,4 +1,4 @@
-# Battery Module
+﻿# Battery Module
 <!-- [< Modules](../Modules.md) -->
 
 The battery module allows the user to control batteries on the grid.  Batteries have multiple states that can he set individually, or toggled through.
@@ -15,7 +15,7 @@ battery/charge <Battery|Group>
 ```
 
 **Example**
-```bash title="Terminal"
+```ms title="Terminal"
 battery/charge "Main Battery";
 ```
 
@@ -27,7 +27,7 @@ battery/discharge <Battery|Group> [--options]
 ```
 
 **Example**
-```bash title="Terminal"
+```ms title="Terminal"
 battery/discharge "Main Battery";
 ```
 
@@ -39,7 +39,7 @@ battery/auto <Battery|Group> [--options]
 ```
 
 **Example**
-```bash title="Terminal"
+```ms title="Terminal"
 battery/auto "Main Battery";
 ```
 
@@ -51,8 +51,9 @@ battery/toggle <Battery|Group> [--options]
 ```
 
 **Example**
-```bash title="Terminal"
+```ms title="Terminal"
 battery/toggle "Main Battery";
 ```
+
 
 
