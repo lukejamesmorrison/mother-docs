@@ -124,11 +124,11 @@ The official Mother Project logo, available in SVG and PNG formats for use in pr
       <td>Light Logo</td>
       <td>
         <div style="padding: 1rem; background: #FFFFFF; border-radius: 12px; display: inline-block;">
-          <img src="/mother-docs/brand-assets/logo-512x512.png" alt="Mother Logo Square Icon" style="width: 140px; height: 140px; display: block;" />
+          <img src="/brand-assets/logo-512x512.png" alt="Mother Logo Square Icon" style="width: 140px; height: 140px; display: block;" />
         </div>
       </td>
-      <td><a href="/mother-docs/brand-assets/logo-512x512.png">logo-512x512.png</a></td>
-      <td><a href="/mother-docs/brand-assets/logo-512x512.svg">logo-512x512.svg</a></td>
+      <td><a href="/brand-assets/logo-512x512.png">logo-512x512.png</a></td>
+      <td><a href="/brand-assets/logo-512x512.svg">logo-512x512.svg</a></td>
     </tr>
     <tr>
       <td>Dark Logo</td>
@@ -137,8 +137,8 @@ The official Mother Project logo, available in SVG and PNG formats for use in pr
           <img src="/brand-assets/logo-dark-512x512.png" alt="Mother Logo Dark Square Icon" style="width: 140px; height: 140px; display: block;" />
         </div>
       </td>
-      <td><a href="/mother-docs/brand-assets/logo-dark-512x512.png">logo-dark-512x512.png</a></td>
-      <td><a href="/mother-docs/brand-assets/logo-dark-512x512.svg">logo-dark-512x512.svg</a></td>
+      <td><a href="/brand-assets/logo-dark-512x512.png">logo-dark-512x512.png</a></td>
+      <td><a href="/brand-assets/logo-dark-512x512.svg">logo-dark-512x512.svg</a></td>
     </tr>
   </tbody>
 </table>
@@ -147,10 +147,10 @@ The official Mother Project logo, available in SVG and PNG formats for use in pr
 You can use this SVG as a starting point for script thumbnails and workshop preview images.
 
 <div style="border-radius: 12px; display: inline-block; margin: 1rem 0;">
-  <img src="/mother-docs/brand-assets/mother-script-thumbnail-template.svg" alt="Mother Script Thumbnail Template" style="width: 320px; max-width: 100%; display: block;" />
+  <img src="/brand-assets/mother-script-thumbnail-template.svg" alt="Mother Script Thumbnail Template" style="width: 320px; max-width: 100%; display: block;" />
 </div>
 
-**Download:** [mother-script-thumbnail-template.svg](/mother-docs/brand-assets/mother-script-thumbnail-template.svg)
+**Download:** [mother-script-thumbnail-template.svg](/brand-assets/mother-script-thumbnail-template.svg)
 
 ### Powered By Mother Badge
 
@@ -160,19 +160,19 @@ Use this badge to indicate your grid, project, or content uses the Mother ecosys
 For use on dark backgrounds.
 
 <div style="padding: 2rem; background: #1b1b1f; border-radius: 8px; display: inline-block; margin: 1rem 0;">
-  <img src="/mother-docs/brand-assets/powered-by-mother-badge-dark-transparent.svg" alt="Powered By Mother (Light)" style="height: 100px;" />
+  <img src="/brand-assets/powered-by-mother-badge-dark-transparent.svg" alt="Powered By Mother (Light)" style="height: 100px;" />
 </div>
 
-**Download:** [powered-by-mother-badge-dark-transparent.svg](/mother-docs/brand-assets/powered-by-mother-badge-dark-transparent.svg)
+**Download:** [powered-by-mother-badge-dark-transparent.svg](/brand-assets/powered-by-mother-badge-dark-transparent.svg)
 
 #### Dark Version
 For use on light backgrounds.
 
 <div style="padding: 2rem; background: #fff; border-radius: 8px; border: 1px solid #e2e2e3; display: inline-block; margin: 1rem 0;">
-  <img src="/mother-docs/brand-assets/powered-by-mother-badge-light-transparent.svg" alt="Powered By Mother (Dark)" style="height: 100px;" />
+  <img src="/brand-assets/powered-by-mother-badge-light-transparent.svg" alt="Powered By Mother (Dark)" style="height: 100px;" />
 </div>
 
-**Download:** [powered-by-mother-badge-light-transparent.svg](/mother-docs/brand-assets/powered-by-mother-badge-light-transparent.svg)
+**Download:** [powered-by-mother-badge-light-transparent.svg](/brand-assets/powered-by-mother-badge-light-transparent.svg)
 
 
 ## Usage Guidelines

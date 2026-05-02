@@ -76,7 +76,7 @@
     "pipeLine": {
       "patterns": [
         {
-          "begin": "^(\\s*)(\\|)\\s*(@[A-Za-z0-9_:-]+\\s+)?([A-Za-z][A-Za-z0-9_-]*)(/)([A-Za-z][A-Za-z0-9_-]*)\\b",
+          "begin": "^(\\s*)(\\|)\\s*(@[A-Za-z0-9_:-]+\\s+)?([A-Za-z][A-Za-z0-9_-]*)(?:(/)([A-Za-z][A-Za-z0-9_-]*))?\\b",
           "beginCaptures": {
             "1": {
               "name": "punctuation.whitespace.leading.motherscript"
@@ -134,7 +134,7 @@
     "singleLineCommand": {
       "patterns": [
         {
-          "begin": "^\\s*((?:\"[^\"]+\"|[A-Za-z_][A-Za-z0-9_-]*)(?:\\.(?:\"[^\"]+\"|[A-Za-z_][A-Za-z0-9_-]*))*)\\s*(=)\\s*(@[A-Za-z0-9_:-]+\\s+)?([A-Za-z][A-Za-z0-9_-]*)(/)([A-Za-z][A-Za-z0-9_-]*)\\b",
+          "begin": "^\\s*((?:\"[^\"]+\"|[A-Za-z_][A-Za-z0-9_-]*)(?:\\.(?:\"[^\"]+\"|[A-Za-z_][A-Za-z0-9_-]*))*)\\s*(=)\\s*(@[A-Za-z0-9_:-]+\\s+)?([A-Za-z][A-Za-z0-9_-]*)(?:(/)([A-Za-z][A-Za-z0-9_-]*))?\\b",
           "beginCaptures": {
             "1": {
               "name": "entity.name.function.motherscript"
@@ -229,7 +229,7 @@
     "commandLine": {
       "patterns": [
         {
-          "begin": "^(\\s*)(@[A-Za-z0-9_:-]+\\s+)?([A-Za-z][A-Za-z0-9_-]*)(/)([A-Za-z][A-Za-z0-9_-]*)\\b",
+          "begin": "^(\\s*)(@[A-Za-z0-9_:-]+\\s+)?([A-Za-z][A-Za-z0-9_-]*)(?:(/)([A-Za-z][A-Za-z0-9_-]*))?\\b",
           "beginCaptures": {
             "1": {
               "name": "punctuation.whitespace.leading.motherscript"

@@ -88,7 +88,7 @@ block/rename <Block|Group> <NewName>
 
 **Example**
 
-```bash title="Terminal"
+```ms title="Terminal"
 block/rename "Piston 1" DrillPiston;
 ```
 
@@ -103,7 +103,7 @@ tag/get <Tag>
 
 Let's get all blocks with the `#cockpit-displays` tag:
 
-```text title="Terminal"
+```ms title="Terminal"
 tag/get #cockpit-displays;
 ```
 
@@ -119,7 +119,7 @@ tag/set <Block|Group> <Tag>
 
 Let's tag our cockpit displays so that we can easily set them to night mode:
     
-```text title="Terminal"
+```ms title="Terminal"
 tag/set CockpitDisplays #cockpit-displays;
 ```
 
@@ -132,14 +132,14 @@ tag/set CockpitDisplays #cockpit-displays;
 
 **Example**
 
-```ini title = "DrillPiston > Custom Data"
+```ms title = "DrillPiston > Custom Data"
 [hooks]
 onOn=light/color DrillIndicatorLight green;
 onOff=light/color DrillIndicatorLight red;
 ```
 or
 
-```ini title="Mother > Custom Data"
+```ms title="Mother > Custom Data"
 [hooks]
 DrillPiston.onOn=light/color DrillIndicatorLight green;
 "Emergency Batteries".onOff=light/blink "Battery Indicators" off;
@@ -157,21 +157,21 @@ DrillPiston.onOn=light/color DrillIndicatorLight green;
 ### vent/pressurize
 
 Set the air vent to pressurize mode.
-```bash
+```
 vent/pressurize <AirVent|Group>
 ```
 
 ### vent/depressurize
 
 Set the air vent to depressurize mode.
-```bash
+```
 vent/depressurize <AirVent|Group>
 ```
 
 ### vent/toggle
 
 Toggle the air vent between pressurize and depressurize mode.
-```bash
+```
 vent/toggle <AirVent|Group>
 ```
 
@@ -186,7 +186,7 @@ vent/toggle <AirVent|Group>
 
 **Example**
 
-```ini title="AirlockVent > Custom Data"
+```ms title="AirlockVent > Custom Data"
 [hooks]
 onPressurized=light/color "Airlock Light" green; door/open "Inner Door";
 onDepressurized=light/color "Airlock Light" red; door/open "Outer Door";
@@ -236,19 +236,22 @@ battery/toggle <Battery|Group> [--options]
 
 ### boot
 Run the Mother OS boot sequence. This is automatically run when the Programmable Block is started, but can be run manually to reset the system.
-```bash
+
+```ms title="Terminal"
 boot
 ```
 
 ### help
 Print all commands in the Programmable Block terminal.
-```bash
+
+```ms title="Terminal"
 help
 ```
 
 ### clear
 Clear the Programmable Block terminal window.
-```bash
+
+```ms title="Terminal"
 clear
 ```
 
@@ -256,7 +259,7 @@ clear
 [![Static Badge](https://img.shields.io/badge/Almanac-Mother_Core-red?color=red)](IngameScript/Modules/Core/Almanac.md)
 
 Ping all grids on the network and update the Almanac.
-```bash
+```ms title="Terminal"
 ping
 ```
 
@@ -272,11 +275,11 @@ Rename the grid by setting its custom name. This is useful for giving unique nam
 
 **Example**
 
-```bash title="Terminal"
-# Set the grid name to "Scout Drone"
+```ms title="Terminal"
+; Set the grid name to "Scout Drone"
 rename "Scout Drone";
 
-# Set a unique grid name like "Missile-12345"
+; Set a unique grid name like "Missile-12345"
 rename Missile --unique;
 ```
 ::: tip Randomizing Printed Grids
@@ -288,14 +291,14 @@ Use the `rename` command with `--unique` in the `onBoot` hook to automatically g
 
 Delay a command or routine for execution. This can be used remotely as well.
 
-```bash
+```
 wait <seconds>
 ```
 
 **Example**
 
-```bash title="Terminal"
-# Light turns red, then after 5 seconds, thew light turns green
+```ms title="Terminal"
+; Light turns red, then after 5 seconds, thew light turns green
 light/color IndicatorLight red; wait 5; light/color IndicatorLight green;
 ```
 
@@ -329,14 +332,14 @@ purge <modules,> [--options]
 
 To purge all modules, you can use the following command:
 
-```bash title="Terminal"
+```ms title="Terminal"
 purge * --force
 ```
 
 To purge specific modules, you can use the following command:
 
-```bash title="Terminal"
-purge almanac,storage --fo
+```ms title="Terminal"
+purge almanac,storage --force
 ```
 
 
@@ -359,18 +362,17 @@ Options
 
 We want to dock with a grid named `Mothership` using the local grid's connector named `MainConnector`, and the remote grid's connector named `Connector - MS.P1`.
 
-```bash title="Terminal"
-# Specify both connectors by name
+```ms title="Terminal"
+; Specify both connectors by name
 dock Mothership --local=MainConnector --remote="Connector - MS.P1";
 
-# If there is one connector on our grid, we only specify the remote connector
+; If there is one connector on our grid, we only specify the remote connector
 dock Mothership --remote="Connector - MS.P1";
 
-# Or we let the grids decide which connectors to use
+; Or we let the grids decide which connectors to use
 dock Mothership;
 ```
 
-:::
 
 ## Cockpits
 [![Static Badge](https://img.shields.io/badge/Copckpit_Module-Mother_OS-red?color=red)](IngameScript/Modules/Extension/CockpitModule.md)
@@ -388,11 +390,11 @@ dampeners/on <Cockpit|Group>
 
 **Example**
 
-```bash title="Terminal"
-# turn on the dampeners of the Main cockpit
+```ms title="Terminal"
+; turn on the dampeners of the Main cockpit
 dampeners/on
 
-# turn on dampeners for a specific cockpit
+; turn on dampeners for a specific cockpit
 dampeners/on RearCockpit
 ```
 
@@ -405,11 +407,11 @@ dampeners/off <Cockpit|Group>
 
 **Example**
 
-```bash title="Terminal"
-# turn off the dampeners of the Main cockpit
+```ms title="Terminal"
+; turn off the dampeners of the Main cockpit
 dampeners/off
 
-# turn off dampeners for a specific cockpit
+; turn off dampeners for a specific cockpit
 dampeners/off RearCockpit
 ```
 
@@ -422,10 +424,10 @@ handbrake/on <Cockpit|Group>
 ```
 **Example**
 
-```bash title="Terminal"
-# turn on the handbrake of the Main cockpit
+```ms title="Terminal"
+; turn on the handbrake of the Main cockpit
 handbrake/on
-# turn on handbrake for a specific cockpit
+; turn on handbrake for a specific cockpit
 handbrake/on RearCockpit
 ```
 
