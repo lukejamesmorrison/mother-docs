@@ -176,6 +176,34 @@
   width: 0 !important;
 }
 
+div.language-text.line-numbers-mode {
+  --code-line-number-width: 0;
+  padding-left: 0 !important;
+}
+
+div.language-text.line-numbers-mode::after {
+  display: none !important;
+  border-right: 0 !important;
+  width: 0 !important;
+}
+
+div.language-text.line-numbers-mode pre {
+  margin-left: 0 !important;
+}
+
+div.language-text.line-numbers-mode code {
+  padding-left: 1rem !important;
+}
+
+div.language-text .line-numbers {
+  display: none !important;
+  width: 0 !important;
+}
+
+div.language-ms pre.shiki code span[style*='#A6A6A6' i][style*='font-weight: bold' i] {
+  color: #5DA9FF !important;
+}
+
 // Secondary button styling (applies to both themes)
 .auto-link.secondary {
   color: var(--vp-c-text);

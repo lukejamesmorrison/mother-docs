@@ -17,6 +17,7 @@ These commands and hooks work on all blocks accessible by Mother.
 
 ### block/on
 Turn the block on.
+
 ```
 block/on <Block|Group> [--options]
 ```
@@ -44,8 +45,8 @@ block/action <Block|Group> <Action> <...ActionArgs>
 
 We want to run the Set and Move action on a piston.  It accepts two arguments: the `distance` to move and the `speed` of the piston. These values are entered in the same order you would normally enter them via the ingame menus.
 
-```bash title="Terminal"
-# set the piston to move to 5m distance at 2.5m/s
+```ms title="Terminal"
+; set the piston to move to 5m distance at 2.5m/s
 block/action DrillPiston SetAndMove 5.0 2.5;
 ```
 
@@ -72,8 +73,8 @@ block/config <Block|Group> <Section.Key> <Value>
 
 Let's update the default scale of our `MapLCD`:
 
-```bash title="Terminal"
-# set the scale to 200m
+```ms title="Terminal"
+; set the scale to 200m
 block/config MapLCD general.mapScale 200
 ```
 

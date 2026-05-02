@@ -36,13 +36,13 @@ import { usePageData } from 'vuepress/client'
 Mother OS is available as an ingame script for Programmable Blocks in Space Engineers. It interoperates seamlessly with Timer Blocks and Event Controllers to augment existing automations. Start by [installing Mother OS here](./Installation.md).
 
 ```ms title="Terminal"
-# Set the color of a light
+; Set the color of a light
 light/color AirlockLight red;
 
-# Rotate a hinge group to an angle with a speed
+; Rotate a hinge group to an angle with a speed
 hinge/rotate MainLandingGearHinges 45 --speed=2;
 
-# Open a hangar door remotely
+; Open a hangar door remotely
 @Mothership door/open MainHangarDoor; 
 ```
 

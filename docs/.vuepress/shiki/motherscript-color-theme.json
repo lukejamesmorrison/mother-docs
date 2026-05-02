@@ -58,7 +58,7 @@
         {
             "scope": "variable.other.remote-target.motherscript",
             "settings": {
-                "foreground": "#A6A6A6",
+                "foreground": "#5DA9FF",
                 "fontStyle": "bold"
             }
         },
