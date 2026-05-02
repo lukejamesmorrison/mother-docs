@@ -80,7 +80,7 @@ Use the `make:module` command from within your project directory to create a new
 mother make:module MissileGuidanceModule
 ```
 
-```plaintext
+```
 ExampleProject/
 ├── Program.cs
 ├── thumb.png
@@ -180,7 +180,7 @@ Let's create the `LaunchCommand` command.
 mother make:command LaunchCommand --module MissileGuidanceModule
 ```
 
-```plaintext
+```
 ExampleProject/
 ├── Program.cs
 ├── thumb.png
@@ -201,7 +201,7 @@ Running the `make:command` command without a module option will create a command
 mother make:command HaltAndCatchFireCommand
 ```
 
-```plaintext
+```
 ExampleProject/
 ├── Program.cs
 ├── thumb.png
@@ -309,7 +309,7 @@ Let's create the `MissileLaunchedEvent` event.
 mother make:event MissileLaunchedEvent --module MissileGuidanceModule
 ```
 
-```plaintext
+```
 ExampleProject/
 ├── Program.cs
 ├── thumb.png
@@ -326,7 +326,7 @@ Running the `make:event` command without a module option will create an event in
 mother make:event EnemySpottedEvent
 ```
 
-```plaintext
+```
 ExampleProject/
 ├── Program.cs
 ├── thumb.png
@@ -374,7 +374,7 @@ The `Emit()` and `Subscribe()` methods are accessors for the [Event Bus](../Core
 
 Once subscribed to an event, a module take action via the `HandleEvent()` method each time that event is emitted. Let's imagine we have a `WarheadModule` that needs to arm the warhead when a missile is launched.
 
-```plaintext
+```
 ExampleProject/
 ├── Program.cs
 ├── thumb.png
