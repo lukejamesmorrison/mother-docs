@@ -1,11 +1,11 @@
 <template>
   <div class="cli-display">
-    <div class="cli-header">
+    <!-- <div class="cli-header">
       <span class="cli-dot red"></span>
       <span class="cli-dot yellow"></span>
       <span class="cli-dot green"></span>
       <span class="cli-title">{{ title }}</span>
-    </div>
+    </div> -->
     <div class="cli-content">
       <div class="cli-line" v-for="(line, index) in lines" :key="index" :class="{ 'cli-line-active': line.active }">
         <span class="cli-prompt">{{ line.prompt }}</span>
@@ -97,13 +97,13 @@ defineExpose({
 
 .cli-content {
   padding: 16px;
-  height: 80px;
+  min-height: 120px;
   overflow: hidden;
 }
 
 .cli-line {
   display: flex;
-  margin-bottom: 4px;
+  margin-bottom: 0.5rem;
   opacity: 0.5;
   transition: opacity 0.3s ease;
 }
@@ -120,6 +120,7 @@ defineExpose({
 .cli-command {
   font-weight: 500;
   color: var(--cli-c-text);
+  font-size: 1rem;
 }
 
 .cli-cursor {

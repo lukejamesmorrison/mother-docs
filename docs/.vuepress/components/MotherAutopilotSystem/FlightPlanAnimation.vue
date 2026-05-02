@@ -106,41 +106,22 @@
     </div>
     
     <!-- CLI Display -->
-    <div class="cli-display">
-      <div class="cli-header">
-        <span class="cli-dot red"></span>
-        <span class="cli-dot yellow"></span>
-        <span class="cli-dot green"></span>
-        <span class="cli-title">Flight Plan Console</span>
-      </div>
-      <div class="cli-content">
-        <div 
-          v-for="(line, index) in cliLines" 
-          :key="index" 
-          class="cli-line"
-          :class="{ 'cli-line-active': line.active }"
-        >
-          <span class="cli-prompt">{{ line.prompt }}</span>
-          <span class="cli-command" :style="{ color: line.color }">{{ line.text }}</span>
-        </div>
-        <div class="cli-cursor">_</div>
-      </div>
+    <div class="flight-plan-cli">
+      <CliDisplay ref="cliDisplay" :max-lines="5" />
     </div>
   </div>
 </template>
 
 <script setup>
 import { ref, computed, onMounted, onUnmounted } from 'vue'
+import CliDisplay from '../MotherOS/CliDisplay.vue'
 
 const viewBox = "0 0 700 200"
 
 // Ship position state
 const shipPosition = ref({ x: 60, y: 150, rotation: -45 })
 const currentWaypointIndex = ref(0)
-
-// CLI lines state
-const cliLines = ref([])
-const maxCliLines = 5
+const cliDisplay = ref(null)
 
 // Current leg display
 const currentLeg = computed(() => {
@@ -260,20 +241,14 @@ const segmentToWaypoint = {
 
 // CLI functions
 function addCliLine(text, color = '#4CAF50') {
-  cliLines.value.forEach(line => line.active = false)
-  cliLines.value.push({
-    prompt: '> ',
+  cliDisplay.value?.addLine({
     text,
-    color,
-    active: true
+    color
   })
-  if (cliLines.value.length > maxCliLines) {
-    cliLines.value.shift()
-  }
 }
 
 function clearCli() {
-  cliLines.value = []
+  cliDisplay.value?.clear()
 }
 
 async function executeCommands(waypointId) {
@@ -519,10 +494,9 @@ onUnmounted(() => {
 }
 
 /* CLI Display */
-.cli-display {
-  background: var(--cli-c-bg);
+.flight-plan-cli {
+  /* background: var(--cli-c-bg); */
   border-top: 1px solid var(--cli-c-border);
-  font-family: var(--vp-font-family-mono);
 }
 
 .cli-header {
@@ -550,41 +524,21 @@ onUnmounted(() => {
   font-size: 12px;
 }
 
-.cli-content {
+.flight-plan-cli :deep(.cli-display) {
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.flight-plan-cli :deep(.cli-content) {
   padding: 10px 16px;
   min-height: 110px;
-  overflow: hidden;
 }
 
-.cli-line {
+.flight-plan-cli :deep(.cli-line) {
   display: flex;
   margin-bottom: 4px;
-  opacity: 0.5;
-  transition: opacity 0.3s ease;
   font-size: 12px;
-}
-
-.cli-line-active {
-  opacity: 1;
-}
-
-.cli-prompt {
-  color: var(--cli-c-accent);
-  margin-right: 8px;
-}
-
-.cli-command {
-  font-weight: 500;
-  color: var(--cli-c-text);
-}
-
-.cli-cursor {
-  color: var(--cli-c-accent);
-  animation: blink 1s step-end infinite;
-}
-
-@keyframes blink {
-  50% { opacity: 0; }
 }
 
 /* Info box */
@@ -654,11 +608,11 @@ onUnmounted(() => {
     display: none;
   }
   
-  .cli-content {
+  .flight-plan-cli :deep(.cli-content) {
     min-height: 90px;
   }
   
-  .cli-line {
+  .flight-plan-cli :deep(.cli-line) {
     font-size: 12px;
   }
 }
