@@ -76,7 +76,7 @@
   --cli-c-bg-alt: #120c0b;
   --cli-c-bg-elv: #1a1412;
   --cli-c-text: rgb(242 240 236 / 92%);
-  --cli-c-text-mute: rgb(166 166 166 / 80%);
+  --cli-c-text-mute: rgba(219, 219, 219, 0.8);
   --cli-c-border: rgb(166 166 166 / 18%);
   --cli-c-shadow: rgb(0 0 0 / 30%);
   --cli-c-accent: #4CAF50;
@@ -128,9 +128,9 @@
 .code-block-with-title .code-block-title-bar span {
   font-size: 0.75rem;
   font-weight: 600;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--cli-c-text-mute) !important;
+  color: var(--cli-c-text) !important;
 }
 
 .code-block-with-title > div[class^='language-'] {
@@ -198,10 +198,6 @@ div.language-text.line-numbers-mode code {
 div.language-text .line-numbers {
   display: none !important;
   width: 0 !important;
-}
-
-div.language-ms pre.shiki code span[style*='#A6A6A6' i][style*='font-weight: bold' i] {
-  color: #5DA9FF !important;
 }
 
 // Secondary button styling (applies to both themes)
