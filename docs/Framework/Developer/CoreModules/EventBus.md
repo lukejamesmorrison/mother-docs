@@ -1,104 +1,87 @@
 # Event Bus
 
-The Event Bus is uses to manage event subscriptions and ensure events are emitted to the correct modules.
-
 [[toc]]
+
+`EventBus` is the pub/sub layer for Mother Core. Modules subscribe to event types, and any module can emit those event types with optional `eventData`.
+
+## Defining a Custom Event
+
+Events are marker types that implement `IEvent`.
+
+```csharp title="Events/DockingApprovedEvent.cs"
+public class DockingApprovedEvent : IEvent { }
+```
 
 ## Subscribing to an Event
 
-Before we can take action when an event is emitted, we need to subscribe to it. This is typically done in the `Boot()` method of an extension module.
+Subscribe in `Boot()` either through the bus directly or through the `BaseModule` helper.
 
-```csharp title="MissileGuidanceModule.cs"
-// show code to subscribe to an event from within an extension module with the boot method
-public class MissileGuidanceModule : BaseExtensionModule
+```csharp title="DockingModule.cs"
+public override void Boot()
 {
-    // show code to emit an event from within an extension module
-    public override void Boot()
-    {
-        // subscribe using the Event Bus module
-        Mother.GetModule<EventBus>().Subscribe<MissileLaunchedEvent>(this);
-
-        // Or via a helper method
-        Subscribe<MissileLaunchedEvent>();
-    }
+    Subscribe<DockingApprovedEvent>();
+    Subscribe<RequestReceivedEvent>();
 }
 ```
 
 ## Emitting an Event
 
-We can emit an event by using the `Emit()` method. Any module that has subscribe to this event will receive it.
+Use `Emit<TEvent>()` for the common case.
 
-```csharp title="MissileGuidanceModule.cs"
-// show code to emit an event from within an extension module
-public void Launch()
+```csharp title="DockingModule.cs"
+public void ApproveDocking(IMyShipConnector connector)
 {
-    // Do launch stuff
-    // ...
-
-    Mother.GetModule<EventBus>().Emit(new MissileLaunchedEvent());
+    Emit<DockingApprovedEvent>(connector);
 }
 ```
 
-Since this is a very common activity, the `BaseExtensionModule` class provides an accessor method:
+You can also emit through the bus directly if you already have an event instance.
 
-```csharp title="MissileGuidanceModule.cs"
-public class MissileGuidanceModule : BaseExtensionModule
+```csharp title="DockingModule.cs"
+GetModule<EventBus>().Emit(new DockingApprovedEvent(), connector);
+```
+
+## Handling an Event
+
+Subscribed modules receive events through `HandleEvent()`.
+
+```csharp title="DockingModule.cs"
+public override void HandleEvent(IEvent e, object eventData)
 {
-    public void Launch()
-    {
-        // Do launch stuff
-        // ...
-        Emit<MissileLaunchedEvent>();
-    }
+    if (e is DockingApprovedEvent && eventData is IMyShipConnector connector)
+        GetModule<BlockCatalogue>().RunHook(connector, "onApproved");
 }
 ```
 
-## Listening for an Event
+## Unsubscribing and Inspecting Subscriptions
 
-Extension modules can override the `HandleEvent()` method to listen for events to which they have subscribed. This method will be called whenever an event is emitted to this module.
+```csharp title="DockingModule.cs"
+EventBus eventBus = GetModule<EventBus>();
 
-```csharp title="MissileGuidanceModule.cs"
-public class MissileGuidanceModule : BaseExtensionModule
-{
-    // Handle the event
-    public override void HandleEvent(IEvent e, object eventData)
-    {
-        if (e is MissileLaunchedEvent)
-            ArmWarhead();
-    }
-
-    // Do something as a result
-    void ArmWarhead() { }
-}
+if (eventBus.IsSubscribed<DockingApprovedEvent>(this))
+    eventBus.Unsubscribe<DockingApprovedEvent>(this);
 ```
 
-## Unsubscribing from an Event
+## Built-in Events
 
-To unsubscribe from an event, you can use the `Unsubscribe` method of the `EventBus` module. Perhaps in our example above, it makes sense to unsubscribe from the `MissileLaunchedEvent` once the missile has been launched.
+These events are emitted by Mother Core and are immediately available to extension modules.
 
-```csharp title="MissileGuidanceModule.cs"
-public class MissileGuidanceModule : BaseExtensionModule
-{
-    // Handle the event
-    public override void HandleEvent(IEvent e, object eventData)
-    {
-        if (e is MissileLaunchedEvent)
-        {
-            // Unsubscribe from the event
-            Mother.GetModule<EventBus>().Unsubscribe<MissileLaunchedEvent>(this);
+| Event | Emitted by | `eventData` |
+| - | - | - |
+| `SystemBootedEvent` | `Mother` after the full boot sequence completes | `null` |
+| `BlockConfigChangedEvent` | `BlockCatalogue` when any block Custom Data changes | `IMyTerminalBlock` |
+| `SystemConfigChangedEvent` | `BlockCatalogue` when the programmable block Custom Data changes | `IMyTerminalBlock` |
+| `RequestReceivedEvent` | `IntergridMessageService` when a request is routed in | `null` |
+| `RequestSentEvent` | `IntergridMessageService` when a request is sent successfully | `null` |
+| `RequestFailedEvent` | `IntergridMessageService` when a unicast request cannot be sent | `null` |
+| `ConnectorLockedEvent` | bundled `ConnectorModule` | `IMyShipConnector` |
+| `ConnectorUnlockedEvent` | bundled `ConnectorModule` | `IMyShipConnector` |
+| `ConnectorReadyToLockEvent` | bundled `ConnectorModule` | `IMyShipConnector` |
+| `MechanicalBlockAttachedEvent` | bundled `MechanicalBlockModule` | `IMyMechanicalConnectionBlock` |
+| `MechanicalBlockDetachedEvent` | bundled `MechanicalBlockModule` | `IMyMechanicalConnectionBlock` |
+| `MergeBlockLockedEvent` | bundled `MergeBlockModule` | `IMyShipMergeBlock` |
+| `MergeBlockOffEvent` | bundled `MergeBlockModule` | `IMyShipMergeBlock` |
 
-            // Do more stuff
-            // ...
-        }
-    }
-}
-```
-
-You can easily check if a module is subscribed to an event by using the `IsSubscribed` method of the `EventBus` module.
-
-```csharp title="MissileGuidanceModule.cs"
-MissileGuidanceModule module = Mother.GetModule<MissileGuidanceModule>();
-
-bool subscribed = Mother.GetModule<EventBus>()
-                        .IsSubscribed<MissileLaunchedEvent>(module);
-```
+:::info
+`EventBus` does not create its own framework events. It only stores subscriptions and broadcasts events emitted elsewhere.
+:::

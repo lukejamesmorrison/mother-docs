@@ -2,78 +2,89 @@
 
 [[toc]]
 
-The Command Bus handles command execution for Mother.  Modules should register commands in the `Boot()` method to expose them to the player.
+`CommandBus` registers commands from core modules, extension modules, and programmable block Custom Data, then resolves and executes them as local commands, routines, or construct-wide delegated commands.
 
 ## Registering a Command
 
-All commands should implement the `IModuleCommand` interface.
+Commands are usually registered in a module's `Boot()` method.
 
 ```csharp title="LightModule.cs"
 public override void Boot()
 {
-    IModuleCommand setLightColorCommand = new SetLightColorCommand(this);
-
-    RegisterCommand(setLightColorCommand);
+    RegisterCommand(new SetLightColorCommand(this));
 }
 ```
 
-## Running a Command
+## Running a Command or Routine
 
-If you would like to run a command from it's raw command string, you can use the `RunTerminalCommand()` method:
+`RunTerminalCommand()` accepts the same routine syntax the player uses in the programmable block terminal.
 
-```csharp title="LightModule.cs"
-Mother.GetModule<CommandBus>()
-    .RunTerminalCommand("light/color HangarLights green");
+```csharp title="DockingModule.cs"
+GetModule<CommandBus>().RunTerminalCommand(
+    "light/color \"Dock Light\" yellow; wait 2; light/color \"Dock Light\" green"
+);
 ```
 
-## Running Commands on Other Mother Core Instances
+That means you can trigger:
 
-Mother Core version 1.1 introduces automatic command sharing between all Mother Core instances on the same construct. This means, that if Script A exposes a command, then Script B can run that command naturally without any setup. Let's look at an example:
+1. Single commands.
+2. Multi-step routines.
+3. Config commands defined in `[commands]`.
+4. Construct-wide commands exported by other Mother instances.
 
-```ini title="Programmable Block A > Custom Data"
+## Config Commands
+
+Programmable block Custom Data commands are loaded by `Configuration`, then executed by `CommandBus`.
+
+```ms title="Programmable Block > Custom Data"
+[commands]
+prepareDock=light/color "Dock Light" yellow; wait 1; connector/lock "Dock Connector"
+```
+<br>
+
+```ms title="Programmable Block Terminal"
+prepareDock
+```
+
+## Construct-Wide Command Sharing
+
+Mother Core shares command names with other Mother instances on the same construct. If another script exposes a command and your script does not, `CommandBus` can delegate to that remote instance automatically.
+
+```ms title="Programmable Block A > Custom Data"
 [commands]
 greeting=screen/print MainDisplay "Hello, Space Engineer!";
 ```
+<br>
 
-From Script B, we can run the `greeting` directly:
-
-```bash title="Programmable Block B > Terminal"
-greeting; # => Hello, Space Engineer! (printed via Programmable Block A)
+```ms title="Programmable Block B > Terminal"
+greeting
 ```
 
-Or we can include it in commands defined in Script B's Custom Data:
+## Important Commands and Force-Local Execution
 
-```ini title="Programmable Block B > Custom Data"
+Prefix a config command with `!` to mark it as construct-priority.
+
+```ms title="Programmable Block A > Custom Data"
 [commands]
-welcome=greeting; light/color SpotLight1 blue;
+!alert=light/color "Warning Lights" red; sound/play "Alarm"
 ```
 
-When we run the `welcome` command from Script B, it will execute the `greeting` command from Script A, printing "Hello, Space Engineer!" on Script A's MainDisplay, and then change the color of SpotLight1 to blue.
+If another script needs to bypass the important construct command and run its own local definition, prefix the call with `!!`.
 
-### Important Commands
-
-You can mark a command as "important" by prefixing it with `!` in your Custom Data. Important commands take priority over local commands when running on a construct with multiple Mother Core instances.
-
-```ini title="Programmable Block A > Custom Data"
-[commands]
-!Alert=light/color WarningLights red; sound/play AlarmSound;
+```ms title="Programmable Block B > Terminal"
+!!alert
 ```
 
-When any script on the construct runs `Alert`, it will always be delegated to Script A, even if other scripts have their own `Alert` command defined locally.
+## Helpful Members
 
-### Overriding Important Commands
+| Member | Use |
+| - | - |
+| `ModuleCommands` | Commands registered on this instance |
+| `ConstructCommands` | Command names discovered on other scripts on the same construct |
+| `ImportantConstructCommands` | Important command names exported by other scripts |
+| `FindInstanceWithCommand(name)` | Returns the script ID that owns a construct command |
+| `GetSelfCommandNames()` | Returns the local command names exported to peers |
 
-If you need to run a local command that has the same name as an important command on the construct, prefix your command with `!!` to force local execution:
+## Emitted Events
 
-```bash title="Programmable Block B > Terminal"
-!!Alert;  # Runs Script B's local Alert command, ignoring Script A's important command
-```
-
-### Command Resolution Priority
-
-When a command is executed, Mother resolves it in the following order:
-
-1. **Force Local (`!!`)**: If the command starts with `!!`, always run the local version
-2. **Important Commands (`!`)**: If another script has this command marked as important, delegate to that script
-3. **Local Commands**: Run locally if available
-4. **Construct Commands**: Delegate to another script on the construct if they have the command 
+`CommandBus` does not emit any built-in events.

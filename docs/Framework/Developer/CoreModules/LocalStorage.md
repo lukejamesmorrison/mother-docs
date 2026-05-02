@@ -1,36 +1,57 @@
 # Local Storage
 
-Local Storage allows Mother to save data across program cycles, game sessions, and programmable block script recompilations.
-
 [[toc]]
 
-## Get A Value
+`LocalStorage` is the lightweight persistence layer behind `Program.Storage`. Modules usually store serialized strings under stable keys and let Mother flush the data during `Save()`.
 
-To retrieve a value from the local storage, you can use the `Get()` method which takes a key as a parameter. The return value will be a serialized string.
+## Storing a Value
 
-```csharp
-LocalStorage localStorage = Mother.GetModule<LocalStorage>();
-
-string almanacData = localStorage.Get("almanac");
+```csharp title="FlightModule.cs"
+LocalStorage storage = GetModule<LocalStorage>();
+storage.Set("minAltitude", "50");
 ```
 
-## Set A Value
-To store a value in the local storage, you can use the `Set()` method which takes a key and a value as parameters.
+## Reading a Value
 
-```csharp
-LocalStorage localStorage = Mother.GetModule<LocalStorage>();
-
-localStorage.Set("minAltitute", "50");
+```csharp title="FlightModule.cs"
+LocalStorage storage = GetModule<LocalStorage>();
+string minAltitude = storage.Get("minAltitude");
 ```
 
-## Clearing Local Storage
+## Storing Structured Data
 
-To complete refresh storage, you can use the `Clear()` method. This will remove all data stored in the local storage including that being used by other modules.
+If you need more than a single string, serialize a dictionary and store that string as one value.
+
+```csharp title="MissileModule.cs"
+Dictionary<string, object> saveData = new Dictionary<string, object>
+{
+	{ "State", "Armed" },
+	{ "Target", "GPS:Home:123:456:789:" }
+};
+
+GetModule<LocalStorage>().Set(
+	"missile",
+	Serializer.SerializeDictionary(saveData)
+);
+```
+
+```csharp title="MissileModule.cs"
+string raw = GetModule<LocalStorage>().Get("missile");
+Dictionary<string, object> saveData = Serializer.DeserializeDictionary(raw);
+```
+
+## Clearing Storage
+
+`Clear()` removes every stored key, including data used by Mother Core modules such as `Almanac`.
 
 ```csharp
-Mother.GetModule<LocalStorage>().Clear();
+GetModule<LocalStorage>().Clear();
 ```
 
 :::note
-The [purge](../../../Cheatsheet.md#purge) command can be used to clear the local storage.
+The [purge](../../../Cheatsheet.md#purge) command can be used to clear local storage from the terminal.
 :::
+
+## Emitted Events
+
+`LocalStorage` does not emit any built-in events.

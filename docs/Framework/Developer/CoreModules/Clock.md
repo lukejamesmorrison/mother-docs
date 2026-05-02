@@ -1,57 +1,88 @@
 # Clock
 
-Mother uses a clock system to schedule system actions and execute logic across program cycles.
-
 [[toc]]
 
-## Scheduling a Action
+`Clock` is Mother's timing engine. It runs on `Update10`, which gives you about one tick every `0.166` seconds, and it supports three common patterns:
 
-The `Schedule()` method allows you to execute an action on a specific interval in `seconds`.  This is useful for running periodic actions that should not be run every cycle.  In most cases, you should trying to schedule actions rather than execute them within a Module's [`Run()`](../BuildingAModule/BuildingAModule.md#running-a-module) method. It is highly recommended that you take great consideration when scheduling actions to avoid performance issues.  
+1. Repeating work with `Schedule()`.
+2. One-off delayed work with `QueueForLater()`.
+3. Multi-step routines with `AddCoroutine()`.
 
-Not all system actions need to run every cycle.
+## Scheduling Repeating Work
 
+Use `Schedule()` for work that should repeat on a fixed interval.
 
-```csharp title="MissileGuidanceModule.cs"
-public void Boot()
+```csharp title="TelemetryModule.cs"
+public override void Boot()
 {
-    Clock clock = Mother.GetModule<Clock>();
-    // Schedule to run every program cycle
-    clock.Schedule(UpdatePosition());
-
-    // Or, schedule to run every 10 seconds
-    clock.Schedule(DetonateIfStopped(), 10);
+    Clock clock = GetModule<Clock>();
+    clock.Schedule(UpdateTelemetry, 1);
+    clock.Schedule(UpdateThreatAssessment, 5);
 }
 
-void UpdatePosition() { }
-void DetonateIfStopped() { }
-```
-
-## Delaying an Action
-
-The `QueueForLater()` method allows you to delay an action for a specified amount of time in `seconds`.  This is useful for delaying actions that should not be executed immediately. It accepts an [`Action`](https://learn.microsoft.com/en-us/dotnet/api/system.action-1?view=net-9.0) as the first parameter.
-
-```csharp title="MissileGuidanceModule.cs"
-Clock clock = Mother.GetModule<Clock>();
-
-GetModule<Clock>().QueueForLater(ActivateAutopilotSystem(), 10);
-```
-
-Due to how common this action is, Mother exposes a simple helper method `Wait()`:
-
-```csharp title="MissileGuidanceModule.cs"
-Mother.Wait(() => ActivateAutopilotSystem(), 10);
-```
-
-## Using a Corountine
-
-If you want to run a process in parallel, we can use the `StartCoroutine()` method.  This method accepts an `IEnumerable<double>` input. Mother uses this method as part of the boot process.
-
-```csharp title="MissileGuidanceModule.cs"
-public void Arm()
+void UpdateTelemetry()
 {
-    GetModule<Clock>().StartCoroutine(
-        ArmSystems()
-    );
+    Mother.Print($"Speed: {Mother.GetShipSpeed()}");
+}
+
+void UpdateThreatAssessment()
+{
+    // expensive scan here
 }
 ```
+
+## Queueing Delayed Work
+
+Use `QueueForLater()` when something should run once after a delay.
+
+```csharp title="LaunchModule.cs"
+public void StartCountdown()
+{
+    Mother.Print("Launch in 10 seconds.");
+
+    GetModule<Clock>().QueueForLater(() =>
+    {
+        Mother.Print("Ignition.");
+        FireThrusters();
+    }, 10);
+}
+```
+
+## Running Coroutines
+
+Use `AddCoroutine()` when a task needs to yield across multiple cycles.
+
+```csharp title="BootModule.cs"
+public override void Boot()
+{
+    GetModule<Clock>().AddCoroutine(SpinUpSequence());
+}
+
+IEnumerable<double> SpinUpSequence()
+{
+    Mother.Print("Opening blast doors...");
+    OpenDoors();
+    yield return 2.0;
+
+    Mother.Print("Enabling reactors...");
+    EnableReactors();
+    yield return 1.0;
+
+    Mother.Print("System ready.");
+}
+```
+
+## Useful Properties and Methods
+
+| Member | Use |
+| - | - |
+| `QueuedTaskCount` | Number of one-off delayed actions waiting to run |
+| `CoroutineCount` | Number of active coroutines |
+| `GetLoader()` | Small `/` or `\` activity indicator used by `Terminal` |
+| `Reset()` | Clears queued tasks, repeating tasks, and coroutines |
+| `ClearScheduledTasks()` | Clears only repeating scheduled tasks |
+
+## Emitted Events
+
+`Clock` does not emit any built-in events.
 

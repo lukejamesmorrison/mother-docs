@@ -2,60 +2,60 @@
 
 [[toc]]
 
-The terminal module manages the terminal interface for the programmable block.
+`Terminal` owns the programmable block console output that Mother renders each run. It keeps a short message buffer, a highlight area, and a compact indicator row for system activity.
 
-## Printing to the Terminal
+## Printing Messages
 
-Once Mother has booted, you can use the `Print()` method to print values to the terminal stack. This is useful for debugging or displaying information to the user.
+Use `Print()` or `Mother.Print()` for standard output.
 
-```csharp title="MissileGuidanceModule.cs"
-public override void Launch()
+```csharp title="LaunchModule.cs"
+public void Launch()
 {
-    Terminal terminal = Mother.GetModule<Terminal>();
-    
-    // Print a value to the terminal
-    terminal.Print($"Launching missile...");
-
-    // or simply use to method on Mother
-    Mother.Print($"Launching missile...")
+    GetModule<Terminal>().Print("Launch sequence started.");
+    Mother.Print("Ignition confirmed.");
 }
 ```
 
-In situations where we have a lot of text to print, we can use an optional second parameter to disable trimming.
+By default, long messages are trimmed to fit the in-game console width. Pass `false` to keep the full message.
 
-```csharp title="MissileGuidanceModule.cs"
-MissileState currentState = MissileState.Idle;
-
-public override void Launch()
-{
-    // Print a long message without trimming
-    Mother.Print(
-        $"Missile launching in 10 seconds.\nCurrent state: {currentState}", 
-        false
-    );
-}
+```csharp title="LaunchModule.cs"
+Mother.Print(
+    "Missile launching in 10 seconds. Current state: Awaiting final clearance.",
+    false
+);
 ```
 
-## Highlighting a Value
+## Highlighting Important Values
 
-Sometimes it is convenient to always show a value of the terminal screen rather than have it disappear within the call stack.  You can use the `Highlight()` method to **pin** a printout to the top of the terminal window.
+Highlights render near the top of the terminal and are useful for status that should stay visible.
 
-```csharp title="MissileGuidanceModule.cs"
-MissileState currentState = MissileState.Idle;
-
+```csharp title="FlightModule.cs"
 public override void Run()
 {
-    Terminal terminal = Mother.GetModule<Terminal>();
-    
-    // Highlight a value continuously
-    terminal.Highlight($"State: {currentState}");
+    GetModule<Terminal>().Highlight($"Speed: {Mother.GetShipSpeed():0.0} m/s");
+    GetModule<Terminal>().Highlight($"Altitude: {Mother.GetAltitude():0.0} m");
 }
 ```
 
-## Clearing the Terminal
+## Clearing the Console
 
-If you want to clear the terminal stack, you can use the `Clear()` method. This will remove all printed values from the terminal.
+Use `ClearConsole()` to remove queued console lines.
 
-```csharp
-Mother.GetModule<Terminal>().Clear();
+```csharp title="DebuggingModule.cs"
+GetModule<Terminal>().ClearConsole();
 ```
+
+## Useful Details
+
+| Behavior | Detail |
+| - | - |
+| Trimmed message width | About 37 characters before shortening |
+| Buffer size | 20 recent lines |
+| Highlights | Reset after each terminal update |
+| `Echo()` | Writes directly to `Program.Echo()` |
+
+Most modules should not call `UpdateTerminal()` directly, because Mother handles the render cycle for you.
+
+## Emitted Events
+
+`Terminal` does not emit any built-in events.

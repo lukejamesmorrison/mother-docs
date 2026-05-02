@@ -153,6 +153,7 @@ const MotherCoreSidebar = {
         '/Framework/Developer/CoreModules/EventBus.md',
         '/Framework/Developer/CoreModules/IntergridMessageService.md',
         '/Framework/Developer/CoreModules/LocalStorage.md',
+        '/Framework/Developer/CoreModules/Log.md',
         '/Framework/Developer/CoreModules/Terminal.md',
       ],
     },

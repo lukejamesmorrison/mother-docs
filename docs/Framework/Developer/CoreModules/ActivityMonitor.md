@@ -2,50 +2,73 @@
 
 [[toc]]
 
-## Overview
-The Activity Monitor's primary role is to track blocks that are changing continuously (ie. rotor moving to angle). Each program cycle, the activity monitor checks the state of each registered block, then unregisters it when the terminal state has been reached.
+`ActivityMonitor` is for one-shot completion tracking. Use it when a block should be watched until it reaches a terminal state, then cleaned up automatically.
+
+If you need continuous state monitoring for an entire block type, prefer `RegisterBlockTypeForStateMonitoring<T>()` from `BaseModule` and let [`BlockCatalogue`](BlockCatalogue.md) drive the checks.
 
 ## Registering a Block
 
-To register a block, use the `RegisterBlock()` method. It takes the target block (`IMyTerminalBlock`) as it's first parameter.  The second parameters is a function that determines if the block is at its terminal state (`bool`). The third parameter is an `Action` that will be executed when the terminal state is reached.
+`RegisterBlock()` accepts:
 
-```csharp title="HingeModule.cs"
+1. The block to watch.
+2. A predicate that returns `true` when the terminal state has been reached.
+3. A callback that runs once, right before the block is removed from monitoring.
 
-public class HingeModule : BaseExtensionModule
+```csharp title="HangarDoorModule.cs"
+public void ExtendRamp()
 {
-    public void StartRotation(float targetAngle)
-    {
-        IMyMotorStator hinge = Mother.GetBlocksByName<IMyMotorStator>("Main Hinge").FirstOrDefault();
+    IMyPistonBase piston = GetBlocksByName<IMyPistonBase>("Hangar Ramp")
+        .FirstOrDefault();
 
-        Mother.GetModule<ActivityMonitor>().RegisterBlock(
-            // The hinge block to monitor
-            hinge,
-            // Function to check if the hinge is at its terminal position
-            block => HingeAtTerminalPosition(block as IMyMotorStator, targetAngle),
-            // Action to execute when the hinge reaches its terminal position
-            block => LockHinge(block as IMyMotorStator, true)
-        );
-    }
+    if (piston == null)
+        return;
+
+    piston.Enabled = true;
+    piston.Velocity = 0.5f;
+
+    GetModule<ActivityMonitor>().RegisterBlock(
+        piston,
+        block => ((IMyPistonBase)block).CurrentPosition >= 8f,
+        block =>
+        {
+            var ramp = (IMyPistonBase)block;
+            ramp.Velocity = 0;
+            ramp.Enabled = false;
+            Mother.Print("Ramp fully extended.");
+        }
+    );
 }
 ```
 
 ## Unregistering a Block
 
-If you wish to unregister a block before it has reached its terminal state, you can use the `UnregisterBlock()` method to stop monitoring immediately.
+Call `UnregisterBlock()` if the activity is cancelled before the terminal state is reached.
 
-```csharp title="HingeModule.cs"
-public class HingeModule : BaseExtensionModule
+```csharp title="HangarDoorModule.cs"
+public void AbortRamp()
 {
-    public void StopRotation()
-    {
-        IMyMotorStator hinge = Mother.GetBlocksByName<IMyMotorStator>("Main Hinge").FirstOrDefault();
+    IMyPistonBase piston = GetBlocksByName<IMyPistonBase>("Hangar Ramp")
+        .FirstOrDefault();
 
-        // Stop hinge motion and lock it
-        hinge.TargetVelocityRPM = 0;
-        hinge.RotorLock = true;
+    if (piston == null)
+        return;
 
-        // Stop monitoring the hinge
-        Mother.GetModule<ActivityMonitor>().UnregisterBlock(hinge);
-    }
+    piston.Velocity = 0;
+    GetModule<ActivityMonitor>().UnregisterBlock(piston);
 }
 ```
+
+## When to Reach for It
+
+Use `ActivityMonitor` when the lifecycle is:
+
+1. Start a block action.
+2. Wait until one condition becomes true.
+3. Run one callback.
+4. Stop watching that block.
+
+That pattern is common for pistons, rotors, hinges, merge blocks, and connectors when you only care about the completion of a single action.
+
+## Emitted Events
+
+`ActivityMonitor` does not emit any built-in events.

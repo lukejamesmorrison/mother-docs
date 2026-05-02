@@ -2,90 +2,89 @@
 
 [[toc]]
 
-The Almanac manages a list of records that represent entities in the game world. These records can be used to track the location of entities, communicate with them, and display them on map displays. 
+The `Almanac` stores records for grids and waypoints so modules can navigate, target remote systems, and resolve IGC destinations without keeping their own cache.
 
+Mother updates its own grid record automatically every second and persists the full record list through `LocalStorage`. When multiple Mother Core scripts are running on your grid, they will share records to reduce compute.
 
-## The Unique Identifier
-Since each instance of Mother is unique to its Programmable Block, we use the programmable block's `EntityId` as the unique identifier.
+## Getting Your Own Identity
 
-```csharp
-// via Mother (recommended)
-long myId = Mother.Id;
+Every Mother instance exposes a unique ID through `Mother.Id`.
 
-// or via the Program instance
-long myId = Program.Me.EntityId;
+```csharp title="Program.cs"
+long systemId = Mother.Id;
+string systemName = Mother.Name;
 ```
 
+## Reading Records
 
-
-## Records
+Use `GetRecord()` when you know the grid ID or display name, and `GetRecordsByType()` when you want a filtered list.
 
 ```csharp title="DockingModule.cs"
-// Get a record by a name/nickname
-AlmanacRecord record = Almanac.GetRecord("Mothership"); 
+public void PrintTargetInfo(string targetName)
+{
+    AlmanacRecord target = GetModule<Almanac>().GetRecord(targetName);
 
-// Get a record by ID (the EntityId of the programmable block)
-AlmanacRecord record = Almanac.GetRecord(12345678901234567890);
+    if (target == null)
+    {
+        Mother.Print($"Unknown target: {targetName}");
+        return;
+    }
+
+    Mother.Print($"Target: {target.DisplayName}");
+    Mother.Print($"Type: {target.EntityType}");
+    Mother.Print($"Position: {target.Position}");
+}
+```
+<br>
+
+```csharp title="NavigationModule.cs"
+List<AlmanacRecord> waypoints = GetModule<Almanac>()
+    .GetRecordsByType("waypoint");
 ```
 
-:::info
-Mother passes the current grids name with every request and this is used as the default **nickname** of the record.
-:::
+## Creating or Updating a Record
 
-### Record Types
-The almanac currently supports the following Entity types:
+`AddRecord()` inserts a new record or replaces an older one with fresher data.
 
-| Type          | Description                                                           |
-|------         |-------------                                                          |
-| **grid**      | Represents a grid in the game world, such as a ship or station.       |
-| **waypoint**  | Represents a GPS waypoint in the game world.                          |  
-| **local**     | Represents another instance of Mother running on the same grid.       |
-
-### Creating a Record
-
-```csharp title="DockingModule.cs"
-// Create record
-TopSecretBase record = new AlmanacRecord(
-    "TopSecretBase",                            // name
-    "grid",                                     // entity type
-    new Vector3D(1234.23, 5678.72, 24155.22),   // position
-    0                                           // speed (optional)
-);
-
-// Add to the almanac
-Mother.GetModule<Almanac>().AddRecord(record);
+```csharp title="NavigationModule.cs"
+public void SaveWaypoint(string name, Vector3D position)
+{
+    AlmanacRecord waypoint = new AlmanacRecord(name, "waypoint", position, 0);
+    GetModule<Almanac>().AddRecord(waypoint);
+}
 ```
 
-When records are added to the Almanac, they will automatically appear on map displays and be accessible for remote communication. Mother adds and updates records frequently via communications.
+Remote grid records are normally created by `IntergridMessageService`, but you can still create them manually if your module has authoritative data.
 
-### Removing a Record
+## Removing Records
 
-To remove a record, you can simply access the `Records` list and remove the record you want to delete.
+`Almanac` exposes its `Records` list directly. If you remove an entry yourself, call `AddRecord()` or `Clear()` when appropriate so the persisted data stays consistent.
 
-```csharp title="DockingModule.cs"
-// Get the record
-AlmanacRecord record = Almanac.GetRecord("Mothership");
+```csharp title="NavigationModule.cs"
+public void ForgetWaypoint(string name)
+{
+    Almanac almanac = GetModule<Almanac>();
+    AlmanacRecord record = almanac.GetRecord(name);
 
-// Remove the record from the almanac
-Almanac.Records.Remove(record);
+    if (record != null)
+    {
+        almanac.Records.Remove(record);
+        Mother.Print($"Removed {name} from Almanac.");
+    }
+}
 ```
 
-<!-- ### Transponder Statuses
+## Record Types
 
-| Code | Description |
-|------|-------------|
-| **Local**     | Assigned to records representing other instances of Mother on the same grid.         |
-| **Friendly**  | Assigned to records representing entities that are communicating on friendly channels.        |
-| **Neutral**   | Assigned to records representing entities that are communicating on the public channel.        |
+| Type | Meaning |
+| - | - |
+| `grid` | A ship or station running Mother Core. |
+| `waypoint` | A static navigation point. |
 
-```csharp title="DockingModule.cs"
- // Get the record for a grid
-AlmanacRecord record = Almanac.GetRecord("Mothership");
+## Persistence Behavior
 
-// Set the transponder status
-record.TransponderStatus = TransponderStatus.Friendly;
-``` -->
+`Almanac` serializes its records into `LocalStorage` under the `almanac` key. That means your record list survives recompiles, game reloads, and most runtime faults.
 
-### Storing Records across Recompiles
+## Emitted Events
 
-When a programmable block recompiles, scripts are reloaded and all state is lost by default. To prevent this, the Almanac stores records in [Local Storage](./LocalStorage.md) to make it accessible after recompile or a reboot.
+`Almanac` does not emit any built-in events.
