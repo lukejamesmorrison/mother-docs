@@ -66,7 +66,7 @@ These colors are used across the Mother Project's documentation, websites, and m
   </div>
 </div> -->
 
----
+<!-- --- -->
 
 ### In-Game Ship Palette
 
@@ -104,41 +104,53 @@ These colors are recommended for use on ships and grids in Space Engineers. They
   </div>
 </div>
 
-#### Accent Colors for Ships
-
-<!-- <div style="display: flex; flex-wrap: wrap; gap: 1rem; margin: 1.5rem 0;">
-  <div style="width: 170px; text-align: center;">
-    <div style="background: rgb(0, 120, 180); height: 80px; border-radius: 8px; border: 1px solid rgba(0,0,0,0.1);"></div>
-    <div style="margin-top: 0.5rem; font-weight: 600;">Nav Blue</div>
-    <code>RGB(0, 120, 180)</code>
-  </div>
-  <div style="width: 170px; text-align: center;">
-    <div style="background: rgb(60, 140, 60); height: 80px; border-radius: 8px; border: 1px solid rgba(0,0,0,0.1);"></div>
-    <div style="margin-top: 0.5rem; font-weight: 600;">Systems Green</div>
-    <code>RGB(60, 140, 60)</code>
-  </div>
-  <div style="width: 170px; text-align: center;">
-    <div style="background: rgb(255, 100, 0); height: 80px; border-radius: 8px; border: 1px solid rgba(0,0,0,0.1);"></div>
-    <div style="margin-top: 0.5rem; font-weight: 600;">Alert Orange</div>
-    <code>RGB(255, 100, 0)</code>
-  </div>
-</div> -->
-
----
-
 ## Brand Assets
 
 ### Mother Logo
 
-The official Mother Project logo, available in SVG format for use in promotional materials, documentation, and projects. 
+The official Mother Project logo, available in SVG and PNG formats for use in promotional materials, documentation, and projects.
 
-### Project Banner Template
+<table>
+  <thead>
+    <tr>
+      <th>Variant</th>
+      <th>Preview</th>
+      <th>PNG</th>
+      <th>SVG</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Light Logo</td>
+      <td>
+        <div style="padding: 1rem; background: #FFFFFF; border-radius: 12px; display: inline-block;">
+          <img src="/mother-docs/brand-assets/logo-512x512.png" alt="Mother Logo Square Icon" style="width: 140px; height: 140px; display: block;" />
+        </div>
+      </td>
+      <td><a href="/mother-docs/brand-assets/logo-512x512.png">logo-512x512.png</a></td>
+      <td><a href="/mother-docs/brand-assets/logo-512x512.svg">logo-512x512.svg</a></td>
+    </tr>
+    <tr>
+      <td>Dark Logo</td>
+      <td>
+        <div style="padding: 1rem; background: #000000; border-radius: 12px; display: inline-block;">
+          <img src="/brand-assets/logo-dark-512x512.png" alt="Mother Logo Dark Square Icon" style="width: 140px; height: 140px; display: block;" />
+        </div>
+      </td>
+      <td><a href="/mother-docs/brand-assets/logo-dark-512x512.png">logo-dark-512x512.png</a></td>
+      <td><a href="/mother-docs/brand-assets/logo-dark-512x512.svg">logo-dark-512x512.svg</a></td>
+    </tr>
+  </tbody>
+</table>
 
-You can use this svg as a starting point for your project image if you choose.
+### Project Thumbnail Template
+You can use this SVG as a starting point for script thumbnails and workshop preview images.
 
-**Download:** [mother-project-logo.svg](/mother-docs/svg/mother-project-logo.svg)
+<div style="border-radius: 12px; display: inline-block; margin: 1rem 0;">
+  <img src="/mother-docs/brand-assets/mother-script-thumbnail-template.svg" alt="Mother Script Thumbnail Template" style="width: 320px; max-width: 100%; display: block;" />
+</div>
 
----
+**Download:** [mother-script-thumbnail-template.svg](/mother-docs/brand-assets/mother-script-thumbnail-template.svg)
 
 ### Powered By Mother Badge
 
@@ -162,7 +174,6 @@ For use on light backgrounds.
 
 **Download:** [powered-by-mother-badge-light-transparent.svg](/mother-docs/brand-assets/powered-by-mother-badge-light-transparent.svg)
 
----
 
 ## Usage Guidelines
 
