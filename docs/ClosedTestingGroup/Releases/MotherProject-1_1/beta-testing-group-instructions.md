@@ -171,6 +171,34 @@ rotor/detach LandingGearLock
 rotor/attach LandingGearLock
 ```
 
+#### `piston/ulimit`, `piston/llimit`, `rotor/ulimit`, `rotor/llimit`, `hinge/ulimit`, `hinge/llimit`
+
+Mechanical blocks now expose explicit upper and lower limit commands so players can clamp motion. This is useful when you want to reconfigure safe travel bounds without manually opening the terminal for each block.
+
+**Example - Piston Limits**
+
+```bash
+# Clamp a piston group between 1.5m and 7.5m
+piston/llimit PistonGroup 1.5
+piston/ulimit PistonGroup 7.5
+```
+
+**Example - Rotor Limits**
+
+```bash
+# Restrict a rotor to a forward scanning arc
+rotor/llimit TurretRotor -45
+rotor/ulimit TurretRotor 120
+```
+
+**Example - Hinge Limits**
+
+```bash
+# Limit a landing hinge travel range
+hinge/llimit LandingGearHinge -15
+hinge/ulimit LandingGearHinge 45
+```
+
 #### `wheel/height`
 
 - Add `wheel/height` command to set the height offset of wheel suspensions. Supports `--add` and `--sub` flags for incremental adjustments.

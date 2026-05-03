@@ -40,6 +40,28 @@ Share a distance of 4 meters across 4 pistons in the "Landing Gear Pistons" grou
 piston/distance "Landing Gear Pistons" 4 --share;
 ```
 
+### ulimit
+Set the upper limit of a piston or group of pistons in meters.
+```
+piston/ulimit <Piston|Group> <Limit>
+```
+
+**Example**
+```ms title="Terminal"
+piston/ulimit TurretPistons 7.5;
+```
+
+### llimit
+Set the lower limit of a piston or group of pistons in meters.
+```
+piston/llimit <Piston|Group> <Limit>
+```
+
+**Example**
+```ms title="Terminal"
+piston/llimit TurretPistons 1.5;
+```
+
 ### stop
 Stop a piston while in motion. Note that pistons do not lock like a Rotor or Hinge.
 ```

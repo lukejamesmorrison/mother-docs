@@ -35,6 +35,28 @@ Share an angle of 90 degrees across 3 rotors in the "Solar Panel Rotors" group:
 rotor/rotate "Solar Panel Rotors" 90 --share;
 ```
 
+### ulimit
+Set the upper angle limit of a rotor or group of rotors in degrees.
+```
+rotor/ulimit <Rotor|Group> <Angle>
+```
+
+**Example**
+```ms title="Terminal"
+rotor/ulimit AntennaRotor 120;
+```
+
+### llimit
+Set the lower angle limit of a rotor or group of rotors in degrees.
+```
+rotor/llimit <Rotor|Group> <Angle>
+```
+
+**Example**
+```ms title="Terminal"
+rotor/llimit AntennaRotor -45;
+```
+
 ### lock
 Lock a rotor or group of rotors.
 ```

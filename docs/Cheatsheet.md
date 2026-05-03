@@ -820,6 +820,18 @@ Options
 | `sub` | `true`, `false` | `bool`  | Indicates that the provided angle should be *subtracted* from the current angle. Allows decremental changes to angle. |
 | `share` |  |  | Indicates that the angle should be shared across all hinges in the group. This means that if you have 3 hinges in a group and set an angle of 90 degrees with sharing enabled, each hinge will rotate to 30 degrees. If sharing is disabled, each hinge will rotate to the full 90 degrees. |
 
+### hinge/ulimit
+Set the upper angle limit of a hinge or group of hinges.
+```
+hinge/ulimit <Hinge|Group> <Angle>
+```
+
+### hinge/llimit
+Set the lower angle limit of a hinge or group of hinges.
+```
+hinge/llimit <Hinge|Group> <Angle>
+```
+
 ### hinge/lock
 Lock a hinge or group of hinges.
 ```
@@ -1111,6 +1123,18 @@ Options
 | `sub` | `true`, `false` | `bool`  | Indicates that the distance should be *subtracted* from the current distance. Allows decremental changes to distance. |
 | `share` |  |   | Indicates that the distance should be shared across all pistons in the group. This means that if you have 4 pistons in a group and set a distance of 2 meters with sharing enabled, each piston will extend to 0.5 meters. If sharing is disabled, each piston will extend to the full 2 meters. |
 
+### piston/ulimit
+Set the upper limit of a piston or group of pistons.
+```
+piston/ulimit <Piston|Group> <Limit>
+```
+
+### piston/llimit
+Set the lower limit of a piston or group of pistons.
+```
+piston/llimit <Piston|Group> <Limit>
+```
+
 ### piston/stop
 Stop a piston while in motion. Note that pistons do not lock like a Rotor or Hinge.
 ```
@@ -1214,6 +1238,18 @@ Options
 | `add` | `true`, `false` | `bool`  | Indicates that the provided angle should be *added* to the current angle. Allows incremental changes to angle. |
 | `sub` | `true`, `false` | `bool`  | Indicates that the provided angle should be *subtracted* from the current angle. Allows decremental changes to angle. |
 | `share` |  |  | Indicates that the angle should be shared across all rotors in the group. This means that if you have 3 rotors in a group and set an angle of 90 degrees with sharing enabled, each rotor will rotate to 30 degrees. If sharing is disabled, each rotor will rotate to the full 90 degrees. |
+
+### rotor/ulimit
+Set the upper angle limit of a rotor or group of rotors.
+```
+rotor/ulimit <Rotor|Group> <Angle>
+```
+
+### rotor/llimit
+Set the lower angle limit of a rotor or group of rotors.
+```
+rotor/llimit <Rotor|Group> <Angle>
+```
 
 
 ### rotor/lock

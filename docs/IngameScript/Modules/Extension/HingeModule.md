@@ -37,6 +37,28 @@ Share an angle of 90 degrees across 3 hinges in the "Turret Hinges" group:
 hinge/rotate "Turret Hinges" 90 --share;
 ```
 
+### ulimit
+Set the upper angle limit of a hinge or group of hinges in degrees.
+```
+hinge/ulimit <Hinge|Group> <Angle>
+```
+
+**Example**
+```ms title="Terminal"
+hinge/ulimit LandingGearHinge 45;
+```
+
+### llimit
+Set the lower angle limit of a hinge or group of hinges in degrees.
+```
+hinge/llimit <Hinge|Group> <Angle>
+```
+
+**Example**
+```ms title="Terminal"
+hinge/llimit LandingGearHinge -15;
+```
+
 ### lock
 Lock a hinge or group of hinges.
 ```
