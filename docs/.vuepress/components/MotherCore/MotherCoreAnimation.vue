@@ -117,13 +117,13 @@ const viewBox = computed(() => `0 0 ${WIDTH} ${HEIGHT}`)
 // Programmable block icon for all nodes
 const PB_ICON = 'https://static.wikia.nocookie.net/spaceengineers/images/7/76/Icon_Block_Programmable_Block.png'
 
-// Node positions (triangle layout)
-// Your Script = Local (yellow), MOS & MAPS = Remote (blue)
+// Node positions
+// Your Script = Local (yellow), Mother services = Remote (blue)
 const nodes = ref([
   {
     id: 'motheros',
     name: 'Mother OS',
-    x: 150,
+    x: 110,
     y: 280,
     icon: PB_ICON,
     color: '#00B0FF',
@@ -132,9 +132,20 @@ const nodes = ref([
     commands: ['light', 'block', 'piston']
   },
   {
+    id: 'mothergui',
+    name: 'Mother GUI',
+    x: WIDTH / 2,
+    y: 280,
+    icon: PB_ICON,
+    color: '#00B0FF',
+    bgColor: 'rgba(0, 176, 255, 0.1)',
+    badgeColor: '#00B0FF',
+    commands: ['view', 'screen']
+  },
+  {
     id: 'maps',
     name: 'MAPS',
-    x: WIDTH - 150,
+    x: WIDTH - 110,
     y: 280,
     icon: PB_ICON,
     color: '#00B0FF',
@@ -155,12 +166,12 @@ const nodes = ref([
   }
 ])
 
-// Connections between all nodes (bidirectional mesh)
+// Bidirectional connections between your script and each Mother service
 const connections = ref([
-  { source: 'motheros', target: 'maps' },
-  { source: 'maps', target: 'motheros' },
   { source: 'motheros', target: 'yourscript' },
   { source: 'yourscript', target: 'motheros' },
+  { source: 'mothergui', target: 'yourscript' },
+  { source: 'yourscript', target: 'mothergui' },
   { source: 'maps', target: 'yourscript' },
   { source: 'yourscript', target: 'maps' }
 ])
@@ -192,7 +203,7 @@ const getBadgeX = (idx, total) => {
   return idx * spacing - offset
 }
 
-// Animation sequences - Your Script is local, calling remote commands on MOS & MAPS
+// Animation sequences - Your Script is local, calling remote Mother services
 const sequences = [
   {
     command: { text: 'party/start', color: '#E3B505' },
@@ -205,6 +216,14 @@ const sequences = [
     pulses: [
       { from: 'yourscript', to: 'motheros', color: '#00B0FF' },
       { from: 'yourscript', to: 'motheros', color: '#00B0FF', delay: 0.2 }
+    ]
+  },
+  {
+    command: { text: 'view/go RotorView MainRamp; view/select MapView; screen/script Cockpit1 TSS_Velocity;', color: '#00B0FF' },
+    description: 'Your Script drives Mother GUI remotely',
+    pulses: [
+      { from: 'yourscript', to: 'mothergui', color: '#00B0FF' },
+      { from: 'yourscript', to: 'mothergui', color: '#00B0FF', delay: 0.2 }
     ]
   },
   {
@@ -300,8 +319,9 @@ onBeforeUnmount(() => {
 
 <style scoped>
 .mother-core-diagram {
+  --diagram-max-height: 400px;
   width: 100%;
-  max-width: 700px;
+  /* max-width: 700px; */
   margin: 2rem auto;
 }
 
@@ -310,12 +330,20 @@ onBeforeUnmount(() => {
   border-radius: 12px;
   padding: 1rem;
   margin-top: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-height: var(--diagram-max-height);
+  overflow: hidden;
   border: 1px solid var(--cli-c-border);
 }
 
 .core-svg {
-  width: 100%;
+  display: block;
+  width: auto;
   height: auto;
+  max-width: 100%;
+  max-height: calc(var(--diagram-max-height) - 2rem);
 }
 
 .connection-line {
