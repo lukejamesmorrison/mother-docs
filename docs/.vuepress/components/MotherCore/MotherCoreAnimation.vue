@@ -166,12 +166,14 @@ const nodes = ref([
   }
 ])
 
-// Bidirectional connections between your script and each Mother service
+// Connection routes used by the pulse animation
 const connections = ref([
   { source: 'motheros', target: 'yourscript' },
   { source: 'yourscript', target: 'motheros' },
   { source: 'mothergui', target: 'yourscript' },
   { source: 'yourscript', target: 'mothergui' },
+  { source: 'mothergui', target: 'motheros' },
+  { source: 'mothergui', target: 'maps' },
   { source: 'maps', target: 'yourscript' },
   { source: 'yourscript', target: 'maps' }
 ])
@@ -203,6 +205,10 @@ const getBadgeX = (idx, total) => {
   return idx * spacing - offset
 }
 
+const PULSE_FADE_DURATION = 0.1
+const PULSE_TRAVEL_DURATION = 0.45
+const SEQUENCE_PAUSE_MS = 0
+
 // Animation sequences - Your Script is local, calling remote Mother services
 const sequences = [
   {
@@ -220,10 +226,12 @@ const sequences = [
   },
   {
     command: { text: 'view/go RotorView MainRamp; view/select MapView; screen/script Cockpit1 TSS_Velocity;', color: '#00B0FF' },
-    description: 'Your Script drives Mother GUI remotely',
+    description: 'Your Script drives Mother GUI, which fans commands out to Mother OS and MAPS',
     pulses: [
       { from: 'yourscript', to: 'mothergui', color: '#00B0FF' },
-      { from: 'yourscript', to: 'mothergui', color: '#00B0FF', delay: 0.2 }
+      { from: 'yourscript', to: 'mothergui', color: '#00B0FF', delay: 0.2 },
+      { from: 'mothergui', to: 'motheros', color: '#00B0FF', delay: 0.45 },
+      { from: 'mothergui', to: 'maps', color: '#00B0FF', delay: 0.45 }
     ]
   },
   {
@@ -260,17 +268,17 @@ async function animatePulse(from, to, color, delay = 0) {
     gsap.timeline()
       .to(pulseEl, {
         opacity: 1,
-        duration: 0.15,
+        duration: PULSE_FADE_DURATION,
         delay
       })
       .to(pulseEl, {
         attr: { cx: targetNode.x, cy: targetNode.y },
-        duration: 0.6,
+        duration: PULSE_TRAVEL_DURATION,
         ease: 'power2.inOut'
       })
       .to(pulseEl, {
         opacity: 0,
-        duration: 0.15,
+        duration: PULSE_FADE_DURATION,
         onComplete: resolve
       })
   })
@@ -284,10 +292,8 @@ async function runSequence(seq) {
   )
   
   // Pause between sequences
-  await new Promise(r => setTimeout(r, 800))
+  await new Promise(r => setTimeout(r, SEQUENCE_PAUSE_MS))
 }
-
-let sequenceIndex = 0
 
 async function runAnimationLoop() {
   cli.value?.clear()
@@ -295,9 +301,6 @@ async function runAnimationLoop() {
   for (const seq of sequences) {
     await runSequence(seq)
   }
-  
-  // Pause before restarting
-  await new Promise(r => setTimeout(r, 1500))
 }
 
 onMounted(async () => {
@@ -307,7 +310,7 @@ onMounted(async () => {
   // Run loop
   const loop = async () => {
     await runAnimationLoop()
-    animationInterval = setTimeout(loop, 100)
+    animationInterval = setTimeout(loop, 0)
   }
   loop()
 })
