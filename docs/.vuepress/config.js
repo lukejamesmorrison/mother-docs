@@ -5,8 +5,7 @@ import { mdEnhancePlugin } from "vuepress-plugin-md-enhance";
 import { searchPlugin } from '@vuepress/plugin-search'
 import { googleAnalyticsPlugin } from '@vuepress/plugin-google-analytics'
 import { shikiPlugin } from '@vuepress/plugin-shiki'
-import { createRequire } from 'module'
-import { dirname, resolve } from 'path'
+import darkPlusTheme from '@shikijs/themes/dark-plus'
 import { fileURLToPath } from 'url'
 import fs from 'fs'
 import * as dotenv from 'dotenv'
@@ -21,9 +20,6 @@ const TITLE = DEV_MODE ? 'Mother Docs (Dev)' : 'Mother Docs';
 const DESCRIPTION = 'Documentation for the Mother Project';
 
 const basePath = '/mother-docs/';
-const require = createRequire(import.meta.url)
-const pluginShikiPackagePath = require.resolve('@vuepress/plugin-shiki/package.json')
-const shikiBaseThemePath = resolve(dirname(pluginShikiPackagePath), '../../shiki/themes/dark-plus.json')
 const motherScriptThemePath = fileURLToPath(new URL('./shiki/motherscript-color-theme.json', import.meta.url))
 const motherScriptGrammarPath = fileURLToPath(new URL('./shiki/motherscript.tmLanguage.json', import.meta.url))
 
@@ -284,9 +280,7 @@ const NavbarLinks = () => {
 
 // const motherScriptDarkTheme = MotherScriptDarkTheme;
 
-const shikiBaseTheme = JSON.parse(
-  fs.readFileSync(shikiBaseThemePath, 'utf8')
-)
+const shikiBaseTheme = darkPlusTheme
 
 const motherScriptDarkTheme = JSON.parse(
   fs.readFileSync(motherScriptThemePath, 'utf8')
