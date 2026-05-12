@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 60" width="200" height="60">
+  <defs>
+    <style>
+      .logo-text { font-family: 'Arial', sans-serif; font-weight: bold; }
+    </style>
+  </defs>
+  <!-- Logo Icon -->
+  <g transform="translate(5, 5)">
+    <circle cx="25" cy="25" r="23" fill="#C00000"/>
+    <text x="25" y="33" text-anchor="middle" fill="#FFFFFF" font-size="24" font-weight="bold" font-family="Arial">M</text>
+  </g>
+  <!-- Logo Text -->
+  <text x="65" y="40" fill="#C00000" font-size="28" class="logo-text">MOTHER</text>
+</svg>
