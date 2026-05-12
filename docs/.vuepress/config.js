@@ -242,6 +242,14 @@ const navbarLinks = [
         text: 'Mother OS (Ingame Script)',
         link: '/IngameScript/IngameScript.md'
       },
+       {
+      text: 'Mother GUI',
+      link: '/MotherGUI/README.md'
+    },
+    {
+      text: 'Mother Autopilot System (MAPS)',
+      link: '/MotherAutopilotSystem/README.md'
+    },
       {
         text: 'Mother Core (Script Framework)',
         link: '/Framework/README.md'
@@ -250,14 +258,7 @@ const navbarLinks = [
 
 // Dev-only Navbar Links
 const devNavbarLinks = [
-  {
-    text: 'Mother GUI',
-    link: '/MotherGUI/README.md'
-  },
-  {
-    text: 'Mother Autopilot System (MAPS)',
-    link: '/MotherAutopilotSystem/README.md'
-  },
+ 
   {
     text: 'Motherland (Server)',
     link: '/Motherland/Motherland.md'
@@ -446,7 +447,8 @@ export default defineUserConfig({
       },
       MotherOSSidebar,
       MotherGUISidebar,
-      process.env.NODE_ENV == 'development' ? MotherAutopilotSystemSidebar : {},
+      MotherAutopilotSystemSidebar,
+      // process.env.NODE_ENV == 'development' ? MotherAutopilotSystemSidebar : {},
       MotherCoreSidebar,
       
       "/PoweredByMother.md",
