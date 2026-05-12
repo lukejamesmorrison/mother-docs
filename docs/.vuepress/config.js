@@ -2,7 +2,6 @@ import { defaultTheme } from '@vuepress/theme-default'
 import { defineUserConfig } from 'vuepress/cli'
 import { viteBundler } from '@vuepress/bundler-vite'
 import { mdEnhancePlugin } from "vuepress-plugin-md-enhance";
-import { searchPlugin } from '@vuepress/plugin-search'
 import { googleAnalyticsPlugin } from '@vuepress/plugin-google-analytics'
 import { shikiPlugin } from '@vuepress/plugin-shiki'
 import darkPlusTheme from '@shikijs/themes/dark-plus'
@@ -399,30 +398,6 @@ export default defineUserConfig({
     }),
     googleAnalyticsPlugin({
       id: process.env.GOOGLE_ANALYTICS_ID
-    }),
-    searchPlugin({
-      // options
-      maxSuggestions: 10,
-      isSearchable: (page) => {
-        return true;
-        // exclude access to Framework docs for now
-        // return !page.path.startsWith('/Framework/');
-      },
-      hotKeys: [
-        {
-          key: 'k',
-          meta: true,
-        },
-        // {
-        //   key: 'k',
-        //   ctrl: true,
-        // }, 
-      ],
-      // locales: {
-      //   '/': {
-      //     placeholder: 'Search',
-      //   },
-      // },
     }),
     shikiPlugin({
       theme: shikiTheme,
