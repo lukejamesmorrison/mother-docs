@@ -85,7 +85,7 @@
 
 <script setup>
 import { ref, onMounted, onBeforeUnmount } from 'vue'
-import { useRouter } from 'vue-router'
+import { useRouter } from 'vuepress/client'
 import { gsap } from 'gsap'
 import Soyuz from './Soyuz.vue'
 
