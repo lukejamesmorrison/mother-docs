@@ -30,7 +30,7 @@ import { usePageData } from 'vuepress/client'
 # Mother OS (Ingame Script)
 
 <!-- <Badge type="info" text="&nbsp;Beta&nbsp;" vertical="middle" /> -->
-![Static Badge](https://img.shields.io/badge/Version-1.1.0-blue?color=green)
+![Static Badge](https://img.shields.io/badge/Version-1.1.0-blue?color=green) [![Static Badge](https://img.shields.io/badge/Steam%20Workshop-2b3645?logo=steam)](https://steamcommunity.com/sharedfiles/filedetails/?id=3411507973)
 
 
 Mother OS is available as an ingame script for Programmable Blocks in Space Engineers. It interoperates seamlessly with Timer Blocks and Event Controllers to augment existing automations. Start by [installing Mother OS here](./Installation.md).

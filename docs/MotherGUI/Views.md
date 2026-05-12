@@ -6,7 +6,7 @@ For the full menu system documentation, see [MenuView](./MenuView.md).
 
 [[toc]]
 
-## MenuView
+<!-- ## MenuView
 
 `MenuView` is the default interactive menu renderer. Most displays will start here unless a surface is configured to open a different view directly.
 
@@ -20,7 +20,7 @@ The dedicated [MenuView](./MenuView.md) page covers:
 ```ms title="Mother GUI > Custom Data"
 [surfaces]
 0=MainMenu
-```
+``` -->
 
 ## RotorView
 
@@ -31,6 +31,8 @@ view/go "Bridge LCD" "RotorView" "Port Rotor";
 ```
 
 If no rotor name is provided, Mother GUI uses the first rotor it can resolve.
+
+![Cockpit View](./Assets/mother-gui-cockpit1.png)
 
 <!-- ## RotorGridView
 
@@ -70,6 +72,8 @@ Shows a door with live open percentage and current state such as `OPEN`, `OPENIN
 ```ms title="Mother GUI > Custom Data"
 view/go "Bridge LCD" "DoorView" "Hangar Door";
 ```
+
+![Door View](./Assets/mother-gui-door1.png)
 
 <!-- ## CircleView
 

@@ -225,15 +225,15 @@ const MotherGUISidebar = {
       children: [
         '/MotherGUI/Installation.md',
         '/MotherGUI/Configuration.md',
-        '/MotherGUI/Commands.md',
         
-        '/MotherGUI/Views.md',
       ],
     },
+    '/MotherGUI/Commands.md',
     {
       text: 'Menus',
       link: '/MotherGUI/MenuView.md',
-    }
+    },
+    '/MotherGUI/Views.md',
   ]
 };
 
@@ -470,9 +470,9 @@ export default defineUserConfig({
         link: '/Cheatsheet.md',
       },
       MotherOSSidebar,
-      MotherCoreSidebar,
-      process.env.NODE_ENV == 'development' ? MotherGUISidebar : {},
+      MotherGUISidebar,
       process.env.NODE_ENV == 'development' ? MotherAutopilotSystemSidebar : {},
+      MotherCoreSidebar,
       
       "/PoweredByMother.md",
       "/BrandGuidelines.md",

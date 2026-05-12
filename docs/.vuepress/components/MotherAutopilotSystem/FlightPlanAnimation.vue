@@ -497,6 +497,7 @@ onUnmounted(() => {
 .flight-plan-cli {
   /* background: var(--cli-c-bg); */
   border-top: 1px solid var(--cli-c-border);
+  height: 170px;
 }
 
 .cli-header {

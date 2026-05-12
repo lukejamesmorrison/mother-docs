@@ -4,9 +4,15 @@
 
 # Mother Autopilot System (MAPS)
 
-![Static Badge](https://img.shields.io/badge/version-0.1.0-blue?color=green)
+![Static Badge](https://img.shields.io/badge/version-0.1.0-blue?color=green) [![Static Badge](https://img.shields.io/badge/Steam%20Workshop-2b3645?logo=steam)](https://steamcommunity.com/sharedfiles/filedetails/?id=3724504005)
+
+
 
 Mother Autopilot System (MAPS) is a powerful and versatile autopilot system designed to expand the capabilities of grids running scripts built with [Mother Core](../Framework/README.md) like [Mother OS](../IngameScript/IngameScript.md). It will automatically detect and integrate with other scripts built with Mother Core, allowing you to share commands across your programmable blocks seamlessly.
+
+::: warning Alpha Development
+MAPS is currently in Alpha and is subject to change at any time. I will try my best to make graceful changes to player commands to ease ongoing use.
+:::
 
 <FlightPlanAnimation />
 

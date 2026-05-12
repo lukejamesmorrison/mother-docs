@@ -8,7 +8,7 @@ next: /MotherGUI/Installation.md
 
 # Mother GUI
 
-![Static Badge](https://img.shields.io/badge/version-0.1.0-blue?color=green)
+![Static Badge](https://img.shields.io/badge/version-0.1.0-blue?color=green) [![Static Badge](https://img.shields.io/badge/Steam%20Workshop-2b3645?logo=steam)](https://steamcommunity.com/sharedfiles/filedetails/?id=3724497528)
 
 Mother GUI is an ingame script for Space Engineers players that turns text surfaces into interactive ship displays. Use it to build navigable menus and render live mechanical block views.
 

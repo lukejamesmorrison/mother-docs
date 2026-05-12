@@ -110,19 +110,26 @@ const blocks = [
     path: '/IngameScript/IngameScript.md',
     x1: 640, y1: 75, x2: 960, y2: 70
   },
+  {
+    id: 'mother-gui',
+    title: 'Mother GUI',
+    description: 'Turn text surfaces into interactive ship displays with menus and live block views',
+    path: '/MotherGUI/README.md',
+    x1: 520, y1: 155, x2: 960, y2: 180
+  },
   { 
     id: 'mother-autopilot-system', 
     title: 'Mother Autopilot System (MAPS)', 
     description: 'Navigate flight plans and automatically dock with precision using GPS waypoints', 
     path: '/MotherAutopilotSystem/README.md',
-    x1: 490, y1: 200, x2: 960, y2: 260
+    x1: 450, y1: 250, x2: 960, y2: 290
   },
   { 
     id: 'mother-core', 
     title: 'Mother Core', 
     description: 'Develop your own scripts with a rich framework for spacecraft automation', 
     path: '/Framework/README.md',
-    x1: 340, y1: 320, x2: 960, y2: 440
+    x1: 270, y1: 360, x2: 960, y2: 400
   }
 ]
 

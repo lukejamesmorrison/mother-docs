@@ -76,6 +76,17 @@ Mother OS is an **ingame script** with a robust library of commands to control y
 <br>
 <br>
 
+## Mother GUI
+
+Mother GUI is an **ingame script** that turns text surfaces into interactive ship displays. Build navigable menus, show live mechanical views for ship systems, and switch screens with terminal commands or other Mother-powered automations.
+
+[Get Started](./MotherGUI/README.md) | [Installation](./MotherGUI/Installation.md) | [MenuView](./MotherGUI/MenuView.md)
+
+![Mother GUI](./MotherGUI/Assets/mother-gui1.png)
+
+<br>
+<br>
+
 ## Mother Autopilot System (MAPS)
 
 MAPS in an **ingame script** that allows players to create dynamic flight plans using GPS waypoints and grid positions. As your ship navigates each waypoint, Mother can automatically execute commands at waypoints. Automated docking and atmospheric flight will come in a future update.
