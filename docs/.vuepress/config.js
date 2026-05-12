@@ -215,6 +215,28 @@ const MotherAutopilotSystemSidebar = {
   ]
 };
 
+const MotherGUISidebar = {
+  text: 'Mother GUI',
+  link: '/MotherGUI/README.md',
+  children: [
+    {
+      text: 'Getting Started',
+      collapsible: true,
+      children: [
+        '/MotherGUI/Installation.md',
+        '/MotherGUI/Configuration.md',
+        '/MotherGUI/Commands.md',
+        
+        '/MotherGUI/Views.md',
+      ],
+    },
+    {
+      text: 'Menus',
+      link: '/MotherGUI/MenuView.md',
+    }
+  ]
+};
+
 // Navbar Links
 const navbarLinks = [
     {
@@ -229,6 +251,10 @@ const navbarLinks = [
 
 // Dev-only Navbar Links
 const devNavbarLinks = [
+  {
+    text: 'Mother GUI',
+    link: '/MotherGUI/README.md'
+  },
   {
     text: 'Mother Autopilot System (MAPS)',
     link: '/MotherAutopilotSystem/README.md'
@@ -445,6 +471,7 @@ export default defineUserConfig({
       },
       MotherOSSidebar,
       MotherCoreSidebar,
+      process.env.NODE_ENV == 'development' ? MotherGUISidebar : {},
       process.env.NODE_ENV == 'development' ? MotherAutopilotSystemSidebar : {},
       
       "/PoweredByMother.md",
