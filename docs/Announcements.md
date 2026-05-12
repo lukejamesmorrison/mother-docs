@@ -6,150 +6,80 @@
 
 <!-- Add new announcements below this line, with the most recent at the top -->
 
-## Version 1.1 Update - XX May 2026
+## Version 1.1 Update - 12 May 2026
 
-We're excited to announce version 1.1 of the Mother ecosystem! This update brings powerful new scripting features, introduces the **Mother Autopilot System (MAPS)** as a dedicated companion script, and includes numerous quality-of-life improvements.
 
-### Introducing: Mother Autopilot System (MAPS)
 
-Autopilot features have been split into their own dedicated script called **MAPS** (Mother Autopilot System). This includes:
+The upcoming Mother ecosystem release brings together **Mother OS 1.1**, **Mother Core 1.1**, **Mother Autopilot System 0.1**, **Mother GUI 0.1**, and the expanded **Mother CLI 1.1** command experience. This release separates flight systems into a dedicated companion script, broadens the in-game command model, modernizes display configuration, and opens up more focused entry points for both players and developers.
 
-- **Flight Control Module** - Automated flight and navigation
-- **Flight Planning Module** - Flight plan creation and execution
-- **Docking Module** - Automated docking procedures  
-- **Attitude Module** (formerly GyroModule) - Gyroscope control and orientation
-- **Map & Almanac Displays** - Now rendered by MAPS instead of Mother Core
+<iframe width="100%" height="400" src="https://www.youtube.com/embed/YdISX1VCmLs?si=5OpIN9IwscWgfCAf" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
-**Why the split?** Separating autopilot into MAPS allows faster development of both Mother OS and autopilot features without script size limitations.
+### Release Highlights
 
-::: tip Seamless Integration
-Any Mother-powered script on your construct automatically syncs commands with other instances during boot. Load MAPS into a second programmable block and both scripts will share their command libraries—no configuration needed.
+- **Mother OS 1.1** adds variables, runtime command parameters, parallel routines, wheel suspension commands, cumulative `--share` movement, block renaming, hex colors, and the new `onBoot` hook.
+- **Mother Core 1.1** moves display targeting into Custom Data, consolidates logging, adds command priority, and improves mechanical and merge block awareness.
+- **Mother Autopilot System (MAPS) 0.1** launches as a standalone companion for flight planning, flight control, docking, attitude control, and Map/Almanac displays.
+- **Mother GUI 0.1** launches as a new display-focused script for interactive menus and live mechanical views.
+<!-- - **Mother CLI 1.1** makes command libraries more expressive and automatically routes commands between Mother-powered scripts on the same construct. -->
+
+::: warning Upgrading from Mother 1.0?
+If you use flight plans, docking, `gyro/face`, or `fcs/*` commands, install MAPS on a second programmable block alongside Mother OS. The `nav/set-flight-plan` command has been renamed to `fp/set`, and Map/Almanac displays are now rendered by MAPS.
 :::
-
-**Command Change:** `nav/set-flight-plan` → `fp/set`
 
 ---
 
-### New Scripting Features
+### Mother OS 1.1
 
-#### Variables
+Mother OS 1.1 expands day-to-day ship automation without changing the familiar programmable-block workflow. Players can define reusable `$VARIABLES`, build commands with `{{runtime parameters}}`, run routines in parallel, and control more block types directly. Wheel suspension controls, shared piston/rotor/hinge movement with `--share`, `block/rename`, grid renaming, and hex color support all land in this release.
 
-Use variables in your commands and routines:
-
-```ini
+```ms title="Mother > Custom Data"
 [variables]
 PLAYER=Dave
 
 [commands]
-greeting=screen/print BedroomDisplay "Good morning, $PLAYER"
+Greeting=screen/print BedroomDisplay "Good morning, $PLAYER"
+OpenAirlock=
+| wait 5;
+| { door/open AirlockDoor1 }
+| { door/open AirlockDoor2 }
 ```
 
-#### Command Parameters
+Explore Mother OS: [Overview](./IngameScript/IngameScript.md) | [Installation](./IngameScript/Installation.md) | [Upgrade Guide](./IngameScript/UpgradeGuide.md) | [Examples](./IngameScript/Examples.md)
 
-Commands can accept arguments with default values:
+### Mother Core 1.1
 
-```ini
-[commands]
-greeting=screen/print AirlockScreen "Hello, {{player:Space Engineer}}!"
-```
-```bash
-greeting --player="Ellen Ripley"
-# => Hello, Ellen Ripley!
-```
+Mother Core 1.1 is the shared foundation under Mother OS, MAPS, and Mother GUI. Displays are now configured in Custom Data instead of block names, the old `Debug` and `Log` split is replaced by the unified `Log` module, and map and almanac rendering move out into MAPS. Developers also get new command priority behavior, the `onBoot` hook, clearer instance naming (`self`, `construct`, `remote`), and better catalogue updates when merge blocks and mechanical connections change.
 
-#### Parallel Command Execution
+Explore Mother Core: [Overview](./Framework/README.md) | [Installation](./Framework/Developer/GettingStarted/Installation.md) | [Upgrade Guide](./Framework/Developer/GettingStarted/UpgradeGuide.md) | [Core Modules](./Framework/Developer/CoreModules/CoreModules.md)
 
-Run multiple commands simultaneously using curly braces:
+### Mother Autopilot System (MAPS) 0.1
 
-```ini
-[commands]
-; Parallel: open BOTH doors at the same time
-openAirlock=wait 5; {door/open AirlockDoor1} {door/open AirlockDoor2}
-```
+MAPS is the new standalone autopilot companion for Mother-powered constructs. The initial release packages **Flight Control**, **Flight Planning**, **Docking**, **Attitude**, and **Map** functionality into a dedicated script that runs beside Mother OS. Install it on a second programmable block and Mother Core will automatically share commands across both scripts during boot, so players do not need to remember which block owns which feature.
 
----
+For players migrating existing automations, the key command change is simple: `nav/set-flight-plan` is now `fp/set`.
 
-### New Commands & Features
+Explore MAPS: [Overview](./MotherAutopilotSystem/README.md) | [Installation](./MotherAutopilotSystem/Installation.md) | [Upgrade Guide](./MotherAutopilotSystem/UpgradeGuide.md) | [Flight Planning](./MotherAutopilotSystem/Modules/FlightPlanningModule.md) | [Docking](./MotherAutopilotSystem/Modules/DockingModule.md)
 
-#### Wheel Suspension Control
+### Mother GUI 0.1
 
-New commands for wheel suspensions:
-- `wheel/height` - Set height offset (`--add` / `--sub` supported)
-- `wheel/power` - Set power percentage
-- `wheel/strength` - Set strength percentage  
-- `wheel/friction` - Set friction percentage
+Mother GUI is a brand new script focused on shipboard interfaces. It turns LCDs, cockpits, programmable blocks, and other text surfaces into navigable menus and live mechanical status views. Configure screens with `[surfaces]`, drive navigation with `view/*` commands, and reuse the same menus across multiple displays with `view/go self ...` for a clean, scalable UI layer that fits naturally beside Mother OS.
 
-#### Cumulative Movement with `--share`
+Explore Mother GUI: [Overview](./MotherGUI/README.md) | [Installation](./MotherGUI/Installation.md) | [MenuView](./MotherGUI/MenuView.md) | [Commands](./MotherGUI/Commands.md) | [Views](./MotherGUI/Views.md)
 
-Distribute movement across multiple blocks:
+<!-- ### Mother CLI 1.1
 
-```bash
-# 10m total shared between pistons (5m each for 2 pistons)
-piston/distance PistonGroup 10 --share
+The Mother command-line experience is more capable in 1.1. The in-game CLI now supports reusable variables, runtime parameters with defaults, parallel command dispatch, and automatic command sharing across Mother-powered scripts on the same construct. For framework developers, the `mother` console tool remains the fastest way to scaffold projects, modules, commands, and events when building on top of Mother Core.
 
-# 90° total shared between rotors (45° each for 2 rotors)  
-rotor/rotate RotorGroup 90 --share
+Explore Mother CLI: [Command Line Interface](./IngameScript/CommandLineInterface.md) | [Cheatsheet](./Cheatsheet.md) | [Mother Core Console](./Framework/Developer/Console.md) | [Build a Module](./Framework/Developer/BuildingAModule/BuildingAModule.md) -->
 
-# Works with hinges too
-hinge/rotate HingeGroup 60 --share
-```
+### Where To Start
 
-#### Merge Block Support
+| If you want to... | Start here |
+|-------------------|------------|
+| Automate a ship or station with commands and routines | [Mother OS](./IngameScript/IngameScript.md) |
+| Add flight plans, attitude control, or docking | [MAPS](./MotherAutopilotSystem/README.md) |
+| Build navigable displays and mechanical dashboards | [Mother GUI](./MotherGUI/README.md) |
+| Create your own programmable block scripts | [Mother Core](./Framework/README.md) |
+| Learn the command syntax or scaffold project files | [Mother CLI](./IngameScript/CommandLineInterface.md) |
 
-- Block catalogue automatically updates on merge/unmerge
-- New hooks: `onMerge`, `onUnmerge`
-
-#### Mechanical Block Attach/Detach
-
-Rotors, Pistons, and Hinges now support:
-- Attach/detach commands
-- `onAttach` and `onDetach` hooks
-- Block catalogue updates when mechanical connections change
-
-#### Other New Features
-
-- **`rename`** - Rename the grid with optional `--unique` flag for randomized names (great for printed missiles/drones)
-- **`block/rename`** - Rename terminal blocks programmatically
-- **Hexadecimal colors** - Use `#FF0000` anywhere colors are accepted
-- **`onBoot` hook** - Trigger commands after successful boot
-- **Grid name override** - Set custom grid name via configuration
-- **Command priority** - Mark commands as "important" when multiple scripts define the same command name
-
----
-
-### Improvements
-
-- **No forced reboot** - Editing programmable block CustomData no longer forces a system reboot
-- **Consolidated logging** - Debug and log functions merged into unified "Log" system
-- **Automatic command sync** - Scripts on the same construct share command libraries automatically
-- **LOG/DEBUG display fixes** - Resolved issues with log and debug displays
-- **Mechanical block refactor** - Piston, Rotor, and Hinge modules now share common parent for consistency
-
----
-
-### Upgrade Notes
-
-::: warning For Autopilot Users
-If you use flight plans, docking, or gyro commands:
-1. Install MAPS into a second programmable block
-2. Change `nav/set-flight-plan` to `fp/set`
-3. The `gyro/face` command is now in MAPS
-
-Mother OS continues to work for all non-flight features without changes.
-:::
-
-### Links
-
-| Mother OS | MAPS | Mother Core |
-|-----------|------|-------------|
-| [Installation](./IngameScript/Installation.md) | [Installation](./MotherAutopilotSystem/Installation.md) | [Installation](./Framework/Developer/GettingStarted/Installation.md) |
-| [Upgrade Guide](./IngameScript/UpgradeGuide.md) | [Upgrade Guide](./MotherAutopilotSystem/UpgradeGuide.md) | [Upgrade Guide](./Framework/Developer/GettingStarted/UpgradeGuide.md) |
-
----
-
-## Version 1.0 Released - September 29, 2025
-
-The first stable release of Mother OS is here! See the full changelog for details.
-
----
 
