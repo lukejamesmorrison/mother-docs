@@ -5,67 +5,74 @@
 ## 1.0.0 -> 1.1.0
 🕓 15-30 mins
 
-This release includes significant API changes, particularly around display management, logging, and mechanical block handling. If you've built custom modules, please review this guide carefully.
+This release includes significant API and runtime changes around construct command sharing, display management, logging, and mechanical block handling. If you've built custom modules, please review this guide carefully.
 
 ### Breaking Changes
 
-#### 1. Display Type Configuration
+#### 1. Remote Control Dependency Removed
 
-Display types are no longer determined by the block name. The `type` property is now set in the block's Custom Data under `[general]`.
+Mother Core no longer requires a Remote Control block to operate. Remote-control-specific flight logic has moved into MAPS, and general ship state should now be sourced from the first available `IMyShipController` when your script needs mass, gravity, or controller-derived data.
+
+If your startup checks or helper modules previously assumed a Remote Control block was always present, update them before upgrading.
+
+#### 2. Automatic Construct Command Syncing
+
+`IntergridMessageService` and `CommandBus` now automatically handshake with other Mother Core instances on the same construct during boot. That means commands are shared automatically between compatible scripts without extra player configuration.
+
+This also means command collisions matter more in 1.1. If two instances define the same command name, use the new important-command behavior described later in this guide to make one authoritative.
+
+#### 3. Display Surface Configuration
+
+Display rendering is no longer determined by block-name tags like `MMAP`, `MALMANAC`, or `MDEBUG`. Surfaces are now configured directly in block Custom Data using `[surfaces]` assignments.
 
 **Before:**
-```csharp
+```csharp title="DisplayModule.cs"
 // Searching for displays by name pattern
 var mapDisplays = GetBlocksByName("MMAP");
 var debugDisplays = GetBlocksByName("MDEBUG");
 ```
 
 **After:**
-```csharp
-// Displays are now configured via Custom Data
-// [general]
-// type=log
-// source=MotherOS
-// surfaceIndex=1
-
-// Use DisplayModule to get surfaces for a display type
-var mapSurfaces = DisplayModule.GetSurfacesForDisplayType("map");
-var logSurfaces = DisplayModule.GetSurfacesForDisplayType("log");
+```ms title="Display Block > Custom Data"
+[surfaces]
+0=MainMenu
+1=MapView
+2=LogView "Mother OS"
 ```
 
-The `source` property replaces any script-specific prefixes in block names.
+Your script should treat surface/view assignment as configuration on the display block, not something inferred from the block's name.
 
-#### 2. Debug/Log Consolidation
+#### 4. Debug/Log Consolidation
 
 The separate `Debug` and `Log` modules have been consolidated into a unified `Log` core module.
 
 **Before:**
-```csharp
+```csharp title="MissileGuidanceModule.cs"
 Debug.Write("Debug message");
 
 // DEBUG display type
 ```
 
 **After:**
-```csharp
+```csharp title="MissileGuidanceModule.cs"
 Log.Info("Info message");
 Log.Error("Error message");
 
 // LOG display type (DEBUG is deprecated)
 ```
 
-#### 3. Map and Almanac Displays Decoupled
+#### 5. Map and Almanac Displays Decoupled
 
 Map and Almanac display rendering has been moved out of Mother Core and into MAPS (Mother Autopilot System). If your script rendered map or almanac displays, you'll need to either:
 
 1. Depend on MAPS being installed alongside your script, or
 2. Implement your own rendering logic
 
-#### 4. Mechanical Block Module Added
+#### 6. Mechanical and Merge Block Tracking
 
-A new `MechanicalBlockModule` core module has been added to handle attach/detach state changes for rotors, pistons, and hinges. This module emits events that your extension modules can subscribe to.
+A new `MechanicalBlockModule` core module has been added to handle attach/detach state changes for rotors, pistons, and hinges. Mother Core also now updates the Block Catalogue when merge blocks merge or unmerge. Extension modules can subscribe to these events instead of relying on manual rescans.
 
-```csharp
+```csharp title="MissileGuidanceModule.cs"
 public override void Boot()
 {
     // Subscribe to mechanical block events
@@ -86,7 +93,17 @@ public override void HandleEvent(IEvent e)
 }
 ```
 
-#### 5. Instance Nomenclature Changes
+Merge block subscriptions follow the same pattern:
+
+```csharp title="MissileGuidanceModule.cs"
+public override void Boot()
+{
+    Subscribe<MergeBlockLockedEvent>();
+    Subscribe<MergeBlockOffEvent>();
+}
+```
+
+#### 7. Instance Nomenclature Changes
 
 The terminology for referencing script instances has been clarified throughout the codebase:
 
@@ -97,7 +114,7 @@ The terminology for referencing script instances has been clarified throughout t
 | `remote` (in some contexts) | `remote` | Instances communicating via antenna (not on this construct) |
 
 **CommandBus:**
-```csharp
+```csharp title="CommandBus.cs"
 // Before
 Dictionary<long, List<string>> RemoteCommands;
 CommandBus.GetLocalCommandNames();
@@ -110,7 +127,7 @@ CommandBus.FindInstanceWithCommand(name);
 ```
 
 **IntergridMessageService:**
-```csharp
+```csharp title="IntergridMessageService.cs"
 // Before
 IntergridMessageService.LocalPing();
 IntergridMessageService.SendLocalCommand(targetId, command);
@@ -127,7 +144,7 @@ OriginIsOnConstruct(originId);
 ```
 
 **AlmanacRecord:**
-```csharp
+```csharp title="Almanac Record"
 // Before
 AlmanacRecord.TransponderCode.Local
 
@@ -180,7 +197,7 @@ This hook is processed during the boot cycle after all modules have initialized.
 
 `BaseModuleCommand` now includes helper methods for distributing values across multiple blocks when the `--share` flag is used. Here's how the `piston/distance` command in Mother OS implements this:
 
-```csharp
+```csharp title="SetPistonDistanceCommand.cs"
 public class SetPistonDistanceCommand : BaseModuleCommand
 {
     readonly PistonModule Module;
@@ -212,7 +229,7 @@ public class SetPistonDistanceCommand : BaseModuleCommand
 
 **Helper methods in `BaseModuleCommand`:**
 
-```csharp
+```csharp title="BaseModuleCommand.cs"
 // Returns true if --share option is present
 protected bool IsSharedMode(Dictionary<string, string> options)
 {
@@ -241,7 +258,7 @@ piston/distance PistonGroup 10 --share
 
 The Block Catalogue now automatically updates when merge blocks lock or unlock. Subscribe to merge block events:
 
-```csharp
+```csharp title="MissingGuidanceModule.cs"
 public override void Boot()
 {
     Subscribe<MergeBlockLockedEvent>();
@@ -253,7 +270,7 @@ public override void Boot()
 
 Block Catalogue updates when mechanical connections change:
 
-```csharp
+```csharp title="MissingGuidanceModule.cs"
 Subscribe<MechanicalBlockAttachedEvent>();
 Subscribe<MechanicalBlockDetachedEvent>();
 ```
@@ -262,7 +279,7 @@ Subscribe<MechanicalBlockDetachedEvent>();
 
 `ColorHelper` now accepts hexadecimal color values:
 
-```csharp
+```csharp title="LightModule.cs"
 // All of these now work
 var color1 = ColorHelper.GetColor("red");
 var color2 = ColorHelper.GetColor("255,0,0");
@@ -283,7 +300,7 @@ announce=screen/print MainDisplay "Welcome aboard the $SHIP_NAME"
 
 Access variables programmatically via the Mother instance:
 
-```csharp
+```csharp  title="IFFModule.cs"
 string shipName = Mother.ConfigVariables["SHIP_NAME"];
 ```
 
@@ -310,11 +327,12 @@ The Block Catalogue now automatically refreshes when:
 
 ### Migration Checklist
 
-- [ ] Update display type lookups to use `DisplayModule.GetSurfacesForDisplayType()`
+- [ ] Remove Remote Control assumptions from startup and controller lookup logic
+- [ ] Replace block-name display tags like `MMAP`, `MALMANAC`, and `MDEBUG` with `[surfaces]` assignments on the target block
+- [ ] Audit any code that infers renderer choice from a block's name
 - [ ] Replace `Debug.Write()` with `Log.Info()` or `Log.Error()`
 - [ ] Update instance terminology (`local` → `self`/`construct`, see nomenclature section)
 - [ ] If using map/almanac rendering, document MAPS dependency or implement custom rendering
-- [ ] Update any hardcoded display name patterns (e.g., `MMAP`, `MDEBUG`) to use Custom Data `type` property
 - [ ] Access variables via `Mother.ConfigVariables` dictionary instead of deprecated methods
 
 ---

@@ -42,9 +42,9 @@ fp/set "GPS:Waypoint1:0:0:0:#FFFFFF:"
 
 Update any custom commands or hooks that reference `nav/set-flight-plan`.
 
-#### 3. Display Type Configuration Changed
+#### 3. Display Surface Configuration Changed
 
-Display types (like `map`, `log`, `almanac`) are no longer set via the block name. Instead, use the `type` property in the block's Custom Data.
+Display routing is no longer inferred from block names like `MMAP`, `MALMANAC`, or `MLOG:1`. Instead, assign views directly in the target block's Custom Data using the `[surfaces]` section.
 
 **Before (block name):**
 ```
@@ -52,7 +52,7 @@ LCD Panel [MMAP]
 ```
 
 **After (Custom Data):**
-Use the `[surfaces]` section on the display block set views for each surface:
+Use the `[surfaces]` section on the display block to assign views to each surface:
 ```ms title="Custom Data"
 [surfaces]
 ; show the MAPS map view of surface 0
@@ -62,7 +62,7 @@ Use the `[surfaces]` section on the display block set views for each surface:
 1=LogView "Mother OS"
 ```
 
-The block can now be named anything you like. This applies to all display types.
+The block can now be named anything you like. This applies to map, almanac, log, and GUI views.
 
 ::: tip
 Map and Almanac displays are now rendered by MAPS, not Mother Core. Make sure MAPS is installed if you want to use these display types.
@@ -77,7 +77,7 @@ The `debug` display type has been merged with `log`. Use `log` for all logging o
 - [ ] Install MAPS if you use flight/docking features
 - [ ] Replace `nav/set-flight-plan` with `fp/set` in all custom commands
 - [ ] Replace `gyro/face` usage (now in MAPS)
-- [ ] Update display configurations from block names to Custom Data `type` property
+- [ ] Replace block-name display tags like `MMAP`, `MALMANAC`, and `MLOG:1` with `[surfaces]` view assignments
 - [ ] Change any `debug` display types to `log`
 - [ ] Run `boot` command after updating Custom Data
 
@@ -90,8 +90,18 @@ After upgrading, you'll have access to:
 - **Wheel commands** - `wheel/height`, `wheel/power`, `wheel/strength`, `wheel/friction`
 - **`--share` flag** - Distribute values across block groups
 - **Merge block support** - `onMerge`/`onUnmerge` hooks
+- **Mechanical attach/detach** - `piston/*`, `rotor/*`, and `hinge/*` now support attach/detach commands and `onAttach`/`onDetach` hooks
+- **Grid and block renaming** - Use `rename` and `block/rename` to rename grids and terminal blocks
+- **Hexadecimal colors** - Use values like `#FF0000` anywhere colors are accepted
+- **Important commands** - Prefix a custom command with `!` to make it authoritative across the construct
 - **`block/rename`** - Rename blocks programmatically
 - **`onBoot` hook** - Trigger commands after boot completes
+
+### Other Changes To Expect
+
+- **Automatic command sharing** - Mother OS, MAPS, and Mother GUI now share command libraries automatically on the same construct
+- **No forced reboot on Custom Data edits** - Most programmable block configuration changes refresh without a full reboot
+- **Better construct awareness** - Merge and mechanical connection changes now refresh block discovery automatically
 
 ---
 
