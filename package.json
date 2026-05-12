@@ -12,6 +12,7 @@
   },
   "devDependencies": {
     "@mdit/plugin-tab": "0.20.0",
+      "@shikijs/themes": "^3.13.0",
     "@vuepress/bundler-vite": "^2.0.0-rc.23",
     "@vuepress/plugin-google-analytics": "^2.0.0-rc.112",
     "@vuepress/plugin-search": "2.0.0-rc.85",
