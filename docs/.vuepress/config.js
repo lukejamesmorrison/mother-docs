@@ -214,6 +214,12 @@ const MotherAutopilotSystemSidebar = {
   ]
 };
 
+const MotherStudioSidebar = {
+  text: 'Mother Studio',
+  link: '/MotherStudio/README.md',
+  children: []
+};
+
 const MotherGUISidebar = {
   text: 'Mother GUI',
   link: '/MotherGUI/README.md',
@@ -256,12 +262,14 @@ const navbarLinks = [
       }
   ];
 
-// Dev-only Navbar Links
 const devNavbarLinks = [
- 
   {
     text: 'Motherland (Server)',
     link: '/Motherland/Motherland.md'
+  },
+  {
+    text: 'Mother Studio',
+    link: '/MotherStudio/README.md'
   },
 ];
 
@@ -450,7 +458,7 @@ export default defineUserConfig({
       MotherAutopilotSystemSidebar,
       // process.env.NODE_ENV == 'development' ? MotherAutopilotSystemSidebar : {},
       MotherCoreSidebar,
-      
+      ...(DEV_MODE ? [MotherStudioSidebar] : []),
       "/PoweredByMother.md",
       "/BrandGuidelines.md",
     ]
