@@ -150,7 +150,7 @@ You can use this SVG as a starting point for script thumbnails and workshop prev
   <img src="/brand-assets/mother-script-thumbnail-template.svg" alt="Mother Script Thumbnail Template" style="width: 320px; max-width: 100%; display: block;" />
 </div>
 
-**Download:** [mother-script-thumbnail-template.svg](/brand-assets/mother-script-thumbnail-template.svg)
+**Download:** [mother-script-thumbnail-template.svg](/mother-docs/brand-assets/mother-script-thumbnail-template.svg)
 
 ### Powered By Mother Badge
 
@@ -163,7 +163,7 @@ For use on dark backgrounds.
   <img src="/brand-assets/powered-by-mother-badge-dark-transparent.svg" alt="Powered By Mother (Light)" style="height: 100px;" />
 </div>
 
-**Download:** [powered-by-mother-badge-dark-transparent.svg](/brand-assets/powered-by-mother-badge-dark-transparent.svg)
+**Download:** [powered-by-mother-badge-dark-transparent.svg](/mother-docs/brand-assets/powered-by-mother-badge-dark-transparent.svg)
 
 #### Dark Version
 For use on light backgrounds.
@@ -172,7 +172,7 @@ For use on light backgrounds.
   <img src="/brand-assets/powered-by-mother-badge-light-transparent.svg" alt="Powered By Mother (Dark)" style="height: 100px;" />
 </div>
 
-**Download:** [powered-by-mother-badge-light-transparent.svg](/brand-assets/powered-by-mother-badge-light-transparent.svg)
+**Download:** [powered-by-mother-badge-light-transparent.svg](/mother-docs/brand-assets/powered-by-mother-badge-light-transparent.svg)
 
 
 ## Usage Guidelines
