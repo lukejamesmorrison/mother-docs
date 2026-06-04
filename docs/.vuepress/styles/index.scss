@@ -72,12 +72,12 @@
   --badge-c-note-bg: var(--vp-c-grey-soft);
 
   // CLI/Terminal colors - always dark regardless of theme
-  --cli-c-bg: #0d0706;
-  --cli-c-bg-alt: #120c0b;
-  --cli-c-bg-elv: #1a1412;
+  --cli-c-bg: #111114;
+  --cli-c-bg-alt: #16161a;
+  --cli-c-bg-elv: #1c1c21;
   --cli-c-text: rgb(242 240 236 / 92%);
   --cli-c-text-mute: rgba(219, 219, 219, 0.8);
-  --cli-c-border: rgb(166 166 166 / 18%);
+  --cli-c-border: rgb(255 255 255 / 10%);
   --cli-c-shadow: rgb(0 0 0 / 30%);
   --cli-c-accent: #4CAF50;
   --cli-c-primary: #c20000;
@@ -135,7 +135,7 @@
   font-weight: 600;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--cli-c-text) !important;
+  color: var(--cli-c-steel) !important;
 }
 
 .code-block-with-title > div[class^='language-'] {

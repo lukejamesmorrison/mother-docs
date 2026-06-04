@@ -1,6 +1,6 @@
 # Mother Studio
 
-Mother Studio is a tool for viewing and editing game worlds in Space Engineers. It allows players to chart their star systems, view detailed planet and grid information, and manage mod configurations with plugins. Players can create routes flyable with [Mother Autopilot System (MAPS)](../MotherAutopilotSystem/README.md). 
+Mother Studio is a tool for viewing and editing game worlds in Space Engineers. It allows players to chart their star systems, view detailed planet and grid information, and manage mod configurations with plugins. Players can also create routes flyable with [Mother Autopilot System (MAPS)](../MotherAutopilotSystem/README.md) and can expect many more exciting features coming soon to support automation with Mother. 
 
 ![Mother Studio Screenshot](./Assets/mother-studio-route.png)
 
