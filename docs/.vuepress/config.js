@@ -2,6 +2,7 @@ import { defaultTheme } from '@vuepress/theme-default'
 import { defineUserConfig } from 'vuepress/cli'
 import { viteBundler } from '@vuepress/bundler-vite'
 import { mdEnhancePlugin } from "vuepress-plugin-md-enhance";
+import { searchPlugin } from '@vuepress/plugin-search'
 import { googleAnalyticsPlugin } from '@vuepress/plugin-google-analytics'
 import { shikiPlugin } from '@vuepress/plugin-shiki'
 import darkPlusTheme from '@shikijs/themes/dark-plus'
@@ -404,6 +405,18 @@ export default defineUserConfig({
   plugins: [
     mdEnhancePlugin({
       mermaid: true,
+    }),
+    searchPlugin({
+      maxSuggestions: 10,
+      isSearchable: (page) => {
+        return true;
+      },
+      hotKeys: [
+        {
+          key: 'k',
+          meta: true,
+        },
+      ],
     }),
     googleAnalyticsPlugin({
       id: process.env.GOOGLE_ANALYTICS_ID

@@ -45,6 +45,9 @@ importers:
       '@vuepress/plugin-google-analytics':
         specifier: 2.0.0-rc.118
         version: 2.0.0-rc.118(vuepress@2.0.0-rc.26(@vuepress/bundler-vite@2.0.0-rc.26(@types/node@24.10.0)(sass@1.93.3))(vue@3.5.23))
+      '@vuepress/plugin-search':
+        specifier: 2.0.0-rc.118
+        version: 2.0.0-rc.118(vuepress@2.0.0-rc.26(@vuepress/bundler-vite@2.0.0-rc.26(@types/node@24.10.0)(sass@1.93.3))(vue@3.5.23))
       '@vuepress/theme-default':
         specifier: 2.0.0-rc.118
         version: 2.0.0-rc.118(markdown-it@13.0.2)(sass@1.93.3)(vuepress@2.0.0-rc.26(@vuepress/bundler-vite@2.0.0-rc.26(@types/node@24.10.0)(sass@1.93.3))(vue@3.5.23))
@@ -1115,6 +1118,11 @@ packages:
         optional: true
       sass-loader:
         optional: true
+
+  '@vuepress/plugin-search@2.0.0-rc.118':
+    resolution: {integrity: sha512-Y+4SBktnsNjhiQJhTuBBo4nej7I8fVRNfSt9JMyLTYk7g5aX7gr1/RTKfA1W132toFUs/2WJZihjLd7bfYwGhg==}
+    peerDependencies:
+      vuepress: 2.0.0-rc.26
 
   '@vuepress/plugin-seo@2.0.0-rc.118':
     resolution: {integrity: sha512-z7ztlqK6vqwZyjGumBQbQ0QnaDR0XrCIdL4xN/xSE2xN3K8ua6fk0r8Chk1vDA/RhfZ89T2UFlCjaVN0CT+66w==}
@@ -3715,6 +3723,15 @@ snapshots:
       vuepress: 2.0.0-rc.26(@vuepress/bundler-vite@2.0.0-rc.26(@types/node@24.10.0)(sass@1.93.3))(vue@3.5.23)
     optionalDependencies:
       sass: 1.93.3
+    transitivePeerDependencies:
+      - typescript
+
+  '@vuepress/plugin-search@2.0.0-rc.118(vuepress@2.0.0-rc.26(@vuepress/bundler-vite@2.0.0-rc.26(@types/node@24.10.0)(sass@1.93.3))(vue@3.5.23))':
+    dependencies:
+      '@vuepress/helper': 2.0.0-rc.118(vuepress@2.0.0-rc.26(@vuepress/bundler-vite@2.0.0-rc.26(@types/node@24.10.0)(sass@1.93.3))(vue@3.5.23))
+      chokidar: 4.0.3
+      vue: 3.5.23
+      vuepress: 2.0.0-rc.26(@vuepress/bundler-vite@2.0.0-rc.26(@types/node@24.10.0)(sass@1.93.3))(vue@3.5.23)
     transitivePeerDependencies:
       - typescript
 
