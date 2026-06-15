@@ -25,11 +25,13 @@
   },
   "dependencies": {
     "@tsparticles/vue3": "^3.0.1",
+    "@vuepress/plugin-markdown-chart": "2.0.0-rc.118",
     "@vuepress/plugin-shiki": "^2.0.0-rc.0",
     "dotenv": "^17.2.2",
     "gsap": "^3.13.0",
+    "mermaid": "^11.12.0",
     "tsparticles": "^3.9.1",
-    "vuepress-plugin-md-enhance": "2.0.0-rc.74"
+    "vuepress-plugin-md-enhance": "2.0.0-rc.99"
   },
   "packageManager": "pnpm@10.6.5+sha256.47c8bca42b4b48534b5b1b28d573c506773937b02f68e52992fbd8269131c5c8",
   "pnpm": {

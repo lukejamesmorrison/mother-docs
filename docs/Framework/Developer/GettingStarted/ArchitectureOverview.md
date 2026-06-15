@@ -27,12 +27,11 @@ Let's look at the entity diagram for [Mother OS](../../../IngameScript/IngameScr
   init: {
     'flowchart': {
         'defaultRenderer': 'elk'
-    },
-    'theme': 'base',
+    }
   }
 }%%
 graph RL
-    MotherOS[<a href='/mother-docs/IngameScript/IngameScript.html' style='color: black; text-decoration: none'>Mother OS</a>]-->|Depends on| MotherCore
+    MotherOS[<a href='/mother-docs/IngameScript/IngameScript.html'>Mother OS</a>]-->|Depends on| MotherCore
     MotherCore["Mother Core"] -->|Depends on| Program["Program"]
 
     MotherOS -->|Composed of| IExtensionModule["IExtensionModule"]
@@ -44,24 +43,24 @@ graph RL
     subgraph Core Modules
         direction BT
         BaseCoreModule .-> ICoreModule["ICoreModule"]
-        CM2[<a href='/mother-docs/Framework/Developer/CoreModules/CommandBus.html' style='color: black; text-decoration: none'>Command Bus</a>] .-> BaseCoreModule
-        CM3[<a href='/mother-docs/Framework/Developer/CoreModules/Almanac.html' style='color: black; text-decoration: none'>Almanac</a>] .-> BaseCoreModule
-        CM4[<a href='/mother-docs/Framework/Developer/CoreModules/BlockCatalogue.html' style='color: black; text-decoration: none'>Block Catalogue</a>] .-> BaseCoreModule
+        CM2[<a href='/mother-docs/Framework/Developer/CoreModules/CommandBus.html'>Command Bus</a>] .-> BaseCoreModule
+        CM3[<a href='/mother-docs/Framework/Developer/CoreModules/Almanac.html'>Almanac</a>] .-> BaseCoreModule
+        CM4[<a href='/mother-docs/Framework/Developer/CoreModules/BlockCatalogue.html'>Block Catalogue</a>] .-> BaseCoreModule
     end
 
     subgraph Extension Modules
         direction LR
         BaseExtensionModule .-> IExtensionModule["IExtensionModule"]
-        EM1["<a href='/mother-docs/IngameScript/Modules/Extension/PistonModule.html' style='color: black; text-decoration: none'>Piston Module</a>"] .-> BaseExtensionModule
-        EM3["<a href='/mother-docs/IngameScript/Modules/Extension/LightModule.html' style='color: black; text-decoration: none'>Light Module</a>"] .-> BaseExtensionModule
+        EM1["<a href='/mother-docs/IngameScript/Modules/Extension/PistonModule.html'>Piston Module</a>"] .-> BaseExtensionModule
+        EM3["<a href='/mother-docs/IngameScript/Modules/Extension/LightModule.html'>Light Module</a>"] .-> BaseExtensionModule
         EM4["..."] .-> BaseExtensionModule
     end
 
     subgraph Programmable Block API
         direction TB
-       Program[<a href='https://github.com/malware-dev/MDK-SE/wiki/Sandbox.ModAPI.Ingame.MyGridProgram' target="_blank" style='color: black; text-decoration: none'>Program</a>]
-        Program --> PM1[<a href='https://github.com/malware-dev/MDK-SE/wiki/Sandbox.ModAPI.Ingame.IMyIntergridCommunicationSystem' target="_blank" style='color: black; text-decoration: none'>IGC</a>]
-        Program --> PM3[<a href='https://github.com/malware-dev/MDK-SE/wiki/Sandbox.ModAPI.Ingame.IMyGridTerminalSystem' target="_blank" style='color: black; text-decoration: none'>GridTerminalSystem</a>]
+      Program[<a href='https://github.com/malware-dev/MDK-SE/wiki/Sandbox.ModAPI.Ingame.MyGridProgram' target="_blank">Program</a>]
+       Program --> PM1[<a href='https://github.com/malware-dev/MDK-SE/wiki/Sandbox.ModAPI.Ingame.IMyIntergridCommunicationSystem' target="_blank">IGC</a>]
+       Program --> PM3[<a href='https://github.com/malware-dev/MDK-SE/wiki/Sandbox.ModAPI.Ingame.IMyGridTerminalSystem' target="_blank">GridTerminalSystem</a>]
         Program --> PM4["Storage"]
     end 
 ```
@@ -127,13 +126,6 @@ partial class Program : MyGridProgram
 ```
 
 ```mermaid
-%%{
-  init: {
-    'theme': 'base',
-   
-  }
-}%%
-
 graph TD
     A[Run] e1@-->|&nbsp;Determine updateType&nbsp;| B{updateType?}
     linkStyle 0 stroke-width:2px
@@ -169,12 +161,6 @@ Commands may be triggered via any one of the following methods:
 When a command is trigger it is passed to the [Command Bus](../CoreModules/CommandBus.md).  The Command Bus then executes the command on the appropriate module.
 
 ```mermaid
-%%{
-  init: {
-    'theme': 'base',
-  }
-}%%
-
 sequenceDiagram
     autonumber
     participant Player/Script

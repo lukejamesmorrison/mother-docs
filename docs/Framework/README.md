@@ -69,15 +69,6 @@ Scripts built with Mother Core depend on the [Program](https://github.com/malwar
 }%% -->
 
 ```mermaid
-%%{
-  init: {
-    'theme': 'base',
-    'themeVariables': {
-    
-    }
-  }
-}%%
-
 graph TD
     MotherCore["Mother Core"] -->|Depends on| Program["Program"]
     MotherCore["Mother Core"] -->|Composed of| CoreModule["Core Modules"]

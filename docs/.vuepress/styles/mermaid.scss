@@ -1,55 +1,98 @@
-.mermaid-content {
+.mermaid-wrapper {
+  --mermaid-node-bg: var(--vp-c-bg);
+  --mermaid-node-border: var(--vp-c-accent);
+  --mermaid-node-text: var(--vp-c-text);
+  --mermaid-line: var(--vp-c-text-mute);
+  --mermaid-edge-label-bg: var(--vp-c-bg-alt);
+  --mermaid-note-bg: color-mix(in srgb, var(--vp-c-accent) 8%, var(--vp-c-bg));
+  --mermaid-note-text: var(--vp-c-text);
+  --mermaid-cluster-bg: var(--vp-c-bg-alt);
+  --mermaid-cluster-border: var(--vp-c-border);
+  --mermaid-font: Avenir, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif;
+}
 
-    rect.actor {
-        fill: var(--vp-c-bg) !important;
-        stroke: var(--vp-c-accent) !important;
-    }
+[data-theme='dark'] .mermaid-wrapper {
+  --mermaid-node-bg: var(--vp-c-bg-elv);
+  --mermaid-node-border: var(--vp-c-accent);
+  --mermaid-node-text: var(--vp-c-text);
+  --mermaid-line: var(--vp-c-text-mute);
+  --mermaid-edge-label-bg: color-mix(in srgb, var(--vp-c-bg-alt) 90%, black);
+  --mermaid-note-bg: color-mix(in srgb, var(--vp-c-accent) 14%, var(--vp-c-bg-elv));
+  --mermaid-note-text: var(--vp-c-text);
+  --mermaid-cluster-bg: var(--vp-c-bg-alt);
+  --mermaid-cluster-border: var(--vp-c-border-hard);
+}
 
-    line.actor-line {
-        stroke: var(--vp-c-text) !important;
-    }
+.mermaid-wrapper {
+  border: 1px solid var(--vp-c-border);
+  border-radius: 12px;
+  background: var(--vp-c-bg-alt);
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--vp-c-accent) 10%, transparent);
+}
 
-    .sequenceNumber {
-        color: var(--vp-c-text) !important;
-    }
+.mermaid-content svg {
+  max-width: 100%;
+  height: auto;
+  font-family: var(--mermaid-font) !important;
+}
 
-    g.node>rect {
-        fill: var(--vp-c-bg) !important;
-        stroke: var(--vp-c-accent) !important;
-    }
+.mermaid-content .edgeLabel p,
+.mermaid-content .nodeLabel p {
+  color: var(--mermaid-node-text) !important;
+}
 
-    g.node {
-        .label-container {
-            fill: var(--vp-c-bg) !important;
-            stroke: var(--vp-c-accent) !important;
+.mermaid-content a {
+  color: inherit;
+  text-decoration: none;
+}
 
-        }
-    }
+.mermaid-content .node rect,
+.mermaid-content .node circle,
+.mermaid-content .node ellipse,
+.mermaid-content rect.actor,
+.mermaid-content .label-container {
+  fill: var(--mermaid-node-bg) !important;
+  stroke: var(--mermaid-node-border) !important;
+}
 
+.mermaid-content .cluster rect,
+.mermaid-content .clusters rect {
+  fill: var(--mermaid-cluster-bg) !important;
+  stroke: var(--mermaid-cluster-border) !important;
+}
 
-    .nodeLabel {
-        a {
-            color: var(--vp-c-text) !important;
-        }
-    }
+.mermaid-content .flowchart-link,
+.mermaid-content .messageLine0,
+.mermaid-content .messageLine1,
+.mermaid-content .actor-line,
+.mermaid-content .loopLine,
+.mermaid-content .edgePath .path {
+  stroke: var(--mermaid-line) !important;
+}
 
-    g.edgeLabel {
-        background-color: var(--vp-c-bg) !important;
+.mermaid-content .arrowheadPath,
+.mermaid-content marker path {
+  fill: var(--mermaid-line) !important;
+  stroke: var(--mermaid-line) !important;
+}
 
-        .labelBkg {
-            background-color: var(--vp-c-bg) !important;
-        }
+.mermaid-content .edgeLabel,
+.mermaid-content .edgeLabel .label,
+.mermaid-content .edgeLabel .labelBkg,
+.mermaid-content .edgeLabel p {
+  background: var(--mermaid-edge-label-bg) !important;
+  fill: var(--mermaid-edge-label-bg) !important;
+}
 
-        span.edgeLabel {
+.mermaid-content .note,
+.mermaid-content rect.note {
+  fill: var(--mermaid-note-bg) !important;
+  stroke: var(--mermaid-node-border) !important;
+}
 
-            p {
-                color: var(--vp-c-text) !important;
-                background-color: var(--vp-c-bg) !important;
-            }
-        }
-
-
-    }
-
-
+.mermaid-content .noteText,
+.mermaid-content .sequenceNumber,
+.mermaid-content text {
+  fill: var(--mermaid-node-text) !important;
+  color: var(--mermaid-node-text) !important;
 }

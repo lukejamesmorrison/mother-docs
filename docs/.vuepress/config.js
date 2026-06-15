@@ -2,6 +2,7 @@ import { defaultTheme } from '@vuepress/theme-default'
 import { defineUserConfig } from 'vuepress/cli'
 import { viteBundler } from '@vuepress/bundler-vite'
 import { mdEnhancePlugin } from "vuepress-plugin-md-enhance";
+import { markdownChartPlugin } from '@vuepress/plugin-markdown-chart'
 import { searchPlugin } from '@vuepress/plugin-search'
 import { googleAnalyticsPlugin } from '@vuepress/plugin-google-analytics'
 import { shikiPlugin } from '@vuepress/plugin-shiki'
@@ -403,7 +404,8 @@ export default defineUserConfig({
   ],
 
   plugins: [
-    mdEnhancePlugin({
+    mdEnhancePlugin({}),
+    markdownChartPlugin({
       mermaid: true,
     }),
     searchPlugin({
@@ -427,6 +429,7 @@ export default defineUserConfig({
         'csharp',
         'bash',
         'ini',
+        'mermaid',
         {
           id: 'motherscript',
           scopeName: 'source.motherscript',
@@ -477,5 +480,16 @@ export default defineUserConfig({
     ]
   }),
 
-  bundler: viteBundler(),
+  bundler: viteBundler({
+    viteOptions: {
+      css: {
+        preprocessorOptions: {
+          scss: {
+            quietDeps: true,
+            silenceDeprecations: ['if-function'],
+          },
+        },
+      },
+    },
+  }),
 })

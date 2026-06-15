@@ -1,6 +1,11 @@
 import { defineClientConfig } from 'vuepress/client'
 import Particles from '@tsparticles/vue3'
 import { loadFull } from 'tsparticles'
+import { defineMermaidConfig } from '@vuepress/plugin-markdown-chart/client'
+
+defineMermaidConfig({
+  theme: 'base',
+})
 
 export default defineClientConfig({
   async enhance({ app }) {
