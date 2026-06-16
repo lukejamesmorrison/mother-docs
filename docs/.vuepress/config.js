@@ -176,6 +176,10 @@ const MotherCoreSidebar = {
         // '/IngameScript/Cheatsheet.md',
       ],
     },
+     {
+        text: 'Testing',
+        link: '/Framework/Developer/Testing.md',
+      },
     {
       text: 'Tutorials',
       link: '/Framework/Developer/Tutorials/Tutorials.md',
@@ -430,6 +434,9 @@ export default defineUserConfig({
         'bash',
         'ini',
         'mermaid',
+        'powershell',
+        'xml',
+        'sh',
         {
           id: 'motherscript',
           scopeName: 'source.motherscript',

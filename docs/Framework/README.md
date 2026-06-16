@@ -42,9 +42,10 @@ Mother Core is a framework for developing custom Programmable Block scripts for 
 1. [Installation](./Developer/GettingStarted/Installation.md)
 2. [Create a Module](./Developer/BuildingAModule/BuildingAModule.md)
 3. [Create a Command](./Developer/BuildingAModule/BuildingAModule.md#creating-a-command)
-4. [Send a Message](./Developer/CoreModules/IntergridMessageService.md) 
-5. [Delay an Action](./Developer/CoreModules/Clock.md)
-6. [Retrieve a Block](./Developer/CoreModules/BlockCatalogue.md#accessing-blocks)
+4. [Test Your Script](./Developer/Testing.md)
+5. [Send a Message](./Developer/CoreModules/IntergridMessageService.md) 
+6. [Delay an Action](./Developer/CoreModules/Clock.md)
+7. [Retrieve a Block](./Developer/CoreModules/BlockCatalogue.md#accessing-blocks)
 
 ## Overview
 
