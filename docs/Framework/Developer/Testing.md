@@ -6,7 +6,7 @@ This framework is designed to emulate the Space Engineers game world and provide
 [[toc]]
 
 :::tip Why does this framework exist?
-I grew tired of booting and testing Mother OS in-game. So much of my work did not require a live game instance, so as I have built several scripts with Mother Core, I have cohered a toolset that makes building on top of this core extremely simple. As MAPS *takes flight*, this framework will be instrumental in keeping our Engineers alive. I aim to enable script developers a new level of confidence and agility as they build the next generation of Space Engineers programmable block scripts. 
+I grew tired of booting and testing Mother OS in-game. So much of my work did not require a live game instance, so as I have built several scripts with Mother Core, I have cohered a toolset that makes building on top of this core extremely simple. As MAPS *takes flight*, this framework will be instrumental in keeping our Engineers alive. I aim to enable script developers with a new level of confidence and agility as they build the next generation of Space Engineers programmable block scripts. 
 
 > If you ask 'Should we be in space?' you ask a nonsense question. We are in space. We will be in space
 > ― Frank Herbert
@@ -14,7 +14,7 @@ I grew tired of booting and testing Mother OS in-game. So much of my work did no
 
 ## Quick Example
 
-We want to test the light/color command. We boot a Script, attach a light block to its grid, and then run the command via the terminal. We validate that the light has changed color and the command has been executed.
+We want to test the [light/color](../../IngameScript/Modules/Extension/LightModule.md#color) command. We boot a Script, attach a light block to its grid, and then run the command via the terminal. We validate that the light has changed color and the command has been executed.
 
 ```csharp title="LightModule.Tests.cs"
 [Test]
@@ -50,7 +50,7 @@ The test harness is built around a few layers:
 - **Command**: Player command execution behavior (usually tested from module or script context).
 
 :::tip
-When in doubt, write a [Script-based test](#_2-setting-up-a-script). This is easy to change later and immediately situates you in the context of a single script that can send and receive communications on a simulated clock system.
+When in doubt, write a [Script-based test](#testing-a-script). This is easy to change later and immediately situates you in the context of a single script that can send and receive communications on a simulated clock system.
 :::
 
 ```mermaid
@@ -174,7 +174,11 @@ var scriptB = world.CreateScript("scriptB")
 scriptA.RunTerminal("@scriptB help");
 
 // Deliver messages through network
-world.DeliverMessages()
+world.DeliverMessages();
+
+// Assert scriptA send a message to scriptB
+world.ShouldHaveDeliveredIgcMessage(scriptA, scriptB, "*");
+world.ShouldHaveNoPendingMessages();
 
 // Assert communication was delivered
 scriptB.ShouldHaveExecuted("help");
@@ -267,7 +271,7 @@ var module = script.Mother.GetModule<LightModule>();
 
 ### Running Terminal Commands
 
-We can easily simulate a terminal command using the `RunTerminal` method. This simulates the a player terminal input with Mother Core uses to trigger activity. 
+We can easily simulate a terminal command using the `RunTerminal` method. This simulates a terminal input which Mother Core uses to trigger activity. 
 
 ```csharp title="*.Tests.cs"
 // Boot a script with Mother
@@ -281,10 +285,37 @@ script.ShouldHaveExecuted("rename");
 Assert.That(script.Mother.name, Is.EqualTo("Frigate"));
 ```
 
+### Using Events
+
+We can test that an event has been first by a module is the `AssertEventEmitted()` method on the `Sctipt` object:
+
+```csharp title="*.Tests.cs"
+// Create a door block
+var door = TerminalBlockFactory.Create<IMyDoor>(customName: "Airlock");
+
+// Boot a script with the door
+var script = ScriptFactory<Program>()
+    .WithMother()
+    .WithBlock(door)
+    .Boot();
+
+// Clear any existing events
+script.ClearEventEmissions();
+
+// Helper to manually set the door status
+SetDoorStatus(door, DoorStatus.Opening);
+
+// Run any queue actions in Mother's clock
+script.RunToIdle();
+
+// Verify that event was emitted when the door status changed
+script.AssertEventEmitted<DoorOpeningEvent>();
+```
+
 ### Running the Program
 The `RunToIdle` method runs down any queued activity in the `ClockModule` to ensure all actions complete.
 
-```csharp
+```csharp title="*.Tests.cs"
 // Run with script-default update type
 script.Run()
 
@@ -330,6 +361,47 @@ script.ShouldBeSameConstruct(script.PrimaryGrid, cargoGrid);
 
 ### Connecting Grids with Merge Blocks
 
+Merge blocks are tested similarly, but the merge state is controlled through `MergeBlockModule`. A simple pattern is: create two grids, connect with a merge block, lock it, then assert both grids now resolve as the same construct.
+
+```csharp title="*.Tests.cs"
+// Boot world and add grids
+var world = WorldFactory().Boot();
+var carrierGrid = world.CreateGrid("Carrier");
+var cargoGrid = world.CreateGrid("Cargo Pod");
+
+// Create and associate a merge block to each grid
+var mergeBlockA = TerminalBlockFactory.Create<IMyShipMergeBlock>(
+    customName: "MergeA",
+    customData: new CustomDataComposer()
+        .With("hooks", "onMerge", "rename CarrierMerged")
+        .Build()
+);
+var mergeBlockB = TerminalBlockFactory.Create<IMyShipMergeBlock>(customName: "MergeB");
+
+// Boot script on existing grid wthin world
+var script = world.CreateScript(carrierGrid).WithMother().Boot();
+
+// simulate a merge between two blocks
+world.MergeBlocks(mergeBlockA, mergeBlockB);
+
+// Run the script
+script.RunToIdle();
+
+// Assert events were fired
+script.AssertEventEmitted<MergeBlockLockedEvent>();
+script.AssertEventEmitted<ConstructRefreshedEvent>();
+
+// assert hook was called
+script.AssertCommandExecuted("rename");
+Assert.That(script.Mother.Name, Is.EqualTo("CarrierMerged"));
+
+// assert construct/grid configuration
+var catalogue = script.Mother.GetModule<BlockCatalogue>();
+Assert.That(catalogue.ConstructGridIds, Has.Count.EqualTo(2));
+Assert.That(catalogue.GetBlocksByName<IMyShipMergeBlock>("MergeA"), Has.Count.EqualTo(1));
+Assert.That(catalogue.GetBlocksByName<IMyShipMergeBlock>("MergeB"), Has.Count.EqualTo(1));
+```
+
 
 ## Testing a Module
 
@@ -353,21 +425,32 @@ var command = ModuleFactory<DoorModule, Program>()
     .Command<OpenDoorCommand>();
 ``` -->
 
-## Assertion Helpers
+## Available Assertions
 
 Use helper assertions first, then inspect low-level transport or counters only when necessary.
 
-### 1. FakeWorld assertion helpers
+### World Assertions
 
-- `ShouldHaveDeliveredIgcMessage(sender, receiver, "*")`
-- `ShouldHaveNoPendingMessages()`
+- `world.ShouldHaveDeliveredIgcMessage(sender, receiver, "*")`
+- `world.ShouldHaveNoPendingMessages()`
 
-### 2. FakeScript assertion helpers
+### Script Assertions
 
-- `ShouldHaveExecuted("command/name")`
-- `ShouldHavePrinted("expected output")`
-- `ClearEventEmissions()` to isolate event assertions between transitions.
-- `AssertEventEmitted<TEvent>()` and `AssertEventEmitted<TEvent>(count)`
+- `script.ShouldHaveExecuted("command")`
+- `script.ShouldHavePrinted("text")`
+- `script.ShouldBeSameConstruct(gridA, gridB)`
+- `script.ClearEventEmissions()`
+- `script.AssertEventEmitted<TEvent>()`
+- `script.AssertEventEmitted<TEvent>(count)`
+
+### Module Assertions
+
+Module tests generally assert module behavior and state with your test framework (for example, NUnit):
+
+- `Assert.That(actual, Is.EqualTo(expected))`
+- `Assert.That(condition, Is.True)`
+
+When module behavior emits script-level events or terminal activity, use script assertions from the module test context.
 
 
 ## Generic Program Support
