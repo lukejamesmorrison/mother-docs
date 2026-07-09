@@ -619,8 +619,11 @@ screen/print <Screen|Group> <Message> <Options>
 Options
 | Option  | Values      | Unit  | Description                                                           |
 | ------- | ----------  | ----  | -------------------------------------------------------------------   |
-| `color` | RGB, Hex         |       | Set the color of the text.                                            |
-| `size`  | Number    |       | Set the text size between 0.0 and 10.0.                                 |
+| `color` | RGB, Hex, Name |       | Set the color of the text.                                            |
+| `bgcolor` | RGB, Hex, Name |     | Set the background color of the screen.                                |
+| `size`  | Number    |       | Set the text size. Must be greater than `0`.                           |
+| `alignment` | `left`, `center`, `right` | | Set text alignment on the screen. You can also use the `align` alias.                           |
+| `padding` | Number  |       | Set screen text padding.                                               |
 
 You have access to the following colors which may be used in place of their RGB or Hex values:
 
@@ -638,7 +641,7 @@ You have access to the following colors which may be used in place of their RGB 
 
 **Example**
 
-Imagine we want to print text to a screen based on our airlock status.  We contextualize it further with color and print a size that is easily legible.
+Imagine we want to print text to a screen based on our airlock status. We can also control background color, alignment, and padding.
 
 ```ms title="Terminal"
 ; with color name
@@ -646,6 +649,12 @@ screen/print "AirlockStatusScreens" "Airlock SAFE" --color=green --size=4.4;
 
 ; with RGB value
 screen/print "AirlockStatusScreens" "Airlock SAFE" --color=0,255,0 --size=4.4;
+
+; with background color, alignment and padding
+screen/print "AirlockStatusScreens" "Airlock SAFE" --color=white --bgcolor=0,60,0 --alignment=center --padding=2.5;
+
+; using align alias
+screen/print "AirlockStatusScreens" "Docking Ready" --alignment=right;
 
 ; Cockpit LCD
 screen/print "PilotCockpit:1" "ALERT" --color=red --size=10;

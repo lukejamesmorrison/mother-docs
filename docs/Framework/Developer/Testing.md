@@ -39,6 +39,17 @@ public void LightColor_Command_Can_Set_Searchlight_Color()
 
 This testing framework comes with every new installation of Mother Core using [Mother CLI](./Console.md). Otherwise, it can be copied manually from the Mother Core project on GitHub and been loaded as a `*.Tests.proj` project.
 
+:::caution
+You must make the `Program` class public if you are adding this testing suite to an existing project. This ensure the test suite can integrate with your Program correctly.
+:::
+
+```csharp title="Program.cs"
+namespace IngameScript
+{
+    public partial class Program : MyGridProgram
+}
+```
+
 
 ## Architectural Overview
 
@@ -206,7 +217,7 @@ We use the `DeliverMessages()` method on the `World` object to simulate the deli
 
 ## Testing a Script
 
-If you do not need to worry about world-level configuration, or a multi-script setup, then you can use the `ScriptFactory` to quickly setup sctipts for testing. We can create a generic `Program`, or one built with Mother Core. To test a specific program instance, we use the Program as a type arguement.
+If you do not need to worry about world-level configuration, or a multi-script setup, then you can use the `ScriptFactory` to quickly setup sctipts for testing. We can create a generic `Program`, or one built with Mother Core. To test a specific program instance, we use the Program as a type argument.
 
 ### Booting a script
 
@@ -405,7 +416,7 @@ Assert.That(catalogue.GetBlocksByName<IMyShipMergeBlock>("MergeB"), Has.Count.Eq
 
 ## Testing a Module
 
-When we are focused on the logic within a single module, we can use the `ModuleFactory` to create the module instance. We provide module and program type arguements to configure our script.
+When we are focused on the logic within a single module, we can use the `ModuleFactory` to create the module instance. We provide module and program type arguments to configure our script.
 
 ```csharp title="LightModule.Tests.cs"
 // Create a LightModule instance in the Program instance
