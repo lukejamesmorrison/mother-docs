@@ -18,9 +18,9 @@ hinge0=hinge/rotate Hinge 0 --speed=2;
 ; single line routine
 hinge45=hinge/rotate Hinge 45 --speed=2; rotor/rotate Rotor 20 --speed=1;
 
-; multi-line routine
+; multi-line routine (using Mother Autopilot System commands)
 goto-ts-base=
-| nav/set-flightplan "GPS:TopSecretBase:211.78:-52.93:59.19:#FF75C9F1:";
+| fp/set "GPS:TopSecretBase:211.78:-52.93:59.19:#FF75C9F1:";
 | fcs/start --speed=100;
 
 [hooks]
