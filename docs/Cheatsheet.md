@@ -2,6 +2,10 @@
 
 This cheatsheet contains commands and hooks for all Mother project scripts. Currently, this includes [Mother Core](Framework/README.md), [Mother OS](IngameScript/IngameScript.md), and [Mother Autopilot System (MAPS)](MotherAutopilotSystem/README.md).  All commands and modules are anotated with the script they belong to, so you can easily find more information about how to use them in the documentation.
 
+:::tip First Time?
+If this is your first time here, check out the [Command Line Interface](./IngameScript/CommandLineInterface.md) page to get an overview of how Mother commands work!
+:::
+
 [[toc]]
 
 ## Terminal Blocks (All Blocks)

@@ -193,6 +193,27 @@ Now we can run `ActivateLandingLight` in the terminal to execute the routine, or
 ActivateLandingLight; ExtendArm;
 ```
 
+## Running Commands when Blocks Change
+
+Hooks allow players to trigger commands when a block's state changes or when a system event occurs. Cockpit blocks have the `onOccupied`, and `onEmpty` hooks to trigger when occupancy changes state - very handy for startup sequences.
+
+```ms title="Bridge Cockpit > Custom Data"
+[hooks]
+onOccupied=
+| light/color "Bridge Lights" red;
+| door/close "Bridge Doors";
+
+onEmpty=
+| light/color "Bridge Lights" white;
+| block/off "Tractor Beam";
+```
+
+:::tip Hooks Watch Discrete State Change
+Hooks are fantastic replacements for automations triggered by [sensors](./Modules/Extension/SensorModule.md), [landing gear](./Modules/Extension/LandingGearModule.md), [doors](./Modules/Extension/DoorModule.md) (ie. `open`, `opening`, `closed`, `closing`). Sliding values like rotor angle or battery level are not support with this mechanism.
+:::
+
+All [Teminal Blocks](../IngameScript/Modules/Extension/TerminalBlockModule.md) support the `onOn`, and `onOff` hooks. Hooks can be found on the [Cheatsheet](../Cheatsheet.md), or in the respective module.
+
 ## Running Commands in Parallel
 
 As your library of commands and routines grows, you will quickly want to dispatch them in parallel, rather than having everything run sequentially.  By default, commands and routines run sequentially, meaning that the next command will not start until the previous one has finished.  To run commands in parallel, we simply wrap then in single curly braces `{ }`:
