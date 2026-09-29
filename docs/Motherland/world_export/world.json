@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "exportedAt": "2026-09-29T21:32:17.231Z",
+  "exportedAt": "2026-09-29T22:05:12.456Z",
   "world": {
     "id": "Motherland2",
     "name": "Motherland2"
@@ -761,7 +761,9 @@
       "lore": {
         "description": "Independent Contractors (INCON)\n\nA loose collective of independent ship and station operators unaffiliated with larger organizations such as Imber or Parallax. Although they lack a centralized organization, contractors generally maintain a degree of mutual respect, and cooperation between independent ships and stations is relatively common. These groups are sometimes targeted by larger organizations when they trespass within claimed territories, while some contractors have themselves been known to attack vessels belonging to major factions. INCON is regarded with a wary disposition, presents a low threat, and operates throughout the system.",
         "relatedEntities": [],
-        "images": []
+        "images": [
+          "05c2461e-afec-4edd-a862-ba27a0d6bef8.png"
+        ]
       }
     },
     {
