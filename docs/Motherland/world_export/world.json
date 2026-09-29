@@ -1,0 +1,689 @@
+{
+  "version": 1,
+  "exportedAt": "2026-09-29T13:48:24.742Z",
+  "world": {
+    "id": "Motherland2",
+    "name": "Motherland2"
+  },
+  "planets": [
+    {
+      "id": "-3245617534659547663",
+      "name": "Tarkin 61",
+      "hasAtmosphere": true,
+      "surfaceGravity": 10000,
+      "gravityFalloff": 5,
+      "radius": 60000,
+      "atmosphereRadius": 105000,
+      "minimumSurfaceRadius": 59400,
+      "maximumHillRadius": 60600,
+      "position": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "orientation": {
+        "x": 0,
+        "y": 0,
+        "z": 0,
+        "w": 1
+      },
+      "ores": {
+        "slotCount": 0,
+        "defaultAssignments": [],
+        "assignments": []
+      },
+      "lore": {
+        "description": "An unremarkable black hole, known for it's rich mineral concentration among it's unforgiving gravity well. Many prospectors have fallen victim the it's unescapable grasp under heavy load. \n\nOnly the toughest factions brave this region of the system. It is named after a fictional character from the earliest age of the Empire.",
+        "relatedEntities": [],
+        "images": [
+          "4943900b-6d86-4a34-bff0-b67c59ebffd5.png"
+        ]
+      }
+    },
+    {
+      "id": "1352166987681317438",
+      "name": "Bornax",
+      "hasAtmosphere": true,
+      "surfaceGravity": 2.4,
+      "gravityFalloff": 7,
+      "radius": 60000,
+      "atmosphereRadius": 105000,
+      "minimumSurfaceRadius": 58200,
+      "maximumHillRadius": 63000,
+      "position": {
+        "x": -1300000,
+        "y": 0,
+        "z": 850000
+      },
+      "orientation": {
+        "x": 0,
+        "y": 0,
+        "z": 0,
+        "w": 1
+      },
+      "ores": {
+        "slotCount": 0,
+        "defaultAssignments": [],
+        "assignments": []
+      },
+      "lore": {
+        "description": "STATUS UNKNOWN.",
+        "relatedEntities": [],
+        "images": [
+          "8ee91778-b15c-4cd7-bf10-7e0b1fdb62a7.png"
+        ]
+      }
+    },
+    {
+      "id": "-272113157890449988",
+      "name": "Corven IV",
+      "hasAtmosphere": true,
+      "surfaceGravity": 2.5,
+      "gravityFalloff": 7,
+      "radius": 60000,
+      "atmosphereRadius": 105000,
+      "minimumSurfaceRadius": 58200,
+      "maximumHillRadius": 63000,
+      "position": {
+        "x": -1500000,
+        "y": 0,
+        "z": -2500000
+      },
+      "orientation": {
+        "x": 0,
+        "y": 0,
+        "z": 0,
+        "w": 1
+      },
+      "ores": {
+        "slotCount": 0,
+        "defaultAssignments": [],
+        "assignments": []
+      },
+      "lore": {
+        "description": "Corven IV is named after the last Great Emperor of the the Corven-Deuterium Dynasty (CDD). Responsible for mastering fusion energy for space travel, the CDD was the heartbeat of the Sector for over 2,000 years.",
+        "relatedEntities": [],
+        "images": [
+          "5c1d9531-4cb7-4094-89d5-a5f4f39af7eb.png"
+        ]
+      }
+    },
+    {
+      "id": "3952217660731603803",
+      "name": "Julea",
+      "hasAtmosphere": true,
+      "surfaceGravity": 1.75,
+      "gravityFalloff": 7,
+      "radius": 60000,
+      "atmosphereRadius": 141000,
+      "minimumSurfaceRadius": 59400,
+      "maximumHillRadius": 60600,
+      "position": {
+        "x": 1500000,
+        "y": 0,
+        "z": -250000
+      },
+      "orientation": {
+        "x": 0,
+        "y": 0,
+        "z": 0,
+        "w": 1
+      },
+      "ores": {
+        "slotCount": 0,
+        "defaultAssignments": [],
+        "assignments": []
+      },
+      "lore": {
+        "description": "Described as the most beautiful planet ever photographed, it receives it's name from the Lady of Waterloo who supported the early proliferation of the The Empire. It illuminates the sky from the surface of Tessara.",
+        "relatedEntities": [
+          "1162540875368961073"
+        ],
+        "images": [
+          "15a80bf0-9b61-4417-8fa9-876b84719338.png"
+        ]
+      }
+    },
+    {
+      "id": "7909434024117507045",
+      "name": "BattleWorld",
+      "hasAtmosphere": true,
+      "surfaceGravity": 1,
+      "gravityFalloff": 7,
+      "radius": 40056.5,
+      "atmosphereRadius": 70098.875,
+      "minimumSurfaceRadius": 39055.0859,
+      "maximumHillRadius": 41458.4766,
+      "position": {
+        "x": -1500000,
+        "y": 0,
+        "z": -2900000
+      },
+      "orientation": {
+        "x": 0,
+        "y": 0,
+        "z": 0,
+        "w": 1
+      },
+      "ores": {
+        "slotCount": 0,
+        "defaultAssignments": [],
+        "assignments": []
+      },
+      "lore": {
+        "description": "Not much is known about this satellite. Identifiable only for its gigantic volcanic eye, the Empire has been unable to properly survey this object. Requires further exploration.",
+        "relatedEntities": [
+          "-272113157890449988"
+        ],
+        "images": [
+          "a1f3dc37-6c32-4f30-9392-5ab83f1531c1.png"
+        ]
+      }
+    },
+    {
+      "id": "8297982393610080552",
+      "name": "Infernus",
+      "hasAtmosphere": true,
+      "surfaceGravity": 1,
+      "gravityFalloff": 7,
+      "radius": 60000,
+      "atmosphereRadius": 105000,
+      "minimumSurfaceRadius": 58200,
+      "maximumHillRadius": 61800,
+      "position": {
+        "x": -3000000,
+        "y": 0,
+        "z": 50000
+      },
+      "orientation": {
+        "x": 0,
+        "y": 0,
+        "z": 0,
+        "w": 1
+      },
+      "ores": {
+        "slotCount": 51,
+        "defaultAssignments": [
+          "Iron_02",
+          "Nickel_01",
+          "Silicon_01",
+          "Uraninite_01",
+          "Platinum_01",
+          "Cobalt_01",
+          "Silver_01",
+          "Magnesium_01",
+          "Gold_01"
+        ],
+        "assignments": [
+          {
+            "voxel": "Iron_02",
+            "ore": "Iron",
+            "rarity": 4,
+            "depthMin": 50,
+            "depthMax": 90,
+            "sizeMin": 1,
+            "sizeMax": 16
+          },
+          {
+            "voxel": "Nickel_01",
+            "ore": "Nickel",
+            "rarity": 8,
+            "depthMin": 50,
+            "depthMax": 90,
+            "sizeMin": 1,
+            "sizeMax": 16
+          },
+          {
+            "voxel": "Silicon_01",
+            "ore": "Silicon",
+            "rarity": 8,
+            "depthMin": 50,
+            "depthMax": 90,
+            "sizeMin": 1,
+            "sizeMax": 16
+          },
+          {
+            "voxel": "Uraninite_01",
+            "ore": "Uranium",
+            "rarity": 5,
+            "depthMin": 90,
+            "depthMax": 150,
+            "sizeMin": 1,
+            "sizeMax": 16
+          },
+          {
+            "voxel": "Platinum_01",
+            "ore": "Platinum",
+            "rarity": 5,
+            "depthMin": 90,
+            "depthMax": 150,
+            "sizeMin": 1,
+            "sizeMax": 16
+          },
+          {
+            "voxel": "Cobalt_01",
+            "ore": "Cobalt",
+            "rarity": 8,
+            "depthMin": 90,
+            "depthMax": 150,
+            "sizeMin": 1,
+            "sizeMax": 16
+          },
+          {
+            "voxel": "Silver_01",
+            "ore": "Silver",
+            "rarity": 8,
+            "depthMin": 50,
+            "depthMax": 150,
+            "sizeMin": 1,
+            "sizeMax": 16
+          },
+          {
+            "voxel": "Magnesium_01",
+            "ore": "Magnesium",
+            "rarity": 5,
+            "depthMin": 50,
+            "depthMax": 150,
+            "sizeMin": 1,
+            "sizeMax": 16
+          },
+          {
+            "voxel": "Gold_01",
+            "ore": "Gold",
+            "rarity": 8,
+            "depthMin": 50,
+            "depthMax": 150,
+            "sizeMin": 1,
+            "sizeMax": 16
+          }
+        ]
+      },
+      "lore": {
+        "description": "An extremely harse, resource-rich hellscape. This volcanic world is abundant in the most precious resources and as a result draws the attention of the Sector's most ruthless factions. Conquering the Sector means establishing a permanent resource extraction facility here, and exporting cargo off world into The Empire's trading network.\n",
+        "relatedEntities": [],
+        "images": [
+          "97717ecd-fac8-4a3e-a8b2-e4bbe6370246.png"
+        ]
+      }
+    },
+    {
+      "id": "3400463894423291301",
+      "name": "Pinto",
+      "hasAtmosphere": true,
+      "surfaceGravity": 0.25,
+      "gravityFalloff": 7,
+      "radius": 30248.5,
+      "atmosphereRadius": 52934.875,
+      "minimumSurfaceRadius": 29341.0449,
+      "maximumHillRadius": 31155.9551,
+      "position": {
+        "x": 350000,
+        "y": 0,
+        "z": -1100000
+      },
+      "orientation": {
+        "x": 0,
+        "y": 0,
+        "z": 0,
+        "w": 1
+      },
+      "ores": {
+        "slotCount": 57,
+        "defaultAssignments": [
+          "Iron_02",
+          "Nickel_01",
+          "Silicon_01",
+          "Cobalt_01",
+          "Silver_01",
+          "Magnesium_01",
+          "Ice_01",
+          "Gold_01",
+          "Platinum_01"
+        ],
+        "assignments": [
+          {
+            "voxel": "Iron_02",
+            "ore": "Iron",
+            "rarity": 8,
+            "depthMin": 40,
+            "depthMax": 100,
+            "sizeMin": 1,
+            "sizeMax": 10
+          },
+          {
+            "voxel": "Nickel_01",
+            "ore": "Nickel",
+            "rarity": 8,
+            "depthMin": 40,
+            "depthMax": 200,
+            "sizeMin": 1,
+            "sizeMax": 9
+          },
+          {
+            "voxel": "Silicon_01",
+            "ore": "Silicon",
+            "rarity": 8,
+            "depthMin": 40,
+            "depthMax": 200,
+            "sizeMin": 1,
+            "sizeMax": 9
+          },
+          {
+            "voxel": "Cobalt_01",
+            "ore": "Cobalt",
+            "rarity": 20,
+            "depthMin": 90,
+            "depthMax": 200,
+            "sizeMin": 1,
+            "sizeMax": 6
+          },
+          {
+            "voxel": "Silver_01",
+            "ore": "Silver",
+            "rarity": 10,
+            "depthMin": 40,
+            "depthMax": 200,
+            "sizeMin": 1,
+            "sizeMax": 9
+          },
+          {
+            "voxel": "Magnesium_01",
+            "ore": "Magnesium",
+            "rarity": 10,
+            "depthMin": 40,
+            "depthMax": 200,
+            "sizeMin": 1,
+            "sizeMax": 6
+          },
+          {
+            "voxel": "Ice_01",
+            "ore": "Ice",
+            "rarity": 10,
+            "depthMin": 40,
+            "depthMax": 200,
+            "sizeMin": 1,
+            "sizeMax": 16
+          },
+          {
+            "voxel": "Gold_01",
+            "ore": "Gold",
+            "rarity": 15,
+            "depthMin": 40,
+            "depthMax": 200,
+            "sizeMin": 1,
+            "sizeMax": 9
+          },
+          {
+            "voxel": "Platinum_01",
+            "ore": "Platinum",
+            "rarity": 20,
+            "depthMin": 40,
+            "depthMax": 200,
+            "sizeMin": 1,
+            "sizeMax": 5
+          }
+        ]
+      },
+      "lore": {
+        "description": "An unremarkable satellite in orbit around Tessara, the Emerald of Joanna. Pinto offers a staging ground before further exploration into the System. The Empire should dispatch a small outpost to the object for further study and establish the HUB of a System-wide communication network.",
+        "relatedEntities": [
+          "1162540875368961073"
+        ],
+        "images": [
+          "d1dd2b9c-6d7d-41e1-971d-b398769f03ae.png"
+        ]
+      }
+    },
+    {
+      "id": "5479393254294119148",
+      "name": "Skarat",
+      "hasAtmosphere": true,
+      "surfaceGravity": 0.9,
+      "gravityFalloff": 7,
+      "radius": 60000,
+      "atmosphereRadius": 105000,
+      "minimumSurfaceRadius": 59400,
+      "maximumHillRadius": 67200,
+      "position": {
+        "x": 1500000,
+        "y": 0,
+        "z": 1500000
+      },
+      "orientation": {
+        "x": 0,
+        "y": 0,
+        "z": 0,
+        "w": 1
+      },
+      "ores": {
+        "slotCount": 51,
+        "defaultAssignments": [
+          "Iron_02",
+          "Nickel_01",
+          "Silicon_01",
+          "Cobalt_01",
+          "Silver_01",
+          "Magnesium_01",
+          "Ice_01",
+          "Gold_01"
+        ],
+        "assignments": [
+          {
+            "voxel": "Iron_02",
+            "ore": "Iron",
+            "rarity": 7,
+            "depthMin": 40,
+            "depthMax": 80,
+            "sizeMin": 1,
+            "sizeMax": 16
+          },
+          {
+            "voxel": "Nickel_01",
+            "ore": "Nickel",
+            "rarity": 7,
+            "depthMin": 40,
+            "depthMax": 80,
+            "sizeMin": 1,
+            "sizeMax": 16
+          },
+          {
+            "voxel": "Silicon_01",
+            "ore": "Silicon",
+            "rarity": 7,
+            "depthMin": 40,
+            "depthMax": 80,
+            "sizeMin": 1,
+            "sizeMax": 16
+          },
+          {
+            "voxel": "Cobalt_01",
+            "ore": "Cobalt",
+            "rarity": 8,
+            "depthMin": 40,
+            "depthMax": 160,
+            "sizeMin": 1,
+            "sizeMax": 16
+          },
+          {
+            "voxel": "Silver_01",
+            "ore": "Silver",
+            "rarity": 8,
+            "depthMin": 40,
+            "depthMax": 150,
+            "sizeMin": 1,
+            "sizeMax": 16
+          },
+          {
+            "voxel": "Magnesium_01",
+            "ore": "Magnesium",
+            "rarity": 8,
+            "depthMin": 40,
+            "depthMax": 150,
+            "sizeMin": 1,
+            "sizeMax": 16
+          },
+          {
+            "voxel": "Ice_01",
+            "ore": "Ice",
+            "rarity": 8,
+            "depthMin": 40,
+            "depthMax": 150,
+            "sizeMin": 1,
+            "sizeMax": 16
+          },
+          {
+            "voxel": "Gold_01",
+            "ore": "Gold",
+            "rarity": 15,
+            "depthMin": 40,
+            "depthMax": 150,
+            "sizeMin": 1,
+            "sizeMax": 16
+          },
+          {
+            "voxel": "Uraninite_01",
+            "ore": "Uranium",
+            "rarity": 28,
+            "depthMin": 40,
+            "depthMax": 220,
+            "sizeMin": 1,
+            "sizeMax": 4
+          },
+          {
+            "voxel": "Platinum_01",
+            "ore": "Platinum",
+            "rarity": 20,
+            "depthMin": 40,
+            "depthMax": 150,
+            "sizeMin": 1,
+            "sizeMax": 10
+          }
+        ]
+      },
+      "lore": {
+        "description": "A harsh dessert world at the edge of the System, visited as a mid-station when traveling from Tessara to Bornax, avoiding the gravity field of Tarkin 61.",
+        "relatedEntities": [],
+        "images": [
+          "f10bbc36-c4d4-4e39-94ec-7db5464ca72e.png"
+        ]
+      }
+    },
+    {
+      "id": "1162540875368961073",
+      "name": "Tessara",
+      "hasAtmosphere": true,
+      "surfaceGravity": 1,
+      "gravityFalloff": 7,
+      "radius": 60000,
+      "atmosphereRadius": 105000,
+      "minimumSurfaceRadius": 59400,
+      "maximumHillRadius": 67200,
+      "position": {
+        "x": 900000,
+        "y": 0,
+        "z": -700000
+      },
+      "orientation": {
+        "x": 0,
+        "y": 0,
+        "z": 0,
+        "w": 1
+      },
+      "ores": {
+        "slotCount": 51,
+        "defaultAssignments": [
+          "Iron_02",
+          "Nickel_01",
+          "Silicon_01",
+          "Magnesium_01",
+          "Ice_01"
+        ],
+        "assignments": [
+          {
+            "voxel": "Iron_02",
+            "ore": "Iron",
+            "rarity": 7,
+            "depthMin": 15,
+            "depthMax": 60,
+            "sizeMin": 1,
+            "sizeMax": 8
+          },
+          {
+            "voxel": "Nickel_01",
+            "ore": "Nickel",
+            "rarity": 7,
+            "depthMin": 15,
+            "depthMax": 60,
+            "sizeMin": 1,
+            "sizeMax": 8
+          },
+          {
+            "voxel": "Silicon_01",
+            "ore": "Silicon",
+            "rarity": 7,
+            "depthMin": 20,
+            "depthMax": 60,
+            "sizeMin": 1,
+            "sizeMax": 8
+          },
+          {
+            "voxel": "Magnesium_01",
+            "ore": "Magnesium",
+            "rarity": 14,
+            "depthMin": 25,
+            "depthMax": 70,
+            "sizeMin": 1,
+            "sizeMax": 2
+          },
+          {
+            "voxel": "Ice_01",
+            "ore": "Ice",
+            "rarity": 8,
+            "depthMin": 2,
+            "depthMax": 150,
+            "sizeMin": 1,
+            "sizeMax": 16
+          },
+          {
+            "voxel": "Cobalt_01",
+            "ore": "Cobalt",
+            "rarity": 40,
+            "depthMin": 150,
+            "depthMax": 200,
+            "sizeMin": 1,
+            "sizeMax": 4
+          },
+          {
+            "voxel": "Silver_01",
+            "ore": "Silver",
+            "rarity": 8,
+            "depthMin": 90,
+            "depthMax": 150,
+            "sizeMin": 1,
+            "sizeMax": 2
+          }
+        ]
+      },
+      "lore": {
+        "description": "Identified by Dr. Joanna Grey, Tessara is the 3rd habitable planet discovered by Corven-Deuterium Dynasty (CDD). After a century of travel across the Sector, The Empire finally reaches the Emerald of Joanna. It acts as a safe haven for traveling factions and offers resources and cooperation to support conquest across the System. From Mount Lok at night, one can see Pinto, Corven IV, and BattleWorld in alignment.\n\nRaw mammal meet is known to cause severe illness or death.",
+        "relatedEntities": [
+          "3400463894423291301"
+        ],
+        "images": [
+          "05d4f831-08ae-40b1-b801-89bf70dbf7a9.png"
+        ]
+      }
+    }
+  ],
+  "factions": [
+    {
+      "id": "the_empire",
+      "name": "The Empire",
+      "lore": {
+        "description": "The Empire must grow.",
+        "relatedEntities": [],
+        "images": []
+      }
+    }
+  ]
+}
