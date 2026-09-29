@@ -223,7 +223,19 @@ const MotherAutopilotSystemSidebar = {
 const MotherStudioSidebar = {
   text: 'Mother Studio',
   link: '/MotherStudio/README.md',
-  children: []
+  children: [
+    '/MotherStudio/GridAutomation.md',
+    '/MotherStudio/Plugins.md',
+  ]
+};
+
+const MotherlandSidebar = {
+  text: 'Motherland',
+  link: '/Motherland/Motherland.md',
+  children: [
+    // '/Motherland/GridAutomation.md',
+    // '/Motherland/Plugins.md',
+  ]
 };
 
 const MotherGUISidebar = {
@@ -482,6 +494,7 @@ export default defineUserConfig({
       // process.env.NODE_ENV == 'development' ? MotherAutopilotSystemSidebar : {},
       MotherCoreSidebar,
       ...(DEV_MODE ? [MotherStudioSidebar] : []),
+      ...(DEV_MODE ? [MotherlandSidebar] : []),
       "/PoweredByMother.md",
       "/BrandGuidelines.md",
     ]

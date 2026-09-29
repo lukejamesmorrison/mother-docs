@@ -95,6 +95,10 @@ To make things even easier, Mother Docs has been integrated and first party scri
 
 ![Mother Studio Screenshot](./Assets/mother-studio-grid-custom-data-editor-documentation.png)
 
+#### Automation
+
+![Mother Studio Grid Automation](./Assets/mother-studio-grid-automation-1.png)
+
 
 #### Flight Performance
 

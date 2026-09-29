@@ -1,3 +1,55 @@
+<script setup lang="ts">
+import { computed } from 'vue'
+import worldData from '@source/Motherland/world_export/world.json'
+import MotherlandPlanetCard from '@source/.vuepress/components/MotherlandPlanetCard.vue'
+
+const imageModules = import.meta.glob('@source/Motherland/world_export/images/*.png', {
+  eager: true,
+  import: 'default',
+}) as Record<string, string>
+
+const imageByFileName = Object.entries(imageModules).reduce<Record<string, string>>((acc, [path, url]) => {
+  const fileName = path.split('/').pop()
+  if (fileName) {
+    acc[fileName] = url
+  }
+  return acc
+}, {})
+
+const entitiesById = new Map<string, string>([
+  ...worldData.planets.map((planet) => [planet.id, planet.name]),
+  ...worldData.factions.map((faction) => [faction.id, faction.name]),
+])
+
+const planets = computed(() =>
+  worldData.planets.map((planet) => {
+    const primaryImage = planet.lore.images?.[0]
+    return {
+      ...planet,
+      imageUrl: primaryImage ? imageByFileName[primaryImage] : undefined,
+      relatedNames: (planet.lore.relatedEntities ?? []).map(
+        (entityId) => entitiesById.get(entityId) ?? entityId,
+      ),
+    }
+  }),
+)
+
+const planetsWithAnchors = computed(() =>
+  planets.value.map((planet) => ({
+    ...planet,
+    anchor: `planet-${slugify(planet.name)}`,
+  })),
+)
+
+function slugify(value: string): string {
+  return value
+    .toLowerCase()
+    .replace(/[^a-z0-9\s-]/g, '')
+    .trim()
+    .replace(/\s+/g, '-')
+}
+</script>
+
 
 # Motherland
 
@@ -231,155 +283,62 @@ Prominent Members:
 
 ## Planets
 
-### Tessara (Earthlike)
-| Attribute         | Value                                                                   |
-| ----------------- | ----------------------------------------------------------------------- |
-| Tourism Rating    | Lucrative                                                               |
-| Likely Facilities | Fancy resorts, fine dining, obnoxious tours                             |
-| Notes             | Perfect for corporate retreats, assuming you enjoy being bored to death |
+<nav class="motherland-planets-toc" aria-label="Planets table of contents">
+  <a
+    v-for="planet in planetsWithAnchors"
+    :key="`toc-${planet.id}`"
+    class="motherland-planets-toc__item"
+    :href="`#${planet.anchor}`"
+  >
+    {{ planet.name }}
+  </a>
+</nav>
 
-![Tessara](assets/Earthlike.png)
+<div class="motherland-planets-grid">
+  <section
+    v-for="planet in planetsWithAnchors"
+    :key="planet.id"
+    :id="planet.anchor"
+    class="motherland-planet-section"
+  >
+    <MotherlandPlanetCard :planet="planet" />
+  </section>
+</div>
 
-### Skarat (Mars)
-| Attribute         | Value                                                          |
-| ----------------- | -------------------------------------------------------------- |
-| Tourism Rating    | Profitable                                                     |
-| Likely Facilities | Amusement parks, shopping malls, obnoxious tours               |
-| Notes             | Great for families, if your family enjoys industrial accidents |
+<style scoped>
+.motherland-planets-toc {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+  margin-bottom: 1rem;
+}
 
-![Skarat](assets/Mars.png)
+.motherland-planets-toc__item {
+  border: 1px solid var(--vp-c-divider);
+  border-radius: 999px;
+  padding: 0.3rem 0.7rem;
+  font-size: 0.86rem;
+  line-height: 1.2;
+  text-decoration: none;
+  color: var(--vp-c-text-2);
+  background: var(--vp-c-bg-soft);
+}
 
-### Julea (Limitar)
-| Attribute         | Value                                             |
-| ----------------- | ------------------------------------------------- |
-| Tourism Rating    | Build to Sell                                     |
-| Likely Facilities | Shopping malls, discount outlets, obnoxious tours |
-| Notes             | Like a space mall, but somehow more depressing    |
+.motherland-planets-toc__item:hover {
+  color: var(--vp-c-brand-1);
+  border-color: var(--vp-c-brand-1);
+}
 
-![Julea](assets/Limitar.png)
+.motherland-planets-grid {
+  display: grid;
+  gap: 1.25rem;
+}
 
-### Pinto (Moon)
-| Attribute         | Value                                                   |
-| ----------------- | ------------------------------------------------------- |
-| Tourism Rating    | Profitable                                              |
-| Likely Facilities | Mining tours, amusement parks, gift shops selling rocks |
-| Notes             | Low gravity fun, high radiation exposure                |
+.motherland-planet-section {
+  scroll-margin-top: 5rem;
+}
+</style>
 
-![Pinto](assets/Moon.png)
-
-### Corven V (Atlas)
-| Attribute         | Value                                                            |
-| ----------------- | ---------------------------------------------------------------- |
-| Tourism Rating    | Arrested Development                                             |
-| Likely Facilities | Guantanamos, survival training camps, sketchy medical facilities |
-| Notes             | Extreme sports destination, emphasis on "extreme"                |
-
-![Bornax](assets/Atlas.png)
-
-### Battleworld (Salos)
-| Attribute         | Value                                                                |
-| ----------------- | -------------------------------------------------------------------- |
-| Likely Facilities | Gulags, corporate business retreats, amusement parks (but lame ones) |
-| Notes             | Come for the research, stay because you're probably trapped          |
-
-![Battleworld](assets/Battleworld.png)
-
-### Bornax (Salus)
-
-![Bornax](assets/Salus.png)
-
-###  Infernus (Ravcor)
-| Attribute         | Value                                                                      |
-| ----------------- | -------------------------------------------------------------------------- |
-| Tourism Rating    | Arrested Development                                                       |
-| Likely Facilities | Gulags, maximum security prisons, amusement parks (haunted, not by choice) |
-
-![Infernus](assets/Ravcor.png)
-<!-- <details>
-<summary><strong>Tarkin 61</strong style="color:teal"></summary> -->
-
-
-### Tarkin 61 (Black Hole)
-| Attribute         | Value                                                               |
-| ----------------- | ------------------------------------------------------------------- |
-| Tourism Rating    | Arrested Development                                                |
-| Likely Facilities | Scientific observation posts, emergency shelters, memorial services |
-| Notes             | Great views, terrible life expectancy                               |
-
-![Tarkin 61](assets/Blackhole.png)
-
-<!-- </details> -->
-
-<!-- <details>
-<summary><strong>Planetary Intel</strong style="color:teal"></summary>
-
-<details>
-<summary><span style="color:teal">Mother-earth</span style="color:teal"></summary>
-Tourism Rating: Lucrative  
-Likely Facilities: Fancy resorts, fine dining, obnoxious tours  
-Notes: Perfect for corporate retreats, assuming you enjoy being bored to death  
-</details>
-<details>
-<summary><span style="color:teal">Mother-earth</span style="color:teal"></summary>
-Tourism Rating: Lucrative  
-Likely Facilities: Fancy resorts, fine dining, obnoxious tours  
-Notes: Perfect for corporate retreats, assuming you enjoy being bored to death  
-</details>
-
-<details>
-<summary><span style="color:teal">Mars</span style="color:teal"></summary>
-Tourism Rating: Profitable  
-Likely Facilities: Amusement parks, shopping malls, obnoxious tours  
-Notes: Great for families, if your family enjoys industrial accidents  
-</details>
-
-<details>
-<summary><span style="color:teal">Limitar</span style="color:teal"></summary>
-Tourism Rating: Build to Sell  
-Likely Facilities: Shopping malls, discount outlets, obnoxious tours  
-Notes: Like a space mall, but somehow more depressing  
-</details>
-
-<details>
-<summary><span style="color:teal">Moon</span style="color:teal"></summary>
-Tourism Rating: Profitable  
-Likely Facilities: Mining tours, amusement parks, gift shops selling rocks  
-Notes: Low gravity fun, high radiation exposure  
-</details>
-
-<details>
-<summary><span style="color:teal">Salus</span style="color:teal"></summary>
-Likely Facilities: Gulags, corporate business retreats, amusement parks (but lame ones)  
-Notes: Come for the research, stay because you're probably trapped  
-</details>
-
-<details>
-<summary><span style="color:teal">Atlas</span style="color:teal"></summary>
-Tourism Rating: Arrested Development  
-Likely Facilities: Guantanamos, survival training camps, sketchy medical facilities  
-Notes: Extreme sports destination, emphasis on "extreme"  
-</details>
-
-<details>
-<summary><span style="color:teal">Ravcor</span style="color:teal"></summary>
-Tourism Rating: Arrested Development  
-Likely Facilities: Gulags, maximum security prisons, amusement parks (haunted, not by choice)  
-</details>
-
-<details>
-<summary><span style="color:teal">BlackHole</span style="color:teal"></summary>
-Tourism Rating: Arrested Development  
-Likely Facilities: Scientific observation posts, emergency shelters, memorial services  
-Notes: Great views, terrible life expectancy  
-</details>
-
-</details> -->
-<!-- <details>
-
-<summary>Resource Intel</summary>
-==describe resource distrubution- maybe use a spectrometry imaging thingy==
-
-</details> -->
 
 ## Bulletin
 <!-- ![alt text](assets/charlie-day-meme.avif)
