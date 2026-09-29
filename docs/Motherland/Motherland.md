@@ -22,16 +22,18 @@ const entitiesById = new Map<string, string>([
 ])
 
 const planets = computed(() =>
-  worldData.planets.map((planet) => {
-    const primaryImage = planet.lore.images?.[0]
-    return {
-      ...planet,
-      imageUrl: primaryImage ? imageByFileName[primaryImage] : undefined,
-      relatedNames: (planet.lore.relatedEntities ?? []).map(
-        (entityId) => entitiesById.get(entityId) ?? entityId,
-      ),
-    }
-  }),
+  worldData.planets
+    .map((planet) => {
+      const primaryImage = planet.lore.images?.[0]
+      return {
+        ...planet,
+        imageUrl: primaryImage ? imageByFileName[primaryImage] : undefined,
+        relatedNames: (planet.lore.relatedEntities ?? []).map(
+          (entityId) => entitiesById.get(entityId) ?? entityId,
+        ),
+      }
+    })
+    .sort((a, b) => a.name.localeCompare(b.name, undefined, { sensitivity: 'base' })),
 )
 
 const planetsWithAnchors = computed(() =>
@@ -310,16 +312,16 @@ Prominent Members:
   display: flex;
   flex-wrap: wrap;
   gap: 0.55rem;
-  margin-bottom: 1rem;
+  margin: 1rem 0;
 }
 
 .motherland-planets-toc__item {
   border: 1px solid var(--vp-c-divider);
   border-radius: 999px;
-  padding: 0.3rem 0.7rem;
-  font-size: 0.86rem;
+  padding: 0.5rem 0.75rem;
+  font-size: 1rem;
   line-height: 1.2;
-  text-decoration: none;
+  text-decoration: none !important;
   color: var(--vp-c-text-2);
   background: var(--vp-c-bg-soft);
 }
