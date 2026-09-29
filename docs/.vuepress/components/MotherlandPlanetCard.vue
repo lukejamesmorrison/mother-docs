@@ -44,7 +44,10 @@ type Planet = {
     description: string
   }
   imageUrl?: string
-  relatedNames: string[]
+  relatedItems: Array<{
+    name: string
+    href?: string
+  }>
 }
 
 type OreChartRow = {
@@ -530,11 +533,12 @@ onBeforeUnmount(() => {
       </p>
     </section>
 
-    <div v-if="planet.relatedNames.length" class="planet-card__related">
+    <div v-if="planet.relatedItems.length" class="planet-card__related">
       <span class="planet-card__related-label">Related</span>
       <ul>
-        <li v-for="relatedName in planet.relatedNames" :key="`${planet.id}-${relatedName}`">
-          {{ relatedName }}
+        <li v-for="relatedItem in planet.relatedItems" :key="`${planet.id}-${relatedItem.name}`">
+          <a v-if="relatedItem.href" :href="relatedItem.href">{{ relatedItem.name }}</a>
+          <span v-else>{{ relatedItem.name }}</span>
         </li>
       </ul>
     </div>
@@ -550,7 +554,7 @@ onBeforeUnmount(() => {
     radial-gradient(circle at top right, var(--vp-c-accent-soft), transparent 45%),
     linear-gradient(165deg, var(--vp-c-bg-elv), var(--vp-c-bg));
   color: var(--vp-c-text);
-  box-shadow: 0 12px 30px var(--vp-c-shadow);
+  box-shadow: 0 1px 4px color-mix(in srgb, var(--vp-c-shadow) 22%, transparent);
 }
 
 .planet-card__header {
@@ -922,6 +926,15 @@ onBeforeUnmount(() => {
   border-radius: 999px;
   font-size: 0.82rem;
   padding: 0.2rem 0.55rem;
+}
+
+.planet-card__related a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.planet-card__related a:hover {
+  color: var(--vp-c-brand-1);
 }
 
 @media (min-width: 860px) {

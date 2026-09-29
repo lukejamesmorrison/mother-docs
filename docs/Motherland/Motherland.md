@@ -22,6 +22,11 @@ const entitiesById = new Map<string, string>([
   ...worldData.factions.map((faction) => [faction.id, faction.name]),
 ])
 
+const anchorByEntityId = new Map<string, string>([
+  ...worldData.planets.map((planet) => [planet.id, `planet-${slugify(planet.name)}`]),
+  ...worldData.factions.map((faction) => [faction.id, `faction-${slugify(faction.name)}`]),
+])
+
 const planets = computed(() =>
   worldData.planets
     .map((planet) => {
@@ -29,9 +34,13 @@ const planets = computed(() =>
       return {
         ...planet,
         imageUrl: primaryImage ? imageByFileName[primaryImage] : undefined,
-        relatedNames: (planet.lore.relatedEntities ?? []).map(
-          (entityId) => entitiesById.get(entityId) ?? entityId,
-        ),
+        relatedItems: (planet.lore.relatedEntities ?? []).map((entityId) => {
+          const anchor = anchorByEntityId.get(entityId)
+          return {
+            name: entitiesById.get(entityId) ?? entityId,
+            href: anchor ? `#${anchor}` : undefined,
+          }
+        }),
       }
     })
     .sort((a, b) => a.name.localeCompare(b.name, undefined, { sensitivity: 'base' })),
@@ -51,9 +60,13 @@ const factions = computed(() =>
       return {
         ...faction,
         imageUrl: primaryImage ? imageByFileName[primaryImage] : undefined,
-        relatedNames: (faction.lore?.relatedEntities ?? []).map(
-          (entityId) => entitiesById.get(entityId) ?? entityId,
-        ),
+        relatedItems: (faction.lore?.relatedEntities ?? []).map((entityId) => {
+          const anchor = anchorByEntityId.get(entityId)
+          return {
+            name: entitiesById.get(entityId) ?? entityId,
+            href: anchor ? `#${anchor}` : undefined,
+          }
+        }),
       }
     })
     .sort((a, b) => a.name.localeCompare(b.name, undefined, { sensitivity: 'base' })),

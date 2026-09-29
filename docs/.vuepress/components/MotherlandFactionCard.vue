@@ -8,7 +8,10 @@ type Faction = {
     description?: string
   }
   imageUrl?: string
-  relatedNames: string[]
+  relatedItems: Array<{
+    name: string
+    href?: string
+  }>
 }
 
 const props = defineProps<{
@@ -48,11 +51,12 @@ const descriptionParagraphs = computed(() => {
       No briefing data available yet.
     </p>
 
-    <div v-if="faction.relatedNames.length" class="faction-card__related">
+    <div v-if="faction.relatedItems.length" class="faction-card__related">
       <span class="faction-card__related-label">Related</span>
       <ul>
-        <li v-for="relatedName in faction.relatedNames" :key="`${faction.id}-${relatedName}`">
-          {{ relatedName }}
+        <li v-for="relatedItem in faction.relatedItems" :key="`${faction.id}-${relatedItem.name}`">
+          <a v-if="relatedItem.href" :href="relatedItem.href">{{ relatedItem.name }}</a>
+          <span v-else>{{ relatedItem.name }}</span>
         </li>
       </ul>
     </div>
@@ -68,7 +72,7 @@ const descriptionParagraphs = computed(() => {
     radial-gradient(circle at top right, var(--vp-c-accent-soft), transparent 45%),
     linear-gradient(165deg, var(--vp-c-bg-elv), var(--vp-c-bg));
   color: var(--vp-c-text);
-  box-shadow: 0 12px 30px var(--vp-c-shadow);
+  box-shadow: 0 1px 4px color-mix(in srgb, var(--vp-c-shadow) 22%, transparent);
 }
 
 .faction-card__header {
@@ -161,6 +165,27 @@ const descriptionParagraphs = computed(() => {
   border-radius: 999px;
   font-size: 0.82rem;
   padding: 0.2rem 0.55rem;
+}
+
+.faction-card__related a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.faction-card__related a:hover {
+  color: var(--vp-c-brand-1);
+}
+
+:global(html:not(.dark)) .faction-card {
+  border-color: color-mix(in srgb, var(--vp-c-border) 55%, transparent);
+  background:
+    radial-gradient(circle at top right, color-mix(in srgb, var(--vp-c-accent-soft) 55%, transparent), transparent 52%),
+    linear-gradient(165deg, var(--vp-c-bg-elv), var(--vp-c-bg));
+}
+
+:global(html:not(.dark)) .faction-card__media,
+:global(html:not(.dark)) .faction-card__related li {
+  border-color: color-mix(in srgb, var(--vp-c-border) 58%, transparent);
 }
 
 @media (min-width: 860px) {
