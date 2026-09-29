@@ -81,7 +81,7 @@ function slugify(value: string): string {
 
 ![Motherland Banner](./assets/hero.PNG)
 
-Motherland is a Space Engineers multiplayer server with a special focus on automation and cooperation to overcome survival challenges. It also offers a collaborative enviromnent to build and integrate ingame scripts built with [Mother Core](../Framework/README.md).
+Motherland is a Space Engineers multiplayer server with a special focus on automation and cooperation to overcome survival challenges. It also offers a collaborative environment to build and integrate ingame scripts built with [Mother Core](../Framework/README.md).
 
 
 [[toc]]
@@ -96,11 +96,11 @@ Greetings loyal Empire citizens.
 
 This System has been identified for expansion of The Empire. You have been selected for your distinguished service, interminable ingenuity, and collaborative creation skills.
 
-The System is comprised of seven planets in orbit around the black hole Tarkin 61. Each planet contains limited resources, of which all are desireable.
+The System is comprised of seven planets in orbit around the black hole Tarkin 61. Each planet contains limited resources, of which all are desirable.
 
 With your superior capability to automate, coordinate and communicate, combined with your dexterous little hands we anticipate minimal obstruction to The Empire's growth. 
 
-Based on reconnaisence information, you will deploy by rover to establish initial footing on Tessara, A class M planet with atmospheric conditions suited to your biological needs. Resources required to get off planet will be sparse, requiring economic and infrastructural cooperation. Primitive trade networks are already established to leverage and conquer. Initial hostile contact should be scattered and pose minimal threat. 
+Based on reconnaissance information, you will deploy by rover to establish initial footing on Tessara, A class M planet with atmospheric conditions suited to your biological needs. Resources required to get off planet will be sparse, requiring economic and infrastructural cooperation. Primitive trade networks are already established to leverage and conquer. Initial hostile contact should be scattered and pose minimal threat. 
 
 Your mission is to colonize The System via Tessara, establish a permanent communication network, and supply precious mineral from Infernus into The Empire's supply chain.  You are authorized to engage hostile threats.
 

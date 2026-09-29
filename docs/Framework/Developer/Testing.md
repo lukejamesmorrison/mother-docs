@@ -207,7 +207,7 @@ var script = world.CreateScript()
     .Boot();
 ```
 
-We use the `DeliverMessages()` method on the `World` object to simulate the delivery of all messages queued in the IGC via the `SendBroadcastMessage()` and `SendUnicastMessage()` methods of [IMyIntergridCommuncationSystem](https://malforge.github.io/spaceengineers/pbapi/Sandbox.ModAPI.Ingame.IMyIntergridCommunicationSystem.html).
+We use the `DeliverMessages()` method on the `World` object to simulate the delivery of all messages queued in the IGC via the `SendBroadcastMessage()` and `SendUnicastMessage()` methods of [IMyIntergridCommunicationSystem](https://malforge.github.io/spaceengineers/pbapi/Sandbox.ModAPI.Ingame.IMyIntergridCommunicationSystem.html).
 
 - `DispatchIgc()` when you need transport-only dispatch.
 
@@ -217,7 +217,7 @@ We use the `DeliverMessages()` method on the `World` object to simulate the deli
 
 ## Testing a Script
 
-If you do not need to worry about world-level configuration, or a multi-script setup, then you can use the `ScriptFactory` to quickly setup sctipts for testing. We can create a generic `Program`, or one built with Mother Core. To test a specific program instance, we use the Program as a type argument.
+If you do not need to worry about world-level configuration, or a multi-script setup, then you can use the `ScriptFactory` to quickly setup scripts for testing. We can create a generic `Program`, or one built with Mother Core. To test a specific program instance, we use the Program as a type argument.
 
 ### Booting a script
 
@@ -298,7 +298,7 @@ Assert.That(script.Mother.name, Is.EqualTo("Frigate"));
 
 ### Using Events
 
-We can test that an event has been first by a module is the `AssertEventEmitted()` method on the `Sctipt` object:
+We can test that an event has been fired by a module using the `AssertEventEmitted()` method on the `Script` object:
 
 ```csharp title="*.Tests.cs"
 // Create a door block
@@ -389,7 +389,7 @@ var mergeBlockA = TerminalBlockFactory.Create<IMyShipMergeBlock>(
 );
 var mergeBlockB = TerminalBlockFactory.Create<IMyShipMergeBlock>(customName: "MergeB");
 
-// Boot script on existing grid wthin world
+// Boot script on existing grid within world
 var script = world.CreateScript(carrierGrid).WithMother().Boot();
 
 // simulate a merge between two blocks
@@ -466,7 +466,7 @@ When module behavior emits script-level events or terminal activity, use script 
 
 ## Generic Program Support
 
-The harness works with scripts scaffolded by MDK2 and booted from `MyGridProgram`. You can still take advantage off all `World` and `Script` helpers that do not relate to Mother.
+The harness works with scripts scaffolded by MDK2 and booted from `MyGridProgram`. You can still take advantage of all `World` and `Script` helpers that do not relate to Mother.
 
 ```csharp title="*.Tests.cs"
 var script = ScriptFactory<Program>().Boot();
