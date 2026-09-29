@@ -266,6 +266,7 @@ const navbarLinks = [
         text: 'Mother OS (Ingame Script)',
         link: '/IngameScript/IngameScript.md'
       },
+     
        {
       text: 'Mother GUI',
       link: '/MotherGUI/README.md'
@@ -277,14 +278,14 @@ const navbarLinks = [
       {
         text: 'Mother Core (Script Framework)',
         link: '/Framework/README.md'
-      }
+      },
+       {
+        text: 'Motherland',
+        link: '/Motherland/Motherland.md'
+      },
   ];
 
 const devNavbarLinks = [
-  {
-    text: 'Motherland (Server)',
-    link: '/Motherland/Motherland.md'
-  },
   {
     text: 'Mother Studio',
     link: '/MotherStudio/README.md'
@@ -494,7 +495,7 @@ export default defineUserConfig({
       // process.env.NODE_ENV == 'development' ? MotherAutopilotSystemSidebar : {},
       MotherCoreSidebar,
       ...(DEV_MODE ? [MotherStudioSidebar] : []),
-      ...(DEV_MODE ? [MotherlandSidebar] : []),
+      MotherlandSidebar,
       "/PoweredByMother.md",
       "/BrandGuidelines.md",
     ]

@@ -344,21 +344,9 @@ onBeforeUnmount(() => {
     <header class="planet-card__header">
       <div class="planet-card__header-main">
         <h3 class="planet-card__title">{{ planet.name }}</h3>
-        <span class="planet-card__atmosphere" :class="{ 'is-void': !planet.hasAtmosphere }">
+        <!-- <span class="planet-card__atmosphere" :class="{ 'is-void': !planet.hasAtmosphere }">
           {{ planet.hasAtmosphere ? 'Atmosphere' : 'No Atmosphere' }}
-        </span>
-      </div>
-      <div v-if="positionDisplay" class="planet-card__header-sub">
-        <button
-          type="button"
-          class="planet-card__position-button"
-          :title="positionCopied ? 'Copied position' : 'Copy x,y,z coordinates'"
-          @click="copyPositionToClipboard"
-        >
-          <span class="planet-card__position-label">Position:</span>
-          <span class="planet-card__position-value">{{ positionDisplay }}</span>
-          <span v-if="positionCopied" class="planet-card__position-copied">Copied</span>
-        </button>
+        </span> -->
       </div>
     </header>
 
@@ -369,44 +357,73 @@ onBeforeUnmount(() => {
     <p class="planet-card__description">{{ planet.lore.description }}</p>
 
 
-    <dl class="planet-card__stats">
-      <div>
-        <dt>Surface Radius</dt>
-        <dd>{{ radiusKm }}</dd>
-      </div>
-      <div>
-        <dt>Atmosphere Radius</dt>
-        <dd>{{ atmosphereKm }}</dd>
-      </div>
-      <div v-if="atmosphereThicknessKm">
-        <dt>Atmosphere Depth</dt>
-        <dd>{{ atmosphereThicknessKm }}</dd>
-      </div>
-      <div>
-        <dt>Surface Gravity</dt>
-        <dd>{{ gravityDisplay }}</dd>
-      </div>
-    </dl>
+    <section class="planet-card__meta-section">
+      <h4 class="planet-card__meta-title">Geometry</h4>
+      <dl class="planet-card__stats">
+        <div>
+          <dt>Surface Radius</dt>
+          <dd>{{ radiusKm }}</dd>
+        </div>
+        <div v-if="minSurfaceRadiusKm">
+          <dt>Min Surface Radius</dt>
+          <dd>{{ minSurfaceRadiusKm }}</dd>
+        </div>
+        <div v-if="maxHillRadiusKm">
+          <dt>Max Hill Radius</dt>
+          <dd>{{ maxHillRadiusKm }}</dd>
+        </div>
+        <div v-if="surfaceBandKm">
+          <dt>Surface Band</dt>
+          <dd>{{ surfaceBandKm }}</dd>
+        </div>
+      </dl>
+    </section>
 
+    <section class="planet-card__meta-section">
+      <h4 class="planet-card__meta-title">Atmosphere</h4>
+      <dl class="planet-card__stats">
+        <div>
+          <dt>Atmosphere Radius</dt>
+          <dd>{{ atmosphereKm }}</dd>
+        </div>
+        <div v-if="atmosphereThicknessKm">
+          <dt>Atmosphere Depth</dt>
+          <dd>{{ atmosphereThicknessKm }}</dd>
+        </div>
+        <div>
+          <dt>Surface Gravity</dt>
+          <dd>{{ gravityDisplay }}</dd>
+        </div>
+        <div>
+          <dt>Falloff Power</dt>
+          <dd>{{ planet.gravityFalloff }}</dd>
+        </div>
+      </dl>
+    </section>
 
-    <dl class="planet-card__stats">
-      <div>
-        <dt>Falloff Power</dt>
-        <dd>{{ planet.gravityFalloff }}</dd>
-      </div>
-      <div v-if="minSurfaceRadiusKm">
-        <dt>Min Surface Radius</dt>
-        <dd>{{ minSurfaceRadiusKm }}</dd>
-      </div>
-      <div v-if="maxHillRadiusKm">
-        <dt>Max Hill Radius</dt>
-        <dd>{{ maxHillRadiusKm }}</dd>
-      </div>
-      <div v-if="surfaceBandKm">
-        <dt>Surface Band</dt>
-        <dd>{{ surfaceBandKm }}</dd>
-      </div>
-    </dl>
+    <section v-if="positionDisplay || orientationDisplay" class="planet-card__meta-section">
+      <h4 class="planet-card__meta-title">Position and Orientation</h4>
+      <dl class="planet-card__stats">
+        <div v-if="positionDisplay">
+          <dt>Position</dt>
+          <dd>
+            <button
+              type="button"
+              class="planet-card__position-button planet-card__position-button--stat"
+              :title="positionCopied ? 'Copied position' : 'Copy GPS string (GPS:NAME:X:Y:Z:COLOR)'"
+              @click="copyPositionToClipboard"
+            >
+              <span class="planet-card__position-value">{{ positionDisplay }}</span>
+              <span v-if="positionCopied" class="planet-card__position-copied">Copied</span>
+            </button>
+          </dd>
+        </div>
+        <div v-if="orientationDisplay">
+          <dt>Orientation</dt>
+          <dd>{{ orientationDisplay }}</dd>
+        </div>
+      </dl>
+    </section>
 
     
 
@@ -513,13 +530,6 @@ onBeforeUnmount(() => {
       </p>
     </section>
 
-    <div v-if="orientationDisplay" class="planet-card__vectors">
-      <div v-if="orientationDisplay" class="planet-card__vector-item">
-        <span class="planet-card__vector-label">Orientation</span>
-        <code>{{ orientationDisplay }}</code>
-      </div>
-    </div>
-
     <div v-if="planet.relatedNames.length" class="planet-card__related">
       <span class="planet-card__related-label">Related</span>
       <ul>
@@ -533,20 +543,20 @@ onBeforeUnmount(() => {
 
 <style scoped>
 .planet-card {
-  border: 1px solid var(--vp-c-divider);
+  border: 1px solid var(--vp-c-border);
   border-radius: 18px;
-  padding: 1rem;
+  padding: 0.85rem;
   background:
-    radial-gradient(circle at top right, rgba(40, 130, 255, 0.16), transparent 40%),
-    linear-gradient(165deg, rgba(8, 18, 32, 0.9), rgba(6, 12, 22, 0.96));
-  color: rgba(245, 248, 255, 0.95);
-  box-shadow: 0 12px 30px rgba(4, 8, 15, 0.26);
+    radial-gradient(circle at top right, var(--vp-c-accent-soft), transparent 45%),
+    linear-gradient(165deg, var(--vp-c-bg-elv), var(--vp-c-bg));
+  color: var(--vp-c-text);
+  box-shadow: 0 12px 30px var(--vp-c-shadow);
 }
 
 .planet-card__header {
   display: grid;
   row-gap: 0.18rem;
-  margin-bottom: 0.85rem;
+  margin-bottom: 0.65rem;
 }
 
 .planet-card__header-main {
@@ -557,16 +567,13 @@ onBeforeUnmount(() => {
   min-width: 0;
 }
 
-.planet-card__header-sub {
-  min-width: 0;
-}
-
 .planet-card__title {
   margin: 0 !important;
-  padding: 0 0 0.5rem 0;
+  padding: 0 0 0.35rem 0;
   line-height: 1.12;
   font-size: 2rem;
   letter-spacing: 0.03em;
+  color: var(--vp-c-text);
 }
 
 .planet-card__position-button {
@@ -574,45 +581,40 @@ onBeforeUnmount(() => {
   border: none;
   border-radius: 0;
   background: transparent;
-  color: rgba(214, 231, 255, 0.92);
+  color: var(--vp-c-text);
   display: inline-flex;
   align-items: center;
   gap: 0.35rem;
-  padding: 0 0 0.5rem 0;
+  padding: 0;
   max-width: 100%;
   cursor: pointer;
-  font-size: 1rem;
+  font: inherit;
 }
 
-.planet-card__position-button:hover .planet-card__position-value {
+.planet-card__position-button--stat:hover .planet-card__position-value {
   text-decoration: underline;
-  text-decoration-color: rgba(176, 209, 250, 0.5);
+  text-decoration-color: var(--vp-c-accent-hover);
 }
 
 .planet-card__position-value {
-  font-size: 1rem;
+  font-size: 0.95rem;
+  font-weight: 700;
   font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace;
-  color: rgba(235, 243, 255, 0.96);
+  color: var(--vp-c-text);
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
-.planet-card__position-label {
-  font-size: 1rem;
-  font-weight: 700;
-  color: rgba(178, 207, 248, 0.86);
-}
-
 .planet-card__position-copied {
-  font-size: 0.75rem;
+  font-size: 0.68rem;
   font-weight: 700;
   text-transform: uppercase;
-  color: #8ef7bf;
+  color: var(--vp-c-green-text);
 }
 
 .planet-card__atmosphere {
-  border: 1px solid rgba(133, 219, 175, 0.45);
-  color: #9fffc6;
+  border: 1px solid var(--vp-c-green-soft);
+  color: var(--vp-c-green-text);
   border-radius: 999px;
   padding: 0.15rem 0.6rem;
   font-size: 0.75rem;
@@ -621,16 +623,16 @@ onBeforeUnmount(() => {
 }
 
 .planet-card__atmosphere.is-void {
-  border-color: rgba(250, 184, 118, 0.55);
-  color: #ffd19f;
+  border-color: var(--vp-c-yellow-soft);
+  color: var(--vp-c-yellow-text);
 }
 
 .planet-card__media {
-  margin: 0 0 0.85rem;
+  margin: 0 0 0.7rem;
   border-radius: 12px;
   overflow: hidden;
-  border: 1px solid rgba(153, 196, 255, 0.35);
-  background: #02060f;
+  border: 1px solid var(--vp-c-border);
+  background: var(--vp-c-bg-alt);
 }
 
 .planet-card__media img {
@@ -643,42 +645,62 @@ onBeforeUnmount(() => {
 .planet-card__stats {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 0.65rem;
-  margin: 0 0 0.625rem 0;
+  gap: 0.75rem 0.7rem;
+  margin: 0;
+}
+
+.planet-card__meta-section {
+  margin-top: 0.4rem;
+  padding-top: 0.4rem;
+  /* border-top: 1px solid var(--vp-c-gutter); */
+}
+
+.planet-card__meta-title {
+  margin: 0 0 0.2rem;
+  font-size: 1rem;
+  color: var(--vp-c-text-subtle);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 1rem 0 0 0;
+}
+
+.planet-card__meta-section + .planet-card__meta-section {
+  margin-top: 0.3rem;
 }
 
 .planet-card__stats div {
-  background: rgba(12, 24, 42, 0.62);
-  border: 1px solid rgba(135, 180, 242, 0.26);
-  border-radius: 10px;
-  padding: 0.55rem 0.65rem;
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  padding: 0.05rem 0;
 }
 
 .planet-card__stats dt {
   font-size: 0.72rem;
-  color: rgba(185, 211, 252, 0.84);
+  color: var(--vp-c-text-mute);
   text-transform: uppercase;
   letter-spacing: 0.04em;
-  margin-bottom: 0.2rem;
+  margin-bottom: 0.1rem;
 }
 
 .planet-card__stats dd {
   margin: 0;
   font-weight: 700;
+  line-height: 1.25;
 }
 
 .planet-card__description {
-  margin: 0.9rem 0 ;
+  margin: 0.65rem 0;
   line-height: 1.5;
-  color: rgba(224, 236, 255, 0.96);
+  color: var(--vp-c-text);
 }
 
 .planet-card__ores {
-  margin-top: 0.9rem;
-  border: 1px solid rgba(145, 195, 255, 0.28);
-  background: rgba(7, 19, 35, 0.86);
+  margin-top: 0.65rem;
+  border: 1px solid var(--vp-c-border);
+  background: var(--vp-c-bg-alt);
   border-radius: 12px;
-  padding: 0.7rem;
+  padding: 0.55rem;
 }
 
 .planet-card__ores-header {
@@ -686,37 +708,37 @@ onBeforeUnmount(() => {
   align-items: center;
   justify-content: space-between;
   gap: 0.5rem;
-  margin-bottom: 0.55rem;
+  margin-bottom: 1rem;
 }
 
 .planet-card__ores-title {
   font-size: 0.78rem;
   text-transform: uppercase;
   letter-spacing: 0.06em;
-  color: rgba(194, 221, 255, 0.9);
+  color: var(--vp-c-text-mute);
   font-weight: 700;
 }
 
 .planet-card__ores-slots {
-  border: 1px solid rgba(147, 198, 255, 0.35);
+  border: 1px solid var(--vp-c-border);
   border-radius: 999px;
   font-size: 0.72rem;
-  color: rgba(221, 236, 255, 0.9);
+  color: var(--vp-c-text-mute);
   padding: 0.12rem 0.5rem;
 }
 
 .planet-card__ore-tabs {
   display: flex;
   gap: 0.4rem;
-  margin-bottom: 0.6rem;
+  margin-bottom: 1.5rem;
 }
 
 .planet-card__ore-tab {
   appearance: none;
-  border: 1px solid rgba(133, 182, 245, 0.35);
+  border: 1px solid var(--vp-c-border);
   border-radius: 999px;
-  background: rgba(8, 21, 39, 0.75);
-  color: rgba(201, 225, 255, 0.92);
+  background: var(--vp-c-bg);
+  color: var(--vp-c-text-mute);
   font-size: 0.75rem;
   font-weight: 700;
   letter-spacing: 0.04em;
@@ -726,9 +748,9 @@ onBeforeUnmount(() => {
 }
 
 .planet-card__ore-tab.is-active {
-  color: #07162a;
-  background: linear-gradient(135deg, #8fd1ff, #c8e6ff);
-  border-color: rgba(168, 210, 255, 0.9);
+  color: var(--vp-c-accent-text);
+  background: var(--vp-c-accent-bg);
+  border-color: var(--vp-c-accent-bg);
 }
 
 .planet-card__ore-depth-chart {
@@ -748,16 +770,16 @@ onBeforeUnmount(() => {
   right: 0.2rem;
   transform: translateY(-50%);
   font-size: 0.67rem;
-  color: rgba(181, 209, 247, 0.82);
+  color: var(--vp-c-text-subtle);
   font-variant-numeric: tabular-nums;
 }
 
 .planet-card__depth-plot {
   position: relative;
   min-height: 220px;
-  border: 1px solid rgba(132, 182, 245, 0.24);
+  border: 1px solid var(--vp-c-border);
   border-radius: 10px;
-  background: rgba(8, 21, 39, 0.72);
+  background: var(--vp-c-bg);
   padding: 0.35rem 0.45rem;
 }
 
@@ -770,7 +792,7 @@ onBeforeUnmount(() => {
   position: absolute;
   left: 0;
   right: 0;
-  border-top: 1px dashed rgba(145, 194, 255, 0.18);
+  border-top: 1px dashed var(--vp-c-gutter);
   transform: translateY(-0.5px);
 }
 
@@ -799,8 +821,8 @@ onBeforeUnmount(() => {
   left: 50%;
   transform: translateX(-50%);
   clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
-  border: 1px solid rgba(6, 10, 18, 0.55);
-  filter: drop-shadow(0 0 6px rgba(10, 19, 31, 0.42));
+  border: 1px solid var(--vp-c-border-hard);
+  filter: drop-shadow(0 0 6px var(--vp-c-shadow));
 }
 
 .planet-card__depth-ore-label {
@@ -808,7 +830,7 @@ onBeforeUnmount(() => {
   font-weight: 700;
   line-height: 1.2;
   text-align: center;
-  color: rgba(226, 238, 255, 0.95);
+  color: var(--vp-c-text);
   overflow: hidden;
   text-overflow: ellipsis;
 }
@@ -816,7 +838,7 @@ onBeforeUnmount(() => {
 .planet-card__depth-ore-meta {
   text-align: center;
   font-size: 0.67rem;
-  color: rgba(189, 214, 245, 0.86);
+  color: var(--vp-c-text-subtle);
 }
 
 .planet-card__ore-table-wrap {
@@ -837,7 +859,7 @@ onBeforeUnmount(() => {
 
 .planet-card__ore-table th,
 .planet-card__ore-table td {
-  border-bottom: 1px solid rgba(126, 176, 239, 0.2);
+  border-bottom: 1px solid var(--vp-c-gutter);
   padding: 0.4rem 0.35rem;
   text-align: left;
   white-space: normal;
@@ -845,7 +867,7 @@ onBeforeUnmount(() => {
 }
 
 .planet-card__ore-table th {
-  color: rgba(183, 210, 246, 0.86);
+  color: var(--vp-c-text-mute);
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.03em;
@@ -853,7 +875,7 @@ onBeforeUnmount(() => {
 }
 
 .planet-card__ore-table td {
-  color: rgba(222, 236, 255, 0.94);
+  color: var(--vp-c-text);
   font-variant-numeric: tabular-nums;
 }
 
@@ -863,44 +885,17 @@ onBeforeUnmount(() => {
   height: 0.58rem;
   border-radius: 999px;
   margin-right: 0.38rem;
-  border: 1px solid rgba(4, 8, 14, 0.45);
+  border: 1px solid var(--vp-c-border-hard);
 }
 
 .planet-card__ore-defaults {
-  margin: 0.55rem 0 0;
+  margin: 1.5rem 0 0;
   font-size: 0.78rem;
-  color: rgba(191, 216, 247, 0.88);
-}
-
-.planet-card__vectors {
-  margin-top: 0.8rem;
-  display: grid;
-  gap: 0.5rem;
-}
-
-.planet-card__vector-item {
-  border: 1px solid rgba(129, 178, 247, 0.3);
-  background: rgba(6, 16, 29, 0.82);
-  border-radius: 10px;
-  padding: 0.45rem 0.6rem;
-}
-
-.planet-card__vector-label {
-  display: block;
-  font-size: 0.72rem;
-  color: rgba(176, 206, 247, 0.85);
-  letter-spacing: 0.03em;
-  text-transform: uppercase;
-  margin-bottom: 0.2rem;
-}
-
-.planet-card__vector-item code {
-  font-size: 0.84rem;
-  color: rgba(233, 242, 255, 0.95);
+  color: var(--vp-c-text-mute);
 }
 
 .planet-card__related {
-  margin-top: 0.85rem;
+  margin-top: 0.65rem;
 }
 
 .planet-card__related-label {
@@ -908,8 +903,8 @@ onBeforeUnmount(() => {
   font-size: 0.72rem;
   text-transform: uppercase;
   letter-spacing: 0.05em;
-  color: rgba(188, 217, 255, 0.85);
-  margin-bottom: 0.35rem;
+  color: var(--vp-c-text-mute);
+  margin-bottom: 0.25rem;
 }
 
 .planet-card__related ul {
@@ -918,12 +913,12 @@ onBeforeUnmount(() => {
   list-style: none;
   display: flex;
   flex-wrap: wrap;
-  gap: 0.45rem;
+  gap: 0.35rem;
 }
 
 .planet-card__related li {
-  border: 1px solid rgba(146, 195, 255, 0.3);
-  background: rgba(12, 28, 48, 0.8);
+  border: 1px solid var(--vp-c-border);
+  background: var(--vp-c-bg-alt);
   border-radius: 999px;
   font-size: 0.82rem;
   padding: 0.2rem 0.55rem;
@@ -931,7 +926,7 @@ onBeforeUnmount(() => {
 
 @media (min-width: 860px) {
   .planet-card {
-    padding: 1.2rem;
+    padding: 1rem;
   }
 }
 
