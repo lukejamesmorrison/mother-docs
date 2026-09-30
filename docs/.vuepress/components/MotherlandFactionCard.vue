@@ -1,5 +1,7 @@
 <script setup lang="ts">
 import { computed } from 'vue'
+import globeIcon from '@source/.vuepress/icons/globe.svg'
+import groupsIcon from '@source/.vuepress/icons/groups.svg'
 
 type Faction = {
   id: string
@@ -10,6 +12,7 @@ type Faction = {
   imageUrl?: string
   relatedItems: Array<{
     name: string
+    type?: 'planet' | 'faction'
     href?: string
   }>
 }
@@ -28,6 +31,10 @@ const descriptionParagraphs = computed(() => {
     .map((paragraph) => paragraph.trim())
     .filter((paragraph) => paragraph.length > 0)
 })
+
+function relatedIconFor(type?: 'planet' | 'faction'): string {
+  return type === 'faction' ? groupsIcon : globeIcon
+}
 </script>
 
 <template>
@@ -55,8 +62,14 @@ const descriptionParagraphs = computed(() => {
       <span class="faction-card__related-label">Related</span>
       <ul>
         <li v-for="relatedItem in faction.relatedItems" :key="`${faction.id}-${relatedItem.name}`">
-          <a v-if="relatedItem.href" :href="relatedItem.href">{{ relatedItem.name }}</a>
-          <span v-else>{{ relatedItem.name }}</span>
+          <a v-if="relatedItem.href" :href="relatedItem.href">
+            <img class="faction-card__related-icon" :src="relatedIconFor(relatedItem.type)" alt="" aria-hidden="true" />
+            <span>{{ relatedItem.name }}</span>
+          </a>
+          <span v-else>
+            <img class="faction-card__related-icon" :src="relatedIconFor(relatedItem.type)" alt="" aria-hidden="true" />
+            <span>{{ relatedItem.name }}</span>
+          </span>
         </li>
       </ul>
     </div>
@@ -165,6 +178,20 @@ const descriptionParagraphs = computed(() => {
   border-radius: 999px;
   font-size: 0.82rem;
   padding: 0.2rem 0.55rem;
+}
+
+.faction-card__related li > a,
+.faction-card__related li > span {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.faction-card__related-icon {
+  width: 0.95rem;
+  height: 0.95rem;
+  display: block;
+  flex: 0 0 auto;
 }
 
 .faction-card__related a {

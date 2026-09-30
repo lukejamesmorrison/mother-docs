@@ -22,6 +22,11 @@ const entitiesById = new Map<string, string>([
   ...worldData.factions.map((faction) => [faction.id, faction.name]),
 ])
 
+const entityTypeById = new Map<string, 'planet' | 'faction'>([
+  ...worldData.planets.map((planet) => [planet.id, 'planet' as const]),
+  ...worldData.factions.map((faction) => [faction.id, 'faction' as const]),
+])
+
 const anchorByEntityId = new Map<string, string>([
   ...worldData.planets.map((planet) => [planet.id, `planet-${slugify(planet.name)}`]),
   ...worldData.factions.map((faction) => [faction.id, `faction-${slugify(faction.name)}`]),
@@ -38,6 +43,7 @@ const planets = computed(() =>
           const anchor = anchorByEntityId.get(entityId)
           return {
             name: entitiesById.get(entityId) ?? entityId,
+            type: entityTypeById.get(entityId),
             href: anchor ? `#${anchor}` : undefined,
           }
         }),
@@ -64,6 +70,7 @@ const factions = computed(() =>
           const anchor = anchorByEntityId.get(entityId)
           return {
             name: entitiesById.get(entityId) ?? entityId,
+            type: entityTypeById.get(entityId),
             href: anchor ? `#${anchor}` : undefined,
           }
         }),

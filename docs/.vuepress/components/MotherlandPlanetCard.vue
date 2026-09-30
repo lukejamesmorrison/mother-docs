@@ -1,5 +1,7 @@
 <script setup lang="ts">
 import { computed, onBeforeUnmount, ref } from 'vue'
+import globeIcon from '@source/.vuepress/icons/globe.svg'
+import groupsIcon from '@source/.vuepress/icons/groups.svg'
 
 type Vector3 = {
   x: number
@@ -33,6 +35,7 @@ type Planet = {
   hasAtmosphere: boolean
   surfaceGravity: number
   gravityFalloff: number
+  escapeVelocity?: number
   radius: number
   atmosphereRadius: number
   minimumSurfaceRadius?: number
@@ -46,6 +49,7 @@ type Planet = {
   imageUrl?: string
   relatedItems: Array<{
     name: string
+    type?: 'planet' | 'faction'
     href?: string
   }>
 }
@@ -131,6 +135,12 @@ const gravityDisplay = computed(() => {
   }
   return `${gravity.toFixed(2)} g`
 })
+const escapeVelocityDisplay = computed(() => {
+  if (props.planet.escapeVelocity == null) {
+    return null
+  }
+  return formatEscapeVelocity(props.planet.escapeVelocity)
+})
 const oreAssignments = computed(() => props.planet.ores?.assignments ?? [])
 const hasOreAssignments = computed(() => oreAssignments.value.length > 0)
 const oreSlotCount = computed(() => props.planet.ores?.slotCount ?? 0)
@@ -189,6 +199,10 @@ const chartColumnsStyle = computed(() => ({
   gridTemplateColumns: `repeat(${Math.max(oreChartRows.value.length, 1)}, minmax(42px, 1fr))`,
 }))
 
+function relatedIconFor(type?: 'planet' | 'faction'): string {
+  return type === 'faction' ? groupsIcon : globeIcon
+}
+
 function formatKm(value: number): string {
   return `${(value / 1000).toFixed(1)} km`
 }
@@ -203,6 +217,10 @@ function formatUnitValue(value: number): string {
 
 function formatRange(min: number, max: number): string {
   return `${min}-${max}`
+}
+
+function formatEscapeVelocity(value: number): string {
+  return `${Math.round(value).toLocaleString('en-US')} m/s`
 }
 
 function normalize(values: number[]): number[] {
@@ -397,6 +415,10 @@ onBeforeUnmount(() => {
           <dt>Surface Gravity</dt>
           <dd>{{ gravityDisplay }}</dd>
         </div>
+        <div v-if="escapeVelocityDisplay">
+          <dt>Escape Velocity</dt>
+          <dd>{{ escapeVelocityDisplay }}</dd>
+        </div>
         <div>
           <dt>Falloff Power</dt>
           <dd>{{ planet.gravityFalloff }}</dd>
@@ -537,8 +559,14 @@ onBeforeUnmount(() => {
       <span class="planet-card__related-label">Related</span>
       <ul>
         <li v-for="relatedItem in planet.relatedItems" :key="`${planet.id}-${relatedItem.name}`">
-          <a v-if="relatedItem.href" :href="relatedItem.href">{{ relatedItem.name }}</a>
-          <span v-else>{{ relatedItem.name }}</span>
+          <a v-if="relatedItem.href" :href="relatedItem.href">
+            <img class="planet-card__related-icon" :src="relatedIconFor(relatedItem.type)" alt="" aria-hidden="true" />
+            <span>{{ relatedItem.name }}</span>
+          </a>
+          <span v-else>
+            <img class="planet-card__related-icon" :src="relatedIconFor(relatedItem.type)" alt="" aria-hidden="true" />
+            <span>{{ relatedItem.name }}</span>
+          </span>
         </li>
       </ul>
     </div>
@@ -926,6 +954,20 @@ onBeforeUnmount(() => {
   border-radius: 999px;
   font-size: 0.82rem;
   padding: 0.2rem 0.55rem;
+}
+
+.planet-card__related li > a,
+.planet-card__related li > span {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.planet-card__related-icon {
+  width: 0.95rem;
+  height: 0.95rem;
+  display: block;
+  flex: 0 0 auto;
 }
 
 .planet-card__related a {

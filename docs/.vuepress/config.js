@@ -224,8 +224,8 @@ const MotherStudioSidebar = {
   text: 'Mother Studio',
   link: '/MotherStudio/README.md',
   children: [
-    '/MotherStudio/GridAutomation.md',
-    '/MotherStudio/Plugins.md',
+    // '/MotherStudio/GridAutomation.md',
+    // '/MotherStudio/Plugins.md',
   ]
 };
 
@@ -376,7 +376,6 @@ export default defineUserConfig({
   // Additional head elements. We add icons.
   head: [
     // ['script', { src: 'https://cdn.jsdelivr.net/npm/@tsparticles/slim@latest/tsparticles.slim.min.js', defer: '' }],
-
     [
       'link', { 
         rel: 'icon', 
@@ -503,6 +502,16 @@ export default defineUserConfig({
 
   bundler: viteBundler({
     viteOptions: {
+      server: {
+        watch: {
+          // Use polling on Windows to avoid fs.watch EBUSY crashes for locked files.
+          usePolling: true,
+          interval: 250,
+          // VuePress creates short-lived hashed config modules during reload.
+          // Ignore those files so Vite does not lstat them after they are removed.
+          ignored: ['**/.vuepress/config.js.*.mjs'],
+        },
+      },
       css: {
         preprocessorOptions: {
           scss: {

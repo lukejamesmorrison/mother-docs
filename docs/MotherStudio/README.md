@@ -51,7 +51,7 @@ User have access to several world settings to enrich the Mother Studio experienc
 Grids, Planets and Waypoints are considered world objects. Users will have quick access the data like their position, and can seamlessly construct [routes](#routes-and-flight-plans) between them.
 
 :::danger Modifying World Files
-Mother Studio allows you to edit entities within your world file. For changes to occur, the game world cannot currently be loaded. This means that real-time updates are not possible and this tools should be used as an offline maintenance utility.
+Mother Studio allows you to modify *some* entities within your world file. For changes to occur, the game world cannot currently be loaded. This means that real-time updates are not possible and this tools should be used as an offline maintenance utility.
 :::
 
 ### Searching for Objects
@@ -97,17 +97,25 @@ To make things even easier, Mother Docs has been integrated and first party scri
 
 #### Automation
 
+Mother Studio was designed to make automation more approachable for players. It supports a graphical view of your grids automations for both vanilla blocks, and those defined using a script powered by [Mother Core](../Framework/README.md).
+
+**Vanilla Terminal Block Automation Graph**
 ![Mother Studio Grid Automation](./Assets/mother-studio-grid-automation-1.png)
 
+You can trace toolbar actions, button clicks and timer block chains down to their source blocks. See truthy and falsy executions with Event Controllers to ease working with conditional pathways.
+
+**Motherscript Automation Graph**
+![Mother Studio Script Automation](./Assets/mother-studio-script-automation-1.png)
+
+Commands, hooks and variables are natively supported to make designing and building automations with Mother more seamless. 
 
 #### Flight Performance
 
 Mother Studio allows you review a grid's flight performance against the various atmospheres and gravity fields of planets in the game world. As a starting point, you may adjust the altitude to calculate at (relevant to the planet's surface), and the angle of attack of your grid. Mother Studio assumes the standard forward + up convention of ideal motion.
 
-:::tip
-Angle of Attack (AoA) is the angle measured between the horizon, and the direction of motion of your grid. A aircraft taking off will have a positive AoA.
+:::tip What is Angle of Attack?
+Angle of Attack (AoA) is the angle measured between the horizon, and the direction of motion of your grid. An airplane taking off will have a positive AoA.
 :::
-
 
 ![Mother Studio Screenshot](./Assets/mother-studio-grid-flight-performance.png)
 
@@ -115,7 +123,7 @@ Fight performance will be expanded on over time and work will continue in parall
 
 #### Flight Plans
 
-A grid can hae flight plans, which are typically generated from [Routes](#routes-and-flight-plans). When creating a Flight Plan for a grid, you will 
+A grid can hae flight plans, which are typically generated from [Routes](#routes-and-flight-plans). When creating a Flight Plan for a grid, you will be able to customize cruise speeds, and thruster configurations. You can interogate the route graphically, and when ready, copy the flight plan string for use with [Mother Autopilot System](../MotherAutopilotSystem/README.md).
 
   
 ## Routes and Flight Plans
@@ -135,7 +143,7 @@ You may easily drag and drop points to re-order the points in the route. You may
 Routes should be reusable pathways you expect players or grids to travel along. When you are ready to make a grid fly a route, you may copy the flight plan string, or create a [Flight Plan](#flight-plans-1).
 
 ```plaintext title="Flight Plan String"
-"EarthLike:-131072:-131072:-131072:#0000ff Limitar:800000:0:300000:#d30d3f Mars:900000:0:1500000:#ff0000 Ravcor:-3500000:0:1000000:#da347f Salus:-2500000:0:1600000:#d0266b Deep Space Neutral Territory:-2000000:500000:2000000:#ffff00 Corven V:-2400000:0:-1900000:#f9eb41 "
+"EarthLike:-131072:-131072:-131072:#0000ff Limitar:800000:0:300000:#d30d3f Mars:900000:0:1500000:#ff0000 Ravcor:-3500000:0:1000000:#da347f Salus:-2500000:0:1600000:#d0266b Deep Space Neutral Territory:-2000000:500000:2000000:#ffff00 Corven IV:-2400000:0:-1900000:#f9eb41 "
 ```
 
 ### Flight Plans
@@ -167,9 +175,9 @@ The following mods are currently supported with plugins:
 
 |Mod| Coverage|
 |-|-|
-|[Modular Encounters Systems](#modular-encounters-systems)| Modify combined zone definitions to: <br><br>- modify Zones <br> - modify Spawn Groups <br> - modify Spawn Conditions |
-|Configurable Parameters| View and modify all parameters available to players in-game|
-|Configurable Ores| View ore allocations for each planet, and distribution of ores across planets.|
+|[Modular Encounters Systems](#modular-encounters-systems)| Modify configuration files located in `Storage/1521905890.sbm_ModularEncountersSystems` |
+| [Configurable Parameters](#configurable-parameters) | View and modify all parameters available to players in-game. |
+| [Configurable Ores](#configurable-ores) | View ore allocations for each planet, and distribution of ores across planets.|
 
 ### Loading Plugins
 
@@ -187,19 +195,49 @@ Users will eventually be able to create their own plugins using a built-in tools
 #### Modular Encounters Systems
 [Steam Workshop](https://steamcommunity.com/workshop/filedetails/?id=1521905890)
 
-![Mother Studio Screenshot](./Assets/mother-studio-mes-zone.png)
+Modify your MES configuration files using this plugin.
+
+<!-- ![Mother Studio Screenshot](./Assets/mother-studio-mes-zone.png) -->
 ![Mother Studio Screenshot](./Assets/mother-studio-plugin-mes.png)
 
 #### Configurable Parameters
+[Steam Workshop](https://steamcommunity.com/workshop/filedetails/?id=2422592854)
+
+Modify world configurations.
 
 ![Mother Studio Screenshot](./Assets/mother-studio-plugin-configurable-parameters.png)
 
 #### Configurable Ores
 
+[Steam Workshop](https://steamcommunity.com/workshop/filedetails/?id=2973891097)
+
+View ore depth and distribution charts across terestrial planets.
+
 ![Mother Studio Screenshot](./Assets/mother-studio-plugins-configurable-ores.png)
 
 ![Mother Studio Screenshot](./Assets/mother-studio-planet-configurable-ores.png)
 
+## Lore
+
+Mother Studio allows users to attach lore directly to game world objects. Lore is stored separately from the world file, is easily transferable and exportable to make world lore development a first-class feature of world administration.
+
+![Faction Lore](./Assets/mother-studio-lore-faction.png)
+
+![Planet Lore](./Assets/mother-studio-lore-planet.png)
+
+:::tip Where Do I Find This Lore?
+Lore is stored in your userData folder - typically `%appdata%/Mother Studio/World Data/{WORLD}/lore.json`. Next to it you will also find the uploaded images in the `uploads` folder.
+:::
+
+## Exporting a World
+
+You can export a lean summary of your world from the World menu. This creates an zip file in your `Downloads` folder containing a JSON file of world data, and an `images` folder which contains all images related to [lore](#lore).
+
+![Export World](./Assets/mother-studio-world-view.png)
+
+This lite, reusable shape is ideal for dropping into server documentation, like we have done for the [Motherland](../Motherland/Motherland.md) documentation. Click, drag, drop.
+
+![Export World](./Assets/mother-studio-lore-export-to-docs.png)
 
 ## Contributing
 
