@@ -241,19 +241,23 @@ Great Projects will define large-scale, multi-stage initiatives intended to stre
   display: grid;
   gap: 1.25rem;
   margin-bottom: 1.25rem;
+  min-width: 0;
 }
 
 .motherland-faction-section {
   scroll-margin-top: 5rem;
+  min-width: 0;
 }
 
 .motherland-planets-grid {
   display: grid;
   gap: 1.25rem;
+  min-width: 0;
 }
 
 .motherland-planet-section {
   scroll-margin-top: 5rem;
+  min-width: 0;
 }
 </style>
 
