@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "exportedAt": "2026-09-30T05:09:13.957Z",
+  "exportedAt": "2026-09-30T05:32:09.119Z",
   "world": {
     "id": "Motherland2",
     "name": "Motherland2"
@@ -711,6 +711,151 @@
         "relatedEntities": [],
         "images": [
           "3ad8fb58-1af6-4485-ac4d-67b520929913.png"
+        ]
+      }
+    },
+    {
+      "id": "toc",
+      "name": "TOC",
+      "lore": {
+        "description": "Trade Operators Coalition (TOC)\n\nThe Trade Operators Coalition is a group of merchants that organized into a formidable economic force across several systems. Their stations can be found on planets and throughout outer space, typically operating within their own individual territories rather than clustering together. TOC stations offer a variety of commercial services, including buying and selling goods, refueling, shipyard services, and Suit Upgrade Modules. The Coalition is considered friendly, presents no known threat, and can be encountered throughout the system, particularly along established trade corridors.",
+        "relatedEntities": [],
+        "images": [
+          "6ce33dfd-59b9-4bac-b4da-a80158392679.png"
+        ]
+      }
+    },
+    {
+      "id": "mobile_merchant",
+      "name": "Mobile Merchant",
+      "lore": {
+        "description": "Mobile Merchants\n\nMobile Merchants are less a unified faction than a collection of local opportunists, traders, and scavengers traveling between settlements and remote areas to sell their wares. They can be encountered throughout virtually any sector. Although they lack formal organization, merchants communicate with one another and share information about individuals and groups considered safe—or unsafe—for commerce. Mobile Merchants are generally friendly, pose no known threat, and operate throughout the system.",
+        "relatedEntities": [],
+        "images": [
+          "7155ed01-1cc5-42dd-9194-5717f8ab211d.png"
+        ]
+      }
+    },
+    {
+      "id": "utc",
+      "name": "UTC",
+      "lore": {
+        "description": "United Terran Coalition (UTC)\n\nA highly organized military power that functions as a government within sectors under its control and as a private military organization elsewhere. Coalition forces are aggressive and strongly prioritize UTC interests, territorial authority, and economic objectives. While UTC vessels will generally leave independent ships alone, they respond aggressively to anyone approaching military assets and may actively hunt vessels belonging to rival factions. Individuals or organizations with an established record of hostility toward the UTC may be attacked on sight. Conversely, those who repeatedly work in the Coalition's interests can eventually earn its allegiance, gaining access to UTC stations and supply drops. The UTC is considered hostile, presents a high threat, and operates primarily around Bornax and deep space.",
+        "relatedEntities": [
+          "1352166987681317438"
+        ],
+        "images": [
+          "ba7d03c9-f561-46a0-9254-5a208f145734.png"
+        ]
+      }
+    },
+    {
+      "id": "pravda",
+      "name": "Pravda",
+      "lore": {
+        "description": "Pravda Heavy Industries\n\nAa major warship manufacturing organization whose vessels are recognizable by their distinctive combination of naval battleship architecture and marine-predator characteristics, particularly those resembling sharks. The resulting leviathan-like warships have earned a formidable reputation among those unfortunate enough to be considered their prey. Pravda publicly maintains that it is a neutral entity within the sectors where it operates, though numerous reports contradict this claim. Vessels approaching Pravda assets are frequently fired upon, and Pravda ships have been observed attacking assets belonging to major organizations such as IMBER. Unconfirmed reports further suggest that Pravda Heavy Industries may serve as a front for a large pirate organization with broader and potentially more sinister ambitions. Pravda is considered hostile, presents a moderate-to-high threat, and operates primarily in deep space between Bornax and Corven IV.",
+        "relatedEntities": [
+          "imber",
+          "1352166987681317438",
+          "-272113157890449988"
+        ],
+        "images": [
+          "26921ce2-288f-483a-be7c-06ca5915c93f.png"
+        ]
+      }
+    },
+    {
+      "id": "reaver",
+      "name": "Reaver",
+      "lore": {
+        "description": "REAVERS\n\nVery little reliable information has been collected about the Reavers. No surveillance probes or reconnaissance teams dispatched into Reaver Space are known to have returned. Local sources report that Reavers have not been observed near inhabited planets for several years and are believed to have withdrawn into the black, with little expectation that they will return. They are said to be the former inhabitants of a once-prosperous world that they subsequently destroyed, burning the land and boiling the seas without any discernible strategic objective. Local consensus attributes their transformation to an atmospheric chemical event that induced mass psychosis, though this explanation remains unconfirmed. \n\nReavers are extremely hostile, represent an extreme threat, and are associated with the black hole, deep space, and the region between Infernus and Corven IV. They should be avoided whenever possible—and if you come, come correct.",
+        "relatedEntities": [
+          "8297982393610080552",
+          "-272113157890449988"
+        ],
+        "images": [
+          "a9cd7ba2-7c31-4ca1-b0c0-6750f9012fd6.png"
+        ]
+      }
+    },
+    {
+      "id": "wrecks",
+      "name": "Wrecks"
+    },
+    {
+      "id": "incon",
+      "name": "Incon",
+      "lore": {
+        "description": "Independent Contractors (INCON)\n\nA loose collective of independent ship and station operators unaffiliated with larger organizations such as Imber or Parallax. Although they lack a centralized organization, contractors generally maintain a degree of mutual respect, and cooperation between independent ships and stations is relatively common. These groups are sometimes targeted by larger organizations when they trespass within claimed territories, while some contractors have themselves been known to attack vessels belonging to major factions. INCON is regarded with a wary disposition, presents a low threat, and operates throughout the system.",
+        "relatedEntities": [],
+        "images": [
+          "05c2461e-afec-4edd-a862-ba27a0d6bef8.png"
+        ]
+      }
+    },
+    {
+      "id": "imdc",
+      "name": "IMDC",
+      "lore": {
+        "description": "Interstellar Mining and Defense Corporation (IMDC)\n\nA multinational enterprise that has constructed ships and vehicles since 2031. The corporation operates shipyards throughout much of the known galaxy, while many IMDC-designed vessels are also manufactured under license by independent shipyards. These vessels are widely employed by governments and security companies and can often be acquired at well-equipped stations and docks. IMDC forces are currently engaged in territorial contention with IMBER along the corridor between Tessara and Skarat. IMDC is considered hostile, poses a low-to-moderate threat, and is encountered primarily around Tessara.",
+        "relatedEntities": [
+          "5479393254294119148",
+          "1162540875368961073"
+        ],
+        "images": [
+          "905a5899-e278-4ac4-980d-f5cbd524cc93.png"
+        ]
+      }
+    },
+    {
+      "id": "imber",
+      "name": "Imber",
+      "lore": {
+        "description": "IMBER Corporation\n\nThe IMBER Corporation is an expansionist organization engaged in aggressive colonization across multiple systems. It maintains few reliable allies, and even its existing relationships tend to be unstable. IMBER forces respond aggressively to vessels approaching their assets and defend their territorial claims with force. The corporation is currently engaged in territorial contention with IMDC along the corridor between Tessara and Skarat. IMBER is considered hostile, presents a moderate threat.",
+        "relatedEntities": [
+          "5479393254294119148",
+          "1162540875368961073",
+          "pravda",
+          "parallax"
+        ],
+        "images": [
+          "61954be9-5f5a-484c-9082-8bb9c9e0e46a.png"
+        ]
+      }
+    },
+    {
+      "id": "npc",
+      "name": "NPC"
+    },
+    {
+      "id": "wtt",
+      "name": "WTT",
+      "lore": {
+        "description": "Wasteland Tire Thieves (WTT)\n\nThe Tire Thieves are essentially land-based pirates operating primarily on Tessara. They are poorly organized, and their vehicles are generally maintained in poor condition, limiting their ability to pose a serious threat to prepared forces. Their equipment can nevertheless provide a convenient source of salvage and replacement components. The Tire Thieves are hostile, but their overall threat level is considered low.",
+        "relatedEntities": [
+          "1162540875368961073"
+        ],
+        "images": [
+          "f5b26b00-4b0b-426b-afbe-b06e54c235ba.png"
+        ]
+      }
+    },
+    {
+      "id": "mili",
+      "name": "MILI"
+    },
+    {
+      "id": "parallax",
+      "name": "Parallax",
+      "lore": {
+        "description": "Parallax Concepts\n\nOne of the relatively few major organizations to have established a significant foothold across multiple planetary systems. While the organization does not appear to actively seek violence or conflict, its forces are more than capable of defending themselves when threatened. Parallax maintains ceasefire agreements with several other major groups, including an uneasy arrangement with IMBER that has repeatedly approached open hostilities due to territorial disputes. Parallax is considered hostile, presents a moderate threat, and operates primarily along the Skarat–Bornax corridor.",
+        "relatedEntities": [
+          "imber",
+          "5479393254294119148",
+          "1352166987681317438"
+        ],
+        "images": [
+          "04a5bddc-825a-4bc2-8fba-7aab2f81c698.png"
         ]
       }
     }
