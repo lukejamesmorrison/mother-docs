@@ -6,13 +6,21 @@ The map module allows Mother to visualize the positions of all grids and waypoin
 
 ## Viewing the Map
 
-Mother can render a map showing all grids and waypoints in the Almanac. Simply add `[MMAP]` to the end of your LCD name and reboot Mother using the `boot` command. The projection will automatically update.
+Mother can render a map showing all grids and waypoints in the Almanac. We use the same method as [Mother GUI](../../MotherGUI/README.md) to print a map to a display with surface index in the `surfaces` section of the block's custom data: 
 
-You can target individual cockpit screens by targeting a screen index - `[MMAP:1]`.
+```ms title="LCD Panel > Custom Data"
+[surfaces]
+0=MapView
+```
 
-![Almanac LCD](../Assets/almanac-lcd-1.png)
+You can target cockpit screens by targeting a screen index:
 
-![Flight Plan Map](../Assets/flight-plan-1.png)
+```ms title="main Cockpit > Custom Data"
+[surfaces]
+0=LogView "MAPS"
+1=MapView
+```
+<!-- ![Flight Plan Map](../Assets/flight-plan-1.png) -->
 
 ## Filtering the Map
 
