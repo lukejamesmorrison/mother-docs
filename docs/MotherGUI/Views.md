@@ -4,6 +4,8 @@ Mother GUI currently ships with a focused set of views aimed at mechanical diagn
 
 For the full menu system documentation, see [MenuView](./MenuView.md).
 
+Views registered by other scripts built with [Mother Core](../Framework/README.md) can also be opened from Mother GUI with `view/go`. For example, the [MAPS](../MotherAutopilotSystem/Modules/MapModule.md) `MapView` can share a cockpit screen with a Mother GUI menu.
+
 [[toc]]
 
 <!-- ## MenuView

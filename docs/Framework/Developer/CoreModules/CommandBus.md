@@ -15,6 +15,26 @@ public override void Boot()
 }
 ```
 
+## Registering a Simple Block Command
+
+Many commands do one thing to every block of a type that matches a name, group or tag. Use `RegisterBlockCommand<T>()` from `BaseModule` instead of writing a command class for each one. This also keeps your script smaller.
+
+```csharp title="DoorModule.cs"
+public override void Boot()
+{
+    RegisterBlockCommand<IMyDoor>("door/open", door => door.OpenDoor(), "Door opened: {0}");
+    RegisterBlockCommand<IMyDoor>("door/close", door => door.CloseDoor(), "Door closed: {0}");
+}
+```
+
+| Parameter | Description |
+| - | - |
+| `name` | The command name, for example `door/open`. |
+| `action` | Applied to each matching block. |
+| `message` | Format string for the success response. `{0}` is the block name. |
+
+Use a command class with `RegisterCommand()` when your command needs several arguments, options or custom validation.
+
 ## Running a Command or Routine
 
 `RunTerminalCommand()` accepts the same routine syntax the player uses in the programmable block terminal.
@@ -73,6 +93,24 @@ If another script needs to bypass the important construct command and run its ow
 
 ```ms title="Programmable Block B > Terminal"
 !!alert
+```
+
+## Built-in Commands
+
+| Command | Description |
+| - | - |
+| `halt` | Halts the script by clearing every queued delayed task and active coroutine on the [Clock](./Clock.md). Pending `wait` delays and parallel commands that have not run yet are cleared. |
+
+## Options With Spaces
+
+Options accept double-quoted values, so a value can contain spaces. Read it with `GetOption()`.
+
+```ms title="Terminal"
+view/go "Cockpit:1" MainMenu --title="Custom Title"
+```
+
+```csharp title="ViewGoCommand.cs"
+string title = command.GetOption("title"); // Custom Title
 ```
 
 ## Helpful Members

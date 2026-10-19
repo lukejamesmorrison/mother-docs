@@ -40,7 +40,7 @@ Commands are similar to a traditional command line interface, and consist of 3 *
 | --------	|-| ------- |
 | Command	| `hinge/rotate`<br>`light/color`<br>`help` | The command determines which action is performed by Mother.  See the [Command Cheetsheet](../Cheatsheet.md) for a complete list of commands, or run Mother with the `help` command.  |
 | Argument	| `Hinge`<br>`45`<br>`"Rotor 1"`<br>`#main-airlock`| Arguments are expected by most commands and contain the details they require to operate.  This is usually values like angle, color or a GPS waypoint. Use double quotes when your arguments include spaces. In most cases, the first argument of command will target a **Block**, **Group**, or **Tag** by its name. |
-| Option	| `--speed=2`<br>`--offset=0.1`<br>`--force` |Options can be used with commands to trigger specific modifications like rotational speed or blink offset. Sometimes they may be used without a set value.  |
+| Option	| `--speed=2`<br>`--offset=0.1`<br>`--force`<br>`--title="Custom Title"` |Options can be used with commands to trigger specific modifications like rotational speed or blink offset. Sometimes they may be used without a set value. Use double quotes when an option value includes spaces.  |
 
 ## Running a Command
 
@@ -280,6 +280,18 @@ This works remotely as well. Imagine we want to run the `Arm` command stored on 
 
 ```ms title="Terminal"
 @StealthMissile fcs/start; wait 10; _Arm;
+```
+
+## Stopping Command Execution
+Use the `halt` command to stop all queued commands and running routines on a script. This clears any pending `wait` delays and parallel commands that have not yet run.
+
+```ms title="Terminal"
+door/open AirlockDoor;
+wait 10;
+door/close AirlockDoor;
+
+; changed your mind? stop the routine before the door closes
+halt;
 ```
 
 ## The Terminal Window

@@ -110,9 +110,43 @@ public override void Boot()
 
 `BlockCatalogue` processes monitored blocks in batches of 50 per cycle, which keeps continuous monitoring affordable on larger constructs.
 
+### Keeping State After a Construct Refresh
+
+When the construct changes (merge, unmerge, attach, detach), subscribe to `ConstructRefreshedEvent` and register your blocks again to pick up new ones. Pass `preserveState: true` so blocks that were already monitored keep their previous state. This stops an in-flight state transition from being discarded by the refresh.
+
+```csharp title="DockingModule.cs"
+public override void Boot()
+{
+    Subscribe<ConstructRefreshedEvent>();
+    MonitorConnectors(preserveState: false);
+}
+
+public override void HandleEvent(IEvent e, object eventData)
+{
+    if (e is ConstructRefreshedEvent)
+        MonitorConnectors(preserveState: true);
+}
+
+void MonitorConnectors(bool preserveState)
+{
+    RegisterBlockTypeForStateMonitoring<IMyShipConnector>(
+        connector => connector.Status,
+        (block, state) => { /* handle change */ },
+        preserveState
+    );
+}
+```
+
+## Construct Changes
+
+`BlockCatalogue` refreshes its block list whenever the construct changes. It de-duplicates incoming blocks by `EntityId`, so a block is never registered twice when the grid topology changes.
+
+Hooks that fire right after a merge or unmerge are held until the refresh completes. This ensures the block can be found when the hook runs.
+
 ## Emitted Events
 
 | Event | When it fires | `eventData` |
 | - | - | - |
 | `BlockConfigChangedEvent` | Any cached block Custom Data changes during runtime | `IMyTerminalBlock` |
 | `SystemConfigChangedEvent` | The programmable block Custom Data changes during runtime | `IMyTerminalBlock` |
+| `ConstructRefreshedEvent` | A construct refresh completes (merge or unmerge, attach or detach, or a full refresh) | `null` |

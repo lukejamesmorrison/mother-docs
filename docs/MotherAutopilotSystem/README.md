@@ -4,7 +4,7 @@
 
 # Mother Autopilot System (MAPS)
 
-![Static Badge](https://img.shields.io/badge/version-0.1.0-blue?color=green) [![Static Badge](https://img.shields.io/badge/Steam%20Workshop-2b3645?logo=steam)](https://steamcommunity.com/sharedfiles/filedetails/?id=3724504005)
+![Static Badge](https://img.shields.io/badge/version-0.2.0-blue?color=green) [![Static Badge](https://img.shields.io/badge/Steam%20Workshop-2b3645?logo=steam)](https://steamcommunity.com/sharedfiles/filedetails/?id=3724504005)
 
 
 
@@ -17,7 +17,7 @@ MAPS is currently in Alpha and is subject to change at any time. I will try my b
 <FlightPlanAnimation />
 
 ::: warning
-MAPS is compatible with scripts running [Mother Core](../Framework/README.md) v1.1.0 or later. If you are using an older version of Mother Core, please update to the latest version to ensure compatibility.
+MAPS is compatible with scripts running [Mother Core](../Framework/README.md) v1.1.0 or later. To share `MapView` with [Mother GUI](../MotherGUI/README.md), update all of your scripts.
 :::
 
 ## Features

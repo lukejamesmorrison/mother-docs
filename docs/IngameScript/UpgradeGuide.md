@@ -2,6 +2,46 @@
 
 [[toc]]
 
+## 1.1.0 -> 1.2.0
+🕓 2 mins
+
+This release adds Automatic LCDs 2 support and expands styling for screen text. There are no breaking changes and you do not need to change any existing commands.
+
+::: tip Update Mother GUI and Mother Autopilot System Together
+Mother OS 1.2 runs on Mother Core 1.1.4. Update [Mother GUI](../MotherGUI/README.md) and [MAPS](../MotherAutopilotSystem/README.md) at the same time so they all share views and commands using the same version of Mother Core.
+:::
+
+### New Features
+
+- **AutoLCD commands** - Use [`autolcd/print`](./Modules/Extension/AutoLCDModule.md#autolcd-print) to show a named [Automatic LCDs 2](https://steamcommunity.com/sharedfiles/filedetails/?id=822950976) view on any screen, and [`autolcd/clear`](./Modules/Extension/AutoLCDModule.md#autolcd-clear) to remove it. Views are defined in a new `[autolcd]` section of the programmable block's `Custom Data`.
+
+  ```ms title="Mother OS > Custom Data"
+  [commands]
+  ShowPowerView=autolcd/print "Cockpit:1" PowerView
+
+  [autolcd]
+  PowerView=
+  | Power {T:*}
+  | Working {G:Batteries}
+  ```
+
+- **More `screen/print` options** - Style screen text with the `bgcolor`, `alignment` and `padding` options. See [`screen/print`](./Modules/Extension/DisplayModule.md#screen-print).
+
+- **`halt` command** - Stop all queued commands and running routines. See the [Command Line Interface](./CommandLineInterface.md#stopping-command-execution).
+
+### Other Changes To Expect
+
+- **Quoted option values** - Options now accept double quotes for values that contain spaces, such as `--title="Custom Title"`.
+- **Smaller script size** - Simple block commands now share a common registration helper in Mother Core, which frees up space in the programmable block.
+- **Smaller Mother decal** - The Mother logo on displays is smaller and less imposing.
+- **More reliable merge and unmerge handling** - Block lookups no longer fail right after a merge or unmerge, and the absorbed grid now detects unmerge events.
+
+### Migration Checklist
+
+- [ ] Update Mother GUI and MAPS alongside Mother OS
+- [ ] (Optional) Add an `[autolcd]` section and try `autolcd/print` on a cockpit screen
+- [ ] Run the `boot` command after updating
+
 ## 1.0.0 -> 1.1.0
 🕓 10-15 mins
 

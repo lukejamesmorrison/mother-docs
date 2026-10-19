@@ -31,9 +31,11 @@ Then define that menu in the Mother GUI programmable block.
 ```ms title="Mother GUI > Custom Data"
 [menu:MainMenu]
 Mechanical=
-.Rotor=view/go self "RotorView" "Port Rotor"
-.Piston=view/go self "PistonView" "Lift Piston"
-.Door=view/go self "DoorView" "Hangar Door"
+.Power Menu=view/go self PowerMenu
+.Hangar Door=view/go self "DoorView" "Hangar Door"
+
+[menu:PowerMenu]
+...
 ```
 
 When the surface is discovered, Mother GUI resolves `MainMenu` from the custom data.
@@ -138,6 +140,44 @@ view/go "Bridge LCD" "EngineeringMenu > Power > Reactors";
 
 This is useful for button-triggered shortcuts that should land directly inside a deeper branch.
 
+## Back and Scrolling
+
+Every menu that has somewhere to return to shows a `< Back` entry as its last item. This includes nested groups, as well as the root of a menu you reached from another menu or view. Select it, or run `view/back`, to return to the previous step.
+
+That means most displays only need three inputs: `view/up`, `view/down` and `view/select`.
+
+<!-- When a menu has more items than fit on the display, a `^` indicator appears when there are items above the visible list, and a `v` indicator appears when there are items below. -->
+
+## Custom Titles
+
+The menu header shows the menu name by default. Use the `title` option of `view/go` to show something else.
+
+```ms title="terminal"
+view/go "Cockpit:1" MapMenu --title="Map Menu Title";
+```
+
+The title resets when the player navigates into or out of a group.
+
+## Notifications
+
+Use [`view/notify`](./Commands.md#view-notify) to show a short message in the footer of a display. Notifications work in menus but will be expanded to other views soon. They clear automatically after a few seconds.
+
+```ms title="Mother GUI > Custom Data"
+[menu:MainMenu]
+Lights=
+.On=
+| block/on "Interior Lights";
+| view/notify self "Lights on" --level=success;
+
+.Off=
+| block/off "Interior Lights";
+| view/notify self "Lights off";
+```
+
+Notification levels are `info`, `success`, `warning` and `error`.
+
+![Menu Notification](./Assets/mother-gui-notification1.png)
+
 ## Widescreen Behavior
 
 On widescreen displays, `MenuView` stays visible on the left while the selected live view is rendered in a side panel on the right. On smaller displays, the selected view replaces the menu until the player uses `view/back`.
@@ -155,3 +195,4 @@ The main commands to interact with a view are:
 - `view/select`
 - `view/back`
 - `view/go`
+- `view/notify`

@@ -53,6 +53,7 @@ Rules worth knowing:
 - Surface indices are zero-based. `[0...1...2...3]`
 - Parameters are optional.
 - Block names with spaces should be wrapped in `""` double quotes.
+- A surface can name a view owned by another script on the construct, such as `MapView` from [MAPS](../MotherAutopilotSystem/Modules/MapModule.md). That script draws the surface, and Mother GUI can take it over with `view/go` and `view/back`.
 <!-- - Trailing semicolons are ignored in surface entries. -->
 
 ## General Display Settings
@@ -65,7 +66,7 @@ scale=1.15
 size=0
 ```
 
-- `scale` adjusts the render scale for the display.
+- `scale` adjusts the render scale for the display. Menus default to `1.4`.
 - `size` can be used when you need to override the default text size behavior on a screen.
 
 In most cases, `scale` is the setting you will use first.

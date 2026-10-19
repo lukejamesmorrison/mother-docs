@@ -40,11 +40,11 @@ footer: MIT Licensed | © 2026 Agentluke | The Empire must grow.
 
 <AnnouncementBanner 
   icon="🎉" 
-  link="/Announcements.md#version-1-1-now-available---march-15-2026" 
+  link="/Announcements.md#october-2026-update" 
   linkText="Learn more →"
-  storageKey="v1.1-announcement-v1"
+  storageKey="v1.2-announcement"
 >
-  Mother OS and Mother Core v1.1 are now available!
+  October 2026 Update - Sorter filtering and Automatic LCDs 2 support, menu notifications and much more!
 </AnnouncementBanner>
 
 <HomeHeroOverrideSection>

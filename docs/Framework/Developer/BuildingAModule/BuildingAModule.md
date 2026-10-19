@@ -295,6 +295,25 @@ public class MissileGuidanceModule : BaseExtensionModule
 }
 ```
 
+### Registering a Simple Block Command
+Many commands apply a single action to every block of a type that matches a name, group or tag, such as `door/open`. For these, skip the command class and use `RegisterBlockCommand<T>()`. It takes the command name, an action to apply to each block, and a response message where `{0}` is the block name. This reduces the size of your script.
+
+```csharp title="MissileGuidanceModule.cs"
+public class MissileGuidanceModule : BaseExtensionModule
+{
+    public override void Boot()
+    {
+        RegisterBlockCommand<IMyShipConnector>(
+            "missile/release",
+            connector => connector.Disconnect(),
+            "Missile released: {0}"
+        );
+    }
+}
+```
+
+Commands that need several arguments, options or custom validation should still use a command class.
+
 ## Events
 
 Events allow modules to communicate with each other without being tightly coupled.  Modules can emit events, then other modules may respond and take action. This keeps our scripts modular.
@@ -597,3 +616,29 @@ public void HandleConnectorStateChange(IMyShipConnector connector, object newSta
 ::: note
 In [Mother OS](../../../IngameScript/IngameScript.md), a connector's [hooks](../../../IngameScript/Modules/Extension/ConnectorModule.md#hooks) are activated by the connector's state change using the method above.
 :::
+
+#### Refreshing Monitored Blocks
+When the construct changes (for example a merge, unmerge, attach or detach), `BlockCatalogue` emits a `ConstructRefreshedEvent`. Subscribe to it and register your blocks again to monitor any new blocks. Set `preserveState` to `true` so blocks that are already monitored keep their previous state and in-flight transitions are not lost.
+
+```csharp title="MissileGuidanceModule.cs"
+public override void Boot()
+{
+    Subscribe<ConstructRefreshedEvent>();
+    MonitorConnectors(preserveState: false);
+}
+
+public override void HandleEvent(IEvent e, object eventData)
+{
+    if (e is ConstructRefreshedEvent)
+        MonitorConnectors(preserveState: true);
+}
+
+void MonitorConnectors(bool preserveState)
+{
+    RegisterBlockTypeForStateMonitoring<IMyShipConnector>(
+        connector => connector.Status,
+        (block, newState) => HandleConnectorStateChange(block as IMyShipConnector, newState),
+        preserveState
+    );
+}
+```

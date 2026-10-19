@@ -2,6 +2,101 @@
 
 [[toc]]
 
+## 1.1.0 -> 1.1.4
+🕓 5 mins
+
+This release adds shared views between scripts, a `halt` command, and several fixes for merge and unmerge handling. There are no breaking changes. Custom modules that monitor block state should be updated to handle construct refreshes, as described below.
+
+### New Features
+
+#### 1. Shared Views
+
+Scripts now share their views in the same way they share commands. A module can declare a view it draws with `RegisterOwnedView()`, and any other script on the construct can find the owner and ask it to show the view on a display. [Mother GUI](../../../MotherGUI/README.md) uses this to open views from other scripts, such as the [MAPS](../../../MotherAutopilotSystem/Modules/MapModule.md) `MapView`, with `view/go`.
+
+```csharp title="MapModule.cs"
+GetModule<IntergridMessageService>()
+    .RegisterOwnedView("MapView", (displayName, show) => { /* take or release the surface */ });
+```
+
+See [Sharing Views With Other Scripts](../CoreModules/IntergridMessageService.md#sharing-views-with-other-scripts).
+
+::: warning
+All scripts that share views must run Mother Core 1.1.4 or later.
+:::
+
+#### 2. `halt` Command
+
+The new `halt` command clears all queued delayed tasks and active coroutines. It calls the new `Clock.Halt()` method.
+
+```ms title="Terminal"
+halt
+```
+
+#### 3. `ConstructRefreshedEvent`
+
+`BlockCatalogue` now emits `ConstructRefreshedEvent` when a construct refresh completes after a merge or unmerge, attach or detach, or a full refresh. Subscribe to it to register blocks again after the grid topology changes.
+
+#### 4. `RegisterBlockTypeForStateMonitoring` Accepts `preserveState`
+
+The method has a new optional `preserveState` parameter. When `true`, blocks that are already monitored keep their previous state, and only new blocks are initialized. Use it when you register blocks again in response to `ConstructRefreshedEvent`, so in-flight transitions are not discarded.
+
+**Before:**
+```csharp title="MissileGuidanceModule.cs"
+RegisterBlockTypeForStateMonitoring<IMyShipConnector>(
+    connector => connector.Status,
+    (block, state) => HandleConnectorStateChange(block as IMyShipConnector, state)
+);
+```
+
+**After:**
+```csharp title="MissileGuidanceModule.cs"
+public override void Boot()
+{
+    Subscribe<ConstructRefreshedEvent>();
+    Monitor(preserveState: false);
+}
+
+public override void HandleEvent(IEvent e, object eventData)
+{
+    if (e is ConstructRefreshedEvent)
+        Monitor(preserveState: true);
+}
+
+void Monitor(bool preserveState)
+{
+    RegisterBlockTypeForStateMonitoring<IMyShipConnector>(
+        connector => connector.Status,
+        (block, state) => HandleConnectorStateChange(block as IMyShipConnector, state),
+        preserveState
+    );
+}
+```
+
+#### 5. Quoted Option Values
+
+Options now support double quotes, so a value can contain spaces.
+
+```ms title="Terminal"
+view/go "Cockpit:1" MainMenu --title="Custom Title"
+```
+
+### Other Changes To Expect
+
+- **Smaller decal** - The Mother logo on displays is smaller and less imposing.
+- **Fixed `var/set --save`** - Saving a variable no longer removes line breaks from custom data.
+- **Fixed unmerge detection** - The absorbed grid after a merge now detects unmerge events. `Mother` refreshes `GridTerminalSystem` and `CubeGrid` every run cycle so block discovery is always current.
+- **Fixed "Block not found" after merge or unmerge** - Hooks that fire right after a merge or unmerge are held until `ConstructRefreshedEvent` fires, so the block topology is resolved before lookup.
+- **Fixed duplicate block registration** - `BlockCatalogue` now de-duplicates incoming blocks by `EntityId` when the grid topology changes.
+
+### Migration Checklist
+
+- [ ] Update every Mother-powered script on your construct to Mother Core 1.1.4
+- [ ] Subscribe to `ConstructRefreshedEvent` in modules that register blocks for state monitoring
+- [ ] (Optional) Use `RegisterOwnedView()` to share views with other scripts
+- [ ] (Optional) Use `RegisterBlockCommand<T>()` for simple block commands to reduce script size
+
+---
+
 ## 1.0.0 -> 1.1.0
 🕓 15-30 mins
 

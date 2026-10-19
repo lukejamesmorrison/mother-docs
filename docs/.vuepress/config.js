@@ -62,6 +62,7 @@ const MotherOSSidebar = {
           link: '/IngameScript/Modules/Extension/AirVentModule.md',
           text: 'Air Vent Module'
         },
+        '/IngameScript/Modules/Extension/AutoLCDModule.md',
         '/IngameScript/Modules/Extension/BatteryModule.md',
         '/IngameScript/Modules/Extension/TerminalBlockModule.md',
         '/IngameScript/Modules/Extension/CockpitModule.md',

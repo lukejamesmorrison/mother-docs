@@ -36,11 +36,15 @@ view/select "Bridge LCD";
 
 ### `view/back`
 
-Go back one step. This works across nested menus and across menu-to-menu jumps.
+Go back one step. This works across nested menus, across menu-to-menu jumps, and back from a view owned by another script such as `MapView`.
 
 ```ms title="terminal"
 view/back "Bridge LCD";
 ```
+
+::: tip Navigate With 3 Fingers
+Every menu with navigation history shows a `< Back` entry at the end of the list, so most displays only need `view/up`, `view/down` and `view/select` to be fully navigable.
+:::
 
 ### `view/go`
 
@@ -49,11 +53,13 @@ view/back "Bridge LCD";
 - Open a named view
 - Switch to a named menu
 - Jump to a menu path
+- Open a view owned by another script on the construct, such as `MapView` from [MAPS](../MotherAutopilotSystem/Modules/MapModule.md)
 
 ```ms title="terminal"
 view/go "Bridge LCD" "RotorView" "Port Rotor";
 view/go "Bridge LCD" "EngineeringMenu";
 view/go "Bridge LCD" "BridgeMenu > Ship Systems > Mechanical";
+view/go "Bridge LCD" "MapView";
 ```
 
 When `view/go` runs from a Mother GUI menu item, you can use `self` instead of a literal display name so the current display targets itself.
@@ -62,7 +68,51 @@ When `view/go` runs from a Mother GUI menu item, you can use `self` instead of a
 view/go self "DoorView" "Hangar Door";
 ```
 
-These are functionally equivalent to the `view/*` commands.
+**Options**
+
+| Option | Description |
+| - | - |
+| `title` | Replace the menu name shown in the header with a custom title. Applies when `view/go` opens a menu path. Wrap titles that include spaces in double quotes. |
+
+```ms title="terminal"
+view/go "Cockpit:1" MapMenu --title="Map Menu Title";
+```
+
+<!-- The custom title is cleared as soon as the player navigates within the menu. -->
+
+### `view/notify`
+
+Show a short-lived notification in the footer of a display. Use it to confirm that an action ran. This does not guarantee the actions occured, only that Mother processed all commands successful before executing this command.
+
+```
+view/notify <Display> <Message> [--level=<Level>] [--duration=<Seconds>]
+```
+
+**Options**
+
+| Option | Values | Default | Description |
+| - | - | - | - |
+| `level` | `info`, `success`, `warning`, `error` | `info` | Sets the color of the notification. Unknown values fall back to `info`. |
+| `duration` | Seconds, `1` to `30` | `3` | How long the notification stays on the display. |
+
+```ms title="terminal"
+view/notify "Cockpit:1" "Docking complete" --level=success --duration=5;
+```
+
+Messages wrap across multiple lines and the notification box grows to fit them. Use `\n` for a line break. A new notification replaces the one currently showing, and navigating does not dismiss it.
+
+Because menu items are commands, you can chain `view/notify` with another command to give feedback from a menu:
+
+```ms title="Mother GUI > Custom Data"
+[menu:MainMenu]
+Hangar=
+.Open=door/open "Hangar Door"; view/notify self "Hangar door opening" --level=success
+.Close=door/close "Hangar Door"; view/notify self "Hangar door closing"
+```
+
+Since commands are shared across the construct, scripts like Mother OS can also call `view/notify`.
+
+The `menu/up`, `menu/down`, `menu/select`, `menu/back` and `menu/go` commands are aliases of their `view/*` equivalents.
 
 ## Screen Commands
 

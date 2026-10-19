@@ -32,11 +32,19 @@ AirlockOuterDoor.onOpen=
 | vent/depressurize AirlockVent; 
 | wait 10; 
 | door/close OuterDoor;
+
+[autolcd]
+; named views for Automatic LCDs 2, shown with autolcd/print
+PowerView=
+| Power {T:*}
+| Working {G:Batteries}
 ```
 
 ::: tip
 Setting `general.debug` to `true` will highlight the complexity your script in the terminal. Otherwise, you do not need to worry about this setting.
 :::
+
+The `[autolcd]` section holds named views for [Automatic LCDs 2](Modules/Extension/AutoLCDModule.md). Use the `autolcd/print` command to show a view on any screen.
 
 ## Block Configuration
 All Terminal Blocks have a `Custom Data` field.  This is where you can define the block's configuration, tags, and hooks.

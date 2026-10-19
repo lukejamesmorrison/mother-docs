@@ -8,7 +8,7 @@ next: /MotherGUI/Installation.md
 
 # Mother GUI
 
-![Static Badge](https://img.shields.io/badge/version-0.1.0-blue?color=green) [![Static Badge](https://img.shields.io/badge/Steam%20Workshop-2b3645?logo=steam)](https://steamcommunity.com/sharedfiles/filedetails/?id=3724497528)
+![Static Badge](https://img.shields.io/badge/version-0.2.0-blue?color=green) [![Static Badge](https://img.shields.io/badge/Steam%20Workshop-2b3645?logo=steam)](https://steamcommunity.com/sharedfiles/filedetails/?id=3724497528)
 
 Mother GUI is an ingame script for Space Engineers players that turns text surfaces into interactive ship displays. Use it to build navigable menus and render live mechanical block views.
 
@@ -31,6 +31,8 @@ Mother GUI is designed to feel at home beside other scripts Powered by Mother li
 - **Live mechanical views** - Render rotors, hinges, pistons, and doors as live diagnostic widgets.
 - **Multi-surface support** - Target LCD panels directly or configure cockpit, programmable block, and sound block surfaces with `Block Name:SurfaceIndex`.
 - **Screen automation** - Jump to views, switch menus, and change surface content types with terminal commands.
+- **Notifications** - Give players feedback with transient footer messages using `view/notify`.
+- **Views from other scripts** - Open views owned by other Mother scripts, like the [MAPS](../MotherAutopilotSystem/Modules/MapModule.md) `MapView`, from the same display with `view/go`.
 
 ## Quick Example
 

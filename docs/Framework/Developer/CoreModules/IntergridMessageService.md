@@ -127,6 +127,59 @@ Response HandleCargoStatusRequest(Request request)
 }
 ```
 
+## Sharing Views With Other Scripts
+
+Scripts on the same construct share their views the same way they share commands. A script declares a view it draws, and other scripts can find the owner and ask it to show the view on a display. This is how [Mother GUI](../../../MotherGUI/README.md) can open the `MapView` from [MAPS](../../../MotherAutopilotSystem/Modules/MapModule.md) with `view/go`.
+
+Mother Core only stores view names. It does not know how a view is drawn, so the owning script handles everything view-specific.
+
+### Declaring an Owned View
+
+Register the view in your module's `Boot()` method. The callback receives the display name (`BlockName:SurfaceIndex`) and whether the view is being shown (`true`) or released (`false`).
+
+```csharp title="MapModule.cs"
+public override void Boot()
+{
+    GetModule<IntergridMessageService>()
+        .RegisterView("MapView", OnViewActivation);
+}
+
+void OnViewActivation(string displayName, bool show)
+{
+    // take the surface when show is true, stop drawing when it is false
+}
+```
+
+Owned view names are included in the construct sync alongside command names, so other scripts learn about them automatically. After another script boots it can take up to 5 seconds for its views to be discovered.
+
+### Finding an Owner and Activating a View
+
+```csharp title="ViewModule.cs"
+IntergridMessageService ims = GetModule<IntergridMessageService>();
+
+long ownerId = ims.FindInstanceWithView("MapView");
+
+if (ownerId != 0)
+{
+    // show the view on a display
+    ims.SendViewActivation(ownerId, "MapView", "Cockpit:0", true);
+
+    // later, release the display
+    ims.SendViewActivation(ownerId, "MapView", "Cockpit:0", false);
+}
+```
+
+| Member | Use |
+| - | - |
+| `RegisterView(viewName, onActivate)` | Declares a view owned by this script. |
+| `ConstructViews` | View names discovered on other scripts, keyed by script ID. |
+| `FindInstanceWithView(viewName)` | Returns the script ID that owns a view, or `0` if no script does. |
+| `SendViewActivation(ownerId, viewName, displayName, active)` | Asks the owner to show (`true`) or release (`false`) a view on a display. |
+
+::: info
+`SendViewActivation()` does not wait for a reply. If the owner does not have the display, it does nothing and no error is returned.
+:::
+
 ## Response Codes
 
 You will reach for these status codes most often:

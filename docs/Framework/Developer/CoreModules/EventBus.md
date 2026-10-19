@@ -71,6 +71,7 @@ These events are emitted by Mother Core and are immediately available to extensi
 | `SystemBootedEvent` | `Mother` after the full boot sequence completes | `null` |
 | `BlockConfigChangedEvent` | `BlockCatalogue` when any block Custom Data changes | `IMyTerminalBlock` |
 | `SystemConfigChangedEvent` | `BlockCatalogue` when the programmable block Custom Data changes | `IMyTerminalBlock` |
+| `ConstructRefreshedEvent` | `BlockCatalogue` when a construct refresh completes after a merge, unmerge, attach, detach or full refresh | `null` |
 | `RequestReceivedEvent` | `IntergridMessageService` when a request is routed in | `null` |
 | `RequestSentEvent` | `IntergridMessageService` when a request is sent successfully | `null` |
 | `RequestFailedEvent` | `IntergridMessageService` when a unicast request cannot be sent | `null` |

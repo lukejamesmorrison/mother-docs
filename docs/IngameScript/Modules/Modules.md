@@ -48,6 +48,7 @@ These modules have been moved to the [Mother Autopilot System](../../MotherAutop
 |Name													| Description|
 |-														|-								|
 | [Air Vents](Extension/AirVentModule.md)			| Manages air vents on the grid. |
+| [AutoLCD](Extension/AutoLCDModule.md)			| Swaps the view shown by Automatic LCDs 2 on any screen. |
 | [Batteries](Extension/BatteryModule.md)					| Manages batteries on the grid.|
 | [Cockpits](Extension/CockpitModule.md)					| Manages cockpits on the grid.|
 | [Connectors](Extension/ConnectorModule.md)			| Manages connectors on the grid.|

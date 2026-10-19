@@ -6,6 +6,68 @@
 
 <!-- Add new announcements below this line, with the most recent at the top -->
 
+## October 2026 Update
+
+This update brings **Mother OS 1.2**, **Mother Core 1.1.4**, **Mother GUI 0.2**, and **Mother Autopilot System (MAPS) 0.2**. It adds Automatic LCDs 2 support, in-menu notifications, and lets scripts share screens with each other. There are no breaking changes, but update all of your scripts at the same time so they run the same version of Mother Core.
+
+### Release Highlights
+
+- **Mother OS 1.2** adds the `autolcd/print` and `autolcd/clear` commands, and expands `screen/print` with `bgcolor`, `alignment` and `padding` options. Sorters gain `sorter/mode`, `sorter/add`, `sorter/remove` and `sorter/clear` for managing item filters.
+- **Mother Core 1.1.4** adds the `halt` command, shared views between scripts, quoted option values, and fixes for merge and unmerge handling.
+- **Mother GUI 0.2** adds the `view/notify` command, custom menu titles, scroll indicators, and a simpler `< Back` entry on every menu.
+- **MAPS 0.2** shares `MapView` with Mother GUI so one screen can switch between a menu and the map.
+
+### Mother OS 1.2
+
+Players can now show [Automatic LCDs 2](https://steamcommunity.com/sharedfiles/filedetails/?id=822950976) views on any screen with a single command. Define named views in the `[autolcd]` section of the programmable block, then print them to a screen. Use `autolcd/clear` to remove config from a screen.
+
+```ms title="Mother > Custom Data"
+[commands]
+ShowPowerView=autolcd/print "Cockpit:1" PowerView
+
+[autolcd]
+PowerView=
+| Power {T:*}
+| Working {TG:Batteries}
+```
+
+![Automatic LCDs 2 Support](./IngameScript/Assets/mother-os-autolcds1.png)
+
+Conveyor sorters now support filtering. Switch a sorter between whitelist and blacklist with `sorter/mode`, and manage its filter list with `sorter/add`, `sorter/remove` and `sorter/clear`. Items are written as `Type/Subtype` (such as `Ore/Iron`), or as a type alone (such as `Ore`) to match every item of that type. `sorter/add` accepts `--fresh` and `--mode` so a sorter can be fully reconfigured in a single command.
+
+```ms title="Terminal"
+sorter/add "Cargo Sorter" Ore/Stone Ore/Ice --fresh --mode=blacklist;
+```
+
+Explore Mother OS: [AutoLCD Module](./IngameScript/Modules/Extension/AutoLCDModule.md) | [Sorter Module](./IngameScript/Modules/Extension/SorterModule.md) | [Upgrade Guide](./IngameScript/UpgradeGuide.md)
+
+### Mother GUI 0.2
+
+Mother GUI can now give feedback to the player and is a bit easier to use. Use `view/notify` to show a transient message in the footer of a view, and `--title` with `view/go` to replace the header of a menu. Menus show scroll indicators when they overflow, use a larger and more readable font, and every menu with history shows a `< Back` option. Rather than nesting multiple menu layers, this simplifies a modular menu structure with navigation history.
+
+```ms title="Terminal"
+view/notify "Cockpit:1" "Docking complete" --level=success --duration=5;
+view/go "Cockpit:1" MapMenu --title="Map Menu Title";
+```
+
+![Automatic LCDs 2 Support](./MotherGUI/Assets/mother-gui-notification1.png)
+
+Explore Mother GUI: [Notifications](./MotherGUI/MenuView.md#notifications) | [MenuView](./MotherGUI/MenuView.md)
+
+### Mother Autopilot System 0.2
+
+`MapView` can now be opened from Mother GUI. A cockpit screen can show a menu, switch to the map with `view/go`, and return with `view/back`.
+
+Explore MAPS: [Map Module](./MotherAutopilotSystem/Modules/MapModule.md#switching-between-the-map-and-mother-gui) | [Upgrade Guide](./MotherAutopilotSystem/UpgradeGuide.md)
+
+### Mother Core 1.1.4
+
+Scripts now share *views* in the same way they share commands, so a script can draw on a screen owned by another script. Developers also get the `halt` command, the `ConstructRefreshedEvent`, a `preserveState` option for block state monitoring, and options that accept double-quoted values.
+
+Explore Mother Core: [Upgrade Guide](./Framework/Developer/GettingStarted/UpgradeGuide.md) | [Intergrid Message Service](./Framework/Developer/CoreModules/IntergridMessageService.md#sharing-views-with-other-scripts) | [Command Bus](./Framework/Developer/CoreModules/CommandBus.md)
+
+---
+
 ## Version 1.1 Update - 12 May 2026
 
 

@@ -81,6 +81,7 @@ IEnumerable<double> SpinUpSequence()
 | `GetLoader()` | Small `/` or `\` activity indicator used by `Terminal` |
 | `Reset()` | Clears queued tasks, repeating tasks, and coroutines |
 | `ClearScheduledTasks()` | Clears only repeating scheduled tasks |
+| `Halt()` | Clears queued delayed tasks and active coroutines. Repeating system tasks are not affected. Used by the `halt` command |
 
 ## Emitted Events
 

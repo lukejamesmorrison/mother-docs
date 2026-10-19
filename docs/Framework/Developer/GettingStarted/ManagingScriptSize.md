@@ -37,7 +37,7 @@ Check out Malware's [API Index](https://github.com/malware-dev/MDK-SE/wiki/Api-i
 
 Let's look at the common action of looping through a list of connectors:
 
-```csharp
+```csharp title="ConnectorModule.cs"
 List<IMyShipConnector> Connectors = new List<IMyShipConnector>()
 
 foreach(IMyShipConnector connector in Connectors)
@@ -48,7 +48,7 @@ foreach(IMyShipConnector connector in Connectors)
 
 We've used `IMyShipConnector` 3 times and so will require at least 46 characters to complete this action.  When you're doing some complex work, this only gets worse. Let's save some space with `var`:
 
-```csharp
+```csharp title="ConnectorModule.cs"
 List<IMyShipConnector> Connectors = new List<IMyShipConnector>()
 
 foreach(var connector in Connectors)
@@ -59,7 +59,7 @@ foreach(var connector in Connectors)
 
 Not bad, we've saved **13 characters** already! Since this is a simple action though, let's go even further:
 
-```csharp
+```csharp title="ConnectorModule.cs"
 List<IMyShipConnector> Connectors = new List<IMyShipConnector>()
 
 Connectors.ForEach(connector => connector.Connect());
@@ -77,12 +77,12 @@ Nonetheless, always be consicous of language level keywords and punctuation. 100
 For example, the programmable block will treat these two lines of code exactly the same.
 
 **Full keywords:**
-```csharp
+```csharp title="Mother.cs"
 private readonly string SystemName = "Mother OS"
 ```
 
 **Partial keywords:**
-```csharp
+```csharp title="Mother.cs"
 string SystemName = "Mother OS"
 ```
 :::important
@@ -94,7 +94,7 @@ It is good practive to **ALWAYS** use keywords. These exist for a reason and hel
 There are generally two ways to print a string value in C#. You can do this via the `ToString()` method on most objects, or via string interpolation where the string value of the provided object can be inferred. Let's look at each option.
 
 #### `ToString()` method:
-```csharp
+```csharp title="FlightControlModule.cs"
 float velocity = 123.45f
 
 Mother.Print(velocity.ToString());
@@ -102,12 +102,12 @@ Mother.Print(velocity.ToString());
 
 When minified, the string segment is **12 characters** long:
 
-```csharp
+```csharp title="FlightControlModule.cs"
 Ò.ToString()
 ```
 
 #### String interpolation:
-```csharp
+```csharp title="FlightControlModule.cs"
 float velocity = 123.45f
 
 Mother.Print($"{velocity}");
@@ -115,7 +115,7 @@ Mother.Print($"{velocity}");
 
 When minified, the string segment is **6 characters** long:
 
-```csharp
+```csharp title="FlightControlModule.cs"
 $"{Ò}"
 ```
 

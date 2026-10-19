@@ -2,6 +2,28 @@
 
 [[toc]]
 
+## 0.1.0 -> 0.2.0
+🕓 2 mins
+
+This release lets [Mother GUI](../MotherGUI/README.md) share screens with the MAPS map. There are no breaking changes.
+
+::: warning Compatibility
+MAPS 0.2 uses view sharing from Mother Core 1.1.4. Update Mother OS and Mother GUI at the same time so every script on the construct is running the same version of Mother Core.
+:::
+
+### New Features
+
+- **Shared `MapView`** - A surface can now switch between a Mother GUI menu and the MAPS map using `view/go`.
+
+  ```ms title="Terminal"
+  view/go "Cockpit:0" MapView;
+  ```
+
+### Migration Checklist
+
+- [ ] Update Mother Core based scripts (Mother OS, Mother GUI) to the latest version
+- [ ] (Optional) Use `view/go` to open `MapView` from a Mother GUI menu
+
 ## 0.1.0 - Initial Release
 🕓 5 mins
 

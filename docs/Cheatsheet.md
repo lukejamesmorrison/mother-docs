@@ -290,6 +290,15 @@ rename Missile --unique;
 Use the `rename` command with `--unique` in the `onBoot` hook to automatically give unique names to missiles or drones when they are printed and initialized.
 :::
 
+### halt
+[![Static Badge](https://img.shields.io/badge/Clock-Mother_Core-red?color=red)](Framework/Developer/CoreModules/Clock.md)
+
+Halt all queued tasks and running routines on this script. Pending `wait` delays and parallel commands that have not run yet are cleared.
+
+```ms title="Terminal"
+halt
+```
+
 ### wait
 [Command Line Interface](IngameScript/CommandLineInterface.md)
 
@@ -662,6 +671,55 @@ screen/print "AirlockStatusScreens" "Docking Ready" --alignment=right;
 
 ; Cockpit LCD
 screen/print "PilotCockpit:1" "ALERT" --color=red --size=10;
+```
+
+:::
+
+## AutoLCD
+[![Static Badge](https://img.shields.io/badge/AutoLCD_Module-Mother_OS-red?color=red)](IngameScript/Modules/Extension/AutoLCDModule.md)&nbsp;
+
+
+:::tip Automatic LCDs 2 is an amazing script!
+MMaster's script is in every one of my ships, and it should be in yours too! Think of Autolcds as the *show*, and Mother as the *tell*.
+
+[![Static Badge](https://img.shields.io/badge/View%20Script%20On%20Steam%20Workshop-2b3645?logo=steam)](https://steamcommunity.com/sharedfiles/filedetails/?id=822950976)
+:::
+
+::: tabs
+
+@tab Commands
+
+### autolcd/print
+
+Copy a view from the `[autolcd]` section of the Mother OS custom data to a screen for [Automatic LCDs 2](https://steamcommunity.com/sharedfiles/filedetails/?id=822950976) to render.
+
+```
+autolcd/print <Screen|Group>[:SurfaceIndex] <View>
+```
+
+**Example**
+
+```ms title="Mother OS > Custom Data"
+[autolcd]
+PowerView=
+| Power {T:*}
+| Working {G:Batteries}
+```
+
+```ms title="Terminal"
+autolcd/print "Pilot Cockpit:1" PowerView;
+```
+
+### autolcd/clear
+
+Remove the Automatic LCDs 2 configuration from a screen.
+
+```
+autolcd/clear <Screen|Group>[:SurfaceIndex]
+```
+
+```ms title="Terminal"
+autolcd/clear "Pilot Cockpit:1";
 ```
 
 :::
@@ -1384,6 +1442,66 @@ sorter/drain "Gravel Exhaust" true
 Turn off `DrainAll`
 ```ms title="Terminal"
 sorter/drain VerticalFarmHarvester false
+```
+
+### sorter/mode
+Set the sorter mode. Existing filters are kept.
+```
+sorter/mode <Sorter|Group> <whitelist|blacklist>
+```
+
+**Example**
+
+```ms title="Terminal"
+sorter/mode "Cargo Sorter" blacklist
+```
+
+### sorter/add
+Add items to the sorter's filter list. Items are `Type/Subtype` (e.g. `Ore/Iron`), or a type alone (e.g. `Ore`) to match every item of that type.
+```
+sorter/add <Sorter|Group> <Item> [<Item>...] [--options]
+```
+
+Options
+| Option  | Values                   | Description                                                                 |
+| ------- | ------------------------ | --------------------------------------------------------------------------- |
+| `fresh` | `true`, `false`          | Clear the existing filter list before adding the items.                     |
+| `mode`  | `whitelist`, `blacklist` | Set the sorter mode in the same command. If omitted, the mode is unchanged. |
+
+At least one item is required unless `--fresh` or `--mode` is given.
+
+**Example**
+
+```ms title="Terminal"
+; Add specific items
+sorter/add "Cargo Sorter" Ore/Iron Ore/Stone
+
+; Replace the filters and switch to a blacklist
+sorter/add "Cargo Sorter" Ore/Stone Ore/Ice --fresh --mode=blacklist
+```
+
+### sorter/remove
+Remove items from the sorter's filter list.
+```
+sorter/remove <Sorter|Group> <Item> [<Item>...]
+```
+
+**Example**
+
+```ms title="Terminal"
+sorter/remove "Cargo Sorter" Ore/Stone
+```
+
+### sorter/clear
+Remove all items from the sorter's filter list. The mode is kept.
+```
+sorter/clear <Sorter|Group>
+```
+
+**Example**
+
+```ms title="Terminal"
+sorter/clear "Cargo Sorter"
 ```
 
 :::
