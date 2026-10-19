@@ -262,6 +262,11 @@ const MotherGUISidebar = {
 
 // Navbar Links
 const navbarLinks = [
+  {
+        text: 'Cheatsheet',
+        collapsible: true, // Allows collapsing sections
+        link: '/Cheatsheet.md',
+      },
     {
         text: 'Mother OS (Ingame Script)',
         link: '/IngameScript/IngameScript.md'
@@ -300,15 +305,6 @@ const NavbarLinks = () => {
   if(DEV_MODE) {
     links.push(...devNavbarLinks);
   }
-
-  // add cheatsheet link
-  links.push(
-    {
-        text: 'Cheatsheet',
-        collapsible: true, // Allows collapsing sections
-        link: '/Cheatsheet.md',
-      },
-  )
 
   // add brand guidelines link
   links.push(

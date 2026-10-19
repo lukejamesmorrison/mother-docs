@@ -86,6 +86,10 @@ function relatedIconFor(type?: 'planet' | 'faction'): string {
     linear-gradient(165deg, var(--vp-c-bg-elv), var(--vp-c-bg));
   color: var(--vp-c-text);
   box-shadow: 0 1px 4px color-mix(in srgb, var(--vp-c-shadow) 22%, transparent);
+  min-width: 0;
+  max-width: 100%;
+  box-sizing: border-box;
+  overflow-x: hidden;
 }
 
 .faction-card__header {

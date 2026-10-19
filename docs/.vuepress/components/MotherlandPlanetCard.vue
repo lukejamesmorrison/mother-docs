@@ -208,7 +208,7 @@ function formatKm(value: number): string {
 }
 
 function formatCoordinate(value: number): string {
-  return Math.round(value).toLocaleString('en-US')
+  return String(Math.round(value))
 }
 
 function formatUnitValue(value: number): string {
@@ -583,6 +583,10 @@ onBeforeUnmount(() => {
     linear-gradient(165deg, var(--vp-c-bg-elv), var(--vp-c-bg));
   color: var(--vp-c-text);
   box-shadow: 0 1px 4px color-mix(in srgb, var(--vp-c-shadow) 22%, transparent);
+  min-width: 0;
+  max-width: 100%;
+  box-sizing: border-box;
+  overflow-x: hidden;
 }
 
 .planet-card__header {
@@ -629,10 +633,6 @@ onBeforeUnmount(() => {
 }
 
 .planet-card__position-value {
-  font-size: 0.95rem;
-  font-weight: 700;
-  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace;
-  color: var(--vp-c-text);
   overflow: hidden;
   text-overflow: ellipsis;
 }
@@ -787,7 +787,7 @@ onBeforeUnmount(() => {
 
 .planet-card__ore-depth-chart {
   display: grid;
-  grid-template-columns: 4.2rem 1fr;
+  grid-template-columns: 4.2rem minmax(0, 1fr);
   gap: 0.45rem;
   min-height: 250px;
 }
@@ -809,10 +809,13 @@ onBeforeUnmount(() => {
 .planet-card__depth-plot {
   position: relative;
   min-height: 220px;
+  min-width: 0;
   border: 1px solid var(--vp-c-border);
   border-radius: 10px;
   background: var(--vp-c-bg);
   padding: 0.35rem 0.45rem;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 .planet-card__depth-grid {
@@ -832,6 +835,7 @@ onBeforeUnmount(() => {
   position: relative;
   z-index: 1;
   min-height: 220px;
+  min-width: max-content;
   display: grid;
   gap: 0.35rem;
 }
