@@ -444,3 +444,10 @@ To add a new device, follow the same three steps used for the Projector and Ante
     :::tip
     Mother GUI uses the same syntax as Mother OS - so this should look very similar to a typical routine you would write in the [commands] section of the **Custom Data**.
     :::
+
+
+## Demo
+
+Check out the [Nova Blade Mk1 (Steam Workshop)](https://steamcommunity.com/sharedfiles/filedetails/?id=3823300552) - designed as a demonstration aircraft for the synergy of Mother OS, [Mother GUI](../MotherGUI/README.md) and [Mother Autopilot System (MAPS)](./../MotherAutopilotSystem/README.md), all built using the [Mother Core](./Framework/README.md) framework for programmable block scripts in Space Engineers.
+
+<iframe width="100%" height="400" src="https://www.youtube.com/embed/UJhYhdJwrFQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
