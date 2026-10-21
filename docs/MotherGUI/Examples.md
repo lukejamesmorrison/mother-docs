@@ -13,9 +13,10 @@ Copy it, then change the `[variables]` section to match your own block and group
 ### Setup
 1. Install [Mother GUI](./Installation.md).
 2. Install [Mother OS](./../IngameScript/IngameScript.md).
-3. Paste the template below into the **Custom Data** of the `Mother GUI` programmable block.
-4. Update the values in `[variables]` to match the names of your blocks and groups.
-5. Recompile or restart the Mother GUI programmable block.
+3. (Optional) Install [Automatic LCDs 2](https://steamcommunity.com/sharedfiles/filedetails/?id=822950976) - It's an incredible script and lives on all my grids.
+4. Paste the template below into the **Custom Data** of the `Mother GUI` programmable block.
+5. Update the values in `[variables]` to match the names of your blocks and groups.
+6. Recompile or restart the Mother GUI programmable block.
 
 The `[surfaces]` section on the Mother GUI programmable block shows a `LogView` on its own screen. To display the menu on a cockpit, configure the cockpit surface as described in [Configuration](./Configuration.md):
 
@@ -29,6 +30,10 @@ Entries like `"$MAIN_SCREEN"` are replaced with the value of the matching variab
 :::
 
 ### Template
+
+:::tabs
+
+@tab Mother GUI
 
 ```ms title="Mother GUI > Custom Data"
 [general]
@@ -64,6 +69,8 @@ HOLOLCD_LEFT="HoloLCD 1 [LCD]"
 HOLOLCD_RIGHT="HoloLCD 2 [LCD]"
 ;------------------------------------------------------
 ; Main menu of menu system.
+; Autolcd views are defined in the Mother OS 
+; custom data.
 ;------------------------------------------------------
 ;
 [menu:Main Menu]
@@ -405,6 +412,11 @@ Map Scale=
 [hooks]
 ```
 
+@tab Mother OS
+Coming soon.
+
+:::
+
 ### How It Works
 
 - **`[variables]`** holds every block and group name in one place. Menu commands reference them with `$NAME`.
@@ -444,6 +456,7 @@ To add a new device, follow the same three steps used for the Projector and Ante
     :::tip
     Mother GUI uses the same syntax as Mother OS - so this should look very similar to a typical routine you would write in the [commands] section of the **Custom Data**.
     :::
+
 
 
 ## Demo
