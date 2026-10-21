@@ -424,7 +424,7 @@ To add a new device, follow the same three steps used for the Projector and Ante
     TURRET=Turret
     ```
 
-2. Add an entry to `[menu:Main Menu]` that opens a submenu.
+2. Add an entry to `[menu:MainMenu]` that opens a submenu.
 
     ```ms title="MOTHER GUI > Custom Data"
     Turret=view/go self TurretMenu --title=Turret;
