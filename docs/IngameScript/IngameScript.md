@@ -54,6 +54,12 @@ Using Mother OS does not require any programming/coding experience.
 
 [[toc]]
 
+## Demo
+
+Check out the [Nova Blade Mk1 (Steam Workshop)](https://steamcommunity.com/sharedfiles/filedetails/?id=3823300552) - designed as a demonstration aircraft for the synergy of Mother OS, [Mother GUI](../MotherGUI/README.md) and [Mother Autopilot System (MAPS)](./../MotherAutopilotSystem/README.md), all built using the [Mother Core](./Framework/README.md) framework for programmable block scripts in Space Engineers.
+
+<iframe width="100%" height="400" src="https://www.youtube.com/embed/UJhYhdJwrFQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
 ## Features
 <br>
 

@@ -17,6 +17,11 @@ This update brings **Mother OS 1.2**, **Mother Core 1.1.4**, **Mother GUI 0.2**,
 - **Mother GUI 0.2** adds the `view/notify` command, custom menu titles, scroll indicators, and a simpler `< Back` entry on every menu.
 - **MAPS 0.2** shares `MapView` with Mother GUI so one screen can switch between a menu and the map.
 
+Check out the [Nova Blade Mk1 (Steam Workshop](https://steamcommunity.com/sharedfiles/filedetails/?id=3823300552) - designed as a demonstration aircraft for the synergy of Mother OS, Mother GUI and Mother Autopilot System, all built using [Mother Core](./Framework/README.md).
+
+<iframe width="100%" height="400" src="https://www.youtube.com/embed/UJhYhdJwrFQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+
 ### Mother OS 1.2
 
 Players can now show [Automatic LCDs 2](https://steamcommunity.com/sharedfiles/filedetails/?id=822950976) views on any screen with a single command. Define named views in the `[autolcd]` section of the programmable block, then print them to a screen. Use `autolcd/clear` to remove config from a screen.
