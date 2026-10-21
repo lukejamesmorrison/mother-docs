@@ -43,7 +43,7 @@ fp/set "{ RetractLandingGear } GPS:TopSecretBase:211.78:-52.93:59.19:#FF75C9F1: 
 This looks best as a custom command in **Custom Data**:
 
 ```ms title="Mother > Custom Data"
-[Commands]
+[commands]
 
 FlyToTopSecretBase=
 | fp/set 
@@ -87,7 +87,7 @@ fp/set "GPS:Midpoint:190.12:-54.45:45.89:#FF75C9F1: GPS:TopSecretBase:211.78:-52
 If this is a long flight plan, it is most intuitive to store the command in the Programmable Block's **Custom Data**:
 
 ```ms title="Mother > Custom Data"
-[Commands]
+[commands]
 
 set-route-1=
 | fp/set 

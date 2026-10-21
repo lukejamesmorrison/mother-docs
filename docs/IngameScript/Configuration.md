@@ -11,7 +11,7 @@ Players can easily configure Mother using the Programmable Block's **Custom Data
 [general]
 debug=false 
 
-[Commands]
+[commands]
 ; single line command
 hinge0=hinge/rotate Hinge 0 --speed=2;
 
