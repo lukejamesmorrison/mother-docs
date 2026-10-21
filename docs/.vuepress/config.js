@@ -259,6 +259,7 @@ const MotherGUISidebar = {
       link: '/MotherGUI/MenuView.md',
     },
     '/MotherGUI/Views.md',
+    '/MotherGUI/Examples.md',
   ]
 };
 

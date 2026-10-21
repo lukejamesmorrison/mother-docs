@@ -19,7 +19,7 @@ A screen can:
 
 ## Minimal Setup
 
-Start by assigning a surface to a menu name. Custom menus live on the Mother GUI programmable block and use `[menu:Menu Name]` sections.
+Start by assigning a surface to a menu name. Custom menus live on the Mother GUI programmable block and use `[menu:MenuName]` sections.
 
 ```ms title="Bridge LCD > Custom Data"
 [surfaces]

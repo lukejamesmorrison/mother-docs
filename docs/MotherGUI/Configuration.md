@@ -29,7 +29,7 @@ scale=1.15
 [surfaces]
 0=MainMenu
 ```
-
+**MainMenu** is a [Named Menu](#named-menus).
 <br>
 
 ```ms title="Cockpit > Custom Data"

@@ -20,7 +20,7 @@ Let's look at some examples and how Mother simplifies them. See the [Cheatsheet]
 Remote commands are really straight forward! Let's change some lights - we are `Marco`:
 
 ```ms title="Marco > Terminal"
-; Set the remote grid's lights to red (Mother OS command)
+; Set the remote grid's lights to red (common Mother command)
 @Polo light/color Lights red;
 
 ; Run a command defined on this grid (Marco has command defined)
