@@ -20,18 +20,22 @@ At this time, grid names should not contain spaces `" "`.
 
 The simplest form of intergrid communication is to send a remote command. Mother may send a command to any other grid running Mother contained in the [Almanac](../Core/Almanac.md), and available on the antenna network. The receiving grid will execute the command as if it were entered in the local Programmable Block terminal. See the [Security](../Core/Security.md) for more information on protecting intergrid communication from unauthorized access.
 
+:::tip Commands not sending?
+Check out [troubleshooting intergrid communication](../../Troubleshooting.md#another-programmable-block-script-does-not-respond). Also check your semi-colons.
+:::
+
 **Example**
 
-Imagine we have a drone and want it come directly to our position.  We could pilot it remotely, but this is time consuming.  Instead, we can send a command to the ship no matter where it is, and no matter where we are.
+Imagine we have a drone and want it come directly to our position.  We could pilot it remotely, but this is time consuming.  Instead, we can send a command to the ship no matter where it is, and no matter where we are. When sending a command remotely, another grid will attempt to run it exactly as is. See [below](#running-commands-defined-on-a-remote-grid) for when you want to run a custom command that is defined on the remote grid.
 
-We can use the `nav/set-flight-plan` command to send a GPS waypoint to the ship so it knows where to go.
+We can change the color of the landing pad lights on the `Mothership`:
 
 ```ms title="Terminal"
 ; remotely set a flight plan on SurveyDrone grid
-@SurveyDrone nav/set-flight-plan "GPS:CurrentPosition#1:211.78:-52.93:59.19:#FF75C9F1:"
+@Mothership light/color LandingPadLights red;
 ```
 
-Similiarily, if we couple the autopilot start command into a routine, then the SurveyDrone will start flying to the GPS waypoint as soon as it receives the command.:
+Or send it a flight plan command and start autopilot to your current position:
 
 ```ms title="Terminal"
 ; remotely set a flight plan, and start autopilot on SurveyDrone grid
@@ -76,7 +80,12 @@ Should your grid receive a unencrypted message, or with an incorrect passcode, M
 
 ## Running Commands Defined on a Remote Grid
 
-In most cases, the commands you define will only be relevant to the current grid.  Custom commands defined in Custom Data are stored locally. When sending a command remotely, another grid will attempt to run it exactly as is. Let's take a look at the PowerOff command on our `SurveyDrone` grid.
+In most cases, the commands you define will only be relevant to this grid. When sending a command remotely, Mother tries to pass it in the most primitive form. Let's take a look at the `PowerOff` command on our `SurveyDrone` grid.
+
+```ms title="SurveyDrone > Terminal"    
+PowerOff;
+```
+Within the programmable block's custom data we can see that it is running a command we have defined locally.
 
 ```ms title="SurveyDrone > Custom Data"
 [commands]
@@ -86,15 +95,9 @@ PowerOff=
 | block/off Antenna;
 ```
 
-To run this, we can use the following with the `SurveyDrone`'s terminal:
+We may want to call this command remotely, but the `Mothership` does not know what the `PowerOff` command is. It does not have a `PowerOff` command defined locally so we expect an error.
 
-```ms title="SurveyDrone > Terminal"    
-PowerOff;
-```
-
-We may want to call this command remotely. However, the `Mothership` has no knowledge of this command. Mothership does not have a `PowerOff` command defined locally so we expect an error.
-
-We can prefix the remote command with an underscore `_` to indicate that the command is defined locally on the remote grid. This allows Mothership to call commands defined locally on the `SurveyDrone` grid.
+We prefix the remote command with an underscore `_` indicating that the command is a custom *remote* command. This allows `Mothership` to call commands defined locally on the `SurveyDrone` grid.
 
 ```ms title="Mothership > Terminal"
 @SurveyDrone _PowerOff

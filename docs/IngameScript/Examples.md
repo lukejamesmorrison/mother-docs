@@ -5,6 +5,7 @@
 Let's look at some examples and how Mother simplifies them. See the [Cheatsheet](../Cheatsheet.md) for a complete list of available commands.
 
 - [Examples](#examples)
+  - [Sending a Simple Remote Command](#sending-a-simple-remote-command)
   - [Autoclosing Door](#autoclosing-door)
   - [Drill Deployment](#drill-deployment)
   - [Welder Arm Actuation](#welder-arm-actuation)
@@ -13,6 +14,22 @@ Let's look at some examples and how Mother simplifies them. See the [Cheatsheet]
     - [Preflight](#preflight)
     - [Waypoints](#waypoints)
   - [Building a Landing Pad](#building-a-landing-pad)
+
+## Sending a Simple Remote Command
+
+Remote commands are really straight forward! Let's change some lights - we are `Marco`:
+
+```ms title="Marco > Terminal"
+; Set the remote grid's lights to red (Mother OS command)
+@Polo light/color Lights red;
+
+; Run a command defined on this grid (Marco has command defined)
+@Polo ShutdownLights;
+
+; Run a command defined on the remote grid using the underscore 
+; _ prefix (Polo has the command defined)
+@Polo _ShutdownLights;
+```
 
 ## Autoclosing Door
 
@@ -26,7 +43,7 @@ onClose=
 | light/color AirlockLight green;
 ```
 
-:::tip
+:::tip This keyword
 You can use the `this` keyword to target the current block, rather than using its name.
 :::
 
@@ -52,7 +69,7 @@ Putting these together, you can create a routine by adding the following to the 
 
 
 ```ms title="Mother > Custom Data"
-[Commands]
+[commands]
 
 ; We can take advantage of the multi-line syntax
 DeployDrill=
@@ -78,7 +95,7 @@ We want our welder arm to actuate to the following angles:
 Let's set these as custom commands within the Programmable Block's **Custom Data**:
 
 ```ms title="Mother > Custom Data"
-[Commands]
+[commands]
 
 hinges90=hinge/rotate "WelderHinges" 90 --speed=3;
 hinges45=hinge/rotate "WelderHinges" 45 --speed=3;
@@ -106,7 +123,7 @@ We are using the GPS waypoint string, which you can get by copying the waypoint 
 Let's create a routine to fly to each waypoints In the progammable block's **Custom Data**. We can take advantage of the `fcs/start` command to enable autopilot:
 
 ```ms title="Mother > Custom Data"
-[Commands]
+[commands]
 fe1=
 | nav/set-flight-plan "GPS:Iron#1:1023697:182968.67:1599556.3:#FF75C9F1:";
 | fcs/start --speed=100;

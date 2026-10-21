@@ -90,6 +90,7 @@ const MotherOSSidebar = {
       ],
     },
     '/IngameScript/Compatibility.md',
+    '/IngameScript/Troubleshooting.md',
     '/IngameScript/Examples.md',
     // '/PoweredByMother.md',
 
@@ -261,6 +262,11 @@ const MotherGUISidebar = {
   ]
 };
 
+const MotherDevToolsSidebar = {
+  text: 'Mother Dev Tools',
+  link: '/MotherDevTools/README.md',
+};
+
 // Navbar Links
 const navbarLinks = [
   {
@@ -281,13 +287,21 @@ const navbarLinks = [
       text: 'Mother Autopilot System (MAPS)',
       link: '/MotherAutopilotSystem/README.md'
     },
-      {
-        text: 'Mother Core (Script Framework)',
-        link: '/Framework/README.md'
-      },
+    {
+      text: 'Mother Core (Script Framework)',
+      link: '/Framework/README.md'
+    },
+    {
+      text: 'Mother Dev Tools',
+      link: '/MotherDevTools/README.md'
+    },
        {
         text: 'Motherland',
         link: '/Motherland/Motherland.md'
+      },
+      {
+        text: 'Powered by Mother',
+        link: '/PoweredByMother.md'
       },
   ];
 
@@ -490,6 +504,7 @@ export default defineUserConfig({
       MotherAutopilotSystemSidebar,
       // process.env.NODE_ENV == 'development' ? MotherAutopilotSystemSidebar : {},
       MotherCoreSidebar,
+      MotherDevToolsSidebar,
       ...(DEV_MODE ? [MotherStudioSidebar] : []),
       MotherlandSidebar,
       "/PoweredByMother.md",

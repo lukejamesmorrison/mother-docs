@@ -24,10 +24,13 @@ Multple commands together form a *routine*:
 light/color LandingLight red; 
 
 ; routine - set a light color and make it blink
-light/color LandingLight red; light/blink LandingLight fast;
+light/color LandingLight red; door/open "Hangar Doors";
 ```
-<br>
 
+:::info Let's Take a Moment to Reflect
+Each *command* above ends with a semi-colon `;`. If something isn't working, start here! Then check that values with spaces are surrounded by double quotes `""`. Or never have this problem again and use [Mother Dev Tools](../MotherDevTools/README.md) to change how you are writing commands entirely.
+:::
+<br>
 <!-- [![Running a Command](https://img.youtube.com/vi/Ax5bhoeutcA/0.jpg)](https://www.youtube.com/watch?v=Ax5bhoeutcA) -->
 
 <iframe width="100%" height="300" src="https://www.youtube.com/embed/Ax5bhoeutcA?si=B2aE2rusI70_tcJg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
@@ -173,7 +176,7 @@ The light will blink for 0.25s, every 0.5s (50% duty cycle).
 The command syntax can get verbose in the terminal, so it is recommended that you define routines in the `commands` section of Mother's **Custom Data**. We can use a multi-line syntax to make it much more readable:
 
 ```ms title="Mother > Custom Data"
-[Commands]
+[commands]
 ; Single line
 ExtendArm=wait 2; piston/distance LandingArm 3;
 

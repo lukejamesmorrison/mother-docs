@@ -8,7 +8,7 @@ Mother maintains a list of all grids in the world running Mother that are connec
 Grids running Mother will periodically communicate, at which time the Almanac is updated with details specific to each grid.
 :::
 
-To immediately refresh the Almanac, you can run the `ping` comman
+To immediately refresh the Almanac, you can run the `ping` command.
 
 ::: tip
 Check out the Almanac in action using the [Map display](../../../MotherAutopilotSystem/Modules/MapModule.md) in the [Mother Autopilot System](../../../MotherAutopilotSystem/README.md).
@@ -27,3 +27,11 @@ Mother can identify a grid as Friendly, Neutral, or Foe.  This setting is determ
 ## Storing Information
 
 By default, the Almanac uses [LocalStorage](LocalStorage.md) to ensure the positions and information of grids and waypoints are not lost when Mother encounters an error, or the script is rebooted/recompiled.  This means that the Almanac is persistent across reboots of the Programmable Block, preventing the loss of important data over time.
+
+## Refreshing the Almanac
+
+Sometimes we rename our grids and this doesn't persist correctly (Why is my ship still Static Grid 1234 on the map?) Your best course of action is to purge the local Almanac and load fresh names.
+
+```ms title="Terminal"
+purge almanac --force;
+```
