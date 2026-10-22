@@ -14,7 +14,7 @@ Copy it, then change the `[variables]` section to match your own block and group
 1. Install [Mother GUI](./Installation.md).
 2. Install [Mother OS](./../IngameScript/IngameScript.md).
 3. (Optional) Install [Automatic LCDs 2](https://steamcommunity.com/sharedfiles/filedetails/?id=822950976) - It's an incredible script and lives on all my grids.
-4. Paste the template below into the **Custom Data** of the `Mother GUI` programmable block.
+4. Paste the **Mother GUI** template below into the **Custom Data** of the `Mother GUI` programmable block, and the **Mother OS** template into the **Custom Data** of the `Mother OS` programmable block.
 5. Update the values in `[variables]` to match the names of your blocks and groups.
 6. Recompile or restart the Mother GUI programmable block.
 
@@ -39,11 +39,11 @@ Entries like `"$MAIN_SCREEN"` are replaced with the value of the matching variab
 [general]
 debug=false
 
-[surfaces]
-0=LogView "Mother GUI"
-
 [channels]
 default=
+
+[surfaces]
+0=LogView "Mother GUI"
 
 [variables]
 ; Change these values to match your ship's block and group names.
@@ -413,7 +413,155 @@ Map Scale=
 ```
 
 @tab Mother OS
-Coming soon.
+
+```ms title="Mother OS > Custom Data"
+[general]
+debug=false
+
+[channels]
+default=
+
+[surfaces]
+0=LogView "Mother OS"
+
+[variables]
+; Change these values to match your ship's block and group names.
+MAIN_SCREEN="Cockpit [LCD]:0"
+MENU_SCREEN="Cockpit [LCD]:1"
+COCKPIT="Cockpit [LCD]"
+PB_AUTOPILOT="PB - [Mother Autopilot System]"
+PB_GUI="PB - [Mother GUI]"
+BATTERIES=Batteries
+GYROS=Gyros
+SEARCHLIGHTS=Searchlights
+LIGHTS=Lights
+LIGHTS_COLLISION="Lights - Collision"
+LIGHTS_POSITION="Lights - Position"
+LIGHTS_HEADLIGHT="Lights - Headlight"
+THRUSTERS=Thrusters
+THRUSTERS_ATMOSPHERIC=ThrustersAtmospheric
+THRUSTERS_HYDROGEN=ThrustersHydrogen
+THRUSTERS_ION=ThrustersIon
+LANDING_GEAR="Landing Gear"
+CONNECTOR=Connector
+SENSORS=Sensors
+TANKS_O2=TanksO2
+TANKS_H2=TanksH2
+REACTOR=Reactor
+PROJECTOR=Projector
+ANTENNA=Antenna
+HOLOLCDS_GROUP="HoloLCDs"
+HOLOLCD_LEFT="HoloLCD 1 [LCD]"
+HOLOLCD_RIGHT="HoloLCD 2 [LCD]"
+
+[commands]
+;------------------------------------------------------
+; Start all required systems for flight.
+;------------------------------------------------------
+;
+start=
+| battery/auto "$BATTERIES";
+| dampeners/on;
+| block/on "$GYROS";
+| block/on "$ANTENNA";
+| block/on "$LIGHTS";
+| block/on "$THRUSTERS";
+| tank/share "$TANKS_O2";
+| tank/share "$TANKS_H2";
+| block/on "$HOLOLCDS_GROUP";
+| wait 0.5;
+| view/notify "$MENU_SCREEN" "Systems started." --level=success;
+;------------------------------------------------------
+; Shutdown all systems that are not
+; essential while parked.
+;------------------------------------------------------
+;
+shutdown=
+| tank/stockpile "$TANKS_H2";
+| tank/stockpile "$TANKS_O2";
+| block/off "$THRUSTERS";
+| block/off "$LIGHTS";
+| block/off "$ANTENNA";
+| block/off "$GYROS";
+| dampeners/off;
+| battery/charge "$BATTERIES";
+| block/off "$HOLOLCDS_GROUP";
+| wait 0.5;
+| view/notify "$MENU_SCREEN" "Systems shutdown."  --level=success;
+;------------------------------------------------------
+; Reboot all Mother Core scripts on grid.
+;------------------------------------------------------
+;
+Reboot=
+| view/notify "$MENU_SCREEN" "Rebooting..." --level=error;
+| pb/run "$PB_AUTOPILOT" boot;
+| pb/run "$PB_GUI" boot;
+| boot;
+
+[autolcd]
+;------------------------------------------------------
+; System view written in the autolcd standard.
+; TG: is a group on the grid, T: is a single block.
+;------------------------------------------------------
+;
+SystemView=
+| EnabledCount {TG:$THRUSTERS_ATMOSPHERIC}
+| EnabledCount {TG:$THRUSTERS_HYDROGEN}
+| EnabledCount {TG:$THRUSTERS_ION}
+| EnabledCount {TG:$BATTERIES}
+| EnabledCount {TG:$TANKS_H2}
+| EnabledCount {TG:$TANKS_O2}
+| working {T:$CONNECTOR}
+| EnabledCount {TG:$LANDING_GEAR}
+| EnabledCount {TG:$GYROS}
+;------------------------------------------------------
+; Flight view written in the autolcd standard.
+;------------------------------------------------------
+;
+FlightView=
+| StopDistance
+| StopTime
+| Echo
+| Echo Thrusters
+| Echo
+| EnabledCount {TG:$THRUSTERS_ATMOSPHERIC}
+| EnabledCount {TG:$THRUSTERS_HYDROGEN}
+| EnabledCount {TG:$THRUSTERS_ION}
+;------------------------------------------------------
+; Thrusters view written in the autolcd standard.
+;------------------------------------------------------
+;
+ThrustersView=
+| Echo Thrusters
+| Echo
+| EnabledCount {TG:$THRUSTERS_ATMOSPHERIC}
+| EnabledCount {TG:$THRUSTERS_HYDROGEN}
+| EnabledCount {TG:$THRUSTERS_ION}
+;------------------------------------------------------
+; Lights view written in the autolcd standard.
+;------------------------------------------------------
+;
+LightsView=
+| EnabledCount {TG:$LIGHTS}
+;------------------------------------------------------
+; Tanks view written in the autolcd standard.
+;------------------------------------------------------
+;
+TanksView=
+| tanks {T:*} hydrogen
+| tanks {T:*} oxygen
+| echo
+| propbool {TG:$TANKS_H2} Stockpile {H2 - Stockpile}
+| propbool {TG:$TANKS_O2} Stockpile {O2 - Stockpile}
+;------------------------------------------------------
+; Power view written in the autolcd standard.
+;------------------------------------------------------
+;
+PowerView=
+| Power {T:*}
+
+[hooks]
+```
 
 :::
 

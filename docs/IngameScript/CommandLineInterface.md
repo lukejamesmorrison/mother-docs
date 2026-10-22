@@ -80,6 +80,10 @@ Using multiple block names is verbose, so let's create a group with these our bl
 light/color "Airlock Lights" red;
 ```
 
+:::tip Quotes are Important
+Make sure that value including spaces are wrapped in double quotes `""`. This is very important!
+:::
+
 #### By Tag
 As you add more connected ships to your grid, you will quickly notice that groups merge, and the terminal window becomes quite busy with block groups. Mother offers a 3rd way to select blocks using **tags**.
 

@@ -8,6 +8,78 @@ If this is your first time here, check out the [Command Line Interface](./Ingame
 
 [[toc]]
 
+## Command Basics
+### Run a command in the terminal
+```bash title="Terminal"
+# Turn on the Lights group to the color red.
+light/color Lights red;
+```
+Learn more about [running commands](./IngameScript/CommandLineInterface.md#anatomy-of-a-command).
+
+
+### Define a custom command
+```ms title="Programmable Block > Custom Data"
+; This section contains all custom defined commands for the grid.
+[commands]
+; simple command targeting the Cargo Sorter block
+WhitelistOre=sorter/add "Cargo Sorter" Ore --mode=whitelist;
+; chain commands together into a routine (don't forget the 
+; pipe character when using line breaks, and semi-colons at 
+; the end of your commands)
+RunSorterModeA=
+| sorter/add "Cargo Sorter" Ore --mode=whitelist;
+| light/color Lights red;
+```
+Learn more about [custom commands](./IngameScript/CommandLineInterface.md#custom-commands-and-routines).
+
+
+### Use variables to improve reuse
+```ms title="Programmable Block > Custom Data"
+; This section contains all custom defined commands for the grid.
+[variables]
+LIGHT_GROUP=Lights
+CARGO_SORTER="Cargo Sorter"
+
+[commands]
+; prefix variables with the dollar sign $ character
+WhitelistOre=sorter/add $CARGO_SORTER Ore --mode=whitelist;
+; use many variables to speed up writing commands
+RunSorterModeA=
+| sorter/add $CARGO_SORTER Ore --mode=whitelist;
+| light/color "$LIGHT_GROUP" red;
+```
+Learn more about [variables](./IngameScript/CommandLineInterface.md#variables).
+
+### Send commands to other grids remotely
+Remote commands are really straight forward! Let's change some lights - we are Marco:
+```ms title="Marco > Polo"
+; Set the remote grid's lights to red (common Mother command)
+@Polo light/color Lights red;
+
+; Run a command defined on this grid (Marco has command defined)
+@Polo ShutdownLights;
+
+; Run a command defined on the remote grid using the underscore 
+; _ prefix (Polo has the command defined)
+@Polo _OpenDoors;
+```
+
+```ms title="Marco > Custom Data"
+[commands]
+ShutdownLights=block/off Lights;
+```
+
+```ms title="Polo > Custom Data"
+[commands]
+OpenDoors=door/open "Hangar Doors";
+```
+Learn more about [sending commands to other grids](./IngameScript/Modules/Core/IntergridMessageService.md#sending-a-remote-command).
+
+
+
+
+
+
 ## Terminal Blocks (All Blocks)
 [![Static Badge](https://img.shields.io/badge/Terminal_Block_Module-Mother_OS-red?color=red)](IngameScript/Modules/Extension/TerminalBlockModule.md)
 
