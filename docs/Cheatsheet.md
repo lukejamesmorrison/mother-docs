@@ -1,6 +1,6 @@
 # Cheatsheet
 
-This cheatsheet contains commands and hooks for all Mother project scripts. Currently, this includes [Mother Core](Framework/README.md), [Mother OS](IngameScript/IngameScript.md), and [Mother Autopilot System (MAPS)](MotherAutopilotSystem/README.md).  All commands and modules are anotated with the script they belong to, so you can easily find more information about how to use them in the documentation.
+This cheatsheet contains commands and hooks for all Mother project scripts. Currently, this includes [Mother Core](Framework/README.md), [Mother OS](IngameScript/IngameScript.md), [Mother GUI](MotherGUI/README.md), and [Mother Autopilot System (MAPS)](MotherAutopilotSystem/README.md).  All commands and modules are anotated with the script they belong to, so you can easily find more information about how to use them in the documentation.
 
 :::tip First Time?
 If this is your first time here, check out the [Command Line Interface](./IngameScript/CommandLineInterface.md) page to get an overview of how Mother commands work!
@@ -619,13 +619,18 @@ DockConnector.onUnlock=light/color "Dock Light" green;
 :::
 
 ## Displays
-[![Static Badge](https://img.shields.io/badge/Display_Module-Mother_OS-red?color=red)](IngameScript/Modules/Extension/DisplayModule.md)
+[![Static Badge](https://img.shields.io/badge/Display_Module-Mother_OS-red?color=red)](IngameScript/Modules/Extension/DisplayModule.md)&nbsp;
+[![Static Badge](https://img.shields.io/badge/View_Module-Mother_GUI-red?color=red)](MotherGUI/Commands.md)
+
+Use `Block Name:SurfaceIndex` to target a specific surface on cockpits, programmable blocks and sound blocks. The `view/*` and `screen/content|script|scripts` commands are provided by [Mother GUI](MotherGUI/README.md); `screen/bgcolor|color|print` are provided by Mother OS.
 
 ::: tabs
 
 @tab Commands
 
 ### screen/bgcolor
+
+[![Static Badge](https://img.shields.io/badge/Display_Module-Mother_OS-red?color=red)](IngameScript/Modules/Extension/DisplayModule.md)
 
 Set the background color of the screen using RGB values.
 
@@ -661,6 +666,8 @@ screen/bgcolor "PilotCockpit:1" red;
 
 ### screen/color
 
+[![Static Badge](https://img.shields.io/badge/Display_Module-Mother_OS-red?color=red)](IngameScript/Modules/Extension/DisplayModule.md)
+
 Set the color of the text on the screen using RGB values.
 
 ```
@@ -693,7 +700,23 @@ screen/color "AirlockStatusScreen" green;
 screen/color "PilotCockpit:1" green;
 ```
 
+### screen/content
+
+[![Static Badge](https://img.shields.io/badge/Display_Extension_Module-Mother_GUI-red?color=red)](MotherGUI/Commands.md#screen-content)
+
+Change the content type of a display surface.
+
+```
+screen/content <Display> <none|script|text>
+```
+
+```ms title="Terminal"
+screen/content "Bridge LCD" text;
+```
+
 ### screen/print
+
+[![Static Badge](https://img.shields.io/badge/Display_Module-Mother_OS-red?color=red)](IngameScript/Modules/Extension/DisplayModule.md)
 
 Print a message to an LCD panel or group of panels.
 
@@ -743,6 +766,150 @@ screen/print "AirlockStatusScreens" "Docking Ready" --alignment=right;
 
 ; Cockpit LCD
 screen/print "PilotCockpit:1" "ALERT" --color=red --size=10;
+```
+
+### screen/script
+
+[![Static Badge](https://img.shields.io/badge/Display_Extension_Module-Mother_GUI-red?color=red)](MotherGUI/Commands.md#screen-script)
+
+Switch a display surface into script mode and select a script, such as `TSS_ArtificialHorizon`. See [Mother GUI Commands](MotherGUI/Commands.md#screen-script) for the list of built-in scripts.
+
+```
+screen/script <Display> <ScriptName>
+```
+
+```ms title="Terminal"
+screen/script "Bridge LCD" "TSS_ArtificialHorizon";
+```
+
+### screen/scripts
+
+[![Static Badge](https://img.shields.io/badge/Display_Extension_Module-Mother_GUI-red?color=red)](MotherGUI/Commands.md#screen-scripts)
+
+Switch a display to text mode and print the names of the available in-game scripts onto it.
+
+```
+screen/scripts <Display>
+```
+
+```ms title="Terminal"
+screen/scripts "Bridge LCD";
+```
+
+### view/back
+
+[![Static Badge](https://img.shields.io/badge/View_Module-Mother_GUI-red?color=red)](MotherGUI/Commands.md#view-back)
+
+Go back one step in the navigation history, including back from a view owned by another script such as `MapView`. Alias: `menu/back`.
+
+```
+view/back <Display>
+```
+
+```ms title="Terminal"
+view/back "Bridge LCD";
+```
+
+### view/down
+
+[![Static Badge](https://img.shields.io/badge/View_Module-Mother_GUI-red?color=red)](MotherGUI/Commands.md#view-down)
+
+Move the cursor down on a display. Alias: `menu/down`.
+
+```
+view/down <Display>
+```
+
+```ms title="Terminal"
+view/down "Bridge LCD";
+```
+
+### view/go
+
+[![Static Badge](https://img.shields.io/badge/View_Module-Mother_GUI-red?color=red)](MotherGUI/Commands.md#view-go)
+
+Open a named view, switch to a named menu, jump to a menu path, or open a view owned by another script on the construct. Alias: `menu/go`.
+
+```
+view/go <Display> <View|Menu|MenuPath> [Block] [--title=<Title>]
+```
+
+Options
+| Option  | Description                                                                                  |
+| ------- | -------------------------------------------------------------------------------------------- |
+| `title` | Replace the menu name shown in the header. Applies when opening a menu path. Quote titles with spaces. |
+
+Use `self` instead of a display name inside a Mother GUI menu item to target the current display.
+
+**Example**
+
+```ms title="Terminal"
+view/go "Bridge LCD" "RotorView" "Port Rotor";
+view/go "Bridge LCD" "EngineeringMenu";
+view/go "Bridge LCD" "BridgeMenu > Ship Systems > Mechanical";
+view/go "Bridge LCD" "MapView";
+view/go "Cockpit:1" MapMenu --title="Map Menu Title";
+```
+
+```ms title="Mother GUI > Custom Data"
+[menu:MainMenu]
+Door=view/go self "DoorView" "Hangar Door"
+```
+
+### view/notify
+
+[![Static Badge](https://img.shields.io/badge/View_Module-Mother_GUI-red?color=red)](MotherGUI/Commands.md#view-notify)
+
+Show a short-lived notification in the footer of a display.
+
+```
+view/notify <Display> <Message> [--level=<Level>] [--duration=<Seconds>]
+```
+
+Options
+| Option     | Values                                | Default | Description                                      |
+| ---------- | ------------------------------------- | ------- | ------------------------------------------------ |
+| `level`    | `info`, `success`, `warning`, `error` | `info`  | Sets the color of the notification.              |
+| `duration` | `0.1` to `30` seconds                   | `3`     | How long the notification stays on the display.  |
+
+**Example**
+
+```ms title="Terminal"
+view/notify "Cockpit:1" "Docking complete" --level=success --duration=5;
+```
+
+```ms title="Mother GUI > Custom Data"
+[menu:MainMenu]
+Hangar=
+.Open=door/open "Hangar Door"; view/notify self "Hangar door opening" --level=success
+```
+
+### view/select
+
+[![Static Badge](https://img.shields.io/badge/View_Module-Mother_GUI-red?color=red)](MotherGUI/Commands.md#view-select)
+
+Run the selected menu item or enter the selected menu group. Alias: `menu/select`.
+
+```
+view/select <Display>
+```
+
+```ms title="Terminal"
+view/select "Bridge LCD";
+```
+
+### view/up
+
+[![Static Badge](https://img.shields.io/badge/View_Module-Mother_GUI-red?color=red)](MotherGUI/Commands.md#view-up)
+
+Move the cursor up on a display. Alias: `menu/up`.
+
+```
+view/up <Display>
+```
+
+```ms title="Terminal"
+view/up "Bridge LCD";
 ```
 
 :::

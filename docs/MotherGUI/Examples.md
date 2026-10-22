@@ -6,7 +6,7 @@ Let's look at some practical Mother GUI setups. See [MenuView](./MenuView.md) fo
 
 ## GUI Template
 
-This template is a complete control panel for a small ship. It gives you a main menu with submenus for systems, lights, thrusters, sensors, tanks, power, displays, the projector, the antenna, and a map scale selector if yor are running [Mother Autopilot System](./../MotherAutopilotSystem/README.md). 
+This template is a complete control panel for a small ship. It gives you a main menu with submenus for systems, lights, thrusters, sensors, tanks, power, displays, the projector, the antenna, a utilities menu (purge storage, purge almanac, halt, and reboot), and a map scale selector if yor are running [Mother Autopilot System](./../MotherAutopilotSystem/README.md). 
 
 Copy it, then change the `[variables]` section to match your own block and group names.
 
@@ -105,9 +105,8 @@ Projector=
 | view/go self ProjectorMenu --title=Projector;
 Antenna=
 | view/go self AntennaMenu --title=Antenna;
-Reboot=
-| view/notify "$MENU_SCREEN" "Rebooting." --level=success;
-| Reboot;
+Utilities=
+| view/go self UtilitiesMenu --title=Utilities;
 ;------------------------------------------------------
 ; Main system commands menu.
 ;------------------------------------------------------
@@ -406,6 +405,24 @@ Map Scale=
 .1000m=
 | block/config "$COCKPIT" general.mapScale 1000;
 | view/notify "$MENU_SCREEN" "Map scale 1000m." --level=success;
+;------------------------------------------------------
+; Utilities menu. Maintenance commands for
+; clearing data, stopping routines, and rebooting.
+;------------------------------------------------------
+;
+[menu:UtilitiesMenu]
+Purge Storage=
+| purge storage --force;
+| view/notify "$MENU_SCREEN" "Storage purged." --level=success;
+Purge Almanac=
+| purge almanac --force;
+| view/notify "$MENU_SCREEN" "Almanac purged." --level=success;
+Halt=
+| halt;
+| view/notify "$MENU_SCREEN" "Halted." --level=success;
+Reboot=
+| view/notify "$MENU_SCREEN" "Rebooting." --level=success;
+| Reboot;
 
 [commands]
 
