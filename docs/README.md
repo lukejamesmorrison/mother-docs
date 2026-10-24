@@ -54,7 +54,14 @@ footer: MIT Licensed | © 2026 Agentluke | The Empire must grow.
 <ParticlesContainer/>
 
 <!-- <YoutubeCarousel :videos=exampleVideos :autoplay="true" :interval="5000"/> -->
- 
+
+## Nova Blade Mk1 - Demo
+[![Static Badge](https://img.shields.io/badge/Steam%20Workshop-2b3645?logo=steam)](https://steamcommunity.com/sharedfiles/filedetails/?id=3823300552)
+
+The Nova Blade is designed as a demonstration aircraft for the synergy of Mother OS, Mother GUI and Mother Autopilot System, all built using [Mother Core](./Framework/README.md).
+
+<iframe width="100%" height="500" src="https://www.youtube.com/embed/UJhYhdJwrFQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
 ## Mother OS
 
 <!-- **Ingame Script** for Space Engineers players.  -->
