@@ -14,7 +14,17 @@
         <h3 class="title">{{ item.name }}</h3>
         
         <div class="meta">
-          <span class="author">by {{ item.author }}</span>
+          <span class="author">
+            by
+            <a
+              v-if="item.author_link && item.author_link !== '#'"
+              :href="item.author_link"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="author-link"
+            >{{ item.author }}</a>
+            <template v-else>{{ item.author }}</template>
+          </span>
         </div>
 
         <div class="scripts-container" v-if="item.scripts && item.scripts.length">
@@ -115,6 +125,16 @@ defineProps({
 
 .author {
   font-weight: 500;
+}
+
+.author-link {
+  color: inherit;
+  text-decoration: none;
+
+  &:hover {
+    color: var(--vp-c-brand);
+    text-decoration: underline;
+  }
 }
 
 .scripts-container {

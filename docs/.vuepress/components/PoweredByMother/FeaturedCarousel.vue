@@ -110,7 +110,17 @@ function onKeydown(e) {
           <div class="fc__content">
             <div class="fc__content-inner">
               <h3 class="fc__title">{{ currentItem.name }}</h3>
-              <p class="fc__author">by {{ currentItem.author }}</p>
+              <p class="fc__author">
+                by
+                <a
+                  v-if="currentItem.author_link && currentItem.author_link !== '#'"
+                  :href="currentItem.author_link"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="fc__author-link"
+                >{{ currentItem.author }}</a>
+                <template v-else>{{ currentItem.author }}</template>
+              </p>
 
               <div
                 v-if="currentItem.scripts?.length"
@@ -291,6 +301,16 @@ function onKeydown(e) {
   font-size: 0.875rem;
   color: var(--vp-c-text-3);
   font-weight: 500;
+}
+
+.fc__author-link {
+  color: inherit;
+  text-decoration: none;
+}
+
+.fc__author-link:hover {
+  color: var(--vp-c-brand);
+  text-decoration: underline;
 }
 
 .fc__tags {
