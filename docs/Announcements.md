@@ -8,7 +8,7 @@
 
 ## 2nd October Update
 
-This update brings **Mother OS 1.3.0**, **Mother Core 1.2.0**, **Mother GUI 0.3.0**, and **Mother Autopilot System (MAPS) 0.3.0**. Your constructs can now make decisions. Conditional logic lets any script react to the state of your blocks (`"Batteries" low`, `ship altitude < 100`) with `when` rules and `if` steps, and every script on the construct shares the same vocabulary. Update all of your scripts at the same time so they run the same version of Mother Core. Mother Core has also grown a bit, so for developers, you may been to prune a bit. Have no fear though, I have pruned Core considerably and the build tools go well beyond what standard MDK2 minification can do.
+This second update for October brings **Mother OS 1.3.0**, **Mother Core 1.2.0**, **Mother GUI 0.3.0**, and **Mother Autopilot System (MAPS) 0.3.0**. Your constructs can now make decisions. Conditional logic lets any script react to the state of your blocks (`"Batteries" low`, `ship altitude < 100`) with `when` rules and `if` steps, and every script on the construct shares the same vocabulary. Update all of your scripts at the same time so they run the same version of Mother Core. Mother Core has also grown a bit, so for developers, you may been to prune a bit. Have no fear though, I have pruned Core considerably and the build tools go well beyond what standard MDK2 minification can do.
 
 ::: warning Breaking change: connector commands
 `connector/lock`, `connector/unlock` and `connector/toggle` are no longer part of Mother Core. Mother OS still provides them, but Mother GUI and MAPS do not. Developers building on Mother Core should register these commands from their own module.
@@ -177,7 +177,7 @@ InterlockInner=
 
 @tab Landing Lights
 
-Turn the landing lights on when the ship drops below 100 m, and off again when it climbs. `--band=20` keeps the lights from flickering when you hover near 100 m, so they only switch off above 120 m. `--for=2` waits for two seconds before reacting. `altitude` has no value in space, so the lights stay off there. A second rule parks the ship when the landing gear locks: the batteries charge (keeping one in auto mode) and the tanks stockpile.
+Turn the landing lights on when the ship drops below 100 m, and off again when it climbs. `--buffer=20` keeps the lights from flickering when you hover near 100 m, so they only switch off above 120 m. `--for=2` waits for two seconds before reacting. `altitude` has no value in space, so the lights stay off there. A second rule parks the ship when the landing gear locks: the batteries charge (keeping one in auto mode) and the tanks stockpile.
 
 ```ms title="Mother OS > Custom Data"
 [variables]
@@ -189,7 +189,7 @@ TANKS="Hydrogen Tanks"
 
 [rules]
 LandingLights=
-| when ship altitude < 100 --band=20 --for=2;
+| when ship altitude < 100 --buffer=20 --for=2;
 |   block/on $LIGHTS;
 | else;
 |   block/off $LIGHTS;
@@ -237,7 +237,7 @@ THRUSTERS_HYDROGEN="Hydrogen Thrusters"
 
 [rules]
 Atmosphere=
-| when ship gravity < 2 --band=1 --for=3;
+| when ship gravity < 2 --buffer=1 --for=3;
 |   block/off $THRUSTERS_ATMOSPHERIC;
 |   block/on $THRUSTERS_HYDROGEN;
 | else;

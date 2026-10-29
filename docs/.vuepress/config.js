@@ -270,6 +270,10 @@ const navbarLinks = [
         link: '/Cheatsheet.md',
       },
     {
+        text: 'Announcements',
+        link: '/Announcements.md'
+      },
+    {
         text: 'Mother OS (Ingame Script)',
         link: '/IngameScript/IngameScript.md'
       },
@@ -493,6 +497,10 @@ export default defineUserConfig({
         text: 'Cheatsheet',
         collapsible: true, // Allows collapsing sections
         link: '/Cheatsheet.md',
+      },
+      {
+        text: 'Announcements',
+        link: '/Announcements.md',
       },
       MotherOSSidebar,
       MotherGUISidebar,
