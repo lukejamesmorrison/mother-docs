@@ -8,7 +8,7 @@
 
 ## 2nd October Update
 
-This update brings **Mother OS 1.2.1**, **Mother Core 1.2**, **Mother GUI 0.2.1**, and **Mother Autopilot System (MAPS) 0.3**. Your constructs can now make decisions. Conditional logic lets any script react to the state of your blocks (`"Batteries" low`, `ship altitude < 100`) with `when` rules and `if` steps, and every script on the construct shares the same vocabulary. Update all of your scripts at the same time so they run the same version of Mother Core.
+This update brings **Mother OS 1.3.0**, **Mother Core 1.2.0**, **Mother GUI 0.3.0**, and **Mother Autopilot System (MAPS) 0.3.0**. Your constructs can now make decisions. Conditional logic lets any script react to the state of your blocks (`"Batteries" low`, `ship altitude < 100`) with `when` rules and `if` steps, and every script on the construct shares the same vocabulary. Update all of your scripts at the same time so they run the same version of Mother Core. Mother Core has also grown a bit, so for developers, you may been to prune a bit. Have no fear though, I have pruned Core considerably and the build tools go well beyond what standard MDK2 minification can do.
 
 ::: warning Breaking change: connector commands
 `connector/lock`, `connector/unlock` and `connector/toggle` are no longer part of Mother Core. Mother OS still provides them, but Mother GUI and MAPS do not. Developers building on Mother Core should register these commands from their own module.
@@ -18,29 +18,42 @@ This update brings **Mother OS 1.2.1**, **Mother Core 1.2**, **Mother GUI 0.2.1*
 
 - **Conditional logic** adds polled `when` rules, inline `if` / `elseif` / `else` / `end` steps, text compare, and a `[predicates]` section for defining your own predicates.
 - **Shared vocabulary** lets a script use conditions that only another script defines. Mother GUI can test MAPS's `inspace`, and MAPS can test Mother OS's `low`, with nothing extra to configure.
-- **Mother OS 1.2.1** registers block properties and predicates for batteries, tanks, jump drives, doors, landing gear, pistons, rotors, sensors, cockpits, air vents and thrusters. It also adds a `--backup` option to `battery/charge` and `$VARIABLES` in autolcd views.
-- **MAPS 0.3** adds `speed`, `moving`, `gravity`, `altitude`, `inspace` and `ingravity`, and fixes the `roll` command.
-- **Mother GUI 0.2.1** refreshes displays more reliably on multiplayer servers and no longer hits "script too complex" on grids with many displays.
-- **Mother Core 1.2** is about 3,000 characters smaller, runs at `Update1`, and no longer hits "script too complex" on very large grids or with large `[rules]` sections.
+- **Mother OS 1.3.0** registers block properties and predicates for batteries, tanks, jump drives, doors, landing gear, pistons, rotors, sensors, cockpits, air vents and thrusters. It also adds a `--backup` option to `battery/charge` and `$VARIABLES` in autolcd views.
+- **MAPS 0.3** adds `speed`, `moving`, `gravity`, `altitude`, `inspace` and `ingravity`.
+- **Mother GUI 0.3** refreshes displays more reliably on multiplayer servers.
+- **Mother Core 1.2** new block command registration syntax to make wiring up commands easier for developers (and also save a ton of characters).
 
 ### Conditional Logic
 
-A condition is a target followed by a predicate, or by a property, an operator and a value. Use it in a `when` rule to run a routine when the condition changes, or in an `if` step to branch inside any routine.
+A condition is a target followed by a `predicate`, or by a `property`, an operator and a value. Use it in a `when` rule to run a routine when the condition changes, or in an `if` step to branch inside any routine.
 
 ```ms title="Mother > Custom Data"
+; Change these values to match your block and group names.
+[variables]
+SCREEN="Cockpit:1"
+BATTERIES=Batteries
+CONNECTOR="Main Connector"
+
+; When our batteries are low, we print to a cockpit screen.
 [rules]
 LowPower=
-| when "Batteries" low;
-|   screen/print "Cockpit:1" "Power is low";
+| when $BATTERIES low;
+|   screen/print $SCREEN "Power is low";
 | else;
-|   screen/print "Cockpit:1" "Power OK";
+|   screen/print $SCREEN "Power OK";
 
+; Run docking procedure if connector ready to connect, 
+; or notify the user.
 [commands]
-Land=
-| if ship altitude < 100;
-|   gear/lock Gear;
+Dock=
+| if $CONNECTOR connectable;
+|   connector/lock $CONNECTOR;
+| else;
+|   view/notify $SCREEN "Cannot lock. No connector detected." --level=error;
 | end;
 ```
+
+`$NAME` is replaced with the value from `[variables]`, so you only edit your block names in one place. The examples below use the same pattern.
 
 Indent the steps under each `when`, `if`, `elseif` and `else` to make the nesting easy to read. Spaces after the `|` are ignored. Every `if` needs its own `end;`, so put `else;` and `end;` in the same column as the `if` they belong to.
 
@@ -52,63 +65,54 @@ Predicates are the names you can use after a target. Each script defines the pre
 
 Available in every script, including Mother GUI.
 
-| Predicate | True when | Applies to |
-|---|---|---|
-| `on` | the block is switched on | any functional block |
-| `off` | the block is switched off | any functional block |
-| `working` | the block is working | any block |
-| `broken` | the block is not working | any block |
-| `connected` | the connector is connected | connectors |
-| `connectable` | the connector is in range of another and ready to connect | connectors |
-| `disconnected` | the connector is not connected | connectors |
-
-**Properties:** `enabled`, `working` and `status` (`unconnected`, `connectable`, `connected`).
+| Block | Predicates | Properties | State words |
+|---|---|---|---|
+| Any functional block | `on`, `off` | `enabled` | |
+| Any block | `working`, `broken` | `working` | |
+| Connector | `connected`, `connectable`, `disconnected` | `status` | `unconnected`, `connectable`, `connected` |
 
 @tab Mother OS
 
-| Predicate | True when | Applies to |
-|---|---|---|
-| `low` | charge is under 20%, fill is under 15%, or oxygen is under 50% | batteries and jump drives, gas tanks, air vents |
-| `critical` | charge is under 10%, or fill is under 10% | batteries and jump drives, gas tanks |
-| `empty` | charge or fill is under 2%, or nobody is in the seat | batteries and jump drives, gas tanks, cockpits |
-| `full` | charge or fill is over 98% | batteries and jump drives, gas tanks |
-| `ready` | charge is over 99%, or the gear is ready to lock | batteries and jump drives, landing gear |
-| `locked` | the gear or rotor is locked | landing gear, rotors and hinges |
-| `unlocked` | the gear or rotor is unlocked | landing gear, rotors and hinges |
-| `attached` | the rotor, hinge or piston head is attached | rotors, hinges, pistons |
-| `detached` | the rotor, hinge or piston head is not attached | rotors, hinges, pistons |
-| `detected` | the sensor detects something | sensors |
-| `clear` | the sensor detects nothing | sensors |
-| `occupied` | someone is in the seat | cockpits and other ship controllers |
-| `stockpiling` | the tank is stockpiling | gas tanks |
-| `weak` | thrust effectiveness is under 30% | thrusters |
+| Block | Predicates | Properties | State words |
+|---|---|---|---|
+| Battery | `low` (under 20%), `critical` (under 10%), `empty` (under 2%), `full` (over 98%), `ready` (over 99%) | `charge`, `mode` | `auto`, `recharge`, `discharge` |
+| Jump drive | `low`, `critical`, `empty`, `full`, `ready` (same as batteries) | `charge`, `status` | `charging`, `jumping`, `ready` |
+| Gas tank | `low` (under 15%), `critical` (under 10%), `empty` (under 2%), `full` (over 98%), `stockpiling` | `fill`, `stockpile` | |
+| Air vent | `low` (oxygen under 50%) | `oxygen`, `status` | `pressurized`, `pressurizing`, `depressurized`, `depressurizing` |
+| Door | | `status` | `open`, `opening`, `closed`, `closing` |
+| Landing gear | `ready`, `locked`, `unlocked` | `status` | `readytolock`, `locked`, `unlocked` |
+| Piston | | `position`, `status` | `extending`, `extended`, `retracting`, `retracted`, `stopped` |
+| Rotor and hinge | `locked`, `unlocked` | `angle` (degrees), `locked` | |
+| Rotor, hinge and piston | `attached`, `detached` | `attached` | |
+| Sensor | `detected`, `clear` | `detected` | |
+| Cockpit and other ship controllers | `occupied`, `empty` | `occupied`, `dampeners`, `handbrake` | |
+| Thruster | `weak` (effectiveness under 30%) | `effectiveness` | |
 
-`low` and `critical` use a built-in band so they do not flicker around the limit (5% and 3%). Change any of them in `[predicates]`.
+Predicates with the same name mean the same idea on each block, so `"Batteries" low`, `"Hydrogen Tanks" low` and `"Airlock Vent" low` all read naturally. In a group of mixed blocks, only blocks that define the predicate are tested. `low` and `critical` use a built-in band so they do not flicker around the limit (5% and 3%). Change any of them in `[predicates]`.
 
-**Properties:** `charge`, `mode`, `status`, `fill`, `stockpile`, `oxygen`, `position`, `angle`, `locked`, `attached`, `detected`, `occupied`, `dampeners`, `handbrake` and `effectiveness`.
-
-**State words** are compared by name and also work as predicates: doors (`open`, `opening`, `closed`, `closing`), landing gear (`locked`, `unlocked`, `readytolock`), pistons (`extending`, `extended`, `retracting`, `retracted`, `stopped`), air vents (`pressurized`, `pressurizing`, `depressurized`, `depressurizing`), batteries (`auto`, `recharge`, `discharge`) and jump drives (`charging`, `jumping`, `ready`).
+`dampeners` and `handbrake` have no predicate. Compare them to `1` (on) or `0` (off), for example `when ship dampeners == 0;`. Every state word also works as a predicate.
 
 @tab MAPS
 
-| Predicate | True when | Applies to |
-|---|---|---|
-| `moving` | the ship is moving faster than 0.1 m/s | ship |
-| `stopped` | the ship is not moving | ship |
-| `inspace` | there is no gravity | ship |
-| `ingravity` | there is gravity | ship |
+| Block | Predicates | Properties | State words |
+|---|---|---|---|
+| Ship (cockpit or remote control) | `moving` (faster than 0.1 m/s), `stopped`, `inspace` (no gravity), `ingravity` | `speed`, `gravity`, `altitude` (above the planet surface) | |
 
-**Properties:** `speed`, `gravity` and `altitude` (above the surface of the planet). Use `ship` as the target, for example `if ship altitude < 100;`.
+Use `ship` as the target, for example `if ship altitude < 100;`.
 
 @tab Mother GUI
 
 Mother GUI does not define its own predicates. It uses every predicate from Mother Core, and from Mother OS and MAPS when they run on the same construct, so a menu can react to the state of your ship.
 
 ```ms title="Mother GUI > Custom Data"
+[variables]
+SCREEN="Cockpit:1"
+BATTERIES=Batteries
+
 [rules]
 Alert=
-| when "Batteries" critical;
-|   view/notify "Cockpit:1" "Batteries critical" --level=error;
+| when $BATTERIES critical;
+|   view/notify $SCREEN "Batteries critical" --level=error;
 ```
 
 :::
@@ -124,45 +128,51 @@ Rules go in the `[rules]` section of the programmable block's Custom Data. Comma
 Two commands cycle the airlock, and each step checks that the previous one worked before moving on. The inner door must be closed before the vent depressurizes, and the vent must be depressurized before the outer door opens. Two rules act as an interlock, so both doors can never be open at the same time, even if a player opens one by hand.
 
 ```ms title="Mother OS > Custom Data"
+[variables]
+SCREEN="Cockpit:1"
+DOOR_INNER="Airlock Inner"
+DOOR_OUTER="Airlock Outer"
+VENT="Airlock Vent"
+
 [commands]
 AirlockExit=
-| door/close "Airlock Inner";
+| door/close $DOOR_INNER;
 | wait 2;
-| if "Airlock Inner" closed;
-|   vent/depressurize "Airlock Vent";
+| if $DOOR_INNER closed;
+|   vent/depressurize $VENT;
 |   wait 5;
-|   if "Airlock Vent" depressurized;
-|     door/open "Airlock Outer";
+|   if $VENT depressurized;
+|     door/open $DOOR_OUTER;
 |   else;
-|     view/notify "Cockpit:1" "Airlock is still depressurizing." --level=warning;
+|     view/notify $SCREEN "Airlock is still depressurizing." --level=warning;
 |   end;
 | else;
-|   view/notify "Cockpit:1" "Inner door is blocked." --level=error;
+|   view/notify $SCREEN "Inner door is blocked." --level=error;
 | end;
 
 AirlockEnter=
-| door/close "Airlock Outer";
+| door/close $DOOR_OUTER;
 | wait 2;
-| if "Airlock Outer" closed;
-|   vent/pressurize "Airlock Vent";
+| if $DOOR_OUTER closed;
+|   vent/pressurize $VENT;
 |   wait 5;
-|   if "Airlock Vent" pressurized;
-|     door/open "Airlock Inner";
+|   if $VENT pressurized;
+|     door/open $DOOR_INNER;
 |   else;
-|     view/notify "Cockpit:1" "Airlock is still pressurizing." --level=warning;
+|     view/notify $SCREEN "Airlock is still pressurizing." --level=warning;
 |   end;
 | else;
-|   view/notify "Cockpit:1" "Outer door is blocked." --level=error;
+|   view/notify $SCREEN "Outer door is blocked." --level=error;
 | end;
 
 [rules]
 InterlockOuter=
-| when "Airlock Outer" open;
-|   door/close "Airlock Inner";
+| when $DOOR_OUTER open;
+|   door/close $DOOR_INNER;
 
 InterlockInner=
-| when "Airlock Inner" open;
-|   door/close "Airlock Outer";
+| when $DOOR_INNER open;
+|   door/close $DOOR_OUTER;
 ```
 
 @tab Landing Lights
@@ -170,21 +180,28 @@ InterlockInner=
 Turn the landing lights on when the ship drops below 100 m, and off again when it climbs. `--band=20` keeps the lights from flickering when you hover near 100 m, so they only switch off above 120 m. `--for=2` waits for two seconds before reacting. `altitude` has no value in space, so the lights stay off there. A second rule parks the ship when the landing gear locks: the batteries charge (keeping one in auto mode) and the tanks stockpile.
 
 ```ms title="Mother OS > Custom Data"
+[variables]
+LIGHTS="Landing Lights"
+GEAR="Landing Gear"
+BATTERIES=Batteries
+BACKUP_BATTERY=BackupBattery
+TANKS="Hydrogen Tanks"
+
 [rules]
 LandingLights=
 | when ship altitude < 100 --band=20 --for=2;
-|   block/on "Landing Lights";
+|   block/on $LIGHTS;
 | else;
-|   block/off "Landing Lights";
+|   block/off $LIGHTS;
 
 Parked=
-| when "Landing Gear" locked --for=2;
-|   block/off "Landing Lights";
-|   battery/charge "Batteries" --backup=BackupBattery;
-|   tank/stockpile "Hydrogen Tanks";
+| when $GEAR locked --for=2;
+|   block/off $LIGHTS;
+|   battery/charge $BATTERIES --backup=$BACKUP_BATTERY;
+|   tank/stockpile $TANKS;
 | else;
-|   battery/auto "Batteries";
-|   tank/share "Hydrogen Tanks";
+|   battery/auto $BATTERIES;
+|   tank/share $TANKS;
 ```
 
 `altitude` is provided by MAPS. Mother OS can use it without any setup as long as MAPS runs on the same construct.
@@ -194,29 +211,38 @@ Parked=
 Switch engine groups when the ship leaves a planet's gravity. Atmospheric thrusters do nothing in space, so turn them off and bring the hydrogen thrusters online, then reverse it on the way back in. `--for=3` stops the switch from firing while the ship skims the edge of the atmosphere.
 
 ```ms title="Mother OS > Custom Data"
+[variables]
+SCREEN="Cockpit:1"
+THRUSTERS_ATMOSPHERIC="Atmospheric Thrusters"
+THRUSTERS_HYDROGEN="Hydrogen Thrusters"
+
 [rules]
 Atmosphere=
 | when ship inspace --for=3;
-|   block/off "Atmospheric Thrusters";
-|   block/on "Hydrogen Thrusters";
-|   view/notify "Cockpit:1" "Entered space." --level=info;
+|   block/off $THRUSTERS_ATMOSPHERIC;
+|   block/on $THRUSTERS_HYDROGEN;
+|   view/notify $SCREEN "Entered space." --level=info;
 | else;
-|   block/on "Atmospheric Thrusters";
-|   block/off "Hydrogen Thrusters";
-|   view/notify "Cockpit:1" "Entered gravity." --level=info;
+|   block/on $THRUSTERS_ATMOSPHERIC;
+|   block/off $THRUSTERS_HYDROGEN;
+|   view/notify $SCREEN "Entered gravity." --level=info;
 ```
 
 `inspace` is only true when there is no gravity at all. To switch earlier, compare the `gravity` property in m/s² instead (the ship's gravity is about 9.8 at 1 g):
 
 ```ms title="Mother OS > Custom Data"
+[variables]
+THRUSTERS_ATMOSPHERIC="Atmospheric Thrusters"
+THRUSTERS_HYDROGEN="Hydrogen Thrusters"
+
 [rules]
 Atmosphere=
 | when ship gravity < 2 --band=1 --for=3;
-|   block/off "Atmospheric Thrusters";
-|   block/on "Hydrogen Thrusters";
+|   block/off $THRUSTERS_ATMOSPHERIC;
+|   block/on $THRUSTERS_HYDROGEN;
 | else;
-|   block/on "Atmospheric Thrusters";
-|   block/off "Hydrogen Thrusters";
+|   block/on $THRUSTERS_ATMOSPHERIC;
+|   block/off $THRUSTERS_HYDROGEN;
 ```
 
 `inspace`, `ingravity` and `gravity` are provided by MAPS, so the rule works in Mother OS or Mother GUI as long as MAPS runs on the same construct.
@@ -226,16 +252,23 @@ Atmosphere=
 React to the connector instead of writing a hook for every state. Once the ship is docked, charge the batteries (keeping one in auto mode as a backup) and stockpile the tanks. When it leaves, go back to normal. `--for=2` ignores a connector that briefly connects while you manoeuvre.
 
 ```ms title="Mother OS > Custom Data"
+[variables]
+DOCK=Dock
+BATTERIES=Batteries
+BACKUP_BATTERY=BackupBattery
+TANKS="Hydrogen Tanks"
+THRUSTERS="Hydrogen Thrusters"
+
 [rules]
 Docked=
-| when "Dock" connected --for=2;
-|   battery/charge "Batteries" --backup=BackupBattery;
-|   tank/stockpile "Hydrogen Tanks";
-|   block/off "Hydrogen Thrusters";
+| when $DOCK connected --for=2;
+|   battery/charge $BATTERIES --backup=$BACKUP_BATTERY;
+|   tank/stockpile $TANKS;
+|   block/off $THRUSTERS;
 | else;
-|   battery/auto "Batteries";
-|   tank/share "Hydrogen Tanks";
-|   block/on "Hydrogen Thrusters";
+|   battery/auto $BATTERIES;
+|   tank/share $TANKS;
+|   block/on $THRUSTERS;
 ```
 
 A command can also check a connector before it does something:
@@ -243,11 +276,11 @@ A command can also check a connector before it does something:
 ```ms title="Mother OS > Custom Data"
 [commands]
 Undock=
-| if "Dock" connected;
-|   connector/unlock "Dock";
+| if $DOCK connected;
+|   connector/unlock $DOCK;
 |   wait 1;
 | end;
-| block/on "Hydrogen Thrusters";
+| block/on $THRUSTERS;
 ```
 
 @tab Low Power
@@ -255,21 +288,27 @@ Undock=
 Warn early, then save power when it gets critical. `low` and `critical` already include a built-in band, so these rules will not flicker. `--at` changes the threshold for a single rule, here warning at 25% instead of 20%.
 
 ```ms title="Mother OS > Custom Data"
+[variables]
+SCREEN="Cockpit:1"
+BATTERIES=Batteries
+SPOTLIGHTS=Spotlights
+PROJECTORS=Projectors
+
 [rules]
 LowBattery=
-| when "Batteries" low --at=25%;
-|   view/notify "Cockpit:1" "Batteries low." --level=warning;
+| when $BATTERIES low --at=25%;
+|   view/notify $SCREEN "Batteries low." --level=warning;
 | else;
-|   view/notify "Cockpit:1" "Batteries recovered." --level=success;
+|   view/notify $SCREEN "Batteries recovered." --level=success;
 
 PowerSaver=
-| when "Batteries" critical --for=3;
-|   block/off "Spotlights";
-|   block/off "Projectors";
-|   view/notify "Cockpit:1" "Power saver on." --level=error;
+| when $BATTERIES critical --for=3;
+|   block/off $SPOTLIGHTS;
+|   block/off $PROJECTORS;
+|   view/notify $SCREEN "Power saver on." --level=error;
 | else;
-|   block/on "Spotlights";
-|   block/on "Projectors";
+|   block/on $SPOTLIGHTS;
+|   block/on $PROJECTORS;
 ```
 
 @tab Menu Toggle
@@ -277,16 +316,44 @@ PowerSaver=
 Use `if` in a menu entry to replace separate On and Off buttons with a single one. Because `on` and `off` are predicates for any functional block, this works for lights, doors, thrusters and more.
 
 ```ms title="Mother GUI > Custom Data"
+[variables]
+SCREEN="Cockpit:1"
+HEADLIGHTS=Headlights
+
 [menu:Lighting]
 Headlights=
-| if "Headlights" on;
-|   block/off "Headlights";
-|   view/notify "Cockpit:1" "Headlights off." --level=success;
+| if $HEADLIGHTS on;
+|   block/off $HEADLIGHTS;
+|   view/notify $SCREEN "Headlights off." --level=success;
 | else;
-|   block/on "Headlights";
-|   view/notify "Cockpit:1" "Headlights on." --level=success;
+|   block/on $HEADLIGHTS;
+|   view/notify $SCREEN "Headlights on." --level=success;
 | end;
 ```
+
+@tab Confirm Menu
+
+Ask before anything you cannot easily undo. A confirm menu is a normal menu with two entries. The entry that starts the action opens it with `view/go self`, and `--title` shows the question in the header. List `No` first for risky actions so the cursor starts on the safe choice, and use `view/back` to return to the previous menu.
+
+```ms title="Mother GUI > Custom Data"
+[variables]
+SCREEN="Cockpit:1"
+SYSTEMS="Non-Essential Systems"
+
+[menu:Systems]
+Power Down=
+| view/go self ConfirmPowerDown --title="Power down?";
+
+[menu:ConfirmPowerDown]
+No, cancel=
+| view/back;
+Yes, power down=
+| block/off $SYSTEMS;
+| view/notify $SCREEN "Systems off." --level=success;
+| view/back;
+```
+
+The same menu works for other actions such as purging storage or halting running routines. Point each action at its own confirm menu.
 
 :::
 
