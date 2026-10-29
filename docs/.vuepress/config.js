@@ -38,44 +38,37 @@ const MotherOSSidebar = {
         '/IngameScript/Installation.md',
         '/IngameScript/CommandLineInterface.md',
         '/IngameScript/Configuration.md',
-        '/IngameScript/Modules/Modules.md',
       ],
     },
     {
-      text: 'Core Modules',
+      text: 'Modules',
+      link: '/IngameScript/Modules/Modules.md',
       collapsible: true, // Allows collapsing sections
       children: [
         '/IngameScript/Modules/Core/ActivityMonitor.md',
-        '/IngameScript/Modules/Core/Almanac.md',
-        '/IngameScript/Modules/Core/BlockCatalogue.md',
-        '/IngameScript/Modules/Core/IntergridMessageService.md',
-        '/IngameScript/Modules/Core/LocalStorage.md',
-        '/IngameScript/Modules/Core/MergeBlockModule.md',
-        // '/IngameScript/Modules/Core/Security.md',
-      ],
-    },
-    {
-      text: 'Extension Modules',
-      collapsible: true, // Allows collapsing sections
-      children: [
         {
           link: '/IngameScript/Modules/Extension/AirVentModule.md',
           text: 'Air Vent Module'
         },
+        '/IngameScript/Modules/Core/Almanac.md',
         '/IngameScript/Modules/Extension/AutoLCDModule.md',
         '/IngameScript/Modules/Extension/BatteryModule.md',
-        '/IngameScript/Modules/Extension/TerminalBlockModule.md',
+        '/IngameScript/Modules/Core/BlockCatalogue.md',
         '/IngameScript/Modules/Extension/CockpitModule.md',
         '/IngameScript/Modules/Extension/ConnectorModule.md',
         '/IngameScript/Modules/Extension/DisplayModule.md',
         '/IngameScript/Modules/Extension/DoorModule.md',
         '/IngameScript/Modules/Extension/GasTankModule.md',
         '/IngameScript/Modules/Extension/HingeModule.md',
+        '/IngameScript/Modules/Core/IntergridMessageService.md',
         '/IngameScript/Modules/Extension/LandingGearModule.md',
         '/IngameScript/Modules/Extension/LightModule.md',
+        '/IngameScript/Modules/Core/LocalStorage.md',
+        '/IngameScript/Modules/Core/MergeBlockModule.md',
         '/IngameScript/Modules/Extension/PistonModule.md',
         '/IngameScript/Modules/Extension/ProgrammableBlockModule.md',
         '/IngameScript/Modules/Extension/RotorModule.md',
+        // '/IngameScript/Modules/Core/Security.md',
         // Alias for DisplayModule
         {
           link: '/IngameScript/Modules/Extension/DisplayModule.md',
@@ -84,6 +77,7 @@ const MotherOSSidebar = {
         '/IngameScript/Modules/Extension/SensorModule.md',
         '/IngameScript/Modules/Extension/SorterModule.md',
         '/IngameScript/Modules/Extension/SoundBlockModule.md',
+        '/IngameScript/Modules/Extension/TerminalBlockModule.md',
         '/IngameScript/Modules/Extension/ThrusterModule.md',
         '/IngameScript/Modules/Extension/TimerBlockModule.md',
         '/IngameScript/Modules/Extension/WheelModule.md',
