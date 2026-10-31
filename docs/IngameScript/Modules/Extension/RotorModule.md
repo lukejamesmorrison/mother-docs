@@ -145,6 +145,43 @@ Decrease speed by 1 RPM:
 rotor/speed AntennaRotor 1 --sub;
 ```
 
+## Properties
+
+:::tip
+Properties and predicates are very useful in conditions. A property is compared with an operator and a value (`angle > 90`), while a predicate stands alone (`locked`). See [Conditional Logic](../../ConditionalLogic.md) to use them in `when` rules and `if` steps.
+:::
+
+| Property | Description |
+|-|-|
+| `angle` | The current angle of the rotor in degrees. A group is compared by its average. |
+| `locked` | `1` when the rotor is locked, `0` when unlocked. |
+| `attached` | `1` when the rotor head is attached, `0` when detached. |
+
+| Predicate | True when |
+|-|-|
+| `locked` | The rotor is locked. |
+| `unlocked` | The rotor is unlocked. |
+| `attached` | The rotor head is attached. |
+| `detached` | The rotor head is detached. |
+
+**Compare a property**
+
+```ms title="Mother > Custom Data"
+[rules]
+TurretAimed=
+| when TurretRotor angle > 90;
+|   light/color "Turret Light" green;
+```
+
+**Use a predicate**
+
+```ms title="Mother > Custom Data"
+[rules]
+TurretLocked=
+| when TurretRotor locked;
+|   light/color "Turret Light" red;
+```
+
 ## Hooks
 
 The following hooks can be define in the block's Custom Data, and will be triggered when the corresponding command is called:

@@ -11,7 +11,7 @@ If you are developing a script that does not need to use colors in commands, use
 ## Getting a Color
 The `ColorHelper` class provides a simple way to access common colors by name or RGB string:
 
-```csharp
+```csharp title="LightModule.cs"
 // by name
 Color red = ColorHelper.GetColor("red");
 

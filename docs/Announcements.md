@@ -8,7 +8,7 @@
 
 ## 2nd October Update
 
-This second update for October brings **Mother OS 1.3.0**, **Mother Core 1.2.0**, **Mother GUI 0.3.0**, and **Mother Autopilot System (MAPS) 0.3.0**. Your constructs can now make decisions. Conditional logic lets any script react to the state of your blocks (`"Batteries" low`, `ship altitude < 100`) with `when` rules and `if` steps, and every script on the construct shares the same vocabulary. Update all of your scripts at the same time so they run the same version of Mother Core. Mother Core has also grown a bit, so for developers, you may been to prune a bit. Have no fear though, I have pruned Core considerably and the build tools go well beyond what standard MDK2 minification can do.
+This second update for October brings **Mother OS 1.3.0**, **Mother Core 1.2.0**, **Mother GUI 0.3.0**, and **Mother Autopilot System (MAPS) 0.3.0**. Your constructs can now make decisions. Conditional logic lets any script react to the state of your blocks (`"Batteries" low`, `grid altitude < 100`) with `when` rules and `if` steps, and every script on the construct shares the same vocabulary. Update all of your scripts at the same time so they run the same version of Mother Core. Mother Core has also grown a bit, so for developers, you may need to prune a bit. Have no fear though, I have pruned Core considerably and the build tools go well beyond what standard MDK2 minification can do.
 
 ::: warning Breaking change: connector commands
 `connector/lock`, `connector/unlock` and `connector/toggle` are no longer part of Mother Core. Mother OS still provides them, but Mother GUI and MAPS do not. Developers building on Mother Core should register these commands from their own module.
@@ -84,21 +84,21 @@ Available in every script, including Mother GUI.
 | Piston | | `position`, `status` | `extending`, `extended`, `retracting`, `retracted`, `stopped` |
 | Rotor and hinge | `locked`, `unlocked` | `angle` (degrees), `locked` | |
 | Rotor, hinge and piston | `attached`, `detached` | `attached` | |
-| Sensor | `detected`, `clear` | `detected` | |
+| Sensor | `detected`, `clear` | `detected`, `distance` | |
 | Cockpit and other ship controllers | `occupied`, `empty` | `occupied`, `dampeners`, `handbrake` | |
 | Thruster | `weak` (effectiveness under 30%) | `effectiveness` | |
 
-Predicates with the same name mean the same idea on each block, so `"Batteries" low`, `"Hydrogen Tanks" low` and `"Airlock Vent" low` all read naturally. In a group of mixed blocks, only blocks that define the predicate are tested. `low` and `critical` use a built-in band so they do not flicker around the limit (5% and 3%). Change any of them in `[predicates]`.
+Predicates with the same name mean the same idea on each block, so `"Batteries" low`, `"Hydrogen Tanks" low` and `"Airlock Vent" low` all read naturally. In a group of mixed blocks, only blocks that define the predicate are tested. `low` and `critical` use a built-in buffer so they do not flicker around the limit (5% and 3%). Change any of them in `[predicates]`.
 
-`dampeners` and `handbrake` have no predicate. Compare them to `1` (on) or `0` (off), for example `when ship dampeners == 0;`. Every state word also works as a predicate.
+`dampeners` and `handbrake` have no predicate. Compare them to `1` (on) or `0` (off), for example `when grid dampeners == 0;`. Every state word also works as a predicate.
 
 @tab MAPS
 
 | Block | Predicates | Properties | State words |
 |---|---|---|---|
-| Ship (cockpit or remote control) | `moving` (faster than 0.1 m/s), `stopped`, `inspace` (no gravity), `ingravity` | `speed`, `gravity`, `altitude` (above the planet surface) | |
+| Grid (cockpit or remote control) | `moving` (faster than 0.1 m/s), `stopped`, `inspace` (no gravity), `ingravity` | `speed`, `gravity`, `altitude` (above the planet surface) | |
 
-Use `ship` as the target, for example `if ship altitude < 100;`.
+Use `grid` as the target, for example `if grid altitude < 100;`.
 
 @tab Mother GUI
 
@@ -189,7 +189,7 @@ TANKS="Hydrogen Tanks"
 
 [rules]
 LandingLights=
-| when ship altitude < 100 --buffer=20 --for=2;
+| when grid altitude < 100 --buffer=20 --for=2;
 |   block/on $LIGHTS;
 | else;
 |   block/off $LIGHTS;
@@ -218,7 +218,7 @@ THRUSTERS_HYDROGEN="Hydrogen Thrusters"
 
 [rules]
 Atmosphere=
-| when ship inspace --for=3;
+| when grid inspace --for=3;
 |   block/off $THRUSTERS_ATMOSPHERIC;
 |   block/on $THRUSTERS_HYDROGEN;
 |   view/notify $SCREEN "Entered space." --level=info;
@@ -237,7 +237,7 @@ THRUSTERS_HYDROGEN="Hydrogen Thrusters"
 
 [rules]
 Atmosphere=
-| when ship gravity < 2 --buffer=1 --for=3;
+| when grid gravity < 2 --buffer=1 --for=3;
 |   block/off $THRUSTERS_ATMOSPHERIC;
 |   block/on $THRUSTERS_HYDROGEN;
 | else;
@@ -285,7 +285,7 @@ Undock=
 
 @tab Low Power
 
-Warn early, then save power when it gets critical. `low` and `critical` already include a built-in band, so these rules will not flicker. `--at` changes the threshold for a single rule, here warning at 25% instead of 20%.
+Warn early, then save power when it gets critical. `low` and `critical` already include a built-in buffer, so these rules will not flicker. `--at` changes the threshold for a single rule, here warning at 25% instead of 20%.
 
 ```ms title="Mother OS > Custom Data"
 [variables]
@@ -357,7 +357,13 @@ The same menu works for other actions such as purging storage or halting running
 
 :::
 
-Explore Mother OS: [Upgrade Guide](./IngameScript/UpgradeGuide.md) | Explore Mother Core:  [Upgrade Guide](./Framework/Developer/GettingStarted/UpgradeGuide.md)
+Explore Mother OS: [Conditional Logic](./IngameScript/ConditionalLogic.md) | [Examples](./IngameScript/Examples.md#conditional-logic) | [Jump Drive Module](./IngameScript/Modules/Extension/JumpDriveModule.md) | [Upgrade Guide](./IngameScript/UpgradeGuide.md)
+
+Explore Mother Core: [Conditions](./Framework/Developer/CoreModules/Conditions.md) | [Managing Script Size](./Framework/Developer/GettingStarted/ManagingScriptSize.md#build-time-optimization) | [Upgrade Guide](./Framework/Developer/GettingStarted/UpgradeGuide.md)
+
+Explore Mother GUI: [Conditional Menu Entries](./MotherGUI/MenuView.md#conditional-menu-entries) | [Upgrade Guide](./MotherGUI/UpgradeGuide.md)
+
+Explore Mother Autopilot System (MAPS): [Conditions](./MotherAutopilotSystem/Modules/FlightControlModule.md#conditions) | [Upgrade Guide](./MotherAutopilotSystem/UpgradeGuide.md)
 
 ---
 

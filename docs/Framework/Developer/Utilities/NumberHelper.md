@@ -8,7 +8,7 @@ This utility provides a simple interface for parsing numeric types from strings.
 
 The `NumberHelper.Parse<T>` method provides a generic way to parse strings into numeric types. It supports `int`, `long`, `float`, `double`, and `decimal`.
 
-```csharp
+```csharp title="RotorModule.cs"
 // Parse as int
 int count = NumberHelper.Parse<int>("42");
 

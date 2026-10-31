@@ -27,6 +27,7 @@ export default [
         image_link: 'https://images.steamusercontent.com/ugc/9862004432632572704/2FA0A3C6ACA8BB0969F7C0266312731DC36AFA25/',
         description: 'The Nova Blade Mk1 is a versatile atmospheric and space-capable craft with advanced automation systems powered by Mother OS, allowing for efficient operation and maneuverability.',
         scripts: ['Mother OS', 'Mother GUI', 'Mother Autopilot System'],
+        page: '/PoweredByMother/NovaBlade.html',
     },
     {
         name: 'DOTTR-MK1',

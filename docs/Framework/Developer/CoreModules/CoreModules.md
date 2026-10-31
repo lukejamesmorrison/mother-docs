@@ -16,6 +16,7 @@ Every page in this section now shows the real usage surface from Mother Core v1.
 | [Block Catalogue](BlockCatalogue.md) | Discovers blocks on the construct, loads block config, tracks tags, and runs hooks. |
 | [Clock](Clock.md) | Schedules recurring work, delayed actions, and multi-cycle coroutines. |
 | [Command Bus](CommandBus.md) | Registers and executes commands, routines, and construct-wide command handoff. |
+| [Conditions](Conditions.md) | Evaluates `when` rules and inline `if` steps, and shares block properties and predicates across the construct. |
 | [Configuration](Configuration.md) | Reads programmable block Custom Data, variables, commands, and runtime config values. |
 | [Event Bus](EventBus.md) | Publishes and subscribes to framework and custom events. |
 | [Intergrid Message Service](IntergridMessageService.md) | Sends requests and responses across IGC channels and construct-local routes. |

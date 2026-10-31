@@ -2,6 +2,72 @@
 
 [[toc]]
 
+## 1.2.0 -> 1.3.0
+🕓 5 mins
+
+This release gives your constructs the ability to make decisions with [conditional logic](./ConditionalLogic.md). It also adds jump drive conditions, the `--backup` option for `battery/charge`, and `$VARIABLES` in AutoLCD views. There is one breaking change for Mother GUI and MAPS users, described below.
+
+::: warning Breaking change: connector commands
+`connector/lock`, `connector/unlock` and `connector/toggle` are no longer part of Mother Core. Mother OS still provides them, so nothing changes for you here. [Mother GUI](../MotherGUI/README.md) and [MAPS](../MotherAutopilotSystem/README.md) no longer provide them, so a command or menu that ran them from those scripts now needs Mother OS on the same construct. Mother OS finds the commands automatically.
+:::
+
+::: tip Update Mother GUI and Mother Autopilot System Together
+Mother OS 1.3 runs on Mother Core 1.2. Update [Mother GUI](../MotherGUI/README.md) and [MAPS](../MotherAutopilotSystem/README.md) at the same time so every script shares the same conditions and commands using the same version of Mother Core.
+:::
+
+### New Features
+
+- **Conditional logic** - Use polled `when` rules in a new `[rules]` section, and `if` / `elseif` / `else` / `end` steps in any routine, to react to the state of your blocks. See [Conditional Logic](./ConditionalLogic.md).
+
+  ```ms title="Mother OS > Custom Data"
+  [rules]
+  LowPower=
+  | when Batteries low;
+  |   light/color "Alarm" red;
+  | else;
+  |   light/color "Alarm" green;
+
+  [commands]
+  Dock=
+  | if "Main Connector" connectable;
+  |   connector/lock "Main Connector";
+  | end;
+  ```
+
+- **Block properties and predicates** - Mother OS registers properties and predicates for batteries, jump drives, gas tanks, air vents, doors, landing gear, pistons, rotors, hinges, sensors, cockpits and thrusters. Each module page lists them under *Conditions*, and you can change any of them in a new `[predicates]` section.
+
+  ```ms title="Mother OS > Custom Data"
+  [predicates]
+  low=charge < 30% | fill < 20%
+  ```
+
+- **Shared vocabulary** - A script can use conditions that only another script defines. Mother OS can use `altitude` and `inspace` from MAPS, and Mother GUI can use `low` from Mother OS, with nothing to configure.
+
+- **Jump drive module** - Jump drives now report `charge` and `status` to conditions. See the [Jump Drive Module](./Modules/Extension/JumpDriveModule.md).
+
+- **`battery/charge --backup`** - Leave one battery in `Auto` mode while the rest recharge. Use `--backup` for the first matched battery, or `--backup=BackupBattery` for a specific one. See [`battery/charge`](./Modules/Extension/BatteryModule.md#charge).
+
+  ```ms title="Terminal"
+  battery/charge Batteries --backup=BackupBattery;
+  ```
+
+- **`$VARIABLES` in AutoLCD views** - Views in the `[autolcd]` section now resolve `$VARIABLES` from `[variables]` when they are printed. See [Using Variables](./Modules/Extension/AutoLCDModule.md#using-variables).
+
+- **Text compare** - Compare two values as text in an `if`, ie. `if $MODE == parked;`. See [Comparing Text](./ConditionalLogic.md#comparing-text).
+
+### Other Changes To Expect
+
+- **Rules load after boot** - Rules are loaded one per cycle, so they start working a few cycles after boot rather than at once.
+- **Block rules** - A block's own Custom Data can also have a `[rules]` section, where `this` is the block.
+
+### Migration Checklist
+
+- [ ] Update Mother GUI and MAPS alongside Mother OS
+- [ ] Check that Mother OS runs on the same construct if a Mother GUI or MAPS command used `connector/lock`, `connector/unlock` or `connector/toggle`
+- [ ] (Optional) Add a `[rules]` section and try a `when` rule
+- [ ] (Optional) Add `--backup` to `battery/charge` commands to keep a battery in `Auto` mode
+- [ ] Run the `boot` command after updating
+
 ## 1.1.0 -> 1.2.0
 🕓 2 mins
 
@@ -22,7 +88,7 @@ Mother OS 1.2 runs on Mother Core 1.1.4. Update [Mother GUI](../MotherGUI/README
   [autolcd]
   PowerView=
   | Power {T:*}
-  | Working {G:Batteries}
+  | Working {TG:Batteries}
   ```
 
 - **More `screen/print` options** - Style screen text with the `bgcolor`, `alignment` and `padding` options. See [`screen/print`](./Modules/Extension/DisplayModule.md#screen-print).

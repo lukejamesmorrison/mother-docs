@@ -37,7 +37,19 @@ AirlockOuterDoor.onOpen=
 ; named views for Automatic LCDs 2, shown with autolcd/print
 PowerView=
 | Power {T:*}
-| Working {G:Batteries}
+| Working {TG:Batteries}
+
+[rules]
+; rules run a routine when a condition changes
+LowPower=
+| when Batteries low;
+|   light/color "Alarm" red;
+| else;
+|   light/color "Alarm" green;
+
+[predicates]
+; add or change the names used in conditions
+low=charge < 30% | fill < 20%
 ```
 
 ::: tip
@@ -45,6 +57,16 @@ Setting `general.debug` to `true` will highlight the complexity your script in t
 :::
 
 The `[autolcd]` section holds named views for [Automatic LCDs 2](Modules/Extension/AutoLCDModule.md). Use the `autolcd/print` command to show a view on any screen.
+
+The `[rules]` and `[predicates]` sections are described in [Conditional Logic](./ConditionalLogic.md).
+
+### General Settings
+
+| Key | Default | Description |
+| - | - | - |
+| `debug` | `false` | Highlights the complexity of your script in the terminal. |
+| `ruleInterval` | `0.5` | Seconds between checks of the `[rules]` section. Applied at boot. |
+| `condTimeout` | `2` | Seconds an `if` step waits for another script to answer a condition. |
 
 ## Block Configuration
 All Terminal Blocks have a `Custom Data` field.  This is where you can define the block's configuration, tags, and hooks.
@@ -111,3 +133,14 @@ OuterDoor.onOpen=
 ::: note
 The pipe character `|` is used to indicate a new line in the `commands` section.  This is not required in the Programmable Block terminal but allows us to organize our commands and routines across multiple lines for readibility.
 :::
+
+## Rules
+
+Hooks fire on a discrete state change that a module defines. [Rules](./ConditionalLogic.md#when-rules) go further: a `when` rule watches any [condition](./ConditionalLogic.md#conditions), including sliding values such as battery charge or altitude. A block can have its own `[rules]` section, where `this` is the block.
+
+```ms title="OuterDoor > Custom Data"
+[rules]
+AutoClose=
+| when this open --for=5;
+|   door/close this;
+```

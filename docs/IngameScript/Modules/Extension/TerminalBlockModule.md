@@ -140,6 +140,49 @@ tag/set CockpitDisplays #cockpit-displays;
 
 
 
+## Properties
+
+:::tip
+Properties and predicates are very useful in conditions. A property is compared with an operator and a value (`working == 0`), while a predicate stands alone (`on`). See [Conditional Logic](../../ConditionalLogic.md) to use them in `when` rules and `if` steps.
+:::
+
+These are available on every block.
+
+| Property | Description |
+|-|-|
+| `enabled` | `1` when the block is on, `0` when off. Available on every functional block. |
+| `working` | `1` when the block is working, `0` when broken. Available on every block. |
+
+| Predicate | True when |
+|-|-|
+| `on` | The block is on. |
+| `off` | The block is off. |
+| `working` | The block is working. |
+| `broken` | The block is broken. |
+
+**Compare a property**
+
+```ms title="Mother > Custom Data"
+[rules]
+ReactorFault=
+| when MainReactor working == 0;
+|   light/color "Warning Light" red;
+```
+
+**Use a predicate**
+
+Because `on` and `off` work on any functional block, one `if` can replace separate On and Off buttons:
+
+```ms title="Mother > Custom Data"
+[commands]
+ToggleHeadlights=
+| if Headlights on;
+|   block/off Headlights;
+| else;
+|   block/on Headlights;
+| end;
+```
+
 ## Hooks
 
 The following hooks can be define in the block's Custom Data, and will be triggered when the corresponding command is called:

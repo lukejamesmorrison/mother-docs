@@ -221,6 +221,39 @@ Hooks are fantastic replacements for automations triggered by [sensors](./Module
 
 All [Teminal Blocks](../IngameScript/Modules/Extension/TerminalBlockModule.md) support the `onOn`, and `onOff` hooks. Hooks can be found on the [Cheatsheet](../Cheatsheet.md), or in the respective module.
 
+## Using Conditional Logic
+
+Hooks only watch a discrete state change that a module defines. To react to *any* block state, including sliding values like battery charge or altitude, use [conditional logic](./ConditionalLogic.md). A **condition** is a target followed by a predicate (`"Batteries" low`), or a property, operator and value (`grid altitude < 100`).
+
+Use a `when` rule in the `[rules]` section to run a routine when a condition changes:
+
+```ms title="Mother > Custom Data"
+[rules]
+LowPower=
+| when Batteries low;
+|   light/color "Alarm" red;
+| else;
+|   light/color "Alarm" green;
+```
+
+Use an `if` step to branch inside any routine:
+
+```ms title="Mother > Custom Data"
+[commands]
+Dock=
+| if "Main Connector" connectable;
+|   connector/lock "Main Connector";
+| else;
+|   light/color "Dock Light" red;
+| end;
+```
+
+| Use | When |
+|-|-|
+| [Hook](#running-commands-when-blocks-change) | A block enters a state the module names, such as `onOpen`. |
+| `when` rule | You want to watch a condition, such as `Batteries low`, and act when it changes. |
+| `if` step | You want a routine to take a different path depending on the state of your blocks. |
+
 ## Running Commands in Parallel
 
 As your library of commands and routines grows, you will quickly want to dispatch them in parallel, rather than having everything run sequentially.  By default, commands and routines run sequentially, meaning that the next command will not start until the previous one has finished.  To run commands in parallel, we simply wrap then in single curly braces `{ }`:

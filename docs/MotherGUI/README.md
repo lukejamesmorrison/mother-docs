@@ -8,7 +8,7 @@ next: /MotherGUI/Installation.md
 
 # Mother GUI
 
-![Static Badge](https://img.shields.io/badge/version-0.2.0-blue?color=green) [![Static Badge](https://img.shields.io/badge/Steam%20Workshop-2b3645?logo=steam)](https://steamcommunity.com/sharedfiles/filedetails/?id=3724497528)
+![Static Badge](https://img.shields.io/badge/version-0.3.0-blue?color=green) [![Static Badge](https://img.shields.io/badge/Steam%20Workshop-2b3645?logo=steam)](https://steamcommunity.com/sharedfiles/filedetails/?id=3724497528)
 
 Mother GUI is an ingame script for Space Engineers players that turns text surfaces into interactive ship displays. Use it to build navigable menus and render live mechanical block views.
 
@@ -19,7 +19,8 @@ Mother GUI is currently in Alpha and is subject to change at any time. I will tr
 <!-- <MotherGUIAnimation /> -->
 
 
-![Mother GUI](./Assets/mother-gui1.png)
+<!-- ![Mother GUI](./Assets/mother-gui1.png) -->
+![Mother GUI](./Assets/mother-gui-notification1.png)
 
 Mother GUI is designed to feel at home beside other scripts Powered by Mother like [Mother OS](../IngameScript/IngameScript.md). Control it with toolbar actions, buttons, timers, event controllers, or other Mother-powered scripts that can issue terminal commands.
 
@@ -32,6 +33,7 @@ Mother GUI is designed to feel at home beside other scripts Powered by Mother li
 - **Multi-surface support** - Target LCD panels directly or configure cockpit, programmable block, and sound block surfaces with `Block Name:SurfaceIndex`.
 - **Screen automation** - Jump to views, switch menus, and change surface content types with terminal commands.
 - **Notifications** - Give players feedback with transient footer messages using `view/notify`.
+- **Conditional menus** - Use `if` steps in menu entries and `when` rules to react to the state of your blocks. See [Conditional Menu Entries](./MenuView.md#conditional-menu-entries).
 - **Views from other scripts** - Open views owned by other Mother scripts, like the [MAPS](../MotherAutopilotSystem/Modules/MapModule.md) `MapView`, from the same display with `view/go`.
 
 ## Quick Example
@@ -57,6 +59,8 @@ Mechanical=
 .Hangar Door=view/go self "DoorView" "Hangar Door"
 ```
 
+![Mother GUI](./Assets/mother-gui2.png)
+
 ::: tip
 On a widescreen surface, Mother GUI keeps the menu on the left and renders the selected live view on the right. On smaller screens, the selected view takes over the display until you go back.
 :::
@@ -73,6 +77,7 @@ Mother GUI current supports the following views:
 <!-- - `RotorGridView` for multiple rotors on one display -->
 <!-- - `CircleView` as a simple example view -->
 
+![Mother GUI](./Assets/mother-gui1.png)
 
 ## Demo
 

@@ -121,6 +121,30 @@ $"{Ò}"
 
 Truthfully, I prefer the first method in most cases, but it comes at a higher cost. In the above example, using string interprolation results in a 50% reduction in characters - which is HUGE when you are printing a lot of data for the player.
 
+## Build-Time Optimization
+
+Mother Core 1.2 adds a conditional logic engine and construct-wide sharing of conditions, which makes Core larger than it was. To pay for it, the build tools now go well beyond standard MDK2 minification. Any project that imports `MotherCore.projitems` gets two post-pack steps for free, run after MDK packs the script:
+
+1. **Script optimizer** - Compiles the packed script with your project's references and rewrites it to be smaller. Each pass is checked by recompiling, and a pass that breaks the script is skipped.
+   - Uses `var` for locals.
+   - Replaces repeated collection types such as `Dictionary<string, object>` with generated one-character subclasses (declarations, parameters, return types and `new` only).
+   - Routes repeated BCL calls such as `string.IsNullOrEmpty`, `Substring` and `Dictionary.ContainsKey` through one-character extension methods.
+   - Drops `public` from members that nothing outside their own type uses.
+   - Removes line breaks.
+2. **Keyword removal** - Removes `private`, `readonly`, and `public` on top-level types.
+
+You do not need to change your source. Keep writing expressive code with all of its keywords, and let the build prune it. If the optimizer cannot run or finds a problem, it leaves the script untouched and the build still succeeds.
+
+| MSBuild property | Default | Description |
+| - | - | - |
+| `MotherCoreOptimize` | `true` | Set to `false` to skip the optimizer. |
+| `MotherCoreRemoveKeywords` | `true` | Set to `false` to skip keyword removal. |
+| `MotherCoreScriptPath` | MDK output for the project | The packaged script to optimize. |
+
+:::tip Save Characters in Your Own Modules
+Mother Core 1.2 also adds registration helpers that save characters. Use [`Block<T>()`](../BuildingAModule/BuildingAModule.md#registering-block-commands-and-conditions) to write a block type once for its commands and conditions, and [`RegisterCommand(name, minArgs, run)`](../CoreModules/CommandBus.md#registering-a-simple-command) for commands that need no class. Core's own `help`, `halt`, `boot`, `clear`, `print`, `get`, `set` and `ping` commands now use it.
+:::
+
 ## Tips for Managing Complexity
 
 If your script tries to conduct more than 50,000 operations in a single cycle, then you will hit a `script too complex` error.  This is almost always caused by the overuse of loops. You should do your best to use HashSets and Dictionaries rather than nested loops to control your logic. Check out [Breadth-first Searching (BFS)](https://en.wikipedia.org/wiki/Breadth-first_search) and [Time Complexity](https://en.wikipedia.org/wiki/Time_complexity) to get a better understand of this important computer science concept.

@@ -8,7 +8,7 @@ This utility can assist with encrypting and decrypting data using a provided `pa
 
 To encrypt data, we use the `Encrypt()` method. It expects a string to be encypted, with the desired passcode to be used for encyption.
 
-```csharp
+```csharp title="FirewallModule.cs"
 string message = "The Empire must grow";
 string passcode = "Z1ON0101"
 
@@ -20,7 +20,7 @@ string encyptedMessage = Security.Encrypt(message, passcode);
 
 To decrypt data, we can use the `Decrypt()` method with a passcode:
 
-```csharp
+```csharp title="FirewallModule.cs"
 string enryptedMessage = "##asjjgahas4$@fasjasd#...";
 string passcode = "Z1ON0101"
 

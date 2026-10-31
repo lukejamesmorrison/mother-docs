@@ -2,6 +2,38 @@
 
 [[toc]]
 
+## 0.2.0 -> 0.3.0
+🕓 2 mins
+
+This release adds ship conditions that every Mother-powered script on your construct can use in [conditional logic](../IngameScript/ConditionalLogic.md), and fixes the `roll` command. There is one breaking change to connector commands.
+
+::: warning Breaking change: connector commands
+`connector/lock`, `connector/unlock` and `connector/toggle` are no longer part of Mother Core, so MAPS no longer provides them. [Mother OS](../IngameScript/Modules/Extension/ConnectorModule.md) still does. If a command or flight plan in your MAPS Custom Data runs one of them, Mother OS needs to run on the same construct. The `dock` command is not affected.
+:::
+
+::: warning Compatibility
+MAPS 0.3 runs on Mother Core 1.2. Update Mother OS and Mother GUI at the same time so every script on the construct is running the same version of Mother Core and shares the same conditions.
+:::
+
+### New Features
+
+- **Ship conditions** - MAPS registers `speed`, `moving`, `stopped`, `gravity`, `altitude`, `inspace` and `ingravity` with conditional logic, so a rule or `if` step in any script on the construct can test them. See [Conditions](./Modules/FlightControlModule.md#conditions).
+
+  ```ms title="Mother OS > Custom Data"
+  [rules]
+  LandingLights=
+  | when grid altitude < 100 --buffer=20 --for=2;
+  |   block/on "Landing Lights";
+  | else;
+  |   block/off "Landing Lights";
+  ```
+  
+### Migration Checklist
+
+- [ ] Update Mother OS and Mother GUI alongside MAPS
+- [ ] Check that Mother OS runs on the construct if you run `connector/lock`, `connector/unlock` or `connector/toggle` from MAPS
+- [ ] (Optional) Use `grid altitude`, `grid inspace` and the other ship conditions in your rules
+
 ## 0.1.0 -> 0.2.0
 🕓 2 mins
 

@@ -43,6 +43,48 @@ door/toggle <Door|Group>
 door/toggle "Missile Silo Door"
 ```
 
+## Properties
+
+:::tip
+Properties and predicates are very useful in conditions. A property is compared with an operator and a value (`status == open`), while a predicate stands alone (`open`). See [Conditional Logic](../../ConditionalLogic.md) to use them in `when` rules and `if` steps.
+:::
+
+A group of doors matches when any door does.
+
+| Property | Description |
+|-|-|
+| `status` | `open`, `opening`, `closed` or `closing`. |
+
+| Predicate | True when |
+|-|-|
+| `open` | The door is fully open. |
+| `opening` | The door is opening. |
+| `closed` | The door is fully closed. |
+| `closing` | The door is closing. |
+
+**Compare a property**
+
+```ms title="Mother > Custom Data"
+[rules]
+HangarLights=
+| when "Hangar Door" status == open;
+|   block/on "Hangar Lights";
+| else;
+|   block/off "Hangar Lights";
+```
+
+**Use a predicate**
+
+```ms title="Mother > Custom Data"
+[commands]
+ToggleDoor=
+| if "Hangar Door" open;
+|   door/close "Hangar Door";
+| else;
+|   door/open "Hangar Door";
+| end;
+```
+
 ## Hooks
 
 The following hooks can be define in the block's Custom Data, and will be triggered when the corresponding command is called:

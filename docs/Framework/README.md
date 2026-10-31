@@ -30,7 +30,7 @@ onMounted(() => {
 <!-- <Badge type="info" text="&nbsp;Beta&nbsp;" vertical="middle" /> -->
 <!-- <Badge type="tip" text="&nbsp;v1.0.0&nbsp;" vertical="middle" /> -->
 <!-- ![Static Badge](https://img.shields.io/badge/Version-1.0.0-blue?color=green) -->
-[![Static Badge](https://img.shields.io/badge/version-1.1.4-blue?color=green&logo=github)](https://github.com/lukejamesmorrison/mother-core)
+[![Static Badge](https://img.shields.io/badge/version-1.2.0-blue?color=green&logo=github)](https://github.com/lukejamesmorrison/mother-core)
 
 
 Mother Core is a framework for developing custom Programmable Block scripts for Space Engineers. It enables you to build interoperable modules to suit the specific needs of your ship or station. [Mother OS](../IngameScript/IngameScript.md), [Mother GUI](../MotherGUI/README.md) and [Mother Autopilot System (MAPS)](../MotherAutopilotSystem/README.md) are built with Mother Core and a collection of extension modules.
@@ -46,6 +46,7 @@ Mother Core is a framework for developing custom Programmable Block scripts for 
 5. [Send a Message](./Developer/CoreModules/IntergridMessageService.md) 
 6. [Delay an Action](./Developer/CoreModules/Clock.md)
 7. [Retrieve a Block](./Developer/CoreModules/BlockCatalogue.md#accessing-blocks)
+8. [Register a Condition](./Developer/CoreModules/Conditions.md#registering-properties-and-predicates)
 
 ## Overview
 

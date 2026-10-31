@@ -75,6 +75,76 @@ OpenDoors=door/open "Hangar Doors";
 ```
 Learn more about [sending commands to other grids](./IngameScript/Modules/Core/IntergridMessageService.md#sending-a-remote-command).
 
+## Conditions
+[![Static Badge](https://img.shields.io/badge/Condition_Module-Mother_Core-red?color=red)](Framework/Developer/CoreModules/Conditions.md)
+
+Make decisions with conditions. A condition is a target and a predicate (`"Batteries" low`), or a target, property, operator and value (`grid altitude < 100`). Learn more about [conditional logic](./IngameScript/ConditionalLogic.md).
+
+::: tabs
+
+@tab When rule
+
+Run a routine when a condition changes. The steps after `else;` run when it goes back to false.
+
+```ms title="Programmable Block > Custom Data"
+[rules]
+LowPower=
+| when Batteries low;
+|   screen/print "Cockpit:1" "Power is low";
+| else;
+|   screen/print "Cockpit:1" "Power OK";
+```
+
+| Option | Description |
+|-|-|
+| `--at=<value>` | Change the threshold of a predicate, ie. `low --at=25%`. Also works on `if`. |
+| `--buffer=<value>` | Keep a value hovering at the limit from flickering. |
+| `--for=<seconds>` | The condition must stay true this long before the rule fires. |
+| `--cooldown=<seconds>` | Wait this long between firings. |
+| `--every=<seconds>` | Check this rule on its own interval. |
+
+@tab If step
+
+Branch inside any routine, including commands, menu entries and hooks.
+
+```ms title="Programmable Block > Custom Data"
+[commands]
+Dock=
+| if "Main Connector" connectable;
+|   connector/lock "Main Connector";
+| elseif "Main Connector" connected;
+|   screen/print "Cockpit:1" "Already docked";
+| else;
+|   screen/print "Cockpit:1" "Nothing to dock with";
+| end;
+```
+
+Compare two values as text with `==` or `!=`, ie. `if $MODE == parked;`.
+
+@tab Predicates
+
+| Block | Predicates |
+|-|-|
+| Any functional block | `on`, `off` |
+| Any block | `working`, `broken` |
+| Connector | `connected`, `connectable`, `disconnected` |
+| Battery, jump drive | `low`, `critical`, `empty`, `full`, `ready` |
+| Gas tank | `low`, `critical`, `empty`, `full`, `stockpiling` |
+| Air vent | `low` |
+| Door | `open`, `opening`, `closed`, `closing` |
+| Landing gear | `ready`, `locked`, `unlocked` |
+| Piston | `extending`, `extended`, `retracting`, `retracted`, `stopped` |
+| Rotor, hinge | `locked`, `unlocked` |
+| Rotor, hinge, piston | `attached`, `detached` |
+| Sensor | `detected`, `clear` |
+| Cockpit | `occupied`, `empty` |
+| Thruster | `weak` |
+| `grid` ([MAPS](MotherAutopilotSystem/Modules/FlightControlModule.md#conditions)) | `moving`, `stopped`, `inspace`, `ingravity` |
+
+Properties such as `charge`, `fill`, `angle` and `altitude` are listed on the [Conditional Logic](./IngameScript/ConditionalLogic.md#predicates) page.
+
+:::
+
 
 
 
@@ -215,10 +285,45 @@ onOff=light/color DrillIndicatorLight red;
 ```
 or
 
-```ms title="Mother > Custom Data"
+```ms title="Programmable Block > Custom Data"
 [hooks]
 DrillPiston.onOn=light/color DrillIndicatorLight green;
 "Emergency Batteries".onOff=light/blink "Battery Indicators" off;
+```
+
+@tab Properties
+
+Available on every block. Compare with an operator and a value, ie. `working == 0`. Learn more about [block properties](IngameScript/Modules/Extension/TerminalBlockModule.md#properties).
+
+| Property | Description |
+|-|-|
+| `enabled` | `1` when the block is on, `0` when off. Available on every functional block. |
+| `working` | `1` when the block is working, `0` when broken. Available on every block. |
+
+```ms title="Programmable Block > Custom Data"
+[commands]
+CheckReactor=
+| if MainReactor working == 0;
+|   light/color "Warning Light" red;
+| else;
+|   light/color "Warning Light" green;
+| end;
+```
+
+@tab Predicates
+
+| Predicate | True when |
+|-|-|
+| `on` | The block is on. |
+| `off` | The block is off. |
+| `working` | The block is working. |
+| `broken` | The block is broken. |
+
+```ms title="Programmable Block > Custom Data"
+[rules]
+ReactorFault=
+| when MainReactor broken;
+|   light/color "Warning Light" red;
 ```
 
 :::
@@ -268,6 +373,42 @@ onPressurized=light/color "Airlock Light" green; door/open "Inner Door";
 onDepressurized=light/color "Airlock Light" red; door/open "Outer Door";
 ```
 
+@tab Properties
+
+Compare with an operator and a value, ie. `oxygen < 50%`. Learn more about [air vent properties](IngameScript/Modules/Extension/AirVentModule.md#properties).
+
+| Property | Description |
+|-|-|
+| `oxygen` | The oxygen level of the room as a ratio, from `0` to `1`. Compare with a percentage, ie. `oxygen < 50%`. |
+| `status` | `pressurized`, `pressurizing`, `depressurized` or `depressurizing`. |
+
+```ms title="Programmable Block > Custom Data"
+[commands]
+EnterAirlock=
+| if "Airlock Vent" oxygen > 90%;
+|   door/open "Airlock Inner Door";
+| end;
+```
+
+@tab Predicates
+
+| Predicate | True when |
+|-|-|
+| `pressurized` | The air vent is pressurized. |
+| `pressurizing` | The air vent is pressurizing. |
+| `depressurized` | The air vent is depressurized. |
+| `depressurizing` | The air vent is depressurizing. |
+| `low` | Oxygen is under 50%. |
+
+```ms title="Airlock Vent > Custom Data"
+[rules]
+Warning=
+| when this low;
+|   light/color "Airlock Light" red;
+| else;
+|   light/color "Airlock Light" green;
+```
+
 :::
 
 ## Batteries
@@ -278,9 +419,14 @@ onDepressurized=light/color "Airlock Light" red; door/open "Outer Door";
 @tab Commands
 
 ### battery/charge
-Set the battery to `Recharge` mode.
+Set the battery to `Recharge` mode. Use `--backup` to leave one battery in `Auto` mode while the rest recharge. `--backup` keeps the first matched battery in `Auto`, and `--backup=<Battery>` targets a specific battery.
 ```
-battery/charge <Battery|Group> [--options]
+battery/charge <Battery|Group> [--backup[=Battery]] [--options]
+```
+
+**Example**
+```ms title="Terminal"
+battery/charge Batteries --backup=BackupBattery;
 ```
 
 ### battery/discharge
@@ -301,12 +447,55 @@ Toggle the battery between `Auto`, `Recharge` and `Discharge` mode.
 battery/toggle <Battery|Group> [--options]
 ```
 
+@tab Properties
+
+Compare with an operator and a value, ie. `charge < 25%`. A group of batteries is compared by its average charge. Learn more about [battery properties](IngameScript/Modules/Extension/BatteryModule.md#properties).
+
+| Property | Description |
+|-|-|
+| `charge` | The stored charge as a ratio, from `0` to `1`. Compare with a percentage, ie. `charge < 25%`. |
+| `mode` | `auto`, `recharge` or `discharge`. |
+
+```ms title="Programmable Block > Custom Data"
+[commands]
+ManagePower=
+| if Batteries charge < 25%;
+|   battery/charge Batteries;
+| else;
+|   battery/auto Batteries;
+| end;
+```
+
+@tab Predicates
+
+| Predicate | True when |
+|-|-|
+| `auto` | The battery is in auto mode. |
+| `recharge` | The battery is in recharge mode. |
+| `discharge` | The battery is in discharge mode. |
+| `low` | Charge is under 20%. Has a 5% buffer. |
+| `critical` | Charge is under 10%. Has a 3% buffer. |
+| `empty` | Charge is under 2%. |
+| `full` | Charge is over 98%. |
+| `ready` | Charge is over 99%. |
+
+```ms title="Programmable Block > Custom Data"
+[commands]
+PowerCheck=
+| if Batteries critical;
+|   light/color "Power Light" red;
+| elseif Batteries low;
+|   light/color "Power Light" yellow;
+| else;
+|   light/color "Power Light" green;
+| end;
+```
 
 :::
 
 ## Core
 
-::: tabs
+:::: tabs
 
 @tab Commands
 
@@ -458,6 +647,7 @@ dock Mothership --remote="Connector - MS.P1";
 dock Mothership;
 ```
 
+::::
 
 ## Cockpits
 [![Static Badge](https://img.shields.io/badge/Copckpit_Module-Mother_OS-red?color=red)](IngameScript/Modules/Extension/CockpitModule.md)
@@ -548,6 +738,44 @@ onOccupied=light/color "Cockpit Indicator" green;
 onEmpty=light/color "Cockpit Indicator" red;
 ```
 
+@tab Properties
+
+Work on cockpits and any other ship controller. Compare with an operator and a value, ie. `dampeners == 0`. Learn more about [cockpit properties](IngameScript/Modules/Extension/CockpitModule.md#properties).
+
+| Property | Description |
+|-|-|
+| `occupied` | `1` when a player is in control, `0` when not. |
+| `dampeners` | `1` when inertial dampeners are on, `0` when off. |
+| `handbrake` | `1` when the handbrake is on, `0` when off. |
+
+```ms title="Programmable Block > Custom Data"
+[commands]
+CheckDampeners=
+| if MainCockpit dampeners == 0;
+|   light/color "Cockpit Indicator" red;
+| else;
+|   light/color "Cockpit Indicator" green;
+| end;
+```
+
+@tab Predicates
+
+| Predicate | True when |
+|-|-|
+| `occupied` | A player is in control. |
+| `empty` | No player is in control. |
+
+`dampeners` and `handbrake` have no predicate. Compare them to `1` (on) or `0` (off).
+
+```ms title="Programmable Block > Custom Data"
+[rules]
+Occupancy=
+| when MainCockpit occupied;
+|   light/color "Cockpit Indicator" green;
+| else;
+|   light/color "Cockpit Indicator" red;
+```
+
 :::
 
 ## Connectors
@@ -610,10 +838,50 @@ onUnlock=light/color "Dock Light" green;
 ```
 or
 
-```ms title="Mother > Custom Data"
+```ms title="Programmable Block > Custom Data"
 [hooks]
 DockConnector.onUnlock=light/color "Dock Light" green;
 "Fuel Connector".onLock=tank/stockpile FuelTanks;
+```
+
+@tab Properties
+
+Compare with an operator and a value, ie. `status == connectable`. Connector conditions are provided by Mother Core, so they also work in [Mother GUI](MotherGUI/README.md). Learn more about [connector properties](IngameScript/Modules/Extension/ConnectorModule.md#properties).
+
+| Property | Description |
+|-|-|
+| `status` | `unconnected`, `connectable` or `connected`. |
+
+```ms title="Programmable Block > Custom Data"
+[commands]
+Dock=
+| if DockingConnector status == connectable;
+|   connector/lock DockingConnector;
+| end;
+```
+
+@tab Predicates
+
+| Predicate | True when |
+|-|-|
+| `connected` | The connector is locked to another connector. |
+| `connectable` | The connector is in range and ready to lock. |
+| `unconnected` | The connector is not locked and not in range. |
+| `disconnected` | The connector is not locked (`status == unconnected`). |
+
+```ms title="Programmable Block > Custom Data"
+[commands]
+Dock=
+| if "Main Connector" connectable;
+|   connector/lock "Main Connector";
+| elseif "Main Connector" connected;
+|   light/color "Dock Light" green;
+| end;
+
+[rules]
+Undocked=
+| when "Main Connector" disconnected;
+|   light/color "Dock Light" red;
 ```
 
 :::
@@ -942,7 +1210,7 @@ autolcd/print <Screen|Group>[:SurfaceIndex] <View>
 [autolcd]
 PowerView=
 | Power {T:*}
-| Working {G:Batteries}
+| Working {TG:Batteries}
 ```
 
 ```ms title="Terminal"
@@ -966,7 +1234,7 @@ autolcd/clear "Pilot Cockpit:1";
 ## Doors
 [![Static Badge](https://img.shields.io/badge/Door_Module-Mother_OS-red?color=red)](IngameScript/Modules/Extension/DoorModule.md)
 
-::: tabs
+:::: tabs
 
 @tab Commands
 
@@ -1009,7 +1277,44 @@ onClose=vent/pressurize AirlockVent; wait 2; light/blink "Airlock Light" off;
 You can use `this` to refer to the block itself when targeting it from within its own custom data.
 :::
 
-:::
+@tab Properties
+
+Compare with an operator and a value, ie. `status == open`. A group of doors matches when any door does. Learn more about [door properties](IngameScript/Modules/Extension/DoorModule.md#properties).
+
+| Property | Description |
+|-|-|
+| `status` | `open`, `opening`, `closed` or `closing`. |
+
+```ms title="Programmable Block > Custom Data"
+[commands]
+HangarLights=
+| if "Hangar Door" status == open;
+|   block/on "Hangar Lights";
+| else;
+|   block/off "Hangar Lights";
+| end;
+```
+
+@tab Predicates
+
+| Predicate | True when |
+|-|-|
+| `open` | The door is fully open. |
+| `opening` | The door is opening. |
+| `closed` | The door is fully closed. |
+| `closing` | The door is closing. |
+
+```ms title="Programmable Block > Custom Data"
+[commands]
+HangarDoor=
+| if "Hangar Door" open;
+|   door/close "Hangar Door";
+| else;
+|   door/open "Hangar Door";
+| end;
+```
+
+::::
 
 ## Flight Control System
 [![Static Badge](https://img.shields.io/badge/Flight_Control_Module-Mother_Autopilot_System-red?color=red)](MotherAutopilotSystem/Modules/FlightControlModule.md)
@@ -1035,6 +1340,45 @@ Disengage the autopilot system, halting the grid.
 fcs/stop
 ```
 
+@tab Properties
+
+Use `grid` as the target, which is the grid's controller (a cockpit or remote control), ie. `grid altitude < 100`. Mother OS and Mother GUI can use them too when MAPS runs on the same construct. Learn more about [flight control properties](MotherAutopilotSystem/Modules/FlightControlModule.md#properties).
+
+| Property | Description |
+|-|-|
+| `speed` | The speed of the grid in m/s. |
+| `gravity` | The strength of the planet's gravity in m/s². It is about 9.8 at 1 g, and `0` in space. |
+| `altitude` | The height above the planet's surface in metres. It has no value in space, so a condition on it is false there. |
+
+```ms title="Mother OS > Custom Data"
+[commands]
+SpeedWarning=
+| if grid speed > 30;
+|   light/color "Speed Light" red;
+| else;
+|   light/color "Speed Light" green;
+| end;
+```
+
+@tab Predicates
+
+| Predicate | True when |
+|-|-|
+| `moving` | The grid is faster than 0.1 m/s. |
+| `stopped` | The grid is not faster than 0.1 m/s. |
+| `inspace` | There is no gravity (`gravity == 0`). |
+| `ingravity` | There is gravity (`gravity != 0`). |
+
+```ms title="Mother OS > Custom Data"
+[rules]
+Atmosphere=
+| when grid inspace --for=3;
+|   block/off "Atmospheric Thrusters";
+|   block/on "Hydrogen Thrusters";
+| else;
+|   block/on "Atmospheric Thrusters";
+|   block/off "Hydrogen Thrusters";
+```
 
 :::
 
@@ -1082,6 +1426,43 @@ Toggle the Tank `Stockpile` between `on` and `off`.
 tank/toggle <Tank|Group> [--options]
 ```
 
+@tab Properties
+
+Compare with an operator and a value, ie. `fill < 25%`. A group of tanks is compared by its average fill. Learn more about [gas tank properties](IngameScript/Modules/Extension/GasTankModule.md#properties).
+
+| Property | Description |
+|-|-|
+| `fill` | How full the tank is as a ratio, from `0` to `1`. Compare with a percentage, ie. `fill < 25%`. |
+| `stockpile` | `1` when the tank is stockpiling, `0` when it is sharing. |
+
+```ms title="Programmable Block > Custom Data"
+[commands]
+FuelCheck=
+| if "Hydrogen Tanks" fill < 25%;
+|   light/color "Fuel Light" red;
+| else;
+|   light/color "Fuel Light" green;
+| end;
+```
+
+@tab Predicates
+
+| Predicate | True when |
+|-|-|
+| `low` | Fill is under 15%. Has a 5% buffer. |
+| `critical` | Fill is under 10%. Has a 3% buffer. |
+| `empty` | Fill is under 2%. |
+| `full` | Fill is over 98%. |
+| `stockpiling` | The tank is stockpiling. |
+
+```ms title="Programmable Block > Custom Data"
+[rules]
+FuelLow=
+| when "Hydrogen Tanks" low;
+|   light/color "Fuel Light" red;
+| else;
+|   light/color "Fuel Light" green;
+```
 
 :::
 
@@ -1207,6 +1588,91 @@ onMoving=light/color "Hinge Indicator" green;
 onStop=light/color "Hinge Indicator" red;
 ```
 
+@tab Properties
+
+Compare with an operator and a value, ie. `angle > 80`. Learn more about [hinge properties](IngameScript/Modules/Extension/HingeModule.md#properties).
+
+| Property | Description |
+|-|-|
+| `angle` | The current angle of the hinge in degrees. A group is compared by its average. |
+| `locked` | `1` when the hinge is locked, `0` when unlocked. |
+| `attached` | `1` when the hinge head is attached, `0` when detached. |
+
+```ms title="Programmable Block > Custom Data"
+[commands]
+WingCheck=
+| if WingHinge angle > 80;
+|   light/color "Wing Light" green;
+| end;
+```
+
+@tab Predicates
+
+| Predicate | True when |
+|-|-|
+| `locked` | The hinge is locked. |
+| `unlocked` | The hinge is unlocked. |
+| `attached` | The hinge head is attached. |
+| `detached` | The hinge head is detached. |
+
+```ms title="Programmable Block > Custom Data"
+[commands]
+WingLock=
+| if WingHinge unlocked;
+|   hinge/lock WingHinge;
+| end;
+```
+
+:::
+
+## Jump Drives
+[![Static Badge](https://img.shields.io/badge/Jump_Drive_Module-Mother_OS-red?color=red)](IngameScript/Modules/Extension/JumpDriveModule.md)
+
+The Jump Drive module adds conditions only. It does not add any commands.
+
+::: tabs
+
+@tab Properties
+
+Compare with an operator and a value, ie. `charge < 25%`. A group of jump drives is compared by its average charge. Learn more about [jump drive properties](IngameScript/Modules/Extension/JumpDriveModule.md#properties).
+
+| Property | Description |
+|-|-|
+| `charge` | The stored charge as a ratio, from `0` to `1`. Compare with a percentage, ie. `charge < 25%`. |
+| `status` | `ready`, `charging` or `jumping`. |
+
+```ms title="Programmable Block > Custom Data"
+[commands]
+JumpCheck=
+| if "Jump Drives" charge > 90%;
+|   light/color "Jump Light" green;
+| else;
+|   light/color "Jump Light" yellow;
+| end;
+```
+
+@tab Predicates
+
+| Predicate | True when |
+|-|-|
+| `charging` | The jump drive is charging. |
+| `jumping` | The jump drive is jumping. |
+| `low` | Charge is under 20%. Has a 5% buffer. |
+| `critical` | Charge is under 10%. Has a 3% buffer. |
+| `empty` | Charge is under 2%. |
+| `full` | Charge is over 98%. |
+| `ready` | Charge is over 99%. As a predicate on a jump drive, `ready` means charge, not `status`. |
+
+```ms title="Programmable Block > Custom Data"
+[commands]
+JumpStatus=
+| if "Jump Drives" ready;
+|   light/color "Jump Light" green;
+| elseif "Jump Drives" charging;
+|   light/color "Jump Light" yellow;
+| end;
+```
+
 :::
 
 ## Merge Blocks
@@ -1284,6 +1750,40 @@ gear/auto <LandingGear|Group> <true|false>
 [hooks]
 onLock=light/color "Landing Light" green;
 onUnlock=light/color "Landing Light" red;
+```
+
+@tab Properties
+
+Compare with an operator and a value, ie. `status == readytolock`. Learn more about [landing gear properties](IngameScript/Modules/Extension/LandingGearModule.md#properties).
+
+| Property | Description |
+|-|-|
+| `status` | `unlocked`, `readytolock` or `locked`. |
+
+```ms title="Programmable Block > Custom Data"
+[commands]
+Land=
+| if "Landing Gear" status == readytolock;
+|   gear/lock "Landing Gear";
+| end;
+```
+
+@tab Predicates
+
+| Predicate | True when |
+|-|-|
+| `ready` | The gear is ready to lock (`status == readytolock`). |
+| `locked` | The gear is locked. |
+| `unlocked` | The gear is unlocked. |
+
+```ms title="Programmable Block > Custom Data"
+[commands]
+Land=
+| if "Landing Gear" ready;
+|   gear/lock "Landing Gear";
+| elseif "Landing Gear" locked;
+|   light/color "Landing Light" green;
+| end;
 ```
 
 :::
@@ -1503,6 +2003,46 @@ onExtending=light/blink "Fuel Boom Light" fast;
 onRetracted=light/blink "Fuel Boom Light" off;
 ```
 
+@tab Properties
+
+Compare with an operator and a value, ie. `position > 8`. Learn more about [piston properties](IngameScript/Modules/Extension/PistonModule.md#properties).
+
+| Property | Description |
+|-|-|
+| `position` | The current extension of the piston in metres. A group is compared by its average. |
+| `status` | `extending`, `extended`, `retracting`, `retracted` or `stopped`. |
+| `attached` | `1` when the piston head is attached, `0` when detached. |
+
+```ms title="Programmable Block > Custom Data"
+[commands]
+BoomCheck=
+| if FuelBoomPiston position > 8;
+|   light/color "Fuel Boom Light" green;
+| end;
+```
+
+@tab Predicates
+
+| Predicate | True when |
+|-|-|
+| `extending` | The piston is extending. |
+| `extended` | The piston is fully extended. |
+| `retracting` | The piston is retracting. |
+| `retracted` | The piston is fully retracted. |
+| `stopped` | The piston is stopped. |
+| `attached` | The piston head is attached. |
+| `detached` | The piston head is detached. |
+
+```ms title="Programmable Block > Custom Data"
+[commands]
+BoomStatus=
+| if FuelBoomPiston extended;
+|   light/color "Fuel Boom Light" green;
+| elseif FuelBoomPiston retracted;
+|   light/color "Fuel Boom Light" red;
+| end;
+```
+
 :::
 
 ## Programmable Block
@@ -1627,6 +2167,42 @@ onLock=light/color "Turret Status" red;
 onUnlock=light/color "Turret Status" green;
 ```
 
+@tab Properties
+
+Compare with an operator and a value, ie. `angle > 90`. Learn more about [rotor properties](IngameScript/Modules/Extension/RotorModule.md#properties).
+
+| Property | Description |
+|-|-|
+| `angle` | The current angle of the rotor in degrees. A group is compared by its average. |
+| `locked` | `1` when the rotor is locked, `0` when unlocked. |
+| `attached` | `1` when the rotor head is attached, `0` when detached. |
+
+```ms title="Programmable Block > Custom Data"
+[commands]
+TurretCheck=
+| if TurretRotor angle > 90;
+|   light/color "Turret Status" green;
+| end;
+```
+
+@tab Predicates
+
+| Predicate | True when |
+|-|-|
+| `locked` | The rotor is locked. |
+| `unlocked` | The rotor is unlocked. |
+| `attached` | The rotor head is attached. |
+| `detached` | The rotor head is detached. |
+
+```ms title="Programmable Block > Custom Data"
+[rules]
+TurretStatus=
+| when TurretRotor locked;
+|   light/color "Turret Status" green;
+| else;
+|   light/color "Turret Status" red;
+```
+
 :::
 
 
@@ -1654,6 +2230,39 @@ Imagine our Sensor has a status light we want to view elsewhere:
 [hooks]
 onDetect=light/blink "Landing Pad Light" fast;
 onClear=light/blink "Landing Pad Light" off;
+```
+
+@tab Properties
+
+Compare with an operator and a value, ie. `distance > 100`. Learn more about [sensor properties](IngameScript/Modules/Extension/SensorModule.md#properties).
+
+| Property | Description |
+|-|-|
+| `detected` | `1` when the sensor detects an entity, `0` when it does not. |
+| `distance` | The distance in metres to the last detected entity, or `-1` if none. A condition such as `distance < 100` is also true when the sensor is clear. |
+
+```ms title="Programmable Block > Custom Data"
+[commands]
+PadCheck=
+| if LandingPadSensor distance > 100;
+|   light/color "Landing Pad Light" yellow;
+| end;
+```
+
+@tab Predicates
+
+| Predicate | True when |
+|-|-|
+| `detected` | The sensor detects an entity. |
+| `clear` | The sensor does not detect an entity. |
+
+```ms title="Programmable Block > Custom Data"
+[rules]
+PadStatus=
+| when LandingPadSensor detected;
+|   light/color "Landing Pad Light" red;
+| else;
+|   light/color "Landing Pad Light" green;
 ```
 
 :::
@@ -1865,6 +2474,36 @@ thruster/thrust MainThruster 100;
 thruster/thrust MainThruster 10000N;
 ```
 
+@tab Properties
+
+Compare with an operator and a value, ie. `effectiveness < 50%`. A group of thrusters is compared by its average. Learn more about [thruster properties](IngameScript/Modules/Extension/ThrusterModule.md#properties).
+
+| Property | Description |
+|-|-|
+| `effectiveness` | How much of its maximum thrust the thruster can currently produce, as a ratio from `0` to `1`. Atmospheric thrusters lose effectiveness as the air thins. |
+
+```ms title="Programmable Block > Custom Data"
+[commands]
+ThrustCheck=
+| if "Atmospheric Thrusters" effectiveness < 50%;
+|   light/color "Thrust Light" yellow;
+| end;
+```
+
+@tab Predicates
+
+| Predicate | True when |
+|-|-|
+| `weak` | Effectiveness is under 30%. |
+
+```ms title="Programmable Block > Custom Data"
+[rules]
+ThrustWarning=
+| when "Atmospheric Thrusters" weak;
+|   light/color "Thrust Light" red;
+| else;
+|   light/color "Thrust Light" green;
+```
 
 :::
 

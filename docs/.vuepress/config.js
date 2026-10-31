@@ -37,6 +37,7 @@ const MotherOSSidebar = {
         '/IngameScript/UpgradeGuide.md',
         '/IngameScript/Installation.md',
         '/IngameScript/CommandLineInterface.md',
+        '/IngameScript/ConditionalLogic.md',
         '/IngameScript/Configuration.md',
       ],
     },
@@ -61,6 +62,7 @@ const MotherOSSidebar = {
         '/IngameScript/Modules/Extension/GasTankModule.md',
         '/IngameScript/Modules/Extension/HingeModule.md',
         '/IngameScript/Modules/Core/IntergridMessageService.md',
+        '/IngameScript/Modules/Extension/JumpDriveModule.md',
         '/IngameScript/Modules/Extension/LandingGearModule.md',
         '/IngameScript/Modules/Extension/LightModule.md',
         '/IngameScript/Modules/Core/LocalStorage.md',
@@ -147,6 +149,7 @@ const MotherCoreSidebar = {
         '/Framework/Developer/CoreModules/BlockCatalogue.md',
         '/Framework/Developer/CoreModules/Clock.md',
         '/Framework/Developer/CoreModules/CommandBus.md',
+        '/Framework/Developer/CoreModules/Conditions.md',
         '/Framework/Developer/CoreModules/Configuration.md',
         '/Framework/Developer/CoreModules/EventBus.md',
         '/Framework/Developer/CoreModules/IntergridMessageService.md',
@@ -242,6 +245,7 @@ const MotherGUISidebar = {
       text: 'Getting Started',
       collapsible: true,
       children: [
+        '/MotherGUI/UpgradeGuide.md',
         '/MotherGUI/Installation.md',
         '/MotherGUI/Configuration.md',
         

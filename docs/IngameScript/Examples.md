@@ -13,6 +13,15 @@ Let's look at some examples and how Mother simplifies them. See the [Cheatsheet]
   - [Dispatch Ship to a Landing Site via a Flight Plan](#dispatch-ship-to-a-landing-site-via-a-flight-plan)
     - [Preflight](#preflight)
     - [Waypoints](#waypoints)
+  - [Conditional Logic](#conditional-logic)
+    - [Airlock](#airlock)
+    - [Landing Lights](#landing-lights)
+    - [Parking](#parking)
+    - [Space Transition](#space-transition)
+    - [Docking](#docking)
+    - [Low Power](#low-power)
+    - [Menu Toggle](#menu-toggle)
+    - [Confirm Menu](#confirm-menu)
   - [Building a Landing Pad](#building-a-landing-pad)
 
 ## Sending a Simple Remote Command
@@ -204,6 +213,226 @@ As we approach the `LandingSite`, we will slow down, and retract our wings. We c
 GPS:LandingSite:227081.47:226948.41:227068.73:#FF75C9F1:
  { fcs/start --speed=10; RectractWings; light/blink SignalLights med; }
 ```
+
+## Conditional Logic
+
+[Conditional logic](./ConditionalLogic.md) lets your construct react to the state of your blocks. Rules go in the `[rules]` section of the programmable block's Custom Data. Commands and menu entries can use `if` directly. Rules run when a condition changes, so a rule only fires when its condition goes from false to true, and its optional `else;` branch fires when it goes back to false. Replace the quoted block and group names with your own. Keep each rule to one job, and each command to one `if`, so they stay easy to read.
+
+:::tip Mother GUI
+Recipes that call `view/notify`, `view/go` or `view/back` need [Mother GUI](../MotherGUI/README.md) running on the same construct. Mother OS calls its commands automatically through construct-wide command sharing.
+:::
+
+### Airlock
+
+Each command closes one door, checks that it worked, then cycles the vent and opens the other door. Two small rules act as an interlock, so both doors are never open at once, even if a player opens one by hand.
+
+```ms title="Mother OS > Custom Data"
+[variables]
+SCREEN="Cockpit:1"
+DOOR_INNER="Airlock Inner"
+DOOR_OUTER="Airlock Outer"
+VENT="Airlock Vent"
+
+[commands]
+; Close the inner door, empty the airlock, then open the outer door.
+AirlockExit=
+| door/close $DOOR_INNER;
+| wait 2;
+| if $DOOR_INNER closed;
+|   vent/depressurize $VENT;
+|   wait 5;
+|   door/open $DOOR_OUTER;
+| else;
+|   view/notify $SCREEN "Inner door is blocked." --level=error;
+| end;
+
+; Close the outer door, fill the airlock, then open the inner door.
+AirlockEnter=
+| door/close $DOOR_OUTER;
+| wait 2;
+| if $DOOR_OUTER closed;
+|   vent/pressurize $VENT;
+|   wait 5;
+|   door/open $DOOR_INNER;
+| else;
+|   view/notify $SCREEN "Outer door is blocked." --level=error;
+| end;
+
+[rules]
+; Never leave both doors open.
+InterlockOuter=
+| when $DOOR_OUTER open;
+|   door/close $DOOR_INNER;
+
+InterlockInner=
+| when $DOOR_INNER open;
+|   door/close $DOOR_OUTER;
+```
+
+### Landing Lights
+
+Turn the landing lights on when the ship drops below 100 m, and off again when it climbs. `--buffer=20` keeps the lights from flickering when you hover near 100 m, so they only switch off above 120 m. `altitude` has no value in space, so the lights stay off there.
+
+```ms title="Mother OS > Custom Data"
+[variables]
+LIGHTS="Landing Lights"
+
+[rules]
+LandingLights=
+| when grid altitude < 100 --buffer=20;
+|   block/on $LIGHTS;
+| else;
+|   block/off $LIGHTS;
+```
+
+`altitude` is provided by [MAPS](../MotherAutopilotSystem/Modules/FlightControlModule.md#conditions). Mother OS can use it without any setup as long as MAPS runs on the same construct.
+
+### Parking
+
+When the landing gear locks, the batteries charge and the tanks stockpile. `--for=2` ignores a gear that bounces on touchdown. When the gear unlocks, everything goes back to normal.
+
+```ms title="Mother OS > Custom Data"
+[variables]
+GEAR="Landing Gear"
+BATTERIES=Batteries
+TANKS="Hydrogen Tanks"
+
+[rules]
+Parked=
+| when $GEAR locked --for=2;
+|   battery/charge $BATTERIES;
+|   tank/stockpile $TANKS;
+| else;
+|   battery/auto $BATTERIES;
+|   tank/share $TANKS;
+```
+
+### Space Transition
+
+Switch engine groups when the ship leaves a planet's gravity. Atmospheric thrusters do nothing in space, so turn them off and bring the hydrogen thrusters online, then reverse it on the way back in. `--for=3` stops the switch from firing while the ship skims the edge of the atmosphere.
+
+```ms title="Mother OS > Custom Data"
+[variables]
+THRUSTERS_ATMOSPHERIC="Atmospheric Thrusters"
+THRUSTERS_HYDROGEN="Hydrogen Thrusters"
+
+[rules]
+Atmosphere=
+| when grid inspace --for=3;
+|   block/off $THRUSTERS_ATMOSPHERIC;
+|   block/on $THRUSTERS_HYDROGEN;
+| else;
+|   block/on $THRUSTERS_ATMOSPHERIC;
+|   block/off $THRUSTERS_HYDROGEN;
+```
+
+`inspace` is only true when there is no gravity at all. To switch earlier, replace the condition with `when grid gravity < 2 --buffer=1 --for=3;` (gravity is in m/s², about 9.8 at 1 g).
+
+`inspace`, `ingravity` and `gravity` are provided by MAPS, so the rule works in Mother OS or Mother GUI as long as MAPS runs on the same construct.
+
+### Docking
+
+React to the connector instead of writing a hook for every state. Once the ship is docked, charge the batteries and switch the thrusters off. When it leaves, go back to normal. `--for=2` ignores a connector that briefly connects while you manoeuvre.
+
+```ms title="Mother OS > Custom Data"
+[variables]
+CONNECTOR=Dock
+BATTERIES=Batteries
+THRUSTERS="Hydrogen Thrusters"
+
+[rules]
+Docked=
+| when $CONNECTOR connected --for=2;
+|   battery/charge $BATTERIES;
+|   block/off $THRUSTERS;
+| else;
+|   battery/auto $BATTERIES;
+|   block/on $THRUSTERS;
+```
+
+A command can also check the connector before it does something. Here it locks only when the connector is in range, and reports when it is not.
+
+```ms title="Mother OS > Custom Data"
+[variables]
+SCREEN="Cockpit:1"
+CONNECTOR=Dock
+
+[commands]
+Dock=
+| if $CONNECTOR connectable;
+|   connector/lock $CONNECTOR;
+| else;
+|   view/notify $SCREEN "Not in range of a connector." --level=error;
+| end;
+```
+
+### Low Power
+
+Warn early, then save power when it gets critical. `low` and `critical` already include a built-in buffer, so these rules will not flicker. `--for=3` means the battery must stay low for three seconds first. Add `--at=25%` to `low` to warn at 25% instead of 20%.
+
+```ms title="Mother OS > Custom Data"
+[variables]
+SCREEN="Cockpit:1"
+BATTERIES=Batteries
+SPOTLIGHTS=Spotlights
+
+[rules]
+LowBattery=
+| when $BATTERIES low --for=3;
+|   view/notify $SCREEN "Batteries low." --level=warning;
+| else;
+|   view/notify $SCREEN "Batteries recovered." --level=success;
+
+PowerSaver=
+| when $BATTERIES critical --for=3;
+|   block/off $SPOTLIGHTS;
+| else;
+|   block/on $SPOTLIGHTS;
+```
+
+### Menu Toggle
+
+Use `if` in a [Mother GUI](../MotherGUI/MenuView.md) menu entry to replace separate On and Off buttons with a single one. Because `on` and `off` are predicates for any functional block, this works for lights, doors, thrusters and more.
+
+```ms title="Mother GUI > Custom Data"
+[variables]
+SCREEN="Cockpit:1"
+HEADLIGHTS=Headlights
+
+[menu:Lighting]
+Toggle Headlights=
+| if $HEADLIGHTS on;
+|   block/off $HEADLIGHTS;
+|   view/notify $SCREEN "Headlights off." --level=success;
+| else;
+|   block/on $HEADLIGHTS;
+|   view/notify $SCREEN "Headlights on." --level=success;
+| end;
+```
+
+### Confirm Menu
+
+Ask before anything you cannot easily undo. A confirm menu is a normal menu with two entries. The entry that starts the action opens it with `view/go self`, and `--title` shows the question in the header. List `No` first for risky actions so the cursor starts on the safe choice, and use `view/back` to return to the previous menu.
+
+```ms title="Mother GUI > Custom Data"
+[variables]
+SCREEN="Cockpit:1"
+SYSTEMS="Non-Essential Systems"
+
+[menu:Systems]
+Power Down=
+| view/go self ConfirmPowerDown --title="Power down?";
+
+[menu:ConfirmPowerDown]
+No, cancel=
+| view/back;
+Yes, power down=
+| block/off $SYSTEMS;
+| view/notify $SCREEN "Systems off." --level=success;
+| view/back;
+```
+
+The same menu works for other actions such as purging storage or halting running routines. Point each action at its own confirm menu.
 
 ## Building a Landing Pad
 

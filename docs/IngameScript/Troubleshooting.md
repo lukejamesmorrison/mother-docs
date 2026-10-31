@@ -21,6 +21,14 @@ TurretRangeAuto=
 | pb/run PB.WhipsTurretBasedRadar "range auto";
 ```
 
+## Follow Along With the Log View
+You can can use the `LogView` to get a better look at your commands as they are executing. You need to target the script's name as it appears in the programmable block terminal.
+
+```ms title="LCD > Custom Data"
+[surfaces]
+0=LogView "Mother OS"
+```
+
 ## Mother OS is Missing from the Script List
 
 1. Confirm that you have subscribed to Mother OS on the [Steam Workshop](https://steamcommunity.com/sharedfiles/filedetails/?id=3411507973).

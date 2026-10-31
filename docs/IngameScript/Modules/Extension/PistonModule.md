@@ -137,6 +137,50 @@ Decrease speed by 0.1 m/s:
 piston/speed TurretPistons 0.1 --sub;
 ```
 
+## Properties
+
+:::tip
+Properties and predicates are very useful in conditions. A property is compared with an operator and a value (`position > 8`), while a predicate stands alone (`retracted`). See [Conditional Logic](../../ConditionalLogic.md) to use them in `when` rules and `if` steps.
+:::
+
+| Property | Description |
+|-|-|
+| `position` | The current extension of the piston in metres. A group is compared by its average. |
+| `status` | `extending`, `extended`, `retracting`, `retracted` or `stopped`. |
+| `attached` | `1` when the piston head is attached, `0` when detached. |
+
+| Predicate | True when |
+|-|-|
+| `extending` | The piston is extending. |
+| `extended` | The piston is fully extended. |
+| `retracting` | The piston is retracting. |
+| `retracted` | The piston is fully retracted. |
+| `stopped` | The piston is stopped. |
+| `attached` | The piston head is attached. |
+| `detached` | The piston head is detached. |
+
+**Compare a property**
+
+```ms title="Mother > Custom Data"
+[rules]
+DrillOut=
+| when DrillPiston position > 8;
+|   block/on Drills;
+| else;
+|   block/off Drills;
+```
+
+**Use a predicate**
+
+```ms title="Mother > Custom Data"
+[rules]
+DrillRetracted=
+| when DrillPiston retracted;
+|   light/color "Drill Light" green;
+| else;
+|   light/color "Drill Light" red;
+```
+
 ## Hooks
 
 The following hooks can be define in the block's Custom Data, and will be triggered when the corresponding command is called:

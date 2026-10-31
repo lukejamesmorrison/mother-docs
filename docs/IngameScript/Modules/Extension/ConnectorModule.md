@@ -3,6 +3,10 @@
 
 The connector module allows the user to control connectors on the grid.
 
+:::note Commands are provided by Mother OS
+Mother OS provides the `connector/lock`, `connector/unlock` and `connector/toggle` commands. As of Mother Core 1.2 they are no longer part of Core, so [Mother GUI](../../../MotherGUI/README.md) and [MAPS](../../../MotherAutopilotSystem/README.md) do not provide them. Connector [properties](#properties) and [hooks](#hooks) are still available in every script.
+:::
+
 [[toc]]
 
 ## Commands
@@ -44,6 +48,45 @@ connector/toggle <Connector|Group>
 
 ```ms title="Terminal"
 connector/toggle DockingConnector
+```
+
+## Properties
+
+:::tip
+Properties and predicates are very useful in conditions. A property is compared with an operator and a value (`status == connectable`), while a predicate stands alone (`connected`). See [Conditional Logic](../../ConditionalLogic.md) to use them in `when` rules and `if` steps.
+:::
+
+Connector properties and predicates are provided by Mother Core, so they work in every script on the construct, including [Mother GUI](../../../MotherGUI/README.md).
+
+| Property | Description |
+|-|-|
+| `status` | `unconnected`, `connectable` or `connected`. |
+
+| Predicate | True when |
+|-|-|
+| `connected` | The connector is locked to another connector. |
+| `connectable` | The connector is in range and ready to lock. |
+| `unconnected` | The connector is not locked and not in range. |
+| `disconnected` | The connector is not locked (`status == unconnected`). |
+
+**Compare a property**
+
+```ms title="Mother > Custom Data"
+[rules]
+DockReady=
+| when DockConnector status == connectable;
+|   light/color "Dock Light" yellow;
+```
+
+**Use a predicate**
+
+```ms title="Mother > Custom Data"
+[rules]
+Docked=
+| when DockConnector connected --for=2;
+|   battery/charge Batteries --backup;
+| else;
+|   battery/auto Batteries;
 ```
 
 ## Hooks

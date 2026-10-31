@@ -148,6 +148,47 @@ Decrease speed by 1 RPM:
 hinge/speed LandingGearHinge 1 --sub;
 ```
 
+## Properties
+
+:::tip
+Properties and predicates are very useful in conditions. A property is compared with an operator and a value (`angle > 80`), while a predicate stands alone (`locked`). See [Conditional Logic](../../ConditionalLogic.md) to use them in `when` rules and `if` steps.
+:::
+
+| Property | Description |
+|-|-|
+| `angle` | The current angle of the hinge in degrees. A group is compared by its average. |
+| `locked` | `1` when the hinge is locked, `0` when unlocked. |
+| `attached` | `1` when the hinge head is attached, `0` when detached. |
+
+| Predicate | True when |
+|-|-|
+| `locked` | The hinge is locked. |
+| `unlocked` | The hinge is unlocked. |
+| `attached` | The hinge head is attached. |
+| `detached` | The hinge head is detached. |
+
+**Compare a property**
+
+```ms title="Mother > Custom Data"
+[rules]
+WingsDeployed=
+| when WingHinge angle > 80;
+|   light/color "Wing Light" green;
+| else;
+|   light/color "Wing Light" red;
+```
+
+**Use a predicate**
+
+```ms title="Mother > Custom Data"
+[rules]
+WingsLocked=
+| when WingHinge locked;
+|   light/color "Wing Lock Light" green;
+| else;
+|   light/color "Wing Lock Light" red;
+```
+
 ## Hooks
 
 The following hooks can be define in the block's Custom Data, and will be triggered when the corresponding command is called:

@@ -624,7 +624,11 @@ To add a new device, follow the same three steps used for the Projector and Ante
 
 
 
-## Demo
+    ## Conditional Entries
+
+    Menu entries can use `if` steps to react to the state of your blocks, so one entry can replace a pair of On and Off entries or ask for confirmation first. See [Conditional Menu Entries](./MenuView.md#conditional-menu-entries) and the [Conditional Logic](../IngameScript/ConditionalLogic.md) reference.
+
+    ## Demo
 
 Check out the [Nova Blade Mk1 (Steam Workshop)](https://steamcommunity.com/sharedfiles/filedetails/?id=3823300552) - designed as a demonstration aircraft for the synergy of Mother OS, [Mother GUI](../MotherGUI/README.md) and [Mother Autopilot System (MAPS)](./../MotherAutopilotSystem/README.md), all built using the [Mother Core](./Framework/README.md) framework for programmable block scripts in Space Engineers.
 

@@ -43,6 +43,45 @@ vent/toggle <AirVent|Group>
 vent/toggle AirlockAirVent
 ```
 
+## Properties
+
+:::tip
+Properties and predicates are very useful in conditions. A property is compared with an operator and a value (`oxygen < 50%`), while a predicate stands alone (`low`). See [Conditional Logic](../../ConditionalLogic.md) to use them in `when` rules and `if` steps.
+:::
+
+| Property | Description |
+|-|-|
+| `oxygen` | The oxygen level of the room as a ratio, from `0` to `1`. Compare with a percentage, ie. `oxygen < 50%`. |
+| `status` | `pressurized`, `pressurizing`, `depressurized` or `depressurizing`. |
+
+| Predicate | True when |
+|-|-|
+| `pressurized` | The air vent is pressurized. |
+| `pressurizing` | The air vent is pressurizing. |
+| `depressurized` | The air vent is depressurized. |
+| `depressurizing` | The air vent is depressurizing. |
+| `low` | Oxygen is under 50%. |
+
+**Compare a property**
+
+```ms title="Airlock Vent > Custom Data"
+[rules]
+SafeToEnter=
+| when this oxygen > 90%;
+|   door/open "Airlock Inner Door";
+```
+
+**Use a predicate**
+
+```ms title="Airlock Vent > Custom Data"
+[rules]
+Warning=
+| when this low;
+|   light/color "Airlock Light" red;
+| else;
+|   light/color "Airlock Light" green;
+```
+
 ## Hooks
 
 The following hooks can be define in the block's Custom Data, and will be triggered when the corresponding command is called:

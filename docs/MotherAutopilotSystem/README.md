@@ -4,7 +4,7 @@
 
 # Mother Autopilot System (MAPS)
 
-![Static Badge](https://img.shields.io/badge/version-0.2.0-blue?color=green) [![Static Badge](https://img.shields.io/badge/Steam%20Workshop-2b3645?logo=steam)](https://steamcommunity.com/sharedfiles/filedetails/?id=3724504005)
+![Static Badge](https://img.shields.io/badge/version-0.3.0-blue?color=green) [![Static Badge](https://img.shields.io/badge/Steam%20Workshop-2b3645?logo=steam)](https://steamcommunity.com/sharedfiles/filedetails/?id=3724504005)
 
 
 
@@ -17,12 +17,14 @@ MAPS is currently in Alpha and is subject to change at any time. I will try my b
 <FlightPlanAnimation />
 
 ::: warning
-MAPS is compatible with scripts running [Mother Core](../Framework/README.md) v1.1.0 or later. To share `MapView` with [Mother GUI](../MotherGUI/README.md), update all of your scripts.
+MAPS is compatible with scripts running [Mother Core](../Framework/README.md) v1.2.0 or later. To share `MapView` with [Mother GUI](../MotherGUI/README.md) and ship conditions with [Mother OS](../IngameScript/IngameScript.md), update all of your scripts.
 :::
 
 ## Features
 
 - **Flight Planning and Visualization** - Leverage the existing GPS system and Remote Control block to program and [fly flight plans dynamically](../MotherAutopilotSystem//Modules/FlightPlanningModule.md#flight-planning).
+
+- **Ship Conditions** - Use `speed`, `moving`, `gravity`, `altitude`, `inspace` and `ingravity` in [conditional logic](../IngameScript/ConditionalLogic.md) from any script on the construct. See [Conditions](./Modules/FlightControlModule.md#conditions).
 
 
 ## Upcoming Features

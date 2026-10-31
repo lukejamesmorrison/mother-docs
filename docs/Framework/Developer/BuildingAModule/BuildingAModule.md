@@ -295,24 +295,82 @@ public class MissileGuidanceModule : BaseExtensionModule
 }
 ```
 
-### Registering a Simple Block Command
-Many commands apply a single action to every block of a type that matches a name, group or tag, such as `door/open`. For these, skip the command class and use `RegisterBlockCommand<T>()`. It takes the command name, an action to apply to each block, and a response message where `{0}` is the block name. This reduces the size of your script.
+### Registering a Simple Command
+Commands that need no state of their own do not need a class. Pass a name, the minimum number of arguments and a lambda to `RegisterCommand()`. Fewer arguments than the minimum are answered with an optional usage message, without calling your lambda.
 
 ```csharp title="MissileGuidanceModule.cs"
 public class MissileGuidanceModule : BaseExtensionModule
 {
     public override void Boot()
     {
-        RegisterBlockCommand<IMyShipConnector>(
-            "missile/release",
-            connector => connector.Disconnect(),
-            "Missile released: {0}"
-        );
+        RegisterCommand("missile/abort", 0, command =>
+        {
+            AbortLaunch();
+            return "Launch aborted";
+        });
     }
 }
 ```
 
-Commands that need several arguments, options or custom validation should still use a command class.
+### Registering Block Commands and Conditions
+Many commands apply a single action to every block of a type that matches a name, group or tag, such as `door/open`. For these, skip the command class and start a group of registrations with `Block<T>()`. Give it a prefix, then chain `.Command()` for each action. It takes the command verb, an action to apply to each block, and a response message where `{0}` is the block name. The block type is written once, which reduces the size of your script.
+
+```csharp title="MissileGuidanceModule.cs"
+public class MissileGuidanceModule : BaseExtensionModule
+{
+    public override void Boot()
+    {
+        Block<IMyShipConnector>("missile")
+            .Command("release", connector => connector.Disconnect(), "Missile released: {0}");
+    }
+}
+```
+
+The same chain can make the block's properties readable in [conditions](../CoreModules/Conditions.md), so players can write `if "Missile Clamp" armed;` or `when "Missile Clamp" safe;` in Custom Data.
+
+| Method | Use |
+| - | - |
+| `.Command(verb, action, message)` | Registers a command for the block type, ie. `missile/release`. |
+| `.Number(key, read)` | A numeric property such as `charge`. |
+| `.Flag(key, read, yes, no)` | A yes or no property, with an optional predicate for each answer. |
+| `.Status(key, read)` | An enum state such as a door's `status`. Its value names become state words. |
+| `.Monitor(read)` | Monitors a state and dispatches its changes to the `.On()` declarations. |
+| `.On<TEvent>(state, hook)` | Emits an event and runs the block's hook (default `on` plus the state name) when the monitored state changes to `state`. |
+
+```csharp title="MissileGuidanceModule.cs"
+public override void Boot()
+{
+    Block<IMyShipConnector>("missile")
+        .Command("release", connector => connector.Disconnect(), "Missile released: {0}")
+        .Flag("armed", connector => connector.IsWorking, "armed", "safe");
+
+    Block<IMyGasTank>()
+        .Number("fuel", tank => tank.FilledRatio);
+
+    // A predicate is a property, an operator and a value.
+    // The optional last argument is a default buffer.
+    RegisterPredicate("dry", "fuel < 2%", "1%");
+}
+```
+
+Commands that need several arguments, options or custom validation should still use a command class. `RegisterBlockCommand<T>()` is still available to register a single block command.
+
+#### Registering Conditions
+
+Use `RegisterPredicate()` from `BaseExtensionModule` to name a condition. Modules that register the same name each add their own rows to it, so `low` can be a battery, tank and air vent condition at once. Call it from `Boot()`. See the [Conditions](../CoreModules/Conditions.md) module for how properties, predicates and state words are evaluated and shared across the construct.
+
+Registered by the `MissileGuidanceModule` above, players can then use the `dry` predicate in any command across the construct.
+
+```ini title="Custom Data"
+[commands]
+Refuel=
+| if "Hydrogen Tanks" dry;
+|   connector/lock "Main Connector";
+|   view/notify "Cockpit:1" "Tanks are dry, docking to refuel" --level=error;
+| else;
+|   view/notify "Cockpit:1" "Fuel OK";
+| end;
+```
 
 ## Events
 

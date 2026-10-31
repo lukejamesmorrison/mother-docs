@@ -5,7 +5,7 @@ The AutoLCD module lets you swap what a screen shows from a Mother command. It w
 [[toc]]
 
 ::: info Requires Automatic LCDs 2
-Mother does not draw anything itself. It copies a named view into the target block's `Custom Data` and AutoLCD does the rendering. You must run AutoLCDs in a programmable block on the same grid - which you should, because it's great.
+Mother does not draw anything itself. It copies a named view into the target block's `Custom Data` and AutoLCDs 2 does the rendering. You must run AutoLCDs 2 in a programmable block on the same grid - which you should, because it's great.
 :::
 
 ## Defining Views
@@ -26,10 +26,30 @@ HydrogenTanksView=
 | StopTime
 ```
 
-- Mother copies the text exactly as written. It does not interpret `{T:...}`, `;` separators or `//` comments.
-- Mother's `$VARIABLE` and `{{parameter}}` substitution does not apply to `[autolcd]` views.
+- Mother copies the text as written. It does not interpret `{T:...}`, `;` separators or `//` comments.
+- Mother resolves `$VARIABLES` from the `[variables]` section, and `{{parameter:default}}` placeholders from options on `autolcd/print`, when the view is printed. See [Using Variables](#using-variables).
 - View names are case-insensitive.
 - Edits to the section are picked up automatically. You do not need to run `boot`.
+
+### Using Variables
+
+Use `$VARIABLES` to keep names that appear in many views in one place, or `{{parameter:default}}` placeholders that you fill in when you print the view.
+
+```ms title="Mother OS > Custom Data"
+[variables]
+POWER_GROUP=Batteries
+
+[autolcd]
+PowerView=
+| {{command:Power}} {T:*}
+| Working {TG:$POWER_GROUP}
+
+[commands]
+ShowPowerView=autolcd/print "Cockpit:1" PowerView
+ShowPowerStoredView=autolcd/print "Cockpit:1" PowerView --command=PowerX
+```
+
+Variables are resolved each time you print, so a view always uses the current value.
 
 ## Commands
 
@@ -38,7 +58,7 @@ HydrogenTanksView=
 Copy a view to a screen. AutoLCD then renders it.
 
 ```
-autolcd/print <Block|Group|#tag>[:SurfaceIndex] <View>
+autolcd/print <Block|Group|#tag>[:SurfaceIndex] <View> [--options]
 ```
 
 | Argument | Description |
@@ -59,6 +79,9 @@ autolcd/print "Pilot Cockpit:1" HydrogenTanksView;
 
 ; Update every screen tagged #status
 autolcd/print #status PowerView;
+
+; With an override via a variable "command"
+autolcd/print "Pilot Cockpit:1" PowerView --command=PowerX;
 ```
 
 Use it from a [command](../../CommandLineInterface.md) or [Mother GUI](../../../MotherGUI/README.md) menu to build screens that switch between views:

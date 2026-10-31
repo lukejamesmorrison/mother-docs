@@ -47,12 +47,15 @@
             <line x1="10" y1="14" x2="21" y2="3"></line>
           </svg> -->
         </a>
+        <RouteLink v-if="item.page" :to="item.page">Design Notes</RouteLink>
       </div>
     </div>
   </template>
   
 
 <script setup>
+import { RouteLink } from 'vuepress/client'
+
 defineProps({
     item: Object
 })

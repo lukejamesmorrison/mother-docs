@@ -28,7 +28,7 @@ Start by assigning a surface to a menu name. Custom menus live on the Mother GUI
 
 Then define that menu in the Mother GUI programmable block.
 
-```ms title="Mother GUI > Custom Data"
+```ms title="Programmable Block > Custom Data"
 [menu:MainMenu]
 Mechanical=
 .Power Menu=view/go self PowerMenu
@@ -162,7 +162,7 @@ The title resets when the player navigates into or out of a group.
 
 Use [`view/notify`](./Commands.md#view-notify) to show a short message in the footer of a display. Notifications work in menus but will be expanded to other views soon. They clear automatically after a few seconds.
 
-```ms title="Mother GUI > Custom Data"
+```ms title="Programmable Block > Custom Data"
 [menu:MainMenu]
 Lights=
 .On=
@@ -177,6 +177,43 @@ Lights=
 Notification levels are `info`, `success`, `warning` and `error`.
 
 ![Menu Notification](./Assets/mother-gui-notification1.png)
+
+## Conditional Menu Entries
+
+Menu entries are technically routines, so they can use `if`, `elseif`, `else` and `end` steps to react to the state of your blocks. Mother GUI does not define its own predicates. It uses every predicate from Mother Core, and from [Mother OS](../IngameScript/ConditionalLogic.md#mother-os) and [MAPS](../IngameScript/ConditionalLogic.md#maps) when they run on the same construct. See [Conditional Logic](../IngameScript/ConditionalLogic.md) for everything a condition can do.
+
+### Toggle Entries
+
+Replace separate On and Off entries with a single one. Because `on` and `off` are predicates for any functional block, this works for lights, doors, thrusters and more.
+
+```ms title="Programmable Block > Custom Data"
+[variables]
+SCREEN="Cockpit:1"
+HEADLIGHTS=Headlights
+
+[menu:Lighting]
+Headlights=
+| if $HEADLIGHTS on;
+|   block/off $HEADLIGHTS;
+|   view/notify $SCREEN "Headlights off." --level=success;
+| else;
+|   block/on $HEADLIGHTS;
+|   view/notify $SCREEN "Headlights on." --level=success;
+| end;
+```
+
+### More Recipes
+
+See the [Menu Toggle](../IngameScript/Examples.md#menu-toggle) and [Confirm Menu](../IngameScript/Examples.md#confirm-menu) recipes for a full example of each. A confirm menu is a normal menu with two entries. The entry that starts the action opens it with `view/go self` and `--title`, and `view/back` returns to the previous menu.
+
+Rules run on their own, so a menu can also be paired with a `when` rule that notifies the player. Mother GUI can use `critical` from Mother OS, or `inspace` from MAPS, as long as those scripts run on the same construct.
+
+```ms title="Programmable Block > Custom Data"
+[rules]
+Alert=
+| when Batteries critical;
+|   view/notify "Cockpit:1" "Batteries critical" --level=error;
+```
 
 ## Widescreen Behavior
 

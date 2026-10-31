@@ -2,6 +2,131 @@
 
 [[toc]]
 
+## 1.1.4 -> 1.2.0
+🕓 10 mins
+
+This release adds a conditional logic engine, a shorter way to register commands and block vocabulary, and a larger set of build-time size optimizations. There is one breaking change: the `connector/lock`, `connector/unlock` and `connector/toggle` commands are no longer part of Mother Core.
+
+::: warning Update Every Script Together
+Scripts share commands, views and now conditions across the construct. Update every Mother-powered script on your construct to Mother Core 1.2.0 so they all share the same vocabulary.
+:::
+
+### Breaking Changes
+
+#### 1. Connector Commands Removed
+
+`connector/lock`, `connector/unlock` and `connector/toggle`, along with `ConnectorModule.LockConnector()`, `UnlockConnector()` and `ToggleConnector()`, have been removed from Core. `ConnectorModule` still monitors connectors, emits `ConnectorLockedEvent`, `ConnectorUnlockedEvent` and `ConnectorReadyToLockEvent`, and runs the `onLock`, `onUnlock` and `onReady` hooks, which `BlockCatalogue` relies on.
+
+[Mother OS](../../../IngameScript/Modules/Extension/ConnectorModule.md) still provides the commands. [Mother GUI](../../../MotherGUI/README.md) and [MAPS](../../../MotherAutopilotSystem/README.md) do not. If your script needs them, register them from your own module:
+
+```csharp title="ConnectorCommandsModule.cs"
+public override void Boot()
+{
+    Block<IMyShipConnector>("connector")
+        .Command("lock", connector => connector.Connect(), "Connector locked: {0}")
+        .Command("unlock", connector => connector.Disconnect(), "Connector unlocked: {0}")
+        .Command("toggle", connector => connector.ToggleConnect(), "Connector toggled: {0}");
+}
+```
+
+### New Features
+
+#### 1. Conditional Logic
+
+The new [`ConditionModule`](../CoreModules/Conditions.md) evaluates conditions of the form `<target> <predicate>` or `<target> <property> <operator> <value>`. Players use them two ways: polled `when` rules in a `[rules]` section, and inline `if` / `elseif` / `else` / `end` steps in any routine.
+
+```ms title="Programmable Block > Custom Data"
+[rules]
+LowPower=
+| when Batteries low;
+|   view/notify "Cockpit:1" "Power is low";
+| else;
+|   view/notify "Cockpit:1" "Power OK";
+
+[commands]
+Dock=
+| if Connector connectable;
+|   connector/lock Connector;
+| else;
+|   view/notify "Cockpit:1" "Not in range of a connector." --level=error;
+| end;
+```
+
+Core only provides `enabled` and `working` (with the `on`, `off`, `working` and `broken` predicates), plus connector `status` (`unconnected`, `connectable`, `connected`) and the `disconnected` predicate. Everything else is registered by the extension module that owns the block.
+
+#### 2. Block Vocabulary and `Block<T>()`
+
+`BaseModule.Block<T>(prefix)` returns a `BlockSet<T>` that groups registrations for one block type, so the type is written once. `.Command()`, `.Number()`, `.Flag()`, `.Status()`, `.Monitor()` and `.On()` replace separate `RegisterBlockCommand<T>()`, condition and `RegisterBlockTypeForStateMonitoring<T>()` calls. `RegisterPredicate()` on `BaseExtensionModule` names a condition.
+
+**Before:**
+```csharp title="DoorModule.cs"
+RegisterBlockCommand<IMyDoor>("door/open", door => door.OpenDoor(), "Door opened: {0}");
+RegisterBlockCommand<IMyDoor>("door/close", door => door.CloseDoor(), "Door closed: {0}");
+```
+
+**After:**
+```csharp title="DoorModule.cs"
+Block<IMyDoor>("door")
+    .Command("open", door => door.OpenDoor(), "Door opened: {0}")
+    .Command("close", door => door.CloseDoor(), "Door closed: {0}")
+    .Status("status", door => door.Status);
+```
+
+`RegisterBlockCommand<T>()` still works. `RegisterBlockTypeForStateMonitoring<T>()` is unchanged, except it is now `protected internal`. See [Building a Module](../BuildingAModule/BuildingAModule.md#registering-block-commands-and-conditions).
+
+`.Monitor(read)` without a handler dispatches state changes to `.On<TEvent>(state, hook)` declarations. Each one emits the event with the block and runs the block hook (`on` plus the state name by default). This replaces hand-written `if` / `else` state handlers:
+
+```csharp title="AirVentModule.cs"
+Block<IMyAirVent>("Airlock Vent")
+    // Continously monitor the vent's status
+    .Monitor(vent => vent.Status)
+    // Trigger the onPressurized hook when state changes to Pressurized
+    .On<AirVentPressurizedEvent>(VentStatus.Pressurized);
+```
+
+#### 3. Construct-Wide Conditions
+
+Scripts advertise the properties, predicates and state words they define, and answer each other's conditions. Mother GUI can test MAPS's `inspace`, and MAPS can test Mother OS's `low`, with nothing registered in the script that uses them. See [Sharing Vocabulary Across the Construct](../CoreModules/Conditions.md#sharing-vocabulary-across-the-construct). Set `[general] condTimeout` (default `2` seconds) to change how long an inline `if` waits for another script.
+
+#### 4. Lambda Commands
+
+`RegisterCommand(name, minArgs, run, usage)` registers a command as a lambda, so a simple command needs no class, field, constructor or `Name` override. It is available on `BaseModule`, `Mother` and `CommandBus`. Keep a command class for commands that hold their own state. See [Registering a Simple Command](../CoreModules/CommandBus.md#registering-a-simple-command).
+
+```csharp title="ConsoleModule.cs"
+RegisterCommand("clear", 0, command =>
+{
+    ClearConsole();
+    return "";
+});
+```
+
+`TerminalCommand` also gains `GetIncrement(value)`, `IsShared()` and `GetDistributedValue(...)` for lambda commands. The protected `BaseModuleCommand` versions remain and forward to them.
+
+#### 5. Text Compare
+
+An `if` or `elseif` with two values and `==` or `!=` compares them as text, ignoring case: `if $MODE == parked;`. It runs after variables are resolved, takes no options, and is not available in `when` rules.
+
+### Other Changes To Expect
+
+- **Smaller scripts** - The build now runs a [script optimizer and keyword remover](../GettingStarted/ManagingScriptSize.md#build-time-optimization) after MDK packs the script. Expect to save about 2.7K characters in Mother Core. Conditions cost about 4,100 characters in each script, so prune where you can.
+- **Rules load after boot** - `when` rules are rebuilt one per cycle, so they start working a few cycles after boot rather than at once. The old rules keep running until the new ones replace them.
+- **Runtime variables survive a reload** - `Configuration.Reload` no longer resets variables set at runtime. A variable keeps its runtime value unless its entry in `[variables]` was edited since the last load. A reboot still starts from Custom Data.
+- **Own Custom Data writes are not changes** - `BlockCatalogue.Accept` records a configuration the script wrote itself, so `var/set --save` no longer makes every script rebuild its rules.
+- **Large grids** - `BlockCatalogue` now reads at most 100 blocks per cycle and stops early once 40% of the instruction limit is used. This fixes "script too complex" on grids with thousands of blocks.
+- **Update frequency** - Scripts run at `Update1`.
+- **`BlockCatalogue.ReplaceThisKeywordWithBlockName`** is now public.
+
+### Migration Checklist
+
+- [ ] Update every Mother-powered script on your construct to Mother Core 1.2.0
+- [ ] Register `connector/lock`, `connector/unlock` and `connector/toggle` from your own module if your script needs them
+- [ ] Rebuild your project and check your script size against the 100,000 character limit
+- [ ] (Optional) Use `Block<T>()` to register commands, properties and state monitoring for a block type
+- [ ] (Optional) Use `RegisterPredicate()` to share your own predicates with the construct
+- [ ] (Optional) Use `RegisterCommand(name, minArgs, run)` for commands that need no class
+
+---
+
 ## 1.1.0 -> 1.1.4
 🕓 5 mins
 

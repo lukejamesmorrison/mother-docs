@@ -56,6 +56,42 @@ gear/auto MainLandingGear true;
 ```
 
 
+## Properties
+
+:::tip
+Properties and predicates are very useful in conditions. A property is compared with an operator and a value (`status == readytolock`), while a predicate stands alone (`locked`). See [Conditional Logic](../../ConditionalLogic.md) to use them in `when` rules and `if` steps.
+:::
+
+| Property | Description |
+|-|-|
+| `status` | `unlocked`, `readytolock` or `locked`. |
+
+| Predicate | True when |
+|-|-|
+| `ready` | The gear is ready to lock (`status == readytolock`). |
+| `locked` | The gear is locked. |
+| `unlocked` | The gear is unlocked. |
+
+**Compare a property**
+
+```ms title="Mother > Custom Data"
+[rules]
+GearReady=
+| when "Landing Gear" status == ready;
+|   light/color "Gear Light" yellow;
+```
+
+**Use a predicate**
+
+```ms title="Mother > Custom Data"
+[rules]
+Parked=
+| when "Landing Gear" locked --for=2;
+|   block/off "Landing Lights";
+| else;
+|   block/on "Landing Lights";
+```
+
 ## Hooks
 
 The following hooks can be define in the block's Custom Data, and will be triggered when the corresponding command is called:

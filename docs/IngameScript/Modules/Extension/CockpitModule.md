@@ -87,6 +87,49 @@ Cockpit/toggle <Cockpit|Group>
 Cockpit/toggle DockingCockpit
 ``` -->
 
+## Properties
+
+:::tip
+Properties and predicates are very useful in conditions. A property is compared with an operator and a value (`dampeners == 0`), while a predicate stands alone (`occupied`). See [Conditional Logic](../../ConditionalLogic.md) to use them in `when` rules and `if` steps.
+:::
+
+These work on cockpits and any other ship controller.
+
+| Property | Description |
+|-|-|
+| `occupied` | `1` when a player is in control, `0` when not. |
+| `dampeners` | `1` when inertial dampeners are on, `0` when off. |
+| `handbrake` | `1` when the handbrake is on, `0` when off. |
+
+| Predicate | True when |
+|-|-|
+| `occupied` | A player is in control. |
+| `empty` | No player is in control. |
+
+`dampeners` and `handbrake` have no predicate. Compare them to `1` (on) or `0` (off).
+
+**Compare a property**
+
+```ms title="Mother > Custom Data"
+[rules]
+DampenersOff=
+| when "Pilot Cockpit" dampeners == 0;
+|   light/color "Warning Light" yellow;
+| else;
+|   light/color "Warning Light" green;
+```
+
+**Use a predicate**
+
+```ms title="Mother > Custom Data"
+[rules]
+CabinLights=
+| when "Pilot Cockpit" occupied;
+|   block/on "Cabin Lights";
+| else;
+|   block/off "Cabin Lights";
+```
+
 ## Hooks
 
 The following hooks can be define in the block's Custom Data, and will be triggered when the corresponding command is called:

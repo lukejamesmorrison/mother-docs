@@ -56,6 +56,7 @@ These modules have been moved to the [Mother Autopilot System](../../MotherAutop
 | [Doors](Extension/DoorModule.md)						| Manages doors on the grid.|
 | [Gas Tanks](Extension/GasTankModule.md)					| Manages oxygen and hydrogen tanks on the grid.|
 | [Hinges](Extension/HingeModule.md)					| Manages hinges on the grid.|
+| [Jump Drives](Extension/JumpDriveModule.md)			| Makes jump drive charge and status available in conditions.|
 | [Landing Gear](Extension/LandingGearModule.md) | Manages landing gear and magnetic plates on the grid.|
 | [Lights](Extension/LightModule.md)                    | Manages lights on the grid.|
 | [Pistons](Extension/PistonModule.md)					| Manages pistons on the grid.|

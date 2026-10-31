@@ -1,4 +1,5 @@
 <script setup>
+import { RouteLink } from 'vuepress/client'
 import { ref, computed, onMounted, onBeforeUnmount, watch } from 'vue'
 
 /**
@@ -149,6 +150,14 @@ function onKeydown(e) {
                   <path d="M14 3h7v7h-2V6.41l-9.29 9.3-1.42-1.42L17.59 5H14V3zM5 5h6v2H7v10h10v-4h2v6H5V5z"/>
                 </svg>
               </a>
+              <RouteLink
+                v-if="currentItem.page"
+                :to="currentItem.page"
+                class="fc__link"
+                style="margin-left: 1rem"
+              >
+                Design Notes
+              </RouteLink>
             </div>
           </div>
         </div>

@@ -30,7 +30,7 @@ import { usePageData } from 'vuepress/client'
 # Mother OS (Ingame Script)
 
 <!-- <Badge type="info" text="&nbsp;Beta&nbsp;" vertical="middle" /> -->
-![Static Badge](https://img.shields.io/badge/Version-1.2.0-blue?color=green) [![Static Badge](https://img.shields.io/badge/Steam%20Workshop-2b3645?logo=steam)](https://steamcommunity.com/sharedfiles/filedetails/?id=3411507973)
+![Static Badge](https://img.shields.io/badge/Version-1.3.0-blue?color=green) [![Static Badge](https://img.shields.io/badge/Steam%20Workshop-2b3645?logo=steam)](https://steamcommunity.com/sharedfiles/filedetails/?id=3411507973)
 
 
 Mother OS is available as an ingame script for Programmable Blocks in Space Engineers. It interoperates seamlessly with Timer Blocks and Event Controllers to augment existing automations. Start by [installing Mother OS here](./Installation.md).
@@ -71,21 +71,13 @@ Check out the [Nova Blade Mk1 (Steam Workshop)](https://steamcommunity.com/share
 
 - **Styled and Automatic Displays** - Print styled text to screens with [`screen/print`](Modules/Extension/DisplayModule.md#screen-print), or swap [Automatic LCDs 2](Modules/Extension/AutoLCDModule.md) views with a single command.
 
+- **Conditional Logic** - React to the state of your blocks with `when` rules and `if` steps, such as `"Batteries" low` or `grid altitude < 100`. See [Conditional Logic](./ConditionalLogic.md).
+
 <br>
 
 **Tutorial Video**
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/CgA6k1xQfVE?si=QefVhWt23W7t_sRy" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-
-
-### Upcoming Features
-
-#### Conditional Logic
-<Badge type="warning" text="&nbsp;In development&nbsp;" vertical="middle" />
-
-**Objective** 
-
-Allow players to monitor blocks and apply conditional logic to their automations.
 
 ---
 

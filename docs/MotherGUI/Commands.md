@@ -4,7 +4,7 @@ next: /MotherGUI/MenuView.md
 
 # Commands
 
-Mother GUI exposes a small set of commands for navigation and screen management. These commands can be triggered from the programmable block terminal, toolbars, button panels, timers, event controllers, or other Mother routines.
+Mother GUI exposes a small set of commands for navigation and screen management. These commands can be triggered from the programmable block terminal, toolbars, button panels, timers, event controllers, or other Mother routines. Use them inside `if` steps and `when` rules to change what a display shows based on the state of your blocks. See [Conditional Menu Entries](./MenuView.md#conditional-menu-entries).
 
 [[toc]]
 
