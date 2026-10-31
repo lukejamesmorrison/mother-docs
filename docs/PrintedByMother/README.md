@@ -22,7 +22,7 @@ Like every script built with Mother Core it shares commands with the other Mothe
 - **Saved poses and alignment** - save where a blueprint sits relative to the merge block that will hold the print, then `blueprint/align` puts it back there on any printer with one command. Rotate the print about the merge block without breaking the mating.
 - **Print jobs** - `blueprint/print` runs the print as a job with phases, hooks and a busy flag, so two prints never weld into the same space. See [Print Jobs](./PrintJobs.md).
 - **Weld observation** - Mother watches weld progress on the projector's grid and fires hooks when welding starts, pauses, stalls or completes. Stalls are notifications you can escalate to an abort.
-- **Projector state stack** - push a projector's settings, change them for one print, pop them back when the job ends. See [The state stack](./Alignment.md#the-state-stack).
+- **Projector state stack** - push a projector's settings, change them for one print, pop them back when the job ends. See [The State Stack](./Alignment.md#the-state-stack).
 
 ## Quick Example
 

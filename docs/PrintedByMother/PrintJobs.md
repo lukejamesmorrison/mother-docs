@@ -25,7 +25,7 @@ The section may sit on the projector, on the attachment merge block, or both. Mo
 | Key | Values | Description |
 |---|---|---|
 | `name` | text | The printer this block belongs to. Blocks with the same name form one printer. |
-| `clear` | `auto` (default), `manual` | How a job's clearing phase ends. See [Knowing when the printer is clear](#knowing-when-the-printer-is-clear). |
+| `clear` | `auto` (default), `manual` | How a job's clearing phase ends. See [Knowing When the Printer Is Clear](#knowing-when-the-printer-is-clear). |
 
 Run `projector/status` to check a projector's printer and job phase, shown as `starting`, `printing`, `clearing` or `finishing` (finishing means the `onClear` routine is running). A [paused](#pausing-a-job) job shows `(paused)` after its phase, as in `job=printing (paused)`.
 
@@ -37,9 +37,9 @@ Every `printer/*` command names the printer by anything that belongs to it: the 
 
 `blueprint/print <Projector>` starts a job on that projector's printer. A printer with a job in any phase is **busy**: `blueprint/print` into it fails immediately with an error. There is no queue; that is deliberate.
 
-1. **starting** - the job waits for any pending `blueprint/load` on the projector, enables the projector and runs the `onPrint` hooks. Once the chain finishes the job **commits** and moves on. If prep takes longer than the chain, pause the job from the chain itself; see [Pausing a job](#pausing-a-job).
+1. **starting** - the job waits for any pending `blueprint/load` on the projector, enables the projector and runs the `onPrint` hooks. Once the chain finishes the job **commits** and moves on. If prep takes longer than the chain, pause the job from the chain itself; see [Pausing a Job](#pausing-a-job).
 2. **printing** - Mother watches the weld progress until the projection is complete and `onComplete` has fired.
-3. **clearing** - the projection is complete, but the printed ship may still be attached. The job waits for the printer to be clear; see [Knowing when the printer is clear](#knowing-when-the-printer-is-clear).
+3. **clearing** - the projection is complete, but the printed ship may still be attached. The job waits for the printer to be clear; see [Knowing When the Printer Is Clear](#knowing-when-the-printer-is-clear).
 4. **finishing** - the `onClear` hooks are running. When the sequential part of the routine completes, the job is over and the printer is idle again. "Idle" truthfully means the sequential part of your `onClear` routine completed; parallel branches are not waited on.
 
 A job ends in exactly one of two ways: **cleared** (success, `onClear` runs) or **aborted** (`printer/abort`, `onFailed` runs instead). A job never gives up on its own.
@@ -65,7 +65,7 @@ Mother does not own the hardware. Disabling the projector by hand mid-print susp
 
 A [paused](#pausing-a-job) job stops every print clock: the stall clock, the weld-gap dwell and the duration statistics stand still, so `onTimedOut` cannot fire while the job is paused and the recorded print durations exclude paused time. Pausing stops the clocks only. Routines keep running (a `wait` in a routine keeps counting) and the welders themselves are not switched off; do that yourself if the hold needs it. A paused job whose projector disappears is still dropped, exactly like an unpaused one.
 
-A block is *partial* while its construction is incomplete: build integrity below maximum. Damage does not count; a dented but fully built block never holds a weld open or blocks completion. Mother finds partial blocks by walking the projector grid's bounding box a bounded number of cells per run, so on a large grid the hold engages, and completion is confirmed, a few runs after the fact rather than in the same run. See [Weld observation](./Alignment.md#weld-observation).
+A block is *partial* while its construction is incomplete: build integrity below maximum. Damage does not count; a dented but fully built block never holds a weld open or blocks completion. Mother finds partial blocks by walking the projector grid's bounding box a bounded number of cells per run, so on a large grid the hold engages, and completion is confirmed, a few runs after the fact rather than in the same run. See [Weld Observation](./Alignment.md#weld-observation).
 
 ## Pausing a Job
 

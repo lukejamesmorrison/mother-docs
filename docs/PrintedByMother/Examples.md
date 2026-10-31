@@ -52,7 +52,7 @@ PrintBay1=
 The printer clears when the merge block unlocks (`clear=auto`, the default). Switch it off, by hand or with `block/off "Bay 1 Merge";`, to release the ship; the next print switches it back on and returns the piston. One large-grid piston gives 10 m of travel, so a longer ship needs more pistons.
 
 ::: tip
-The `[blueprint:<hash>]` section with the blueprint's name and saved pose is created for you by `blueprint/save` once the blueprint is positioned by hand; see [Your first blueprint](./Alignment.md#your-first-blueprint).
+The `[blueprint:<hash>]` section with the blueprint's name and saved pose is created for you by `blueprint/save` once the blueprint is positioned by hand; see [Your First Blueprint](./Alignment.md#your-first-blueprint).
 :::
 
 ## Two Projectors Sharing a Bay
@@ -78,7 +78,7 @@ Set the sensor's action to run the Printed by Mother programmable block with the
 printer/clear bay-1;
 ```
 
-Naming either projector instead of `bay-1` works just as well: clear acts on the printer's job, not the block. While bay-1 is printing or clearing, `blueprint/print` on either projector errors, so the two projectors never weld into the same space. See [Knowing when the printer is clear](./PrintJobs.md#knowing-when-the-printer-is-clear).
+Naming either projector instead of `bay-1` works just as well: clear acts on the printer's job, not the block. While bay-1 is printing or clearing, `blueprint/print` on either projector errors, so the two projectors never weld into the same space. See [Knowing When the Printer Is Clear](./PrintJobs.md#knowing-when-the-printer-is-clear).
 
 ## Upside-Down Print
 
@@ -99,7 +99,7 @@ onClear=projector/pop-state this;
 onFailed=projector/pop-state this;
 ```
 
-The pop is paired in both job-ending hooks so that an aborted print does not leak the pushed state. See [Rotation semantics](./Alignment.md#rotation-semantics) and [The state stack](./Alignment.md#the-state-stack).
+The pop is paired in both job-ending hooks so that an aborted print does not leak the pushed state. See [Rotation Semantics](./Alignment.md#rotation-semantics) and [The State Stack](./Alignment.md#the-state-stack).
 
 ## Pause Until the Welders Are On
 
@@ -120,7 +120,7 @@ The chain still commits the job when it finishes, but the paused job's clocks st
 printer/resume bay-1;
 ```
 
-See [Pausing a job](./PrintJobs.md#pausing-a-job).
+See [Pausing a Job](./PrintJobs.md#pausing-a-job).
 
 ## Abort on Stall
 
@@ -146,4 +146,4 @@ onFailed=
 | print "{{bp}} aborted on {{projector}}";
 ```
 
-`printer/abort` cancels the job in any phase: the projector's `onFailed` runs, then the blueprint's, `onClear` does not run, and the printer is idle at once. Whatever is half-printed stays in the bay. The `[projector]` section gives this slow bay a 45-second stall budget instead of the default 15. See [Stalls and failures](./PrintJobs.md#stalls-and-failures).
+`printer/abort` cancels the job in any phase: the projector's `onFailed` runs, then the blueprint's, `onClear` does not run, and the printer is idle at once. Whatever is half-printed stays in the bay. The `[projector]` section gives this slow bay a 45-second stall budget instead of the default 15. See [Stalls and Failures](./PrintJobs.md#stalls-and-failures).

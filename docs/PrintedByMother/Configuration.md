@@ -40,8 +40,8 @@ onFailed=
 | Key | Set by | Description |
 |---|---|---|
 | `name` | `blueprint/name` | Display name, passed to hooks as `{{bp}}`. |
-| `offset`, `rotation` | `blueprint/save`, `blueprint/transform` | The saved pose, two comma-separated triples. For a merge block attachment they describe the blueprint's merge block in blueprint coordinates (its position and intrinsic rotation), so the same section works on any printer. For any other attachment they describe the projection's pose in the attachment's frame. Which interpretation applies is decided at align time from the attachment, not from the section. See [The saved pose](./Alignment.md#the-saved-pose). |
-| `maxWeldGap`, `timeout`, `keepProjection`, `showOnlyBuildable`, `markMissingBlocks`, `markUnfinishedBlocks` | `blueprint/save` | Per-blueprint overrides of the projector's [weld settings](#weld-settings). Keys that are absent fall back to the projector's defaults. |
+| `offset`, `rotation` | `blueprint/save`, `blueprint/transform` | The saved pose, two comma-separated triples. For a merge block attachment they describe the blueprint's merge block in blueprint coordinates (its position and intrinsic rotation), so the same section works on any printer. For any other attachment they describe the projection's pose in the attachment's frame. Which interpretation applies is decided at align time from the attachment, not from the section. See [The Saved Pose](./Alignment.md#the-saved-pose). |
+| `maxWeldGap`, `timeout`, `keepProjection`, `showOnlyBuildable`, `markMissingBlocks`, `markUnfinishedBlocks` | `blueprint/save` | Per-blueprint overrides of the projector's [Weld Settings](#weld-settings). Keys that are absent fall back to the projector's defaults. |
 | `onLoad`, `onPrint`, `onClear`, `onFailed` | `blueprint/on-load`, `blueprint/on-print`, `blueprint/on-clear`, `blueprint/on-failed` | Routines run for this blueprint; see [Hooks](./Hooks.md#blueprint-hooks). |
 | `subgrids` | | Parsed and written back but not consumed yet; reserved for multigrid projector support. |
 
@@ -87,7 +87,7 @@ PrintBay1=
 |---|---|
 | `[commands]` | Your routines, run by name from the terminal, a button, a sensor or a timer. |
 | `[variables]` | Values referenced as `$NAME` in routines. |
-| `[hooks]` | Fallback hooks for a projector or group, in Mother Core's `"<block>".hook=` form. They fire, but `{{projector}}`, `{{hash}}` and `{{bp}}` are not substituted in them; see [Parameter substitution](./Hooks.md#parameter-substitution). |
+| `[hooks]` | Fallback hooks for a projector or group, in Mother Core's `"<block>".hook=` form. They fire, but `{{projector}}`, `{{hash}}` and `{{bp}}` are not substituted in them; see [Parameter Substitution](./Hooks.md#parameter-substitution). |
 
 ## Projector
 
@@ -125,11 +125,11 @@ clear=auto
 | Key | Values | Description |
 |---|---|---|
 | `name` | text | The printer this block belongs to. Blocks with the same name form one printer. Names are matched exactly; a misspelled name silently creates a separate printer. |
-| `clear` | `auto` (default), `manual` | How a job's clearing phase ends: when the attachment merge block unlocks or disappears, or only when `printer/clear` runs. See [Knowing when the printer is clear](./PrintJobs.md#knowing-when-the-printer-is-clear). |
+| `clear` | `auto` (default), `manual` | How a job's clearing phase ends: when the attachment merge block unlocks or disappears, or only when `printer/clear` runs. See [Knowing When the Printer Is Clear](./PrintJobs.md#knowing-when-the-printer-is-clear). |
 
 ### Weld Settings
 
-Each projector has a set of weld settings. Their defaults come from the projector's own `[projector]` section, and a loaded blueprint may override them with the same keys in its `[blueprint:<hash>]` section. Read and change them with [`projector/settings`](./Commands.md#projector-settings); `projector/settings --save` writes this section. See [Weld observation](./Alignment.md#weld-observation) for what the settings govern.
+Each projector has a set of weld settings. Their defaults come from the projector's own `[projector]` section, and a loaded blueprint may override them with the same keys in its `[blueprint:<hash>]` section. Read and change them with [`projector/settings`](./Commands.md#projector-settings); `projector/settings --save` writes this section. See [Weld Observation](./Alignment.md#weld-observation) for what the settings govern.
 
 ```ms title="Bay 1 Projector > Custom Data"
 [projector]

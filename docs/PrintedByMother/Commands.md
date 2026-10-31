@@ -39,7 +39,7 @@ projector/offset "Bay 1 Projector" 0 1 0 --add;
 
 ### `projector/rotation`
 
-Set the projection rotation in the projector's grid frame, in 90-degree steps: X is pitch, Y is yaw, Z is roll. Without a flag the value is set absolutely; `--add` and `--sub` compose it with the current rotation. Read [Rotation semantics](./Alignment.md#rotation-semantics) before using this on an aligned print.
+Set the projection rotation in the projector's grid frame, in 90-degree steps: X is pitch, Y is yaw, Z is roll. Without a flag the value is set absolutely; `--add` and `--sub` compose it with the current rotation. Read [Rotation Semantics](./Alignment.md#rotation-semantics) before using this on an aligned print.
 
 ```
 projector/rotation <Projector|Group> <X> <Y> <Z> [--options]
@@ -108,7 +108,7 @@ projector/mark-unfinished-blocks "Bay 1 Projector" false;
 
 ### `projector/settings`
 
-Show the projector's default [weld settings](./Configuration.md#weld-settings), or update the ones given as options. Updates take effect at once and the four projector settings are applied to the projector; without `--save` they are lost on reload or `projector/reset`. A loaded blueprint's own keys keep precedence: only the settings it does not set follow the change.
+Show the projector's default [Weld Settings](./Configuration.md#weld-settings), or update the ones given as options. Updates take effect at once and the four projector settings are applied to the projector; without `--save` they are lost on reload or `projector/reset`. A loaded blueprint's own keys keep precedence: only the settings it does not set follow the change.
 
 ```
 projector/settings <Projector|Group> [--options]
@@ -172,7 +172,7 @@ projector/reset;
 
 ### `projector/push-state`
 
-Push a snapshot of the projector's settings onto its state stack: Enabled, Keep Projection, Show Only Buildable, Mark Missing Blocks, Mark Unfinished Blocks, projection offset and projection rotation. See [The state stack](./Alignment.md#the-state-stack).
+Push a snapshot of the projector's settings onto its state stack: Enabled, Keep Projection, Show Only Buildable, Mark Missing Blocks, Mark Unfinished Blocks, projection offset and projection rotation. See [The State Stack](./Alignment.md#the-state-stack).
 
 ```
 projector/push-state <Projector|Group>
@@ -236,7 +236,7 @@ blueprint/load "Bay Projectors" --p=2 --noWake;
 
 ### `blueprint/save`
 
-Scan the projector and save the projection's current pose against an attachment into the blueprint's section, creating the section when it is new. Existing keys such as the name and hooks are kept, and the projector's current [weld settings](./Configuration.md#weld-settings) are written alongside the pose. For a merge block attachment the pose is the blueprint's merge block in blueprint coordinates; for any other block it is the projection's pose in that block's frame. The attachment becomes the loaded blueprint's attachment.
+Scan the projector and save the projection's current pose against an attachment into the blueprint's section, creating the section when it is new. Existing keys such as the name and hooks are kept, and the projector's current [Weld Settings](./Configuration.md#weld-settings) are written alongside the pose. For a merge block attachment the pose is the blueprint's merge block in blueprint coordinates; for any other block it is the projection's pose in that block's frame. The attachment becomes the loaded blueprint's attachment.
 
 ```
 blueprint/save <Projector|Group> <Attachment|Block|Group> [--options]
@@ -344,7 +344,7 @@ blueprint/print "Bay 1 Projector";
 ```
 
 ::: tip
-The stall clock starts when the `onPrint` chain finishes. If your prep takes longer than that, pause the job from the chain with `printer/pause` and resume it when the welders are ready. See [Pausing a job](./PrintJobs.md#pausing-a-job).
+The stall clock starts when the `onPrint` chain finishes. If your prep takes longer than that, pause the job from the chain with `printer/pause` and resume it when the welders are ready. See [Pausing a Job](./PrintJobs.md#pausing-a-job).
 :::
 
 ### `blueprint/align`
@@ -361,7 +361,7 @@ blueprint/align "Bay 1 Projector" "Bay 1 Merge";
 
 ### `blueprint/rotate`
 
-Rotate the projection by a rotation expressed in the attachment merge block's own frame, in 90-degree steps, and move the projection so that the printed merge block stays where it is. The rotation is added to the current one; `--sub` negates it. Requires a loaded blueprint that was saved against a merge attachment, and a merge block on the projector's grid. See [Rotation semantics](./Alignment.md#rotation-semantics) for how this differs from `projector/rotation`.
+Rotate the projection by a rotation expressed in the attachment merge block's own frame, in 90-degree steps, and move the projection so that the printed merge block stays where it is. The rotation is added to the current one; `--sub` negates it. Requires a loaded blueprint that was saved against a merge attachment, and a merge block on the projector's grid. See [Rotation Semantics](./Alignment.md#rotation-semantics) for how this differs from `projector/rotation`.
 
 ```
 blueprint/rotate <Projector|Group> <MergeBlock|Group> <X> <Y> <Z> [--options]
@@ -419,7 +419,7 @@ blueprint/attachment/clear bay-1-floor;
 
 ### `printer/pause`
 
-Hold the printer's job: every print clock stands still until `printer/resume`. Accepted while the job is starting, printing or clearing; a finishing job is refused, and a job that is already paused says so. The welders are not switched off. See [Pausing a job](./PrintJobs.md#pausing-a-job).
+Hold the printer's job: every print clock stands still until `printer/resume`. Accepted while the job is starting, printing or clearing; a finishing job is refused, and a job that is already paused says so. The welders are not switched off. See [Pausing a Job](./PrintJobs.md#pausing-a-job).
 
 ```
 printer/pause <Printer|Projector|MergeBlock|Group>
@@ -446,7 +446,7 @@ printer/resume bay-1;
 
 ### `printer/clear`
 
-End the clearing phase of the printer's job. This is the signal a `clear=manual` printer waits for; it also works on a `clear=auto` printer. During any other phase it reports the phase and changes nothing. See [Knowing when the printer is clear](./PrintJobs.md#knowing-when-the-printer-is-clear).
+End the clearing phase of the printer's job. This is the signal a `clear=manual` printer waits for; it also works on a `clear=auto` printer. During any other phase it reports the phase and changes nothing. See [Knowing When the Printer Is Clear](./PrintJobs.md#knowing-when-the-printer-is-clear).
 
 ```
 printer/clear <Printer|Projector|MergeBlock|Group>
@@ -458,7 +458,7 @@ printer/clear bay-1;
 
 ### `printer/abort`
 
-Abort the printer's job in any phase. The `onFailed` hooks run instead of `onClear`, and the printer is idle at once. The half-printed grid stays in the bay. See [Stalls and failures](./PrintJobs.md#stalls-and-failures).
+Abort the printer's job in any phase. The `onFailed` hooks run instead of `onClear`, and the printer is idle at once. The half-printed grid stays in the bay. See [Stalls and Failures](./PrintJobs.md#stalls-and-failures).
 
 ```
 printer/abort <Printer|Projector|MergeBlock|Group>

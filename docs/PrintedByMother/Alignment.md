@@ -24,7 +24,7 @@ A projection is hashed from its grid size, its total block count and the count o
 4. hashes the projection and does its work;
 5. restores the projector's original offset, Show Only Buildable and enabled state.
 
-Projectors are scanned a few at a time; `--p` sets how many per cycle (8 when omitted). Projectors of a busy printer defer their scan; see [Scans while a printer is busy](./PrintJobs.md#scans-while-a-printer-is-busy).
+Projectors are scanned a few at a time; `--p` sets how many per cycle (8 when omitted). Projectors of a busy printer defer their scan; see [Scans While a Printer Is Busy](./PrintJobs.md#scans-while-a-printer-is-busy).
 
 `blueprint/load` looks up the `[blueprint:<hash>]` section, applies the blueprint's weld settings to the projector and runs the `onLoad` hooks. A projector with no projection fires `onEmpty`; a projection whose hash has no section fires `onUnknown` with the hash, so you can save it. `blueprint/load` restores any temporary projector offset first, then runs the projector's `onLoad` hook to completion, then the blueprint's `onLoad` routine.
 
@@ -103,4 +103,4 @@ Weld observation is grid-scoped. Two printers whose projectors share one cube gr
 
 The weld hooks `onWeldStart`, `onWeldEnd`, `onTimedOut` and `onComplete` are pure notifications about welding on the projector's grid. They fire with or without a print job; see [Hooks](./Hooks.md#projector-hooks).
 
-Each projector has a set of [weld settings](./Configuration.md#weld-settings): `maxWeldGap` is how many seconds without weld progress count as a pause and fire `onWeldEnd`, `timeout` is how many seconds of stall fire `onTimedOut`, and `keepProjection`, `showOnlyBuildable`, `markMissingBlocks` and `markUnfinishedBlocks` are applied to the projector when a blueprint is loaded. Their defaults come from the projector's own `[projector]` section, a loaded blueprint may override them with the same keys in its `[blueprint:<hash>]` section, and [`projector/settings`](./Commands.md#projector-settings) reads and changes them.
+Each projector has a set of [Weld Settings](./Configuration.md#weld-settings): `maxWeldGap` is how many seconds without weld progress count as a pause and fire `onWeldEnd`, `timeout` is how many seconds of stall fire `onTimedOut`, and `keepProjection`, `showOnlyBuildable`, `markMissingBlocks` and `markUnfinishedBlocks` are applied to the projector when a blueprint is loaded. Their defaults come from the projector's own `[projector]` section, a loaded blueprint may override them with the same keys in its `[blueprint:<hash>]` section, and [`projector/settings`](./Commands.md#projector-settings) reads and changes them.

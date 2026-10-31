@@ -22,7 +22,7 @@ Defined in the projector's Custom Data `[hooks]` section. `this` is a shorthand 
 | `onFailed` | The job was aborted with `printer/abort`. The printer is already idle. | `{{bp}}`, `{{hash}}`, `{{projector}}` (empty when no blueprint is loaded) |
 | `onWeldStart` | Welding began on the projector's grid. | none |
 | `onWeldEnd` | No weld progress for `maxWeldGap` seconds: welding has paused or finished. | none |
-| `onTimedOut` | Welding stalled for `timeout` seconds, or did not start within `timeout` seconds of the job committing. A notification, not a failure: the job keeps waiting and continues if welding resumes. See [Stalls and failures](./PrintJobs.md#stalls-and-failures). | none |
+| `onTimedOut` | Welding stalled for `timeout` seconds, or did not start within `timeout` seconds of the job committing. A notification, not a failure: the job keeps waiting and continues if welding resumes. See [Stalls and Failures](./PrintJobs.md#stalls-and-failures). | none |
 | `onComplete` | The projection is complete. | none |
 
 Weld hooks are pure notifications about welding on the projector's grid. They fire with or without a print job. Job hooks mark print-job transitions.
