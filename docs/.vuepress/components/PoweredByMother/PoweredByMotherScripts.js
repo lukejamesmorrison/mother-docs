@@ -5,6 +5,7 @@
  * Each object includes details such as the name, author, links, and description.
  */
 export default [
+    // Mother OS
     {
         name: 'Mother OS',
         author: 'Agentluke',
@@ -14,6 +15,7 @@ export default [
         description: 'Mother OS is a powerful automation and control script for Space Engineers. It provides a comprehensive command system, module architecture, and seamless integration with blocks on your grid.',
         tags: ['Automation'],
     },
+    // Mother GUI
     {
         name: 'Mother GUI',
         author: 'Agentluke',
@@ -23,6 +25,7 @@ export default [
         description: 'Mother GUI is a user-friendly interface Powered by Mother, providing an intuitive way to manage and control your automations. It offers a flexible menu system and seamless integration with Mother OS.',
         tags: ['Automation', 'User Interface', 'GUI'],
     },
+    // MAPS (Mother Autopilot System)
     {
         name: 'Mother Autopilot System (MAPS)',
         author: 'Agentluke',
@@ -32,6 +35,16 @@ export default [
         description: 'Mother Autopilot System (MAPS) is an advanced autopilot system powered by Mother, providing automated navigation and control for your ships. It integrates seamlessly with Mother OS and manages customizable flight plans.',
         tags: ['Automation', 'Autopilot', 'Navigation'],
     },
+    // Printed by Mother
+    {
+        name: 'Printed by Mother',
+        author: 'Malleus',
+        author_link: '#',
+        link: '',
+        image_link: '',
+        description: 'Printed by Mother is a script that manages and controls 3D printing processes in Space Engineers, powered by Mother. It integrates with Mother OS to provide seamless automation and control over your printing tasks.',
+        tags: ['Automation', 'Printing'],
+    }
 ];
 
 

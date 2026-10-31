@@ -27,7 +27,7 @@ const motherScriptGrammarPath = fileURLToPath(new URL('./shiki/motherscript.tmLa
 
 // Core Routes
 const MotherOSSidebar = {
-  text: 'Mother OS (Ingame Script)',
+  text: 'Mother OS (Script)',
   link: '/IngameScript/IngameScript.md',
   children: [
     {
@@ -188,7 +188,7 @@ const MotherCoreSidebar = {
 
 // MAPS Routes
 const MotherAutopilotSystemSidebar = {
-  text: 'Mother Autopilot System (MAPS)',
+  text: 'Mother Autopilot System (MAPS) (Script)',
   link: '/MotherAutopilotSystem/README.md',
   children: [
     {
@@ -238,7 +238,7 @@ const MotherlandSidebar = {
 };
 
 const MotherGUISidebar = {
-  text: 'Mother GUI',
+  text: 'Mother GUI (Script)',
   link: '/MotherGUI/README.md',
   children: [
     {
@@ -258,6 +258,26 @@ const MotherGUISidebar = {
     },
     '/MotherGUI/Views.md',
     '/MotherGUI/Examples.md',
+  ]
+};
+
+const PrintedByMotherSidebar = {
+  text: 'Printed by Mother (Script)',
+  link: '/PrintedByMother/README.md',
+  children: [
+    {
+      text: 'Getting Started',
+      collapsible: true,
+      children: [
+        '/PrintedByMother/Installation.md',
+        '/PrintedByMother/Configuration.md',
+      ],
+    },
+    '/PrintedByMother/Commands.md',
+    '/PrintedByMother/PrintJobs.md',
+    '/PrintedByMother/Alignment.md',
+    '/PrintedByMother/Hooks.md',
+    '/PrintedByMother/Examples.md',
   ]
 };
 
@@ -289,6 +309,10 @@ const navbarLinks = [
     {
       text: 'Mother Autopilot System (MAPS)',
       link: '/MotherAutopilotSystem/README.md'
+    },
+    {
+      text: 'Printed by Mother',
+      link: '/PrintedByMother/README.md'
     },
     {
       text: 'Mother Core (Script Framework)',
@@ -509,7 +533,7 @@ export default defineUserConfig({
       MotherOSSidebar,
       MotherGUISidebar,
       MotherAutopilotSystemSidebar,
-      // process.env.NODE_ENV == 'development' ? MotherAutopilotSystemSidebar : {},
+      PrintedByMotherSidebar,
       MotherCoreSidebar,
       MotherDevToolsSidebar,
       ...(DEV_MODE ? [MotherStudioSidebar] : []),
