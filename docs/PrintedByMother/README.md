@@ -6,6 +6,8 @@ next: /PrintedByMother/Installation.md
 
 ![Static Badge](https://img.shields.io/badge/version-0.1.0-blue?color=green)
 
+ <!-- [![Static Badge](https://img.shields.io/badge/Steam%20Workshop-2b3645?logo=steam)]() -->
+
 Printed by Mother is projector automation for Space Engineers, built with [Mother Core](../Framework/README.md). It turns a projector, a set of welders and (usually) a merge block into a **printer**: Mother routines, projector hooks and per-blueprint configuration sections drive the whole print, from recognizing the blueprint on the projector to knowing when the finished ship has left the bay.
 
 ::: warning Alpha Development
