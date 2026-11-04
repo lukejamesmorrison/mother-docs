@@ -11,6 +11,11 @@ const selectedScripts = ref([])
 const gridSearch = ref('')
 const scriptSearch = ref('')
 
+// Printed by Mother is featured second, after the lead grid.
+const printedByMother = PoweredByMotherScripts.find(s => s.name === 'Printed by Mother')
+const [leadGrid, ...otherGrids] = PoweredByMotherGrids
+const featuredItems = [leadGrid, printedByMother, ...otherGrids].filter(Boolean)
+
 const allScripts = computed(() => {
   const scripts = new Set()
   PoweredByMotherGrids.forEach(grid => {
@@ -203,7 +208,7 @@ This section showcases scripts and grids that are powered by Mother Core. If you
 
 ## Featured
 
-<FeaturedCarousel :items="PoweredByMotherGrids" :autoplay="true" :interval="7000" />
+<FeaturedCarousel :items="featuredItems" :autoplay="true" :interval="7000" />
 
 <div class="tabs-container">
   <button 

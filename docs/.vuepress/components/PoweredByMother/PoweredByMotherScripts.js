@@ -4,6 +4,8 @@
  * This file contains an array of scripts that are powered by Mother Core.
  * Each object includes details such as the name, author, links, and description.
  */
+import printedByMotherPoster from '../../../PrintedByMother/Printed By Mother Poster.png';
+
 export default [
     // Mother OS
     {
@@ -41,10 +43,22 @@ export default [
         author: 'Malleus',
         author_link: '#',
         link: '',
-        image_link: '',
+        image_link: printedByMotherPoster,
         description: 'Printed by Mother is a script that manages and controls 3D printing processes in Space Engineers, powered by Mother. It integrates with Mother OS to provide seamless automation and control over your printing tasks.',
         tags: ['Automation', 'Printing'],
-    }
+        page: '/PrintedByMother/',
+        pageLabel: 'Documentation',
+    },
+    // Mother HMI
+    // {
+    //     name: 'Mother HMI',
+    //     author: 'Dext3r09',
+    //     author_link: '#',
+    //     link: '',
+    //     image_link: './Mother HMI Poster.png',
+    //     description: 'Mother HMI is a human-machine interface powered by Mother, providing an intuitive way to interact with your automated systems. It integrates seamlessly with Mother OS and other Mother-powered scripts.',
+    //     tags: ['Automation', 'User Interface', 'HMI'],
+    // },
 ];
 
 

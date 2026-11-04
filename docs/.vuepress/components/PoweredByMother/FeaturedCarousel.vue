@@ -156,7 +156,7 @@ function onKeydown(e) {
                 class="fc__link"
                 style="margin-left: 1rem"
               >
-                Design Notes
+                {{ currentItem.pageLabel || 'Design Notes' }}
               </RouteLink>
             </div>
           </div>
@@ -249,17 +249,19 @@ function onKeydown(e) {
   border: 1px solid var(--vp-c-border);
   background: var(--vp-c-bg-soft);
   box-shadow: 0 8px 28px rgba(0, 0, 0, 0.12);
+  container-type: inline-size;
 }
 
-/* ── Slide layout (two-column on desktop) ──────────────── */
+/* ── Slide layout (16:9 hero image above the content) ──── */
 .fc__slide {
   display: flex;
-  flex-direction: row;
-  min-height: 300px;
+  flex-direction: column;
 }
 
 .fc__image-wrap {
-  flex: 0 0 55%;
+  flex: 0 0 auto;
+  width: 100%;
+  aspect-ratio: 16 / 9;
   overflow: hidden;
   background: #111;
 }
@@ -279,10 +281,9 @@ function onKeydown(e) {
 }
 
 .fc__content {
-  flex: 1;
   display: flex;
   align-items: center;
-  padding: 2rem 1.75rem;
+  padding: 1.25rem 1.75rem 1.5rem;
   background: var(--vp-c-bg-soft);
 }
 
@@ -349,9 +350,10 @@ function onKeydown(e) {
   line-height: 1.65;
   color: var(--vp-c-text-2);
   display: -webkit-box;
-  -webkit-line-clamp: 4;
+  -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
+  min-height: calc(3 * 1.65 * 0.9rem);
 }
 
 .fc__link {
@@ -381,7 +383,8 @@ function onKeydown(e) {
 /* ── Prev / Next controls ──────────────────────────────── */
 .fc__control {
   position: absolute;
-  top: 50%;
+  /* vertical centre of the 16:9 image: half of 9/16 of the card width */
+  top: 28.125cqw;
   transform: translateY(-50%);
   padding: 8px;
   border-radius: 50%;
@@ -416,8 +419,7 @@ function onKeydown(e) {
 }
 
 .fc__control--next {
-  /* position on the boundary between image and content */
-  left: calc(55% - 22px);
+  right: 12px;
 }
 
 /* ── Dot indicators ────────────────────────────────────── */
@@ -472,29 +474,8 @@ function onKeydown(e) {
 
 /* ── Responsive ────────────────────────────────────────── */
 @media (max-width: 700px) {
-  .fc__slide {
-    flex-direction: column;
-    min-height: unset;
-  }
-
-  .fc__image-wrap {
-    flex: 0 0 auto;
-    width: 100%;
-    aspect-ratio: 16 / 9;
-    height: unset;
-  }
-
   .fc__content {
     padding: 1.25rem 1.25rem 1.5rem;
-  }
-
-  .fc__control--next {
-    left: unset;
-    right: 12px;
-  }
-
-  .fc__control--prev {
-    left: 12px;
   }
 
   .fc__title {

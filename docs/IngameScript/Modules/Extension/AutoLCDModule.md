@@ -135,14 +135,3 @@ Each `@<index> autolcd` header starts the commands for one screen. When you prin
 | `Cleared AutoLCD on <target>` | The screen was cleared. |
 | `AutoLCD view not found: <view>` | The view is not defined in `[autolcd]`. |
 | `AutoLCD cannot update <block>: custom data is not valid ini` | The block's `Custom Data` could not be parsed. |
-
-## Faster Updates
-
-Stock AutoLCD can take several seconds to react to a `Custom Data` change, so a printed view may feel slow to appear. Two small edits to the AutoLCD script reduce that to about half a second:
-
-1. Poll `Custom Data` every `0.5` seconds instead of every `5` seconds.
-2. Remove the random start delay on each command.
-
-::: warning
-The author of AutoLCD asks that the script, and any derivation of it, is not republished. Keep a patched copy for personal use only.
-:::
