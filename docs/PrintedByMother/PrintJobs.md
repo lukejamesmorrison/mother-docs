@@ -36,6 +36,17 @@ Every `printer/*` command names the printer by anything that belongs to it: the 
 ## The Life of a Print Job
 
 `blueprint/print <Projector>` starts a job on that projector's printer. A printer with a job in any phase is **busy**: `blueprint/print` into it fails immediately with an error. There is no queue; that is deliberate.
+```mermaid
+flowchart TD
+    Start(("blueprint/print")) --> S["starting"]
+    S -- "onPrint chain done<br>(job commits)" --> P["printing"]
+    P -- onComplete --> C["clearing"]
+    C -- "merge block unlocks<br>or printer/clear" --> F["finishing"]
+    F -- "onClear done" --> Idle(("idle"))
+    S & P & C & F -. printer/abort .-> A["aborted: onFailed"]
+    A --> Idle
+```
+
 
 1. **starting** - the job waits for any pending `blueprint/load` on the projector, enables the projector and runs the `onPrint` hooks. Once the chain finishes the job **commits** and moves on. If prep takes longer than the chain, pause the job from the chain itself; see [Pausing a Job](#pausing-a-job).
 2. **printing** - Mother watches the weld progress until the projection is complete and `onComplete` has fired.
