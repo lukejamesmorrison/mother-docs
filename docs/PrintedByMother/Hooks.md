@@ -73,6 +73,17 @@ onFailed=
 ## Firing Order
 
 `blueprint/load <Projector>` chains:
+```mermaid
+flowchart TD
+    Cmd["blueprint/print"] --> J["print job created<br>(fails if the printer is busy)"]
+    J --> P1["projector onPrint"] --> B1["blueprint onPrint"] --> S1["sentinel: job commits,<br>stall clock starts"]
+    S1 --> W["welding: onWeldStart, onTimedOut, onComplete"]
+    W --> Cl["clearing, per clear= mode"]
+    Cl --> P2["projector onClear"] --> B2["blueprint onClear"] --> S2["sentinel: job ends,<br>printer idle"]
+    P1 & B1 & S1 & W & Cl -. printer/abort .-> F1["projector onFailed"]
+    F1 --> F2["blueprint onFailed"]
+```
+
 
 1. Projector `onLoad` (from the projector's Custom Data `[hooks]`).
 2. Blueprint `onLoad` (from `[blueprint:<hash>]`).

@@ -9,6 +9,14 @@ The examples switch welders, pistons and lights with Mother OS commands such as 
 ## A Drag Printer
 
 A simple drag printer: a large-grid piston drags the projection through a wall of welders. Either the welders ride on the piston head and the projector and merge block stand still, or the projector and merge block ride on the head and the welders stand still; the Custom Data below is the same for both. The piston starts fully extended, with the merge block just in front of the welders, and retracts slowly. While the welders are busy the piston stands still; when they fall quiet the slice is done and the piston resumes its slow retraction.
+```mermaid
+flowchart TD
+    S["onPrint: pause, extend to 10 m,<br>welders on, retract at 0.2 m/s, resume"] --> R["piston retracting"]
+    R -- onWeldStart --> H["piston stopped<br>welders busy"]
+    H -- "onWeldEnd (quiet for maxWeldGap)" --> R
+    H -- "onComplete (last block welded)" --> E["welders off,<br>piston finishes retracting"]
+```
+
 
 ```ms title="Bay 1 Projector > Custom Data"
 [projector]
