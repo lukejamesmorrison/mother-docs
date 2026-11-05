@@ -10,6 +10,8 @@ next: /PrintedByMother/Installation.md
 
 Printed by Mother is projector automation for Space Engineers, built with [Mother Core](../Framework/README.md). It turns a projector, a set of welders and (usually) a merge block into a **printer**: Mother routines, projector hooks and per-blueprint configuration sections drive the whole print, from recognizing the blueprint on the projector to knowing when the finished ship has left the bay.
 
+![Printed By Mother](Printed%20By%20Mother%20Poster.png)
+
 ::: warning Alpha Development
 Printed by Mother is at an early version and command or hook names may still change between builds. The aim is to make these changes minimal, and an upgrade guide will be provided for early adopters.
 :::
@@ -17,6 +19,8 @@ Printed by Mother is at an early version and command or hook names may still cha
 Like every script built with Mother Core it shares commands with the other Mother programmable blocks on your construct. A printer routine can switch welders and lights with [Mother OS](../IngameScript/IngameScript.md) commands, and Mother OS, buttons, sensors and timers can run Printed by Mother commands.
 
 [[toc]]
+
+
 
 ## Features
 

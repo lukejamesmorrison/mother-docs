@@ -8,6 +8,8 @@ Printed by Mother recognizes the blueprint on a projector by its hash, keeps tha
 
 [[toc]]
 
+![Printed By Mother](./Assets/Screenshot%202026-11-01%20185025.png)
+
 ## Blueprint Hashes
 
 A projection is hashed from its grid size, its total block count and the count of every block type in it. The same blueprint therefore has the same hash on every projector, and the hash is how Mother finds the blueprint's section. Hashing needs an **unbuilt** projection: a projection with blocks already welded fails validation with "must be unbuilt before hashing". The `--async` option of `blueprint/load` and `blueprint/save` works around this by searching nearby offsets for a position where no block is built.
