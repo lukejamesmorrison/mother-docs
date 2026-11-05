@@ -1,12 +1,42 @@
 <script setup>
-import { ref, computed } from 'vue'
+import { ref, computed, onMounted, onBeforeUnmount } from 'vue'
 import PoweredByMotherItem from '../../components/PoweredByMother/PoweredByMotherItem.vue'
 import PoweredByMotherGrids from '../../components/PoweredByMother/PoweredByMotherGrids.js'
 import PoweredByMotherScriptItem from '../../components/PoweredByMother/PoweredByMotherScriptItem.vue'
 import PoweredByMotherScripts from '../../components/PoweredByMother/PoweredByMotherScripts.js'
 import FeaturedCarousel from '../../components/PoweredByMother/FeaturedCarousel.vue'
 
+const TABS = ['grids', 'scripts']
 const activeTab = ref('grids')
+
+function readTabFromUrl() {
+  const tab = new URLSearchParams(window.location.search).get('tab')
+  return TABS.includes(tab) ? tab : 'grids'
+}
+
+// Keeps the tab in the URL (?tab=scripts) so each view can be linked directly.
+function setTab(tab) {
+  if (tab === activeTab.value) return
+  activeTab.value = tab
+  const url = new URL(window.location.href)
+  url.searchParams.set('tab', tab)
+  window.history.pushState(window.history.state, '', url)
+}
+
+function onPopState() {
+  activeTab.value = readTabFromUrl()
+}
+
+// Read the URL after mount so server-rendered and client markup match.
+onMounted(() => {
+  activeTab.value = readTabFromUrl()
+  window.addEventListener('popstate', onPopState)
+})
+
+onBeforeUnmount(() => {
+  window.removeEventListener('popstate', onPopState)
+})
+
 const selectedScripts = ref([])
 const gridSearch = ref('')
 const scriptSearch = ref('')
@@ -213,13 +243,13 @@ This section showcases scripts and grids that are powered by Mother Core. If you
 <div class="tabs-container">
   <button 
     :class="['tab-btn', { active: activeTab === 'scripts' }]"
-    @click="activeTab = 'scripts'"
+    @click="setTab('scripts')"
   >
     Scripts
   </button>
   <button 
     :class="['tab-btn', { active: activeTab === 'grids' }]"
-    @click="activeTab = 'grids'"
+    @click="setTab('grids')"
   >
     Grids
   </button>
