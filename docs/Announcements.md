@@ -6,13 +6,13 @@
 
 <!-- Add new announcements below this line, with the most recent at the top -->
 
-## 2nd October Update
+## This Update Comes with Some Conditions
 
-This second update for October brings **Mother OS 1.3.0**, **Mother Core 1.2.0**, **Mother GUI 0.3.0**, and **Mother Autopilot System (MAPS) 0.3.0**. Your constructs can now make decisions. Conditional logic lets any script react to the state of your blocks (`"Batteries" low`, `grid altitude < 100`) with `when` rules and `if` steps, and every script on the construct shares the same vocabulary. Update all of your scripts at the same time so they run the same version of Mother Core. Mother Core has also grown a bit, so for developers, you may need to prune a bit. Have no fear though, I have pruned Core considerably and the build tools go well beyond what standard MDK2 minification can do.
+This update brings **Mother OS 1.3.0**, **Mother Core 1.2.0**, **Mother GUI 0.3.0**, and **Mother Autopilot System (MAPS) 0.3.0**. Your constructs can now make decisions. Conditional logic lets any script react to the state of your blocks (`"Batteries" low`, `grid altitude < 100`) with `when` rules and `if` steps, and every script on the construct shares the same vocabulary. Update all of your scripts at the same time so they run the same version of Mother Core. Mother Core has also grown a bit, so for developers, you may need to prune a bit. Have no fear though, I have pruned Core considerably and the build tools go well beyond what standard MDK2 minification can do.
 
-::: warning Breaking change: connector commands
-`connector/lock`, `connector/unlock` and `connector/toggle` are no longer part of Mother Core. Mother OS still provides them, but Mother GUI and MAPS do not. Developers building on Mother Core should register these commands from their own module.
-:::
+
+
+<iframe width="100%" height="400" src="https://www.youtube.com/embed/9wHAGA4ow1E" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
 ### Release Highlights
 
@@ -22,6 +22,10 @@ This second update for October brings **Mother OS 1.3.0**, **Mother Core 1.2.0**
 - **MAPS 0.3** adds `speed`, `moving`, `gravity`, `altitude`, `inspace` and `ingravity`.
 - **Mother GUI 0.3** refreshes displays more reliably on multiplayer servers.
 - **Mother Core 1.2** new block command registration syntax to make wiring up commands easier for developers (and also save a ton of characters).
+- 
+::: warning Breaking change: connector commands
+`connector/lock`, `connector/unlock` and `connector/toggle` are no longer part of Mother Core. Mother OS still provides them, but Mother GUI and MAPS do not. Developers building on Mother Core should register these commands from their own module.
+:::
 
 ### Conditional Logic
 
@@ -357,13 +361,13 @@ The same menu works for other actions such as purging storage or halting running
 
 :::
 
-Explore Mother OS: [Conditional Logic](./IngameScript/ConditionalLogic.md) | [Examples](./IngameScript/Examples.md#conditional-logic) | [Jump Drive Module](./IngameScript/Modules/Extension/JumpDriveModule.md) | [Upgrade Guide](./IngameScript/UpgradeGuide.md)
-
-Explore Mother Core: [Conditions](./Framework/Developer/CoreModules/Conditions.md) | [Managing Script Size](./Framework/Developer/GettingStarted/ManagingScriptSize.md#build-time-optimization) | [Upgrade Guide](./Framework/Developer/GettingStarted/UpgradeGuide.md)
+Explore Mother OS: [Conditional Logic](./IngameScript/ConditionalLogic.md) | [Ready-Made Recipes](./IngameScript/Examples.md#conditional-logic) | [Your Own Predicates](./IngameScript/ConditionalLogic.md#defining-your-own-predicates) | [Upgrade Guide](./IngameScript/UpgradeGuide.md)
 
 Explore Mother GUI: [Conditional Menu Entries](./MotherGUI/MenuView.md#conditional-menu-entries) | [Upgrade Guide](./MotherGUI/UpgradeGuide.md)
 
-Explore Mother Autopilot System (MAPS): [Conditions](./MotherAutopilotSystem/Modules/FlightControlModule.md#conditions) | [Upgrade Guide](./MotherAutopilotSystem/UpgradeGuide.md)
+Explore Mother Autopilot System (MAPS): [Ship Conditions](./MotherAutopilotSystem/Modules/FlightControlModule.md#properties) | [Upgrade Guide](./MotherAutopilotSystem/UpgradeGuide.md)
+
+Explore Mother Core: [Upgrade Guide (Breaking Changes)](./Framework/Developer/GettingStarted/UpgradeGuide.md) | [Conditions](./Framework/Developer/CoreModules/Conditions.md) | [Registering Block Commands](./Framework/Developer/BuildingAModule/BuildingAModule.md#registering-block-commands-and-conditions) | [Managing Script Size](./Framework/Developer/GettingStarted/ManagingScriptSize.md#build-time-optimization)
 
 ---
 

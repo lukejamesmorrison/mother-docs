@@ -39,15 +39,20 @@
 
         <p class="description-text">{{ item.description }}</p>
 
-        <a :href="item.link" target="_blank" rel="noopener noreferrer" class="">
-          <span>Steam Workshop</span>
-        </a>
+        <div class="links">
+          <a v-if="item.link" :href="item.link" target="_blank" rel="noopener noreferrer">
+            <span>Steam Workshop</span>
+          </a>
+          <RouteLink v-if="item.page" :to="item.page">{{ item.pageLabel || 'Documentation' }}</RouteLink>
+        </div>
       </div>
     </div>
   </template>
   
 
 <script setup>
+import { RouteLink } from 'vuepress/client'
+
 defineProps({
     item: Object
 })
@@ -151,6 +156,12 @@ defineProps({
   background-color: rgba(66, 184, 131, 0.1);
   border: 1px solid rgba(66, 184, 131, 0.3);
   border-radius: 4px;
+}
+
+.links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
 }
 
 .description-text {

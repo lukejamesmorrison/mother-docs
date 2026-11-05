@@ -156,8 +156,21 @@ function onKeydown(e) {
                 class="fc__link"
                 style="margin-left: 1rem"
               >
-                {{ currentItem.pageLabel || 'Design Notes' }}
+                {{ currentItem.pageLabel || 'Documentation' }}
               </RouteLink>
+              <a
+                v-else-if="currentItem.docs_link"
+                :href="currentItem.docs_link"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="fc__link"
+                style="margin-left: 1rem"
+              >
+                Documentation
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M14 3h7v7h-2V6.41l-9.29 9.3-1.42-1.42L17.59 5H14V3zM5 5h6v2H7v10h10v-4h2v6H5V5z"/>
+                </svg>
+              </a>
             </div>
           </div>
         </div>

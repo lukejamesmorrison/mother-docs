@@ -3,7 +3,8 @@
 *
 * This file contains an array of objects representing various creations that are powered by Mother Core. 
 * Each object includes details such as the name of the creation, the author, a link to the author's 
-* profile, a link to the creation, an image link, and a description of the creation.
+* profile, a link to the creation, an image link, and a description of the creation. Optionally add
+* `docs_link` for grid-specific documentation hosted somewhere other than the Steam Workshop page.
 *
 * Contributors are encouraged to add their own creations to this list by following the existing format 
 * and submitting a pull request.
@@ -26,7 +27,7 @@ export default [
         link:  'https://steamcommunity.com/sharedfiles/filedetails/?id=3823300552',
         image_link: 'https://images.steamusercontent.com/ugc/9862004432632572704/2FA0A3C6ACA8BB0969F7C0266312731DC36AFA25/',
         description: 'The Nova Blade Mk1 is a versatile atmospheric and space-capable craft with advanced automation systems powered by Mother OS, allowing for efficient operation and maneuverability.',
-        scripts: ['Mother OS', 'Mother GUI', 'Mother Autopilot System'],
+        scripts: ['Mother OS', 'Mother GUI', 'Mother Autopilot System', 'Mother HMI'],
         page: '/PoweredByMother/NovaBlade/NovaBlade.html',
     },
     {
