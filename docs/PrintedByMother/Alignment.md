@@ -8,8 +8,6 @@ Printed by Mother recognizes the blueprint on a projector by its hash, keeps tha
 
 [[toc]]
 
-![Printed By Mother](./Assets/Screenshot%202026-11-01%20185025.png)
-
 ## Blueprint Hashes
 
 A projection is hashed from its grid size, its total block count and the count of every block type in it. The same blueprint therefore has the same hash on every projector, and the hash is how Mother finds the blueprint's section. Hashing needs an **unbuilt** projection: a projection with blocks already welded fails validation with "must be unbuilt before hashing". The `--async` option of `blueprint/load` and `blueprint/save` works around this by searching nearby offsets for a position where no block is built.
@@ -79,7 +77,7 @@ Put the align in the projector's `onLoad` hook (`onLoad=blueprint/align this "Ba
 
 There are two rotation commands with deliberately different semantics.
 
-[`projector/rotation`](./Commands.md#projector-rotation) changes the projection rotation in the **projector's grid frame**. No flag is an absolute set; `--add` and `--sub` compose vector-wise with the current value. The convention is pitch on X, yaw on Y and roll on Z, each in 90-degree units. For an aligned merge-attached projection where the merge block sits in its default orientation, `--add 2 0 0` will visually flip the projection upside down. For other merge orientations it rotates about the grid's X axis, which may not be the axis you intended.
+[`projector/rotation`](./Commands.md#projector-rotation) changes the projection rotation in the **projector block's own frame**, the value the game itself stores. No flag is an absolute set; `--add` and `--sub` compose vector-wise with the current value. The game reads it as yaw on X, pitch on Y and roll on Z, each in 90-degree units. `--add 2 0 0` therefore turns the projection half a turn about the projector block's up axis, and `--add 0 2 0` pitches it half a turn about the projector block's left-right axis, which turns it upside down relative to the projector. Whether that is upside down for the printed ship depends on how the projector block and the merge block sit on the printer, which may not be the axis you intended.
 
 [`blueprint/rotate`](./Commands.md#blueprint-rotate) changes the projection rotation by a rotation expressed in the **attachment merge block's frame**. It is always additive; `--sub` negates the delta. There is no absolute form, because an absolute rotation in the attachment frame has no well-defined baseline. Use it for "rotate the printed ship upside down about the merge block's X axis" regardless of how the merge block is oriented on the printer. The projection offset is compensated automatically so the printed merge block stays at the same grid position across the rotation; without that, rotating about the projection origin would shift the printed merge block away from the bay's merge block and break the mating. It requires a loaded blueprint saved against a merge attachment.
 
