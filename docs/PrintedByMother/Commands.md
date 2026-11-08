@@ -39,7 +39,7 @@ projector/offset "Bay 1 Projector" 0 1 0 --add;
 
 ### `projector/rotation`
 
-Set the projection rotation in the projector's grid frame, in 90-degree steps: X is pitch, Y is yaw, Z is roll. Without a flag the value is set absolutely; `--add` and `--sub` compose it with the current rotation. Read [Rotation Semantics](./Alignment.md#rotation-semantics) before using this on an aligned print.
+Set the projection rotation in the projector block's own frame, in 90-degree steps, in the order the game reads it: X is yaw, Y is pitch, Z is roll. Without a flag the value is set absolutely; `--add` and `--sub` compose it with the current rotation. Read [Rotation Semantics](./Alignment.md#rotation-semantics) before using this on an aligned print.
 
 ```
 projector/rotation <Projector|Group> <X> <Y> <Z> [--options]
@@ -52,10 +52,10 @@ projector/rotation <Projector|Group> <X> <Y> <Z> [--options]
 | `add` | | Add the values to the current rotation. |
 | `sub` | | Subtract the values from the current rotation. |
 
-Turn the projection 180 degrees about the grid's Y axis:
+Turn the projection 180 degrees in yaw, about the projector block's up axis:
 
 ```ms title="terminal"
-projector/rotation "Bay 1 Projector" 0 2 0;
+projector/rotation "Bay 1 Projector" 2 0 0;
 ```
 
 ### `projector/keep-projection`

@@ -10,6 +10,8 @@ next: /PrintedByMother/Configuration.md
 
 Printed by Mother is a script for Programmable Blocks in Space Engineers. It is built on [Mother Core](../Framework/README.md) and shares its command line, routines, variables and hooks with other Mother Core scripts such as [Mother OS](../IngameScript/IngameScript.md).
 
+Printed by Mother requires Mother Core 1.2.0. Run it alongside other Mother scripts built on the same version, so they share commands, [predicates and properties](./Conditions.md#properties-and-predicates).
+
 To run Printed by Mother, your grid must have:
 
 1. A programmable block with the Printed by Mother script loaded.
