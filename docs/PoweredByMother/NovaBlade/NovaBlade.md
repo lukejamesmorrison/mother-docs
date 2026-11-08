@@ -578,7 +578,7 @@ _ShowMain=
 |   view/go $MAIN_SCREEN MapView;
 | elseif $MAIN_DISPLAY == horizon;
 |   autolcd/clear $MAIN_SCREEN;
-|   screen/script $MAIN_SCREEN TSS_ArtificialHorizon;
+|   screen/app $MAIN_SCREEN TSS_ArtificialHorizon;
 | elseif $MAIN_DISPLAY == checks;
 |   _ShowChecks;
 | elseif $FLIGHT_MODE == docked;
@@ -594,13 +594,13 @@ Every mode command calls it, and so does **Display**. The clearing logic exists 
 Some of the most dynamic cockpit displays are not text at all. A display surface can run a **script**, either one built into the game or one added by a mod. Mother GUI switches a surface into script mode and picks the script with a single command:
 
 ```ms title="terminal"
-screen/script <Display> <ScriptName>
+screen/app <Display> <ScriptName>
 ```
 
 The Nova Blade uses it for the artificial horizon on the main screen:
 
 ```ms title="terminal"
-screen/script "BLD - Cockpit [LCD]:0" TSS_ArtificialHorizon;
+screen/app "BLD - Cockpit [LCD]:0" TSS_ArtificialHorizon;
 ```
 
 That is what the **Horizon** entry in the Display menu and the `horizon` branch of `_ShowMain` do. `TSS_ArtificialHorizon` is one of the scripts built into Space Engineers (the `TSS_` prefix stands for Text Surface Script). Other built-in scripts, such as `TSS_Velocity`, `TSS_Gravity` and `TSS_EnergyHydrogen`, are set the same way.
@@ -608,7 +608,7 @@ That is what the **Horizon** entry in the Display menu and the `horizon` branch 
 Mod-driven scripts work the same way. `RadioSpectrometer` is one popular example. Use its name exactly as the script reports it:
 
 ```ms title="terminal"
-screen/script "BLD - Cockpit [LCD]:0" RadioSpectrometer;
+screen/app "BLD - Cockpit [LCD]:0" RadioSpectrometer;
 ```
 
 You do not need to remember the names. `screen/scripts` switches a display to text mode and prints every script available on that surface, which is also the quickest way to check that a mod script is installed:
@@ -619,11 +619,11 @@ screen/scripts "BLD - Cockpit [LCD]:0";
 
 A few things to know when mixing scripts with printed views:
 
-- **A surface shows one thing at a time.** A script and an Automatic LCDs 2 view both want the same surface. That is why `_ShowMain` calls `autolcd/clear` before `screen/script`.
+- **A surface shows one thing at a time.** A script and an Automatic LCDs 2 view both want the same surface. That is why `_ShowMain` calls `autolcd/clear` before `screen/app`.
 - **Target the surface, not just the block.** Cockpits have several surfaces, so use `Block Name:SurfaceIndex` as in `BLD - Cockpit [LCD]:0`.
 - **`screen/content` sets the mode directly.** `screen/content <Display> <none|script|text>` changes the surface content type without choosing a script.
 
-The same helper pattern applies. To offer the radio spectrometer, add a `MAIN_DISPLAY` value for it and another `elseif` branch to `_ShowMain` that clears the surface and runs `screen/script`. See [Mother GUI Commands](../../MotherGUI/Commands.md#screen-script) for the full script list.
+The same helper pattern applies. To offer the radio spectrometer, add a `MAIN_DISPLAY` value for it and another `elseif` branch to `_ShowMain` that clears the surface and runs `screen/app`. See [Mother GUI Commands](../../MotherGUI/Commands.md#screen-app) for the full script list.
 
 ## How the Scripts Talk
 

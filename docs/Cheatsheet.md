@@ -896,6 +896,20 @@ Use `Block Name:SurfaceIndex` to target a specific surface on cockpits, programm
 
 @tab Commands
 
+### screen/app
+
+[![Static Badge](https://img.shields.io/badge/Display_Extension_Module-Mother_GUI-red?color=red)](MotherGUI/Commands.md#screen-app)
+
+Switch a display surface into script mode and select a script, such as `TSS_ArtificialHorizon`. See [Mother GUI Commands](MotherGUI/Commands.md#screen-app) for the list of built-in scripts.
+
+```
+screen/app <Display> <ScriptName>
+```
+
+```ms title="Terminal"
+screen/app "Bridge LCD" "TSS_ArtificialHorizon";
+```
+
 ### screen/bgcolor
 
 [![Static Badge](https://img.shields.io/badge/Display_Module-Mother_OS-red?color=red)](IngameScript/Modules/Extension/DisplayModule.md)
@@ -1034,20 +1048,6 @@ screen/print "AirlockStatusScreens" "Docking Ready" --alignment=right;
 
 ; Cockpit LCD
 screen/print "PilotCockpit:1" "ALERT" --color=red --size=10;
-```
-
-### screen/script
-
-[![Static Badge](https://img.shields.io/badge/Display_Extension_Module-Mother_GUI-red?color=red)](MotherGUI/Commands.md#screen-script)
-
-Switch a display surface into script mode and select a script, such as `TSS_ArtificialHorizon`. See [Mother GUI Commands](MotherGUI/Commands.md#screen-script) for the list of built-in scripts.
-
-```
-screen/script <Display> <ScriptName>
-```
-
-```ms title="Terminal"
-screen/script "Bridge LCD" "TSS_ArtificialHorizon";
 ```
 
 ### screen/scripts

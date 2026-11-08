@@ -225,7 +225,7 @@ const sequences = [
     ]
   },
   {
-    command: { text: 'view/go RotorView MainRamp; view/select MapView; screen/script Cockpit1 TSS_Velocity;', color: '#00B0FF' },
+    command: { text: 'view/go RotorView MainRamp; view/select MapView; screen/app Cockpit1 TSS_ArtificialHorizon;', color: '#00B0FF' },
     description: 'Your Script drives Mother GUI, which fans commands out to Mother OS and MAPS',
     pulses: [
       { from: 'yourscript', to: 'mothergui', color: '#00B0FF' },

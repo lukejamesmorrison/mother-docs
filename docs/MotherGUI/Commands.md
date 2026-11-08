@@ -128,12 +128,12 @@ screen/content "Bridge LCD" script;
 
 Supported values are `none`, `script`, and `text`.
 
-### `screen/script`
+### `screen/app`
 
 Switch a display surface into script mode and select a script.
 
 ```ms title="terminal"
-screen/script "Bridge LCD" "TSS_ArtificialHorizon";
+screen/app "Bridge LCD" "TSS_ArtificialHorizon";
 ```
 
 Built-in scripts:
