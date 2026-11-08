@@ -1,10 +1,14 @@
 ---
-next: /PrintedByMother/Examples.md
+next: /PrintedByMother/Conditions.md
 ---
 
 # Hooks
 
 Hooks are routines that Printed by Mother runs when something happens to a projector or a print. They live in two places: the projector's own Custom Data `[hooks]` section, and the blueprint's `[blueprint:<hash>]` section on the programmable block. The Mother programmable block itself has one hook, `onBoot`, provided by Mother Core.
+
+::: tip
+A hook fires once, at the moment something happens. To follow a state for as long as it lasts, for example to keep the bay lights yellow while a job runs and switch them back when it ends, use a rule on the projector's [predicates](./Conditions.md#properties-and-predicates) instead.
+:::
 
 [[toc]]
 

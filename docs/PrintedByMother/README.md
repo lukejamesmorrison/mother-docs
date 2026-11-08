@@ -8,9 +8,7 @@ next: /PrintedByMother/Installation.md
 
  <!-- [![Static Badge](https://img.shields.io/badge/Steam%20Workshop-2b3645?logo=steam)]() -->
 
-Printed by Mother is projector automation for Space Engineers, built with [Mother Core](../Framework/README.md). It turns a projector, a set of welders and (usually) a merge block into a **printer**: Mother routines, projector hooks and per-blueprint configuration sections drive the whole print, from recognizing the blueprint on the projector to knowing when the finished ship has left the bay.
-
-![Printed By Mother](Printed%20By%20Mother%20Poster.png)
+Printed by Mother is projector automation for Space Engineers, built with [Mother Core](../Framework/README.md) 1.2.0. It turns a projector, a set of welders and (usually) a merge block into a **printer**: Mother routines, projector hooks and per-blueprint configuration sections drive the whole print, from recognizing the blueprint on the projector to knowing when the finished ship has left the bay.
 
 ::: warning Alpha Development
 Printed by Mother is at an early version and command or hook names may still change between builds. The aim is to make these changes minimal, and an upgrade guide will be provided for early adopters.
@@ -20,8 +18,6 @@ Like every script built with Mother Core it shares commands with the other Mothe
 
 [[toc]]
 
-
-
 ## Features
 
 - **Blueprint recognition** - every projection gets a hash from its block counts, so the same blueprint is recognized on any projector and its settings live in one `[blueprint:<hash>]` section on the programmable block. See [Alignment](./Alignment.md#blueprint-hashes).
@@ -29,6 +25,7 @@ Like every script built with Mother Core it shares commands with the other Mothe
 - **Print jobs** - `blueprint/print` runs the print as a job with phases, hooks and a busy flag, so two prints never weld into the same space. See [Print Jobs](./PrintJobs.md).
 - **Weld observation** - Mother watches weld progress on the projector's grid and fires hooks when welding starts, pauses, stalls or completes. Stalls are notifications you can escalate to an abort.
 - **Projector state stack** - push a projector's settings, change them for one print, pop them back when the job ends. See [The State Stack](./Alignment.md#the-state-stack).
+- **Conditions** - projectors have predicates and properties such as `busy`, `stalled` and `progress`, so `when` rules and `if` steps on any Mother programmable block can follow a print. See [Conditions](./Conditions.md).
 
 ## Quick Example
 

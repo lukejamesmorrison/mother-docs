@@ -1,0 +1,147 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 791 1234" width="100%" role="img" aria-labelledby="t d">
+<title id="t">Print job states and the predicates true in each</title>
+<desc id="d">State diagram. States: Idle (idle): No print job targets the projector. Starting (busy): A job targets the projector and has not committed yet. Printing, no welding pass (busy printing): Committed, no pass open yet. The stall clock runs from the commit. Welding (busy printing welding): The welders are adding integrity; every change resets the stall clock. Stalled (busy printing welding stalled): The welders are on a block but its integrity is not rising, usually a component shortage. No hook fires. Timed out (busy printing timedout): The weld timeout tripped and welding has not progressed since. Paused (busy printing paused): printer/pause holds the print clocks; welding can stay true. Complete (busy complete): The projection is complete; the job is clearing or finishing. Transitions: Idle to Starting, fires onPrint; Starting to Printing, no welding pass, no hook, job commits; Printing, no welding pass to Welding, fires onWeldStart; Welding to Printing, no welding pass, fires onWeldEnd; Welding to Stalled, no hook, no progress &gt; maxWeldGap, block partly built; Stalled to Welding, no hook, integrity rises or block count changes; Stalled to Timed out, fires onTimedOut; Printing, no welding pass to Timed out, fires onTimedOut; Timed out to Welding, fires onWeldStart; Printing, no welding pass to Paused, no hook, printer/pause; Welding to Paused, no hook, printer/pause; Stalled to Paused, no hook, printer/pause; Timed out to Paused, no hook, printer/pause; Paused to Printing, no welding pass, no hook, printer/resume; Paused to Welding, no hook, printer/resume; Paused to Stalled, no hook, printer/resume; Paused to Timed out, no hook, printer/resume; Welding to Complete, fires onWeldEnd, onComplete; Printing, no welding pass to Complete, fires onComplete; Timed out to Complete, fires onComplete; Printing, no welding pass to Complete, no hook, already complete at commit; Complete to Idle, fires onClear; Starting to Idle, fires onFailed; Printing, no welding pass to Idle, fires onFailed; Welding to Idle, fires onFailed; Stalled to Idle, fires onFailed; Timed out to Idle, fires onFailed; Paused to Idle, fires onFailed; Complete to Idle, fires onFailed;</desc>
+<defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" markerUnits="userSpaceOnUse" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#e6e6e6"/></marker><marker id="ahd" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="9" markerHeight="9" markerUnits="userSpaceOnUse" orient="auto-start-reverse"><path d="M1,1 L9,5 L1,9" fill="none" stroke="#a9a9b8" stroke-width="1.6"/></marker></defs>
+<style>.mono{font-family:ui-monospace, Consolas, 'Courier New', monospace;font-size:13.2px}.chipt{font-size:12.6px}.name{font-family:ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;font-size:15.6px;font-weight:600;fill:#f2f2f2}.desc{font-family:ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;font-size:14.4px;fill:#c9c9cf}.title{font-family:ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;font-size:22.8px;font-weight:600;fill:#f2f2f2}.cap{font-family:ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;font-size:13.8px;fill:#b4b4bc}.cause{font-family:ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;font-size:13.2px;font-style:italic;fill:#c4c4ce}.hook{fill:#f0f0f0}.lbl{fill:#141418;stroke:#3a3a44;stroke-width:1}.hookline{fill:none;stroke:#e6e6e6;stroke-width:2;stroke-linejoin:round}.causeline{fill:none;stroke:#a9a9b8;stroke-width:1.6;stroke-dasharray:2 4;stroke-linecap:round}</style>
+<rect x="0.5" y="0.5" width="790" height="1233" rx="14" fill="#1d1d22" stroke="#3a3a44"/>
+<text x="24" y="40.8" class="title">Print job states and the predicates true in each</text>
+<path d="M42,272 Q42,260 54,260 L188,260 Q200,260 200,248 L200,78 Q200,66 212,66 L757,66 Q769,66 769,78 L769,1052 Q769,1064 757,1064 L54,1064 Q42,1064 42,1052 z" fill="#e0484b" fill-opacity="0.035" stroke="#e0484b" stroke-opacity="0.55" stroke-width="1.2" stroke-dasharray="6 5"/>
+<path d="M62,284 Q62,268 78,268 L733,268 Q749,268 749,284 L749,724 Q749,740 733,740 L78,740 Q62,740 62,724 z" fill="#e0a030" fill-opacity="0.05" stroke="#e0a030" stroke-opacity="0.6" stroke-width="1.5"/>
+<path d="M397,308 Q397,292 413,292 L713,292 Q729,292 729,308 L729,698 Q729,714 713,714 L413,714 Q397,714 397,698 z" fill="#4cb963" fill-opacity="0.05" stroke="#4cb963" stroke-opacity="0.6" stroke-width="1.5"/>
+<rect x="460.2" y="54" width="290.8" height="24" fill="#1d1d22"/>
+<g class="chip"><rect x="467.4" y="54" width="45" height="24" rx="12" fill="#3a1a1c" stroke="#e0484b"/><text x="489.9" y="70.8" class="mono chipt" fill="#ffb4b5" text-anchor="middle">busy</text></g>
+<text x="522" y="70.8" class="cap">a print job targets the projector</text>
+<rect x="376.6" y="256" width="354.4" height="24" fill="#241f23"/>
+<g class="chip"><rect x="383.8" y="256" width="75" height="24" rx="12" fill="#3a2c14" stroke="#e0a030"/><text x="421.3" y="272.8" class="mono chipt" fill="#ffd68a" text-anchor="middle">printing</text></g>
+<text x="468.4" y="272.8" class="cap">committed, projection not complete yet</text>
+<rect x="505.8" y="280" width="205.2" height="24" fill="#2d2524"/>
+<g class="chip"><rect x="513" y="280" width="67" height="24" rx="12" fill="#16301d" stroke="#4cb963"/><text x="546.5" y="296.8" class="mono chipt" fill="#a6e8b4" text-anchor="middle">welding</text></g>
+<text x="589.6" y="296.8" class="cap">welding pass open</text>
+<path d="M172,159 L246,159" class="hookline" marker-end="url(#ah)"/>
+<path d="M279,228 L279,313" class="causeline" marker-end="url(#ahd)"/>
+<path d="M310,406.6 L415,406.6" class="hookline" marker-end="url(#ah)"/>
+<path d="M417,363.4 L312,363.4" class="hookline" marker-end="url(#ah)"/>
+<path d="M491.5,454 L491.5,547" class="causeline" marker-end="url(#ahd)"/>
+<path d="M634.5,550 L634.5,457" class="causeline" marker-end="url(#ahd)"/>
+<path d="M417,619 L312,619" class="hookline" marker-end="url(#ah)"/>
+<path d="M196,454 L196,548" class="hookline" marker-end="url(#ah)"/>
+<path d="M310,550 L415.5,455.3" class="hookline" marker-end="url(#ah)"/>
+<path d="M147,740 L147,803" class="causeline" marker-end="url(#ahd)"/>
+<path d="M277,806 L277,743" class="causeline" marker-end="url(#ahd)"/>
+<path d="M520,740 L520,898" class="hookline" marker-end="url(#ah)"/>
+<path d="M646,740 L646,897" class="causeline" marker-end="url(#ahd)"/>
+<path d="M457,969 L26,969 L26,230" class="hookline" marker-end="url(#ah)"/>
+<g class="state">
+<rect x="12" y="90" width="160" height="138" rx="10" fill="#9aa0a6" fill-opacity="0.10" stroke="#9aa0a6" stroke-opacity="0.75" stroke-width="1.5"/>
+<g class="chip"><rect x="25.2" y="102" width="45" height="24" rx="12" fill="#2c2e33" stroke="#9aa0a6"/><text x="47.7" y="118.8" class="mono chipt" fill="#d5d8dc" text-anchor="middle">idle</text></g>
+<line x1="13" y1="137.4" x2="171" y2="137.4" stroke="#9aa0a6" stroke-opacity="0.45"/>
+<text x="26.4" y="159.6" class="name">Idle</text>
+<text x="26.4" y="181.2" class="desc"><tspan x="26.4" dy="0">No print job</tspan><tspan x="26.4" dy="18">targets the</tspan><tspan x="26.4" dy="18">projector.</tspan></text>
+</g>
+<g class="state">
+<rect x="248" y="90" width="248" height="138" rx="10" fill="#e0484b" fill-opacity="0.10" stroke="#e0484b" stroke-opacity="0.75" stroke-width="1.5"/>
+<g class="chip"><rect x="261.2" y="102" width="45" height="24" rx="12" fill="#3a1a1c" stroke="#e0484b"/><text x="283.7" y="118.8" class="mono chipt" fill="#ffb4b5" text-anchor="middle">busy</text></g>
+<line x1="249" y1="137.4" x2="495" y2="137.4" stroke="#e0484b" stroke-opacity="0.45"/>
+<text x="262.4" y="159.6" class="name">Starting</text>
+<text x="262.4" y="181.2" class="desc"><tspan x="262.4" dy="0">A job targets the projector and</tspan><tspan x="262.4" dy="18">has not committed yet.</tspan></text>
+</g>
+<g class="state">
+<rect x="82" y="316" width="228" height="138" rx="10" fill="#e0a030" fill-opacity="0.10" stroke="#e0a030" stroke-opacity="0.75" stroke-width="1.5"/>
+<g class="chip"><rect x="95.2" y="328" width="45" height="24" rx="12" fill="#3a1a1c" stroke="#e0484b"/><text x="117.7" y="344.8" class="mono chipt" fill="#ffb4b5" text-anchor="middle">busy</text></g>
+<g class="chip"><rect x="146.2" y="328" width="75" height="24" rx="12" fill="#3a2c14" stroke="#e0a030"/><text x="183.7" y="344.8" class="mono chipt" fill="#ffd68a" text-anchor="middle">printing</text></g>
+<line x1="83" y1="363.4" x2="309" y2="363.4" stroke="#e0a030" stroke-opacity="0.45"/>
+<text x="96.4" y="385.6" class="name">Printing, no welding pass</text>
+<text x="96.4" y="407.2" class="desc"><tspan x="96.4" dy="0">Committed, no pass open yet.</tspan><tspan x="96.4" dy="18">The stall clock runs from</tspan><tspan x="96.4" dy="18">the commit.</tspan></text>
+</g>
+<g class="state">
+<rect x="417" y="316" width="292" height="138" rx="10" fill="#4cb963" fill-opacity="0.10" stroke="#4cb963" stroke-opacity="0.75" stroke-width="1.5"/>
+<g class="chip"><rect x="430.2" y="328" width="45" height="24" rx="12" fill="#3a1a1c" stroke="#e0484b"/><text x="452.7" y="344.8" class="mono chipt" fill="#ffb4b5" text-anchor="middle">busy</text></g>
+<g class="chip"><rect x="481.2" y="328" width="75" height="24" rx="12" fill="#3a2c14" stroke="#e0a030"/><text x="518.7" y="344.8" class="mono chipt" fill="#ffd68a" text-anchor="middle">printing</text></g>
+<g class="chip"><rect x="562.2" y="328" width="67" height="24" rx="12" fill="#16301d" stroke="#4cb963"/><text x="595.7" y="344.8" class="mono chipt" fill="#a6e8b4" text-anchor="middle">welding</text></g>
+<line x1="418" y1="363.4" x2="708" y2="363.4" stroke="#4cb963" stroke-opacity="0.45"/>
+<text x="431.4" y="385.6" class="name">Welding</text>
+<text x="431.4" y="407.2" class="desc"><tspan x="431.4" dy="0">The welders are adding integrity;</tspan><tspan x="431.4" dy="18">every change resets the stall clock.</tspan></text>
+</g>
+<g class="state">
+<rect x="417" y="550" width="292" height="138" rx="10" fill="#ec7a3c" fill-opacity="0.10" stroke="#ec7a3c" stroke-opacity="0.75" stroke-width="1.5"/>
+<g class="chip"><rect x="430.2" y="562" width="45" height="24" rx="12" fill="#3a1a1c" stroke="#e0484b"/><text x="452.7" y="578.8" class="mono chipt" fill="#ffb4b5" text-anchor="middle">busy</text></g>
+<g class="chip"><rect x="481.2" y="562" width="75" height="24" rx="12" fill="#3a2c14" stroke="#e0a030"/><text x="518.7" y="578.8" class="mono chipt" fill="#ffd68a" text-anchor="middle">printing</text></g>
+<g class="chip"><rect x="562.2" y="562" width="67" height="24" rx="12" fill="#16301d" stroke="#4cb963"/><text x="595.7" y="578.8" class="mono chipt" fill="#a6e8b4" text-anchor="middle">welding</text></g>
+<g class="chip"><rect x="635.2" y="562" width="67" height="24" rx="12" fill="#3b2216" stroke="#ec7a3c"/><text x="668.7" y="578.8" class="mono chipt" fill="#ffc19c" text-anchor="middle">stalled</text></g>
+<line x1="418" y1="597.4" x2="708" y2="597.4" stroke="#ec7a3c" stroke-opacity="0.45"/>
+<text x="431.4" y="619.6" class="name">Stalled</text>
+<text x="431.4" y="641.2" class="desc"><tspan x="431.4" dy="0">The welders are on a block but its</tspan><tspan x="431.4" dy="18">integrity is not rising, usually a</tspan><tspan x="431.4" dy="18">component shortage. No hook fires.</tspan></text>
+</g>
+<g class="state">
+<rect x="82" y="550" width="228" height="138" rx="10" fill="#ff5a5f" fill-opacity="0.10" stroke="#ff5a5f" stroke-opacity="0.75" stroke-width="1.5"/>
+<g class="chip"><rect x="95.2" y="562" width="45" height="24" rx="12" fill="#3a1a1c" stroke="#e0484b"/><text x="117.7" y="578.8" class="mono chipt" fill="#ffb4b5" text-anchor="middle">busy</text></g>
+<g class="chip"><rect x="146.2" y="562" width="75" height="24" rx="12" fill="#3a2c14" stroke="#e0a030"/><text x="183.7" y="578.8" class="mono chipt" fill="#ffd68a" text-anchor="middle">printing</text></g>
+<g class="chip"><rect x="227.2" y="562" width="75" height="24" rx="12" fill="#5c0f14" stroke="#ff5a5f"/><text x="264.7" y="578.8" class="mono chipt" fill="#ffd0d2" text-anchor="middle">timedout</text></g>
+<line x1="83" y1="597.4" x2="309" y2="597.4" stroke="#ff5a5f" stroke-opacity="0.45"/>
+<text x="96.4" y="619.6" class="name">Timed out</text>
+<text x="96.4" y="641.2" class="desc"><tspan x="96.4" dy="0">The weld timeout tripped and</tspan><tspan x="96.4" dy="18">welding has not progressed</tspan><tspan x="96.4" dy="18">since.</tspan></text>
+</g>
+<g class="state">
+<rect x="82" y="806" width="260" height="138" rx="10" fill="#4a90e2" fill-opacity="0.10" stroke="#4a90e2" stroke-opacity="0.75" stroke-width="1.5"/>
+<g class="chip"><rect x="95.2" y="818" width="45" height="24" rx="12" fill="#3a1a1c" stroke="#e0484b"/><text x="117.7" y="834.8" class="mono chipt" fill="#ffb4b5" text-anchor="middle">busy</text></g>
+<g class="chip"><rect x="146.2" y="818" width="75" height="24" rx="12" fill="#3a2c14" stroke="#e0a030"/><text x="183.7" y="834.8" class="mono chipt" fill="#ffd68a" text-anchor="middle">printing</text></g>
+<g class="chip"><rect x="227.2" y="818" width="60" height="24" rx="12" fill="#152a44" stroke="#4a90e2"/><text x="257.2" y="834.8" class="mono chipt" fill="#a9cdf7" text-anchor="middle">paused</text></g>
+<line x1="83" y1="853.4" x2="341" y2="853.4" stroke="#4a90e2" stroke-opacity="0.45"/>
+<text x="96.4" y="875.6" class="name">Paused</text>
+<text x="96.4" y="897.2" class="desc"><tspan x="96.4" dy="0">printer/pause holds the print</tspan><tspan x="96.4" dy="18">clocks; welding can stay true.</tspan></text>
+</g>
+<g class="state">
+<rect x="457" y="900" width="252" height="138" rx="10" fill="#26a69a" fill-opacity="0.10" stroke="#26a69a" stroke-opacity="0.75" stroke-width="1.5"/>
+<g class="chip"><rect x="470.2" y="912" width="45" height="24" rx="12" fill="#3a1a1c" stroke="#e0484b"/><text x="492.7" y="928.8" class="mono chipt" fill="#ffb4b5" text-anchor="middle">busy</text></g>
+<g class="chip"><rect x="521.2" y="912" width="75" height="24" rx="12" fill="#113430" stroke="#26a69a"/><text x="558.7" y="928.8" class="mono chipt" fill="#93e0d6" text-anchor="middle">complete</text></g>
+<line x1="458" y1="947.4" x2="708" y2="947.4" stroke="#26a69a" stroke-opacity="0.45"/>
+<text x="471.4" y="969.6" class="name">Complete</text>
+<text x="471.4" y="991.2" class="desc"><tspan x="471.4" dy="0">The projection is complete; the</tspan><tspan x="471.4" dy="18">job is clearing or finishing.</tspan></text>
+</g>
+<rect x="174.5" y="147" width="71" height="24" rx="4" class="lbl"/>
+<text x="210" y="164.4" class="mono hook" text-anchor="middle">onPrint</text>
+<rect x="231.5" y="260" width="95" height="24" rx="4" class="lbl"/>
+<text x="279" y="277.4" class="cause" text-anchor="middle">job commits</text>
+<rect x="312" y="394.6" width="103" height="24" rx="4" class="lbl"/>
+<text x="363.5" y="412" class="mono hook" text-anchor="middle">onWeldStart</text>
+<rect x="320" y="351.4" width="87" height="24" rx="4" class="lbl"/>
+<text x="363.5" y="368.8" class="mono hook" text-anchor="middle">onWeldEnd</text>
+<rect x="418.5" y="459.3" width="146" height="62.4" rx="4" class="lbl"/>
+<text x="491.5" y="476.7" class="cause" text-anchor="middle">no progress</text>
+<text x="491.5" y="495.9" class="cause" text-anchor="middle">&gt; maxWeldGap,</text>
+<text x="491.5" y="515.1" class="cause" text-anchor="middle">block partly built</text>
+<rect x="572.5" y="482.3" width="124" height="62.4" rx="4" class="lbl"/>
+<text x="634.5" y="499.7" class="cause" text-anchor="middle">integrity rises</text>
+<text x="634.5" y="518.9" class="cause" text-anchor="middle">or block count</text>
+<text x="634.5" y="538.1" class="cause" text-anchor="middle">changes</text>
+<rect x="316" y="607" width="95" height="24" rx="4" class="lbl"/>
+<text x="363.5" y="624.4" class="mono hook" text-anchor="middle">onTimedOut</text>
+<rect x="148.5" y="490" width="95" height="24" rx="4" class="lbl"/>
+<text x="196" y="507.4" class="mono hook" text-anchor="middle">onTimedOut</text>
+<rect x="312" y="490" width="103" height="24" rx="4" class="lbl"/>
+<text x="363.5" y="507.4" class="mono hook" text-anchor="middle">onWeldStart</text>
+<rect x="87.5" y="761" width="119" height="24" rx="4" class="lbl"/>
+<text x="147" y="778.4" class="mono hook" text-anchor="middle">printer/pause</text>
+<rect x="213.5" y="761" width="127" height="24" rx="4" class="lbl"/>
+<text x="277" y="778.4" class="mono hook" text-anchor="middle">printer/resume</text>
+<rect x="472.5" y="808" width="95" height="24" rx="4" class="lbl"/>
+<text x="520" y="825.4" class="mono hook" text-anchor="middle">onComplete</text>
+<rect x="580" y="798.4" width="132" height="43.2" rx="4" class="lbl"/>
+<text x="646" y="815.8" class="cause" text-anchor="middle">already complete</text>
+<text x="646" y="835" class="cause" text-anchor="middle">at commit</text>
+<rect x="65.5" y="947.4" width="368" height="43.2" rx="4" class="lbl"/>
+<text x="249.5" y="964.8" class="cause" text-anchor="middle">job ends, from any busy state</text>
+<text x="249.5" y="984" class="mono hook" text-anchor="middle">onClear (cleared) / onFailed (printer/abort)</text>
+<rect x="42" y="1084" width="720" height="129.6" rx="10" fill="#17171b" stroke="#3a3a44"/>
+<text x="58.8" y="1112.8" class="name">How to read it</text>
+<path d="M58.8,1146.4 H116.4" class="hookline" marker-end="url(#ah)"/>
+<text x="130.8" y="1151.2" class="desc">fires the named hook</text>
+<path d="M58.8,1182.4 H116.4" class="causeline" marker-end="url(#ahd)"/>
+<text x="130.8" y="1187.2" class="desc">changes a predicate only, no hook</text>
+<g class="chip"><rect x="402" y="1098.4" width="45" height="24" rx="12" fill="#3a1a1c" stroke="#e0484b"/><text x="424.5" y="1115.2" class="mono chipt" fill="#ffb4b5" text-anchor="middle">busy</text></g>
+<g class="chip"><rect x="454.2" y="1098.4" width="75" height="24" rx="12" fill="#3a2c14" stroke="#e0a030"/><text x="491.7" y="1115.2" class="mono chipt" fill="#ffd68a" text-anchor="middle">printing</text></g>
+<text x="543.6" y="1115.2" class="desc">predicates true in the state</text>
+<text x="402" y="1160.8" class="name">State name</text>
+<text x="402" y="1181.2" class="desc">and a plain-English description</text>
+<text x="402" y="1199.2" class="desc">of what is happening in it</text>
+</svg>

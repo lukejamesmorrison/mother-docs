@@ -55,6 +55,8 @@ flowchart TD
 
 A job ends in exactly one of two ways: **cleared** (success, `onClear` runs) or **aborted** (`printer/abort`, `onFailed` runs instead). A job never gives up on its own.
 
+The phases are also predicates (`busy`, `printing`, `paused`, `complete`, `idle`) for `when` rules and `if` steps; see [Properties and Predicates](./Conditions.md#properties-and-predicates).
+
 ## Stalls and Failures
 
 If welding stalls longer than `timeout` seconds (set with `projector/settings --timeout=`), or never starts within `timeout` seconds of the commit, `onTimedOut` fires. Progress on a block counts as welding: while the block Mother is watching keeps gaining build integrity the stall clock is reset, so one block that takes longer than `timeout` to weld up does not stall.
