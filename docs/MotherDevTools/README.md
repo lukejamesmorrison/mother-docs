@@ -16,7 +16,36 @@ Mother Dev Tools is a [Visual Studio Code](https://code.visualstudio.com/) exten
 
 ## Language Support
 
-The extension adds MotherScript language mode features, including syntax highlighting, comment toggling with `;`, and folding for command blocks.
+The extension adds a **MotherScript** language mode for writing ingame commands and routines that are [Powered by Mother](../PoweredByMother.md?tab=scripts).
+
+### Supported File Types
+
+Visual Studio Code automatically recognizes the following files as MotherScript:
+
+- `.ms` files.
+- `.mini` files.
+<!-- - Files named exactly `MotherScriptFile`, without an extension. -->
+
+![Language Support](./Assets/mother-dev-tools-language-highlighting.png)
+
+For scripts saved with another file extension, click the language mode in the bottom-right corner of Visual Studio Code and select **MotherScript**. This enables the extension's language features for the current file.
+
+:::tip MotherScript Should Feel Familiar
+The command syntax is dervived from the `.ini` format. Malware built support for it into the Programmable Block API which takes away some overhead. If you are already configuring other scripts then the MotherScript sytnax will feel quite natural, and consistent. are generally:
+
+`[Command] [target] [arguments...] [--options...]`
+:::
+
+### Editing Features
+
+- **Syntax highlighting** distinguishes routine headers, command names, pipeline markers (`|`), semicolon terminators, numbers, quoted strings, flags such as `--option`, and identifiers such as `#panel:1`.
+- **Line comments** use `;` at the start of a line. Use Visual Studio Code's **Toggle Line Comment** command to comment or uncomment selected lines.
+- **Code folding** lets you collapse command blocks beneath routine headers ending in `=`, making longer scripts easier to navigate.
+- **Bracket matching and auto-closing** support `[]`, `{}`, and `()`. Double quotes are also automatically closed when typing strings.
+
+MotherScript mode also enables the IntelliSense, formatting, and diagnostics described below.
+
+
 
 ### IntelliSense
 
