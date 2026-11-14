@@ -274,6 +274,7 @@ const PrintedByMotherSidebar = {
       ],
     },
     '/PrintedByMother/Commands.md',
+    '/PrintedByMother/Conditions.md',
     '/PrintedByMother/PrintJobs.md',
     '/PrintedByMother/Alignment.md',
     '/PrintedByMother/Hooks.md',
