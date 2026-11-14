@@ -222,7 +222,7 @@ blueprint/load <Projector|Group> [--options]
 |---|---|---|
 | `p` | `1`, `2`, ... | Projectors scanned per cycle. Default 8. |
 | `async` | | If the projection is partially built, search for an unbuilt offset so it can be hashed. The original offset is restored afterwards. |
-| `noWake` | | Do not enable a disabled projector for the scan. |
+| `noWake` | | Do not enable a disabled projector for the scan. A disabled projector is then skipped: not scanned, no hooks, its loaded blueprint kept. |
 
 ```ms title="terminal"
 blueprint/load "Bay 1 Projector";
@@ -249,7 +249,7 @@ blueprint/save <Projector|Group> <Attachment|Block|Group> [--options]
 | `compact` | | Leave out weld-setting keys that equal the projector's defaults. |
 | `p` | `1`, `2`, ... | Projectors scanned per cycle. Default 8. |
 | `async` | | If the projection is partially built, search for an unbuilt offset so it can be hashed. The original offset is restored afterwards. |
-| `noWake` | | Do not enable a disabled projector for the scan. |
+| `noWake` | | Do not enable a disabled projector for the scan. A disabled projector is then not saved, and reported as not scanned. |
 
 ```ms title="terminal"
 blueprint/save "Bay 1 Projector" "Bay 1 Merge" --compact;
