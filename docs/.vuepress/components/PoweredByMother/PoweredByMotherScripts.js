@@ -3,6 +3,8 @@
  *
  * This file contains an array of scripts that are powered by Mother Core.
  * Each object includes details such as the name, author, links, and description.
+ * `page` accepts an internal documentation path or an external URL.
+ * External URLs open in a new tab; `pageLabel` optionally overrides "Documentation".
  */
 import printedByMotherPoster from '../../../PrintedByMother/Printed By Mother Poster.png';
 
@@ -45,23 +47,24 @@ export default [
         name: 'Printed by Mother',
         author: 'Malleus',
         author_link: '#',
-        link: '',
-        image_link: printedByMotherPoster,
+        link: 'https://steamcommunity.com/sharedfiles/filedetails/?id=3836300920',
+        image_link: 'https://images.steamusercontent.com/ugc/15493380310992603268/E248DD5A2DA76D7D4F885CB3EF8A55FF331CA54A/',
         description: 'Printed by Mother is a script that manages and controls 3D printing processes in Space Engineers, powered by Mother. It integrates with Mother OS to provide seamless automation and control over your printing tasks.',
         tags: ['Automation', 'Printing'],
         page: '/PrintedByMother/',
         pageLabel: 'Documentation',
     },
     // Mother HMI
-    // {
-    //     name: 'Mother HMI',
-    //     author: 'Dext3r09',
-    //     author_link: '#',
-    //     link: '',
-    //     image_link: './Mother HMI Poster.png',
-    //     description: 'Mother HMI is a human-machine interface powered by Mother, providing an intuitive way to interact with your automated systems. It integrates seamlessly with Mother OS and other Mother-powered scripts.',
-    //     tags: ['Automation', 'User Interface', 'HMI'],
-    // },
+    {
+        name: 'Mother HMI',
+        author: 'Dext3r09',
+        author_link: '#',
+        link: 'https://steamcommunity.com/sharedfiles/filedetails/?id=3835518776',
+        image_link: 'https://images.steamusercontent.com/ugc/16240315160970027447/5696FC957D8D06227CFECAE76F5D8DCDF214823C/',
+        description: "MotherHMI turns the LCDs of your base into an old-school control room. It draws your factory as a schematic made of cells: pipes, labels, lamps, arrows and level bars that show what the blocks are doing, plus buttons, switches and sorter controls that you operate with a cursor. Everything is set up by pasting text into Custom Data: you don't need to know any programming.",
+        tags: ['Automation', 'User Interface', 'HMI'],
+        page: 'https://dext3r09-engineering-public.gitlab.io/space-engineers/motherhmi/index.html',
+        pageLabel: 'Documentation',
+    },
 ];
-
 

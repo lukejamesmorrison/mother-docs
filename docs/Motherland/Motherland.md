@@ -99,10 +99,11 @@ function slugify(value: string): string {
 # Motherland
 [![Discord](https://img.shields.io/badge/discord-Join%20the%20Server-5865F2?logo=discord&labelColor=white)](https://discord.com/channels/1338896821489111131/1433531138147745802)
 
-![Motherland Banner](./assets/hero.PNG)
+<!-- ![Motherland Banner](./assets/hero.PNG) -->
+![Spine Station](./assets/spine-station.png)
+> **Spine Station** - featuring creations from Dext3r09, TickleMyIguana, Malleus, Pablo Diablo, The Lok, Agentluke.
 
 Motherland is a Space Engineers multiplayer server with a special focus on automation and cooperation to overcome survival challenges. It also offers a collaborative environment to build and integrate ingame scripts built with [Mother Core](../Framework/README.md).
-
 
 [[toc]]
 
@@ -190,6 +191,34 @@ Great Projects will define large-scale, multi-stage initiatives intended to stre
 :::
 
 
+## Creations Database
+
+[Powered By Mother](../PoweredByMother.md)
+
+## Action Shots
+
+#### Moon Base Alpha & Peanut [Pablo Diablo]
+![Moon Base Alpha 1](./assets/moon-base-alpha1.png)
+![Moon Base Alpha 3](./assets/moon-base-alpha3.png)
+
+#### Spine Station - Controls [Dext3r09]
+![Spine Station - Controls 1](./assets/spine-station-controls-1.png)
+![Spine Station - Controls 2](./assets/spine-station-controls-2.png)
+
+
+#### Printed By Mother and Nova Blade Mk1 [Malleus, Agentluke]
+![Printed By Mother and Nova Blade Mk1](./assets/printed-by-mother-blade-1.png)
+
+#### Sisyphus [Pablo Diablo]
+![Sisyphus](./assets/sisyphus.png)
+
+#### Nova Blade Mk1 [Agentluke]
+![Blade Space 1](./assets/blade-space-1.png)
+
+
+
+
+
 <style scoped>
 .motherland-planets-toc {
   display: flex;
@@ -260,13 +289,3 @@ Great Projects will define large-scale, multi-stage initiatives intended to stre
   min-width: 0;
 }
 </style>
-
-
-<!-- ## Bulletin -->
-<!-- ![alt text](assets/charlie-day-meme.avif)
-==Current events update page== -->
-
-
-## Creations Database
-
-[Powered By Mother](../PoweredByMother.md)

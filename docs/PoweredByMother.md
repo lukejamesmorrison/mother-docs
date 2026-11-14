@@ -31,6 +31,14 @@ function onPopState() {
 onMounted(() => {
   activeTab.value = readTabFromUrl()
   window.addEventListener('popstate', onPopState)
+
+  // Shuffle only after hydration so server-rendered and client markup match.
+  const shuffledItems = [...featuredItems.value]
+  for (let i = shuffledItems.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1))
+    ;[shuffledItems[i], shuffledItems[j]] = [shuffledItems[j], shuffledItems[i]]
+  }
+  featuredItems.value = shuffledItems
 })
 
 onBeforeUnmount(() => {
@@ -41,10 +49,7 @@ const selectedScripts = ref([])
 const gridSearch = ref('')
 const scriptSearch = ref('')
 
-// Printed by Mother is featured second, after the lead grid.
-const printedByMother = PoweredByMotherScripts.find(s => s.name === 'Printed by Mother')
-const [leadGrid, ...otherGrids] = PoweredByMotherGrids
-const featuredItems = [leadGrid, printedByMother, ...otherGrids].filter(Boolean)
+const featuredItems = ref([...PoweredByMotherGrids, ...PoweredByMotherScripts])
 
 const allScripts = computed(() => {
   const scripts = new Set()

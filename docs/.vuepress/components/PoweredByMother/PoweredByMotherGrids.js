@@ -5,6 +5,8 @@
 * Each object includes details such as the name of the creation, the author, a link to the author's 
 * profile, a link to the creation, an image link, and a description of the creation. Optionally add
 * `docs_link` for grid-specific documentation hosted somewhere other than the Steam Workshop page.
+* `page` accepts an internal documentation path or an external URL (opened in a new tab),
+* and takes precedence over `docs_link`.
 *
 * Contributors are encouraged to add their own creations to this list by following the existing format 
 * and submitting a pull request.

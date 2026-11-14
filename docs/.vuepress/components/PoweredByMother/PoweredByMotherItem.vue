@@ -43,7 +43,7 @@
           <a v-if="item.link" :href="item.link" target="_blank" rel="noopener noreferrer">
             <span>Steam Workshop</span>
           </a>
-          <RouteLink v-if="item.page" :to="item.page">Documentation</RouteLink>
+          <AutoLink v-if="item.page" :config="{ link: item.page, text: 'Documentation' }" />
           <a v-else-if="item.docs_link" :href="item.docs_link" target="_blank" rel="noopener noreferrer">
             <span>Documentation</span>
           </a>
@@ -54,7 +54,7 @@
   
 
 <script setup>
-import { RouteLink } from 'vuepress/client'
+import { AutoLink } from 'vuepress/client'
 
 defineProps({
     item: Object
@@ -175,4 +175,3 @@ defineProps({
   color: var(--vp-c-text-2);
 }
 </style>
-
