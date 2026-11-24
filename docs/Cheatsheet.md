@@ -493,6 +493,47 @@ PowerCheck=
 
 :::
 
+## Broadcast Controllers
+[![Static Badge](https://img.shields.io/badge/Broadcast_Controller_Module-Mother_OS-red?color=red)](IngameScript/Modules/Extension/BroadcastControllerModule.md)
+
+::: tabs
+
+@tab Commands
+
+### broadcast/send
+Send a chat message through a Broadcast Controller. By default, this uses *Message 8*.
+
+```
+broadcast/send <Block|Group|Tag> <Message> [--channel=<Channel>] [--sender=<Sender>] [--target=owner|faction|everyone] [--antenna=true|false]
+```
+
+**Example**
+
+Name your Broadcast Controller `Bridge Broadcast`, then announce docking to your faction through the antenna:
+
+```ms title="Terminal"
+broadcast/send "Bridge Broadcast" "Docking procedure started" --sender=Mothership --target=faction --antenna=true;
+```
+
+### broadcast/gps
+Send the controller's current world position as a GPS coordinate. The label defaults to Mother's name.
+
+```
+broadcast/gps <Block|Group|Tag> [--name=<Label>] [--channel=<Channel>] [--sender=<Sender>] [--target=owner|faction|everyone] [--antenna=true|false]
+```
+
+**Example**
+
+Share your ship's location with your faction, using `Mother Ship` as the GPS label:
+
+```ms title="Terminal"
+broadcast/gps "Bridge Broadcast" --name="Mother Ship" --target=faction --antenna=true;
+```
+
+The default channel is `7` (the controller's *Message 8* slot). A group or tag uses only the first matching controller. The controller stays busy for at least one second, during which any temporary overrides are restored. See the [Broadcast Controller Module](IngameScript/Modules/Extension/BroadcastControllerModule.md) for details.
+
+:::
+
 ## Core
 
 :::: tabs
@@ -2264,6 +2305,32 @@ PadStatus=
 | else;
 |   light/color "Landing Pad Light" green;
 ```
+
+:::
+
+## Separation Charges
+[![Static Badge](https://img.shields.io/badge/Separation_Charge_Module-Mother_OS-red?color=red)](IngameScript/Modules/Extension/SeparationChargeModule.md)
+
+::: tabs
+
+@tab Commands
+
+### charge/detach
+Detonate and remove separation charges. A group or tag acts on every matched block with a separation component.
+
+```
+charge/detach <Block|Group|Tag>
+```
+
+**Example**
+
+Name the charge attaching your cargo pod `Cargo Pod Charge`, then detonate it to release the pod:
+
+```ms title="Terminal"
+charge/detach "Cargo Pod Charge";
+```
+
+See the [Separation Charge Module](IngameScript/Modules/Extension/SeparationChargeModule.md) for details.
 
 :::
 

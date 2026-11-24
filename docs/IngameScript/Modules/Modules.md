@@ -50,6 +50,7 @@ These modules have been moved to the [Mother Autopilot System](../../MotherAutop
 | [Air Vents](Extension/AirVentModule.md)			| Manages air vents on the grid. |
 | [AutoLCD](Extension/AutoLCDModule.md)			| Swaps the view shown by Automatic LCDs 2 on any screen. |
 | [Batteries](Extension/BatteryModule.md)					| Manages batteries on the grid.|
+| [Broadcast Controllers](Extension/BroadcastControllerModule.md) | Sends chat messages and GPS coordinates through Broadcast Controller blocks. |
 | [Cockpits](Extension/CockpitModule.md)					| Manages cockpits on the grid.|
 | [Connectors](Extension/ConnectorModule.md)			| Manages connectors on the grid.|
 | [Displays](Extension/DisplayModule.md)					| Manages displays (screens) on the grid.|
@@ -64,6 +65,7 @@ These modules have been moved to the [Mother Autopilot System](../../MotherAutop
 | [Rotors](Extension/RotorModule.md)					| Manages rotors on the grid.|
 | [Screens*](Extension/DisplayModule.md)					| Manages displays on the grid.|
 | [Sensors](Extension/SensorModule.md) | Manages sensors on the grid.|
+| [Separation Charges](Extension/SeparationChargeModule.md) | Detonates separation charges and refreshes the construct after the grid separates. |
 | [Sorter](Extension/SorterModule.md) | Manages conveyor sorters on the grid.|
 | [Sound Blocks](Extension/SoundBlockModule.md)				| Manages sound blocks on the grid. |
 | [Thrusters](Extension/ThrusterModule.md)              | Manages thrusters on the grid.|

@@ -2,6 +2,13 @@
 
 [[toc]]
 
+## 1.3.0 -> 1.3.1
+
+Mother OS 1.3.1 adds commands for Broadcast Controllers and Separation Charges. To update, reload Mother OS from the Workshop into your programmable block as described in [Installation](./Installation.md#setup).
+
+- **Broadcast Controllers** - Send chat messages with `broadcast/send` and share the controller's position with `broadcast/gps`. See the [Broadcast Controller Module](./Modules/Extension/BroadcastControllerModule.md).
+- **Separation Charges** - Detonate separation charges with `charge/detach`. See the [Separation Charge Module](./Modules/Extension/SeparationChargeModule.md).
+
 ## 1.2.0 -> 1.3.0
 🕓 5 mins
 

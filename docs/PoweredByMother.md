@@ -245,6 +245,8 @@ This section showcases scripts and grids that are powered by Mother Core. If you
 
 <FeaturedCarousel :items="featuredItems" :autoplay="true" :interval="7000" />
 
+Check out the [Powered By Mother collection](https://steamcommunity.com/sharedfiles/filedetails/?id=3515885602) on the Steam Workshop!
+
 <div class="tabs-container">
   <button 
     :class="['tab-btn', { active: activeTab === 'scripts' }]"
