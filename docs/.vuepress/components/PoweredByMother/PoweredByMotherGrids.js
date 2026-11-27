@@ -42,6 +42,17 @@ export default [
         scripts: ['Mother OS', 'Mother GUI'],
     },
     {
+        
+        name: 'Dare Mk II',
+        author: 'TickleMyIguana',
+        author_link: 'https://steamcommunity.com/id/ticklemyiguana',
+        link:  'https://steamcommunity.com/sharedfiles/filedetails/?id=3844550311',
+        image_link: 'https://images.steamusercontent.com/ugc/17195485455796104165/0FE457A47370DF8FBF3479ED651B8970CE52F2B5/',
+        description: 'Tactical patrol vessel. A compact gunship built around a rotating railgun battery, with torpedoes and two remotely aimed autocannon turrets. Built vertically: decks stack along the thrust axis.',
+        scripts: ['Mother OS', 'Mother GUI'],
+        page: 'https://skyboundstandards.com/dare-mk-ii/'
+    },
+    {
         name: 'Swordfish',
         author: 'TickleMyIguana',
         author_link: 'https://steamcommunity.com/id/ticklemyiguana',
