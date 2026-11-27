@@ -33,6 +33,7 @@ Mother GUI is designed to feel at home beside other scripts Powered by Mother li
 - **Multi-surface support** - Target LCD panels directly or configure cockpit, programmable block, and sound block surfaces with `Block Name:SurfaceIndex`.
 - **Screen automation** - Jump to views, switch menus, and change surface content types with terminal commands.
 - **Notifications** - Give players feedback with transient footer messages using `view/notify`.
+- **GUI themes** - Customise the shared colour palette for every GUI display through the programmable block's Custom Data. See [GUI Themes](./Configuration.md#gui-themes).
 - **Conditional menus** - Use `if` steps in menu entries and `when` rules to react to the state of your blocks. See [Conditional Menu Entries](./MenuView.md#conditional-menu-entries).
 - **Views from other scripts** - Open views owned by other Mother scripts, like the [MAPS](../MotherAutopilotSystem/Modules/MapModule.md) `MapView`, from the same display with `view/go`.
 
